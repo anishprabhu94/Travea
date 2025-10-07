@@ -327,11 +327,20 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     alignItems: 'center',
     marginBottom: 16,
-    shadowColor: '#B9C8C2',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 3,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#B9C8C2',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+      },
+      android: {
+        elevation: 3,
+      },
+      web: {
+        boxShadow: '0px 4px 8px rgba(185, 200, 194, 0.3)',
+      },
+    }),
   },
   primaryButtonText: {
     fontFamily: 'Inter_400Regular',
