@@ -230,7 +230,9 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 20,
     width: (width - 60) / 2,
+    minHeight: 140,
     alignItems: 'center',
+    justifyContent: 'center',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
