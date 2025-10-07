@@ -240,13 +240,8 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  actionIconContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: 'rgba(185, 200, 194, 0.1)',
-    alignItems: 'center',
-    justifyContent: 'center',
+  actionIcon: {
+    fontSize: 40,
     marginBottom: 12,
   },
   actionTitle: {
