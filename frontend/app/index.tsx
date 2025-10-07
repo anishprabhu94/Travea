@@ -262,11 +262,20 @@ const styles = StyleSheet.create({
     padding: 32,
     backgroundColor: 'rgba(255, 255, 255, 0.5)',
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.1,
-    shadowRadius: 24,
-    elevation: 5,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.1,
+        shadowRadius: 24,
+      },
+      android: {
+        elevation: 5,
+      },
+      web: {
+        boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.1)',
+      },
+    }),
   },
   toggleContainer: {
     flexDirection: 'row',
