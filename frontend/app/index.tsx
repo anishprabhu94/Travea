@@ -14,8 +14,7 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import { BlurView } from 'expo-blur';
 import { useRouter } from 'expo-router';
-import { useFonts, PlayfairDisplay_600SemiBold } from '@expo-google-fonts/playfair-display';
-import { Inter_400Regular } from '@expo-google-fonts/inter';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
@@ -27,32 +26,19 @@ export default function Index() {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
 
-  let [fontsLoaded] = useFonts({
-    PlayfairDisplay_600SemiBold,
-    Inter_400Regular,
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
   const handleSignIn = () => {
-    // Mock navigation to home
     router.push('/home');
   };
 
   const handleSignUp = () => {
-    // Mock navigation to home
     router.push('/home');
   };
 
   const handleOAuthGoogle = () => {
-    // Mock Google OAuth
     router.push('/home');
   };
 
   const handleOAuthApple = () => {
-    // Mock Apple OAuth
     router.push('/home');
   };
 
@@ -62,16 +48,22 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <ImageBackground
         source={{
-          uri: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwyfHxiZWFjaCUyMHN1bnJpc2V8ZW58MHx8fHwxNzU5ODc2MDg0fDA&ixlib=rb-4.1.0&q=85',
+          uri: 'https://images.unsplash.com/photo-1517462035531-76bc910a6903?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwyfHxjaXR5JTIwc2t5bGluZSUyMG5pZ2h0fGVufDB8fHxibGFja3wxNzU5ODc2ODA0fDA&ixlib=rb-4.1.0&q=85',
         }}
         style={styles.backgroundImage}
         resizeMode="cover"
+        blurRadius={8}
       >
-        {/* Warm beige overlay */}
-        <View style={styles.overlay} />
+        {/* Dark overlay with gradient */}
+        <LinearGradient
+          colors={['rgba(15, 15, 15, 0.75)', 'rgba(26, 26, 26, 0.85)', 'rgba(15, 15, 15, 0.75)']}
+          style={styles.overlay}
+          start={{ x: 0.5, y: 0 }}
+          end={{ x: 0.5, y: 1 }}
+        />
 
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -84,122 +76,132 @@ export default function Index() {
           >
             {/* Logo and Tagline */}
             <View style={styles.header}>
-              <Text style={styles.logo}>Travia.ai</Text>
+              <Text style={styles.logo}>TRAVEA</Text>
+              <View style={styles.logoUnderline} />
               <Text style={styles.tagline}>Your world, beautifully arranged.</Text>
             </View>
 
-            {/* Floating Card with Frosted Glass Effect */}
-            <BlurView intensity={20} tint="light" style={styles.card}>
-              {/* Toggle Sign In / Sign Up */}
-              <View style={styles.toggleContainer}>
-                <TouchableOpacity
-                  style={[styles.toggleButton, !isSignUp && styles.toggleButtonActive]}
-                  onPress={() => setIsSignUp(false)}
-                >
-                  <Text style={[styles.toggleText, !isSignUp && styles.toggleTextActive]}>
-                    Sign In
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={[styles.toggleButton, isSignUp && styles.toggleButtonActive]}
-                  onPress={() => setIsSignUp(true)}
-                >
-                  <Text style={[styles.toggleText, isSignUp && styles.toggleTextActive]}>
-                    Sign Up
-                  </Text>
-                </TouchableOpacity>
-              </View>
+            {/* Frosted Glass Card */}
+            <BlurView intensity={30} tint="dark" style={styles.card}>
+              <View style={styles.cardInner}>
+                {/* Toggle Sign In / Sign Up */}
+                <View style={styles.toggleContainer}>
+                  <TouchableOpacity
+                    style={[styles.toggleButton, !isSignUp && styles.toggleButtonActive]}
+                    onPress={() => setIsSignUp(false)}
+                  >
+                    <Text style={[styles.toggleText, !isSignUp && styles.toggleTextActive]}>
+                      SIGN IN
+                    </Text>
+                    {!isSignUp && <View style={styles.activeUnderline} />}
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[styles.toggleButton, isSignUp && styles.toggleButtonActive]}
+                    onPress={() => setIsSignUp(true)}
+                  >
+                    <Text style={[styles.toggleText, isSignUp && styles.toggleTextActive]}>
+                      SIGN UP
+                    </Text>
+                    {isSignUp && <View style={styles.activeUnderline} />}
+                  </TouchableOpacity>
+                </View>
 
-              {/* Input Fields */}
-              <View style={styles.inputContainer}>
-                {isSignUp && (
+                {/* Input Fields */}
+                <View style={styles.inputContainer}>
+                  {isSignUp && (
+                    <View style={styles.inputWrapper}>
+                      <TextInput
+                        style={styles.input}
+                        placeholder="Full Name"
+                        placeholderTextColor="#A8A8A8"
+                        value={name}
+                        onChangeText={setName}
+                        autoCapitalize="words"
+                      />
+                      <View style={styles.inputUnderline} />
+                    </View>
+                  )}
+
                   <View style={styles.inputWrapper}>
                     <TextInput
                       style={styles.input}
-                      placeholder="Full Name"
-                      placeholderTextColor="#A89F91"
-                      value={name}
-                      onChangeText={setName}
-                      autoCapitalize="words"
+                      placeholder="Email"
+                      placeholderTextColor="#A8A8A8"
+                      value={email}
+                      onChangeText={setEmail}
+                      keyboardType="email-address"
+                      autoCapitalize="none"
                     />
-                    <View style={styles.underline} />
+                    <View style={styles.inputUnderline} />
                   </View>
-                )}
 
-                <View style={styles.inputWrapper}>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Email"
-                    placeholderTextColor="#A89F91"
-                    value={email}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                  />
-                  <View style={styles.underline} />
+                  <View style={styles.inputWrapper}>
+                    <TextInput
+                      style={styles.input}
+                      placeholder="Password"
+                      placeholderTextColor="#A8A8A8"
+                      value={password}
+                      onChangeText={setPassword}
+                      secureTextEntry
+                    />
+                    <View style={styles.inputUnderline} />
+                  </View>
                 </View>
 
-                <View style={styles.inputWrapper}>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Password"
-                    placeholderTextColor="#A89F91"
-                    value={password}
-                    onChangeText={setPassword}
-                    secureTextEntry
-                  />
-                  <View style={styles.underline} />
-                </View>
-              </View>
-
-              {/* Primary Action Button */}
-              <TouchableOpacity
-                style={styles.primaryButton}
-                onPress={isSignUp ? handleSignUp : handleSignIn}
-                activeOpacity={0.8}
-              >
-                <Text style={styles.primaryButtonText}>
-                  {isSignUp ? 'Sign Up' : 'Sign In'}
-                </Text>
-              </TouchableOpacity>
-
-              {/* Toggle Link */}
-              <TouchableOpacity onPress={() => setIsSignUp(!isSignUp)}>
-                <Text style={styles.toggleLink}>
-                  {isSignUp
-                    ? 'Already have an account? Sign in'
-                    : "Don't have an account? Sign up"}
-                </Text>
-              </TouchableOpacity>
-
-              {/* Divider */}
-              <View style={styles.dividerContainer}>
-                <View style={styles.dividerLine} />
-                <Text style={styles.dividerText}>OR CONTINUE WITH</Text>
-                <View style={styles.dividerLine} />
-              </View>
-
-              {/* OAuth Buttons */}
-              <View style={styles.oauthContainer}>
+                {/* Primary Action Button */}
                 <TouchableOpacity
-                  style={styles.oauthButton}
-                  onPress={handleOAuthGoogle}
+                  style={styles.primaryButton}
+                  onPress={isSignUp ? handleSignUp : handleSignIn}
                   activeOpacity={0.8}
                 >
-                  <Ionicons name="logo-google" size={20} color="#2E2E2E" />
-                  <Text style={styles.oauthButtonText}>Continue with Google</Text>
+                  <LinearGradient
+                    colors={['#B89361', '#C9A96D']}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 0 }}
+                    style={styles.buttonGradient}
+                  >
+                    <Text style={styles.primaryButtonText}>
+                      {isSignUp ? 'SIGN UP' : 'SIGN IN'}
+                    </Text>
+                  </LinearGradient>
                 </TouchableOpacity>
 
-                <TouchableOpacity
-                  style={[styles.oauthButton, styles.oauthButtonApple]}
-                  onPress={handleOAuthApple}
-                  activeOpacity={0.8}
-                >
-                  <Ionicons name="logo-apple" size={20} color="#fff" />
-                  <Text style={[styles.oauthButtonText, styles.oauthButtonTextApple]}>
-                    Continue with Apple
+                {/* Toggle Link */}
+                <TouchableOpacity onPress={() => setIsSignUp(!isSignUp)}>
+                  <Text style={styles.toggleLink}>
+                    {isSignUp
+                      ? 'Already have an account? Sign in'
+                      : "Don't have an account? Sign up"}
                   </Text>
                 </TouchableOpacity>
+
+                {/* Divider */}
+                <View style={styles.dividerContainer}>
+                  <View style={styles.dividerLine} />
+                  <Text style={styles.dividerText}>OR CONTINUE WITH</Text>
+                  <View style={styles.dividerLine} />
+                </View>
+
+                {/* OAuth Buttons */}
+                <View style={styles.oauthContainer}>
+                  <TouchableOpacity
+                    style={styles.oauthButton}
+                    onPress={handleOAuthGoogle}
+                    activeOpacity={0.8}
+                  >
+                    <Ionicons name="logo-google" size={20} color="#F2F2F2" />
+                    <Text style={styles.oauthButtonText}>Continue with Google</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    style={[styles.oauthButton, styles.oauthButtonApple]}
+                    onPress={handleOAuthApple}
+                    activeOpacity={0.8}
+                  >
+                    <Ionicons name="logo-apple" size={20} color="#F2F2F2" />
+                    <Text style={styles.oauthButtonText}>Continue with Apple</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </BlurView>
 
@@ -220,6 +222,7 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#0F0F0F',
   },
   backgroundImage: {
     flex: 1,
@@ -228,8 +231,6 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: '#F6F3EF',
-    opacity: 0.7,
   },
   keyboardView: {
     flex: 1,
@@ -242,66 +243,78 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: 'center',
-    marginBottom: 32,
+    marginBottom: 40,
   },
   logo: {
-    fontFamily: 'PlayfairDisplay_600SemiBold',
-    fontSize: 42,
-    color: '#2E2E2E',
-    marginBottom: 8,
-    letterSpacing: 0.5,
+    fontSize: 48,
+    fontWeight: '800',
+    color: '#F2F2F2',
+    letterSpacing: 2,
+    marginBottom: 4,
+  },
+  logoUnderline: {
+    width: 60,
+    height: 2,
+    backgroundColor: '#C9A96D',
+    marginTop: 4,
+    marginBottom: 12,
   },
   tagline: {
-    fontFamily: 'Inter_400Regular',
     fontSize: 14,
-    color: '#A89F91',
-    letterSpacing: 0.3,
+    color: '#A8A8A8',
+    letterSpacing: 0.5,
+    fontWeight: '300',
   },
   card: {
-    borderRadius: 24,
-    padding: 32,
-    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    borderRadius: 16,
     overflow: 'hidden',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.1,
+        shadowOffset: { width: 0, height: 12 },
+        shadowOpacity: 0.4,
         shadowRadius: 24,
       },
       android: {
-        elevation: 5,
+        elevation: 8,
       },
       web: {
-        boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.1)',
+        boxShadow: '0px 12px 24px rgba(0, 0, 0, 0.4)',
       },
     }),
+  },
+  cardInner: {
+    backgroundColor: 'rgba(25, 25, 25, 0.55)',
+    padding: 32,
   },
   toggleContainer: {
     flexDirection: 'row',
     marginBottom: 32,
-    backgroundColor: 'rgba(174, 159, 145, 0.1)',
-    borderRadius: 12,
-    padding: 4,
+    gap: 24,
+    justifyContent: 'center',
   },
   toggleButton: {
-    flex: 1,
-    paddingVertical: 12,
-    alignItems: 'center',
-    borderRadius: 10,
+    paddingVertical: 8,
+    paddingHorizontal: 4,
+    position: 'relative',
   },
-  toggleButtonActive: {
-    backgroundColor: '#fff',
-  },
+  toggleButtonActive: {},
   toggleText: {
-    fontFamily: 'Inter_400Regular',
-    fontSize: 14,
-    color: '#A89F91',
+    fontSize: 13,
+    color: '#A8A8A8',
     fontWeight: '500',
+    letterSpacing: 1,
   },
   toggleTextActive: {
-    color: '#2E2E2E',
-    fontWeight: '600',
+    color: '#F2F2F2',
+  },
+  activeUnderline: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 2,
+    backgroundColor: '#C9A96D',
   },
   inputContainer: {
     marginBottom: 24,
@@ -310,49 +323,35 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   input: {
-    fontFamily: 'Inter_400Regular',
     fontSize: 16,
-    color: '#2E2E2E',
-    paddingVertical: 8,
+    color: '#F2F2F2',
+    paddingVertical: 12,
+    paddingHorizontal: 4,
   },
-  underline: {
+  inputUnderline: {
     height: 1,
-    backgroundColor: '#A89F91',
-    opacity: 0.3,
+    backgroundColor: '#2C2C2C',
     marginTop: 4,
   },
   primaryButton: {
-    backgroundColor: '#B9C8C2',
-    borderRadius: 12,
+    borderRadius: 8,
+    overflow: 'hidden',
+    marginBottom: 16,
+  },
+  buttonGradient: {
     paddingVertical: 16,
     alignItems: 'center',
-    marginBottom: 16,
-    ...Platform.select({
-      ios: {
-        shadowColor: '#B9C8C2',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
-      },
-      android: {
-        elevation: 3,
-      },
-      web: {
-        boxShadow: '0px 4px 8px rgba(185, 200, 194, 0.3)',
-      },
-    }),
+    justifyContent: 'center',
   },
   primaryButtonText: {
-    fontFamily: 'Inter_400Regular',
-    fontSize: 16,
-    color: '#fff',
+    fontSize: 15,
+    color: '#FFFFFF',
     fontWeight: '600',
-    letterSpacing: 0.5,
+    letterSpacing: 1.5,
   },
   toggleLink: {
-    fontFamily: 'Inter_400Regular',
     fontSize: 13,
-    color: '#FF7A5A',
+    color: '#E47B63',
     textAlign: 'center',
     marginBottom: 24,
   },
@@ -364,15 +363,14 @@ const styles = StyleSheet.create({
   dividerLine: {
     flex: 1,
     height: 1,
-    backgroundColor: '#A89F91',
-    opacity: 0.2,
+    backgroundColor: '#2C2C2C',
   },
   dividerText: {
-    fontFamily: 'Inter_400Regular',
-    fontSize: 11,
-    color: '#A89F91',
+    fontSize: 10,
+    color: '#A8A8A8',
     marginHorizontal: 16,
-    letterSpacing: 1,
+    letterSpacing: 1.2,
+    fontWeight: '300',
   },
   oauthContainer: {
     gap: 12,
@@ -381,33 +379,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff',
-    borderRadius: 12,
+    backgroundColor: '#1C1C1C',
+    borderRadius: 8,
     paddingVertical: 14,
     gap: 12,
     borderWidth: 1,
-    borderColor: 'rgba(46, 46, 46, 0.1)',
+    borderColor: '#2C2C2C',
   },
   oauthButtonApple: {
-    backgroundColor: '#000',
+    backgroundColor: '#000000',
   },
   oauthButtonText: {
-    fontFamily: 'Inter_400Regular',
     fontSize: 15,
-    color: '#2E2E2E',
+    color: '#F2F2F2',
     fontWeight: '500',
   },
-  oauthButtonTextApple: {
-    color: '#fff',
-  },
   skipButton: {
-    marginTop: 24,
+    marginTop: 32,
     alignItems: 'center',
   },
   skipText: {
-    fontFamily: 'Inter_400Regular',
-    fontSize: 14,
-    color: '#2E2E2E',
-    opacity: 0.6,
+    fontSize: 13,
+    color: '#A8A8A8',
   },
 });

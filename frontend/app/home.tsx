@@ -12,29 +12,20 @@ import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
-import { useFonts, PlayfairDisplay_600SemiBold } from '@expo-google-fonts/playfair-display';
-import { Inter_400Regular } from '@expo-google-fonts/inter';
 
 const { width } = Dimensions.get('window');
 
 export default function Home() {
   const router = useRouter();
 
-  let [fontsLoaded] = useFonts({
-    PlayfairDisplay_600SemiBold,
-    Inter_400Regular,
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
   return (
     <View style={styles.container}>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <LinearGradient
-        colors={['#F6F3EF', '#E8E3DC']}
+        colors={['#0F0F0F', '#1A1A1A', '#0F0F0F']}
         style={styles.gradient}
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 1 }}
       >
         <ScrollView
           contentContainerStyle={styles.scrollContent}
@@ -44,26 +35,29 @@ export default function Home() {
           <View style={styles.header}>
             <View>
               <Text style={styles.greeting}>Welcome to</Text>
-              <Text style={styles.logo}>Travia.ai</Text>
+              <Text style={styles.logo}>TRAVEA</Text>
+              <View style={styles.logoUnderline} />
             </View>
             <TouchableOpacity style={styles.profileButton}>
-              <Ionicons name="person-circle-outline" size={36} color="#2E2E2E" />
+              <Ionicons name="person-circle-outline" size={36} color="#F2F2F2" />
             </TouchableOpacity>
           </View>
 
           {/* Hero Card */}
           <View style={styles.heroCard}>
             <LinearGradient
-              colors={['#B9C8C2', '#A3B5AD']}
+              colors={['#B89361', '#C9A96D', '#B89361']}
               style={styles.heroGradient}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
             >
               <Text style={styles.heroTitle}>Start Your Journey</Text>
               <Text style={styles.heroSubtitle}>
-                Discover beautifully curated travel experiences tailored just for you
+                Discover premium travel experiences curated by AI
               </Text>
               <TouchableOpacity style={styles.heroButton}>
-                <Text style={styles.heroButtonText}>Explore Destinations</Text>
-                <Ionicons name="arrow-forward" size={20} color="#2E2E2E" />
+                <Text style={styles.heroButtonText}>EXPLORE NOW</Text>
+                <Ionicons name="arrow-forward" size={18} color="#0F0F0F" />
               </TouchableOpacity>
             </LinearGradient>
           </View>
@@ -72,37 +66,45 @@ export default function Home() {
           <Text style={styles.sectionTitle}>Quick Actions</Text>
           <View style={styles.quickActions}>
             <TouchableOpacity style={styles.actionCard}>
-              <Text style={styles.actionIcon}>🧭</Text>
+              <View style={styles.actionIconContainer}>
+                <Text style={styles.actionEmoji}>🧭</Text>
+              </View>
               <Text style={styles.actionTitle}>Discover</Text>
-              <Text style={styles.actionSubtitle}>Find new places</Text>
+              <Text style={styles.actionSubtitle}>Find destinations</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.actionCard}>
-              <Text style={styles.actionIcon}>📅</Text>
-              <Text style={styles.actionTitle}>Plan Trip</Text>
-              <Text style={styles.actionSubtitle}>Create itinerary</Text>
+              <View style={styles.actionIconContainer}>
+                <Text style={styles.actionEmoji}>📅</Text>
+              </View>
+              <Text style={styles.actionTitle}>Plan</Text>
+              <Text style={styles.actionSubtitle}>Create trips</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.actionCard}>
-              <Text style={styles.actionIcon}>🔖</Text>
+              <View style={styles.actionIconContainer}>
+                <Text style={styles.actionEmoji}>🔖</Text>
+              </View>
               <Text style={styles.actionTitle}>Saved</Text>
-              <Text style={styles.actionSubtitle}>Your favorites</Text>
+              <Text style={styles.actionSubtitle}>Favorites</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.actionCard}>
-              <Text style={styles.actionIcon}>✨</Text>
-              <Text style={styles.actionTitle}>AI Suggest</Text>
-              <Text style={styles.actionSubtitle}>Smart picks</Text>
+              <View style={styles.actionIconContainer}>
+                <Text style={styles.actionEmoji}>✨</Text>
+              </View>
+              <Text style={styles.actionTitle}>AI Picks</Text>
+              <Text style={styles.actionSubtitle}>Smart recs</Text>
             </TouchableOpacity>
           </View>
 
-          {/* Placeholder for more content */}
-          <Text style={styles.sectionTitle}>Trending Destinations</Text>
+          {/* Coming Soon */}
+          <Text style={styles.sectionTitle}>Premium Destinations</Text>
           <View style={styles.comingSoonCard}>
-            <Ionicons name="globe-outline" size={48} color="#A89F91" />
+            <Text style={styles.comingSoonEmoji}>🌍</Text>
             <Text style={styles.comingSoonText}>Coming Soon</Text>
             <Text style={styles.comingSoonSubtext}>
-              Beautiful destinations curated by AI
+              Exclusive travel experiences powered by AI
             </Text>
           </View>
 
@@ -111,7 +113,7 @@ export default function Home() {
             style={styles.backButton}
             onPress={() => router.back()}
           >
-            <Ionicons name="arrow-back" size={20} color="#FF7A5A" />
+            <Ionicons name="arrow-back" size={18} color="#C9A96D" />
             <Text style={styles.backText}>Back to Login</Text>
           </TouchableOpacity>
         </ScrollView>
@@ -123,6 +125,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#0F0F0F',
   },
   gradient: {
     flex: 1,
@@ -139,36 +142,42 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   greeting: {
-    fontFamily: 'Inter_400Regular',
-    fontSize: 14,
-    color: '#A89F91',
+    fontSize: 13,
+    color: '#A8A8A8',
     marginBottom: 4,
+    letterSpacing: 0.5,
   },
   logo: {
-    fontFamily: 'PlayfairDisplay_600SemiBold',
     fontSize: 32,
-    color: '#2E2E2E',
-    letterSpacing: 0.5,
+    color: '#F2F2F2',
+    fontWeight: '800',
+    letterSpacing: 2,
+  },
+  logoUnderline: {
+    width: 40,
+    height: 2,
+    backgroundColor: '#C9A96D',
+    marginTop: 4,
   },
   profileButton: {
     padding: 4,
   },
   heroCard: {
-    borderRadius: 24,
+    borderRadius: 16,
     overflow: 'hidden',
     marginBottom: 32,
     ...Platform.select({
       ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.1,
-        shadowRadius: 12,
+        shadowColor: '#C9A96D',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.3,
+        shadowRadius: 16,
       },
       android: {
-        elevation: 3,
+        elevation: 8,
       },
       web: {
-        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+        boxShadow: '0px 8px 16px rgba(201, 169, 109, 0.3)',
       },
     }),
   },
@@ -176,40 +185,41 @@ const styles = StyleSheet.create({
     padding: 32,
   },
   heroTitle: {
-    fontFamily: 'PlayfairDisplay_600SemiBold',
     fontSize: 28,
-    color: '#fff',
+    color: '#0F0F0F',
+    fontWeight: '800',
     marginBottom: 8,
+    letterSpacing: 1,
   },
   heroSubtitle: {
-    fontFamily: 'Inter_400Regular',
     fontSize: 14,
-    color: '#fff',
-    opacity: 0.9,
+    color: '#0F0F0F',
+    opacity: 0.8,
     lineHeight: 20,
     marginBottom: 24,
   },
   heroButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#0F0F0F',
     alignSelf: 'flex-start',
     paddingHorizontal: 24,
     paddingVertical: 12,
-    borderRadius: 24,
+    borderRadius: 8,
     gap: 8,
   },
   heroButtonText: {
-    fontFamily: 'Inter_400Regular',
-    fontSize: 15,
-    color: '#2E2E2E',
+    fontSize: 13,
+    color: '#F2F2F2',
     fontWeight: '600',
+    letterSpacing: 1.5,
   },
   sectionTitle: {
-    fontFamily: 'PlayfairDisplay_600SemiBold',
-    fontSize: 22,
-    color: '#2E2E2E',
+    fontSize: 20,
+    color: '#F2F2F2',
+    fontWeight: '700',
     marginBottom: 16,
+    letterSpacing: 0.5,
   },
   quickActions: {
     flexDirection: 'row',
@@ -218,65 +228,70 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   actionCard: {
-    backgroundColor: '#fff',
-    borderRadius: 16,
+    backgroundColor: '#1C1C1C',
+    borderRadius: 12,
     padding: 20,
     width: (width - 60) / 2,
     minHeight: 140,
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#2C2C2C',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.05,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
         shadowRadius: 8,
       },
       android: {
-        elevation: 2,
+        elevation: 4,
       },
       web: {
-        boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.05)',
+        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.3)',
       },
     }),
   },
-  actionIcon: {
-    fontSize: 40,
+  actionIconContainer: {
     marginBottom: 12,
   },
+  actionEmoji: {
+    fontSize: 36,
+  },
   actionTitle: {
-    fontFamily: 'Inter_400Regular',
     fontSize: 15,
-    color: '#2E2E2E',
+    color: '#F2F2F2',
     fontWeight: '600',
     marginBottom: 4,
+    letterSpacing: 0.5,
   },
   actionSubtitle: {
-    fontFamily: 'Inter_400Regular',
     fontSize: 12,
-    color: '#A89F91',
+    color: '#A8A8A8',
   },
   comingSoonCard: {
-    backgroundColor: '#fff',
-    borderRadius: 16,
+    backgroundColor: '#1C1C1C',
+    borderRadius: 12,
     padding: 40,
     alignItems: 'center',
     marginBottom: 32,
     borderWidth: 2,
-    borderColor: 'rgba(168, 159, 145, 0.2)',
+    borderColor: '#2C2C2C',
     borderStyle: 'dashed',
   },
+  comingSoonEmoji: {
+    fontSize: 48,
+  },
   comingSoonText: {
-    fontFamily: 'PlayfairDisplay_600SemiBold',
-    fontSize: 20,
-    color: '#2E2E2E',
+    fontSize: 18,
+    color: '#F2F2F2',
+    fontWeight: '700',
     marginTop: 16,
     marginBottom: 8,
   },
   comingSoonSubtext: {
-    fontFamily: 'Inter_400Regular',
     fontSize: 13,
-    color: '#A89F91',
+    color: '#A8A8A8',
     textAlign: 'center',
   },
   backButton: {
@@ -287,9 +302,8 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   backText: {
-    fontFamily: 'Inter_400Regular',
-    fontSize: 15,
-    color: '#FF7A5A',
+    fontSize: 14,
+    color: '#C9A96D',
     fontWeight: '500',
   },
 });
