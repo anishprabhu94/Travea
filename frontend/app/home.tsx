@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
-import { LinearGradient } from 'expo-linear-gradient';
+import { BlurView } from 'expo-blur';
 import { Ionicons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
@@ -21,103 +21,85 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
-      <LinearGradient
-        colors={['#0F0F0F', '#1A1A1A', '#0F0F0F']}
-        style={styles.gradient}
-        start={{ x: 0.5, y: 0 }}
-        end={{ x: 0.5, y: 1 }}
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
       >
-        <ScrollView
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-        >
-          {/* Header */}
-          <View style={styles.header}>
-            <View>
-              <Text style={styles.greeting}>Welcome to</Text>
-              <Text style={styles.logo}>TRAVEA</Text>
-              <View style={styles.logoUnderline} />
-            </View>
-            <TouchableOpacity style={styles.profileButton}>
-              <Ionicons name="person-circle-outline" size={36} color="#F2F2F2" />
-            </TouchableOpacity>
+        {/* Header */}
+        <View style={styles.header}>
+          <View>
+            <Text style={styles.greeting}>Welcome to</Text>
+            <Text style={styles.logo}>TRAVEA</Text>
+            <View style={styles.logoUnderline} />
           </View>
+          <TouchableOpacity style={styles.profileButton}>
+            <Ionicons name="person-circle-outline" size={36} color="#F2F2F2" />
+          </TouchableOpacity>
+        </View>
 
-          {/* Hero Card */}
-          <View style={styles.heroCard}>
-            <LinearGradient
-              colors={['#B89361', '#C9A96D', '#B89361']}
-              style={styles.heroGradient}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-            >
-              <Text style={styles.heroTitle}>Start Your Journey</Text>
+        {/* Hero Card */}
+        <View style={styles.heroCardContainer}>
+          <BlurView intensity={20} tint="light" style={styles.heroCard}>
+            <View style={styles.heroCardInner}>
+              <Text style={styles.heroTitle}>Your Next Journey</Text>
               <Text style={styles.heroSubtitle}>
-                Discover premium travel experiences curated by AI
+                Discover refined travel experiences curated for you
               </Text>
               <TouchableOpacity style={styles.heroButton}>
-                <Text style={styles.heroButtonText}>EXPLORE NOW</Text>
-                <Ionicons name="arrow-forward" size={18} color="#0F0F0F" />
+                <Text style={styles.heroButtonText}>EXPLORE</Text>
+                <Ionicons name="arrow-forward" size={16} color="#0C0C0C" />
               </TouchableOpacity>
-            </LinearGradient>
+            </View>
+          </BlurView>
+        </View>
+
+        {/* Quick Actions */}
+        <Text style={styles.sectionTitle}>Quick Actions</Text>
+        <View style={styles.quickActions}>
+          <View style={styles.actionCard}>
+            <Text style={styles.actionEmoji}>🧭</Text>
+            <Text style={styles.actionTitle}>Discover</Text>
+            <Text style={styles.actionSubtitle}>Find destinations</Text>
           </View>
 
-          {/* Quick Actions */}
-          <Text style={styles.sectionTitle}>Quick Actions</Text>
-          <View style={styles.quickActions}>
-            <TouchableOpacity style={styles.actionCard}>
-              <View style={styles.actionIconContainer}>
-                <Text style={styles.actionEmoji}>🧭</Text>
-              </View>
-              <Text style={styles.actionTitle}>Discover</Text>
-              <Text style={styles.actionSubtitle}>Find destinations</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.actionCard}>
-              <View style={styles.actionIconContainer}>
-                <Text style={styles.actionEmoji}>📅</Text>
-              </View>
-              <Text style={styles.actionTitle}>Plan</Text>
-              <Text style={styles.actionSubtitle}>Create trips</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.actionCard}>
-              <View style={styles.actionIconContainer}>
-                <Text style={styles.actionEmoji}>🔖</Text>
-              </View>
-              <Text style={styles.actionTitle}>Saved</Text>
-              <Text style={styles.actionSubtitle}>Favorites</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.actionCard}>
-              <View style={styles.actionIconContainer}>
-                <Text style={styles.actionEmoji}>✨</Text>
-              </View>
-              <Text style={styles.actionTitle}>AI Picks</Text>
-              <Text style={styles.actionSubtitle}>Smart recs</Text>
-            </TouchableOpacity>
+          <View style={styles.actionCard}>
+            <Text style={styles.actionEmoji}>📅</Text>
+            <Text style={styles.actionTitle}>Plan</Text>
+            <Text style={styles.actionSubtitle}>Create trips</Text>
           </View>
 
-          {/* Coming Soon */}
-          <Text style={styles.sectionTitle}>Premium Destinations</Text>
-          <View style={styles.comingSoonCard}>
-            <Text style={styles.comingSoonEmoji}>🌍</Text>
-            <Text style={styles.comingSoonText}>Coming Soon</Text>
-            <Text style={styles.comingSoonSubtext}>
-              Exclusive travel experiences powered by AI
-            </Text>
+          <View style={styles.actionCard}>
+            <Text style={styles.actionEmoji}>🔖</Text>
+            <Text style={styles.actionTitle}>Saved</Text>
+            <Text style={styles.actionSubtitle}>Favorites</Text>
           </View>
 
-          {/* Back to Login */}
-          <TouchableOpacity
-            style={styles.backButton}
-            onPress={() => router.back()}
-          >
-            <Ionicons name="arrow-back" size={18} color="#C9A96D" />
-            <Text style={styles.backText}>Back to Login</Text>
-          </TouchableOpacity>
-        </ScrollView>
-      </LinearGradient>
+          <View style={styles.actionCard}>
+            <Text style={styles.actionEmoji}>✨</Text>
+            <Text style={styles.actionTitle}>AI Picks</Text>
+            <Text style={styles.actionSubtitle}>Smart recs</Text>
+          </View>
+        </View>
+
+        {/* Coming Soon Section */}
+        <Text style={styles.sectionTitle}>Premium Experiences</Text>
+        <View style={styles.comingSoonCard}>
+          <Text style={styles.comingSoonEmoji}>🌍</Text>
+          <Text style={styles.comingSoonTitle}>Coming Soon</Text>
+          <Text style={styles.comingSoonSubtext}>
+            Exclusive destinations powered by AI
+          </Text>
+        </View>
+
+        {/* Back to Login */}
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => router.back()}
+        >
+          <Ionicons name="arrow-back" size={16} color="#C9A96D" />
+          <Text style={styles.backText}>Back to Login</Text>
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 }
@@ -125,10 +107,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0F0F0F',
-  },
-  gradient: {
-    flex: 1,
+    backgroundColor: '#0C0C0C',
   },
   scrollContent: {
     paddingTop: 60,
@@ -143,15 +122,15 @@ const styles = StyleSheet.create({
   },
   greeting: {
     fontSize: 13,
-    color: '#A8A8A8',
+    color: '#BEBEBE',
     marginBottom: 4,
     letterSpacing: 0.5,
   },
   logo: {
     fontSize: 32,
     color: '#F2F2F2',
-    fontWeight: '800',
-    letterSpacing: 2,
+    fontWeight: '700',
+    letterSpacing: 1,
   },
   logoUnderline: {
     width: 40,
@@ -162,46 +141,50 @@ const styles = StyleSheet.create({
   profileButton: {
     padding: 4,
   },
-  heroCard: {
-    borderRadius: 16,
-    overflow: 'hidden',
+  heroCardContainer: {
     marginBottom: 32,
+  },
+  heroCard: {
+    borderRadius: 20,
+    overflow: 'hidden',
     ...Platform.select({
       ios: {
         shadowColor: '#C9A96D',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.3,
-        shadowRadius: 16,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.2,
+        shadowRadius: 12,
       },
       android: {
-        elevation: 8,
+        elevation: 4,
       },
       web: {
-        boxShadow: '0px 8px 16px rgba(201, 169, 109, 0.3)',
+        boxShadow: '0px 4px 12px rgba(201, 169, 109, 0.2)',
       },
     }),
   },
-  heroGradient: {
+  heroCardInner: {
+    backgroundColor: 'rgba(201, 169, 109, 0.95)',
     padding: 32,
   },
   heroTitle: {
     fontSize: 28,
-    color: '#0F0F0F',
-    fontWeight: '800',
+    color: '#0C0C0C',
+    fontWeight: '700',
     marginBottom: 8,
-    letterSpacing: 1,
+    letterSpacing: 0.5,
   },
   heroSubtitle: {
     fontSize: 14,
-    color: '#0F0F0F',
+    color: '#0C0C0C',
     opacity: 0.8,
     lineHeight: 20,
     marginBottom: 24,
+    fontWeight: '300',
   },
   heroButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#0F0F0F',
+    backgroundColor: '#0C0C0C',
     alignSelf: 'flex-start',
     paddingHorizontal: 24,
     paddingVertical: 12,
@@ -211,13 +194,13 @@ const styles = StyleSheet.create({
   heroButtonText: {
     fontSize: 13,
     color: '#F2F2F2',
-    fontWeight: '600',
+    fontWeight: '500',
     letterSpacing: 1.5,
   },
   sectionTitle: {
     fontSize: 20,
     color: '#F2F2F2',
-    fontWeight: '700',
+    fontWeight: '600',
     marginBottom: 16,
     letterSpacing: 0.5,
   },
@@ -228,70 +211,54 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   actionCard: {
-    backgroundColor: '#1C1C1C',
-    borderRadius: 12,
+    backgroundColor: 'rgba(255, 255, 255, 0.06)',
+    borderRadius: 16,
     padding: 20,
     width: (width - 60) / 2,
     minHeight: 140,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: '#2C2C2C',
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
-      },
-      android: {
-        elevation: 4,
-      },
-      web: {
-        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.3)',
-      },
-    }),
-  },
-  actionIconContainer: {
-    marginBottom: 12,
+    borderColor: '#2A2A2A',
   },
   actionEmoji: {
     fontSize: 36,
+    marginBottom: 12,
   },
   actionTitle: {
     fontSize: 15,
     color: '#F2F2F2',
-    fontWeight: '600',
+    fontWeight: '500',
     marginBottom: 4,
     letterSpacing: 0.5,
   },
   actionSubtitle: {
     fontSize: 12,
-    color: '#A8A8A8',
+    color: '#BEBEBE',
   },
   comingSoonCard: {
-    backgroundColor: '#1C1C1C',
-    borderRadius: 12,
+    backgroundColor: 'rgba(255, 255, 255, 0.04)',
+    borderRadius: 16,
     padding: 40,
     alignItems: 'center',
     marginBottom: 32,
     borderWidth: 2,
-    borderColor: '#2C2C2C',
+    borderColor: '#2A2A2A',
     borderStyle: 'dashed',
   },
   comingSoonEmoji: {
     fontSize: 48,
   },
-  comingSoonText: {
+  comingSoonTitle: {
     fontSize: 18,
     color: '#F2F2F2',
-    fontWeight: '700',
+    fontWeight: '600',
     marginTop: 16,
     marginBottom: 8,
   },
   comingSoonSubtext: {
     fontSize: 13,
-    color: '#A8A8A8',
+    color: '#BEBEBE',
     textAlign: 'center',
   },
   backButton: {
@@ -304,6 +271,6 @@ const styles = StyleSheet.create({
   backText: {
     fontSize: 14,
     color: '#C9A96D',
-    fontWeight: '500',
+    fontWeight: '400',
   },
 });

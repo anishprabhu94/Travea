@@ -3,7 +3,6 @@ import {
   Text,
   View,
   StyleSheet,
-  ImageBackground,
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
@@ -14,7 +13,6 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import { BlurView } from 'expo-blur';
 import { useRouter } from 'expo-router';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
@@ -25,6 +23,7 @@ export default function Index() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [focusedField, setFocusedField] = useState<string | null>(null);
 
   const handleSignIn = () => {
     router.push('/home');
@@ -49,58 +48,46 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
-      <ImageBackground
-        source={{
-          uri: 'https://images.unsplash.com/photo-1517462035531-76bc910a6903?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwyfHxjaXR5JTIwc2t5bGluZSUyMG5pZ2h0fGVufDB8fHxibGFja3wxNzU5ODc2ODA0fDA&ixlib=rb-4.1.0&q=85',
-        }}
-        style={styles.backgroundImage}
-        resizeMode="cover"
-        blurRadius={8}
+      
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.keyboardView}
       >
-        {/* Dark overlay with gradient */}
-        <LinearGradient
-          colors={['rgba(15, 15, 15, 0.75)', 'rgba(26, 26, 26, 0.85)', 'rgba(15, 15, 15, 0.75)']}
-          style={styles.overlay}
-          start={{ x: 0.5, y: 0 }}
-          end={{ x: 0.5, y: 1 }}
-        />
-
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          style={styles.keyboardView}
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
         >
-          <ScrollView
-            contentContainerStyle={styles.scrollContent}
-            keyboardShouldPersistTaps="handled"
-            showsVerticalScrollIndicator={false}
-          >
-            {/* Logo and Tagline */}
-            <View style={styles.header}>
-              <Text style={styles.logo}>TRAVEA</Text>
-              <View style={styles.logoUnderline} />
-              <Text style={styles.tagline}>Your world, beautifully arranged.</Text>
-            </View>
+          {/* Logo and Tagline */}
+          <View style={styles.header}>
+            <Text style={styles.logo}>TRAVEA</Text>
+            <Text style={styles.tagline}>Travel, refined.</Text>
+          </View>
 
-            {/* Frosted Glass Card */}
-            <BlurView intensity={30} tint="dark" style={styles.card}>
-              <View style={styles.cardInner}>
+          {/* Frosted Glass Pane */}
+          <View style={styles.paneContainer}>
+            <BlurView intensity={20} tint="light" style={styles.frostedPane}>
+              <View style={styles.paneInner}>
                 {/* Toggle Sign In / Sign Up */}
                 <View style={styles.toggleContainer}>
                   <TouchableOpacity
-                    style={[styles.toggleButton, !isSignUp && styles.toggleButtonActive]}
+                    style={styles.toggleButton}
                     onPress={() => setIsSignUp(false)}
                   >
                     <Text style={[styles.toggleText, !isSignUp && styles.toggleTextActive]}>
-                      SIGN IN
+                      Sign In
                     </Text>
                     {!isSignUp && <View style={styles.activeUnderline} />}
                   </TouchableOpacity>
+                  
+                  <View style={styles.toggleSpacer} />
+                  
                   <TouchableOpacity
-                    style={[styles.toggleButton, isSignUp && styles.toggleButtonActive]}
+                    style={styles.toggleButton}
                     onPress={() => setIsSignUp(true)}
                   >
                     <Text style={[styles.toggleText, isSignUp && styles.toggleTextActive]}>
-                      SIGN UP
+                      Sign Up
                     </Text>
                     {isSignUp && <View style={styles.activeUnderline} />}
                   </TouchableOpacity>
@@ -113,12 +100,17 @@ export default function Index() {
                       <TextInput
                         style={styles.input}
                         placeholder="Full Name"
-                        placeholderTextColor="#A8A8A8"
+                        placeholderTextColor="#BEBEBE"
                         value={name}
                         onChangeText={setName}
                         autoCapitalize="words"
+                        onFocus={() => setFocusedField('name')}
+                        onBlur={() => setFocusedField(null)}
                       />
-                      <View style={styles.inputUnderline} />
+                      <View style={[
+                        styles.inputUnderline,
+                        focusedField === 'name' && styles.inputUnderlineFocused
+                      ]} />
                     </View>
                   )}
 
@@ -126,49 +118,52 @@ export default function Index() {
                     <TextInput
                       style={styles.input}
                       placeholder="Email"
-                      placeholderTextColor="#A8A8A8"
+                      placeholderTextColor="#BEBEBE"
                       value={email}
                       onChangeText={setEmail}
                       keyboardType="email-address"
                       autoCapitalize="none"
+                      onFocus={() => setFocusedField('email')}
+                      onBlur={() => setFocusedField(null)}
                     />
-                    <View style={styles.inputUnderline} />
+                    <View style={[
+                      styles.inputUnderline,
+                      focusedField === 'email' && styles.inputUnderlineFocused
+                    ]} />
                   </View>
 
                   <View style={styles.inputWrapper}>
                     <TextInput
                       style={styles.input}
                       placeholder="Password"
-                      placeholderTextColor="#A8A8A8"
+                      placeholderTextColor="#BEBEBE"
                       value={password}
                       onChangeText={setPassword}
                       secureTextEntry
+                      onFocus={() => setFocusedField('password')}
+                      onBlur={() => setFocusedField(null)}
                     />
-                    <View style={styles.inputUnderline} />
+                    <View style={[
+                      styles.inputUnderline,
+                      focusedField === 'password' && styles.inputUnderlineFocused
+                    ]} />
                   </View>
                 </View>
 
-                {/* Primary Action Button */}
+                {/* Primary CTA Button */}
                 <TouchableOpacity
                   style={styles.primaryButton}
                   onPress={isSignUp ? handleSignUp : handleSignIn}
-                  activeOpacity={0.8}
+                  activeOpacity={0.85}
                 >
-                  <LinearGradient
-                    colors={['#B89361', '#C9A96D']}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 0 }}
-                    style={styles.buttonGradient}
-                  >
-                    <Text style={styles.primaryButtonText}>
-                      {isSignUp ? 'SIGN UP' : 'SIGN IN'}
-                    </Text>
-                  </LinearGradient>
+                  <Text style={styles.primaryButtonText}>
+                    {isSignUp ? 'SIGN UP' : 'SIGN IN'}
+                  </Text>
                 </TouchableOpacity>
 
-                {/* Toggle Link */}
+                {/* Secondary Toggle Link */}
                 <TouchableOpacity onPress={() => setIsSignUp(!isSignUp)}>
-                  <Text style={styles.toggleLink}>
+                  <Text style={styles.secondaryLink}>
                     {isSignUp
                       ? 'Already have an account? Sign in'
                       : "Don't have an account? Sign up"}
@@ -204,17 +199,17 @@ export default function Index() {
                 </View>
               </View>
             </BlurView>
+          </View>
 
-            {/* Skip Option */}
-            <TouchableOpacity
-              style={styles.skipButton}
-              onPress={handleBrowseWithoutSignIn}
-            >
-              <Text style={styles.skipText}>Browse without signing in</Text>
-            </TouchableOpacity>
-          </ScrollView>
-        </KeyboardAvoidingView>
-      </ImageBackground>
+          {/* Skip Option */}
+          <TouchableOpacity
+            style={styles.skipButton}
+            onPress={handleBrowseWithoutSignIn}
+          >
+            <Text style={styles.skipText}>Browse without signing in</Text>
+          </TouchableOpacity>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </View>
   );
 }
@@ -222,97 +217,92 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0F0F0F',
-  },
-  backgroundImage: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-  },
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
+    backgroundColor: '#0C0C0C',
   },
   keyboardView: {
     flex: 1,
   },
   scrollContent: {
     flexGrow: 1,
-    justifyContent: 'center',
     paddingHorizontal: 24,
-    paddingVertical: 48,
+    paddingTop: 96,
+    paddingBottom: 32,
   },
   header: {
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 48,
   },
   logo: {
     fontSize: 48,
-    fontWeight: '800',
+    fontWeight: '700',
     color: '#F2F2F2',
-    letterSpacing: 2,
-    marginBottom: 4,
-  },
-  logoUnderline: {
-    width: 60,
-    height: 2,
-    backgroundColor: '#C9A96D',
-    marginTop: 4,
-    marginBottom: 12,
+    letterSpacing: 1,
+    marginBottom: 16,
   },
   tagline: {
-    fontSize: 14,
-    color: '#A8A8A8',
-    letterSpacing: 0.5,
+    fontSize: 18,
+    color: '#BEBEBE',
+    letterSpacing: 3,
+    opacity: 0.85,
     fontWeight: '300',
   },
-  card: {
-    borderRadius: 16,
+  paneContainer: {
+    alignItems: 'center',
+    marginBottom: 32,
+  },
+  frostedPane: {
+    width: width * 0.88,
+    borderRadius: 20,
     overflow: 'hidden',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 12 },
-        shadowOpacity: 0.4,
-        shadowRadius: 24,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
       },
       android: {
-        elevation: 8,
+        elevation: 4,
       },
       web: {
-        boxShadow: '0px 12px 24px rgba(0, 0, 0, 0.4)',
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)',
       },
     }),
   },
-  cardInner: {
-    backgroundColor: 'rgba(25, 25, 25, 0.55)',
-    padding: 32,
+  paneInner: {
+    backgroundColor: 'rgba(255, 255, 255, 0.06)',
+    paddingVertical: 32,
+    paddingHorizontal: 24,
   },
   toggleContainer: {
     flexDirection: 'row',
-    marginBottom: 32,
-    gap: 24,
     justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 32,
   },
   toggleButton: {
-    paddingVertical: 8,
-    paddingHorizontal: 4,
     position: 'relative',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
   },
-  toggleButtonActive: {},
+  toggleSpacer: {
+    width: 32,
+  },
   toggleText: {
-    fontSize: 13,
-    color: '#A8A8A8',
-    fontWeight: '500',
-    letterSpacing: 1,
+    fontSize: 14,
+    color: '#BEBEBE',
+    fontWeight: '400',
+    letterSpacing: 0.5,
   },
   toggleTextActive: {
     color: '#F2F2F2',
+    fontWeight: '500',
   },
   activeUnderline: {
     position: 'absolute',
     bottom: 0,
-    left: 0,
-    right: 0,
+    left: 12,
+    right: 12,
     height: 2,
     backgroundColor: '#C9A96D',
   },
@@ -320,36 +310,49 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   inputWrapper: {
-    marginBottom: 24,
+    marginBottom: 16,
   },
   input: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#F2F2F2',
     paddingVertical: 12,
-    paddingHorizontal: 4,
+    paddingHorizontal: 0,
+    fontWeight: '400',
   },
   inputUnderline: {
     height: 1,
-    backgroundColor: '#2C2C2C',
+    backgroundColor: '#2A2A2A',
     marginTop: 4,
   },
-  primaryButton: {
-    borderRadius: 8,
-    overflow: 'hidden',
-    marginBottom: 16,
+  inputUnderlineFocused: {
+    backgroundColor: '#C9A96D',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#C9A96D',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.6,
+        shadowRadius: 4,
+      },
+      web: {
+        boxShadow: '0px 0px 4px rgba(201, 169, 109, 0.6)',
+      },
+    }),
   },
-  buttonGradient: {
-    paddingVertical: 16,
+  primaryButton: {
+    backgroundColor: '#C9A96D',
+    height: 48,
+    borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 12,
   },
   primaryButtonText: {
-    fontSize: 15,
+    fontSize: 16,
     color: '#FFFFFF',
-    fontWeight: '600',
+    fontWeight: '500',
     letterSpacing: 1.5,
   },
-  toggleLink: {
+  secondaryLink: {
     fontSize: 13,
     color: '#E47B63',
     textAlign: 'center',
@@ -363,13 +366,13 @@ const styles = StyleSheet.create({
   dividerLine: {
     flex: 1,
     height: 1,
-    backgroundColor: '#2C2C2C',
+    backgroundColor: '#2A2A2A',
   },
   dividerText: {
     fontSize: 10,
-    color: '#A8A8A8',
+    color: '#7A7A7A',
     marginHorizontal: 16,
-    letterSpacing: 1.2,
+    letterSpacing: 1,
     fontWeight: '300',
   },
   oauthContainer: {
@@ -380,11 +383,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#1C1C1C',
-    borderRadius: 8,
-    paddingVertical: 14,
+    height: 48,
+    borderRadius: 12,
     gap: 12,
-    borderWidth: 1,
-    borderColor: '#2C2C2C',
   },
   oauthButtonApple: {
     backgroundColor: '#000000',
@@ -392,14 +393,14 @@ const styles = StyleSheet.create({
   oauthButtonText: {
     fontSize: 15,
     color: '#F2F2F2',
-    fontWeight: '500',
+    fontWeight: '400',
   },
   skipButton: {
-    marginTop: 32,
     alignItems: 'center',
+    marginTop: 32,
   },
   skipText: {
     fontSize: 13,
-    color: '#A8A8A8',
+    color: '#BEBEBE',
   },
 });
