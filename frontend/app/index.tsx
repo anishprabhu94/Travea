@@ -3,6 +3,7 @@ import {
   Text,
   View,
   StyleSheet,
+  ImageBackground,
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
@@ -41,175 +42,188 @@ export default function Index() {
     router.push('/home');
   };
 
-  const handleBrowseWithoutSignIn = () => {
-    router.push('/home');
-  };
-
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
       
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.keyboardView}
+      {/* Background Image with Overlay */}
+      <ImageBackground
+        source={{
+          uri: 'https://customer-assets.emergentagent.com/job_modern-journey-app/artifacts/a765up15_output.jpg',
+        }}
+        style={styles.backgroundImage}
+        resizeMode="cover"
+        blurRadius={Platform.OS === 'ios' ? 30 : 25}
       >
-        <ScrollView
-          contentContainerStyle={styles.scrollContent}
-          keyboardShouldPersistTaps="handled"
-          showsVerticalScrollIndicator={false}
+        {/* Dark overlay for contrast */}
+        <View style={styles.darkOverlay} />
+        
+        {/* Optional warm tint */}
+        <View style={styles.warmTint} />
+
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={styles.keyboardView}
         >
-          {/* Logo and Tagline */}
-          <View style={styles.header}>
-            <Text style={styles.logo}>TRAVEA</Text>
-            <Text style={styles.tagline}>Travel, refined.</Text>
-          </View>
+          <ScrollView
+            contentContainerStyle={styles.scrollContent}
+            keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={false}
+            bounces={false}
+          >
+            {/* Logo and Tagline */}
+            <View style={styles.header}>
+              <Text style={styles.logo}>TRAVEA</Text>
+              <Text style={styles.tagline}>Travel, refined.</Text>
+            </View>
 
-          {/* Frosted Glass Pane */}
-          <View style={styles.paneContainer}>
-            <BlurView intensity={20} tint="light" style={styles.frostedPane}>
-              <View style={styles.paneInner}>
-                {/* Toggle Sign In / Sign Up */}
-                <View style={styles.toggleContainer}>
-                  <TouchableOpacity
-                    style={styles.toggleButton}
-                    onPress={() => setIsSignUp(false)}
-                  >
-                    <Text style={[styles.toggleText, !isSignUp && styles.toggleTextActive]}>
-                      Sign In
-                    </Text>
-                    {!isSignUp && <View style={styles.activeUnderline} />}
-                  </TouchableOpacity>
-                  
-                  <View style={styles.toggleSpacer} />
-                  
-                  <TouchableOpacity
-                    style={styles.toggleButton}
-                    onPress={() => setIsSignUp(true)}
-                  >
-                    <Text style={[styles.toggleText, isSignUp && styles.toggleTextActive]}>
-                      Sign Up
-                    </Text>
-                    {isSignUp && <View style={styles.activeUnderline} />}
-                  </TouchableOpacity>
-                </View>
+            {/* Apple-Style Frosted Glass Pane */}
+            <View style={styles.paneContainer}>
+              <BlurView intensity={35} tint="light" style={styles.glassPaneBlur}>
+                <View style={styles.glassPaneInner}>
+                  {/* Tab Toggle: Sign In / Sign Up */}
+                  <View style={styles.toggleContainer}>
+                    <TouchableOpacity
+                      style={styles.toggleButton}
+                      onPress={() => setIsSignUp(false)}
+                      activeOpacity={0.7}
+                    >
+                      <Text style={[styles.toggleText, !isSignUp && styles.toggleTextActive]}>
+                        Sign In
+                      </Text>
+                      {!isSignUp && <View style={styles.activeUnderline} />}
+                    </TouchableOpacity>
+                    
+                    <View style={styles.toggleSpacer} />
+                    
+                    <TouchableOpacity
+                      style={styles.toggleButton}
+                      onPress={() => setIsSignUp(true)}
+                      activeOpacity={0.7}
+                    >
+                      <Text style={[styles.toggleText, isSignUp && styles.toggleTextActive]}>
+                        Sign Up
+                      </Text>
+                      {isSignUp && <View style={styles.activeUnderline} />}
+                    </TouchableOpacity>
+                  </View>
 
-                {/* Input Fields */}
-                <View style={styles.inputContainer}>
-                  {isSignUp && (
+                  {/* Input Fields */}
+                  <View style={styles.inputContainer}>
+                    {isSignUp && (
+                      <View style={styles.inputWrapper}>
+                        <Text style={styles.inputLabel}>Full Name</Text>
+                        <TextInput
+                          style={styles.input}
+                          placeholder=""
+                          placeholderTextColor="#EAEAEA"
+                          value={name}
+                          onChangeText={setName}
+                          autoCapitalize="words"
+                          onFocus={() => setFocusedField('name')}
+                          onBlur={() => setFocusedField(null)}
+                        />
+                        <View style={[
+                          styles.inputUnderline,
+                          focusedField === 'name' && styles.inputUnderlineFocused
+                        ]} />
+                      </View>
+                    )}
+
                     <View style={styles.inputWrapper}>
+                      <Text style={styles.inputLabel}>Email</Text>
                       <TextInput
                         style={styles.input}
-                        placeholder="Full Name"
-                        placeholderTextColor="#BEBEBE"
-                        value={name}
-                        onChangeText={setName}
-                        autoCapitalize="words"
-                        onFocus={() => setFocusedField('name')}
+                        placeholder=""
+                        placeholderTextColor="#EAEAEA"
+                        value={email}
+                        onChangeText={setEmail}
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        onFocus={() => setFocusedField('email')}
                         onBlur={() => setFocusedField(null)}
                       />
                       <View style={[
                         styles.inputUnderline,
-                        focusedField === 'name' && styles.inputUnderlineFocused
+                        focusedField === 'email' && styles.inputUnderlineFocused
                       ]} />
                     </View>
-                  )}
 
-                  <View style={styles.inputWrapper}>
-                    <TextInput
-                      style={styles.input}
-                      placeholder="Email"
-                      placeholderTextColor="#BEBEBE"
-                      value={email}
-                      onChangeText={setEmail}
-                      keyboardType="email-address"
-                      autoCapitalize="none"
-                      onFocus={() => setFocusedField('email')}
-                      onBlur={() => setFocusedField(null)}
-                    />
-                    <View style={[
-                      styles.inputUnderline,
-                      focusedField === 'email' && styles.inputUnderlineFocused
-                    ]} />
+                    <View style={styles.inputWrapper}>
+                      <Text style={styles.inputLabel}>Password</Text>
+                      <TextInput
+                        style={styles.input}
+                        placeholder=""
+                        placeholderTextColor="#EAEAEA"
+                        value={password}
+                        onChangeText={setPassword}
+                        secureTextEntry
+                        onFocus={() => setFocusedField('password')}
+                        onBlur={() => setFocusedField(null)}
+                      />
+                      <View style={[
+                        styles.inputUnderline,
+                        focusedField === 'password' && styles.inputUnderlineFocused
+                      ]} />
+                    </View>
                   </View>
 
-                  <View style={styles.inputWrapper}>
-                    <TextInput
-                      style={styles.input}
-                      placeholder="Password"
-                      placeholderTextColor="#BEBEBE"
-                      value={password}
-                      onChangeText={setPassword}
-                      secureTextEntry
-                      onFocus={() => setFocusedField('password')}
-                      onBlur={() => setFocusedField(null)}
-                    />
-                    <View style={[
-                      styles.inputUnderline,
-                      focusedField === 'password' && styles.inputUnderlineFocused
-                    ]} />
+                  {/* Primary CTA Button */}
+                  <TouchableOpacity
+                    style={styles.primaryButton}
+                    onPress={isSignUp ? handleSignUp : handleSignIn}
+                    activeOpacity={0.85}
+                  >
+                    <Text style={styles.primaryButtonText}>
+                      {isSignUp ? 'SIGN UP' : 'SIGN IN'}
+                    </Text>
+                  </TouchableOpacity>
+
+                  {/* Secondary Toggle Link */}
+                  <TouchableOpacity 
+                    onPress={() => setIsSignUp(!isSignUp)}
+                    style={styles.secondaryLinkContainer}
+                  >
+                    <Text style={styles.secondaryLink}>
+                      {isSignUp
+                        ? 'Already have an account? Sign in'
+                        : "Don't have an account? Sign up"}
+                    </Text>
+                  </TouchableOpacity>
+
+                  {/* Divider */}
+                  <View style={styles.dividerContainer}>
+                    <View style={styles.dividerLine} />
+                    <Text style={styles.dividerText}>OR CONTINUE WITH</Text>
+                    <View style={styles.dividerLine} />
+                  </View>
+
+                  {/* OAuth Buttons */}
+                  <View style={styles.oauthContainer}>
+                    <TouchableOpacity
+                      style={styles.oauthButton}
+                      onPress={handleOAuthGoogle}
+                      activeOpacity={0.8}
+                    >
+                      <Ionicons name="logo-google" size={20} color="#FFFFFF" />
+                      <Text style={styles.oauthButtonText}>Continue with Google</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      style={[styles.oauthButton, styles.oauthButtonApple]}
+                      onPress={handleOAuthApple}
+                      activeOpacity={0.8}
+                    >
+                      <Ionicons name="logo-apple" size={20} color="#FFFFFF" />
+                      <Text style={styles.oauthButtonText}>Continue with Apple</Text>
+                    </TouchableOpacity>
                   </View>
                 </View>
-
-                {/* Primary CTA Button */}
-                <TouchableOpacity
-                  style={styles.primaryButton}
-                  onPress={isSignUp ? handleSignUp : handleSignIn}
-                  activeOpacity={0.85}
-                >
-                  <Text style={styles.primaryButtonText}>
-                    {isSignUp ? 'SIGN UP' : 'SIGN IN'}
-                  </Text>
-                </TouchableOpacity>
-
-                {/* Secondary Toggle Link */}
-                <TouchableOpacity onPress={() => setIsSignUp(!isSignUp)}>
-                  <Text style={styles.secondaryLink}>
-                    {isSignUp
-                      ? 'Already have an account? Sign in'
-                      : "Don't have an account? Sign up"}
-                  </Text>
-                </TouchableOpacity>
-
-                {/* Divider */}
-                <View style={styles.dividerContainer}>
-                  <View style={styles.dividerLine} />
-                  <Text style={styles.dividerText}>OR CONTINUE WITH</Text>
-                  <View style={styles.dividerLine} />
-                </View>
-
-                {/* OAuth Buttons */}
-                <View style={styles.oauthContainer}>
-                  <TouchableOpacity
-                    style={styles.oauthButton}
-                    onPress={handleOAuthGoogle}
-                    activeOpacity={0.8}
-                  >
-                    <Ionicons name="logo-google" size={20} color="#F2F2F2" />
-                    <Text style={styles.oauthButtonText}>Continue with Google</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    style={[styles.oauthButton, styles.oauthButtonApple]}
-                    onPress={handleOAuthApple}
-                    activeOpacity={0.8}
-                  >
-                    <Ionicons name="logo-apple" size={20} color="#F2F2F2" />
-                    <Text style={styles.oauthButtonText}>Continue with Apple</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            </BlurView>
-          </View>
-
-          {/* Skip Option */}
-          <TouchableOpacity
-            style={styles.skipButton}
-            onPress={handleBrowseWithoutSignIn}
-          >
-            <Text style={styles.skipText}>Browse without signing in</Text>
-          </TouchableOpacity>
-        </ScrollView>
-      </KeyboardAvoidingView>
+              </BlurView>
+            </View>
+          </ScrollView>
+        </KeyboardAvoidingView>
+      </ImageBackground>
     </View>
   );
 }
@@ -217,7 +231,20 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0C0C0C',
+    backgroundColor: '#000000',
+  },
+  backgroundImage: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  darkOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.35)',
+  },
+  warmTint: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(58, 50, 41, 0.1)',
   },
   keyboardView: {
     flex: 1,
@@ -225,84 +252,87 @@ const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
     paddingHorizontal: 24,
-    paddingTop: 96,
-    paddingBottom: 32,
+    paddingTop: 88,
+    paddingBottom: 40,
+    justifyContent: 'flex-start',
   },
   header: {
     alignItems: 'center',
-    marginBottom: 48,
+    marginBottom: 40,
   },
   logo: {
-    fontSize: 48,
+    fontSize: 46,
     fontWeight: '700',
-    color: '#F2F2F2',
-    letterSpacing: 1,
-    marginBottom: 16,
+    color: '#F8F8F8',
+    letterSpacing: 4,
+    marginBottom: 14,
   },
   tagline: {
     fontSize: 18,
-    color: '#BEBEBE',
+    color: '#D1D1D1',
     letterSpacing: 3,
     opacity: 0.85,
     fontWeight: '300',
   },
   paneContainer: {
     alignItems: 'center',
-    marginBottom: 32,
   },
-  frostedPane: {
-    width: width * 0.88,
-    borderRadius: 20,
+  glassPaneBlur: {
+    width: width * 0.82,
+    borderRadius: 24,
     overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.25)',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 12,
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.25,
+        shadowRadius: 25,
       },
       android: {
-        elevation: 4,
+        elevation: 8,
       },
       web: {
-        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)',
+        boxShadow: '0px 8px 25px -5px rgba(0, 0, 0, 0.25)',
       },
     }),
   },
-  paneInner: {
-    backgroundColor: 'rgba(255, 255, 255, 0.06)',
-    paddingVertical: 32,
-    paddingHorizontal: 24,
+  glassPaneInner: {
+    backgroundColor: 'rgba(255, 255, 255, 0.12)',
+    paddingTop: 24,
+    paddingHorizontal: 20,
+    paddingBottom: 28,
   },
   toggleContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 32,
+    marginBottom: 28,
   },
   toggleButton: {
     position: 'relative',
     paddingVertical: 8,
-    paddingHorizontal: 12,
+    paddingHorizontal: 16,
   },
   toggleSpacer: {
-    width: 32,
+    width: 40,
   },
   toggleText: {
-    fontSize: 14,
-    color: '#BEBEBE',
-    fontWeight: '400',
+    fontSize: 16,
+    color: 'rgba(255, 255, 255, 0.6)',
+    fontWeight: '500',
     letterSpacing: 0.5,
   },
   toggleTextActive: {
-    color: '#F2F2F2',
-    fontWeight: '500',
+    color: '#FFFFFF',
+    fontWeight: '600',
   },
   activeUnderline: {
     position: 'absolute',
     bottom: 0,
-    left: 12,
-    right: 12,
+    left: 16,
+    right: 16,
     height: 2,
     backgroundColor: '#C9A96D',
   },
@@ -310,18 +340,24 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   inputWrapper: {
-    marginBottom: 16,
+    marginBottom: 20,
+  },
+  inputLabel: {
+    fontSize: 14,
+    color: '#EAEAEA',
+    marginBottom: 8,
+    fontWeight: '400',
   },
   input: {
-    fontSize: 14,
-    color: '#F2F2F2',
-    paddingVertical: 12,
+    fontSize: 16,
+    color: '#F8F8F8',
+    paddingVertical: 8,
     paddingHorizontal: 0,
     fontWeight: '400',
   },
   inputUnderline: {
     height: 1,
-    backgroundColor: '#2A2A2A',
+    backgroundColor: '#2D2D2D',
     marginTop: 4,
   },
   inputUnderlineFocused: {
@@ -330,11 +366,11 @@ const styles = StyleSheet.create({
       ios: {
         shadowColor: '#C9A96D',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.6,
-        shadowRadius: 4,
+        shadowOpacity: 0.5,
+        shadowRadius: 6,
       },
       web: {
-        boxShadow: '0px 0px 4px rgba(201, 169, 109, 0.6)',
+        boxShadow: '0px 0px 6px rgba(201, 169, 109, 0.5)',
       },
     }),
   },
@@ -349,31 +385,36 @@ const styles = StyleSheet.create({
   primaryButtonText: {
     fontSize: 16,
     color: '#FFFFFF',
-    fontWeight: '500',
+    fontWeight: '600',
     letterSpacing: 1.5,
+  },
+  secondaryLinkContainer: {
+    marginBottom: 24,
   },
   secondaryLink: {
     fontSize: 13,
-    color: '#E47B63',
+    color: '#D47A63',
     textAlign: 'center',
-    marginBottom: 24,
+    opacity: 0.6,
   },
   dividerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 24,
+    marginBottom: 20,
   },
   dividerLine: {
     flex: 1,
     height: 1,
-    backgroundColor: '#2A2A2A',
+    backgroundColor: '#A8A8A8',
+    opacity: 0.3,
   },
   dividerText: {
-    fontSize: 10,
-    color: '#7A7A7A',
+    fontSize: 12,
+    color: '#A8A8A8',
     marginHorizontal: 16,
     letterSpacing: 1,
     fontWeight: '300',
+    opacity: 0.6,
   },
   oauthContainer: {
     gap: 12,
@@ -392,15 +433,7 @@ const styles = StyleSheet.create({
   },
   oauthButtonText: {
     fontSize: 15,
-    color: '#F2F2F2',
+    color: '#FFFFFF',
     fontWeight: '400',
-  },
-  skipButton: {
-    alignItems: 'center',
-    marginTop: 32,
-  },
-  skipText: {
-    fontSize: 13,
-    color: '#BEBEBE',
   },
 });
