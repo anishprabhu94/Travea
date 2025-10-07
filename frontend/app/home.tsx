@@ -72,33 +72,25 @@ export default function Home() {
           <Text style={styles.sectionTitle}>Quick Actions</Text>
           <View style={styles.quickActions}>
             <TouchableOpacity style={styles.actionCard}>
-              <View style={styles.actionIconContainer}>
-                <Ionicons name="compass-outline" size={28} color="#B9C8C2" />
-              </View>
+              <Text style={styles.actionIcon}>🧭</Text>
               <Text style={styles.actionTitle}>Discover</Text>
               <Text style={styles.actionSubtitle}>Find new places</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.actionCard}>
-              <View style={styles.actionIconContainer}>
-                <Ionicons name="calendar-outline" size={28} color="#FF7A5A" />
-              </View>
+              <Text style={styles.actionIcon}>📅</Text>
               <Text style={styles.actionTitle}>Plan Trip</Text>
               <Text style={styles.actionSubtitle}>Create itinerary</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.actionCard}>
-              <View style={styles.actionIconContainer}>
-                <Ionicons name="bookmark-outline" size={28} color="#A89F91" />
-              </View>
+              <Text style={styles.actionIcon}>🔖</Text>
               <Text style={styles.actionTitle}>Saved</Text>
               <Text style={styles.actionSubtitle}>Your favorites</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.actionCard}>
-              <View style={styles.actionIconContainer}>
-                <Ionicons name="sparkles-outline" size={28} color="#FFB366" />
-              </View>
+              <Text style={styles.actionIcon}>✨</Text>
               <Text style={styles.actionTitle}>AI Suggest</Text>
               <Text style={styles.actionSubtitle}>Smart picks</Text>
             </TouchableOpacity>
