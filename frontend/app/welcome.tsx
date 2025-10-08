@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   Animated,
   Dimensions,
+  ImageBackground,
+  Platform,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { BlurView } from 'expo-blur';
