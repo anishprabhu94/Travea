@@ -100,8 +100,8 @@ export default function Welcome() {
             },
           ]}
         >
-          {/* TRAVEA Logo */}
-          <Text style={styles.logo}>TRAVEA</Text>
+          {/* TRAVEA Luxury Wordmark */}
+          <TraveaWordmark size="large" />
 
           {/* Centered Frosted Glass Pane */}
           <Animated.View
