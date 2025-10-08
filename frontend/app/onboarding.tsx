@@ -361,10 +361,10 @@ const styles = StyleSheet.create({
     marginTop: 20, // Space from content above
   },
   questionPane: {
-    backgroundColor: 'rgba(60, 60, 60, 0.35)', // Lightened as requested
+    backgroundColor: 'rgba(60, 60, 60, 0.35)', // Maintained as requested
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.15)', // Stronger border for better frosted visibility
+    borderColor: 'rgba(255, 255, 255, 0.08)', // Updated border for subtle luminous effect
     paddingVertical: 14,
     paddingHorizontal: 16,
     marginBottom: 32, // Increased for world-class spacing
@@ -376,17 +376,17 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 6 },
-        shadowOpacity: 0.25,
-        shadowRadius: 12.5,
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.45,
+        shadowRadius: 16,
       },
       android: {
-        elevation: 6,
+        elevation: 8,
       },
       web: {
-        backdropFilter: 'blur(30px)', // Increased blur as requested
+        backdropFilter: 'blur(30px)', // 30px backdrop blur as requested
         WebkitBackdropFilter: 'blur(30px)',
-        boxShadow: '0 6px 25px rgba(0, 0, 0, 0.25)', // Added shadow as requested
+        boxShadow: '0px 8px 32px rgba(0, 0, 0, 0.45), inset 0 0 25px rgba(255, 255, 255, 0.05)', // Soft outer glow + subtle inset luminous effect
       },
     }),
   },
