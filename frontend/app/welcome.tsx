@@ -121,10 +121,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
   },
   logo: {
-    fontSize: 26,
+    fontSize: 46,
     fontWeight: '700',
     color: '#F8F8F8',
-    letterSpacing: 2,
+    letterSpacing: 4,
     marginBottom: 60,
   },
   greetingContainer: {
