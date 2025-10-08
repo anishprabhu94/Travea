@@ -384,7 +384,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 12,
-    marginBottom: 16, // 16px grid→NEXT
+    marginBottom: 40, // Increased for world-class spacing distribution
   },
   bubbleWrapper: {
     width: '48%',
