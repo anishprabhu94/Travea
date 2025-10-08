@@ -371,17 +371,36 @@ const styles = StyleSheet.create({
   },
   // questionContainer removed - no longer needed
   questionText: {
-    fontSize: 18, // Reduced font size for more refined appearance
-    fontWeight: '600', // Weight 600 maintained
-    color: 'rgba(255, 255, 255, 0.92)',
-    lineHeight: 23, // 1.3 * 18px = 23.4px, rounded to 23
+    fontSize: 22, // Increased to 22px for luxury presence
+    fontWeight: '600', // Semi-bold as requested
+    color: '#F8F8F8', // Pure white with warmth
+    lineHeight: 29, // 1.3 * 22px = 28.6px, rounded to 29
     letterSpacing: 0.3,
-    textAlign: 'left', // Left-aligned as requested
-    maxWidth: '100%', // Full width for proper left alignment
+    textAlign: 'left',
+    maxWidth: '100%',
     fontFamily: Platform.select({
       ios: 'NeueHaasDisplayMedium',
       android: 'NeueHaasDisplayMedium', 
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+    ...Platform.select({
+      ios: {
+        // iOS text shadow for bronze glow
+        shadowColor: 'rgba(201, 169, 109, 0.35)',
+        shadowOffset: { width: 0, height: 0 },
+        shadowRadius: 12,
+        shadowOpacity: 1,
+      },
+      android: {
+        // Android text shadow
+        textShadowColor: 'rgba(201, 169, 109, 0.35)',
+        textShadowOffset: { width: 0, height: 0 },
+        textShadowRadius: 12,
+      },
+      web: {
+        // Web text shadow with multiple layers for gentle halo effect
+        textShadow: '0 0 8px rgba(201, 169, 109, 0.35), 0 0 16px rgba(201, 169, 109, 0.25), 0 0 24px rgba(201, 169, 109, 0.15)',
+      },
     }),
   },
   multiSelectHint: {
