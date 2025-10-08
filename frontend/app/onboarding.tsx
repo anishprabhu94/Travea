@@ -164,9 +164,11 @@ export default function Onboarding() {
                 style={styles.bubbleWrapper}
               >
                 {selected ? (
-                  <View style={styles.selectedBubble}>
-                    <Text style={styles.bubbleTextSelected}>{option}</Text>
-                  </View>
+                  <BlurView intensity={25} tint="light" style={styles.selectedBubble}>
+                    <View style={styles.selectedBubbleInner}>
+                      <Text style={styles.bubbleTextSelected}>{option}</Text>
+                    </View>
+                  </BlurView>
                 ) : (
                   <BlurView intensity={25} tint="light" style={styles.bubble}>
                     <View style={styles.bubbleInner}>
