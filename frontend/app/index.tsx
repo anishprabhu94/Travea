@@ -308,13 +308,13 @@ const styles = StyleSheet.create({
   },
   toggleText: {
     fontSize: 16,
-    color: 'rgba(255, 255, 255, 0.6)',
-    fontWeight: '500',
+    color: '#FFFFFF',
+    fontWeight: '700',
     letterSpacing: 0.5,
   },
   toggleTextActive: {
     color: '#FFFFFF',
-    fontWeight: '600',
+    fontWeight: '700',
   },
   activeUnderline: {
     position: 'absolute',
