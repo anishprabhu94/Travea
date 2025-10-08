@@ -418,7 +418,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: 16, // Increased vertical spacing between rows
     justifyContent: 'space-between', // Ensure proper column alignment
-    marginBottom: 60, // Increased more to space out next button from bubbles
+    marginBottom: 24, // Reduced since button is now pinned at bottom
   },
   bubbleWrapper: {
     width: '47%', // Slightly reduced to ensure perfect column alignment
