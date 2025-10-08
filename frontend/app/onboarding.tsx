@@ -230,10 +230,10 @@ export default function Onboarding() {
               </Animated.View>
             );
           })}
-        </View>
-      </Animated.View>
+          </View>
+        </BlurView>
 
-      <View style={styles.bottomContainer}>
+        <View style={styles.bottomContainer}>
         <TouchableOpacity
           style={[styles.nextButtonWrapper]}
           onPress={handleNext}
