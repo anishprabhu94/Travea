@@ -46,7 +46,7 @@ const questions: Question[] = [
   {
     id: 4,
     question: 'What excites you most?',
-    options: ['Beaches', 'Food & Wine', 'Art & Culture', 'Outdoor Activity', 'Nightlife', 'History'],
+    options: ['Beaches', 'Food & Wine', 'Art & Culture', 'Adventure', 'Nightlife', 'History'],
     multiSelect: true,
   },
   {
