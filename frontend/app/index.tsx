@@ -242,10 +242,10 @@ export default function Index() {
                   <TouchableOpacity
                     style={styles.oauthButtonContainer}
                     onPress={handleOAuthGoogle}
-                    activeOpacity={0.9}
+                    activeOpacity={0.85}
                   >
                     <BlurView intensity={20} tint="light" style={styles.oauthButton}>
-                      <View style={styles.oauthButtonInner}>
+                      <View style={[styles.oauthButtonInner, styles.oauthButtonGoogle]}>
                         <Ionicons name="logo-google" size={18} color="rgba(255,255,255,0.85)" />
                         <Text style={styles.oauthButtonText}>Continue with Google</Text>
                       </View>
@@ -255,10 +255,10 @@ export default function Index() {
                   <TouchableOpacity
                     style={styles.oauthButtonContainer}
                     onPress={handleOAuthApple}
-                    activeOpacity={0.9}
+                    activeOpacity={0.85}
                   >
                     <BlurView intensity={20} tint="light" style={styles.oauthButton}>
-                      <View style={styles.oauthButtonInner}>
+                      <View style={[styles.oauthButtonInner, styles.oauthButtonApple]}>
                         <Ionicons name="logo-apple" size={18} color="rgba(255,255,255,0.85)" />
                         <Text style={styles.oauthButtonText}>Continue with Apple</Text>
                       </View>
