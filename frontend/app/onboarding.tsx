@@ -361,7 +361,7 @@ const styles = StyleSheet.create({
     marginTop: 20, // Space from content above
   },
   questionPane: {
-    backgroundColor: 'rgba(70, 70, 70, 0.35)', // Enhanced background as requested
+    backgroundColor: 'rgba(85, 85, 85, 0.4)', // Lighter background for elegant appearance
     borderRadius: 20,
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.12)', // Subtle border as specified
