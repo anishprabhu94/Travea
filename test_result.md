@@ -166,6 +166,18 @@ test_plan:
           agent: "main"
           comment: "Successfully unified material design with exact specifications: Tint rgba(255,255,255,0.10), Backdrop-blur 30px, Backdrop-saturate 130%, Stroke rgba(255,255,255,0.26), Inner-highlight gradient linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.00) 42%), Shadow 0 10px 28px -6px rgba(0,0,0,0.35), Radius 20px, Text #F2F2F2. Both login pane and answer bubbles now use identical material tokens. Implemented bronze selection states with rgba(201,169,109,0.22) wash, rgba(201,169,109,0.55) stroke, 2px outer ring rgba(201,169,109,0.18), elevated shadow, semibold white text. Next button has proper disabled/enabled states with frosted bronze vs solid bronze #C9A96D. Multi-select functionality enabled. Bubbles show proper glass background bleed, no flat gray."
 
+  - task: "Fix landing page background layering issue"
+    implemented: true
+    working: true
+    file: "/app/frontend/app/landing.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Successfully resolved landing page layering issue where content was invisible due to z-index conflicts. Root cause identified by troubleshoot agent: content layer (zIndex: 1) was rendering behind dark background (zIndex: 0). Fixed by increasing content z-index from 1 to 10 and adding elevation: 10 for Android compatibility. All 7 key elements now visible: TRĀVEA logo, greeting text, Weekend pill, Inspire Me pill, Search pill, tagline, and bottom dock. Removed problematic WebkitTextFillColor: transparent gradient that was causing additional invisibility. Landing page now displays correctly with all cinematic design elements visible."
+
 agent_communication:
     - agent: "main"
       message: "Completed input field height reduction task. Reduced padding and margins to make the input panes more compact. Screenshots confirm the changes are working correctly in both Sign In and Sign Up modes."
@@ -181,6 +193,8 @@ agent_communication:
       message: "ENHANCED: Added soft luminous glow to question pane for superior depth and contrast. Implemented rgba(60,60,60,0.35) background with 30px backdrop blur, 0px 8px 32px rgba(0,0,0,0.45) outer shadow for soft elevation, 1px rgba(255,255,255,0.08) border, plus inset 0 0 25px rgba(255,255,255,0.05) for luminous frosted effect. Question pane now feels softly elevated with excellent readability against dark backgrounds while maintaining minimalist aesthetic. Screenshots confirm consistent beautiful glow effect across all onboarding questions."
     - agent: "main"
       message: "REFINED: Optimized question pane proportion and visibility with precise specifications. Implemented: Fixed 70px height with 16px×20px padding, enhanced rgba(70,70,70,0.35) background, 30px backdrop blur, soft shadow 0 6px 24px rgba(0,0,0,0.5) + bronze glow 0 0 18px rgba(201,169,109,0.15) matching app accent, subtle 1px rgba(255,255,255,0.12) border, left-aligned text with 20px font-size/1.3 line-height/600 weight, moved upward (-20px margin) for optimal visual balance under progress bar. Question pane now has perfect proportions, excellent contrast, and cohesive bronze design language integration. Screenshots show consistent styling across all questions."
+    - agent: "main"
+      message: "RESOLVED: Successfully fixed landing page layering issue that was making all content invisible. Root cause identified via troubleshoot agent: content layer z-index (1) was too low, rendering behind dark background (0). Fixed by increasing content z-index to 10 and adding elevation: 10 for Android. Also removed problematic WebkitTextFillColor: transparent gradient. All 7 key elements now visible and functional: TRĀVEA logo, greeting, mode pills (Weekend/Inspire Me/Search), tagline, and bottom dock. Landing page cinematic design fully restored and working correctly."
 
   - task: "Create cinematic onboarding screens with aerial beach background"
     implemented: true
