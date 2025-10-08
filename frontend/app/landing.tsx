@@ -318,17 +318,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     ...Platform.select({
       web: {
-        background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.55))',
-      },
-    }),
-  },
-  vignette: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    ...Platform.select({
-      web: {
-        background: 'radial-gradient(circle, transparent 30%, rgba(0,0,0,0.25) 70%)',
+        background: 'linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.55))',
       },
     }),
   },
@@ -336,172 +326,247 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 40,
+    paddingTop: 50,
     paddingHorizontal: 24,
+  },
+  logoContainer: {
+    alignItems: 'flex-start',
+  },
+  logoText: {
+    fontSize: 22,
+    fontWeight: '600',
+    color: '#F8F8F8',
+    letterSpacing: 5.28, // +0.20em * 22px = 4.4px, increased to 5.28 for more spacing
+    textTransform: 'uppercase',
+    fontFamily: Platform.select({
+      ios: 'NeueHaasDisplayMedium',
+      android: 'NeueHaasDisplayMedium',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+    ...Platform.select({
+      web: {
+        textShadow: '0 0 12px rgba(201,169,109,0.25), 0 0 20px rgba(255,255,255,0.1)',
+      },
+    }),
   },
   profileIcon: {
     width: 40,
     height: 40,
     borderRadius: 20,
     borderWidth: 1.5,
-    borderColor: 'rgba(255,255,255,0.15)',
+    borderColor: 'rgba(255,255,255,0.2)',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  greetingBlock: {
+    paddingHorizontal: 24,
+    marginTop: 16,
+  },
+  greetingMain: {
+    fontSize: 22,
+    fontWeight: '600',
+    color: '#F8F8F8',
+    fontFamily: Platform.select({
+      ios: 'NeueHaasDisplayMedium',
+      android: 'NeueHaasDisplayMedium',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
     ...Platform.select({
       web: {
-        boxShadow: '0 0 8px rgba(255,255,255,0.15)',
+        textShadow: '0 0 12px rgba(201,169,109,0.25)',
       },
     }),
   },
-  greetingContainer: {
-    alignItems: 'center',
+  greetingSub: {
+    fontSize: 16,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.75)',
+    marginTop: 4,
+    fontFamily: Platform.select({
+      ios: 'NeueHaasDisplayMedium',
+      android: 'NeueHaasDisplayMedium',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  inspirationHeader: {
+    paddingHorizontal: 24,
     marginTop: 24,
   },
-  greetingPane: {
-    width: '85%',
-    height: 90,
-    borderRadius: 24,
+  inspirationText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.85)',
+    fontFamily: Platform.select({
+      ios: 'NeueHaasDisplayMedium',
+      android: 'NeueHaasDisplayMedium',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+    ...Platform.select({
+      web: {
+        textShadow: '0 0 10px rgba(201,169,109,0.25)',
+      },
+    }),
+  },
+  modeChipsContainer: {
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  modeChipsRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 12,
+  },
+  modeChip: {
+    width: 110,
+    height: 44,
+    borderRadius: 20,
+    position: 'relative',
+  },
+  modeChipActive: {
+    transform: [{ translateY: -4 }],
+  },
+  chipBlur: {
+    flex: 1,
+    borderRadius: 20,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(201,169,109,0.25)',
+    borderColor: 'rgba(255,255,255,0.08)',
+  },
+  chipContent: {
+    flex: 1,
+    backgroundColor: 'rgba(25,25,25,0.35)',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+    gap: 8,
+  },
+  chipIcon: {
+    marginRight: 2,
+  },
+  chipLabel: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#F8F8F8',
+    fontFamily: Platform.select({
+      ios: 'NeueHaasDisplayMedium',
+      android: 'NeueHaasDisplayMedium',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  chipActiveIndicator: {
+    position: 'absolute',
+    bottom: -2,
+    left: '25%',
+    right: '25%',
+    height: 2,
+    backgroundColor: '#C9A96D',
+    borderRadius: 1,
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 8px rgba(201,169,109,0.5)',
+      },
+    }),
+  },
+  heroContainer: {
+    alignItems: 'center',
+    marginTop: 32,
+    flex: 1,
+    paddingBottom: 120, // Space for bottom dock
+  },
+  // Search Mode Styles
+  searchContainer: {
+    width: width * 0.92,
+    height: height * 0.43,
+    borderRadius: 28,
+    overflow: 'hidden',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.35,
-        shadowRadius: 12,
+        shadowOpacity: 0.45,
+        shadowRadius: 13,
       },
       android: {
         elevation: 8,
       },
       web: {
-        boxShadow: '0 8px 24px rgba(0,0,0,0.35), 0 0 20px rgba(201,169,109,0.25)',
+        boxShadow: '0 8px 26px rgba(0,0,0,0.45)',
       },
     }),
   },
-  greetingContent: {
+  searchContent: {
     flex: 1,
-    backgroundColor: 'rgba(25,25,25,0.45)',
-    paddingLeft: 20,
-    paddingTop: 16,
+    backgroundColor: 'rgba(25,25,25,0.3)',
+    padding: 24,
     justifyContent: 'center',
+    alignItems: 'center',
   },
-  welcomeText: {
-    fontSize: 20,
+  searchTitle: {
+    fontSize: 22,
     fontWeight: '600',
     color: '#F8F8F8',
-    letterSpacing: 0.2,
+    textAlign: 'center',
+    marginBottom: 12,
     fontFamily: Platform.select({
       ios: 'NeueHaasDisplayMedium',
       android: 'NeueHaasDisplayMedium',
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  questionText: {
+  searchSubtitle: {
     fontSize: 16,
     fontWeight: '400',
-    color: 'rgba(255,255,255,0.75)',
-    marginTop: 4,
-    letterSpacing: 0.2,
+    color: 'rgba(255,255,255,0.80)',
+    textAlign: 'center',
+    marginBottom: 32,
+    lineHeight: 22,
     fontFamily: Platform.select({
       ios: 'NeueHaasDisplayMedium',
       android: 'NeueHaasDisplayMedium',
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  tabsContainer: {
-    alignItems: 'center',
-    marginTop: 32,
+  searchBarContainer: {
+    width: '100%',
   },
-  tabsPane: {
-    width: '90%',
-    height: 52,
-    borderRadius: 18,
+  searchBar: {
+    borderRadius: 22,
     overflow: 'hidden',
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 6 },
-        shadowOpacity: 0.35,
-        shadowRadius: 10,
-      },
-      android: {
-        elevation: 6,
-      },
-      web: {
-        boxShadow: '0 6px 20px rgba(0,0,0,0.35)',
-      },
-    }),
   },
-  tabsContent: {
-    flex: 1,
-    backgroundColor: 'rgba(25,25,25,0.35)',
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 6,
-    paddingHorizontal: 12,
+  searchIcon: {
+    position: 'absolute',
+    left: 16,
+    top: '50%',
+    marginTop: -9,
+    zIndex: 1,
   },
-  tab: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 4,
-    position: 'relative',
-  },
-  tabText: {
-    fontSize: 12,
-    fontWeight: '600',
-    marginLeft: 6,
-    letterSpacing: 0.02,
+  searchInput: {
+    backgroundColor: 'rgba(25,25,25,0.45)',
+    height: 50,
+    paddingLeft: 48,
+    paddingRight: 16,
+    fontSize: 16,
+    color: '#F8F8F8',
     fontFamily: Platform.select({
       ios: 'NeueHaasDisplayMedium',
       android: 'NeueHaasDisplayMedium',
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  tabTextActive: {
-    color: '#F8F8F8',
-  },
-  tabTextInactive: {
-    color: 'rgba(255,255,255,0.45)',
-  },
-  activeUnderline: {
-    position: 'absolute',
-    bottom: 0,
-    left: '25%',
-    right: '25%',
-    height: 2,
-    backgroundColor: '#C9A96D',
-    ...Platform.select({
-      web: {
-        boxShadow: '0 0 4px rgba(201,169,109,0.25)',
-      },
-    }),
-  },
-  contentContainer: {
-    alignItems: 'center',
-    marginTop: 32,
-    flex: 1,
-  },
-  contentTile: {
-    width: width * 0.9,
-    height: height * 0.4,
+  // Hero Tile Styles
+  heroTile: {
+    width: width * 0.92,
+    height: height * 0.43,
     borderRadius: 28,
     overflow: 'hidden',
   },
-  contentGradient: {
+  heroOverlay: {
     position: 'absolute',
     width: '100%',
     height: '100%',
-    ...Platform.select({
-      web: {
-        background: 'linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.55))',
-      },
-    }),
+    backgroundColor: 'rgba(25,25,25,0.3)',
   },
-  contentFrosted: {
+  heroContent: {
     flex: 1,
     borderRadius: 28,
     overflow: 'hidden',
@@ -510,26 +575,23 @@ const styles = StyleSheet.create({
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 8 },
         shadowOpacity: 0.45,
-        shadowRadius: 15,
+        shadowRadius: 13,
       },
       android: {
         elevation: 8,
       },
       web: {
-        boxShadow: '0 8px 30px rgba(0,0,0,0.45)',
+        boxShadow: '0 8px 26px rgba(0,0,0,0.45)',
       },
     }),
   },
-  contentInner: {
+  heroInner: {
     flex: 1,
-    backgroundColor: 'rgba(25,25,25,0.45)',
+    backgroundColor: 'rgba(25,25,25,0.3)',
     padding: 24,
     justifyContent: 'flex-end',
   },
-  contentIcon: {
-    marginBottom: 16,
-  },
-  contentTitle: {
+  heroTitle: {
     fontSize: 22,
     fontWeight: '600',
     color: '#F8F8F8',
@@ -540,12 +602,26 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  contentTagline: {
+  heroSubtitle: {
     fontSize: 16,
     fontWeight: '400',
-    color: 'rgba(255,255,255,0.75)',
-    marginBottom: 24,
+    color: 'rgba(255,255,255,0.80)',
+    marginBottom: 20,
     lineHeight: 22,
+    fontFamily: Platform.select({
+      ios: 'NeueHaasDisplayMedium',
+      android: 'NeueHaasDisplayMedium',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  contentList: {
+    marginBottom: 24,
+  },
+  contentItem: {
+    fontSize: 14,
+    color: 'rgba(255,255,255,0.75)',
+    marginBottom: 6,
+    letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'NeueHaasDisplayMedium',
       android: 'NeueHaasDisplayMedium',
@@ -562,30 +638,104 @@ const styles = StyleSheet.create({
       ios: {
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 10,
+        shadowOpacity: 0.35,
+        shadowRadius: 8,
       },
       android: {
         elevation: 4,
       },
       web: {
-        boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.35)',
       },
     }),
   },
   ctaInner: {
     backgroundColor: 'rgba(201,169,109,0.35)',
-    paddingHorizontal: 24,
+    paddingHorizontal: 20,
     paddingVertical: 12,
   },
   ctaText: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '600',
     color: '#F8F8F8',
     fontFamily: Platform.select({
       ios: 'NeueHaasDisplayMedium',
       android: 'NeueHaasDisplayMedium',
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  // Bottom Dock Styles
+  bottomDock: {
+    position: 'absolute',
+    bottom: 12,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
+  dockContainer: {
+    width: '92%',
+    height: 62,
+    borderRadius: 26,
+    overflow: 'hidden',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.45,
+        shadowRadius: 14,
+      },
+      android: {
+        elevation: 10,
+      },
+      web: {
+        boxShadow: '0 10px 28px rgba(0,0,0,0.45)',
+      },
+    }),
+  },
+  dockContent: {
+    flex: 1,
+    backgroundColor: 'rgba(25,25,25,0.45)',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+  },
+  dockItem: {
+    flex: 1,
+    alignItems: 'center',
+    paddingVertical: 8,
+    position: 'relative',
+  },
+  dockLabel: {
+    fontSize: 11,
+    color: '#F8F8F8',
+    marginTop: 4,
+    fontFamily: Platform.select({
+      ios: 'NeueHaasDisplayMedium',
+      android: 'NeueHaasDisplayMedium',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  dockLabelInactive: {
+    fontSize: 11,
+    color: 'rgba(255,255,255,0.75)',
+    marginTop: 4,
+    fontFamily: Platform.select({
+      ios: 'NeueHaasDisplayMedium',
+      android: 'NeueHaasDisplayMedium',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  dockActiveIndicator: {
+    position: 'absolute',
+    bottom: 2,
+    width: 4,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: 'rgba(201,169,109,0.8)',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 6px rgba(201,169,109,0.4)',
+      },
     }),
   },
 });
