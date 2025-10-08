@@ -341,7 +341,7 @@ export default function Landing() {
 
         {/* Carousel */}
         {activeMode !== 'search' && (
-          <View style={styles.carouselContainer}>
+          <View key={activeMode} style={styles.carouselContainer}>
             <ScrollView
               horizontal
               pagingEnabled
