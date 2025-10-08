@@ -411,7 +411,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 14,
     fontSize: 15,
-    color: '#FFFFFF',
+    color: '#F8F8F8', // Brighter white for better visibility
     fontWeight: '400',
     fontFamily: Platform.select({
       ios: 'NeueHaasDisplayRoman',
