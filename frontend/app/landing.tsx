@@ -342,9 +342,6 @@ export default function Landing() {
         {/* Carousel */}
         {activeMode !== 'search' && (
           <View key={activeMode} style={styles.carouselContainer}>
-            <Text style={{color: 'white', fontSize: 16, marginBottom: 10, paddingHorizontal: 20}}>
-              Debug: {activeMode} mode - {getCurrentCards().length} cards
-            </Text>
             <ScrollView
               horizontal
               pagingEnabled
