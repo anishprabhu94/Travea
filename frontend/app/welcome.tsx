@@ -158,6 +158,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000000',
+    margin: 0,
+    padding: 0,
   },
   backgroundImage: {
     position: 'absolute',
