@@ -182,6 +182,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 24,
   },
+  logoContainer: {
+    marginBottom: 100, // Elegant spacing from content pane below
+    marginTop: -40, // Move logo up slightly for better positioning
+  },
   logo: {
     fontSize: 48,
     fontWeight: '700',
