@@ -7,6 +7,7 @@ import {
   Animated,
   Dimensions,
   Platform,
+  ImageBackground,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { BlurView } from 'expo-blur';
