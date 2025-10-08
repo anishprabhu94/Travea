@@ -43,16 +43,16 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <StatusBar style="light" />
+      <StatusBar style="light" translucent backgroundColor="transparent" />
       
       {/* Full-Screen Background */}
       <ImageBackground
         source={{
-          uri: 'https://customer-assets.emergentagent.com/job_modern-journey-app/artifacts/5463kk1k_output.jpg',
+          uri: 'https://customer-assets.emergentagent.com/job_modern-journey-app/artifacts/rfhpzh4c_output%20%281%29.jpg',
         }}
         style={styles.backgroundImage}
         resizeMode="cover"
-        blurRadius={Platform.OS === 'ios' ? 25 : 20}
+        blurRadius={Platform.OS === 'ios' ? 30 : 25}
       >
         {/* Mild vignette effect */}
         <LinearGradient
