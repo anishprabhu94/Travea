@@ -343,8 +343,6 @@ const styles = StyleSheet.create({
   questionPaneContainer: {
     backgroundColor: 'rgba(25, 25, 25, 0.38)',
     borderRadius: 20,
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.08)',
     paddingVertical: 16,
     paddingHorizontal: 20,
     marginBottom: 12,
