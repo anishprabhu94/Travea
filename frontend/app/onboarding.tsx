@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.22)',
+    borderColor: 'rgba(255, 255, 255, 0.26)',
     height: 48,
     justifyContent: 'center',
     ...Platform.select({
@@ -331,18 +331,18 @@ const styles = StyleSheet.create({
       },
       web: {
         boxShadow: '0 10px 28px -6px rgba(0, 0, 0, 0.35)',
-        backdropFilter: 'blur(30px)',
-        WebkitBackdropFilter: 'blur(30px)',
+        backdropFilter: 'blur(30px) saturate(130%)',
+        WebkitBackdropFilter: 'blur(30px) saturate(130%)',
       },
     }),
   },
   bubbleInner: {
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    backgroundColor: 'rgba(255, 255, 255, 0.10)',
     paddingVertical: 14,
     paddingHorizontal: 16,
     ...Platform.select({
       web: {
-        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 40%)',
+        background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.00) 42%)',
       },
     }),
   },
