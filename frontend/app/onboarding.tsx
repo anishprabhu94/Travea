@@ -194,7 +194,7 @@ export default function Onboarding() {
                   onPress={() => handleSelectAnswer(option)}
                 >
                   {selected ? (
-                    <BlurView intensity={25} tint="light" style={styles.selectedBubble}>
+                    <BlurView intensity={30} tint="light" style={styles.selectedBubble}>
                       <View style={styles.selectedBubbleInner}>
                         <Text style={styles.bubbleTextSelected}>{option}</Text>
                       </View>
