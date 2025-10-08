@@ -73,6 +73,21 @@ export default function Onboarding() {
   const handleSelectAnswer = (option: string) => {
     const currentAnswers = answers[currentQuestion.id] || [];
     
+    // Scale animation: 0.98 -> 1.0
+    const scaleAnim = getScaleAnim(option);
+    Animated.sequence([
+      Animated.timing(scaleAnim, {
+        toValue: 0.98,
+        duration: 75,
+        useNativeDriver: true,
+      }),
+      Animated.timing(scaleAnim, {
+        toValue: 1.0,
+        duration: 150,
+        useNativeDriver: true,
+      }),
+    ]).start();
+    
     if (currentQuestion.multiSelect) {
       if (currentAnswers.includes(option)) {
         setAnswers({
