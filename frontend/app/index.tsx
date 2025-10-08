@@ -6,9 +6,7 @@ import {
   ImageBackground,
   TextInput,
   TouchableOpacity,
-  KeyboardAvoidingView,
   Platform,
-  ScrollView,
   Dimensions,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
