@@ -371,35 +371,35 @@ const styles = StyleSheet.create({
   },
   // questionContainer removed - no longer needed
   questionText: {
-    fontSize: 22, // Increased to 22px for luxury presence
-    fontWeight: '600', // Semi-bold as requested
+    fontSize: 22, // Luxury editorial size
+    fontWeight: '500', // Medium weight for refined elegance
     color: '#F8F8F8', // Pure white with warmth
-    lineHeight: 29, // 1.3 * 22px = 28.6px, rounded to 29
-    letterSpacing: 0.3,
-    textAlign: 'left',
-    maxWidth: '100%',
+    lineHeight: 29, // 1.3 line height for balanced rhythm
+    letterSpacing: 0.2, // Refined letter spacing
+    textAlign: 'left', // Left-aligned to match bubble alignment
+    width: '100%', // Full width for proper alignment
     fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayMedium',
-      android: 'NeueHaasDisplayMedium', 
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      ios: 'Canela',
+      android: 'serif', // Fallback to system serif on Android
+      web: 'Canela, "Tiempos Text", "Playfair Display", Georgia, serif', // Luxury serif stack
     }),
     ...Platform.select({
       ios: {
-        // iOS text shadow for bronze glow
-        shadowColor: 'rgba(201, 169, 109, 0.35)',
+        // iOS text shadow for subtle bronze glow
+        shadowColor: 'rgba(201, 169, 109, 0.25)',
         shadowOffset: { width: 0, height: 0 },
-        shadowRadius: 12,
+        shadowRadius: 10,
         shadowOpacity: 1,
       },
       android: {
         // Android text shadow
-        textShadowColor: 'rgba(201, 169, 109, 0.35)',
+        textShadowColor: 'rgba(201, 169, 109, 0.25)',
         textShadowOffset: { width: 0, height: 0 },
-        textShadowRadius: 12,
+        textShadowRadius: 10,
       },
       web: {
-        // Web text shadow with multiple layers for gentle halo effect
-        textShadow: '0 0 8px rgba(201, 169, 109, 0.35), 0 0 16px rgba(201, 169, 109, 0.25), 0 0 24px rgba(201, 169, 109, 0.15)',
+        // Web text shadow with subtle bronze diffusion
+        textShadow: '0 0 6px rgba(201, 169, 109, 0.25), 0 0 12px rgba(201, 169, 109, 0.18), 0 0 20px rgba(201, 169, 109, 0.12)',
       },
     }),
   },
