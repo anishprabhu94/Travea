@@ -22,87 +22,134 @@ export default function Welcome() {
   const firstName = (params.name as string) || 'Traveler';
   
   const [fadeAnim] = useState(new Animated.Value(0));
-  const [slideAnim] = useState(new Animated.Value(30));
+  const [slideAnim] = useState(new Animated.Value(50));
+  const [paneAnim] = useState(new Animated.Value(0.3));
+  const [shimmerAnim] = useState(new Animated.Value(0));
 
   useEffect(() => {
-    // Fade in from black
+    // Cinematic entrance animation
     Animated.sequence([
       Animated.timing(fadeAnim, {
         toValue: 1,
-        duration: 800,
+        duration: 1200,
         useNativeDriver: true,
       }),
-      Animated.timing(slideAnim, {
-        toValue: 0,
-        duration: 600,
-        delay: 200,
-        useNativeDriver: true,
-      }),
+      Animated.parallel([
+        Animated.timing(slideAnim, {
+          toValue: 0,
+          duration: 800,
+          useNativeDriver: true,
+        }),
+        Animated.timing(paneAnim, {
+          toValue: 1,
+          duration: 600,
+          delay: 200,
+          useNativeDriver: true,
+        }),
+      ]),
     ]).start();
   }, []);
 
   const handleBeginPersonalization = () => {
-    router.push('/onboarding');
+    // Bronze shimmer animation on press
+    Animated.timing(shimmerAnim, {
+      toValue: 1,
+      duration: 300,
+      useNativeDriver: true,
+    }).start(() => {
+      router.push('/onboarding');
+    });
   };
 
   return (
     <View style={styles.container}>
       <StatusBar style="light" translucent backgroundColor="transparent" />
       
-      {/* Background with vignette */}
-      <LinearGradient
-        colors={['#000000', '#0C0C0C', '#0C0C0C', '#000000']}
-        style={styles.background}
-        start={{ x: 0.5, y: 0 }}
-        end={{ x: 0.5, y: 1 }}
-        locations={[0, 0.2, 0.8, 1]}
-      />
-
-      {/* Content */}
-      <Animated.View 
-        style={[
-          styles.content,
-          {
-            opacity: fadeAnim,
-          },
-        ]}
+      {/* Aerial Beach Background */}
+      <ImageBackground
+        source={{
+          uri: 'https://customer-assets.emergentagent.com/job_travea-auth/artifacts/zl0td0x2_output%20%286%29.jpg',
+        }}
+        style={styles.backgroundImage}
+        resizeMode="cover"
       >
-        {/* Logo */}
-        <Text style={styles.logo}>TRAVEA</Text>
+        {/* Dark matte gradient with bronze warmth */}
+        <LinearGradient
+          colors={[
+            'rgba(0, 0, 0, 0.45)',
+            'rgba(0, 0, 0, 0.55)',
+            'rgba(0, 0, 0, 0.65)',
+            'rgba(0, 0, 0, 0.75)',
+          ]}
+          style={styles.darkOverlay}
+          start={{ x: 0.5, y: 0 }}
+          end={{ x: 0.5, y: 1 }}
+        />
+        
+        {/* Bronze warmth overlay */}
+        <View style={styles.bronzeOverlay} />
 
-        {/* Greeting */}
-        <View style={styles.greetingContainer}>
-          <Text style={styles.greeting}>
-            Welcome, {firstName}.
-          </Text>
-          
-          <Text style={styles.subtext}>
-            Let's learn a little about your travel style.
-          </Text>
-        </View>
-
-        {/* Begin Button */}
-        <Animated.View
+        {/* Content Container */}
+        <Animated.View 
           style={[
-            styles.buttonContainer,
+            styles.contentContainer,
             {
+              opacity: fadeAnim,
               transform: [{ translateY: slideAnim }],
             },
           ]}
         >
-          <TouchableOpacity
-            onPress={handleBeginPersonalization}
-            activeOpacity={0.8}
-            style={styles.buttonWrapper}
+          {/* TRAVEA Logo */}
+          <Text style={styles.logo}>TRAVEA</Text>
+
+          {/* Centered Frosted Glass Pane */}
+          <Animated.View
+            style={[
+              styles.glassPaneContainer,
+              {
+                opacity: paneAnim,
+              },
+            ]}
           >
-            <BlurView intensity={25} tint="light" style={styles.button}>
-              <View style={styles.buttonInner}>
-                <Text style={styles.buttonText}>BEGIN PERSONALIZATION</Text>
+            <BlurView intensity={30} tint="light" style={styles.glassPane}>
+              <View style={styles.glassPaneInner}>
+                {/* Welcome Text */}
+                <Text style={styles.welcomeText}>Welcome, Traveler.</Text>
+                
+                {/* Subtitle */}
+                <Text style={styles.subtitleText}>
+                  Let's learn a little about your travel style…
+                </Text>
+
+                {/* Begin Personalization Button */}
+                <TouchableOpacity
+                  onPress={handleBeginPersonalization}
+                  activeOpacity={0.9}
+                  style={styles.beginButton}
+                >
+                  <BlurView intensity={25} tint="light" style={styles.beginButtonBlur}>
+                    <Animated.View 
+                      style={[
+                        styles.beginButtonInner,
+                        {
+                          opacity: shimmerAnim.interpolate({
+                            inputRange: [0, 0.5, 1],
+                            outputRange: [1, 0.8, 1],
+                          }),
+                        },
+                      ]}
+                    >
+                      {/* Inner Bronze Glow */}
+                      <View style={styles.buttonGlow} />
+                      <Text style={styles.beginButtonText}>BEGIN PERSONALIZATION</Text>
+                    </Animated.View>
+                  </BlurView>
+                </TouchableOpacity>
               </View>
             </BlurView>
-          </TouchableOpacity>
+          </Animated.View>
         </Animated.View>
-      </Animated.View>
+      </ImageBackground>
     </View>
   );
 }
