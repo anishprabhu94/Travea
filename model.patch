@@ -1,909 +1,914 @@
 diff --git a/model.patch b/model.patch
-index fbaa6a5..e69de29 100644
+index fa742fd..e69de29 100644
 --- a/model.patch
 +++ b/model.patch
-@@ -1,904 +0,0 @@
+@@ -1,909 +0,0 @@
 -diff --git a/model.patch b/model.patch
--index 3ee91b1..e69de29 100644
+-index fbaa6a5..e69de29 100644
 ---- a/model.patch
 -+++ b/model.patch
--@@ -1,899 +0,0 @@
---diff --git a/frontend/app/landing.tsx b/frontend/app/landing.tsx
---index 50bb670..dfac826 100644
------ a/frontend/app/landing.tsx
---+++ b/frontend/app/landing.tsx
---@@ -321,6 +321,7 @@ const styles = StyleSheet.create({
---     width: '100%',
---     height: '100%',
---     backgroundColor: '#161616',
---+    zIndex: 0,
---     ...Platform.select({
---       web: {
---         background: 'linear-gradient(135deg, #161616 0%, #222222 100%)',
---@@ -330,6 +331,7 @@ const styles = StyleSheet.create({
---   content: {
---     flex: 1,
---     paddingTop: 50,
---+    zIndex: 1,
---   },
---   header: {
---     flexDirection: 'row',
---@@ -618,6 +620,7 @@ const styles = StyleSheet.create({
---     left: 0,
---     right: 0,
---     alignItems: 'center',
---+    zIndex: 2,
---   },
---   dockContainer: {
---     width: '92%',
+-@@ -1,904 +0,0 @@
 --diff --git a/model.patch b/model.patch
---index f5d47b4..e69de29 100644
+--index 3ee91b1..e69de29 100644
 ----- a/model.patch
 --+++ b/model.patch
---@@ -1,866 +0,0 @@
----diff --git a/frontend/app/index.tsx b/frontend/app/index.tsx
----index 148340f..df822bd 100644
------- a/frontend/app/index.tsx
----+++ b/frontend/app/index.tsx
----@@ -244,7 +244,7 @@ export default function Index() {
----                     onPress={handleOAuthGoogle}
----                     activeOpacity={0.85}
----                   >
-----                    <BlurView intensity={20} tint="light" style={styles.oauthButton}>
----+                    <BlurView intensity={25} tint="light" style={styles.oauthButton}>
----                       <View style={[styles.oauthButtonInner, styles.oauthButtonGoogle]}>
----                         <Ionicons name="logo-google" size={18} color="rgba(255,255,255,0.85)" />
----                         <Text style={styles.oauthButtonText}>Continue with Google</Text>
----@@ -257,7 +257,7 @@ export default function Index() {
----                     onPress={handleOAuthApple}
----                     activeOpacity={0.85}
----                   >
-----                    <BlurView intensity={20} tint="light" style={styles.oauthButton}>
----+                    <BlurView intensity={25} tint="light" style={styles.oauthButton}>
----                       <View style={[styles.oauthButtonInner, styles.oauthButtonApple]}>
----                         <Ionicons name="logo-apple" size={18} color="rgba(255,255,255,0.85)" />
----                         <Text style={styles.oauthButtonText}>Continue with Apple</Text>
+--@@ -1,899 +0,0 @@
+---diff --git a/frontend/app/landing.tsx b/frontend/app/landing.tsx
+---index 50bb670..dfac826 100644
+------ a/frontend/app/landing.tsx
+---+++ b/frontend/app/landing.tsx
+---@@ -321,6 +321,7 @@ const styles = StyleSheet.create({
+---     width: '100%',
+---     height: '100%',
+---     backgroundColor: '#161616',
+---+    zIndex: 0,
+---     ...Platform.select({
+---       web: {
+---         background: 'linear-gradient(135deg, #161616 0%, #222222 100%)',
+---@@ -330,6 +331,7 @@ const styles = StyleSheet.create({
+---   content: {
+---     flex: 1,
+---     paddingTop: 50,
+---+    zIndex: 1,
+---   },
+---   header: {
+---     flexDirection: 'row',
+---@@ -618,6 +620,7 @@ const styles = StyleSheet.create({
+---     left: 0,
+---     right: 0,
+---     alignItems: 'center',
+---+    zIndex: 2,
+---   },
+---   dockContainer: {
+---     width: '92%',
 ---diff --git a/model.patch b/model.patch
----index b965ebc..e69de29 100644
+---index f5d47b4..e69de29 100644
 ------ a/model.patch
 ---+++ b/model.patch
----@@ -1,839 +0,0 @@
-----diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
-----index 45a5e8d..e12ef1a 100644
-------- a/frontend/app/onboarding.tsx
-----+++ b/frontend/app/onboarding.tsx
-----@@ -138,7 +138,7 @@ export default function Onboarding() {
-----           useNativeDriver: true,
-----         }).start();
-----       } else {
------        router.push('/home');
-----+        router.push('/landing');
-----       }
-----     });
-----   };
+---@@ -1,866 +0,0 @@
+----diff --git a/frontend/app/index.tsx b/frontend/app/index.tsx
+----index 148340f..df822bd 100644
+------- a/frontend/app/index.tsx
+----+++ b/frontend/app/index.tsx
+----@@ -244,7 +244,7 @@ export default function Index() {
+----                     onPress={handleOAuthGoogle}
+----                     activeOpacity={0.85}
+----                   >
+-----                    <BlurView intensity={20} tint="light" style={styles.oauthButton}>
+----+                    <BlurView intensity={25} tint="light" style={styles.oauthButton}>
+----                       <View style={[styles.oauthButtonInner, styles.oauthButtonGoogle]}>
+----                         <Ionicons name="logo-google" size={18} color="rgba(255,255,255,0.85)" />
+----                         <Text style={styles.oauthButtonText}>Continue with Google</Text>
+----@@ -257,7 +257,7 @@ export default function Index() {
+----                     onPress={handleOAuthApple}
+----                     activeOpacity={0.85}
+----                   >
+-----                    <BlurView intensity={20} tint="light" style={styles.oauthButton}>
+----+                    <BlurView intensity={25} tint="light" style={styles.oauthButton}>
+----                       <View style={[styles.oauthButtonInner, styles.oauthButtonApple]}>
+----                         <Ionicons name="logo-apple" size={18} color="rgba(255,255,255,0.85)" />
+----                         <Text style={styles.oauthButtonText}>Continue with Apple</Text>
 ----diff --git a/model.patch b/model.patch
-----index c7cfcec..e69de29 100644
+----index b965ebc..e69de29 100644
 ------- a/model.patch
 ----+++ b/model.patch
-----@@ -1,821 +0,0 @@
------diff --git a/frontend/app/welcome.tsx b/frontend/app/welcome.tsx
------index 8275c35..a6fad46 100644
--------- a/frontend/app/welcome.tsx
------+++ b/frontend/app/welcome.tsx
------@@ -12,6 +12,7 @@ import {
------ import { StatusBar } from 'expo-status-bar';
------ import { BlurView } from 'expo-blur';
------ import { LinearGradient } from 'expo-linear-gradient';
------+import TraveaWordmark from '../components/TraveaWordmark';
------ import { useRouter, useLocalSearchParams } from 'expo-router';
------ 
------ const { width, height } = Dimensions.get('window');
+----@@ -1,839 +0,0 @@
+-----diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
+-----index 45a5e8d..e12ef1a 100644
+-------- a/frontend/app/onboarding.tsx
+-----+++ b/frontend/app/onboarding.tsx
+-----@@ -138,7 +138,7 @@ export default function Onboarding() {
+-----           useNativeDriver: true,
+-----         }).start();
+-----       } else {
+------        router.push('/home');
+-----+        router.push('/landing');
+-----       }
+-----     });
+-----   };
 -----diff --git a/model.patch b/model.patch
------index 2ac5dda..e69de29 100644
+-----index c7cfcec..e69de29 100644
 -------- a/model.patch
 -----+++ b/model.patch
------@@ -1,804 +0,0 @@
-------diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
-------index c4a86da..ec541c6 100644
---------- a/frontend/app/onboarding.tsx
-------+++ b/frontend/app/onboarding.tsx
-------@@ -14,6 +14,7 @@ import { BlurView } from 'expo-blur';
+-----@@ -1,821 +0,0 @@
+------diff --git a/frontend/app/welcome.tsx b/frontend/app/welcome.tsx
+------index 8275c35..a6fad46 100644
+--------- a/frontend/app/welcome.tsx
+------+++ b/frontend/app/welcome.tsx
+------@@ -12,6 +12,7 @@ import {
+------ import { StatusBar } from 'expo-status-bar';
+------ import { BlurView } from 'expo-blur';
 ------ import { LinearGradient } from 'expo-linear-gradient';
------- import { useRouter } from 'expo-router';
------- import { Ionicons } from '@expo/vector-icons';
 ------+import TraveaWordmark from '../components/TraveaWordmark';
+------ import { useRouter, useLocalSearchParams } from 'expo-router';
 ------ 
 ------ const { width, height } = Dimensions.get('window');
------- 
 ------diff --git a/model.patch b/model.patch
-------index 87116df..e69de29 100644
+------index 2ac5dda..e69de29 100644
 --------- a/model.patch
 ------+++ b/model.patch
-------@@ -1,787 +0,0 @@
+------@@ -1,804 +0,0 @@
 -------diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
--------index 6fcf856..4dfeba3 100644
+-------index c4a86da..ec541c6 100644
 ---------- a/frontend/app/onboarding.tsx
 -------+++ b/frontend/app/onboarding.tsx
--------@@ -52,7 +52,7 @@ const questions: Question[] = [
--------   {
--------     id: 5,
--------     question: 'How do you like to explore?',
---------    options: ['Guided Tours', 'Solo Discovery', 'Local Connections', 'Hidden Gems'],
--------+    options: ['Guided Tours', 'Solo Discovery', 'Local Immersions', 'Hidden Gems'],
--------     multiSelect: true,
--------   },
-------- ];
+-------@@ -14,6 +14,7 @@ import { BlurView } from 'expo-blur';
+------- import { LinearGradient } from 'expo-linear-gradient';
+------- import { useRouter } from 'expo-router';
+------- import { Ionicons } from '@expo/vector-icons';
+-------+import TraveaWordmark from '../components/TraveaWordmark';
+------- 
+------- const { width, height } = Dimensions.get('window');
+------- 
 -------diff --git a/model.patch b/model.patch
--------index 45f89b0..e69de29 100644
+-------index 87116df..e69de29 100644
 ---------- a/model.patch
 -------+++ b/model.patch
--------@@ -1,769 +0,0 @@
+-------@@ -1,787 +0,0 @@
 --------diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
---------index c0a6c24..6fcf856 100644
+--------index 6fcf856..4dfeba3 100644
 ----------- a/frontend/app/onboarding.tsx
 --------+++ b/frontend/app/onboarding.tsx
---------@@ -46,7 +46,7 @@ const questions: Question[] = [
+--------@@ -52,7 +52,7 @@ const questions: Question[] = [
 --------   {
---------     id: 4,
---------     question: 'What excites you most?',
----------    options: ['Beaches', 'Food & Wine', 'Art & Culture', 'Outdoor Adventures', 'Nightlife', 'History'],
---------+    options: ['Beaches', 'Food & Wine', 'Art & Culture', 'Outdoor Activity', 'Nightlife', 'History'],
+--------     id: 5,
+--------     question: 'How do you like to explore?',
+---------    options: ['Guided Tours', 'Solo Discovery', 'Local Connections', 'Hidden Gems'],
+--------+    options: ['Guided Tours', 'Solo Discovery', 'Local Immersions', 'Hidden Gems'],
 --------     multiSelect: true,
 --------   },
---------   {
+-------- ];
 --------diff --git a/model.patch b/model.patch
---------index 81fbae5..e69de29 100644
+--------index 45f89b0..e69de29 100644
 ----------- a/model.patch
 --------+++ b/model.patch
---------@@ -1,751 +0,0 @@
+--------@@ -1,769 +0,0 @@
 ---------diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
----------index 0dd3447..4cfbac5 100644
+---------index c0a6c24..6fcf856 100644
 ------------ a/frontend/app/onboarding.tsx
 ---------+++ b/frontend/app/onboarding.tsx
----------@@ -27,24 +27,30 @@ interface Question {
---------- const questions: Question[] = [
+---------@@ -46,7 +46,7 @@ const questions: Question[] = [
 ---------   {
----------     id: 1,
----------+    question: 'Where do you live?',
----------+    options: ['North America', 'South America', 'Europe', 'Africa', 'Middle East', 'Asia', 'Oceania'],
----------+    multiSelect: true,
----------+  },
----------+  {
----------+    id: 2,
----------     question: 'What kind of traveler are you?',
----------     options: ['Adventurer', 'Cultural Nomad', 'Wellness Seeker', 'City Explorer'],
----------     multiSelect: true,
----------   },
----------   {
-----------    id: 2,
----------+    id: 3,
----------     question: 'What stays do you enjoy most?',
----------     options: ['Boutique Hotels', 'Luxury Resorts', 'Local Stays', 'Unique Properties'],
----------     multiSelect: true,
----------   },
----------   {
-----------    id: 3,
----------+    id: 4,
+---------     id: 4,
 ---------     question: 'What excites you most?',
----------     options: ['Beaches', 'Food & Wine', 'Art & Culture', 'Outdoor Adventures', 'Nightlife', 'History'],
+----------    options: ['Beaches', 'Food & Wine', 'Art & Culture', 'Outdoor Adventures', 'Nightlife', 'History'],
+---------+    options: ['Beaches', 'Food & Wine', 'Art & Culture', 'Outdoor Activity', 'Nightlife', 'History'],
 ---------     multiSelect: true,
 ---------   },
 ---------   {
-----------    id: 4,
----------+    id: 5,
----------     question: 'How do you like to explore?',
----------     options: ['Guided Tours', 'Solo Discovery', 'Local Connections', 'Hidden Gems'],
----------     multiSelect: true,
 ---------diff --git a/model.patch b/model.patch
----------index 23c3011..e69de29 100644
+---------index 81fbae5..e69de29 100644
 ------------ a/model.patch
 ---------+++ b/model.patch
----------@@ -1,708 +0,0 @@
+---------@@ -1,751 +0,0 @@
 ----------diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
-----------index b26ed85..8a7d979 100644
+----------index 0dd3447..4cfbac5 100644
 ------------- a/frontend/app/onboarding.tsx
 ----------+++ b/frontend/app/onboarding.tsx
-----------@@ -39,7 +39,7 @@ const questions: Question[] = [
+----------@@ -27,24 +27,30 @@ interface Question {
+---------- const questions: Question[] = [
+----------   {
+----------     id: 1,
+----------+    question: 'Where do you live?',
+----------+    options: ['North America', 'South America', 'Europe', 'Africa', 'Middle East', 'Asia', 'Oceania'],
+----------+    multiSelect: true,
+----------+  },
+----------+  {
+----------+    id: 2,
+----------     question: 'What kind of traveler are you?',
+----------     options: ['Adventurer', 'Cultural Nomad', 'Wellness Seeker', 'City Explorer'],
+----------     multiSelect: true,
 ----------   },
 ----------   {
-----------     id: 3,
------------    question: 'What experiences excite you most?',
-----------+    question: 'What excites you most?',
+-----------    id: 2,
+----------+    id: 3,
+----------     question: 'What stays do you enjoy most?',
+----------     options: ['Boutique Hotels', 'Luxury Resorts', 'Local Stays', 'Unique Properties'],
+----------     multiSelect: true,
+----------   },
+----------   {
+-----------    id: 3,
+----------+    id: 4,
+----------     question: 'What excites you most?',
 ----------     options: ['Beaches', 'Food & Wine', 'Art & Culture', 'Outdoor Adventures', 'Nightlife', 'History'],
 ----------     multiSelect: true,
 ----------   },
+----------   {
+-----------    id: 4,
+----------+    id: 5,
+----------     question: 'How do you like to explore?',
+----------     options: ['Guided Tours', 'Solo Discovery', 'Local Connections', 'Hidden Gems'],
+----------     multiSelect: true,
 ----------diff --git a/model.patch b/model.patch
-----------index afbbd2e..e69de29 100644
+----------index 23c3011..e69de29 100644
 ------------- a/model.patch
 ----------+++ b/model.patch
-----------@@ -1,690 +0,0 @@
+----------@@ -1,708 +0,0 @@
+-----------diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
+-----------index b26ed85..8a7d979 100644
+-------------- a/frontend/app/onboarding.tsx
+-----------+++ b/frontend/app/onboarding.tsx
+-----------@@ -39,7 +39,7 @@ const questions: Question[] = [
+-----------   },
+-----------   {
+-----------     id: 3,
+------------    question: 'What experiences excite you most?',
+-----------+    question: 'What excites you most?',
+-----------     options: ['Beaches', 'Food & Wine', 'Art & Culture', 'Outdoor Adventures', 'Nightlife', 'History'],
+-----------     multiSelect: true,
+-----------   },
 -----------diff --git a/model.patch b/model.patch
------------index 59f0c40..e69de29 100644
+-----------index afbbd2e..e69de29 100644
 -------------- a/model.patch
 -----------+++ b/model.patch
------------@@ -1,685 +0,0 @@
-------------diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
-------------index e411366..8f8c281 100644
---------------- a/frontend/app/onboarding.tsx
-------------+++ b/frontend/app/onboarding.tsx
-------------@@ -332,12 +332,11 @@ const styles = StyleSheet.create({
-------------   },
-------------   content: {
-------------     position: 'absolute',
--------------    top: 84, // Pinned to header bottom + 12px (72px header + 12px gap)
--------------    left: 0,
--------------    right: 0,
--------------    paddingHorizontal: 24,
-------------+    top: 84, // Header.bottom + 12px (72px header + 12px)
-------------+    left: 24, // Left margin 24px
-------------+    right: 24, // Right margin 24px
-------------     paddingTop: 14, // 14px progress→pane
--------------    paddingBottom: 0,
-------------+    paddingBottom: 20, // 20px above safe bottom
-------------   },
-------------   questionPane: {
-------------     backgroundColor: 'rgba(25, 25, 25, 0.38)',
+-----------@@ -1,690 +0,0 @@
 ------------diff --git a/model.patch b/model.patch
-------------index a44ce7a..e69de29 100644
+------------index 59f0c40..e69de29 100644
 --------------- a/model.patch
 ------------+++ b/model.patch
-------------@@ -1,659 +0,0 @@
+------------@@ -1,685 +0,0 @@
 -------------diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
--------------index 9726a97..6be94f3 100644
+-------------index e411366..8f8c281 100644
 ---------------- a/frontend/app/onboarding.tsx
 -------------+++ b/frontend/app/onboarding.tsx
--------------@@ -148,7 +148,6 @@ export default function Onboarding() {
--------------         style={styles.backgroundImage}
--------------         resizeMode="cover"
--------------       >
---------------        {/* Dark matte gradient with bronze warmth */}
--------------         <LinearGradient
--------------           colors={[
--------------             'rgba(0, 0, 0, 0.45)',
--------------@@ -160,23 +159,17 @@ export default function Onboarding() {
--------------           start={{ x: 0.5, y: 0 }}
--------------           end={{ x: 0.5, y: 1 }}
--------------         />
---------------        
---------------        {/* Bronze warmth overlay */}
--------------         <View style={styles.bronzeOverlay} />
--------------       </ImageBackground>
-------------- 
---------------      {/* Layer 2: Header (Fixed 72px) */}
---------------      <View style={styles.headerLayer}>
--------------+      {/* Layer 2: Header (Fixed 72px) - NOT nested inside Content */}
--------------+      <View style={styles.header}>
--------------         <View style={styles.headerContent}>
---------------          {/* Logo */}
--------------           <Text style={styles.logoText}>TRAVEA</Text>
---------------
---------------          {/* Profile Icon */}
--------------           <View style={styles.profileIcon}>
--------------             <Ionicons name="person-outline" size={16} color="#F8F8F8" />
--------------           </View>
--------------         </View>
---------------
--------------         <View style={styles.progressBarContainer}>
--------------           <View style={styles.progressBarBackground}>
--------------             <Animated.View style={[styles.progressBarFill, { width: `${progress}%` }]}>
--------------@@ -191,29 +184,25 @@ export default function Onboarding() {
--------------         </View>
--------------       </View>
-------------- 
---------------      {/* Layer 3: Content (Auto Layout vertical, top-aligned) */}
---------------      <Animated.View style={[styles.contentLayer, { opacity: fadeAnim }]}>
---------------        {/* Frosted Glass Question Pane */}
---------------        <View style={styles.questionPaneContainer}>
---------------          <View style={styles.questionContainer}>
---------------            <Text style={styles.questionText}>
---------------              {currentQuestion.question}
---------------            </Text>
---------------          </View>
--------------+      {/* Layer 3: Content (Vertical stack, top-aligned) - NOT nested, NO vertical centering */}
--------------+      <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
--------------+        {/* QuestionPane - Centered but left-aligned text */}
--------------+        <View style={styles.questionPane}>
--------------+          <Text style={styles.questionText}>{currentQuestion.question}</Text>
--------------         </View>
-------------- 
---------------        {/* Bubble Grid Backplate */}
---------------        <BlurView intensity={20} tint="light" style={styles.bubbleGridBackplate}>
---------------          <View style={styles.bubblesGrid}>
--------------+        {/* BubbleGrid - Separate from Next button */}
--------------+        <View style={styles.bubbleGrid}>
--------------           {currentQuestion.options.map((option, index) => {
--------------             const selected = isSelected(option);
--------------             const scaleAnim = getScaleAnim(option);
--------------+
--------------             return (
--------------               <Animated.View
--------------                 key={index}
--------------                 style={[
--------------                   styles.bubbleWrapper,
---------------                  { transform: [{ scale: scaleAnim }] }
--------------+                  { transform: [{ scale: scaleAnim }] },
--------------                 ]}
--------------               >
--------------                 <TouchableOpacity
--------------@@ -221,13 +210,13 @@ export default function Onboarding() {
--------------                   onPress={() => handleSelectAnswer(option)}
--------------                 >
--------------                   {selected ? (
---------------                    <BlurView intensity={30} tint="light" style={styles.selectedBubble}>
--------------+                    <BlurView intensity={20} tint="light" style={styles.selectedBubble}>
--------------                       <View style={styles.selectedBubbleInner}>
--------------                         <Text style={styles.bubbleTextSelected}>{option}</Text>
--------------                       </View>
--------------                     </BlurView>
--------------                   ) : (
---------------                    <BlurView intensity={30} tint="light" style={styles.bubble}>
--------------+                    <BlurView intensity={20} tint="light" style={styles.bubble}>
--------------                       <View style={styles.bubbleInner}>
--------------                         <Text style={styles.bubbleText}>{option}</Text>
--------------                       </View>
--------------@@ -237,40 +226,37 @@ export default function Onboarding() {
--------------               </Animated.View>
--------------             );
--------------           })}
---------------          </View>
---------------        </BlurView>
--------------+        </View>
-------------- 
---------------        <View style={styles.bottomContainer}>
---------------          <TouchableOpacity
---------------            style={[styles.nextButtonWrapper]}
---------------            onPress={handleNext}
---------------            disabled={!canProceed()}
---------------            activeOpacity={0.8}
--------------+        {/* Next Button - Outside BubbleGrid */}
--------------+        <TouchableOpacity
--------------+          style={styles.nextButtonWrapper}
--------------+          onPress={handleNext}
--------------+          disabled={!canProceed()}
--------------+          activeOpacity={0.8}
--------------+        >
--------------+          <BlurView 
--------------+            intensity={25} 
--------------+            tint="light" 
--------------+            style={[
--------------+              styles.nextButton,
--------------+              !canProceed() ? styles.nextButtonDisabled : styles.nextButtonEnabled
--------------+            ]}
--------------           >
---------------            <BlurView 
---------------              intensity={25} 
---------------              tint="light" 
---------------              style={[
---------------                styles.nextButton,
---------------                !canProceed() ? styles.nextButtonDisabled : styles.nextButtonEnabled
---------------              ]}
---------------            >
---------------              <View style={[
---------------                styles.nextButtonInner,
---------------                !canProceed() ? styles.nextButtonInnerDisabled : styles.nextButtonInnerEnabled
--------------+            <View style={[
--------------+              styles.nextButtonInner,
--------------+              !canProceed() ? styles.nextButtonInnerDisabled : styles.nextButtonInnerEnabled
--------------+            ]}>
--------------+              {canProceed() && <View style={styles.nextButtonGlow} />}
--------------+              <Text style={[
--------------+                styles.nextButtonText,
--------------+                !canProceed() ? styles.nextButtonTextDisabled : styles.nextButtonTextEnabled
--------------               ]}>
---------------                {/* Inner Bronze Glow */}
---------------                {canProceed() && <View style={styles.nextButtonGlow} />}
---------------                <Text style={[
---------------                  styles.nextButtonText,
---------------                  !canProceed() ? styles.nextButtonTextDisabled : styles.nextButtonTextEnabled
---------------                ]}>
---------------                  {currentStep === questions.length - 1 ? 'COMPLETE' : 'NEXT'}
---------------                </Text>
---------------              </View>
---------------            </BlurView>
---------------          </TouchableOpacity>
---------------        </View>
--------------+                {currentStep === questions.length - 1 ? 'COMPLETE' : 'NEXT'}
--------------+              </Text>
--------------+            </View>
--------------+          </BlurView>
--------------+        </TouchableOpacity>
--------------       </Animated.View>
--------------     </View>
--------------   );
--------------@@ -293,7 +279,7 @@ const styles = StyleSheet.create({
--------------     ...StyleSheet.absoluteFillObject,
--------------     backgroundColor: 'rgba(201, 169, 109, 0.08)',
+-------------@@ -332,12 +332,11 @@ const styles = StyleSheet.create({
 -------------   },
---------------  headerLayer: {
--------------+  header: {
+-------------   content: {
 -------------     position: 'absolute',
--------------     top: 0,
--------------     left: 0,
--------------@@ -344,7 +330,7 @@ const styles = StyleSheet.create({
--------------   progressGradient: {
--------------     flex: 1,
--------------   },
---------------  contentLayer: {
--------------+  content: {
--------------     position: 'absolute',
--------------     top: 84, // Pinned to header bottom + 12px (72px header + 12px gap)
--------------     left: 0,
--------------@@ -353,7 +339,7 @@ const styles = StyleSheet.create({
+--------------    top: 84, // Pinned to header bottom + 12px (72px header + 12px gap)
+--------------    left: 0,
+--------------    right: 0,
+--------------    paddingHorizontal: 24,
+-------------+    top: 84, // Header.bottom + 12px (72px header + 12px)
+-------------+    left: 24, // Left margin 24px
+-------------+    right: 24, // Right margin 24px
 -------------     paddingTop: 14, // 14px progress→pane
--------------     paddingBottom: 0,
+--------------    paddingBottom: 0,
+-------------+    paddingBottom: 20, // 20px above safe bottom
 -------------   },
---------------  questionPaneContainer: {
--------------+  questionPane: {
+-------------   questionPane: {
 -------------     backgroundColor: 'rgba(25, 25, 25, 0.38)',
--------------     borderRadius: 20,
--------------     paddingVertical: 14,
--------------@@ -371,10 +357,7 @@ const styles = StyleSheet.create({
--------------       },
--------------     }),
--------------   },
---------------  questionContainer: {
---------------    flex: 1,
---------------    justifyContent: 'center',
---------------  },
--------------+  // questionContainer removed - no longer needed
--------------   questionText: {
--------------     fontSize: 19,
--------------     fontWeight: '600',
--------------@@ -396,22 +379,11 @@ const styles = StyleSheet.create({
--------------     fontWeight: '400',
--------------     opacity: 0.8,
--------------   },
---------------  bubbleGridBackplate: {
---------------    backgroundColor: 'rgba(0, 0, 0, 0.18)',
---------------    borderRadius: 20,
---------------    padding: 12,
---------------    marginBottom: 16, // 16px grid→NEXT
---------------    ...Platform.select({
---------------      web: {
---------------        backdropFilter: 'blur(20px)',
---------------        WebkitBackdropFilter: 'blur(20px)',
---------------      },
---------------    }),
---------------  },
---------------  bubblesGrid: {
--------------+  bubbleGrid: {
--------------     flexDirection: 'row',
--------------     flexWrap: 'wrap',
--------------     gap: 12,
--------------+    marginBottom: 16, // 16px grid→NEXT
--------------   },
--------------   bubbleWrapper: {
--------------     width: '48%',
--------------@@ -497,13 +469,7 @@ const styles = StyleSheet.create({
--------------     fontWeight: '600',
--------------     textAlign: 'center',
--------------   },
---------------  bottomContainer: {
---------------    position: 'absolute',
---------------    bottom: 20,
---------------    left: 24,
---------------    right: 24,
---------------    width: 'auto',
---------------  },
--------------+  // bottomContainer removed - Next button now in content flow
--------------   nextButtonWrapper: {
--------------     width: '100%',
--------------     position: 'relative',
 -------------diff --git a/model.patch b/model.patch
--------------index c754b5e..cbf985e 100644
+-------------index a44ce7a..e69de29 100644
 ---------------- a/model.patch
 -------------+++ b/model.patch
--------------@@ -1,413 +0,0 @@
+-------------@@ -1,659 +0,0 @@
 --------------diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
---------------index 6d545aa..55f6e4b 100644
+--------------index 9726a97..6be94f3 100644
 ----------------- a/frontend/app/onboarding.tsx
 --------------+++ b/frontend/app/onboarding.tsx
---------------@@ -304,14 +304,15 @@ const styles = StyleSheet.create({
---------------     right: 0,
---------------     height: 72,
---------------     zIndex: 10,
---------------+    paddingTop: 50,
---------------+    paddingHorizontal: 24,
---------------+    paddingBottom: 8,
+--------------@@ -148,7 +148,6 @@ export default function Onboarding() {
+--------------         style={styles.backgroundImage}
+--------------         resizeMode="cover"
+--------------       >
+---------------        {/* Dark matte gradient with bronze warmth */}
+--------------         <LinearGradient
+--------------           colors={[
+--------------             'rgba(0, 0, 0, 0.45)',
+--------------@@ -160,23 +159,17 @@ export default function Onboarding() {
+--------------           start={{ x: 0.5, y: 0 }}
+--------------           end={{ x: 0.5, y: 1 }}
+--------------         />
+---------------        
+---------------        {/* Bronze warmth overlay */}
+--------------         <View style={styles.bronzeOverlay} />
+--------------       </ImageBackground>
+-------------- 
+---------------      {/* Layer 2: Header (Fixed 72px) */}
+---------------      <View style={styles.headerLayer}>
+--------------+      {/* Layer 2: Header (Fixed 72px) - NOT nested inside Content */}
+--------------+      <View style={styles.header}>
+--------------         <View style={styles.headerContent}>
+---------------          {/* Logo */}
+--------------           <Text style={styles.logoText}>TRAVEA</Text>
+---------------
+---------------          {/* Profile Icon */}
+--------------           <View style={styles.profileIcon}>
+--------------             <Ionicons name="person-outline" size={16} color="#F8F8F8" />
+--------------           </View>
+--------------         </View>
+---------------
+--------------         <View style={styles.progressBarContainer}>
+--------------           <View style={styles.progressBarBackground}>
+--------------             <Animated.View style={[styles.progressBarFill, { width: `${progress}%` }]}>
+--------------@@ -191,29 +184,25 @@ export default function Onboarding() {
+--------------         </View>
+--------------       </View>
+-------------- 
+---------------      {/* Layer 3: Content (Auto Layout vertical, top-aligned) */}
+---------------      <Animated.View style={[styles.contentLayer, { opacity: fadeAnim }]}>
+---------------        {/* Frosted Glass Question Pane */}
+---------------        <View style={styles.questionPaneContainer}>
+---------------          <View style={styles.questionContainer}>
+---------------            <Text style={styles.questionText}>
+---------------              {currentQuestion.question}
+---------------            </Text>
+---------------          </View>
+--------------+      {/* Layer 3: Content (Vertical stack, top-aligned) - NOT nested, NO vertical centering */}
+--------------+      <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
+--------------+        {/* QuestionPane - Centered but left-aligned text */}
+--------------+        <View style={styles.questionPane}>
+--------------+          <Text style={styles.questionText}>{currentQuestion.question}</Text>
+--------------         </View>
+-------------- 
+---------------        {/* Bubble Grid Backplate */}
+---------------        <BlurView intensity={20} tint="light" style={styles.bubbleGridBackplate}>
+---------------          <View style={styles.bubblesGrid}>
+--------------+        {/* BubbleGrid - Separate from Next button */}
+--------------+        <View style={styles.bubbleGrid}>
+--------------           {currentQuestion.options.map((option, index) => {
+--------------             const selected = isSelected(option);
+--------------             const scaleAnim = getScaleAnim(option);
+--------------+
+--------------             return (
+--------------               <Animated.View
+--------------                 key={index}
+--------------                 style={[
+--------------                   styles.bubbleWrapper,
+---------------                  { transform: [{ scale: scaleAnim }] }
+--------------+                  { transform: [{ scale: scaleAnim }] },
+--------------                 ]}
+--------------               >
+--------------                 <TouchableOpacity
+--------------@@ -221,13 +210,13 @@ export default function Onboarding() {
+--------------                   onPress={() => handleSelectAnswer(option)}
+--------------                 >
+--------------                   {selected ? (
+---------------                    <BlurView intensity={30} tint="light" style={styles.selectedBubble}>
+--------------+                    <BlurView intensity={20} tint="light" style={styles.selectedBubble}>
+--------------                       <View style={styles.selectedBubbleInner}>
+--------------                         <Text style={styles.bubbleTextSelected}>{option}</Text>
+--------------                       </View>
+--------------                     </BlurView>
+--------------                   ) : (
+---------------                    <BlurView intensity={30} tint="light" style={styles.bubble}>
+--------------+                    <BlurView intensity={20} tint="light" style={styles.bubble}>
+--------------                       <View style={styles.bubbleInner}>
+--------------                         <Text style={styles.bubbleText}>{option}</Text>
+--------------                       </View>
+--------------@@ -237,40 +226,37 @@ export default function Onboarding() {
+--------------               </Animated.View>
+--------------             );
+--------------           })}
+---------------          </View>
+---------------        </BlurView>
+--------------+        </View>
+-------------- 
+---------------        <View style={styles.bottomContainer}>
+---------------          <TouchableOpacity
+---------------            style={[styles.nextButtonWrapper]}
+---------------            onPress={handleNext}
+---------------            disabled={!canProceed()}
+---------------            activeOpacity={0.8}
+--------------+        {/* Next Button - Outside BubbleGrid */}
+--------------+        <TouchableOpacity
+--------------+          style={styles.nextButtonWrapper}
+--------------+          onPress={handleNext}
+--------------+          disabled={!canProceed()}
+--------------+          activeOpacity={0.8}
+--------------+        >
+--------------+          <BlurView 
+--------------+            intensity={25} 
+--------------+            tint="light" 
+--------------+            style={[
+--------------+              styles.nextButton,
+--------------+              !canProceed() ? styles.nextButtonDisabled : styles.nextButtonEnabled
+--------------+            ]}
+--------------           >
+---------------            <BlurView 
+---------------              intensity={25} 
+---------------              tint="light" 
+---------------              style={[
+---------------                styles.nextButton,
+---------------                !canProceed() ? styles.nextButtonDisabled : styles.nextButtonEnabled
+---------------              ]}
+---------------            >
+---------------              <View style={[
+---------------                styles.nextButtonInner,
+---------------                !canProceed() ? styles.nextButtonInnerDisabled : styles.nextButtonInnerEnabled
+--------------+            <View style={[
+--------------+              styles.nextButtonInner,
+--------------+              !canProceed() ? styles.nextButtonInnerDisabled : styles.nextButtonInnerEnabled
+--------------+            ]}>
+--------------+              {canProceed() && <View style={styles.nextButtonGlow} />}
+--------------+              <Text style={[
+--------------+                styles.nextButtonText,
+--------------+                !canProceed() ? styles.nextButtonTextDisabled : styles.nextButtonTextEnabled
+--------------               ]}>
+---------------                {/* Inner Bronze Glow */}
+---------------                {canProceed() && <View style={styles.nextButtonGlow} />}
+---------------                <Text style={[
+---------------                  styles.nextButtonText,
+---------------                  !canProceed() ? styles.nextButtonTextDisabled : styles.nextButtonTextEnabled
+---------------                ]}>
+---------------                  {currentStep === questions.length - 1 ? 'COMPLETE' : 'NEXT'}
+---------------                </Text>
+---------------              </View>
+---------------            </BlurView>
+---------------          </TouchableOpacity>
+---------------        </View>
+--------------+                {currentStep === questions.length - 1 ? 'COMPLETE' : 'NEXT'}
+--------------+              </Text>
+--------------+            </View>
+--------------+          </BlurView>
+--------------+        </TouchableOpacity>
+--------------       </Animated.View>
+--------------     </View>
+--------------   );
+--------------@@ -293,7 +279,7 @@ const styles = StyleSheet.create({
+--------------     ...StyleSheet.absoluteFillObject,
+--------------     backgroundColor: 'rgba(201, 169, 109, 0.08)',
 --------------   },
---------------   headerContent: {
+---------------  headerLayer: {
+--------------+  header: {
+--------------     position: 'absolute',
+--------------     top: 0,
+--------------     left: 0,
+--------------@@ -344,7 +330,7 @@ const styles = StyleSheet.create({
+--------------   progressGradient: {
+--------------     flex: 1,
+--------------   },
+---------------  contentLayer: {
+--------------+  content: {
+--------------     position: 'absolute',
+--------------     top: 84, // Pinned to header bottom + 12px (72px header + 12px gap)
+--------------     left: 0,
+--------------@@ -353,7 +339,7 @@ const styles = StyleSheet.create({
+--------------     paddingTop: 14, // 14px progress→pane
+--------------     paddingBottom: 0,
+--------------   },
+---------------  questionPaneContainer: {
+--------------+  questionPane: {
+--------------     backgroundColor: 'rgba(25, 25, 25, 0.38)',
+--------------     borderRadius: 20,
+--------------     paddingVertical: 14,
+--------------@@ -371,10 +357,7 @@ const styles = StyleSheet.create({
+--------------       },
+--------------     }),
+--------------   },
+---------------  questionContainer: {
+---------------    flex: 1,
+---------------    justifyContent: 'center',
+---------------  },
+--------------+  // questionContainer removed - no longer needed
+--------------   questionText: {
+--------------     fontSize: 19,
+--------------     fontWeight: '600',
+--------------@@ -396,22 +379,11 @@ const styles = StyleSheet.create({
+--------------     fontWeight: '400',
+--------------     opacity: 0.8,
+--------------   },
+---------------  bubbleGridBackplate: {
+---------------    backgroundColor: 'rgba(0, 0, 0, 0.18)',
+---------------    borderRadius: 20,
+---------------    padding: 12,
+---------------    marginBottom: 16, // 16px grid→NEXT
+---------------    ...Platform.select({
+---------------      web: {
+---------------        backdropFilter: 'blur(20px)',
+---------------        WebkitBackdropFilter: 'blur(20px)',
+---------------      },
+---------------    }),
+---------------  },
+---------------  bubblesGrid: {
+--------------+  bubbleGrid: {
 --------------     flexDirection: 'row',
---------------     justifyContent: 'space-between',
---------------     alignItems: 'center',
----------------    paddingHorizontal: 24,
----------------    paddingTop: 50,
----------------    paddingBottom: 12,
---------------+    marginBottom: 8,
+--------------     flexWrap: 'wrap',
+--------------     gap: 12,
+--------------+    marginBottom: 16, // 16px grid→NEXT
 --------------   },
---------------   logoText: {
---------------     fontSize: 28,
+--------------   bubbleWrapper: {
+--------------     width: '48%',
+--------------@@ -497,13 +469,7 @@ const styles = StyleSheet.create({
+--------------     fontWeight: '600',
+--------------     textAlign: 'center',
+--------------   },
+---------------  bottomContainer: {
+---------------    position: 'absolute',
+---------------    bottom: 20,
+---------------    left: 24,
+---------------    right: 24,
+---------------    width: 'auto',
+---------------  },
+--------------+  // bottomContainer removed - Next button now in content flow
+--------------   nextButtonWrapper: {
+--------------     width: '100%',
+--------------     position: 'relative',
 --------------diff --git a/model.patch b/model.patch
---------------index 10e2905..e69de29 100644
+--------------index c754b5e..cbf985e 100644
 ----------------- a/model.patch
 --------------+++ b/model.patch
---------------@@ -1,385 +0,0 @@
+--------------@@ -1,413 +0,0 @@
 ---------------diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
----------------index b63d082..6d545aa 100644
+---------------index 6d545aa..55f6e4b 100644
 ------------------ a/frontend/app/onboarding.tsx
 ---------------+++ b/frontend/app/onboarding.tsx
----------------@@ -140,7 +140,7 @@ export default function Onboarding() {
----------------     <View style={styles.container}>
----------------       <StatusBar style="light" translucent backgroundColor="transparent" />
----------------       
-----------------      {/* Aerial Beach Background - Same as Welcome Screen */}
----------------+      {/* Layer 1: BG (Image) */}
----------------       <ImageBackground
----------------         source={{
----------------           uri: 'https://customer-assets.emergentagent.com/job_travea-auth/artifacts/zl0td0x2_output%20%286%29.jpg',
----------------@@ -165,27 +165,34 @@ export default function Onboarding() {
----------------         <View style={styles.bronzeOverlay} />
----------------       </ImageBackground>
---------------- 
-----------------      <View style={styles.topBar}>
-----------------        <Text style={styles.logoText}>TRAVEA</Text>
-----------------        <View style={styles.profileIcon}>
-----------------          <Ionicons name="person-outline" size={16} color="#F8F8F8" />
----------------+      {/* Layer 2: Header (Fixed 72px) */}
----------------+      <View style={styles.headerLayer}>
----------------+        <View style={styles.headerContent}>
----------------+          {/* Logo */}
----------------+          <Text style={styles.logoText}>TRAVEA</Text>
----------------+
----------------+          {/* Profile Icon */}
----------------+          <View style={styles.profileIcon}>
----------------+            <Ionicons name="person-outline" size={16} color="#F8F8F8" />
----------------+          </View>
----------------         </View>
-----------------      </View>
---------------- 
-----------------      <View style={styles.progressBarContainer}>
-----------------        <View style={styles.progressBarBackground}>
-----------------          <Animated.View style={[styles.progressBarFill, { width: `${progress}%` }]}>
-----------------            <LinearGradient
-----------------              colors={['#B89361', '#C9A96D']}
-----------------              style={styles.progressGradient}
-----------------              start={{ x: 0, y: 0 }}
-----------------              end={{ x: 1, y: 0 }}
-----------------            />
-----------------          </Animated.View>
----------------+        <View style={styles.progressBarContainer}>
----------------+          <View style={styles.progressBarBackground}>
----------------+            <Animated.View style={[styles.progressBarFill, { width: `${progress}%` }]}>
----------------+              <LinearGradient
----------------+                colors={['#B89361', '#C9A96D']}
----------------+                style={styles.progressGradient}
----------------+                start={{ x: 0, y: 0 }}
----------------+                end={{ x: 1, y: 0 }}
----------------+              />
----------------+            </Animated.View>
----------------+          </View>
----------------         </View>
----------------       </View>
---------------- 
-----------------      <Animated.View style={[styles.onboardContent, { opacity: fadeAnim }]}>
----------------+      {/* Layer 3: Content (Auto Layout vertical, top-aligned) */}
----------------+      <Animated.View style={[styles.contentLayer, { opacity: fadeAnim }]}>
----------------         {/* Frosted Glass Question Pane */}
----------------         <View style={styles.questionPaneContainer}>
----------------           <View style={styles.questionContainer}>
----------------@@ -290,7 +297,15 @@ const styles = StyleSheet.create({
----------------     ...StyleSheet.absoluteFillObject,
----------------     backgroundColor: 'rgba(201, 169, 109, 0.08)',
+---------------@@ -304,14 +304,15 @@ const styles = StyleSheet.create({
+---------------     right: 0,
+---------------     height: 72,
+---------------     zIndex: 10,
+---------------+    paddingTop: 50,
+---------------+    paddingHorizontal: 24,
+---------------+    paddingBottom: 8,
 ---------------   },
-----------------  topBar: {
----------------+  headerLayer: {
----------------+    position: 'absolute',
----------------+    top: 0,
----------------+    left: 0,
----------------+    right: 0,
----------------+    height: 72,
----------------+    zIndex: 10,
----------------+  },
----------------+  headerContent: {
+---------------   headerContent: {
 ---------------     flexDirection: 'row',
 ---------------     justifyContent: 'space-between',
 ---------------     alignItems: 'center',
----------------@@ -318,7 +333,7 @@ const styles = StyleSheet.create({
+----------------    paddingHorizontal: 24,
+----------------    paddingTop: 50,
+----------------    paddingBottom: 12,
+---------------+    marginBottom: 8,
 ---------------   },
----------------   progressBarContainer: {
----------------     paddingHorizontal: 24,
-----------------    marginBottom: 24,
----------------+    marginBottom: 0,
----------------   },
----------------   progressBarBackground: {
----------------     height: 2.5,
----------------@@ -332,9 +347,9 @@ const styles = StyleSheet.create({
----------------   progressGradient: {
----------------     flex: 1,
----------------   },
-----------------  onboardContent: {
----------------+  contentLayer: {
----------------     position: 'absolute',
-----------------    top: 120, // Pinned to progress bar bottom + 12px
----------------+    top: 84, // Pinned to header bottom + 12px (72px header + 12px gap)
----------------     left: 0,
----------------     right: 0,
----------------     paddingHorizontal: 24,
+---------------   logoText: {
+---------------     fontSize: 28,
 ---------------diff --git a/model.patch b/model.patch
----------------index 1af7246..e69de29 100644
+---------------index 10e2905..e69de29 100644
 ------------------ a/model.patch
 ---------------+++ b/model.patch
----------------@@ -1,278 +0,0 @@
+---------------@@ -1,385 +0,0 @@
+----------------diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
+----------------index b63d082..6d545aa 100644
+------------------- a/frontend/app/onboarding.tsx
+----------------+++ b/frontend/app/onboarding.tsx
+----------------@@ -140,7 +140,7 @@ export default function Onboarding() {
+----------------     <View style={styles.container}>
+----------------       <StatusBar style="light" translucent backgroundColor="transparent" />
+----------------       
+-----------------      {/* Aerial Beach Background - Same as Welcome Screen */}
+----------------+      {/* Layer 1: BG (Image) */}
+----------------       <ImageBackground
+----------------         source={{
+----------------           uri: 'https://customer-assets.emergentagent.com/job_travea-auth/artifacts/zl0td0x2_output%20%286%29.jpg',
+----------------@@ -165,27 +165,34 @@ export default function Onboarding() {
+----------------         <View style={styles.bronzeOverlay} />
+----------------       </ImageBackground>
+---------------- 
+-----------------      <View style={styles.topBar}>
+-----------------        <Text style={styles.logoText}>TRAVEA</Text>
+-----------------        <View style={styles.profileIcon}>
+-----------------          <Ionicons name="person-outline" size={16} color="#F8F8F8" />
+----------------+      {/* Layer 2: Header (Fixed 72px) */}
+----------------+      <View style={styles.headerLayer}>
+----------------+        <View style={styles.headerContent}>
+----------------+          {/* Logo */}
+----------------+          <Text style={styles.logoText}>TRAVEA</Text>
+----------------+
+----------------+          {/* Profile Icon */}
+----------------+          <View style={styles.profileIcon}>
+----------------+            <Ionicons name="person-outline" size={16} color="#F8F8F8" />
+----------------+          </View>
+----------------         </View>
+-----------------      </View>
+---------------- 
+-----------------      <View style={styles.progressBarContainer}>
+-----------------        <View style={styles.progressBarBackground}>
+-----------------          <Animated.View style={[styles.progressBarFill, { width: `${progress}%` }]}>
+-----------------            <LinearGradient
+-----------------              colors={['#B89361', '#C9A96D']}
+-----------------              style={styles.progressGradient}
+-----------------              start={{ x: 0, y: 0 }}
+-----------------              end={{ x: 1, y: 0 }}
+-----------------            />
+-----------------          </Animated.View>
+----------------+        <View style={styles.progressBarContainer}>
+----------------+          <View style={styles.progressBarBackground}>
+----------------+            <Animated.View style={[styles.progressBarFill, { width: `${progress}%` }]}>
+----------------+              <LinearGradient
+----------------+                colors={['#B89361', '#C9A96D']}
+----------------+                style={styles.progressGradient}
+----------------+                start={{ x: 0, y: 0 }}
+----------------+                end={{ x: 1, y: 0 }}
+----------------+              />
+----------------+            </Animated.View>
+----------------+          </View>
+----------------         </View>
+----------------       </View>
+---------------- 
+-----------------      <Animated.View style={[styles.onboardContent, { opacity: fadeAnim }]}>
+----------------+      {/* Layer 3: Content (Auto Layout vertical, top-aligned) */}
+----------------+      <Animated.View style={[styles.contentLayer, { opacity: fadeAnim }]}>
+----------------         {/* Frosted Glass Question Pane */}
+----------------         <View style={styles.questionPaneContainer}>
+----------------           <View style={styles.questionContainer}>
+----------------@@ -290,7 +297,15 @@ const styles = StyleSheet.create({
+----------------     ...StyleSheet.absoluteFillObject,
+----------------     backgroundColor: 'rgba(201, 169, 109, 0.08)',
+----------------   },
+-----------------  topBar: {
+----------------+  headerLayer: {
+----------------+    position: 'absolute',
+----------------+    top: 0,
+----------------+    left: 0,
+----------------+    right: 0,
+----------------+    height: 72,
+----------------+    zIndex: 10,
+----------------+  },
+----------------+  headerContent: {
+----------------     flexDirection: 'row',
+----------------     justifyContent: 'space-between',
+----------------     alignItems: 'center',
+----------------@@ -318,7 +333,7 @@ const styles = StyleSheet.create({
+----------------   },
+----------------   progressBarContainer: {
+----------------     paddingHorizontal: 24,
+-----------------    marginBottom: 24,
+----------------+    marginBottom: 0,
+----------------   },
+----------------   progressBarBackground: {
+----------------     height: 2.5,
+----------------@@ -332,9 +347,9 @@ const styles = StyleSheet.create({
+----------------   progressGradient: {
+----------------     flex: 1,
+----------------   },
+-----------------  onboardContent: {
+----------------+  contentLayer: {
+----------------     position: 'absolute',
+-----------------    top: 120, // Pinned to progress bar bottom + 12px
+----------------+    top: 84, // Pinned to header bottom + 12px (72px header + 12px gap)
+----------------     left: 0,
+----------------     right: 0,
+----------------     paddingHorizontal: 24,
 ----------------diff --git a/model.patch b/model.patch
-----------------index 80bacf5..e69de29 100644
+----------------index 1af7246..e69de29 100644
 ------------------- a/model.patch
 ----------------+++ b/model.patch
-----------------@@ -1,273 +0,0 @@
+----------------@@ -1,278 +0,0 @@
 -----------------diff --git a/model.patch b/model.patch
------------------index 0c72a69..e69de29 100644
+-----------------index 80bacf5..e69de29 100644
 -------------------- a/model.patch
 -----------------+++ b/model.patch
------------------@@ -1,268 +0,0 @@
-------------------diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
-------------------index 67ba8b7..8bcaaf5 100644
---------------------- a/frontend/app/onboarding.tsx
-------------------+++ b/frontend/app/onboarding.tsx
-------------------@@ -46,7 +46,7 @@ const questions: Question[] = [
-------------------   {
-------------------     id: 4,
-------------------     question: 'How do you like to explore?',
--------------------    options: ['Guided Tours', 'Solo Discovery', 'Local Connections', 'Off the Beaten Path'],
-------------------+    options: ['Guided Tours', 'Solo Discovery', 'Local Connections', 'Hidden Gems'],
-------------------     multiSelect: true,
-------------------   },
------------------- ];
+-----------------@@ -1,273 +0,0 @@
 ------------------diff --git a/model.patch b/model.patch
-------------------index f03ce60..e69de29 100644
+------------------index 0c72a69..e69de29 100644
 --------------------- a/model.patch
 ------------------+++ b/model.patch
-------------------@@ -1,250 +0,0 @@
+------------------@@ -1,268 +0,0 @@
 -------------------diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
--------------------index c53a032..458d769 100644
+-------------------index 67ba8b7..8bcaaf5 100644
 ---------------------- a/frontend/app/onboarding.tsx
 -------------------+++ b/frontend/app/onboarding.tsx
--------------------@@ -27,29 +27,27 @@ interface Question {
-------------------- const questions: Question[] = [
--------------------   {
--------------------     id: 1,
---------------------    question: 'What type of traveler best describes you?',
---------------------    options: ['Adventurer', 'City Explorer', 'Wellness Seeker', 'Cultural Nomad', 'Lux Traveler'],
--------------------+    question: 'What kind of traveler are you?',
--------------------+    options: ['Adventurer', 'Cultural Nomad', 'Wellness Seeker', 'City Explorer'],
--------------------+    multiSelect: true,
--------------------   },
--------------------   {
--------------------     id: 2,
---------------------    question: 'What kind of stays do you enjoy most?',
---------------------    options: ['Boutique Hotels', 'Luxury Resorts', 'Cozy Airbnbs', 'Budget-Friendly'],
--------------------+    question: 'What stays do you enjoy most?',
--------------------+    options: ['Boutique Hotels', 'Luxury Resorts', 'Local Stays', 'Unique Properties'],
--------------------+    multiSelect: true,
--------------------   },
--------------------   {
--------------------     id: 3,
---------------------    question: 'What kind of experiences excite you?',
---------------------    options: ['Beaches', 'Nature Bath', 'Food & Wine', 'Art & Culture', 'Nightlife', 'Shopping'],
--------------------+    question: 'What experiences excite you most?',
--------------------+    options: ['Beaches', 'Food & Wine', 'Art & Culture', 'Outdoor Adventures', 'Nightlife', 'History'],
--------------------     multiSelect: true,
--------------------   },
+-------------------@@ -46,7 +46,7 @@ const questions: Question[] = [
 -------------------   {
 -------------------     id: 4,
---------------------    question: 'How do you usually like to explore?',
---------------------    options: ['Solo', 'With Friends', 'With Family', 'Guided Experiences', 'Spontaneous'],
---------------------  },
---------------------  {
---------------------    id: 5,
---------------------    question: "What's your ideal trip length?",
---------------------    options: ['Weekend Getaway', '1 Week', '2 Weeks', 'Long Stay', 'No Fixed Plan'],
--------------------+    question: 'How do you like to explore?',
--------------------+    options: ['Guided Tours', 'Solo Discovery', 'Local Connections', 'Off the Beaten Path'],
--------------------+    multiSelect: true,
+-------------------     question: 'How do you like to explore?',
+--------------------    options: ['Guided Tours', 'Solo Discovery', 'Local Connections', 'Off the Beaten Path'],
+-------------------+    options: ['Guided Tours', 'Solo Discovery', 'Local Connections', 'Hidden Gems'],
+-------------------     multiSelect: true,
 -------------------   },
 ------------------- ];
-------------------- 
 -------------------diff --git a/model.patch b/model.patch
--------------------index af4a50e..e69de29 100644
+-------------------index f03ce60..e69de29 100644
 ---------------------- a/model.patch
 -------------------+++ b/model.patch
--------------------@@ -1,200 +0,0 @@
+-------------------@@ -1,250 +0,0 @@
 --------------------diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
---------------------index 8531443..d97f5de 100644
+--------------------index c53a032..458d769 100644
 ----------------------- a/frontend/app/onboarding.tsx
 --------------------+++ b/frontend/app/onboarding.tsx
---------------------@@ -472,9 +472,7 @@ const styles = StyleSheet.create({
---------------------     textAlign: 'center',
+--------------------@@ -27,29 +27,27 @@ interface Question {
+-------------------- const questions: Question[] = [
+--------------------   {
+--------------------     id: 1,
+---------------------    question: 'What type of traveler best describes you?',
+---------------------    options: ['Adventurer', 'City Explorer', 'Wellness Seeker', 'Cultural Nomad', 'Lux Traveler'],
+--------------------+    question: 'What kind of traveler are you?',
+--------------------+    options: ['Adventurer', 'Cultural Nomad', 'Wellness Seeker', 'City Explorer'],
+--------------------+    multiSelect: true,
 --------------------   },
---------------------   bottomContainer: {
----------------------    paddingHorizontal: 24,
----------------------    paddingBottom: 40,
----------------------    alignItems: 'center',
---------------------+    width: '100%',
+--------------------   {
+--------------------     id: 2,
+---------------------    question: 'What kind of stays do you enjoy most?',
+---------------------    options: ['Boutique Hotels', 'Luxury Resorts', 'Cozy Airbnbs', 'Budget-Friendly'],
+--------------------+    question: 'What stays do you enjoy most?',
+--------------------+    options: ['Boutique Hotels', 'Luxury Resorts', 'Local Stays', 'Unique Properties'],
+--------------------+    multiSelect: true,
 --------------------   },
---------------------   nextButtonWrapper: {
---------------------     width: '100%',
+--------------------   {
+--------------------     id: 3,
+---------------------    question: 'What kind of experiences excite you?',
+---------------------    options: ['Beaches', 'Nature Bath', 'Food & Wine', 'Art & Culture', 'Nightlife', 'Shopping'],
+--------------------+    question: 'What experiences excite you most?',
+--------------------+    options: ['Beaches', 'Food & Wine', 'Art & Culture', 'Outdoor Adventures', 'Nightlife', 'History'],
+--------------------     multiSelect: true,
+--------------------   },
+--------------------   {
+--------------------     id: 4,
+---------------------    question: 'How do you usually like to explore?',
+---------------------    options: ['Solo', 'With Friends', 'With Family', 'Guided Experiences', 'Spontaneous'],
+---------------------  },
+---------------------  {
+---------------------    id: 5,
+---------------------    question: "What's your ideal trip length?",
+---------------------    options: ['Weekend Getaway', '1 Week', '2 Weeks', 'Long Stay', 'No Fixed Plan'],
+--------------------+    question: 'How do you like to explore?',
+--------------------+    options: ['Guided Tours', 'Solo Discovery', 'Local Connections', 'Off the Beaten Path'],
+--------------------+    multiSelect: true,
+--------------------   },
+-------------------- ];
+-------------------- 
 --------------------diff --git a/model.patch b/model.patch
---------------------index cbad52e..e69de29 100644
+--------------------index af4a50e..e69de29 100644
 ----------------------- a/model.patch
 --------------------+++ b/model.patch
---------------------@@ -1,180 +0,0 @@
+--------------------@@ -1,200 +0,0 @@
+---------------------diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
+---------------------index 8531443..d97f5de 100644
+------------------------ a/frontend/app/onboarding.tsx
+---------------------+++ b/frontend/app/onboarding.tsx
+---------------------@@ -472,9 +472,7 @@ const styles = StyleSheet.create({
+---------------------     textAlign: 'center',
+---------------------   },
+---------------------   bottomContainer: {
+----------------------    paddingHorizontal: 24,
+----------------------    paddingBottom: 40,
+----------------------    alignItems: 'center',
+---------------------+    width: '100%',
+---------------------   },
+---------------------   nextButtonWrapper: {
+---------------------     width: '100%',
 ---------------------diff --git a/model.patch b/model.patch
----------------------index ef88147..e69de29 100644
+---------------------index cbad52e..e69de29 100644
 ------------------------ a/model.patch
 ---------------------+++ b/model.patch
----------------------@@ -1,151 +0,0 @@
-----------------------diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
-----------------------index 1d22e19..5ab7be3 100644
-------------------------- a/frontend/app/onboarding.tsx
-----------------------+++ b/frontend/app/onboarding.tsx
-----------------------@@ -188,11 +188,14 @@ export default function Onboarding() {
-----------------------       </View>
----------------------- 
-----------------------       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
------------------------        <View style={styles.questionContainer}>
------------------------          <Text style={styles.questionText}>{currentQuestion.question}</Text>
------------------------          {currentQuestion.multiSelect && (
------------------------            <Text style={styles.multiSelectHint}>Select all that apply</Text>
------------------------          )}
-----------------------+        {/* Frosted Glass Question Pane */}
-----------------------+        <View style={styles.questionPaneContainer}>
-----------------------+          <View style={styles.questionContainer}>
-----------------------+            <Text style={styles.questionText}>{currentQuestion.question}</Text>
-----------------------+            {currentQuestion.multiSelect && (
-----------------------+              <Text style={styles.multiSelectHint}>Select all that apply</Text>
-----------------------+            )}
-----------------------+          </View>
-----------------------         </View>
----------------------- 
-----------------------         <View style={styles.bubblesGrid}>
+---------------------@@ -1,180 +0,0 @@
 ----------------------diff --git a/model.patch b/model.patch
-----------------------index 1ba88c9..e69de29 100644
+----------------------index ef88147..e69de29 100644
 ------------------------- a/model.patch
 ----------------------+++ b/model.patch
-----------------------@@ -1,122 +0,0 @@
+----------------------@@ -1,151 +0,0 @@
 -----------------------diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
------------------------index d81a554..1d22e19 100644
+-----------------------index 1d22e19..5ab7be3 100644
 -------------------------- a/frontend/app/onboarding.tsx
 -----------------------+++ b/frontend/app/onboarding.tsx
------------------------@@ -325,7 +325,21 @@ const styles = StyleSheet.create({
------------------------   },
------------------------   content: {
------------------------     flex: 1,
------------------------+    paddingTop: 60,
------------------------     paddingHorizontal: 24,
------------------------+    paddingBottom: 40,
------------------------+  },
------------------------+  questionPaneContainer: {
------------------------+    backgroundColor: 'rgba(25, 25, 25, 0.35)',
------------------------+    borderRadius: 20,
------------------------+    padding: 24,
------------------------+    marginBottom: 24,
------------------------+    ...Platform.select({
------------------------+      web: {
------------------------+        backdropFilter: 'blur(30px)',
------------------------+        WebkitBackdropFilter: 'blur(30px)',
------------------------+      },
------------------------+    }),
------------------------   },
------------------------   questionContainer: {
------------------------     marginBottom: 20,
+-----------------------@@ -188,11 +188,14 @@ export default function Onboarding() {
+-----------------------       </View>
+----------------------- 
+-----------------------       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
+------------------------        <View style={styles.questionContainer}>
+------------------------          <Text style={styles.questionText}>{currentQuestion.question}</Text>
+------------------------          {currentQuestion.multiSelect && (
+------------------------            <Text style={styles.multiSelectHint}>Select all that apply</Text>
+------------------------          )}
+-----------------------+        {/* Frosted Glass Question Pane */}
+-----------------------+        <View style={styles.questionPaneContainer}>
+-----------------------+          <View style={styles.questionContainer}>
+-----------------------+            <Text style={styles.questionText}>{currentQuestion.question}</Text>
+-----------------------+            {currentQuestion.multiSelect && (
+-----------------------+              <Text style={styles.multiSelectHint}>Select all that apply</Text>
+-----------------------+            )}
+-----------------------+          </View>
+-----------------------         </View>
+----------------------- 
+-----------------------         <View style={styles.bubblesGrid}>
 -----------------------diff --git a/model.patch b/model.patch
------------------------index fa9c700..e69de29 100644
+-----------------------index 1ba88c9..e69de29 100644
 -------------------------- a/model.patch
 -----------------------+++ b/model.patch
------------------------@@ -1,91 +0,0 @@
+-----------------------@@ -1,122 +0,0 @@
+------------------------diff --git a/frontend/app/onboarding.tsx b/frontend/app/onboarding.tsx
+------------------------index d81a554..1d22e19 100644
+--------------------------- a/frontend/app/onboarding.tsx
+------------------------+++ b/frontend/app/onboarding.tsx
+------------------------@@ -325,7 +325,21 @@ const styles = StyleSheet.create({
+------------------------   },
+------------------------   content: {
+------------------------     flex: 1,
+------------------------+    paddingTop: 60,
+------------------------     paddingHorizontal: 24,
+------------------------+    paddingBottom: 40,
+------------------------+  },
+------------------------+  questionPaneContainer: {
+------------------------+    backgroundColor: 'rgba(25, 25, 25, 0.35)',
+------------------------+    borderRadius: 20,
+------------------------+    padding: 24,
+------------------------+    marginBottom: 24,
+------------------------+    ...Platform.select({
+------------------------+      web: {
+------------------------+        backdropFilter: 'blur(30px)',
+------------------------+        WebkitBackdropFilter: 'blur(30px)',
+------------------------+      },
+------------------------+    }),
+------------------------   },
+------------------------   questionContainer: {
+------------------------     marginBottom: 20,
 ------------------------diff --git a/model.patch b/model.patch
-------------------------index 1df08ec..e69de29 100644
+------------------------index fa9c700..e69de29 100644
 --------------------------- a/model.patch
 ------------------------+++ b/model.patch
-------------------------@@ -1,63 +0,0 @@
--------------------------diff --git a/frontend/app/index.tsx b/frontend/app/index.tsx
--------------------------index e51fd2f..ed607d8 100644
----------------------------- a/frontend/app/index.tsx
--------------------------+++ b/frontend/app/index.tsx
--------------------------@@ -134,7 +134,7 @@ export default function Index() {
--------------------------                       <Text style={styles.inputLabel}>Full Name</Text>
--------------------------                       <TextInput
--------------------------                         style={styles.input}
---------------------------                        placeholder="Enter your full name"
--------------------------+                        placeholder=""
--------------------------                         placeholderTextColor="rgba(191, 191, 191, 0.9)"
--------------------------                         value={name}
--------------------------                         onChangeText={setName}
+------------------------@@ -1,91 +0,0 @@
 -------------------------diff --git a/model.patch b/model.patch
--------------------------index 90c18b1..e69de29 100644
+-------------------------index 1df08ec..e69de29 100644
 ---------------------------- a/model.patch
 -------------------------+++ b/model.patch
--------------------------@@ -1,45 +0,0 @@
---------------------------diff --git a/frontend/app/home.tsx b/frontend/app/home.tsx
---------------------------index c2116ae..d87a630 100644
------------------------------ a/frontend/app/home.tsx
---------------------------+++ b/frontend/app/home.tsx
---------------------------@@ -91,6 +91,15 @@ export default function Home() {
---------------------------           </Text>
---------------------------         </View>
--------------------------- 
---------------------------+        {/* Onboarding Button */}
---------------------------+        <TouchableOpacity
---------------------------+          style={styles.onboardingButton}
---------------------------+          onPress={() => router.push('/onboarding')}
---------------------------+        >
---------------------------+          <Ionicons name="star-outline" size={20} color="#C9A96D" />
---------------------------+          <Text style={styles.onboardingText}>Customize Your Preferences</Text>
---------------------------+        </TouchableOpacity>
---------------------------+
---------------------------         {/* Back to Login */}
---------------------------         <TouchableOpacity
---------------------------           style={styles.backButton}
---------------------------@@ -261,6 +270,24 @@ const styles = StyleSheet.create({
---------------------------     color: '#BEBEBE',
---------------------------     textAlign: 'center',
---------------------------   },
---------------------------+  onboardingButton: {
---------------------------+    flexDirection: 'row',
---------------------------+    alignItems: 'center',
---------------------------+    justifyContent: 'center',
---------------------------+    gap: 8,
---------------------------+    paddingVertical: 16,
---------------------------+    paddingHorizontal: 24,
---------------------------+    backgroundColor: 'rgba(201, 169, 109, 0.1)',
---------------------------+    borderRadius: 12,
---------------------------+    borderWidth: 1,
---------------------------+    borderColor: '#C9A96D',
---------------------------+    marginBottom: 16,
---------------------------+  },
---------------------------+  onboardingText: {
---------------------------+    fontSize: 15,
---------------------------+    color: '#C9A96D',
---------------------------+    fontWeight: '500',
---------------------------+  },
---------------------------   backButton: {
---------------------------     flexDirection: 'row',
---------------------------     alignItems: 'center',
-------------------------diff --git a/test_result.md b/test_result.md
-------------------------index 7b25df2..c91187f 100644
---------------------------- a/test_result.md
-------------------------+++ b/test_result.md
-------------------------@@ -154,6 +154,18 @@ test_plan:
-------------------------           agent: "main"
-------------------------           comment: "Successfully refined input fields across Sign In and Sign Up screens with VisionOS-inspired design. Implemented exact tokens: Background rgba(255,255,255,0.08), Border 1px rgba(255,255,255,0.15), Backdrop blur 20px, Border radius 10px, Padding 12×14px, Neue Montreal Regular 15px font, Text #FFFFFF, Placeholder rgba(255,255,255,0.45), Label Neue Montreal Medium 13px rgba(255,255,255,0.65). Removed all focus outlines, blue highlighting, border animations. Added subtle active state rgba(255,255,255,0.12). Inputs feel tactile yet quiet, unified with frosted glass panes. 10px vertical spacing maintained for premium, refined experience."
------------------------- 
-------------------------+  - task: "Unify material design between login pane and answer bubbles with exact tokens"
-------------------------+    implemented: true
-------------------------+    working: true
-------------------------+    file: "/app/frontend/app/index.tsx, /app/frontend/app/onboarding.tsx"
-------------------------+    stuck_count: 0
-------------------------+    priority: "high"
-------------------------+    needs_retesting: false
-------------------------+    status_history:
-------------------------+        - working: true
-------------------------+          agent: "main"
-------------------------+          comment: "Successfully unified material design with exact specifications: Tint rgba(255,255,255,0.10), Backdrop-blur 30px, Backdrop-saturate 130%, Stroke rgba(255,255,255,0.26), Inner-highlight gradient linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.00) 42%), Shadow 0 10px 28px -6px rgba(0,0,0,0.35), Radius 20px, Text #F2F2F2. Both login pane and answer bubbles now use identical material tokens. Implemented bronze selection states with rgba(201,169,109,0.22) wash, rgba(201,169,109,0.55) stroke, 2px outer ring rgba(201,169,109,0.18), elevated shadow, semibold white text. Next button has proper disabled/enabled states with frosted bronze vs solid bronze #C9A96D. Multi-select functionality enabled. Bubbles show proper glass background bleed, no flat gray."
-------------------------+
------------------------- agent_communication:
-------------------------     - agent: "main"
-------------------------       message: "Completed input field height reduction task. Reduced padding and margins to make the input panes more compact. Screenshots confirm the changes are working correctly in both Sign In and Sign Up modes."
----------------------diff --git a/test_result.md b/test_result.md
----------------------index c91187f..ecf8fed 100644
------------------------- a/test_result.md
----------------------+++ b/test_result.md
----------------------@@ -172,4 +172,16 @@ agent_communication:
----------------------     - agent: "main"
----------------------       message: "Successfully unified material design between login pane and onboarding bubbles. Both now use identical frosted-glass specifications with proper selection states and 2-column grid layout. Screenshots verified all states are working correctly including default, selected, and bronze accent styling."
----------------------     - agent: "main"
-----------------------      message: "Completed VisionOS-inspired input field refinement across Sign In and Sign Up screens. Implemented exact specifications: rgba(255,255,255,0.08) background, 1px rgba(255,255,255,0.15) border, 10px radius, 12×14 padding, Neue Montreal Regular 15px font. Removed all harsh outlines, blue iOS highlighting, and focus animations. Added subtle rgba(255,255,255,0.12) active state. Input fields now feel tactile yet quiet, unified with frosted glass panes. 10px vertical spacing maintained. Premium, refined VisionOS aesthetic achieved."
----------------------\ No newline at end of file
----------------------+      message: "Completed VisionOS-inspired input field refinement across Sign In and Sign Up screens. Implemented exact specifications: rgba(255,255,255,0.08) background, 1px rgba(255,255,255,0.15) border, 10px radius, 12×14 padding, Neue Montreal Regular 15px font. Removed all harsh outlines, blue iOS highlighting, and focus animations. Added subtle rgba(255,255,255,0.12) active state. Input fields now feel tactile yet quiet, unified with frosted glass panes. 10px vertical spacing maintained for premium, refined experience."
----------------------+
----------------------+  - task: "Create cinematic onboarding screens with aerial beach background"
----------------------+    implemented: true
----------------------+    working: true
----------------------+    file: "/app/frontend/app/welcome.tsx, /app/frontend/app/onboarding.tsx"
----------------------+    stuck_count: 0
----------------------+    priority: "high"
----------------------+    needs_retesting: false
----------------------+    status_history:
----------------------+        - working: true
----------------------+          agent: "main"
----------------------+          comment: "Successfully redesigned two cinematic onboarding screens using aerial beach-ocean background. Screen 1 (Welcome): Implemented dark matte gradient rgba(0,0,0,0.45→0.75) with bronze warmth rgba(201,169,109,0.08), centered frosted glass pane with TRAVEA logo, welcome text, and BEGIN PERSONALIZATION bronze frosted button rgba(201,169,109,0.25) with blur 25px and inner bronze glow. Screen 2 (Personalization): Same background, frosted glass question pane rgba(25,25,25,0.35) blur 30px, multi-select bubbles rgba(40,40,40,0.45) default / rgba(201,169,109,0.45) selected, bronze NEXT button. Cinematic transitions (fade, slide-up, bronze shimmer), material continuity, and elegant parallax motion working perfectly. Both screens maintain luxury aesthetic with proper glass material specifications."
----------------------\ No newline at end of file
+-------------------------@@ -1,63 +0,0 @@
+--------------------------diff --git a/frontend/app/index.tsx b/frontend/app/index.tsx
+--------------------------index e51fd2f..ed607d8 100644
+----------------------------- a/frontend/app/index.tsx
+--------------------------+++ b/frontend/app/index.tsx
+--------------------------@@ -134,7 +134,7 @@ export default function Index() {
+--------------------------                       <Text style={styles.inputLabel}>Full Name</Text>
+--------------------------                       <TextInput
+--------------------------                         style={styles.input}
+---------------------------                        placeholder="Enter your full name"
+--------------------------+                        placeholder=""
+--------------------------                         placeholderTextColor="rgba(191, 191, 191, 0.9)"
+--------------------------                         value={name}
+--------------------------                         onChangeText={setName}
+--------------------------diff --git a/model.patch b/model.patch
+--------------------------index 90c18b1..e69de29 100644
+----------------------------- a/model.patch
+--------------------------+++ b/model.patch
+--------------------------@@ -1,45 +0,0 @@
+---------------------------diff --git a/frontend/app/home.tsx b/frontend/app/home.tsx
+---------------------------index c2116ae..d87a630 100644
+------------------------------ a/frontend/app/home.tsx
+---------------------------+++ b/frontend/app/home.tsx
+---------------------------@@ -91,6 +91,15 @@ export default function Home() {
+---------------------------           </Text>
+---------------------------         </View>
+--------------------------- 
+---------------------------+        {/* Onboarding Button */}
+---------------------------+        <TouchableOpacity
+---------------------------+          style={styles.onboardingButton}
+---------------------------+          onPress={() => router.push('/onboarding')}
+---------------------------+        >
+---------------------------+          <Ionicons name="star-outline" size={20} color="#C9A96D" />
+---------------------------+          <Text style={styles.onboardingText}>Customize Your Preferences</Text>
+---------------------------+        </TouchableOpacity>
+---------------------------+
+---------------------------         {/* Back to Login */}
+---------------------------         <TouchableOpacity
+---------------------------           style={styles.backButton}
+---------------------------@@ -261,6 +270,24 @@ const styles = StyleSheet.create({
+---------------------------     color: '#BEBEBE',
+---------------------------     textAlign: 'center',
+---------------------------   },
+---------------------------+  onboardingButton: {
+---------------------------+    flexDirection: 'row',
+---------------------------+    alignItems: 'center',
+---------------------------+    justifyContent: 'center',
+---------------------------+    gap: 8,
+---------------------------+    paddingVertical: 16,
+---------------------------+    paddingHorizontal: 24,
+---------------------------+    backgroundColor: 'rgba(201, 169, 109, 0.1)',
+---------------------------+    borderRadius: 12,
+---------------------------+    borderWidth: 1,
+---------------------------+    borderColor: '#C9A96D',
+---------------------------+    marginBottom: 16,
+---------------------------+  },
+---------------------------+  onboardingText: {
+---------------------------+    fontSize: 15,
+---------------------------+    color: '#C9A96D',
+---------------------------+    fontWeight: '500',
+---------------------------+  },
+---------------------------   backButton: {
+---------------------------     flexDirection: 'row',
+---------------------------     alignItems: 'center',
+-------------------------diff --git a/test_result.md b/test_result.md
+-------------------------index 7b25df2..c91187f 100644
+---------------------------- a/test_result.md
+-------------------------+++ b/test_result.md
+-------------------------@@ -154,6 +154,18 @@ test_plan:
+-------------------------           agent: "main"
+-------------------------           comment: "Successfully refined input fields across Sign In and Sign Up screens with VisionOS-inspired design. Implemented exact tokens: Background rgba(255,255,255,0.08), Border 1px rgba(255,255,255,0.15), Backdrop blur 20px, Border radius 10px, Padding 12×14px, Neue Montreal Regular 15px font, Text #FFFFFF, Placeholder rgba(255,255,255,0.45), Label Neue Montreal Medium 13px rgba(255,255,255,0.65). Removed all focus outlines, blue highlighting, border animations. Added subtle active state rgba(255,255,255,0.12). Inputs feel tactile yet quiet, unified with frosted glass panes. 10px vertical spacing maintained for premium, refined experience."
+------------------------- 
+-------------------------+  - task: "Unify material design between login pane and answer bubbles with exact tokens"
+-------------------------+    implemented: true
+-------------------------+    working: true
+-------------------------+    file: "/app/frontend/app/index.tsx, /app/frontend/app/onboarding.tsx"
+-------------------------+    stuck_count: 0
+-------------------------+    priority: "high"
+-------------------------+    needs_retesting: false
+-------------------------+    status_history:
+-------------------------+        - working: true
+-------------------------+          agent: "main"
+-------------------------+          comment: "Successfully unified material design with exact specifications: Tint rgba(255,255,255,0.10), Backdrop-blur 30px, Backdrop-saturate 130%, Stroke rgba(255,255,255,0.26), Inner-highlight gradient linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.00) 42%), Shadow 0 10px 28px -6px rgba(0,0,0,0.35), Radius 20px, Text #F2F2F2. Both login pane and answer bubbles now use identical material tokens. Implemented bronze selection states with rgba(201,169,109,0.22) wash, rgba(201,169,109,0.55) stroke, 2px outer ring rgba(201,169,109,0.18), elevated shadow, semibold white text. Next button has proper disabled/enabled states with frosted bronze vs solid bronze #C9A96D. Multi-select functionality enabled. Bubbles show proper glass background bleed, no flat gray."
+-------------------------+
+------------------------- agent_communication:
+-------------------------     - agent: "main"
+-------------------------       message: "Completed input field height reduction task. Reduced padding and margins to make the input panes more compact. Screenshots confirm the changes are working correctly in both Sign In and Sign Up modes."
+----------------------diff --git a/test_result.md b/test_result.md
+----------------------index c91187f..ecf8fed 100644
+------------------------- a/test_result.md
+----------------------+++ b/test_result.md
+----------------------@@ -172,4 +172,16 @@ agent_communication:
+----------------------     - agent: "main"
+----------------------       message: "Successfully unified material design between login pane and onboarding bubbles. Both now use identical frosted-glass specifications with proper selection states and 2-column grid layout. Screenshots verified all states are working correctly including default, selected, and bronze accent styling."
+----------------------     - agent: "main"
+-----------------------      message: "Completed VisionOS-inspired input field refinement across Sign In and Sign Up screens. Implemented exact specifications: rgba(255,255,255,0.08) background, 1px rgba(255,255,255,0.15) border, 10px radius, 12×14 padding, Neue Montreal Regular 15px font. Removed all harsh outlines, blue iOS highlighting, and focus animations. Added subtle rgba(255,255,255,0.12) active state. Input fields now feel tactile yet quiet, unified with frosted glass panes. 10px vertical spacing maintained. Premium, refined VisionOS aesthetic achieved."
+----------------------\ No newline at end of file
+----------------------+      message: "Completed VisionOS-inspired input field refinement across Sign In and Sign Up screens. Implemented exact specifications: rgba(255,255,255,0.08) background, 1px rgba(255,255,255,0.15) border, 10px radius, 12×14 padding, Neue Montreal Regular 15px font. Removed all harsh outlines, blue iOS highlighting, and focus animations. Added subtle rgba(255,255,255,0.12) active state. Input fields now feel tactile yet quiet, unified with frosted glass panes. 10px vertical spacing maintained for premium, refined experience."
+----------------------+
+----------------------+  - task: "Create cinematic onboarding screens with aerial beach background"
+----------------------+    implemented: true
+----------------------+    working: true
+----------------------+    file: "/app/frontend/app/welcome.tsx, /app/frontend/app/onboarding.tsx"
+----------------------+    stuck_count: 0
+----------------------+    priority: "high"
+----------------------+    needs_retesting: false
+----------------------+    status_history:
+----------------------+        - working: true
+----------------------+          agent: "main"
+----------------------+          comment: "Successfully redesigned two cinematic onboarding screens using aerial beach-ocean background. Screen 1 (Welcome): Implemented dark matte gradient rgba(0,0,0,0.45→0.75) with bronze warmth rgba(201,169,109,0.08), centered frosted glass pane with TRAVEA logo, welcome text, and BEGIN PERSONALIZATION bronze frosted button rgba(201,169,109,0.25) with blur 25px and inner bronze glow. Screen 2 (Personalization): Same background, frosted glass question pane rgba(25,25,25,0.35) blur 30px, multi-select bubbles rgba(40,40,40,0.45) default / rgba(201,169,109,0.45) selected, bronze NEXT button. Cinematic transitions (fade, slide-up, bronze shimmer), material continuity, and elegant parallax motion working perfectly. Both screens maintain luxury aesthetic with proper glass material specifications."
+----------------------\ No newline at end of file
