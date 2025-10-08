@@ -313,35 +313,42 @@ const styles = StyleSheet.create({
     maxWidth: '48%',
   },
   bubble: {
-    borderRadius: 14,
+    borderRadius: 20,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.2)',
-    minHeight: 46,
+    borderColor: 'rgba(255, 255, 255, 0.22)',
+    height: 48,
     justifyContent: 'center',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.4,
-        shadowRadius: 12,
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.35,
+        shadowRadius: 14,
       },
       android: {
-        elevation: 4,
+        elevation: 10,
       },
       web: {
-        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.4)',
+        boxShadow: '0 10px 28px -6px rgba(0, 0, 0, 0.35)',
+        backdropFilter: 'blur(30px)',
+        WebkitBackdropFilter: 'blur(30px)',
       },
     }),
   },
   bubbleInner: {
-    backgroundColor: 'rgba(255, 255, 255, 0.12)',
-    paddingVertical: 10,
+    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    paddingVertical: 14,
     paddingHorizontal: 16,
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 40%)',
+      },
+    }),
   },
   bubbleText: {
     fontSize: 15,
-    color: '#FFFFFF',
+    color: '#F2F2F2',
     fontWeight: '500',
     textAlign: 'center',
   },
