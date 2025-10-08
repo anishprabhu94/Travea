@@ -259,14 +259,14 @@ const styles = StyleSheet.create({
     }),
   },
   beginButtonInner: {
-    backgroundColor: 'rgba(201, 169, 109, 0.25)',
+    backgroundColor: 'rgba(201, 169, 109, 0.35)',
     paddingVertical: 18,
     paddingHorizontal: 24,
     alignItems: 'center',
     position: 'relative',
     ...Platform.select({
       web: {
-        background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.00) 50%)',
+        background: 'rgba(201, 169, 109, 0.35)',
       },
     }),
   },
