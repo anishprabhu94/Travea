@@ -335,7 +335,7 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   selectedBubble: {
-    borderRadius: 32,
+    borderRadius: 16,
     paddingVertical: 16,
     paddingHorizontal: 20,
     minHeight: 70,
