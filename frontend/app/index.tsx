@@ -30,7 +30,11 @@ export default function Index() {
   };
 
   const handleSignUp = () => {
-    router.push('/home');
+    // Navigate to welcome screen with user's name
+    router.push({
+      pathname: '/welcome',
+      params: { name: name || 'Traveler' }
+    });
   };
 
   const handleOAuthGoogle = () => {
