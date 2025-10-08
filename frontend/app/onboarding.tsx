@@ -138,7 +138,7 @@ export default function Onboarding() {
           useNativeDriver: true,
         }).start();
       } else {
-        router.push('/home');
+        router.push('/landing');
       }
     });
   };
