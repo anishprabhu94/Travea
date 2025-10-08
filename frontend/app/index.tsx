@@ -402,8 +402,8 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     marginHorizontal: 16,
     letterSpacing: 1,
-    fontWeight: '700',
-    opacity: 1,
+    fontWeight: '400',
+    opacity: 0.75,
   },
   oauthContainer: {
     gap: 12,
