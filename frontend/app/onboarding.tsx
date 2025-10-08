@@ -388,8 +388,9 @@ const styles = StyleSheet.create({
     marginBottom: 40, // Increased for world-class spacing distribution
   },
   bubbleWrapper: {
-    width: '48%',
-    maxWidth: 150,
+    width: '47%', // Slightly reduced to ensure perfect column alignment
+    minWidth: 140,
+    maxWidth: 160,
   },
   bubble: {
     borderRadius: 20,
