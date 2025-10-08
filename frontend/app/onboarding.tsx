@@ -367,7 +367,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255, 255, 255, 0.12)', // Subtle border as specified
     paddingVertical: 12, // Reduced padding for slimmer appearance
     paddingHorizontal: 20, // 20px horizontal padding maintained
-    marginBottom: 12, // Reduced to move upward (-20px from previous 32)
+    marginBottom: 32, // Increased spacing from answer bubbles for better visual separation
     height: 52, // Reduced height for slim, elegant appearance
     justifyContent: 'center',
     alignSelf: 'center',
