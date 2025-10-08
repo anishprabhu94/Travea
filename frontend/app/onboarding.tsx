@@ -386,7 +386,7 @@ const styles = StyleSheet.create({
       web: {
         backdropFilter: 'blur(30px)', // 30px backdrop blur as requested
         WebkitBackdropFilter: 'blur(30px)',
-        boxShadow: '0px 8px 32px rgba(0, 0, 0, 0.45), 0px 2px 16px rgba(0, 0, 0, 0.25), inset 0 0 25px rgba(255, 255, 255, 0.08)', // Enhanced outer glow + more visible inset luminous effect
+        boxShadow: '0px 8px 32px rgba(0, 0, 0, 0.6), 0px 2px 16px rgba(0, 0, 0, 0.35), 0px 0px 40px rgba(255, 255, 255, 0.06), inset 0 0 30px rgba(255, 255, 255, 0.1)', // More pronounced outer glow + visible luminous effect
       },
     }),
   },
