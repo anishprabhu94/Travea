@@ -327,7 +327,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   onboardContent: {
-    paddingTop: 24,
+    paddingTop: 16,
     paddingHorizontal: 24,
     paddingBottom: 24,
   },
