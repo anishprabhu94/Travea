@@ -448,12 +448,12 @@ const styles = StyleSheet.create({
     }),
   },
   bubbleInner: {
-    backgroundColor: 'rgba(40, 40, 40, 0.45)',
+    backgroundColor: 'rgba(60, 60, 60, 0.4)', // Lighter background for elegant appearance
     paddingVertical: 14,
     paddingHorizontal: 16,
     ...Platform.select({
       web: {
-        background: 'rgba(40, 40, 40, 0.45)',
+        background: 'rgba(60, 60, 60, 0.4)',
       },
     }),
   },
