@@ -22,6 +22,7 @@ interface DestinationCard {
   tagline: string
   image: string
   transport: TransportInfo[]
+  category: 'inspire' | 'weekend'
 }
 
 interface TransportInfo {
@@ -29,58 +30,109 @@ interface TransportInfo {
   time: string
 }
 
-const weekendDestinations: DestinationCard[] = [
+const destinationCards: DestinationCard[] = [
+  // Inspire Me Cards
+  {
+    id: 'amalfi',
+    city: 'Amalfi',
+    tagline: 'Coastal drives & lemon air',
+    image: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/a19gqvww_amalfi.jpg',
+    transport: [
+      { icon: 'car-outline', time: '2h 45m' },
+      { icon: 'airplane-outline', time: '1h 20m' }
+    ],
+    category: 'inspire'
+  },
+  {
+    id: 'kyoto',
+    city: 'Kyoto',
+    tagline: 'Temples, lanterns, and still mornings',
+    image: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/b82i7mwl_output%20%286%29.jpg',
+    transport: [
+      { icon: 'airplane-outline', time: '11h 30m' },
+      { icon: 'train-outline', time: '3h 15m' }
+    ],
+    category: 'inspire'
+  },
+  {
+    id: 'iceland',
+    city: 'Iceland',
+    tagline: 'Where glaciers meet the sea',
+    image: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/b82i7mwl_output%20%286%29.jpg',
+    transport: [
+      { icon: 'airplane-outline', time: '6h 45m' }
+    ],
+    category: 'inspire'
+  },
+  // Weekend Cards
   {
     id: 'sonoma',
     city: 'Sonoma',
     tagline: 'Wine alleys & golden light',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/cjd9m4ea_Sonoma.jpg',
+    image: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/7u6bkc1o_Sonoma.jpg',
     transport: [
       { icon: 'car-outline', time: '1h 30m' },
       { icon: 'train-outline', time: '2h 10m' }
-    ]
+    ],
+    category: 'weekend'
   },
   {
     id: 'carmel',
     city: 'Carmel-by-the-Sea',
     tagline: 'Cliffside cafés & slow tides',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/wokepbpr_carmel.jpg',
+    image: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/5qzi78v5_carmel.jpg',
     transport: [
       { icon: 'car-outline', time: '2h 15m' },
       { icon: 'train-outline', time: '2h 45m' }
-    ]
+    ],
+    category: 'weekend'
   },
   {
     id: 'bigsur',
     city: 'Big Sur',
     tagline: 'Misty cliffs & endless roads',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/pk6sky07_big%20sur.jpg',
+    image: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/epcqb5m2_big%20sur.jpg',
     transport: [
       { icon: 'car-outline', time: '3h 05m' },
       { icon: 'airplane-outline', time: '1h 15m' }
-    ]
+    ],
+    category: 'weekend'
   }
 ]
 
 export default function Landing() {
   const router = useRouter()
-  const [activeMode, setActiveMode] = useState('weekend')
+  const [activeMode, setActiveMode] = useState('inspire') // Default to Inspire Me
   const [bookmarkedItems, setBookmarkedItems] = useState<string[]>([])
-  const [currentCardIndex, setCurrentCardIndex] = useState(0)
   
   // Animation refs
   const fadeAnim = useRef(new Animated.Value(0)).current
-  const carouselOpacity = useRef(new Animated.Value(1)).current
+  const greetingAnim = useRef(new Animated.Value(0)).current
+  const dockAnim = useRef(new Animated.Value(0)).current
   const dockGlowAnim = useRef(new Animated.Value(0)).current
-  const cardScrollRef = useRef<ScrollView>(null)
 
   useEffect(() => {
-    // Entrance animation
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 600,
-      useNativeDriver: true,
-    }).start()
+    // Page load animations
+    Animated.sequence([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Animated.parallel([
+        Animated.timing(greetingAnim, {
+          toValue: 1,
+          duration: 300,
+          useNativeDriver: true,
+        }),
+        Animated.timing(dockAnim, {
+          toValue: 1,
+          duration: 300,
+          delay: 100,
+          useNativeDriver: true,
+        })
+      ])
+    ]).start()
   }, [])
 
   const handleModeSwitch = (mode: string) => {
@@ -112,10 +164,9 @@ export default function Landing() {
     }
   }
 
-  const onScroll = (event: any) => {
-    const contentOffset = event.nativeEvent.contentOffset.x
-    const index = Math.round(contentOffset / width)
-    setCurrentCardIndex(index)
+  const getCurrentCards = () => {
+    if (activeMode === 'search') return []
+    return destinationCards.filter(card => card.category === activeMode)
   }
 
   const renderDestinationCard = (destination: DestinationCard, index: number) => (
@@ -125,27 +176,28 @@ export default function Landing() {
         style={styles.destinationCard}
         imageStyle={styles.cardImage}
       >
+        {/* Gradient Overlay */}
+        <View style={styles.gradientOverlay} />
+        
         {/* Bookmark Icon */}
         <TouchableOpacity
           style={styles.bookmarkButton}
           onPress={() => handleBookmark(destination.id)}
           activeOpacity={0.8}
         >
-          <BlurView intensity={15} tint="light" style={styles.bookmarkBlur}>
-            <View style={styles.bookmarkInner}>
-              <Ionicons
-                name={bookmarkedItems.includes(destination.id) ? "bookmark" : "bookmark-outline"}
-                size={20}
-                color={bookmarkedItems.includes(destination.id) ? "#C9A96D" : "rgba(255,255,255,0.9)"}
-              />
-            </View>
-          </BlurView>
+          <View style={styles.bookmarkIcon}>
+            <Ionicons
+              name={bookmarkedItems.includes(destination.id) ? "bookmark" : "bookmark-outline"}
+              size={20}
+              color={bookmarkedItems.includes(destination.id) ? "#C9A96D" : "rgba(255,255,255,0.85)"}
+            />
+          </View>
         </TouchableOpacity>
 
-        {/* Mid-left Floating Content Block */}
-        <View style={styles.contentBlockContainer}>
-          <BlurView intensity={20} tint="light" style={styles.contentBlock}>
-            <View style={styles.contentBlockInner}>
+        {/* Frosted Info Pane */}
+        <View style={styles.infoPaneContainer}>
+          <BlurView intensity={25} tint="light" style={styles.infoPane}>
+            <View style={styles.infoPaneInner}>
               {/* City Name */}
               <Text style={styles.cityName}>{destination.city}</Text>
               
@@ -158,8 +210,8 @@ export default function Landing() {
                   <View key={transportIndex} style={styles.transportItem}>
                     <Ionicons 
                       name={transport.icon} 
-                      size={16} 
-                      color="rgba(255,255,255,0.85)" 
+                      size={15} 
+                      color="rgba(255,255,255,0.8)" 
                       style={styles.transportIcon}
                     />
                     <Text style={styles.transportTime}>{transport.time}</Text>
@@ -167,13 +219,9 @@ export default function Landing() {
                 ))}
               </View>
               
-              {/* Bronze Pill Tag */}
-              <View style={styles.pillTagContainer}>
-                <BlurView intensity={18} tint="light" style={styles.pillTag}>
-                  <View style={styles.pillTagInner}>
-                    <Text style={styles.pillTagText}>Condé Nast</Text>
-                  </View>
-                </BlurView>
+              {/* Tag Pill */}
+              <View style={styles.tagPill}>
+                <Text style={styles.tagPillText}>Condé Nast Pick</Text>
               </View>
             </View>
           </BlurView>
@@ -183,11 +231,17 @@ export default function Landing() {
   )
 
   return (
-    <View style={styles.container}>
-      {/* Background */}
-      <View style={styles.background} />
+    <ImageBackground
+      source={{
+        uri: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/b82i7mwl_output%20%286%29.jpg'
+      }}
+      style={styles.container}
+      imageStyle={styles.backgroundImage}
+    >
+      {/* Vignette Overlay */}
+      <View style={styles.vignetteOverlay} />
 
-      <View style={styles.content}>
+      <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
         {/* Header */}
         <View style={styles.header}>
           {/* TRĀVEA Logo */}
@@ -197,103 +251,140 @@ export default function Landing() {
           
           {/* Profile Icon */}
           <TouchableOpacity style={styles.profileButton} activeOpacity={0.8}>
-            <BlurView intensity={20} tint="light" style={styles.profileBlur}>
-              <View style={styles.profileInner}>
-                <Ionicons name="person-outline" size={20} color="rgba(255,255,255,0.9)" />
-              </View>
-            </BlurView>
+            <View style={styles.profileIcon}>
+              <Ionicons name="person-outline" size={20} color="rgba(255,255,255,0.85)" />
+            </View>
           </TouchableOpacity>
         </View>
 
         {/* Greeting Section */}
-        <View style={styles.greetingSection}>
-          <Text style={styles.greetingMain}>Good to see you, Anish.</Text>
-          <Text style={styles.greetingSub}>Let's find your next escape.</Text>
-        </View>
+        <Animated.View 
+          style={[
+            styles.greetingSection, 
+            {
+              opacity: greetingAnim,
+              transform: [{
+                translateY: greetingAnim.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [20, 0]
+                })
+              }]
+            }
+          ]}
+        >
+          <BlurView intensity={25} tint="light" style={styles.greetingBlur}>
+            <View style={styles.greetingInner}>
+              <Text style={styles.greetingMain}>Good to see you, Anish.</Text>
+              <Text style={styles.greetingSub}>Let's find your next escape.</Text>
+            </View>
+          </BlurView>
+        </Animated.View>
 
-        {/* Mode Pills */}
-        <View style={styles.modePillsContainer}>
+        {/* Category Chips */}
+        <View style={styles.categoryChips}>
           <TouchableOpacity
-            style={[styles.modePill, activeMode === 'weekend' && styles.modePillActive]}
-            onPress={() => handleModeSwitch('weekend')}
-            activeOpacity={0.8}
-          >
-            <BlurView intensity={18} tint="light" style={styles.pillBlur}>
-              <View style={styles.pillContent}>
-                <Ionicons name="airplane-outline" size={16} color="rgba(255,255,255,0.9)" />
-                <Text style={styles.pillLabel}>Weekend</Text>
-              </View>
-            </BlurView>
-            {activeMode === 'weekend' && <View style={styles.pillUnderline} />}
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={[styles.modePill, activeMode === 'inspire' && styles.modePillActive]}
+            style={[styles.chip, activeMode === 'inspire' && styles.chipActive]}
             onPress={() => handleModeSwitch('inspire')}
             activeOpacity={0.8}
           >
-            <BlurView intensity={18} tint="light" style={styles.pillBlur}>
-              <View style={styles.pillContent}>
+            <BlurView intensity={20} tint="light" style={styles.chipBlur}>
+              <View style={styles.chipContent}>
                 <Ionicons name="leaf-outline" size={16} color="rgba(255,255,255,0.9)" />
-                <Text style={styles.pillLabel}>Inspire Me</Text>
+                <Text style={[styles.chipLabel, activeMode === 'inspire' && styles.chipLabelActive]}>
+                  Inspire Me
+                </Text>
               </View>
             </BlurView>
-            {activeMode === 'inspire' && <View style={styles.pillUnderline} />}
+            {activeMode === 'inspire' && <View style={styles.chipGlow} />}
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.modePill, activeMode === 'search' && styles.modePillActive]}
+            style={[styles.chip, activeMode === 'weekend' && styles.chipActive]}
+            onPress={() => handleModeSwitch('weekend')}
+            activeOpacity={0.8}
+          >
+            <BlurView intensity={20} tint="light" style={styles.chipBlur}>
+              <View style={styles.chipContent}>
+                <Ionicons name="airplane-outline" size={16} color="rgba(255,255,255,0.9)" />
+                <Text style={[styles.chipLabel, activeMode === 'weekend' && styles.chipLabelActive]}>
+                  Weekend
+                </Text>
+              </View>
+            </BlurView>
+            {activeMode === 'weekend' && <View style={styles.chipGlow} />}
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.chip, activeMode === 'search' && styles.chipActive]}
             onPress={() => handleModeSwitch('search')}
             activeOpacity={0.8}
           >
-            <BlurView intensity={18} tint="light" style={styles.pillBlur}>
-              <View style={styles.pillContent}>
+            <BlurView intensity={20} tint="light" style={styles.chipBlur}>
+              <View style={styles.chipContent}>
                 <Ionicons name="search-outline" size={16} color="rgba(255,255,255,0.9)" />
-                <Text style={styles.pillLabel}>Search</Text>
+                <Text style={[styles.chipLabel, activeMode === 'search' && styles.chipLabelActive]}>
+                  Search
+                </Text>
               </View>
             </BlurView>
-            {activeMode === 'search' && <View style={styles.pillUnderline} />}
+            {activeMode === 'search' && <View style={styles.chipGlow} />}
           </TouchableOpacity>
         </View>
 
-        {/* Tagline */}
+        {/* Section Tagline */}
         <View style={styles.taglineContainer}>
           <Text style={styles.tagline}>Closer than you think — perfect weekends await.</Text>
         </View>
 
         {/* Carousel */}
-        <View style={styles.carouselContainer}>
-          <Animated.View style={{ opacity: carouselOpacity }}>
+        {activeMode !== 'search' && (
+          <View style={styles.carouselContainer}>
             <ScrollView
-              ref={cardScrollRef}
               horizontal
               pagingEnabled
               showsHorizontalScrollIndicator={false}
               style={styles.carousel}
               contentContainerStyle={styles.carouselContent}
-              onScroll={onScroll}
-              scrollEventThrottle={16}
             >
-              {weekendDestinations.map((destination, index) => 
+              {getCurrentCards().map((destination, index) => 
                 renderDestinationCard(destination, index)
               )}
             </ScrollView>
-          </Animated.View>
-        </View>
-      </View>
+          </View>
+        )}
+
+        {/* Search State */}
+        {activeMode === 'search' && (
+          <View style={styles.searchContainer}>
+            <Text style={styles.searchPlaceholder}>Search destinations...</Text>
+          </View>
+        )}
+      </Animated.View>
 
       {/* Bottom Dock */}
-      <View style={styles.bottomDock}>
-        <BlurView intensity={25} tint="light" style={styles.dockContainer}>
+      <Animated.View 
+        style={[
+          styles.bottomDock,
+          {
+            opacity: dockAnim,
+            transform: [{
+              translateY: dockAnim.interpolate({
+                inputRange: [0, 1],
+                outputRange: [100, 0]
+              })
+            }]
+          }
+        ]}
+      >
+        <BlurView intensity={20} tint="light" style={styles.dockContainer}>
           <View style={styles.dockContent}>
             <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
-              <Ionicons name="home-outline" size={22} color="#F8F8F8" />
+              <Ionicons name="home" size={22} color="#F8F8F8" />
               <Text style={styles.dockLabel}>Home</Text>
-              <View style={styles.dockActiveIndicator} />
             </TouchableOpacity>
             
             <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
-              <Ionicons name="map-outline" size={22} color="rgba(255,255,255,0.75)" />
+              <Ionicons name="map-outline" size={22} color="rgba(255,255,255,0.7)" />
               <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
             </TouchableOpacity>
             
@@ -301,13 +392,13 @@ export default function Landing() {
               <Animated.View style={[styles.dockGlowContainer, { opacity: dockGlowAnim }]}>
                 <View style={styles.dockGlow} />
               </Animated.View>
-              <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.75)" />
+              <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.7)" />
               <Text style={styles.dockLabelInactive}>My Trips</Text>
             </TouchableOpacity>
           </View>
         </BlurView>
-      </View>
-    </View>
+      </Animated.View>
+    </ImageBackground>
   )
 }
 
