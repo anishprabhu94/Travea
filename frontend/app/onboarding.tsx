@@ -332,12 +332,11 @@ const styles = StyleSheet.create({
   },
   content: {
     position: 'absolute',
-    top: 84, // Pinned to header bottom + 12px (72px header + 12px gap)
-    left: 0,
-    right: 0,
-    paddingHorizontal: 24,
+    top: 84, // Header.bottom + 12px (72px header + 12px)
+    left: 24, // Left margin 24px
+    right: 24, // Right margin 24px
     paddingTop: 14, // 14px progress→pane
-    paddingBottom: 0,
+    paddingBottom: 20, // 20px above safe bottom
   },
   questionPane: {
     backgroundColor: 'rgba(25, 25, 25, 0.38)',
