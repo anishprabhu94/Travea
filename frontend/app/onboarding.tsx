@@ -148,7 +148,6 @@ export default function Onboarding() {
         style={styles.backgroundImage}
         resizeMode="cover"
       >
-        {/* Dark matte gradient with bronze warmth */}
         <LinearGradient
           colors={[
             'rgba(0, 0, 0, 0.45)',
@@ -160,23 +159,17 @@ export default function Onboarding() {
           start={{ x: 0.5, y: 0 }}
           end={{ x: 0.5, y: 1 }}
         />
-        
-        {/* Bronze warmth overlay */}
         <View style={styles.bronzeOverlay} />
       </ImageBackground>
 
-      {/* Layer 2: Header (Fixed 72px) */}
-      <View style={styles.headerLayer}>
+      {/* Layer 2: Header (Fixed 72px) - NOT nested inside Content */}
+      <View style={styles.header}>
         <View style={styles.headerContent}>
-          {/* Logo */}
           <Text style={styles.logoText}>TRAVEA</Text>
-
-          {/* Profile Icon */}
           <View style={styles.profileIcon}>
             <Ionicons name="person-outline" size={16} color="#F8F8F8" />
           </View>
         </View>
-
         <View style={styles.progressBarContainer}>
           <View style={styles.progressBarBackground}>
             <Animated.View style={[styles.progressBarFill, { width: `${progress}%` }]}>
@@ -191,29 +184,25 @@ export default function Onboarding() {
         </View>
       </View>
 
-      {/* Layer 3: Content (Auto Layout vertical, top-aligned) */}
-      <Animated.View style={[styles.contentLayer, { opacity: fadeAnim }]}>
-        {/* Frosted Glass Question Pane */}
-        <View style={styles.questionPaneContainer}>
-          <View style={styles.questionContainer}>
-            <Text style={styles.questionText}>
-              {currentQuestion.question}
-            </Text>
-          </View>
+      {/* Layer 3: Content (Vertical stack, top-aligned) - NOT nested, NO vertical centering */}
+      <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
+        {/* QuestionPane - Centered but left-aligned text */}
+        <View style={styles.questionPane}>
+          <Text style={styles.questionText}>{currentQuestion.question}</Text>
         </View>
 
-        {/* Bubble Grid Backplate */}
-        <BlurView intensity={20} tint="light" style={styles.bubbleGridBackplate}>
-          <View style={styles.bubblesGrid}>
+        {/* BubbleGrid - Separate from Next button */}
+        <View style={styles.bubbleGrid}>
           {currentQuestion.options.map((option, index) => {
             const selected = isSelected(option);
             const scaleAnim = getScaleAnim(option);
+
             return (
               <Animated.View
                 key={index}
                 style={[
                   styles.bubbleWrapper,
-                  { transform: [{ scale: scaleAnim }] }
+                  { transform: [{ scale: scaleAnim }] },
                 ]}
               >
                 <TouchableOpacity
@@ -221,13 +210,13 @@ export default function Onboarding() {
                   onPress={() => handleSelectAnswer(option)}
                 >
                   {selected ? (
-                    <BlurView intensity={30} tint="light" style={styles.selectedBubble}>
+                    <BlurView intensity={20} tint="light" style={styles.selectedBubble}>
                       <View style={styles.selectedBubbleInner}>
                         <Text style={styles.bubbleTextSelected}>{option}</Text>
                       </View>
                     </BlurView>
                   ) : (
-                    <BlurView intensity={30} tint="light" style={styles.bubble}>
+                    <BlurView intensity={20} tint="light" style={styles.bubble}>
                       <View style={styles.bubbleInner}>
                         <Text style={styles.bubbleText}>{option}</Text>
                       </View>
@@ -237,40 +226,37 @@ export default function Onboarding() {
               </Animated.View>
             );
           })}
-          </View>
-        </BlurView>
-
-        <View style={styles.bottomContainer}>
-          <TouchableOpacity
-            style={[styles.nextButtonWrapper]}
-            onPress={handleNext}
-            disabled={!canProceed()}
-            activeOpacity={0.8}
-          >
-            <BlurView 
-              intensity={25} 
-              tint="light" 
-              style={[
-                styles.nextButton,
-                !canProceed() ? styles.nextButtonDisabled : styles.nextButtonEnabled
-              ]}
-            >
-              <View style={[
-                styles.nextButtonInner,
-                !canProceed() ? styles.nextButtonInnerDisabled : styles.nextButtonInnerEnabled
-              ]}>
-                {/* Inner Bronze Glow */}
-                {canProceed() && <View style={styles.nextButtonGlow} />}
-                <Text style={[
-                  styles.nextButtonText,
-                  !canProceed() ? styles.nextButtonTextDisabled : styles.nextButtonTextEnabled
-                ]}>
-                  {currentStep === questions.length - 1 ? 'COMPLETE' : 'NEXT'}
-                </Text>
-              </View>
-            </BlurView>
-          </TouchableOpacity>
         </View>
+
+        {/* Next Button - Outside BubbleGrid */}
+        <TouchableOpacity
+          style={styles.nextButtonWrapper}
+          onPress={handleNext}
+          disabled={!canProceed()}
+          activeOpacity={0.8}
+        >
+          <BlurView 
+            intensity={25} 
+            tint="light" 
+            style={[
+              styles.nextButton,
+              !canProceed() ? styles.nextButtonDisabled : styles.nextButtonEnabled
+            ]}
+          >
+            <View style={[
+              styles.nextButtonInner,
+              !canProceed() ? styles.nextButtonInnerDisabled : styles.nextButtonInnerEnabled
+            ]}>
+              {canProceed() && <View style={styles.nextButtonGlow} />}
+              <Text style={[
+                styles.nextButtonText,
+                !canProceed() ? styles.nextButtonTextDisabled : styles.nextButtonTextEnabled
+              ]}>
+                {currentStep === questions.length - 1 ? 'COMPLETE' : 'NEXT'}
+              </Text>
+            </View>
+          </BlurView>
+        </TouchableOpacity>
       </Animated.View>
     </View>
   );
