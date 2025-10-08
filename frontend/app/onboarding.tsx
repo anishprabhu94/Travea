@@ -188,11 +188,14 @@ export default function Onboarding() {
       </View>
 
       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
-        <View style={styles.questionContainer}>
-          <Text style={styles.questionText}>{currentQuestion.question}</Text>
-          {currentQuestion.multiSelect && (
-            <Text style={styles.multiSelectHint}>Select all that apply</Text>
-          )}
+        {/* Frosted Glass Question Pane */}
+        <View style={styles.questionPaneContainer}>
+          <View style={styles.questionContainer}>
+            <Text style={styles.questionText}>{currentQuestion.question}</Text>
+            {currentQuestion.multiSelect && (
+              <Text style={styles.multiSelectHint}>Select all that apply</Text>
+            )}
+          </View>
         </View>
 
         <View style={styles.bubblesGrid}>
