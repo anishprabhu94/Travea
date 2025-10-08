@@ -73,17 +73,17 @@ export default function Onboarding() {
   const handleSelectAnswer = (option: string) => {
     const currentAnswers = answers[currentQuestion.id] || [];
     
-    // Scale animation: 0.98 -> 1.0
+    // Scale animation: 0.98 -> 1.0 with 120ms duration
     const scaleAnim = getScaleAnim(option);
     Animated.sequence([
       Animated.timing(scaleAnim, {
         toValue: 0.98,
-        duration: 75,
+        duration: 60,
         useNativeDriver: true,
       }),
       Animated.timing(scaleAnim, {
         toValue: 1.0,
-        duration: 150,
+        duration: 120,
         useNativeDriver: true,
       }),
     ]).start();
