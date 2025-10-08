@@ -431,7 +431,7 @@ const styles = StyleSheet.create({
   },
   primaryButton: {
     backgroundColor: '#C9A96D',
-    height: 52,
+    height: 44, // Reduced height for classier appearance
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
