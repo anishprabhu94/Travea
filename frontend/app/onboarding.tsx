@@ -518,7 +518,8 @@ const styles = StyleSheet.create({
   nextButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    letterSpacing: 1.5,
+    letterSpacing: 1.2,
+    zIndex: 1,
   },
   nextButtonTextDisabled: {
     color: 'rgba(255, 255, 255, 0.65)',
