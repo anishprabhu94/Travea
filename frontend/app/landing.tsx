@@ -607,7 +607,7 @@ const styles = StyleSheet.create({
     marginRight: 16,
   },
   destinationCard: {
-    height: height * 0.68, // 68% of viewport height
+    height: height * 0.55, // Reduced from 68% to 55%
     borderRadius: 26,
     overflow: 'hidden',
     position: 'relative',
