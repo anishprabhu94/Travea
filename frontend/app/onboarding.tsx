@@ -200,7 +200,7 @@ export default function Onboarding() {
                       </View>
                     </BlurView>
                   ) : (
-                    <BlurView intensity={25} tint="light" style={styles.bubble}>
+                    <BlurView intensity={30} tint="light" style={styles.bubble}>
                       <View style={styles.bubbleInner}>
                         <Text style={styles.bubbleText}>{option}</Text>
                       </View>
@@ -220,7 +220,7 @@ export default function Onboarding() {
           disabled={!canProceed()}
           activeOpacity={0.8}
         >
-          <BlurView intensity={25} tint="light" style={styles.nextButton}>
+          <BlurView intensity={30} tint="light" style={styles.nextButton}>
             <View style={styles.nextButtonInner}>
               <Text style={styles.nextButtonText}>
                 {currentStep === questions.length - 1 ? 'COMPLETE' : 'NEXT'}
