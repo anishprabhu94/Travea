@@ -283,10 +283,11 @@ export default function Landing() {
         {/* Category Chips */}
         <View style={styles.categoryChips}>
           <TouchableOpacity
-            style={[styles.chip, activeMode === 'inspire' && styles.chipActive]}
+            style={styles.chip}
             onPress={() => handleModeSwitch('inspire')}
             activeOpacity={0.8}
           >
+            {activeMode === 'inspire' && <View style={styles.chipGlow} />}
             <BlurView intensity={20} tint="light" style={styles.chipBlur}>
               <View style={styles.chipContent}>
                 <Ionicons name="leaf-outline" size={16} color="rgba(255,255,255,0.9)" />
@@ -295,14 +296,14 @@ export default function Landing() {
                 </Text>
               </View>
             </BlurView>
-            {activeMode === 'inspire' && <View style={styles.chipGlow} />}
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.chip, activeMode === 'weekend' && styles.chipActive]}
+            style={styles.chip}
             onPress={() => handleModeSwitch('weekend')}
             activeOpacity={0.8}
           >
+            {activeMode === 'weekend' && <View style={styles.chipGlow} />}
             <BlurView intensity={20} tint="light" style={styles.chipBlur}>
               <View style={styles.chipContent}>
                 <Ionicons name="airplane-outline" size={16} color="rgba(255,255,255,0.9)" />
@@ -311,14 +312,14 @@ export default function Landing() {
                 </Text>
               </View>
             </BlurView>
-            {activeMode === 'weekend' && <View style={styles.chipGlow} />}
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.chip, activeMode === 'search' && styles.chipActive]}
+            style={styles.chip}
             onPress={() => handleModeSwitch('search')}
             activeOpacity={0.8}
           >
+            {activeMode === 'search' && <View style={styles.chipGlow} />}
             <BlurView intensity={20} tint="light" style={styles.chipBlur}>
               <View style={styles.chipContent}>
                 <Ionicons name="search-outline" size={16} color="rgba(255,255,255,0.9)" />
@@ -327,7 +328,6 @@ export default function Landing() {
                 </Text>
               </View>
             </BlurView>
-            {activeMode === 'search' && <View style={styles.chipGlow} />}
           </TouchableOpacity>
         </View>
 
