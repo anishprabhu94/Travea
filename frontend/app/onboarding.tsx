@@ -490,21 +490,27 @@ const styles = StyleSheet.create({
     backgroundColor: '#C9A96D',
   },
   nextButtonInner: {
-    paddingVertical: 16,
+    paddingVertical: 18,
+    paddingHorizontal: 24,
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
+    position: 'relative',
   },
   nextButtonInnerDisabled: {
     backgroundColor: 'rgba(201, 169, 109, 0.20)',
     ...Platform.select({
       web: {
-        background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.00) 42%)',
+        background: 'rgba(201, 169, 109, 0.20)',
       },
     }),
   },
   nextButtonInnerEnabled: {
-    backgroundColor: '#C9A96D',
+    backgroundColor: 'rgba(201, 169, 109, 0.35)',
+    ...Platform.select({
+      web: {
+        background: 'rgba(201, 169, 109, 0.35)',
+      },
+    }),
   },
   nextButtonText: {
     fontSize: 16,
