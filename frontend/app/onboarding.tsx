@@ -333,10 +333,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   onboardContent: {
-    paddingTop: 8,
+    paddingTop: 0,
     paddingHorizontal: 24,
     paddingBottom: 12,
-    marginTop: -60,
+    marginTop: -120,
   },
   questionPaneContainer: {
     backgroundColor: 'rgba(25, 25, 25, 0.38)',
