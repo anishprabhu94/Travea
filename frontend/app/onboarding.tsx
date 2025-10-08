@@ -341,7 +341,7 @@ const styles = StyleSheet.create({
   },
   content: {
     position: 'absolute',
-    top: 120, // Moved down for better spacing distribution
+    top: 140, // Moved down a bit more as requested
     left: 24, // Left margin 24px
     right: 24, // Right margin 24px
     paddingTop: 24, // Increased for world-class spacing
