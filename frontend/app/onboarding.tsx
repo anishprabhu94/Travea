@@ -39,7 +39,7 @@ const questions: Question[] = [
   },
   {
     id: 3,
-    question: 'What experiences excite you most?',
+    question: 'What excites you most?',
     options: ['Beaches', 'Food & Wine', 'Art & Culture', 'Outdoor Adventures', 'Nightlife', 'History'],
     multiSelect: true,
   },
