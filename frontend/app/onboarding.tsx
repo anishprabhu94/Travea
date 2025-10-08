@@ -414,9 +414,6 @@ const styles = StyleSheet.create({
     width: '100%',
     position: 'relative',
   },
-  nextButtonDisabled: {
-    opacity: 0.4,
-  },
   nextButton: {
     borderRadius: 16,
     overflow: 'hidden',
