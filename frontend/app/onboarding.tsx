@@ -357,13 +357,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   questionText: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '600',
     color: 'rgba(255, 255, 255, 0.92)',
-    lineHeight: 26,
-    letterSpacing: 0.3,
+    lineHeight: 22,
+    letterSpacing: 0.2,
     textAlign: 'left',
-    maxWidth: '85%',
+    maxWidth: '90%',
+    numberOfLines: 1,
     fontFamily: Platform.select({
       ios: 'NeueHaasDisplayMedium',
       android: 'NeueHaasDisplayMedium', 
