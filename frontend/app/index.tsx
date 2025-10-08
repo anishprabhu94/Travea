@@ -379,7 +379,7 @@ const styles = StyleSheet.create({
   inputCapsuleInner: {
     backgroundColor: 'rgba(255, 255, 255, 0.08)',
     paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingVertical: 8,
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(255, 255, 255, 0.25)',
   },
