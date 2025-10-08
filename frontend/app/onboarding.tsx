@@ -458,10 +458,15 @@ const styles = StyleSheet.create({
     }),
   },
   bubbleText: {
-    fontSize: 15,
+    fontSize: 15, // Kept smaller than question font (18px) for classy appearance
     color: '#F2F2F2',
     fontWeight: '500',
     textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'NeueHaasDisplayMedium',
+      android: 'NeueHaasDisplayMedium', 
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
   },
   selectedBubble: {
     borderRadius: 20,
