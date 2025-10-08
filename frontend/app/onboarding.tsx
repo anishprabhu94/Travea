@@ -333,14 +333,15 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   questionPaneContainer: {
-    backgroundColor: 'rgba(25, 25, 25, 0.35)',
+    backgroundColor: 'rgba(25, 25, 25, 0.4)',
     borderRadius: 20,
-    padding: 24,
-    marginBottom: 24,
+    paddingVertical: 14,
+    paddingHorizontal: 24,
+    marginBottom: 32,
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(30px)',
-        WebkitBackdropFilter: 'blur(30px)',
+        backdropFilter: 'blur(25px)',
+        WebkitBackdropFilter: 'blur(25px)',
       },
     }),
   },
