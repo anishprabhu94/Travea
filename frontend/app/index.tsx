@@ -153,7 +153,7 @@ export default function Index() {
                     <Text style={styles.inputLabel}>Email</Text>
                     <TextInput
                       style={styles.input}
-                      placeholder="Enter your email"
+                      placeholder=""
                       placeholderTextColor="rgba(191, 191, 191, 0.9)"
                       value={email}
                       onChangeText={setEmail}
@@ -172,7 +172,7 @@ export default function Index() {
                     <Text style={styles.inputLabel}>Password</Text>
                     <TextInput
                       style={styles.input}
-                      placeholder="Enter your password"
+                      placeholder=""
                       placeholderTextColor="rgba(191, 191, 191, 0.9)"
                       value={password}
                       onChangeText={setPassword}
