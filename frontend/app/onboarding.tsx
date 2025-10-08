@@ -357,10 +357,7 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  questionContainer: {
-    flex: 1,
-    justifyContent: 'center',
-  },
+  // questionContainer removed - no longer needed
   questionText: {
     fontSize: 19,
     fontWeight: '600',
