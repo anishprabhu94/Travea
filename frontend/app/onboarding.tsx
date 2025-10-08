@@ -27,29 +27,27 @@ interface Question {
 const questions: Question[] = [
   {
     id: 1,
-    question: 'What type of traveler best describes you?',
-    options: ['Adventurer', 'City Explorer', 'Wellness Seeker', 'Cultural Nomad', 'Lux Traveler'],
+    question: 'What kind of traveler are you?',
+    options: ['Adventurer', 'Cultural Nomad', 'Wellness Seeker', 'City Explorer'],
+    multiSelect: true,
   },
   {
     id: 2,
-    question: 'What kind of stays do you enjoy most?',
-    options: ['Boutique Hotels', 'Luxury Resorts', 'Cozy Airbnbs', 'Budget-Friendly'],
+    question: 'What stays do you enjoy most?',
+    options: ['Boutique Hotels', 'Luxury Resorts', 'Local Stays', 'Unique Properties'],
+    multiSelect: true,
   },
   {
     id: 3,
-    question: 'What kind of experiences excite you?',
-    options: ['Beaches', 'Nature Bath', 'Food & Wine', 'Art & Culture', 'Nightlife', 'Shopping'],
+    question: 'What experiences excite you most?',
+    options: ['Beaches', 'Food & Wine', 'Art & Culture', 'Outdoor Adventures', 'Nightlife', 'History'],
     multiSelect: true,
   },
   {
     id: 4,
-    question: 'How do you usually like to explore?',
-    options: ['Solo', 'With Friends', 'With Family', 'Guided Experiences', 'Spontaneous'],
-  },
-  {
-    id: 5,
-    question: "What's your ideal trip length?",
-    options: ['Weekend Getaway', '1 Week', '2 Weeks', 'Long Stay', 'No Fixed Plan'],
+    question: 'How do you like to explore?',
+    options: ['Guided Tours', 'Solo Discovery', 'Local Connections', 'Off the Beaten Path'],
+    multiSelect: true,
   },
 ];
 
