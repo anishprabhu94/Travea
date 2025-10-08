@@ -339,7 +339,7 @@ const styles = StyleSheet.create({
     paddingTop: 14, // 14px progress→pane
     paddingBottom: 0,
   },
-  questionPaneContainer: {
+  questionPane: {
     backgroundColor: 'rgba(25, 25, 25, 0.38)',
     borderRadius: 20,
     paddingVertical: 14,
