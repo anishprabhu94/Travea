@@ -14,6 +14,7 @@ import { BlurView } from 'expo-blur';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
+import TraveaWordmark from '../components/TraveaWordmark';
 
 const { width, height } = Dimensions.get('window');
 
