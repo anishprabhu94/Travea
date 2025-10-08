@@ -465,6 +465,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderWidth: 1,
     height: 56,
+    borderColor: 'rgba(201, 169, 109, 0.4)',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
@@ -477,8 +478,8 @@ const styles = StyleSheet.create({
       },
       web: {
         boxShadow: '0 10px 28px -6px rgba(0, 0, 0, 0.35)',
-        backdropFilter: 'blur(30px) saturate(130%)',
-        WebkitBackdropFilter: 'blur(30px) saturate(130%)',
+        backdropFilter: 'blur(25px)',
+        WebkitBackdropFilter: 'blur(25px)',
       },
     }),
   },
