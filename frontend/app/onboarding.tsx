@@ -180,27 +180,34 @@ export default function Onboarding() {
         <View style={styles.bubblesGrid}>
           {currentQuestion.options.map((option, index) => {
             const selected = isSelected(option);
+            const scaleAnim = getScaleAnim(option);
             return (
-              <TouchableOpacity
+              <Animated.View
                 key={index}
-                activeOpacity={0.7}
-                onPress={() => handleSelectAnswer(option)}
-                style={styles.bubbleWrapper}
+                style={[
+                  styles.bubbleWrapper,
+                  { transform: [{ scale: scaleAnim }] }
+                ]}
               >
-                {selected ? (
-                  <BlurView intensity={25} tint="light" style={styles.selectedBubble}>
-                    <View style={styles.selectedBubbleInner}>
-                      <Text style={styles.bubbleTextSelected}>{option}</Text>
-                    </View>
-                  </BlurView>
-                ) : (
-                  <BlurView intensity={25} tint="light" style={styles.bubble}>
-                    <View style={styles.bubbleInner}>
-                      <Text style={styles.bubbleText}>{option}</Text>
-                    </View>
-                  </BlurView>
-                )}
-              </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={() => handleSelectAnswer(option)}
+                >
+                  {selected ? (
+                    <BlurView intensity={25} tint="light" style={styles.selectedBubble}>
+                      <View style={styles.selectedBubbleInner}>
+                        <Text style={styles.bubbleTextSelected}>{option}</Text>
+                      </View>
+                    </BlurView>
+                  ) : (
+                    <BlurView intensity={25} tint="light" style={styles.bubble}>
+                      <View style={styles.bubbleInner}>
+                        <Text style={styles.bubbleText}>{option}</Text>
+                      </View>
+                    </BlurView>
+                  )}
+                </TouchableOpacity>
+              </Animated.View>
             );
           })}
         </View>
