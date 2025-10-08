@@ -45,7 +45,7 @@ export default function Index() {
     router.push('/home');
   };
 
-  // Set body style for web to remove margins
+  // Set body style for web to remove margins and input outlines
   React.useEffect(() => {
     if (Platform.OS === 'web') {
       const style = document.createElement('style');
@@ -56,6 +56,25 @@ export default function Index() {
           width: 100% !important;
           height: 100% !important;
           overflow: hidden !important;
+        }
+        
+        input, textarea {
+          outline: none !important;
+          border-radius: 10px !important;
+          -webkit-appearance: none !important;
+          appearance: none !important;
+        }
+        
+        input:focus, textarea:focus {
+          outline: none !important;
+          box-shadow: none !important;
+          border-color: rgba(255, 255, 255, 0.15) !important;
+        }
+        
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none !important;
+          margin: 0 !important;
         }
       `;
       document.head.appendChild(style);
