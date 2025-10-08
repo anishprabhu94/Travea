@@ -341,11 +341,13 @@ const styles = StyleSheet.create({
   questionPane: {
     backgroundColor: 'rgba(25, 25, 25, 0.38)',
     borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.08)',
     paddingVertical: 14,
     paddingHorizontal: 16,
     marginBottom: 12, // 12px pane→grid
-    minHeight: 52,
-    maxHeight: 80,
+    minHeight: 55,
+    maxHeight: 85,
     justifyContent: 'center',
     alignSelf: 'center',
     width: '100%',
