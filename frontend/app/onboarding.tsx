@@ -405,15 +405,36 @@ const styles = StyleSheet.create({
     opacity: 0.4,
   },
   nextButton: {
-    borderRadius: 14,
+    borderRadius: 20,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(201, 169, 109, 0.4)',
+    borderColor: 'rgba(201, 169, 109, 0.55)',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.35,
+        shadowRadius: 14,
+      },
+      android: {
+        elevation: 10,
+      },
+      web: {
+        boxShadow: '0 10px 28px -6px rgba(0, 0, 0, 0.35)',
+        backdropFilter: 'blur(30px)',
+        WebkitBackdropFilter: 'blur(30px)',
+      },
+    }),
   },
   nextButtonInner: {
     backgroundColor: 'rgba(201, 169, 109, 0.20)',
     paddingVertical: 16,
     alignItems: 'center',
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 40%)',
+      },
+    }),
   },
   nextButtonText: {
     fontSize: 16,
