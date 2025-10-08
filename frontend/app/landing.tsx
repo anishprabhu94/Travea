@@ -321,6 +321,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: '#161616',
+    zIndex: 0,
     ...Platform.select({
       web: {
         background: 'linear-gradient(135deg, #161616 0%, #222222 100%)',
