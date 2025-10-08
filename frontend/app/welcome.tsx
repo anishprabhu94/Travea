@@ -75,7 +75,7 @@ export default function Welcome() {
           </Text>
           
           <Text style={styles.subtext}>
-            Let's learn a little about your travel style — so we can design trips that truly feel like you.
+            Let's learn a little about your travel style.
           </Text>
         </View>
 
