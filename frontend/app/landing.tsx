@@ -125,23 +125,25 @@ export default function Landing() {
       >
         {/* Gradient Overlay */}
         <View style={styles.gradientOverlay} />
-        
-        {/* Edge Vignette */}
-        <View style={styles.vignette} />
       </ImageBackground>
 
-      {/* Header */}
+      {/* Header Section */}
       <View style={styles.header}>
-        <TraveaWordmark size="medium" />
+        {/* Logo with gradient glow */}
+        <View style={styles.logoContainer}>
+          <Text style={styles.logoText}>TRĀVEA</Text>
+        </View>
+        
+        {/* Profile Icon */}
         <TouchableOpacity style={styles.profileIcon}>
           <Ionicons name="person-outline" size={24} color="#F8F8F8" />
         </TouchableOpacity>
       </View>
 
-      {/* Greeting Pane */}
+      {/* Greeting Block */}
       <Animated.View
         style={[
-          styles.greetingContainer,
+          styles.greetingBlock,
           {
             opacity: greetingAnim,
             transform: [{
@@ -153,60 +155,62 @@ export default function Landing() {
           }
         ]}
       >
-        <BlurView intensity={25} tint="light" style={styles.greetingPane}>
-          <View style={styles.greetingContent}>
-            <Text style={styles.welcomeText}>Welcome back, Traveler</Text>
-            <Text style={styles.questionText}>Where will you go next?</Text>
-          </View>
-        </BlurView>
+        <Text style={styles.greetingMain}>Good to see you, Anish.</Text>
+        <Text style={styles.greetingSub}>Let's find your next escape.</Text>
       </Animated.View>
 
-      {/* Frosted Tab Navigation */}
+      {/* Inspiration Header */}
+      <View style={styles.inspirationHeader}>
+        <Text style={styles.inspirationText}>Choose your next escape.</Text>
+      </View>
+
+      {/* Mode Chips */}
       <Animated.View
         style={[
-          styles.tabsContainer,
+          styles.modeChipsContainer,
           {
-            opacity: tabsAnim,
+            opacity: modeChipsAnim,
           }
         ]}
       >
-        <BlurView intensity={25} tint="light" style={styles.tabsPane}>
-          <View style={styles.tabsContent}>
-            {tabs.map((tab) => (
-              <TouchableOpacity
-                key={tab.id}
-                style={styles.tab}
-                onPress={() => handleTabPress(tab.id)}
-                activeOpacity={0.8}
-              >
-                <Ionicons 
-                  name={tab.icon} 
-                  size={20} 
-                  color={activeTab === tab.id ? '#F8F8F8' : 'rgba(255,255,255,0.45)'} 
-                />
-                <Text style={[
-                  styles.tabText,
-                  activeTab === tab.id ? styles.tabTextActive : styles.tabTextInactive
-                ]}>
-                  {tab.label}
-                </Text>
-                {activeTab === tab.id && (
-                  <View style={styles.activeUnderline} />
-                )}
-              </TouchableOpacity>
-            ))}
-          </View>
-        </BlurView>
+        <View style={styles.modeChipsRow}>
+          {modes.map((mode) => (
+            <TouchableOpacity
+              key={mode.id}
+              style={[
+                styles.modeChip,
+                activeMode === mode.id && styles.modeChipActive
+              ]}
+              onPress={() => handleModePress(mode.id)}
+              activeOpacity={0.8}
+            >
+              <BlurView intensity={20} tint="light" style={styles.chipBlur}>
+                <View style={styles.chipContent}>
+                  <Ionicons 
+                    name={mode.icon} 
+                    size={16} 
+                    color="#F8F8F8"
+                    style={styles.chipIcon} 
+                  />
+                  <Text style={styles.chipLabel}>{mode.label}</Text>
+                </View>
+              </BlurView>
+              {activeMode === mode.id && (
+                <View style={styles.chipActiveIndicator} />
+              )}
+            </TouchableOpacity>
+          ))}
+        </View>
       </Animated.View>
 
-      {/* Dynamic Content Pane */}
+      {/* Dynamic Hero Tile */}
       <Animated.View
         style={[
-          styles.contentContainer,
+          styles.heroContainer,
           {
-            opacity: contentAnim,
+            opacity: heroAnim,
             transform: [{
-              scale: contentAnim.interpolate({
+              scale: heroAnim.interpolate({
                 inputRange: [0, 1],
                 outputRange: [0.98, 1],
               })
@@ -215,39 +219,84 @@ export default function Landing() {
         ]}
       >
         <Animated.View style={{ opacity: contentOpacity }}>
-          <ImageBackground
-            source={{ uri: activeTabData.image }}
-            style={styles.contentTile}
-            imageStyle={{ borderRadius: 28, opacity: 0.8 }}
-            blurRadius={20}
-          >
-            {/* Overlay gradient */}
-            <View style={styles.contentGradient} />
-            
-            {/* Frosted top layer */}
-            <BlurView intensity={30} tint="light" style={styles.contentFrosted}>
-              <View style={styles.contentInner}>
-                <Ionicons 
-                  name={activeTabData.icon} 
-                  size={32} 
-                  color="#F8F8F8" 
-                  style={styles.contentIcon}
-                />
-                <Text style={styles.contentTitle}>{activeTabData.label}</Text>
-                <Text style={styles.contentTagline}>{activeTabData.tagline}</Text>
+          {activeMode === 'search' ? (
+            // Search Mode - Transform to search bar
+            <BlurView intensity={25} tint="light" style={styles.searchContainer}>
+              <View style={styles.searchContent}>
+                <Text style={styles.searchTitle}>{activeModeData.title}</Text>
+                <Text style={styles.searchSubtitle}>{activeModeData.subtitle}</Text>
                 
-                <TouchableOpacity style={styles.ctaButton} activeOpacity={0.8}>
-                  <BlurView intensity={20} tint="light" style={styles.ctaBlur}>
-                    <View style={styles.ctaInner}>
-                      <Text style={styles.ctaText}>Explore</Text>
-                    </View>
+                <View style={styles.searchBarContainer}>
+                  <BlurView intensity={25} tint="light" style={styles.searchBar}>
+                    <Ionicons name="search-outline" size={18} color="rgba(255,255,255,0.65)" style={styles.searchIcon} />
+                    <TextInput
+                      style={styles.searchInput}
+                      placeholder="Search destination..."
+                      placeholderTextColor="rgba(255,255,255,0.65)"
+                    />
                   </BlurView>
-                </TouchableOpacity>
+                </View>
               </View>
             </BlurView>
-          </ImageBackground>
+          ) : (
+            // Weekend/Inspire Mode - Regular hero tile
+            <ImageBackground
+              source={{ uri: activeModeData.image }}
+              style={styles.heroTile}
+              imageStyle={{ borderRadius: 28 }}
+              blurRadius={8}
+            >
+              {/* Overlay */}
+              <View style={styles.heroOverlay} />
+              
+              {/* Content */}
+              <BlurView intensity={18} tint="light" style={styles.heroContent}>
+                <View style={styles.heroInner}>
+                  <Text style={styles.heroTitle}>{activeModeData.title}</Text>
+                  <Text style={styles.heroSubtitle}>{activeModeData.subtitle}</Text>
+                  
+                  <View style={styles.contentList}>
+                    {activeModeData.content.map((item, index) => (
+                      <Text key={index} style={styles.contentItem}>{item}</Text>
+                    ))}
+                  </View>
+                  
+                  <TouchableOpacity style={styles.ctaButton} activeOpacity={0.8}>
+                    <BlurView intensity={18} tint="light" style={styles.ctaBlur}>
+                      <View style={styles.ctaInner}>
+                        <Text style={styles.ctaText}>{activeModeData.cta}</Text>
+                      </View>
+                    </BlurView>
+                  </TouchableOpacity>
+                </View>
+              </BlurView>
+            </ImageBackground>
+          )}
         </Animated.View>
       </Animated.View>
+
+      {/* Bottom Dock */}
+      <View style={styles.bottomDock}>
+        <BlurView intensity={25} tint="light" style={styles.dockContainer}>
+          <View style={styles.dockContent}>
+            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
+              <Ionicons name="home-outline" size={22} color="#F8F8F8" />
+              <Text style={styles.dockLabel}>Home</Text>
+              <View style={styles.dockActiveIndicator} />
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
+              <Ionicons name="map-outline" size={26} color="rgba(255,255,255,0.75)" />
+              <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
+              <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.75)" />
+              <Text style={styles.dockLabelInactive}>My Trips</Text>
+            </TouchableOpacity>
+          </View>
+        </BlurView>
+      </View>
     </View>
   )
 }
