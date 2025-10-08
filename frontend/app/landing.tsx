@@ -662,7 +662,7 @@ const styles = StyleSheet.create({
   infoPane: {
     borderRadius: 24,
     overflow: 'hidden',
-    width: '85%',
+    width: '95%', // Increased from 85% to 95%
   },
   infoPaneInner: {
     backgroundColor: 'rgba(25,25,25,0.35)',
