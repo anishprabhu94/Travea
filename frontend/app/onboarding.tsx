@@ -332,11 +332,11 @@ const styles = StyleSheet.create({
   },
   content: {
     position: 'absolute',
-    top: 84, // Header.bottom + 12px (72px header + 12px)
+    top: 120, // Moved down for better spacing distribution
     left: 24, // Left margin 24px
     right: 24, // Right margin 24px
-    paddingTop: 14, // 14px progress→pane
-    paddingBottom: 20, // 20px above safe bottom
+    paddingTop: 24, // Increased for world-class spacing
+    paddingBottom: 40, // Increased bottom padding for better distribution
   },
   questionPane: {
     backgroundColor: 'rgba(25, 25, 25, 0.38)',
