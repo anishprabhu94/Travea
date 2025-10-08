@@ -259,9 +259,9 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     paddingHorizontal: 24,
-    paddingTop: 0,
+    paddingTop: 40,
     paddingBottom: 0,
   },
   header: {
