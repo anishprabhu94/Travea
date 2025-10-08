@@ -312,17 +312,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   selectedBubble: {
-    backgroundColor: 'rgba(201, 169, 109, 0.18)',
     borderRadius: 14,
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    minHeight: 46,
-    justifyContent: 'center',
+    overflow: 'hidden',
     borderWidth: 1,
     borderColor: 'rgba(201, 169, 109, 0.45)',
+    minHeight: 46,
+    justifyContent: 'center',
     ...Platform.select({
       ios: {
-        shadowColor: '#000',
+        shadowColor: '#C9A96D',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.4,
         shadowRadius: 12,
@@ -331,9 +329,14 @@ const styles = StyleSheet.create({
         elevation: 4,
       },
       web: {
-        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.4), inset 0 0 8px rgba(255, 255, 255, 0.05)',
+        boxShadow: '0px 4px 12px rgba(201, 169, 109, 0.4)',
       },
     }),
+  },
+  selectedBubbleInner: {
+    backgroundColor: 'rgba(201, 169, 109, 0.25)',
+    paddingVertical: 10,
+    paddingHorizontal: 16,
   },
   bubbleTextSelected: {
     fontSize: 15,
