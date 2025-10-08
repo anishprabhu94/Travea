@@ -749,6 +749,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     alignItems: 'center',
+    zIndex: 100, // Ensure dock is always visible on top
   },
   dockContainer: {
     width: '92%',
