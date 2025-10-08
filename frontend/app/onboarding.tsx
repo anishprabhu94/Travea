@@ -487,23 +487,23 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   nextButton: {
-    borderRadius: 16,
+    borderRadius: 12,
     overflow: 'hidden',
     borderWidth: 1,
-    height: 56,
+    height: 44,
     borderColor: 'rgba(201, 169, 109, 0.4)',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: 0.35,
-        shadowRadius: 14,
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.30,
+        shadowRadius: 12,
       },
       android: {
-        elevation: 10,
+        elevation: 8,
       },
       web: {
-        boxShadow: '0 10px 28px -6px rgba(0, 0, 0, 0.35)',
+        boxShadow: '0 8px 24px -6px rgba(0, 0, 0, 0.30)',
         backdropFilter: 'blur(25px)',
         WebkitBackdropFilter: 'blur(25px)',
       },
