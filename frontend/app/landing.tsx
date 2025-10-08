@@ -8,9 +8,7 @@ import {
   Platform, 
   Animated,
   Dimensions,
-  ScrollView,
-  PanGestureHandler,
-  State
+  ScrollView
 } from 'react-native'
 import { useRouter } from 'expo-router'
 import { BlurView } from 'expo-blur'
