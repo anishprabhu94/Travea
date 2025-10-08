@@ -236,7 +236,7 @@ export default function Landing() {
   return (
     <ImageBackground
       source={{
-        uri: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/b82i7mwl_output%20%286%29.jpg'
+        uri: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/71gsrwd0_output%20%286%29.jpg'
       }}
       style={styles.container}
       imageStyle={styles.backgroundImage}
