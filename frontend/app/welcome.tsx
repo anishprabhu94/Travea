@@ -215,13 +215,13 @@ const styles = StyleSheet.create({
     }),
   },
   glassPaneInner: {
-    backgroundColor: 'rgba(255, 255, 255, 0.10)',
+    backgroundColor: 'rgba(25, 25, 25, 0.55)',
     paddingVertical: 40,
     paddingHorizontal: 32,
     alignItems: 'center',
     ...Platform.select({
       web: {
-        background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.00) 42%)',
+        background: 'rgba(25, 25, 25, 0.55)',
       },
     }),
   },
