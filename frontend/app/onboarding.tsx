@@ -290,10 +290,13 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
   },
   logoText: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: '700',
     color: '#F8F8F8',
-    letterSpacing: 2,
+    letterSpacing: 3,
+    textShadowColor: 'rgba(0, 0, 0, 0.5)',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 8,
   },
   profileIcon: {
     width: 32,
