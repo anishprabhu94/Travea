@@ -365,19 +365,19 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.12)', // Subtle border as specified
-    paddingVertical: 16, // 16px padding as requested
-    paddingHorizontal: 20, // 20px horizontal padding as requested
+    paddingVertical: 12, // Reduced padding for slimmer appearance
+    paddingHorizontal: 20, // 20px horizontal padding maintained
     marginBottom: 12, // Reduced to move upward (-20px from previous 32)
-    height: 70, // Fixed height between 60-80px range
+    height: 52, // Reduced height for slim, elegant appearance
     justifyContent: 'center',
     alignSelf: 'center',
     width: '100%',
     ...Platform.select({
       ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 6 },
-        shadowOpacity: 0.5,
-        shadowRadius: 12,
+        shadowColor: 'rgba(201, 169, 109, 0.4)',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.6,
+        shadowRadius: 16,
       },
       android: {
         elevation: 8,
@@ -385,7 +385,7 @@ const styles = StyleSheet.create({
       web: {
         backdropFilter: 'blur(30px)', // 30px backdrop blur maintained
         WebkitBackdropFilter: 'blur(30px)',
-        boxShadow: '0 6px 24px rgba(0, 0, 0, 0.5), 0 0 18px rgba(201, 169, 109, 0.15)', // Soft shadow + bronze glow as requested
+        boxShadow: '0 6px 24px rgba(0, 0, 0, 0.5), 0 0 20px rgba(201, 169, 109, 0.25), 0 0 40px rgba(201, 169, 109, 0.12)', // Enhanced bronze glow for prominence
       },
     }),
   },
