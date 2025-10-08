@@ -405,194 +405,225 @@ export default function Landing() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#161616',
+    backgroundColor: '#121212',
   },
-  background: {
+  backgroundImage: {
+    // No overlay here - applied in separate view
+  },
+  vignetteOverlay: {
     position: 'absolute',
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#FF0000', // Temporary red background to debug
-    zIndex: 0,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'transparent',
     ...Platform.select({
       web: {
-        background: 'red',
+        background: 'radial-gradient(circle, rgba(0,0,0,0) 30%, rgba(0,0,0,0.3) 100%)',
+      },
+      default: {
+        // For mobile, we'll use a subtle dark overlay
+        backgroundColor: 'rgba(0,0,0,0.1)',
       },
     }),
   },
   content: {
     flex: 1,
-    paddingTop: 50,
-    zIndex: 10,
-    elevation: 10, // Android compatibility
+    paddingTop: 20,
+    paddingHorizontal: 0,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 24,
-    marginBottom: 32,
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    marginBottom: 16,
   },
   logoContainer: {
     alignItems: 'flex-start',
   },
   logoText: {
     fontSize: 24,
-    fontWeight: '600',
+    fontWeight: '400',
     color: '#F8F8F8',
-    letterSpacing: 4.8, // Spaced letters as requested
+    letterSpacing: 4.8,
     textTransform: 'uppercase',
     fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayMedium',
-      android: 'NeueHaasDisplayMedium',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
-    // Removed complex web gradient that was causing transparency issues
+    ...Platform.select({
+      web: {
+        textShadow: '0 0 20px rgba(201,169,109,0.25)',
+      },
+    }),
   },
   profileButton: {
     width: 44,
     height: 44,
     borderRadius: 22,
-  },
-  profileBlur: {
-    flex: 1,
-    borderRadius: 22,
-    overflow: 'hidden',
-  },
-  profileInner: {
-    flex: 1,
-    backgroundColor: 'rgba(25,25,25,0.35)',
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'center',
   },
-  greetingSection: {
-    paddingHorizontal: 24,
-    marginBottom: 32,
-  },
-  greetingMain: {
-    fontSize: 16,
-    fontWeight: '400',
-    color: 'rgba(255,255,255,0.85)',
-    marginBottom: 4,
-    fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayRoman',
-      android: 'NeueHaasDisplayRoman',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  greetingSub: {
-    fontSize: 14,
-    fontWeight: '300',
-    color: 'rgba(255,255,255,0.75)',
-    fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayRoman',
-      android: 'NeueHaasDisplayRoman',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  modePillsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    paddingHorizontal: 24,
-    marginBottom: 24,
-    gap: 12,
-  },
-  modePill: {
-    width: 108, // Same size for all pills
+  profileIcon: {
+    width: 44,
     height: 44,
-    borderRadius: 20,
-    position: 'relative',
-  },
-  modePillActive: {
-    // Active styling handled by underline
-  },
-  pillBlur: {
-    flex: 1,
-    borderRadius: 20,
-    overflow: 'hidden',
-  },
-  pillContent: {
-    flex: 1,
-    backgroundColor: 'rgba(25,25,25,0.35)',
-    flexDirection: 'row',
-    alignItems: 'center',
+    borderRadius: 22,
+    backgroundColor: 'rgba(255,255,255,0.85)',
     justifyContent: 'center',
-    gap: 8,
-  },
-  pillLabel: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#F8F8F8',
-    fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayMedium',
-      android: 'NeueHaasDisplayMedium',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  pillUnderline: {
-    position: 'absolute',
-    bottom: -2,
-    left: '25%',
-    right: '25%',
-    height: 2,
-    backgroundColor: '#C9A96D',
-    borderRadius: 1,
+    alignItems: 'center',
     ...Platform.select({
       web: {
-        boxShadow: '0 0 8px rgba(201,169,109,0.5)',
+        boxShadow: '0 0 15px rgba(201,169,109,0.2)',
       },
     }),
   },
+  greetingSection: {
+    paddingHorizontal: 20,
+    marginBottom: 20,
+  },
+  greetingBlur: {
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  greetingInner: {
+    backgroundColor: 'rgba(25,25,25,0.35)',
+    padding: 18,
+  },
+  greetingMain: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#F8F8F8',
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  greetingSub: {
+    fontSize: 16,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.75)',
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  categoryChips: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    marginBottom: 16,
+    gap: 10,
+  },
+  chip: {
+    position: 'relative',
+    borderRadius: 30,
+    overflow: 'hidden',
+  },
+  chipBlur: {
+    borderRadius: 30,
+    overflow: 'hidden',
+  },
+  chipContent: {
+    backgroundColor: 'rgba(25,25,25,0.45)',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    gap: 8,
+  },
+  chipLabel: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.7)',
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  chipLabelActive: {
+    color: '#F8F8F8',
+  },
+  chipActive: {
+    // Active state handled by glow
+  },
+  chipGlow: {
+    position: 'absolute',
+    top: -12,
+    left: -12,
+    right: -12,
+    bottom: -12,
+    borderRadius: 42,
+    backgroundColor: 'rgba(201,169,109,0.35)',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 25px rgba(201,169,109,0.35)',
+      },
+    }),
+    zIndex: -1,
+  },
   taglineContainer: {
-    paddingHorizontal: 24,
-    marginBottom: 32,
+    paddingHorizontal: 20,
+    marginBottom: 24,
   },
   tagline: {
     fontSize: 16,
     fontWeight: '400',
-    color: 'rgba(255,255,255,0.75)',
-    textAlign: 'left', // Left-aligned as requested
+    color: 'rgba(255,255,255,0.7)',
+    textAlign: 'left',
     fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayRoman',
-      android: 'NeueHaasDisplayRoman',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
   carouselContainer: {
     flex: 1,
-    marginBottom: 90, // Space for bottom dock
+    marginBottom: 100, // Space for bottom dock
   },
   carousel: {
     flex: 1,
   },
   carouselContent: {
-    paddingHorizontal: 0,
+    paddingLeft: 16,
   },
   cardWrapper: {
-    width: width,
-    paddingHorizontal: 24,
+    width: width - 32,
+    marginRight: 16,
   },
   destinationCard: {
-    height: height * 0.72, // 72% of screen height as requested
-    borderRadius: 28,
+    height: height * 0.68, // 68% of viewport height
+    borderRadius: 26,
     overflow: 'hidden',
     position: 'relative',
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.45,
-        shadowRadius: 15,
-      },
-      android: {
-        elevation: 8,
-      },
-      web: {
-        boxShadow: '0 8px 30px rgba(0,0,0,0.45)',
-      },
-    }),
   },
   cardImage: {
-    borderRadius: 28,
+    borderRadius: 26,
+  },
+  gradientOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'transparent',
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 100%)',
+      },
+      default: {
+        // For mobile platforms, use a simple overlay
+        backgroundColor: 'rgba(0,0,0,0.15)',
+      },
+    }),
   },
   bookmarkButton: {
     position: 'absolute',
@@ -603,100 +634,106 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     zIndex: 10,
   },
-  bookmarkBlur: {
-    flex: 1,
+  bookmarkIcon: {
+    width: 44,
+    height: 44,
     borderRadius: 22,
-    overflow: 'hidden',
-  },
-  bookmarkInner: {
-    flex: 1,
-    backgroundColor: 'rgba(25,25,25,0.3)',
+    backgroundColor: 'rgba(25,25,25,0.4)',
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'center',
   },
-  contentBlockContainer: {
+  infoPaneContainer: {
     position: 'absolute',
-    left: 24,
-    top: '25%', // Positioned in the middle-left area
-    width: '40%', // 40% width as requested
-    height: '50%', // 50% height as requested
-    justifyContent: 'center',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: '30%',
+    justifyContent: 'flex-end',
+    paddingHorizontal: 20,
+    paddingBottom: 20,
   },
-  contentBlock: {
-    borderRadius: 20,
+  infoPane: {
+    borderRadius: 24,
     overflow: 'hidden',
-    flex: 1,
+    width: '85%',
   },
-  contentBlockInner: {
-    flex: 1,
-    backgroundColor: 'rgba(25,25,25,0.35)', // As specified
+  infoPaneInner: {
+    backgroundColor: 'rgba(25,25,25,0.35)',
     padding: 20,
-    justifyContent: 'center',
   },
   cityName: {
-    fontSize: 24,
-    fontWeight: '600', // Semi-bold as requested
+    fontSize: 22,
+    fontWeight: '600',
     color: '#F8F8F8',
-    marginBottom: 8,
+    marginBottom: 6,
     fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayMedium',
-      android: 'NeueHaasDisplayMedium',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
   cityTagline: {
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: '400',
     color: 'rgba(255,255,255,0.85)',
-    marginBottom: 16,
-    lineHeight: 20,
+    marginBottom: 14,
+    lineHeight: 22,
     fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayRoman',
-      android: 'NeueHaasDisplayRoman',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
   transportRow: {
-    marginBottom: 16,
+    marginBottom: 14,
   },
   transportItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 6,
   },
   transportIcon: {
     marginRight: 8,
   },
   transportTime: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: 'rgba(255,255,255,0.85)',
+    fontSize: 15,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.8)',
     fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayMedium',
-      android: 'NeueHaasDisplayMedium',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  pillTagContainer: {
+  tagPill: {
     alignSelf: 'flex-start',
-  },
-  pillTag: {
-    borderRadius: 16,
-    overflow: 'hidden',
-  },
-  pillTagInner: {
-    backgroundColor: '#C9A96D', // Bronze background as requested
+    backgroundColor: 'rgba(201,169,109,0.25)',
     paddingHorizontal: 12,
     paddingVertical: 6,
+    borderRadius: 30,
   },
-  pillTagText: {
-    fontSize: 12,
+  tagPillText: {
+    fontSize: 14,
     fontWeight: '500',
-    color: '#FFFFFF',
+    color: '#F8F8F8',
     fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayMedium',
-      android: 'NeueHaasDisplayMedium',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  searchContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  searchPlaceholder: {
+    fontSize: 18,
+    color: 'rgba(255,255,255,0.6)',
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
   bottomDock: {
@@ -705,31 +742,30 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     alignItems: 'center',
-    zIndex: 2,
   },
   dockContainer: {
     width: '92%',
-    height: 62,
-    borderRadius: 26,
+    height: 60,
+    borderRadius: 28,
     overflow: 'hidden',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.5,
-        shadowRadius: 15,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 20,
       },
       android: {
-        elevation: 10,
+        elevation: 8,
       },
       web: {
-        boxShadow: '0 8px 30px rgba(0,0,0,0.5)',
+        boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
       },
     }),
   },
   dockContent: {
     flex: 1,
-    backgroundColor: 'rgba(25,25,25,0.45)',
+    backgroundColor: 'rgba(25,25,25,0.35)',
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 16,
@@ -761,36 +797,23 @@ const styles = StyleSheet.create({
     }),
   },
   dockLabel: {
-    fontSize: 11,
+    fontSize: 14,
     color: '#F8F8F8',
     marginTop: 4,
     fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayMedium',
-      android: 'NeueHaasDisplayMedium',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
   dockLabelInactive: {
-    fontSize: 11,
-    color: 'rgba(255,255,255,0.75)',
+    fontSize: 14,
+    color: 'rgba(255,255,255,0.7)',
     marginTop: 4,
     fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayMedium',
-      android: 'NeueHaasDisplayMedium',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  dockActiveIndicator: {
-    position: 'absolute',
-    bottom: 2,
-    width: 20,
-    height: 2,
-    borderRadius: 1,
-    backgroundColor: '#C9A96D', // Bronze underline as requested
-    ...Platform.select({
-      web: {
-        boxShadow: '0 0 6px rgba(201,169,109,0.4)',
-      },
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
 });
