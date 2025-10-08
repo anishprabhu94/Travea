@@ -526,4 +526,18 @@ const styles = StyleSheet.create({
   nextButtonTextEnabled: {
     color: '#FFFFFF',
   },
+  nextButtonGlow: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(201, 169, 109, 0.15)',
+    borderRadius: 16,
+    ...Platform.select({
+      web: {
+        boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(201, 169, 109, 0.2)',
+      },
+    }),
+  },
 });
