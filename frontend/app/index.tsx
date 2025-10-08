@@ -332,9 +332,9 @@ const styles = StyleSheet.create({
   },
   inputLabel: {
     fontSize: 16,
-    color: '#EAEAEA',
+    color: '#FFFFFF',
     marginBottom: 8,
-    fontWeight: '500',
+    fontWeight: '700',
   },
   input: {
     fontSize: 15,
