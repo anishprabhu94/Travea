@@ -377,8 +377,8 @@ const styles = StyleSheet.create({
   bubbleGridBackplate: {
     backgroundColor: 'rgba(0, 0, 0, 0.18)',
     borderRadius: 20,
-    padding: 16,
-    marginBottom: 24,
+    padding: 12,
+    marginBottom: 20,
     ...Platform.select({
       web: {
         backdropFilter: 'blur(20px)',
@@ -389,7 +389,7 @@ const styles = StyleSheet.create({
   bubblesGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 16,
+    gap: 12,
   },
   bubbleWrapper: {
     minWidth: 156,
