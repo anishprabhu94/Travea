@@ -215,14 +215,27 @@ export default function Onboarding() {
 
       <View style={styles.bottomContainer}>
         <TouchableOpacity
-          style={[styles.nextButtonWrapper, !canProceed() && styles.nextButtonDisabled]}
+          style={[styles.nextButtonWrapper]}
           onPress={handleNext}
           disabled={!canProceed()}
           activeOpacity={0.8}
         >
-          <BlurView intensity={30} tint="light" style={styles.nextButton}>
-            <View style={styles.nextButtonInner}>
-              <Text style={styles.nextButtonText}>
+          <BlurView 
+            intensity={30} 
+            tint="light" 
+            style={[
+              styles.nextButton,
+              !canProceed() ? styles.nextButtonDisabled : styles.nextButtonEnabled
+            ]}
+          >
+            <View style={[
+              styles.nextButtonInner,
+              !canProceed() ? styles.nextButtonInnerDisabled : styles.nextButtonInnerEnabled
+            ]}>
+              <Text style={[
+                styles.nextButtonText,
+                !canProceed() ? styles.nextButtonTextDisabled : styles.nextButtonTextEnabled
+              ]}>
                 {currentStep === questions.length - 1 ? 'COMPLETE' : 'NEXT'}
               </Text>
             </View>
