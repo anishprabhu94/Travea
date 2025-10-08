@@ -541,6 +541,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     letterSpacing: 1.2,
+    textAlign: 'center',
     zIndex: 1,
   },
   nextButtonTextDisabled: {
