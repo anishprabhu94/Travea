@@ -345,7 +345,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255, 255, 255, 0.08)',
     paddingVertical: 14,
     paddingHorizontal: 16,
-    marginBottom: 12, // 12px pane→grid
+    marginBottom: 32, // Increased for world-class spacing
     minHeight: 55,
     maxHeight: 85,
     justifyContent: 'center',
