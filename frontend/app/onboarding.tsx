@@ -380,12 +380,12 @@ const styles = StyleSheet.create({
     }),
   },
   bubbleInner: {
-    backgroundColor: 'rgba(255, 255, 255, 0.10)',
+    backgroundColor: 'rgba(40, 40, 40, 0.45)',
     paddingVertical: 14,
     paddingHorizontal: 16,
     ...Platform.select({
       web: {
-        background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.00) 42%)',
+        background: 'rgba(40, 40, 40, 0.45)',
       },
     }),
   },
