@@ -234,36 +234,37 @@ export default function Onboarding() {
         </BlurView>
 
         <View style={styles.bottomContainer}>
-        <TouchableOpacity
-          style={[styles.nextButtonWrapper]}
-          onPress={handleNext}
-          disabled={!canProceed()}
-          activeOpacity={0.8}
-        >
-          <BlurView 
-            intensity={30} 
-            tint="light" 
-            style={[
-              styles.nextButton,
-              !canProceed() ? styles.nextButtonDisabled : styles.nextButtonEnabled
-            ]}
+          <TouchableOpacity
+            style={[styles.nextButtonWrapper]}
+            onPress={handleNext}
+            disabled={!canProceed()}
+            activeOpacity={0.8}
           >
-            <View style={[
-              styles.nextButtonInner,
-              !canProceed() ? styles.nextButtonInnerDisabled : styles.nextButtonInnerEnabled
-            ]}>
-              {/* Inner Bronze Glow */}
-              {canProceed() && <View style={styles.nextButtonGlow} />}
-              <Text style={[
-                styles.nextButtonText,
-                !canProceed() ? styles.nextButtonTextDisabled : styles.nextButtonTextEnabled
+            <BlurView 
+              intensity={25} 
+              tint="light" 
+              style={[
+                styles.nextButton,
+                !canProceed() ? styles.nextButtonDisabled : styles.nextButtonEnabled
+              ]}
+            >
+              <View style={[
+                styles.nextButtonInner,
+                !canProceed() ? styles.nextButtonInnerDisabled : styles.nextButtonInnerEnabled
               ]}>
-                {currentStep === questions.length - 1 ? 'COMPLETE' : 'NEXT'}
-              </Text>
-            </View>
-          </BlurView>
-        </TouchableOpacity>
-      </View>
+                {/* Inner Bronze Glow */}
+                {canProceed() && <View style={styles.nextButtonGlow} />}
+                <Text style={[
+                  styles.nextButtonText,
+                  !canProceed() ? styles.nextButtonTextDisabled : styles.nextButtonTextEnabled
+                ]}>
+                  {currentStep === questions.length - 1 ? 'COMPLETE' : 'NEXT'}
+                </Text>
+              </View>
+            </BlurView>
+          </TouchableOpacity>
+        </View>
+      </Animated.View>
     </View>
   );
 }
