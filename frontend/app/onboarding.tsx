@@ -304,14 +304,15 @@ const styles = StyleSheet.create({
     right: 0,
     height: 72,
     zIndex: 10,
+    paddingTop: 50,
+    paddingHorizontal: 24,
+    paddingBottom: 8,
   },
   headerContent: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 24,
-    paddingTop: 50,
-    paddingBottom: 12,
+    marginBottom: 8,
   },
   logoText: {
     fontSize: 28,
