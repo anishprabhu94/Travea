@@ -330,7 +330,7 @@ const styles = StyleSheet.create({
   progressGradient: {
     flex: 1,
   },
-  contentLayer: {
+  content: {
     position: 'absolute',
     top: 84, // Pinned to header bottom + 12px (72px header + 12px gap)
     left: 0,
