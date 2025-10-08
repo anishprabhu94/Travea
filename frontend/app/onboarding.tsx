@@ -189,7 +189,13 @@ export default function Onboarding() {
         {/* Frosted Glass Question Pane */}
         <View style={styles.questionPaneContainer}>
           <View style={styles.questionContainer}>
-            <Text style={styles.questionText}>{currentQuestion.question}</Text>
+            <Text 
+              style={styles.questionText} 
+              numberOfLines={1} 
+              ellipsizeMode="tail"
+            >
+              {currentQuestion.question}
+            </Text>
           </View>
         </View>
 
