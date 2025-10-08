@@ -420,12 +420,12 @@ const styles = StyleSheet.create({
     }),
   },
   selectedBubbleInner: {
-    backgroundColor: 'rgba(201, 169, 109, 0.22)',
+    backgroundColor: 'rgba(201, 169, 109, 0.45)',
     paddingVertical: 14,
     paddingHorizontal: 16,
     ...Platform.select({
       web: {
-        background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.00) 42%)',
+        background: 'rgba(201, 169, 109, 0.45)',
       },
     }),
   },
