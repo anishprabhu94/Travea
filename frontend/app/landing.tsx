@@ -187,7 +187,7 @@ export default function Landing() {
       {/* Background */}
       <View style={styles.background} />
 
-      <View style={styles.content}>
+      <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
         {/* Header */}
         <View style={styles.header}>
           {/* TRĀVEA Logo */}
