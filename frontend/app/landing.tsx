@@ -280,7 +280,7 @@ export default function Landing() {
             </ScrollView>
           </Animated.View>
         </View>
-      </Animated.View>
+      </View>
 
       {/* Bottom Dock */}
       <View style={styles.bottomDock}>
