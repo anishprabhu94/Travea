@@ -91,6 +91,15 @@ export default function Home() {
           </Text>
         </View>
 
+        {/* Onboarding Button */}
+        <TouchableOpacity
+          style={styles.onboardingButton}
+          onPress={() => router.push('/onboarding')}
+        >
+          <Ionicons name="star-outline" size={20} color="#C9A96D" />
+          <Text style={styles.onboardingText}>Customize Your Preferences</Text>
+        </TouchableOpacity>
+
         {/* Back to Login */}
         <TouchableOpacity
           style={styles.backButton}
