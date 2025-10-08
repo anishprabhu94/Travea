@@ -267,10 +267,19 @@ export default function Onboarding() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0C0C0C',
+    backgroundColor: '#000000',
   },
-  background: {
+  backgroundImage: {
+    flex: 1,
+    width: width,
+    height: height,
+  },
+  darkOverlay: {
     ...StyleSheet.absoluteFillObject,
+  },
+  bronzeOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(201, 169, 109, 0.08)',
   },
   topBar: {
     flexDirection: 'row',
