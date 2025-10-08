@@ -130,6 +130,20 @@ test_plan:
   test_all: false
   test_priority: "sequential"
 
+  - task: "Unify material design between login pane and onboarding bubbles"
+    implemented: true
+    working: true
+    file: "/app/frontend/app/onboarding.tsx, /app/frontend/app/index.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Successfully implemented unified frosted-glass material design. Both login pane and answer bubbles now use identical specifications: Tint rgba(255,255,255,0.08), Backdrop-blur 30px, Stroke rgba(255,255,255,0.22), 20px corner radius, shadow 0 10px 28px -6px rgba(0,0,0,0.35). 2-column grid layout with 16px gaps, 48px height, 156px min-width. Selection states working with bronze overlay and outer glow. Text color #F2F2F2 for consistency."
+
 agent_communication:
     - agent: "main"
       message: "Completed input field height reduction task. Reduced padding and margins to make the input panes more compact. Screenshots confirm the changes are working correctly in both Sign In and Sign Up modes."
+    - agent: "main"
+      message: "Successfully unified material design between login pane and onboarding bubbles. Both now use identical frosted-glass specifications with proper selection states and 2-column grid layout. Screenshots verified all states are working correctly including default, selected, and bronze accent styling."
