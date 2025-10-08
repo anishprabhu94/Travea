@@ -308,8 +308,8 @@ const styles = StyleSheet.create({
   },
   toggleText: {
     fontSize: 16,
-    color: '#FFFFFF',
-    fontWeight: '700',
+    color: 'rgba(255, 255, 255, 0.5)',
+    fontWeight: '600',
     letterSpacing: 0.5,
   },
   toggleTextActive: {
