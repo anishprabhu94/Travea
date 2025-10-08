@@ -38,19 +38,19 @@ const questions: Question[] = [
     multiSelect: true,
   },
   {
-    id: 2,
+    id: 3,
     question: 'What stays do you enjoy most?',
     options: ['Boutique Hotels', 'Luxury Resorts', 'Local Stays', 'Unique Properties'],
     multiSelect: true,
   },
   {
-    id: 3,
+    id: 4,
     question: 'What excites you most?',
     options: ['Beaches', 'Food & Wine', 'Art & Culture', 'Outdoor Adventures', 'Nightlife', 'History'],
     multiSelect: true,
   },
   {
-    id: 4,
+    id: 5,
     question: 'How do you like to explore?',
     options: ['Guided Tours', 'Solo Discovery', 'Local Connections', 'Hidden Gems'],
     multiSelect: true,
