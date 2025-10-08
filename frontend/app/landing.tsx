@@ -36,7 +36,7 @@ const destinationCards: DestinationCard[] = [
     id: 'amalfi',
     city: 'Amalfi',
     tagline: 'Coastal drives & lemon air',
-    image: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/a19gqvww_amalfi.jpg',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
     transport: [
       { icon: 'car-outline', time: '2h 45m' },
       { icon: 'airplane-outline', time: '1h 20m' }
@@ -47,7 +47,7 @@ const destinationCards: DestinationCard[] = [
     id: 'kyoto',
     city: 'Kyoto',
     tagline: 'Temples, lanterns, and still mornings',
-    image: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/b82i7mwl_output%20%286%29.jpg',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
     transport: [
       { icon: 'airplane-outline', time: '11h 30m' },
       { icon: 'train-outline', time: '3h 15m' }
@@ -58,7 +58,7 @@ const destinationCards: DestinationCard[] = [
     id: 'iceland',
     city: 'Iceland',
     tagline: 'Where glaciers meet the sea',
-    image: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/b82i7mwl_output%20%286%29.jpg',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/71gsrwd0_output%20%286%29.jpg',
     transport: [
       { icon: 'airplane-outline', time: '6h 45m' }
     ],
@@ -69,7 +69,7 @@ const destinationCards: DestinationCard[] = [
     id: 'sonoma',
     city: 'Sonoma',
     tagline: 'Wine alleys & golden light',
-    image: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/7u6bkc1o_Sonoma.jpg',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/cjd9m4ea_Sonoma.jpg',
     transport: [
       { icon: 'car-outline', time: '1h 30m' },
       { icon: 'train-outline', time: '2h 10m' }
@@ -80,7 +80,7 @@ const destinationCards: DestinationCard[] = [
     id: 'carmel',
     city: 'Carmel-by-the-Sea',
     tagline: 'Cliffside cafés & slow tides',
-    image: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/5qzi78v5_carmel.jpg',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/wokepbpr_carmel.jpg',
     transport: [
       { icon: 'car-outline', time: '2h 15m' },
       { icon: 'train-outline', time: '2h 45m' }
@@ -91,7 +91,7 @@ const destinationCards: DestinationCard[] = [
     id: 'bigsur',
     city: 'Big Sur',
     tagline: 'Misty cliffs & endless roads',
-    image: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/epcqb5m2_big%20sur.jpg',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/pk6sky07_big%20sur.jpg',
     transport: [
       { icon: 'car-outline', time: '3h 05m' },
       { icon: 'airplane-outline', time: '1h 15m' }
