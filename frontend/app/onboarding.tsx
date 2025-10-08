@@ -328,18 +328,21 @@ const styles = StyleSheet.create({
   progressGradient: {
     flex: 1,
   },
-  content: {
-    flex: 1,
-    paddingTop: 60,
+  onboardContent: {
+    paddingTop: 24,
     paddingHorizontal: 24,
-    paddingBottom: 40,
+    paddingBottom: 24,
   },
   questionPaneContainer: {
-    backgroundColor: 'rgba(25, 25, 25, 0.4)',
+    backgroundColor: 'rgba(25, 25, 25, 0.40)',
     borderRadius: 20,
-    paddingVertical: 14,
-    paddingHorizontal: 24,
-    marginBottom: 32,
+    padding: 20,
+    marginBottom: 16,
+    minHeight: 72,
+    maxHeight: 120,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    width: '100%',
     ...Platform.select({
       web: {
         backdropFilter: 'blur(25px)',
@@ -348,7 +351,8 @@ const styles = StyleSheet.create({
     }),
   },
   questionContainer: {
-    marginBottom: 20,
+    flex: 1,
+    justifyContent: 'center',
   },
   questionText: {
     fontSize: 22,
@@ -356,7 +360,7 @@ const styles = StyleSheet.create({
     color: 'rgba(255, 255, 255, 0.9)',
     lineHeight: 32,
     letterSpacing: 0.3,
-    textAlign: 'center',
+    textAlign: 'left',
   },
   multiSelectHint: {
     fontSize: 14,
