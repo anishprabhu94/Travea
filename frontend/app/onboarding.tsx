@@ -57,9 +57,18 @@ export default function Onboarding() {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<{ [key: number]: string[] }>({});
   const [fadeAnim] = useState(new Animated.Value(1));
+  const [scaleAnims, setScaleAnims] = useState<{ [key: string]: Animated.Value }>({});
 
   const currentQuestion = questions[currentStep];
   const progress = ((currentStep + 1) / questions.length) * 100;
+
+  // Get or create scale animation for a bubble
+  const getScaleAnim = (option: string) => {
+    if (!scaleAnims[option]) {
+      setScaleAnims(prev => ({ ...prev, [option]: new Animated.Value(1) }));
+    }
+    return scaleAnims[option] || new Animated.Value(1);
+  };
 
   const handleSelectAnswer = (option: string) => {
     const currentAnswers = answers[currentQuestion.id] || [];
