@@ -8,271 +8,319 @@ import {
   Platform, 
   Animated,
   Dimensions,
-  TextInput 
+  ScrollView,
+  PanGestureHandler,
+  State
 } from 'react-native'
 import { useRouter } from 'expo-router'
 import { BlurView } from 'expo-blur'
 import { Ionicons } from '@expo/vector-icons'
-import TraveaWordmark from '../components/TraveaWordmark'
 
 const { width, height } = Dimensions.get('window')
 
-interface Mode {
+interface DestinationCard {
   id: string
-  label: string
-  icon: keyof typeof Ionicons.glyphMap
+  city: string
+  tagline: string
   image: string
-  title: string
-  subtitle: string
-  content: string[]
-  cta: string
+  transport?: TransportInfo[]
+  feature: string
 }
 
-const modes: Mode[] = [
+interface TransportInfo {
+  icon: keyof typeof Ionicons.glyphMap
+  time: string
+}
+
+const weekendDestinations: DestinationCard[] = [
   {
-    id: 'weekend',
-    label: 'Weekend Trips',
-    icon: 'airplane-outline',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/nbtzgzgu_weekend%202.jpg',
-    title: 'Weekend Escapes',
-    subtitle: 'Short trips nearby for a quick reset.',
-    content: ['Sonoma – 1.5h drive', 'Big Sur – 2h drive', 'Carmel – 1h'],
-    cta: 'Explore Nearby'
+    id: 'sonoma',
+    city: 'Sonoma',
+    tagline: 'Wine alleys & golden light',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/cjd9m4ea_Sonoma.jpg',
+    transport: [
+      { icon: 'car-outline', time: '1h 30m' },
+      { icon: 'train-outline', time: '2h 10m' }
+    ],
+    feature: 'Condé Nast'
   },
   {
-    id: 'inspire',
-    label: 'Inspire Me',
-    icon: 'leaf-outline',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/9fi0vlp6_seasonal%203.jpg',
-    title: 'Get Inspired',
-    subtitle: 'Explore destinations worth adding to your list.',
-    content: ['Kyoto in Spring', 'Santorini Summers', 'Iceland\'s Winter Glow'],
-    cta: 'See Inspiration'
+    id: 'carmel',
+    city: 'Carmel-by-the-Sea',
+    tagline: 'Cliffside cafés & slow tides',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/wokepbpr_carmel.jpg',
+    transport: [
+      { icon: 'car-outline', time: '2h 15m' },
+      { icon: 'train-outline', time: '2h 45m' }
+    ],
+    feature: 'Condé Nast'
   },
   {
-    id: 'search',
-    label: 'Search',
-    icon: 'search-outline',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sh631agb_globe.jpg',
-    title: 'Know where you\'re going?',
-    subtitle: 'Find guides, stays, and highlights for your chosen city.',
-    content: [],
-    cta: ''
+    id: 'bigsur',
+    city: 'Big Sur',
+    tagline: 'Misty cliffs & endless roads',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/pk6sky07_big%20sur.jpg',
+    transport: [
+      { icon: 'car-outline', time: '3h 05m' },
+      { icon: 'airplane-outline', time: '1h 15m' }
+    ],
+    feature: 'Condé Nast'
+  }
+]
+
+const inspireMeDestinations: DestinationCard[] = [
+  {
+    id: 'amalfi',
+    city: 'Amalfi Coast',
+    tagline: 'Cliffside lemon groves & sea whispers',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+    feature: "Editor's Pick"
+  },
+  {
+    id: 'kyoto',
+    city: 'Kyoto',
+    tagline: 'Spring rituals & silent gardens',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+    feature: "Editor's Pick"
+  },
+  {
+    id: 'iceland',
+    city: 'Iceland',
+    tagline: 'Glaciers, mist, and endless light',
+    image: 'https://images.unsplash.com/photo-1539066688414-9a2c2112febd?w=800&q=80',
+    feature: "Editor's Pick"
   }
 ]
 
 export default function Landing() {
   const router = useRouter()
   const [activeMode, setActiveMode] = useState('weekend')
+  const [bookmarkedItems, setBookmarkedItems] = useState<string[]>([])
+  const [currentCardIndex, setCurrentCardIndex] = useState(0)
   
   // Animation refs
-  const greetingAnim = useRef(new Animated.Value(0)).current
-  const modeChipsAnim = useRef(new Animated.Value(0)).current
-  const heroAnim = useRef(new Animated.Value(0)).current
-  const contentOpacity = useRef(new Animated.Value(1)).current
+  const fadeAnim = useRef(new Animated.Value(0)).current
+  const modeTransition = useRef(new Animated.Value(1)).current
+  const dockGlowAnim = useRef(new Animated.Value(0)).current
+  const cardScrollRef = useRef<ScrollView>(null)
 
   useEffect(() => {
-    // Entrance animations
-    Animated.sequence([
-      Animated.timing(greetingAnim, {
-        toValue: 1,
-        duration: 280,
-        useNativeDriver: true,
-      }),
-      Animated.timing(modeChipsAnim, {
-        toValue: 1,
-        duration: 240,
-        useNativeDriver: true,
-      }),
-      Animated.timing(heroAnim, {
-        toValue: 1,
-        duration: 300,
-        useNativeDriver: true,
-      })
-    ]).start()
+    // Entrance animation
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 800,
+      useNativeDriver: true,
+    }).start()
   }, [])
 
-  const handleModePress = (modeId: string) => {
-    if (modeId === activeMode) return
+  const handleModeSwitch = (mode: string) => {
+    if (mode === activeMode) return
 
-    // Cross-fade animation
-    Animated.timing(contentOpacity, {
-      toValue: 0.7,
-      duration: 160,
-      useNativeDriver: true,
-    }).start(() => {
-      setActiveMode(modeId)
-      // Fade in new content with slight upward movement
-      Animated.timing(contentOpacity, {
+    Animated.sequence([
+      Animated.timing(modeTransition, {
+        toValue: 0.7,
+        duration: 160,
+        useNativeDriver: true,
+      }),
+      Animated.timing(modeTransition, {
         toValue: 1,
         duration: 200,
         useNativeDriver: true,
-      }).start()
-    })
+      })
+    ]).start()
+
+    setActiveMode(mode)
+    setCurrentCardIndex(0)
+    
+    // Scroll to first card
+    setTimeout(() => {
+      cardScrollRef.current?.scrollTo({ x: 0, animated: true })
+    }, 50)
   }
 
-  const activeModeData = modes.find(mode => mode.id === activeMode)!
+  const handleBookmark = (itemId: string) => {
+    const isBookmarked = bookmarkedItems.includes(itemId)
+    
+    if (isBookmarked) {
+      setBookmarkedItems(prev => prev.filter(id => id !== itemId))
+    } else {
+      setBookmarkedItems(prev => [...prev, itemId])
+      
+      // Animate dock glow
+      Animated.sequence([
+        Animated.timing(dockGlowAnim, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+        Animated.timing(dockGlowAnim, {
+          toValue: 0,
+          duration: 600,
+          useNativeDriver: true,
+        })
+      ]).start()
+    }
+  }
+
+  const renderDestinationCard = (destination: DestinationCard) => (
+    <View key={destination.id} style={styles.cardContainer}>
+      <ImageBackground
+        source={{ uri: destination.image }}
+        style={styles.destinationCard}
+        imageStyle={styles.cardImage}
+      >
+        {/* Overlay Gradient */}
+        <View style={styles.cardOverlay} />
+        
+        {/* Bookmark Icon */}
+        <TouchableOpacity
+          style={styles.bookmarkButton}
+          onPress={() => handleBookmark(destination.id)}
+          activeOpacity={0.8}
+        >
+          <Ionicons
+            name={bookmarkedItems.includes(destination.id) ? "bookmark" : "bookmark-outline"}
+            size={22}
+            color={bookmarkedItems.includes(destination.id) ? "#C9A96D" : "rgba(255,255,255,0.85)"}
+          />
+        </TouchableOpacity>
+
+        {/* Content */}
+        <View style={styles.cardContent}>
+          <BlurView intensity={14} tint="light" style={styles.textPanel}>
+            <View style={styles.textPanelInner}>
+              <Text style={styles.cityName}>{destination.city}</Text>
+              <Text style={styles.cityTagline}>{destination.tagline}</Text>
+            </View>
+          </BlurView>
+
+          {/* Transport Row (Weekend only) */}
+          {activeMode === 'weekend' && destination.transport && (
+            <View style={styles.transportRow}>
+              {destination.transport.map((transport, index) => (
+                <BlurView key={index} intensity={12} tint="light" style={styles.transportChip}>
+                  <View style={styles.transportChipInner}>
+                    <Ionicons name={transport.icon} size={16} color="rgba(255,255,255,0.85)" />
+                    <Text style={styles.transportTime}>{transport.time}</Text>
+                  </View>
+                </BlurView>
+              ))}
+            </View>
+          )}
+
+          {/* Feature Tag */}
+          <BlurView intensity={20} tint="light" style={styles.featureTag}>
+            <View style={styles.featureTagInner}>
+              <Text style={styles.featureText}>{destination.feature}</Text>
+            </View>
+          </BlurView>
+        </View>
+      </ImageBackground>
+    </View>
+  )
+
+  const getCurrentDestinations = () => {
+    return activeMode === 'weekend' ? weekendDestinations : inspireMeDestinations
+  }
+
+  const getCarouselTitle = () => {
+    return activeMode === 'weekend' 
+      ? 'Closer than you think — perfect weekends await.'
+      : 'Faraway places, nearer dreams.'
+  }
 
   return (
     <View style={styles.container}>
-      {/* Background Layer */}
-      <ImageBackground
-        source={{
-          uri: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/71gsrwd0_output%20%286%29.jpg',
-        }}
-        style={styles.backgroundImage}
-        resizeMode="cover"
-      >
-        {/* Gradient Overlay */}
-        <View style={styles.gradientOverlay} />
-      </ImageBackground>
+      {/* Background */}
+      <View style={styles.background} />
 
-      {/* Header Section */}
-      <View style={styles.header}>
-        {/* Logo with gradient glow */}
-        <View style={styles.logoContainer}>
-          <Text style={styles.logoText}>TRĀVEA</Text>
+      <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
+        {/* Header */}
+        <View style={styles.header}>
+          <View style={styles.logoContainer}>
+            <Text style={styles.logoText}>TRĀVEA</Text>
+          </View>
         </View>
-        
-        {/* Profile Icon */}
-        <TouchableOpacity style={styles.profileIcon}>
-          <Ionicons name="person-outline" size={24} color="#F8F8F8" />
-        </TouchableOpacity>
-      </View>
 
-      {/* Greeting Block */}
-      <Animated.View
-        style={[
-          styles.greetingBlock,
-          {
-            opacity: greetingAnim,
-            transform: [{
-              translateY: greetingAnim.interpolate({
-                inputRange: [0, 1],
-                outputRange: [10, 0],
-              })
-            }]
-          }
-        ]}
-      >
-        <Text style={styles.greetingMain}>Good to see you, Anish.</Text>
-        <Text style={styles.greetingSub}>Let's find your next escape.</Text>
-      </Animated.View>
-
-      {/* Inspiration Header */}
-      <View style={styles.inspirationHeader}>
-        <Text style={styles.inspirationText}>Choose your next escape.</Text>
-      </View>
-
-      {/* Mode Chips */}
-      <Animated.View
-        style={[
-          styles.modeChipsContainer,
-          {
-            opacity: modeChipsAnim,
-          }
-        ]}
-      >
-        <View style={styles.modeChipsRow}>
-          {modes.map((mode) => (
-            <TouchableOpacity
-              key={mode.id}
-              style={[
-                styles.modeChip,
-                activeMode === mode.id && styles.modeChipActive
-              ]}
-              onPress={() => handleModePress(mode.id)}
-              activeOpacity={0.8}
-            >
-              <BlurView intensity={20} tint="light" style={styles.chipBlur}>
-                <View style={styles.chipContent}>
-                  <Ionicons 
-                    name={mode.icon} 
-                    size={16} 
-                    color="#F8F8F8"
-                    style={styles.chipIcon} 
-                  />
-                  <Text style={styles.chipLabel}>{mode.label}</Text>
-                </View>
-              </BlurView>
-              {activeMode === mode.id && (
-                <View style={styles.chipActiveIndicator} />
-              )}
-            </TouchableOpacity>
-          ))}
+        {/* Greeting */}
+        <View style={styles.greetingSection}>
+          <Text style={styles.greetingMain}>Good to see you, Anish.</Text>
+          <Text style={styles.greetingSub}>Let's find your next escape.</Text>
         </View>
-      </Animated.View>
 
-      {/* Dynamic Hero Tile */}
-      <Animated.View
-        style={[
-          styles.heroContainer,
-          {
-            opacity: heroAnim,
-            transform: [{
-              scale: heroAnim.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0.98, 1],
-              })
-            }]
-          }
-        ]}
-      >
-        <Animated.View style={{ opacity: contentOpacity }}>
-          {activeMode === 'search' ? (
-            // Search Mode - Transform to search bar
-            <BlurView intensity={25} tint="light" style={styles.searchContainer}>
-              <View style={styles.searchContent}>
-                <Text style={styles.searchTitle}>{activeModeData.title}</Text>
-                <Text style={styles.searchSubtitle}>{activeModeData.subtitle}</Text>
-                
-                <View style={styles.searchBarContainer}>
-                  <BlurView intensity={25} tint="light" style={styles.searchBar}>
-                    <Ionicons name="search-outline" size={18} color="rgba(255,255,255,0.65)" style={styles.searchIcon} />
-                    <TextInput
-                      style={styles.searchInput}
-                      placeholder="Search destination..."
-                      placeholderTextColor="rgba(255,255,255,0.65)"
-                    />
-                  </BlurView>
-                </View>
+        {/* Mode Chips */}
+        <View style={styles.modeChipsContainer}>
+          <TouchableOpacity
+            style={[styles.modeChip, activeMode === 'weekend' && styles.modeChipActive]}
+            onPress={() => handleModeSwitch('weekend')}
+            activeOpacity={0.8}
+          >
+            <BlurView intensity={18} tint="light" style={styles.chipBlur}>
+              <View style={styles.chipContent}>
+                <Text style={styles.chipIcon}>🛫</Text>
+                <Text style={styles.chipLabel}>Weekend</Text>
               </View>
             </BlurView>
-          ) : (
-            // Weekend/Inspire Mode - Regular hero tile
-            <ImageBackground
-              source={{ uri: activeModeData.image }}
-              style={styles.heroTile}
-              imageStyle={{ borderRadius: 28 }}
-              blurRadius={8}
+            {activeMode === 'weekend' && <View style={styles.chipUnderline} />}
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.modeChip, activeMode === 'inspire' && styles.modeChipActive]}
+            onPress={() => handleModeSwitch('inspire')}
+            activeOpacity={0.8}
+          >
+            <BlurView intensity={18} tint="light" style={styles.chipBlur}>
+              <View style={styles.chipContent}>
+                <Text style={styles.chipIcon}>🌿</Text>
+                <Text style={styles.chipLabel}>Inspire Me</Text>
+              </View>
+            </BlurView>
+            {activeMode === 'inspire' && <View style={styles.chipUnderline} />}
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.modeChip, activeMode === 'search' && styles.modeChipActive]}
+            onPress={() => handleModeSwitch('search')}
+            activeOpacity={0.8}
+          >
+            <BlurView intensity={18} tint="light" style={styles.chipBlur}>
+              <View style={styles.chipContent}>
+                <Text style={styles.chipIcon}>📍</Text>
+                <Text style={styles.chipLabel}>Search</Text>
+              </View>
+            </BlurView>
+            {activeMode === 'search' && <View style={styles.chipUnderline} />}
+          </TouchableOpacity>
+        </View>
+
+        {/* Carousel Section */}
+        {activeMode !== 'search' && (
+          <Animated.View style={[styles.carouselSection, { opacity: modeTransition }]}>
+            <Text style={styles.carouselTitle}>{getCarouselTitle()}</Text>
+            
+            <ScrollView
+              ref={cardScrollRef}
+              horizontal
+              pagingEnabled
+              showsHorizontalScrollIndicator={false}
+              style={styles.carousel}
+              contentContainerStyle={styles.carouselContent}
+              onMomentumScrollEnd={(event) => {
+                const index = Math.round(event.nativeEvent.contentOffset.x / width)
+                setCurrentCardIndex(index)
+              }}
             >
-              {/* Overlay */}
-              <View style={styles.heroOverlay} />
-              
-              {/* Content */}
-              <BlurView intensity={18} tint="light" style={styles.heroContent}>
-                <View style={styles.heroInner}>
-                  <Text style={styles.heroTitle}>{activeModeData.title}</Text>
-                  <Text style={styles.heroSubtitle}>{activeModeData.subtitle}</Text>
-                  
-                  <View style={styles.contentList}>
-                    {activeModeData.content.map((item, index) => (
-                      <Text key={index} style={styles.contentItem}>{item}</Text>
-                    ))}
-                  </View>
-                  
-                  <TouchableOpacity style={styles.ctaButton} activeOpacity={0.8}>
-                    <BlurView intensity={18} tint="light" style={styles.ctaBlur}>
-                      <View style={styles.ctaInner}>
-                        <Text style={styles.ctaText}>{activeModeData.cta}</Text>
-                      </View>
-                    </BlurView>
-                  </TouchableOpacity>
-                </View>
-              </BlurView>
-            </ImageBackground>
-          )}
-        </Animated.View>
+              {getCurrentDestinations().map(renderDestinationCard)}
+            </ScrollView>
+          </Animated.View>
+        )}
+
+        {/* Search Mode Placeholder */}
+        {activeMode === 'search' && (
+          <View style={styles.searchPlaceholder}>
+            <Text style={styles.searchText}>Search functionality coming soon...</Text>
+          </View>
+        )}
       </Animated.View>
 
       {/* Bottom Dock */}
@@ -286,11 +334,14 @@ export default function Landing() {
             </TouchableOpacity>
             
             <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
-              <Ionicons name="map-outline" size={26} color="rgba(255,255,255,0.75)" />
+              <Ionicons name="map-outline" size={24} color="rgba(255,255,255,0.75)" />
               <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
             </TouchableOpacity>
             
             <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
+              <Animated.View style={[styles.dockGlowContainer, { opacity: dockGlowAnim }]}>
+                <View style={styles.dockGlow} />
+              </Animated.View>
               <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.75)" />
               <Text style={styles.dockLabelInactive}>My Trips</Text>
             </TouchableOpacity>
@@ -304,39 +355,44 @@ export default function Landing() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1E1E1E',
+    backgroundColor: '#161616',
   },
-  backgroundImage: {
+  background: {
     position: 'absolute',
     width: '100%',
     height: '100%',
-  },
-  gradientOverlay: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'transparent',
+    backgroundColor: '#161616',
     ...Platform.select({
       web: {
-        background: 'linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.55))',
+        background: 'linear-gradient(135deg, #161616 0%, #222222 100%)',
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'radial-gradient(ellipse at center, rgba(201,169,109,0.08) 0%, transparent 70%)',
+        }
       },
     }),
   },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  content: {
+    flex: 1,
     paddingTop: 50,
+  },
+  header: {
     paddingHorizontal: 24,
+    marginBottom: 32,
   },
   logoContainer: {
     alignItems: 'flex-start',
   },
   logoText: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: '600',
     color: '#F8F8F8',
-    letterSpacing: 5.28, // +0.20em * 22px = 4.4px, increased to 5.28 for more spacing
+    letterSpacing: 3.6, // +0.15em * 24px
     textTransform: 'uppercase',
     fontFamily: Platform.select({
       ios: 'NeueHaasDisplayMedium',
@@ -345,103 +401,74 @@ const styles = StyleSheet.create({
     }),
     ...Platform.select({
       web: {
-        textShadow: '0 0 12px rgba(201,169,109,0.25), 0 0 20px rgba(255,255,255,0.1)',
+        background: 'linear-gradient(135deg, #F8F8F8 0%, #C9A96D 100%)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        textShadow: '0 0 20px rgba(201,169,109,0.3)',
       },
     }),
   },
-  profileIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    borderWidth: 1.5,
-    borderColor: 'rgba(255,255,255,0.2)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  greetingBlock: {
+  greetingSection: {
     paddingHorizontal: 24,
-    marginTop: 16,
+    marginBottom: 32,
   },
   greetingMain: {
-    fontSize: 22,
-    fontWeight: '600',
-    color: '#F8F8F8',
+    fontSize: 16,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.85)',
+    marginBottom: 4,
     fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayMedium',
-      android: 'NeueHaasDisplayMedium',
+      ios: 'NeueHaasDisplayRoman',
+      android: 'NeueHaasDisplayRoman',
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
     ...Platform.select({
       web: {
-        textShadow: '0 0 12px rgba(201,169,109,0.25)',
+        textShadow: '0 0 12px rgba(201,169,109,0.2)',
       },
     }),
   },
   greetingSub: {
-    fontSize: 16,
-    fontWeight: '400',
+    fontSize: 14,
+    fontWeight: '300',
     color: 'rgba(255,255,255,0.75)',
-    marginTop: 4,
     fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayMedium',
-      android: 'NeueHaasDisplayMedium',
+      ios: 'NeueHaasDisplayRoman',
+      android: 'NeueHaasDisplayRoman',
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  inspirationHeader: {
-    paddingHorizontal: 24,
-    marginTop: 24,
-  },
-  inspirationText: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: 'rgba(255,255,255,0.85)',
-    fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayMedium',
-      android: 'NeueHaasDisplayMedium',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-    ...Platform.select({
-      web: {
-        textShadow: '0 0 10px rgba(201,169,109,0.25)',
-      },
     }),
   },
   modeChipsContainer: {
-    alignItems: 'center',
-    marginTop: 20,
-  },
-  modeChipsRow: {
     flexDirection: 'row',
     justifyContent: 'center',
+    paddingHorizontal: 24,
+    marginBottom: 32,
     gap: 12,
   },
   modeChip: {
-    width: 110,
+    width: 108,
     height: 44,
     borderRadius: 20,
     position: 'relative',
   },
   modeChipActive: {
-    transform: [{ translateY: -4 }],
+    // Active styling handled by underline
   },
   chipBlur: {
     flex: 1,
     borderRadius: 20,
     overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.08)',
   },
   chipContent: {
     flex: 1,
     backgroundColor: 'rgba(25,25,25,0.35)',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 12,
+    justifyContent: 'center',
     gap: 8,
   },
   chipIcon: {
-    marginRight: 2,
+    fontSize: 16,
   },
   chipLabel: {
     fontSize: 14,
@@ -453,7 +480,7 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  chipActiveIndicator: {
+  chipUnderline: {
     position: 'absolute',
     bottom: -2,
     left: '25%',
@@ -467,16 +494,35 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  heroContainer: {
-    alignItems: 'center',
-    marginTop: 32,
+  carouselSection: {
     flex: 1,
-    paddingBottom: 120, // Space for bottom dock
+    marginBottom: 100, // Space for dock
   },
-  // Search Mode Styles
-  searchContainer: {
-    width: width * 0.92,
-    height: height * 0.43,
+  carouselTitle: {
+    fontSize: 16,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.75)',
+    textAlign: 'center',
+    marginBottom: 24,
+    paddingHorizontal: 24,
+    fontFamily: Platform.select({
+      ios: 'NeueHaasDisplayRoman',
+      android: 'NeueHaasDisplayRoman',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  carousel: {
+    flex: 1,
+  },
+  carouselContent: {
+    paddingHorizontal: 12,
+  },
+  cardContainer: {
+    width: width - 24,
+    marginHorizontal: 12,
+  },
+  destinationCard: {
+    height: height * 0.75,
     borderRadius: 28,
     overflow: 'hidden',
     ...Platform.select({
@@ -484,187 +530,146 @@ const styles = StyleSheet.create({
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 8 },
         shadowOpacity: 0.45,
-        shadowRadius: 13,
+        shadowRadius: 15,
       },
       android: {
         elevation: 8,
       },
       web: {
-        boxShadow: '0 8px 26px rgba(0,0,0,0.45)',
+        boxShadow: '0 8px 30px rgba(0,0,0,0.45)',
       },
     }),
   },
-  searchContent: {
-    flex: 1,
-    backgroundColor: 'rgba(25,25,25,0.3)',
-    padding: 24,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  searchTitle: {
-    fontSize: 22,
-    fontWeight: '600',
-    color: '#F8F8F8',
-    textAlign: 'center',
-    marginBottom: 12,
-    fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayMedium',
-      android: 'NeueHaasDisplayMedium',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  searchSubtitle: {
-    fontSize: 16,
-    fontWeight: '400',
-    color: 'rgba(255,255,255,0.80)',
-    textAlign: 'center',
-    marginBottom: 32,
-    lineHeight: 22,
-    fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayMedium',
-      android: 'NeueHaasDisplayMedium',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  searchBarContainer: {
-    width: '100%',
-  },
-  searchBar: {
-    borderRadius: 22,
-    overflow: 'hidden',
-  },
-  searchIcon: {
-    position: 'absolute',
-    left: 16,
-    top: '50%',
-    marginTop: -9,
-    zIndex: 1,
-  },
-  searchInput: {
-    backgroundColor: 'rgba(25,25,25,0.45)',
-    height: 50,
-    paddingLeft: 48,
-    paddingRight: 16,
-    fontSize: 16,
-    color: '#F8F8F8',
-    fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayMedium',
-      android: 'NeueHaasDisplayMedium',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  // Hero Tile Styles
-  heroTile: {
-    width: width * 0.92,
-    height: height * 0.43,
+  cardImage: {
     borderRadius: 28,
-    overflow: 'hidden',
   },
-  heroOverlay: {
+  cardOverlay: {
     position: 'absolute',
     width: '100%',
     height: '100%',
-    backgroundColor: 'rgba(25,25,25,0.3)',
-  },
-  heroContent: {
-    flex: 1,
-    borderRadius: 28,
-    overflow: 'hidden',
     ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.45,
-        shadowRadius: 13,
-      },
-      android: {
-        elevation: 8,
-      },
       web: {
-        boxShadow: '0 8px 26px rgba(0,0,0,0.45)',
+        background: 'linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.25))',
       },
     }),
   },
-  heroInner: {
-    flex: 1,
+  bookmarkButton: {
+    position: 'absolute',
+    top: 24,
+    right: 24,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     backgroundColor: 'rgba(25,25,25,0.3)',
-    padding: 24,
-    justifyContent: 'flex-end',
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(10px)',
+      },
+    }),
   },
-  heroTitle: {
+  cardContent: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    padding: 24,
+  },
+  textPanel: {
+    borderRadius: 18,
+    overflow: 'hidden',
+    marginBottom: 20,
+  },
+  textPanelInner: {
+    backgroundColor: 'rgba(25,25,25,0.35)',
+    padding: 20,
+  },
+  cityName: {
     fontSize: 22,
     fontWeight: '600',
     color: '#F8F8F8',
-    marginBottom: 8,
-    fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayMedium',
-      android: 'NeueHaasDisplayMedium',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  heroSubtitle: {
-    fontSize: 16,
-    fontWeight: '400',
-    color: 'rgba(255,255,255,0.80)',
-    marginBottom: 20,
-    lineHeight: 22,
-    fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayMedium',
-      android: 'NeueHaasDisplayMedium',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  contentList: {
-    marginBottom: 24,
-  },
-  contentItem: {
-    fontSize: 14,
-    color: 'rgba(255,255,255,0.75)',
     marginBottom: 6,
-    letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'NeueHaasDisplayMedium',
       android: 'NeueHaasDisplayMedium',
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  ctaButton: {
-    alignSelf: 'flex-start',
-  },
-  ctaBlur: {
-    borderRadius: 18,
-    overflow: 'hidden',
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.35,
-        shadowRadius: 8,
-      },
-      android: {
-        elevation: 4,
-      },
-      web: {
-        boxShadow: '0 4px 16px rgba(0,0,0,0.35)',
-      },
-    }),
-  },
-  ctaInner: {
-    backgroundColor: 'rgba(201,169,109,0.35)',
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-  },
-  ctaText: {
+  cityTagline: {
     fontSize: 15,
-    fontWeight: '600',
-    color: '#F8F8F8',
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.85)',
+    lineHeight: 20,
+    fontFamily: Platform.select({
+      ios: 'NeueHaasDisplayRoman',
+      android: 'NeueHaasDisplayRoman',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  transportRow: {
+    flexDirection: 'row',
+    gap: 12,
+    marginBottom: 20,
+  },
+  transportChip: {
+    borderRadius: 12,
+    overflow: 'hidden',
+  },
+  transportChipInner: {
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    gap: 6,
+  },
+  transportTime: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.85)',
     fontFamily: Platform.select({
       ios: 'NeueHaasDisplayMedium',
       android: 'NeueHaasDisplayMedium',
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  // Bottom Dock Styles
+  featureTag: {
+    alignSelf: 'flex-start',
+    borderRadius: 16,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
+  },
+  featureTagInner: {
+    backgroundColor: 'rgba(25,25,25,0.45)',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+  },
+  featureText: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.85)',
+    fontFamily: Platform.select({
+      ios: 'NeueHaasDisplayMedium',
+      android: 'NeueHaasDisplayMedium',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  searchPlaceholder: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 24,
+  },
+  searchText: {
+    fontSize: 16,
+    color: 'rgba(255,255,255,0.75)',
+    textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'NeueHaasDisplayRoman',
+      android: 'NeueHaasDisplayRoman',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
   bottomDock: {
     position: 'absolute',
     bottom: 12,
@@ -680,15 +685,15 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: 0.45,
-        shadowRadius: 14,
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.5,
+        shadowRadius: 15,
       },
       android: {
         elevation: 10,
       },
       web: {
-        boxShadow: '0 10px 28px rgba(0,0,0,0.45)',
+        boxShadow: '0 8px 30px rgba(0,0,0,0.5)',
       },
     }),
   },
@@ -704,6 +709,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 8,
     position: 'relative',
+  },
+  dockGlowContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  dockGlow: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: 'rgba(201,169,109,0.25)',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 20px rgba(201,169,109,0.4)',
+      },
+    }),
   },
   dockLabel: {
     fontSize: 11,
