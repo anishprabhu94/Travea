@@ -138,6 +138,7 @@ export default function Landing() {
   const handleModeSwitch = (mode: string) => {
     if (mode === activeMode) return
     setActiveMode(mode)
+    console.log(`Switched to mode: ${mode}`)
   }
 
   const handleBookmark = (itemId: string) => {
