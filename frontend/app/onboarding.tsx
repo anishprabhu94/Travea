@@ -288,13 +288,13 @@ const styles = StyleSheet.create({
     zIndex: 10,
     paddingTop: 50,
     paddingHorizontal: 24,
-    paddingBottom: 8,
+    paddingBottom: 4,
   },
   headerContent: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 6,
   },
   logoText: {
     fontSize: 28,
