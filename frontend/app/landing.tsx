@@ -408,7 +408,6 @@ export default function Landing() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212',
   },
   backgroundContainer: {
     position: 'absolute',
