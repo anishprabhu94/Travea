@@ -400,7 +400,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.18)',
     borderRadius: 20,
     padding: 12,
-    marginBottom: 20,
+    marginBottom: 16, // 16px grid→NEXT
     ...Platform.select({
       web: {
         backdropFilter: 'blur(20px)',
