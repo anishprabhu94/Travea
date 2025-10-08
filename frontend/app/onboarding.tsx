@@ -405,10 +405,10 @@ const styles = StyleSheet.create({
     opacity: 0.4,
   },
   nextButton: {
-    borderRadius: 20,
+    borderRadius: 16,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(201, 169, 109, 0.55)',
+    height: 56,
     ...Platform.select({
       ios: {
         shadowColor: '#000',
@@ -421,20 +421,34 @@ const styles = StyleSheet.create({
       },
       web: {
         boxShadow: '0 10px 28px -6px rgba(0, 0, 0, 0.35)',
-        backdropFilter: 'blur(30px)',
-        WebkitBackdropFilter: 'blur(30px)',
+        backdropFilter: 'blur(30px) saturate(130%)',
+        WebkitBackdropFilter: 'blur(30px) saturate(130%)',
       },
     }),
   },
+  nextButtonDisabled: {
+    borderColor: 'rgba(201, 169, 109, 0.35)',
+  },
+  nextButtonEnabled: {
+    borderColor: '#C9A96D',
+    backgroundColor: '#C9A96D',
+  },
   nextButtonInner: {
-    backgroundColor: 'rgba(201, 169, 109, 0.20)',
     paddingVertical: 16,
     alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
+  nextButtonInnerDisabled: {
+    backgroundColor: 'rgba(201, 169, 109, 0.20)',
     ...Platform.select({
       web: {
-        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 40%)',
+        background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.00) 42%)',
       },
     }),
+  },
+  nextButtonInnerEnabled: {
+    backgroundColor: '#C9A96D',
   },
   nextButtonText: {
     fontSize: 16,
