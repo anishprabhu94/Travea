@@ -488,12 +488,12 @@ const styles = StyleSheet.create({
     }),
   },
   selectedBubbleInner: {
-    backgroundColor: 'rgba(201, 169, 109, 0.48)',
+    backgroundColor: 'rgba(201, 169, 109, 0.55)', // Slightly more prominent for selected state
     paddingVertical: 14,
     paddingHorizontal: 16,
     ...Platform.select({
       web: {
-        background: 'rgba(201, 169, 109, 0.48)',
+        background: 'rgba(201, 169, 109, 0.55)',
       },
     }),
   },
