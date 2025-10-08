@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
   beginButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: 'rgba(255, 255, 255, 0.9)',
+    color: '#FFFFFF',
     letterSpacing: 1.2,
     zIndex: 1,
   },
