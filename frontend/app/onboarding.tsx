@@ -350,8 +350,16 @@ const styles = StyleSheet.create({
     left: 24, // Left margin 24px
     right: 24, // Right margin 24px
     bottom: 24, // Add bottom constraint for proper NEXT button positioning
+    flex: 1,
+    justifyContent: 'space-between', // Space between scrollable content and bottom button
+  },
+  scrollableContent: {
+    flex: 1,
     paddingTop: 24, // Increased for world-class spacing
-    paddingBottom: 40, // Increased bottom padding for better distribution
+  },
+  bottomButtonContainer: {
+    paddingBottom: 16, // Add some breathing room from bottom edge for thumb-friendliness
+    marginTop: 20, // Space from content above
   },
   questionPane: {
     backgroundColor: 'rgba(60, 60, 60, 0.35)', // Lightened as requested
