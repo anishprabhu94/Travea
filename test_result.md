@@ -189,3 +189,15 @@ agent_communication:
         - working: true
           agent: "main"
           comment: "Successfully fixed column alignment, increased vertical spacing, and renamed question for improved UX. Fixed 2nd column bubble alignment by updating bubbleGrid with justifyContent 'space-between' and bubbleWrapper width '47%' (was '48%'). Increased vertical spacing between bubble rows from gap 12px to 16px for better visual separation. Renamed question from 'What experiences excite you most?' to 'What excites you most?' for cleaner, more concise text. Column alignment now perfect across all questions - both columns properly align with pane above. World-class spacing distribution maintained: Content layer top: 120px, generous padding throughout. Three-layer architecture stable: BG (Image), Header (Fixed 72px), Content (Vertical stack). Multi-select functionality working with exact rgba(201,169,109,0.48) selected state. Next button: 44px bronze frosted with premium positioning. Visual hierarchy, premium polish, and perfect alignment achieved throughout onboarding flow."
+
+  - task: "Implement onboarding ergonomic improvements and fix welcome screen"
+    implemented: true
+    working: true
+    file: "/app/frontend/app/onboarding.tsx, /app/frontend/app/welcome.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Successfully completed all ergonomic improvements: 1) Renamed 'Outdoor Adventurer' to 'Adventure' in question options, 2) Content shifted lower (top: 160px) for better visual balance and ergonomics, 3) NEXT button now pinned at screen bottom with proper flex layout for thumb-friendly positioning, 4) Enhanced question pane styling with lighter rgba(60,60,60,0.35) background, increased 30px blur, stronger rgba(255,255,255,0.15) border, and added shadow 0 6px 25px rgba(0,0,0,0.25) for better frosted glass visibility, 5) Fixed welcome.tsx black screen issue by removing web-specific 'minHeight: 100vh' CSS property. All screens tested and working correctly with improved ergonomics and maintained luxury frosted glass aesthetic."
