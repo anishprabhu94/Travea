@@ -134,7 +134,7 @@ export default function Index() {
                       <Text style={styles.inputLabel}>Full Name</Text>
                       <TextInput
                         style={styles.input}
-                        placeholder="Enter your full name"
+                        placeholder=""
                         placeholderTextColor="rgba(191, 191, 191, 0.9)"
                         value={name}
                         onChangeText={setName}
