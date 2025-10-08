@@ -394,7 +394,7 @@ const styles = StyleSheet.create({
   },
   inputLabel: {
     fontSize: 13,
-    color: 'rgba(255, 255, 255, 0.65)',
+    color: '#F8F8F8', // Changed to white for better visibility
     marginBottom: 6,
     fontWeight: '500',
     fontFamily: Platform.select({
