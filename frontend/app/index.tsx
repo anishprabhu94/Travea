@@ -295,22 +295,24 @@ const styles = StyleSheet.create({
   },
   glassPaneBlur: {
     width: width - 48,
-    borderRadius: 24,
+    borderRadius: 20,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.25)',
+    borderColor: 'rgba(255, 255, 255, 0.22)',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.25,
-        shadowRadius: 25,
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.35,
+        shadowRadius: 14,
       },
       android: {
-        elevation: 8,
+        elevation: 10,
       },
       web: {
-        boxShadow: '0px 8px 25px -5px rgba(0, 0, 0, 0.25)',
+        boxShadow: '0 10px 28px -6px rgba(0, 0, 0, 0.35)',
+        backdropFilter: 'blur(30px)',
+        WebkitBackdropFilter: 'blur(30px)',
       },
     }),
   },
@@ -319,6 +321,11 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     paddingHorizontal: 20,
     paddingBottom: 28,
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 40%)',
+      },
+    }),
   },
   toggleContainer: {
     flexDirection: 'row',
