@@ -98,7 +98,7 @@ export default function Index() {
 
           {/* Frosted Glass Pane */}
           <View style={styles.paneContainer}>
-            <BlurView intensity={25} tint="light" style={styles.glassPaneBlur}>
+            <BlurView intensity={30} tint="light" style={styles.glassPaneBlur}>
               <View style={styles.glassPaneInner}>
                 {/* Tab Toggle */}
                 <View style={styles.toggleContainer}>
