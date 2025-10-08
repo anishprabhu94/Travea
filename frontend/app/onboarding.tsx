@@ -165,23 +165,29 @@ export default function Onboarding() {
         <View style={styles.bronzeOverlay} />
       </ImageBackground>
 
-      <View style={styles.topBar}>
-        <Text style={styles.logoText}>TRAVEA</Text>
-        <View style={styles.profileIcon}>
-          <Ionicons name="person-outline" size={16} color="#F8F8F8" />
-        </View>
-      </View>
+      {/* Layer 2: Header (Fixed 72px) */}
+      <View style={styles.headerLayer}>
+        <View style={styles.headerContent}>
+          {/* Logo */}
+          <Text style={styles.logoText}>TRAVEA</Text>
 
-      <View style={styles.progressBarContainer}>
-        <View style={styles.progressBarBackground}>
-          <Animated.View style={[styles.progressBarFill, { width: `${progress}%` }]}>
-            <LinearGradient
-              colors={['#B89361', '#C9A96D']}
-              style={styles.progressGradient}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
-            />
-          </Animated.View>
+          {/* Profile Icon */}
+          <View style={styles.profileIcon}>
+            <Ionicons name="person-outline" size={16} color="#F8F8F8" />
+          </View>
+        </View>
+
+        <View style={styles.progressBarContainer}>
+          <View style={styles.progressBarBackground}>
+            <Animated.View style={[styles.progressBarFill, { width: `${progress}%` }]}>
+              <LinearGradient
+                colors={['#B89361', '#C9A96D']}
+                style={styles.progressGradient}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+              />
+            </Animated.View>
+          </View>
         </View>
       </View>
 
