@@ -361,33 +361,13 @@ const styles = StyleSheet.create({
     marginTop: 20, // Space from content above
   },
   questionPane: {
-    backgroundColor: 'rgba(85, 85, 85, 0.4)', // Lighter background for elegant appearance
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.15)', // Slightly more visible for elegant definition
-    paddingVertical: 12, // Reduced padding for slimmer appearance
-    paddingHorizontal: 20, // 20px horizontal padding maintained
-    marginBottom: 32, // Increased spacing from answer bubbles for better visual separation
-    height: 52, // Reduced height for slim, elegant appearance
+    // Remove all background elements for clean, glowing text effect
+    paddingVertical: 16, // Increased padding for text breathing room
+    paddingHorizontal: 20,
+    marginBottom: 32, // Maintained spacing from answer bubbles
     justifyContent: 'center',
     alignSelf: 'center',
     width: '100%',
-    ...Platform.select({
-      ios: {
-        shadowColor: 'rgba(201, 169, 109, 0.4)',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.6,
-        shadowRadius: 16,
-      },
-      android: {
-        elevation: 8,
-      },
-      web: {
-        backdropFilter: 'blur(30px)', // 30px backdrop blur maintained
-        WebkitBackdropFilter: 'blur(30px)',
-        boxShadow: '0 6px 24px rgba(0, 0, 0, 0.5), 0 0 20px rgba(201, 169, 109, 0.25), 0 0 40px rgba(201, 169, 109, 0.12)', // Enhanced bronze glow for prominence
-      },
-    }),
   },
   // questionContainer removed - no longer needed
   questionText: {
