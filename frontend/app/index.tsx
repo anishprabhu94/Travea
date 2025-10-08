@@ -399,11 +399,11 @@ const styles = StyleSheet.create({
   },
   dividerText: {
     fontSize: 13,
-    color: '#CFCFCF',
+    color: '#FFFFFF',
     marginHorizontal: 16,
     letterSpacing: 1,
-    fontWeight: '500',
-    opacity: 0.75,
+    fontWeight: '700',
+    opacity: 1,
   },
   oauthContainer: {
     gap: 12,
