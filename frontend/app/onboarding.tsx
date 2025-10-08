@@ -361,32 +361,31 @@ const styles = StyleSheet.create({
     marginTop: 20, // Space from content above
   },
   questionPane: {
-    backgroundColor: 'rgba(60, 60, 60, 0.35)', // Maintained as requested
+    backgroundColor: 'rgba(70, 70, 70, 0.35)', // Enhanced background as requested
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.18)', // More visible border
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    marginBottom: 32, // Increased for world-class spacing
-    minHeight: 55,
-    maxHeight: 85,
+    borderColor: 'rgba(255, 255, 255, 0.12)', // Subtle border as specified
+    paddingVertical: 16, // 16px padding as requested
+    paddingHorizontal: 20, // 20px horizontal padding as requested
+    marginBottom: 12, // Reduced to move upward (-20px from previous 32)
+    height: 70, // Fixed height between 60-80px range
     justifyContent: 'center',
     alignSelf: 'center',
     width: '100%',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.45,
-        shadowRadius: 16,
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.5,
+        shadowRadius: 12,
       },
       android: {
         elevation: 8,
       },
       web: {
-        backdropFilter: 'blur(30px)', // 30px backdrop blur as requested
+        backdropFilter: 'blur(30px)', // 30px backdrop blur maintained
         WebkitBackdropFilter: 'blur(30px)',
-        boxShadow: '0px 8px 32px rgba(0, 0, 0, 0.6), 0px 2px 16px rgba(0, 0, 0, 0.35), 0px 0px 40px rgba(255, 255, 255, 0.06), inset 0 0 30px rgba(255, 255, 255, 0.1)', // More pronounced outer glow + visible luminous effect
+        boxShadow: '0 6px 24px rgba(0, 0, 0, 0.5), 0 0 18px rgba(201, 169, 109, 0.15)', // Soft shadow + bronze glow as requested
       },
     }),
   },
