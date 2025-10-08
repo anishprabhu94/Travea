@@ -484,21 +484,49 @@ const styles = StyleSheet.create({
   oauthContainer: {
     gap: 12,
   },
+  oauthButtonContainer: {
+    height: 50,
+    borderRadius: 18,
+    overflow: 'hidden',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.25,
+        shadowRadius: 10,
+      },
+      android: {
+        elevation: 4,
+      },
+      web: {
+        boxShadow: '0 4px 20px rgba(0,0,0,0.25)',
+      },
+    }),
+  },
   oauthButton: {
+    flex: 1,
+    borderRadius: 18,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.08)',
+  },
+  oauthButtonInner: {
+    flex: 1,
+    backgroundColor: 'rgba(25,25,25,0.35)',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#1C1C1C',
-    height: 48,
-    borderRadius: 12,
-    gap: 12,
-  },
-  oauthButtonApple: {
-    backgroundColor: '#000000',
+    gap: 10, // 10px gap between icon and text as specified
+    paddingHorizontal: 16,
   },
   oauthButtonText: {
     fontSize: 15,
-    color: '#FFFFFF',
-    fontWeight: '400',
+    color: 'rgba(255,255,255,0.85)', // Updated color as specified
+    fontWeight: '500', // Medium weight as specified
+    fontFamily: Platform.select({
+      ios: 'NeueHaasDisplayMedium',
+      android: 'NeueHaasDisplayMedium',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
   },
 });
