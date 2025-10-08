@@ -140,7 +140,7 @@ export default function Onboarding() {
     <View style={styles.container}>
       <StatusBar style="light" translucent backgroundColor="transparent" />
       
-      {/* Aerial Beach Background - Same as Welcome Screen */}
+      {/* Layer 1: BG (Image) */}
       <ImageBackground
         source={{
           uri: 'https://customer-assets.emergentagent.com/job_travea-auth/artifacts/zl0td0x2_output%20%286%29.jpg',
