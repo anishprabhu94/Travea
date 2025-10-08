@@ -394,7 +394,7 @@ const styles = StyleSheet.create({
   inputLabel: {
     fontSize: 14,
     color: 'rgba(255, 255, 255, 0.65)',
-    marginBottom: 6,
+    marginBottom: 3,
     fontWeight: '500',
   },
   input: {
