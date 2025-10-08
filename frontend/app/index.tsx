@@ -259,8 +259,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#FFFFFF',
     letterSpacing: 3,
-    opacity: 1,
-    fontWeight: '600',
+    opacity: 0.85,
+    fontWeight: '300',
   },
   paneContainer: {
     alignItems: 'center',
