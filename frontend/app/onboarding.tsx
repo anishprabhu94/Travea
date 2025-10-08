@@ -452,8 +452,13 @@ const styles = StyleSheet.create({
   },
   nextButtonText: {
     fontSize: 16,
-    color: '#FFFFFF',
-    fontWeight: '500',
+    fontWeight: '600',
     letterSpacing: 1.5,
+  },
+  nextButtonTextDisabled: {
+    color: 'rgba(255, 255, 255, 0.65)',
+  },
+  nextButtonTextEnabled: {
+    color: '#FFFFFF',
   },
 });
