@@ -341,9 +341,10 @@ const styles = StyleSheet.create({
   },
   content: {
     position: 'absolute',
-    top: 140, // Moved down a bit more as requested
+    top: 160, // Shifted lower for better ergonomics and visual balance
     left: 24, // Left margin 24px
     right: 24, // Right margin 24px
+    bottom: 24, // Add bottom constraint for proper NEXT button positioning
     paddingTop: 24, // Increased for world-class spacing
     paddingBottom: 40, // Increased bottom padding for better distribution
   },
