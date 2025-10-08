@@ -332,10 +332,8 @@ const styles = StyleSheet.create({
     paddingBottom: 24,
   },
   questionPaneContainer: {
-    backgroundColor: 'rgba(45, 45, 45, 0.30)',
+    backgroundColor: 'rgba(25, 25, 25, 0.40)',
     borderRadius: 20,
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.08)',
     paddingVertical: 16,
     paddingHorizontal: 20,
     marginBottom: 12,
@@ -346,8 +344,8 @@ const styles = StyleSheet.create({
     width: '100%',
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(30px)',
-        WebkitBackdropFilter: 'blur(30px)',
+        backdropFilter: 'blur(25px)',
+        WebkitBackdropFilter: 'blur(25px)',
       },
     }),
   },
