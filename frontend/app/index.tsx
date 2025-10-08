@@ -519,6 +519,12 @@ const styles = StyleSheet.create({
     gap: 10, // 10px gap between icon and text as specified
     paddingHorizontal: 16,
   },
+  oauthButtonGoogle: {
+    // Additional styling for Google button if needed
+  },
+  oauthButtonApple: {
+    // Additional styling for Apple button if needed
+  },
   oauthButtonText: {
     fontSize: 15,
     color: 'rgba(255,255,255,0.85)', // Updated color as specified
