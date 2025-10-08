@@ -469,13 +469,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
   },
-  bottomContainer: {
-    position: 'absolute',
-    bottom: 20,
-    left: 24,
-    right: 24,
-    width: 'auto',
-  },
+  // bottomContainer removed - Next button now in content flow
   nextButtonWrapper: {
     width: '100%',
     position: 'relative',
