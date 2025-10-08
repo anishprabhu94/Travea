@@ -383,7 +383,8 @@ const styles = StyleSheet.create({
   bubbleGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 12,
+    gap: 16, // Increased vertical spacing between rows
+    justifyContent: 'space-between', // Ensure proper column alignment
     marginBottom: 40, // Increased for world-class spacing distribution
   },
   bubbleWrapper: {
