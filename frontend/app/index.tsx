@@ -354,41 +354,55 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     marginBottom: 24,
+    gap: 8,
   },
-  inputWrapper: {
-    marginBottom: 20,
-  },
-  inputLabel: {
-    fontSize: 16,
-    color: '#FFFFFF',
-    marginBottom: 8,
-    fontWeight: '700',
-  },
-  input: {
-    fontSize: 15,
-    color: '#F8F8F8',
-    paddingVertical: 8,
-    paddingHorizontal: 0,
-    fontWeight: '400',
-  },
-  inputUnderline: {
-    height: 1,
-    backgroundColor: '#2D2D2D',
-    marginTop: 4,
-  },
-  inputUnderlineFocused: {
-    backgroundColor: '#C9A96D',
+  inputCapsule: {
+    borderRadius: 10,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.15)',
     ...Platform.select({
       ios: {
-        shadowColor: '#C9A96D',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.5,
+        shadowColor: '#FFF',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.08,
         shadowRadius: 6,
       },
+      android: {
+        elevation: 1,
+      },
       web: {
-        boxShadow: '0px 0px 6px rgba(201, 169, 109, 0.5)',
+        boxShadow: '0 1px 6px rgba(255, 255, 255, 0.08)',
       },
     }),
+  },
+  inputCapsuleInner: {
+    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(255, 255, 255, 0.25)',
+  },
+  inputCapsuleFocused: {
+    borderBottomColor: 'rgba(201, 169, 109, 0.7)',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 1px 0 rgba(201, 169, 109, 0.7), inset 0 -1px 6px rgba(201, 169, 109, 0.15)',
+      },
+    }),
+  },
+  inputLabel: {
+    fontSize: 14,
+    color: 'rgba(255, 255, 255, 0.65)',
+    marginBottom: 6,
+    fontWeight: '500',
+  },
+  input: {
+    fontSize: 16,
+    color: '#FFFFFF',
+    paddingVertical: 4,
+    paddingHorizontal: 0,
+    fontWeight: '400',
   },
   primaryButton: {
     backgroundColor: '#C9A96D',
