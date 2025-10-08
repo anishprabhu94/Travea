@@ -69,7 +69,7 @@ export default function Index() {
         }}
         style={styles.backgroundImage}
         resizeMode="cover"
-        blurRadius={Platform.OS === 'ios' ? 30 : 25}
+        blurRadius={Platform.OS === 'ios' ? 12 : 10}
       >
         {/* Mild vignette effect */}
         <LinearGradient
