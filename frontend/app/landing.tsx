@@ -231,14 +231,13 @@ export default function Landing() {
   )
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={{
-          uri: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/b82i7mwl_output%20%286%29.jpg'
-        }}
-        style={styles.backgroundContainer}
-        imageStyle={styles.backgroundImage}
-      />
+    <ImageBackground
+      source={{
+        uri: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/b82i7mwl_output%20%286%29.jpg'
+      }}
+      style={styles.container}
+      imageStyle={styles.backgroundImage}
+    >
       {/* Vignette Overlay */}
       <View style={styles.vignetteOverlay} />
 
