@@ -57,7 +57,6 @@ export default function Onboarding() {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<{ [key: number]: string[] }>({});
   const [fadeAnim] = useState(new Animated.Value(1));
-  const [scaleAnim] = useState(new Animated.Value(1));
 
   const currentQuestion = questions[currentStep];
   const progress = ((currentStep + 1) / questions.length) * 100;
@@ -66,7 +65,6 @@ export default function Onboarding() {
     const currentAnswers = answers[currentQuestion.id] || [];
     
     if (currentQuestion.multiSelect) {
-      // Multi-select: toggle answer
       if (currentAnswers.includes(option)) {
         setAnswers({
           ...answers,
@@ -79,7 +77,6 @@ export default function Onboarding() {
         });
       }
     } else {
-      // Single select: replace answer
       setAnswers({
         ...answers,
         [currentQuestion.id]: [option],
@@ -98,36 +95,19 @@ export default function Onboarding() {
   const handleNext = () => {
     if (!canProceed()) return;
 
-    // Fade out animation
-    Animated.parallel([
-      Animated.timing(fadeAnim, {
-        toValue: 0,
-        duration: 200,
-        useNativeDriver: true,
-      }),
-      Animated.timing(scaleAnim, {
-        toValue: 0.95,
-        duration: 200,
-        useNativeDriver: true,
-      }),
-    ]).start(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: true,
+    }).start(() => {
       if (currentStep < questions.length - 1) {
         setCurrentStep(currentStep + 1);
-        // Fade in animation
-        Animated.parallel([
-          Animated.timing(fadeAnim, {
-            toValue: 1,
-            duration: 300,
-            useNativeDriver: true,
-          }),
-          Animated.timing(scaleAnim, {
-            toValue: 1,
-            duration: 300,
-            useNativeDriver: true,
-          }),
-        ]).start();
+        Animated.timing(fadeAnim, {
+          toValue: 1,
+          duration: 300,
+          useNativeDriver: true,
+        }).start();
       } else {
-        // Complete onboarding
         router.push('/home');
       }
     });
@@ -137,7 +117,6 @@ export default function Onboarding() {
     <View style={styles.container}>
       <StatusBar style="light" translucent backgroundColor="transparent" />
       
-      {/* Background with vignette */}
       <LinearGradient
         colors={['#000000', '#0C0C0C', '#0C0C0C', '#000000']}
         style={styles.background}
@@ -146,7 +125,10 @@ export default function Onboarding() {
         locations={[0, 0.2, 0.8, 1]}
       />
 
-      {/* Top Bar */}
+      <View style={styles.radialGlowContainer}>
+        <View style={styles.radialGlow} />
+      </View>
+
       <View style={styles.topBar}>
         <Text style={styles.logoText}>TRAVEA</Text>
         <View style={styles.profileIcon}>
@@ -154,29 +136,20 @@ export default function Onboarding() {
         </View>
       </View>
 
-      {/* Progress Bar */}
       <View style={styles.progressBarContainer}>
         <View style={styles.progressBarBackground}>
-          <LinearGradient
-            colors={['#B89361', '#C9A96D']}
-            style={[styles.progressBarFill, { width: `${progress}%` }]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-          />
+          <Animated.View style={[styles.progressBarFill, { width: `${progress}%` }]}>
+            <LinearGradient
+              colors={['#B89361', '#C9A96D']}
+              style={styles.progressGradient}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+            />
+          </Animated.View>
         </View>
       </View>
 
-      {/* Content */}
-      <Animated.View
-        style={[
-          styles.content,
-          {
-            opacity: fadeAnim,
-            transform: [{ scale: scaleAnim }],
-          },
-        ]}
-      >
-        {/* Question Text */}
+      <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
         <View style={styles.questionContainer}>
           <Text style={styles.questionText}>{currentQuestion.question}</Text>
           {currentQuestion.multiSelect && (
@@ -184,29 +157,33 @@ export default function Onboarding() {
           )}
         </View>
 
-        {/* Answer Bubbles */}
-        <View style={styles.answersContainer}>
+        <View style={styles.bubblesGrid}>
           {currentQuestion.options.map((option, index) => {
             const selected = isSelected(option);
             return (
               <TouchableOpacity
                 key={index}
-                activeOpacity={0.8}
+                activeOpacity={0.7}
                 onPress={() => handleSelectAnswer(option)}
+                style={styles.bubbleWrapper}
               >
                 {selected ? (
-                  <LinearGradient
-                    colors={['#B89361', '#C9A96D']}
-                    style={styles.answerBubble}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 0 }}
-                  >
-                    <Text style={styles.answerTextSelected}>{option}</Text>
-                  </LinearGradient>
+                  <View style={styles.selectedBubbleContainer}>
+                    <LinearGradient
+                      colors={['#B89361', '#C9A96D']}
+                      style={styles.selectedBubble}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 1 }}
+                    >
+                      <Text style={styles.bubbleTextSelected}>{option}</Text>
+                    </LinearGradient>
+                    <View style={styles.selectedGlow} />
+                  </View>
                 ) : (
-                  <BlurView intensity={25} tint="light" style={styles.answerBubble}>
-                    <View style={styles.answerBubbleInner}>
-                      <Text style={styles.answerText}>{option}</Text>
+                  <BlurView intensity={30} tint="light" style={styles.bubble}>
+                    <View style={styles.bubbleInner}>
+                      <View style={styles.innerGlow} />
+                      <Text style={styles.bubbleText}>{option}</Text>
                     </View>
                   </BlurView>
                 )}
@@ -216,22 +193,21 @@ export default function Onboarding() {
         </View>
       </Animated.View>
 
-      {/* Next Button */}
       <View style={styles.bottomContainer}>
         <TouchableOpacity
-          style={[
-            styles.nextButton,
-            !canProceed() && styles.nextButtonDisabled,
-          ]}
+          style={[styles.nextButtonWrapper, !canProceed() && styles.nextButtonDisabled]}
           onPress={handleNext}
           disabled={!canProceed()}
           activeOpacity={0.8}
         >
-          <View style={styles.nextButtonInner}>
-            <Text style={styles.nextButtonText}>
-              {currentStep === questions.length - 1 ? 'COMPLETE' : 'NEXT'}
-            </Text>
-          </View>
+          <BlurView intensity={25} tint="light" style={styles.nextButton}>
+            <View style={styles.nextButtonInner}>
+              <Text style={styles.nextButtonText}>
+                {currentStep === questions.length - 1 ? 'COMPLETE' : 'NEXT'}
+              </Text>
+            </View>
+          </BlurView>
+          <View style={styles.nextButtonGlow} />
         </TouchableOpacity>
       </View>
     </View>
@@ -245,6 +221,19 @@ const styles = StyleSheet.create({
   },
   background: {
     ...StyleSheet.absoluteFillObject,
+  },
+  radialGlowContainer: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: 'center',
+    justifyContent: 'center',
+    pointerEvents: 'none',
+  },
+  radialGlow: {
+    width: width * 1.2,
+    height: height * 0.6,
+    backgroundColor: 'rgba(255, 255, 255, 0.03)',
+    borderRadius: width,
+    opacity: 0.8,
   },
   topBar: {
     flexDirection: 'row',
@@ -271,25 +260,26 @@ const styles = StyleSheet.create({
   },
   progressBarContainer: {
     paddingHorizontal: 24,
-    marginBottom: 32,
+    marginBottom: 24,
   },
   progressBarBackground: {
-    height: 3,
+    height: 2.5,
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     borderRadius: 2,
     overflow: 'hidden',
   },
   progressBarFill: {
     height: '100%',
-    borderRadius: 2,
+  },
+  progressGradient: {
+    flex: 1,
   },
   content: {
     flex: 1,
     paddingHorizontal: 24,
   },
   questionContainer: {
-    marginTop: 40,
-    marginBottom: 40,
+    marginBottom: 32,
   },
   questionText: {
     fontSize: 22,
@@ -303,64 +293,104 @@ const styles = StyleSheet.create({
     color: '#C9A96D',
     marginTop: 8,
     fontWeight: '400',
+    opacity: 0.8,
   },
-  answersContainer: {
+  bubblesGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
     gap: 12,
   },
-  answerBubble: {
-    borderRadius: 24,
+  bubbleWrapper: {
+    width: (width - 60) / 2,
+    marginBottom: 4,
+  },
+  bubble: {
+    borderRadius: 32,
     overflow: 'hidden',
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.25)',
+    minHeight: 70,
+    justifyContent: 'center',
+  },
+  bubbleInner: {
+    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    position: 'relative',
+  },
+  innerGlow: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(255, 255, 255, 0.10)',
+    opacity: 0.5,
+  },
+  bubbleText: {
+    fontSize: 16,
+    color: '#F2F2F2',
+    fontWeight: '500',
+    textAlign: 'center',
+    lineHeight: 22,
+  },
+  selectedBubbleContainer: {
+    position: 'relative',
+  },
+  selectedBubble: {
+    borderRadius: 32,
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    minHeight: 70,
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(201, 169, 109, 0.5)',
     ...Platform.select({
       ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.15,
-        shadowRadius: 8,
+        shadowColor: '#C9A96D',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
       },
       android: {
-        elevation: 2,
+        elevation: 6,
       },
       web: {
-        boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)',
+        boxShadow: '0px 4px 12px rgba(201, 169, 109, 0.3)',
       },
     }),
   },
-  answerBubbleInner: {
-    backgroundColor: 'rgba(255, 255, 255, 0.06)',
-    paddingVertical: 18,
-    paddingHorizontal: 24,
+  selectedGlow: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 32,
+    backgroundColor: 'rgba(201, 169, 109, 0.2)',
+    zIndex: -1,
+    transform: [{ scale: 1.05 }],
   },
-  answerText: {
-    fontSize: 16,
-    color: '#F2F2F2',
-    fontWeight: '400',
-    textAlign: 'center',
-  },
-  answerTextSelected: {
+  bubbleTextSelected: {
     fontSize: 16,
     color: '#FFFFFF',
     fontWeight: '600',
     textAlign: 'center',
-    paddingVertical: 18,
-    paddingHorizontal: 24,
+    lineHeight: 22,
   },
   bottomContainer: {
     paddingHorizontal: 24,
     paddingBottom: 40,
+    alignItems: 'center',
   },
-  nextButton: {
-    backgroundColor: 'rgba(201, 169, 109, 0.25)',
-    borderRadius: 12,
-    overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: 'rgba(201, 169, 109, 0.4)',
+  nextButtonWrapper: {
+    width: '100%',
+    position: 'relative',
   },
   nextButtonDisabled: {
     opacity: 0.4,
   },
+  nextButton: {
+    borderRadius: 14,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(201, 169, 109, 0.4)',
+  },
   nextButtonInner: {
+    backgroundColor: 'rgba(201, 169, 109, 0.20)',
     paddingVertical: 16,
     alignItems: 'center',
   },
@@ -369,5 +399,16 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontWeight: '500',
     letterSpacing: 1.5,
+  },
+  nextButtonGlow: {
+    position: 'absolute',
+    bottom: -8,
+    left: '10%',
+    right: '10%',
+    height: 20,
+    backgroundColor: 'rgba(201, 169, 109, 0.15)',
+    borderRadius: 20,
+    opacity: 0.6,
+    zIndex: -1,
   },
 });
