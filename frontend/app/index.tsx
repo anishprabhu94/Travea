@@ -257,10 +257,10 @@ const styles = StyleSheet.create({
   },
   tagline: {
     fontSize: 18,
-    color: '#D1D1D1',
+    color: '#FFFFFF',
     letterSpacing: 3,
-    opacity: 0.85,
-    fontWeight: '300',
+    opacity: 1,
+    fontWeight: '600',
   },
   paneContainer: {
     alignItems: 'center',
