@@ -391,13 +391,13 @@ const styles = StyleSheet.create({
   },
   // questionContainer removed - no longer needed
   questionText: {
-    fontSize: 19,
-    fontWeight: '600',
+    fontSize: 20, // Increased to 20px as requested
+    fontWeight: '600', // Weight 600 maintained as requested
     color: 'rgba(255, 255, 255, 0.92)',
-    lineHeight: 24, // 1.25 * 19px = 23.75, rounded to 24
+    lineHeight: 26, // 1.3 * 20px = 26px as requested
     letterSpacing: 0.3,
-    textAlign: 'left',
-    maxWidth: '92%',
+    textAlign: 'left', // Left-aligned as requested
+    maxWidth: '100%', // Full width for proper left alignment
     fontFamily: Platform.select({
       ios: 'NeueHaasDisplayMedium',
       android: 'NeueHaasDisplayMedium', 
