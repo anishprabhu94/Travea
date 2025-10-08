@@ -125,10 +125,6 @@ export default function Onboarding() {
         locations={[0, 0.2, 0.8, 1]}
       />
 
-      <View style={styles.radialGlowContainer}>
-        <View style={styles.radialGlow} />
-      </View>
-
       <View style={styles.topBar}>
         <Text style={styles.logoText}>TRAVEA</Text>
         <View style={styles.profileIcon}>
@@ -168,21 +164,12 @@ export default function Onboarding() {
                 style={styles.bubbleWrapper}
               >
                 {selected ? (
-                  <View style={styles.selectedBubbleContainer}>
-                    <LinearGradient
-                      colors={['#B89361', '#C9A96D']}
-                      style={styles.selectedBubble}
-                      start={{ x: 0, y: 0 }}
-                      end={{ x: 1, y: 1 }}
-                    >
-                      <Text style={styles.bubbleTextSelected}>{option}</Text>
-                    </LinearGradient>
-                    <View style={styles.selectedGlow} />
+                  <View style={styles.selectedBubble}>
+                    <Text style={styles.bubbleTextSelected}>{option}</Text>
                   </View>
                 ) : (
-                  <BlurView intensity={30} tint="light" style={styles.bubble}>
+                  <BlurView intensity={25} tint="light" style={styles.bubble}>
                     <View style={styles.bubbleInner}>
-                      <View style={styles.innerGlow} />
                       <Text style={styles.bubbleText}>{option}</Text>
                     </View>
                   </BlurView>
@@ -207,7 +194,6 @@ export default function Onboarding() {
               </Text>
             </View>
           </BlurView>
-          <View style={styles.nextButtonGlow} />
         </TouchableOpacity>
       </View>
     </View>
@@ -221,19 +207,6 @@ const styles = StyleSheet.create({
   },
   background: {
     ...StyleSheet.absoluteFillObject,
-  },
-  radialGlowContainer: {
-    ...StyleSheet.absoluteFillObject,
-    alignItems: 'center',
-    justifyContent: 'center',
-    pointerEvents: 'none',
-  },
-  radialGlow: {
-    width: width * 1.2,
-    height: height * 0.6,
-    backgroundColor: 'rgba(255, 255, 255, 0.03)',
-    borderRadius: width,
-    opacity: 0.8,
   },
   topBar: {
     flexDirection: 'row',
@@ -298,78 +271,73 @@ const styles = StyleSheet.create({
   bubblesGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    gap: 12,
+    gap: 16,
   },
   bubbleWrapper: {
-    width: (width - 60) / 2,
-    marginBottom: 4,
+    width: (width - 80) / 2,
   },
   bubble: {
-    borderRadius: 16,
+    borderRadius: 14,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.25)',
-    minHeight: 70,
+    borderColor: 'rgba(255, 255, 255, 0.2)',
+    minHeight: 46,
     justifyContent: 'center',
-  },
-  bubbleInner: {
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
-    paddingVertical: 16,
-    paddingHorizontal: 20,
-    position: 'relative',
-  },
-  innerGlow: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(255, 255, 255, 0.10)',
-    opacity: 0.5,
-  },
-  bubbleText: {
-    fontSize: 16,
-    color: '#F2F2F2',
-    fontWeight: '500',
-    textAlign: 'center',
-    lineHeight: 22,
-  },
-  selectedBubbleContainer: {
-    position: 'relative',
-  },
-  selectedBubble: {
-    borderRadius: 16,
-    paddingVertical: 16,
-    paddingHorizontal: 20,
-    minHeight: 70,
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: 'rgba(201, 169, 109, 0.5)',
     ...Platform.select({
       ios: {
-        shadowColor: '#C9A96D',
+        shadowColor: '#000',
         shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
+        shadowOpacity: 0.4,
         shadowRadius: 12,
       },
       android: {
-        elevation: 6,
+        elevation: 4,
       },
       web: {
-        boxShadow: '0px 4px 12px rgba(201, 169, 109, 0.3)',
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.4)',
       },
     }),
   },
-  selectedGlow: {
-    ...StyleSheet.absoluteFillObject,
-    borderRadius: 16,
-    backgroundColor: 'rgba(201, 169, 109, 0.2)',
-    zIndex: -1,
-    transform: [{ scale: 1.05 }],
+  bubbleInner: {
+    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+  },
+  bubbleText: {
+    fontSize: 15,
+    color: '#FFFFFF',
+    fontWeight: '500',
+    textAlign: 'center',
+  },
+  selectedBubble: {
+    backgroundColor: 'rgba(201, 169, 109, 0.18)',
+    borderRadius: 14,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    minHeight: 46,
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(201, 169, 109, 0.45)',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.4,
+        shadowRadius: 12,
+      },
+      android: {
+        elevation: 4,
+      },
+      web: {
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.4), inset 0 0 8px rgba(255, 255, 255, 0.05)',
+      },
+    }),
   },
   bubbleTextSelected: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#FFFFFF',
-    fontWeight: '600',
+    fontWeight: '500',
     textAlign: 'center',
-    lineHeight: 22,
   },
   bottomContainer: {
     paddingHorizontal: 24,
@@ -399,16 +367,5 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontWeight: '500',
     letterSpacing: 1.5,
-  },
-  nextButtonGlow: {
-    position: 'absolute',
-    bottom: -8,
-    left: '10%',
-    right: '10%',
-    height: 20,
-    backgroundColor: 'rgba(201, 169, 109, 0.15)',
-    borderRadius: 20,
-    opacity: 0.6,
-    zIndex: -1,
   },
 });
