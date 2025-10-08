@@ -348,9 +348,10 @@ const styles = StyleSheet.create({
   questionText: {
     fontSize: 22,
     fontWeight: '500',
-    color: '#F2F2F2',
+    color: 'rgba(255, 255, 255, 0.9)',
     lineHeight: 32,
     letterSpacing: 0.3,
+    textAlign: 'center',
   },
   multiSelectHint: {
     fontSize: 14,
