@@ -98,7 +98,6 @@ export default function Welcome() {
                 <Text style={styles.buttonText}>BEGIN PERSONALIZATION</Text>
               </View>
             </BlurView>
-            <View style={styles.buttonGlow} />
           </TouchableOpacity>
         </Animated.View>
       </Animated.View>
