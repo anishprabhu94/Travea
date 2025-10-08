@@ -399,7 +399,7 @@ export default function Landing() {
           </View>
         </BlurView>
       </Animated.View>
-    </ImageBackground>
+    </View>
   )
 }
 
