@@ -190,79 +190,84 @@ export default function Onboarding() {
         </View>
       </View>
 
-      {/* Layer 3: Content (Vertical stack, top-aligned) - NOT nested, NO vertical centering */}
+      {/* Layer 3: Content (Flex container for proper layout) */}
       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
-        {/* QuestionPane - Centered but left-aligned text */}
-        <View style={styles.questionPane}>
-          <Text style={styles.questionText}>{currentQuestion.question}</Text>
-        </View>
+        {/* Scrollable content area */}
+        <View style={styles.scrollableContent}>
+          {/* QuestionPane - Centered but left-aligned text */}
+          <View style={styles.questionPane}>
+            <Text style={styles.questionText}>{currentQuestion.question}</Text>
+          </View>
 
-        {/* BubbleGrid - Separate from Next button */}
-        <View style={styles.bubbleGrid}>
-          {currentQuestion.options.map((option, index) => {
-            const selected = isSelected(option);
-            const scaleAnim = getScaleAnim(option);
+          {/* BubbleGrid */}
+          <View style={styles.bubbleGrid}>
+            {currentQuestion.options.map((option, index) => {
+              const selected = isSelected(option);
+              const scaleAnim = getScaleAnim(option);
 
-            return (
-              <Animated.View
-                key={index}
-                style={[
-                  styles.bubbleWrapper,
-                  { transform: [{ scale: scaleAnim }] },
-                ]}
-              >
-                <TouchableOpacity
-                  activeOpacity={1}
-                  onPress={() => handleSelectAnswer(option)}
+              return (
+                <Animated.View
+                  key={index}
+                  style={[
+                    styles.bubbleWrapper,
+                    { transform: [{ scale: scaleAnim }] },
+                  ]}
                 >
-                  {selected ? (
-                    <BlurView intensity={20} tint="light" style={styles.selectedBubble}>
-                      <View style={styles.selectedBubbleInner}>
-                        <Text style={styles.bubbleTextSelected}>{option}</Text>
-                      </View>
-                    </BlurView>
-                  ) : (
-                    <BlurView intensity={20} tint="light" style={styles.bubble}>
-                      <View style={styles.bubbleInner}>
-                        <Text style={styles.bubbleText}>{option}</Text>
-                      </View>
-                    </BlurView>
-                  )}
-                </TouchableOpacity>
-              </Animated.View>
-            );
-          })}
+                  <TouchableOpacity
+                    activeOpacity={1}
+                    onPress={() => handleSelectAnswer(option)}
+                  >
+                    {selected ? (
+                      <BlurView intensity={20} tint="light" style={styles.selectedBubble}>
+                        <View style={styles.selectedBubbleInner}>
+                          <Text style={styles.bubbleTextSelected}>{option}</Text>
+                        </View>
+                      </BlurView>
+                    ) : (
+                      <BlurView intensity={20} tint="light" style={styles.bubble}>
+                        <View style={styles.bubbleInner}>
+                          <Text style={styles.bubbleText}>{option}</Text>
+                        </View>
+                      </BlurView>
+                    )}
+                  </TouchableOpacity>
+                </Animated.View>
+              );
+            })}
+          </View>
         </View>
 
-        {/* Next Button - Outside BubbleGrid */}
-        <TouchableOpacity
-          style={styles.nextButtonWrapper}
-          onPress={handleNext}
-          disabled={!canProceed()}
-          activeOpacity={0.8}
-        >
-          <BlurView 
-            intensity={25} 
-            tint="light" 
-            style={[
-              styles.nextButton,
-              !canProceed() ? styles.nextButtonDisabled : styles.nextButtonEnabled
-            ]}
+        {/* Next Button - Pinned at bottom */}
+        <View style={styles.bottomButtonContainer}>
+          <TouchableOpacity
+            style={styles.nextButtonWrapper}
+            onPress={handleNext}
+            disabled={!canProceed()}
+            activeOpacity={0.8}
           >
-            <View style={[
-              styles.nextButtonInner,
-              !canProceed() ? styles.nextButtonInnerDisabled : styles.nextButtonInnerEnabled
-            ]}>
-              {canProceed() && <View style={styles.nextButtonGlow} />}
-              <Text style={[
-                styles.nextButtonText,
-                !canProceed() ? styles.nextButtonTextDisabled : styles.nextButtonTextEnabled
+            <BlurView 
+              intensity={25} 
+              tint="light" 
+              style={[
+                styles.nextButton,
+                !canProceed() ? styles.nextButtonDisabled : styles.nextButtonEnabled
+              ]}
+            >
+              <View style={[
+                styles.nextButtonInner,
+                !canProceed() ? styles.nextButtonInnerDisabled : styles.nextButtonInnerEnabled
               ]}>
-                {currentStep === questions.length - 1 ? 'COMPLETE' : 'NEXT'}
-              </Text>
-            </View>
-          </BlurView>
-        </TouchableOpacity>
+                {canProceed() && <View style={styles.nextButtonGlow} />}
+                <Text style={[
+                  styles.nextButtonText,
+                  !canProceed() ? styles.nextButtonTextDisabled : styles.nextButtonTextEnabled
+                ]}>
+                  {currentStep === questions.length - 1 ? 'COMPLETE' : 'NEXT'}
+                </Text>
+              </View>
+            </BlurView>
+          </TouchableOpacity>
+        </View>
       </Animated.View>
     </View>
   );
