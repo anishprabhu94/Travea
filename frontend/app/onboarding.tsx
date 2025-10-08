@@ -382,22 +382,11 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     opacity: 0.8,
   },
-  bubbleGridBackplate: {
-    backgroundColor: 'rgba(0, 0, 0, 0.18)',
-    borderRadius: 20,
-    padding: 12,
-    marginBottom: 16, // 16px grid→NEXT
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-      },
-    }),
-  },
-  bubblesGrid: {
+  bubbleGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 12,
+    marginBottom: 16, // 16px grid→NEXT
   },
   bubbleWrapper: {
     width: '48%',
