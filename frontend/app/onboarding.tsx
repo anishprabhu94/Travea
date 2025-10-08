@@ -191,7 +191,8 @@ export default function Onboarding() {
         </View>
       </View>
 
-      <Animated.View style={[styles.onboardContent, { opacity: fadeAnim }]}>
+      {/* Layer 3: Content (Auto Layout vertical, top-aligned) */}
+      <Animated.View style={[styles.contentLayer, { opacity: fadeAnim }]}>
         {/* Frosted Glass Question Pane */}
         <View style={styles.questionPaneContainer}>
           <View style={styles.questionContainer}>
