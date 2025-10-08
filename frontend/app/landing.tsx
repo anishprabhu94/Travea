@@ -21,8 +21,7 @@ interface DestinationCard {
   city: string
   tagline: string
   image: string
-  transport?: TransportInfo[]
-  feature: string
+  transport: TransportInfo[]
 }
 
 interface TransportInfo {
@@ -39,8 +38,7 @@ const weekendDestinations: DestinationCard[] = [
     transport: [
       { icon: 'car-outline', time: '1h 30m' },
       { icon: 'train-outline', time: '2h 10m' }
-    ],
-    feature: 'Condé Nast'
+    ]
   },
   {
     id: 'carmel',
@@ -50,8 +48,7 @@ const weekendDestinations: DestinationCard[] = [
     transport: [
       { icon: 'car-outline', time: '2h 15m' },
       { icon: 'train-outline', time: '2h 45m' }
-    ],
-    feature: 'Condé Nast'
+    ]
   },
   {
     id: 'bigsur',
@@ -61,32 +58,7 @@ const weekendDestinations: DestinationCard[] = [
     transport: [
       { icon: 'car-outline', time: '3h 05m' },
       { icon: 'airplane-outline', time: '1h 15m' }
-    ],
-    feature: 'Condé Nast'
-  }
-]
-
-const inspireMeDestinations: DestinationCard[] = [
-  {
-    id: 'amalfi',
-    city: 'Amalfi Coast',
-    tagline: 'Cliffside lemon groves & sea whispers',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
-    feature: "Editor's Pick"
-  },
-  {
-    id: 'kyoto',
-    city: 'Kyoto',
-    tagline: 'Spring rituals & silent gardens',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
-    feature: "Editor's Pick"
-  },
-  {
-    id: 'iceland',
-    city: 'Iceland',
-    tagline: 'Glaciers, mist, and endless light',
-    image: 'https://images.unsplash.com/photo-1539066688414-9a2c2112febd?w=800&q=80',
-    feature: "Editor's Pick"
+    ]
   }
 ]
 
@@ -98,7 +70,7 @@ export default function Landing() {
   
   // Animation refs
   const fadeAnim = useRef(new Animated.Value(0)).current
-  const modeTransition = useRef(new Animated.Value(1)).current
+  const carouselOpacity = useRef(new Animated.Value(1)).current
   const dockGlowAnim = useRef(new Animated.Value(0)).current
   const cardScrollRef = useRef<ScrollView>(null)
 
@@ -106,34 +78,14 @@ export default function Landing() {
     // Entrance animation
     Animated.timing(fadeAnim, {
       toValue: 1,
-      duration: 800,
+      duration: 600,
       useNativeDriver: true,
     }).start()
   }, [])
 
   const handleModeSwitch = (mode: string) => {
     if (mode === activeMode) return
-
-    Animated.sequence([
-      Animated.timing(modeTransition, {
-        toValue: 0.7,
-        duration: 160,
-        useNativeDriver: true,
-      }),
-      Animated.timing(modeTransition, {
-        toValue: 1,
-        duration: 200,
-        useNativeDriver: true,
-      })
-    ]).start()
-
     setActiveMode(mode)
-    setCurrentCardIndex(0)
-    
-    // Scroll to first card
-    setTimeout(() => {
-      cardScrollRef.current?.scrollTo({ x: 0, animated: true })
-    }, 50)
   }
 
   const handleBookmark = (itemId: string) => {
@@ -144,88 +96,91 @@ export default function Landing() {
     } else {
       setBookmarkedItems(prev => [...prev, itemId])
       
-      // Animate dock glow
+      // Animate dock glow for "My Trips"
       Animated.sequence([
         Animated.timing(dockGlowAnim, {
           toValue: 1,
-          duration: 200,
+          duration: 300,
           useNativeDriver: true,
         }),
         Animated.timing(dockGlowAnim, {
           toValue: 0,
-          duration: 600,
+          duration: 800,
           useNativeDriver: true,
         })
       ]).start()
     }
   }
 
-  const renderDestinationCard = (destination: DestinationCard) => (
-    <View key={destination.id} style={styles.cardContainer}>
+  const onScroll = (event: any) => {
+    const contentOffset = event.nativeEvent.contentOffset.x
+    const index = Math.round(contentOffset / width)
+    setCurrentCardIndex(index)
+  }
+
+  const renderDestinationCard = (destination: DestinationCard, index: number) => (
+    <View key={destination.id} style={styles.cardWrapper}>
       <ImageBackground
         source={{ uri: destination.image }}
         style={styles.destinationCard}
         imageStyle={styles.cardImage}
       >
-        {/* Overlay Gradient */}
-        <View style={styles.cardOverlay} />
-        
         {/* Bookmark Icon */}
         <TouchableOpacity
           style={styles.bookmarkButton}
           onPress={() => handleBookmark(destination.id)}
           activeOpacity={0.8}
         >
-          <Ionicons
-            name={bookmarkedItems.includes(destination.id) ? "bookmark" : "bookmark-outline"}
-            size={22}
-            color={bookmarkedItems.includes(destination.id) ? "#C9A96D" : "rgba(255,255,255,0.85)"}
-          />
-        </TouchableOpacity>
-
-        {/* Content */}
-        <View style={styles.cardContent}>
-          <BlurView intensity={14} tint="light" style={styles.textPanel}>
-            <View style={styles.textPanelInner}>
-              <Text style={styles.cityName}>{destination.city}</Text>
-              <Text style={styles.cityTagline}>{destination.tagline}</Text>
+          <BlurView intensity={15} tint="light" style={styles.bookmarkBlur}>
+            <View style={styles.bookmarkInner}>
+              <Ionicons
+                name={bookmarkedItems.includes(destination.id) ? "bookmark" : "bookmark-outline"}
+                size={20}
+                color={bookmarkedItems.includes(destination.id) ? "#C9A96D" : "rgba(255,255,255,0.9)"}
+              />
             </View>
           </BlurView>
+        </TouchableOpacity>
 
-          {/* Transport Row (Weekend only) */}
-          {activeMode === 'weekend' && destination.transport && (
-            <View style={styles.transportRow}>
-              {destination.transport.map((transport, index) => (
-                <BlurView key={index} intensity={12} tint="light" style={styles.transportChip}>
-                  <View style={styles.transportChipInner}>
-                    <Ionicons name={transport.icon} size={16} color="rgba(255,255,255,0.85)" />
+        {/* Mid-left Floating Content Block */}
+        <View style={styles.contentBlockContainer}>
+          <BlurView intensity={20} tint="light" style={styles.contentBlock}>
+            <View style={styles.contentBlockInner}>
+              {/* City Name */}
+              <Text style={styles.cityName}>{destination.city}</Text>
+              
+              {/* Tagline */}
+              <Text style={styles.cityTagline}>{destination.tagline}</Text>
+              
+              {/* Transport Row */}
+              <View style={styles.transportRow}>
+                {destination.transport.map((transport, transportIndex) => (
+                  <View key={transportIndex} style={styles.transportItem}>
+                    <Ionicons 
+                      name={transport.icon} 
+                      size={16} 
+                      color="rgba(255,255,255,0.85)" 
+                      style={styles.transportIcon}
+                    />
                     <Text style={styles.transportTime}>{transport.time}</Text>
                   </View>
+                ))}
+              </View>
+              
+              {/* Bronze Pill Tag */}
+              <View style={styles.pillTagContainer}>
+                <BlurView intensity={18} tint="light" style={styles.pillTag}>
+                  <View style={styles.pillTagInner}>
+                    <Text style={styles.pillTagText}>Condé Nast</Text>
+                  </View>
                 </BlurView>
-              ))}
-            </View>
-          )}
-
-          {/* Feature Tag */}
-          <BlurView intensity={20} tint="light" style={styles.featureTag}>
-            <View style={styles.featureTagInner}>
-              <Text style={styles.featureText}>{destination.feature}</Text>
+              </View>
             </View>
           </BlurView>
         </View>
       </ImageBackground>
     </View>
   )
-
-  const getCurrentDestinations = () => {
-    return activeMode === 'weekend' ? weekendDestinations : inspireMeDestinations
-  }
-
-  const getCarouselTitle = () => {
-    return activeMode === 'weekend' 
-      ? 'Closer than you think — perfect weekends await.'
-      : 'Faraway places, nearer dreams.'
-  }
 
   return (
     <View style={styles.container}>
@@ -235,67 +190,80 @@ export default function Landing() {
       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
         {/* Header */}
         <View style={styles.header}>
+          {/* TRĀVEA Logo */}
           <View style={styles.logoContainer}>
             <Text style={styles.logoText}>TRĀVEA</Text>
           </View>
+          
+          {/* Profile Icon */}
+          <TouchableOpacity style={styles.profileButton} activeOpacity={0.8}>
+            <BlurView intensity={20} tint="light" style={styles.profileBlur}>
+              <View style={styles.profileInner}>
+                <Ionicons name="person-outline" size={20} color="rgba(255,255,255,0.9)" />
+              </View>
+            </BlurView>
+          </TouchableOpacity>
         </View>
 
-        {/* Greeting */}
+        {/* Greeting Section */}
         <View style={styles.greetingSection}>
           <Text style={styles.greetingMain}>Good to see you, Anish.</Text>
           <Text style={styles.greetingSub}>Let's find your next escape.</Text>
         </View>
 
-        {/* Mode Chips */}
-        <View style={styles.modeChipsContainer}>
+        {/* Mode Pills */}
+        <View style={styles.modePillsContainer}>
           <TouchableOpacity
-            style={[styles.modeChip, activeMode === 'weekend' && styles.modeChipActive]}
+            style={[styles.modePill, activeMode === 'weekend' && styles.modePillActive]}
             onPress={() => handleModeSwitch('weekend')}
             activeOpacity={0.8}
           >
-            <BlurView intensity={18} tint="light" style={styles.chipBlur}>
-              <View style={styles.chipContent}>
-                <Text style={styles.chipIcon}>🛫</Text>
-                <Text style={styles.chipLabel}>Weekend</Text>
+            <BlurView intensity={18} tint="light" style={styles.pillBlur}>
+              <View style={styles.pillContent}>
+                <Ionicons name="airplane-outline" size={16} color="rgba(255,255,255,0.9)" />
+                <Text style={styles.pillLabel}>Weekend</Text>
               </View>
             </BlurView>
-            {activeMode === 'weekend' && <View style={styles.chipUnderline} />}
+            {activeMode === 'weekend' && <View style={styles.pillUnderline} />}
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.modeChip, activeMode === 'inspire' && styles.modeChipActive]}
+            style={[styles.modePill, activeMode === 'inspire' && styles.modePillActive]}
             onPress={() => handleModeSwitch('inspire')}
             activeOpacity={0.8}
           >
-            <BlurView intensity={18} tint="light" style={styles.chipBlur}>
-              <View style={styles.chipContent}>
-                <Text style={styles.chipIcon}>🌿</Text>
-                <Text style={styles.chipLabel}>Inspire Me</Text>
+            <BlurView intensity={18} tint="light" style={styles.pillBlur}>
+              <View style={styles.pillContent}>
+                <Ionicons name="leaf-outline" size={16} color="rgba(255,255,255,0.9)" />
+                <Text style={styles.pillLabel}>Inspire Me</Text>
               </View>
             </BlurView>
-            {activeMode === 'inspire' && <View style={styles.chipUnderline} />}
+            {activeMode === 'inspire' && <View style={styles.pillUnderline} />}
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.modeChip, activeMode === 'search' && styles.modeChipActive]}
+            style={[styles.modePill, activeMode === 'search' && styles.modePillActive]}
             onPress={() => handleModeSwitch('search')}
             activeOpacity={0.8}
           >
-            <BlurView intensity={18} tint="light" style={styles.chipBlur}>
-              <View style={styles.chipContent}>
-                <Text style={styles.chipIcon}>📍</Text>
-                <Text style={styles.chipLabel}>Search</Text>
+            <BlurView intensity={18} tint="light" style={styles.pillBlur}>
+              <View style={styles.pillContent}>
+                <Ionicons name="search-outline" size={16} color="rgba(255,255,255,0.9)" />
+                <Text style={styles.pillLabel}>Search</Text>
               </View>
             </BlurView>
-            {activeMode === 'search' && <View style={styles.chipUnderline} />}
+            {activeMode === 'search' && <View style={styles.pillUnderline} />}
           </TouchableOpacity>
         </View>
 
-        {/* Carousel Section */}
-        {activeMode !== 'search' && (
-          <Animated.View style={[styles.carouselSection, { opacity: modeTransition }]}>
-            <Text style={styles.carouselTitle}>{getCarouselTitle()}</Text>
-            
+        {/* Tagline */}
+        <View style={styles.taglineContainer}>
+          <Text style={styles.tagline}>Closer than you think — perfect weekends await.</Text>
+        </View>
+
+        {/* Carousel */}
+        <View style={styles.carouselContainer}>
+          <Animated.View style={{ opacity: carouselOpacity }}>
             <ScrollView
               ref={cardScrollRef}
               horizontal
@@ -303,22 +271,15 @@ export default function Landing() {
               showsHorizontalScrollIndicator={false}
               style={styles.carousel}
               contentContainerStyle={styles.carouselContent}
-              onMomentumScrollEnd={(event) => {
-                const index = Math.round(event.nativeEvent.contentOffset.x / width)
-                setCurrentCardIndex(index)
-              }}
+              onScroll={onScroll}
+              scrollEventThrottle={16}
             >
-              {getCurrentDestinations().map(renderDestinationCard)}
+              {weekendDestinations.map((destination, index) => 
+                renderDestinationCard(destination, index)
+              )}
             </ScrollView>
           </Animated.View>
-        )}
-
-        {/* Search Mode Placeholder */}
-        {activeMode === 'search' && (
-          <View style={styles.searchPlaceholder}>
-            <Text style={styles.searchText}>Search functionality coming soon...</Text>
-          </View>
-        )}
+        </View>
       </Animated.View>
 
       {/* Bottom Dock */}
@@ -332,7 +293,7 @@ export default function Landing() {
             </TouchableOpacity>
             
             <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
-              <Ionicons name="map-outline" size={24} color="rgba(255,255,255,0.75)" />
+              <Ionicons name="map-outline" size={22} color="rgba(255,255,255,0.75)" />
               <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
             </TouchableOpacity>
             
@@ -363,15 +324,6 @@ const styles = StyleSheet.create({
     ...Platform.select({
       web: {
         background: 'linear-gradient(135deg, #161616 0%, #222222 100%)',
-        '&::after': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'radial-gradient(ellipse at center, rgba(201,169,109,0.08) 0%, transparent 70%)',
-        }
       },
     }),
   },
@@ -380,6 +332,9 @@ const styles = StyleSheet.create({
     paddingTop: 50,
   },
   header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingHorizontal: 24,
     marginBottom: 32,
   },
@@ -390,7 +345,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '600',
     color: '#F8F8F8',
-    letterSpacing: 3.6, // +0.15em * 24px
+    letterSpacing: 4.8, // Spaced letters as requested
     textTransform: 'uppercase',
     fontFamily: Platform.select({
       ios: 'NeueHaasDisplayMedium',
@@ -406,6 +361,22 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  profileButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+  },
+  profileBlur: {
+    flex: 1,
+    borderRadius: 22,
+    overflow: 'hidden',
+  },
+  profileInner: {
+    flex: 1,
+    backgroundColor: 'rgba(25,25,25,0.35)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   greetingSection: {
     paddingHorizontal: 24,
     marginBottom: 32,
@@ -420,11 +391,6 @@ const styles = StyleSheet.create({
       android: 'NeueHaasDisplayRoman',
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
-    ...Platform.select({
-      web: {
-        textShadow: '0 0 12px rgba(201,169,109,0.2)',
-      },
-    }),
   },
   greetingSub: {
     fontSize: 14,
@@ -436,28 +402,28 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  modeChipsContainer: {
+  modePillsContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     paddingHorizontal: 24,
-    marginBottom: 32,
+    marginBottom: 24,
     gap: 12,
   },
-  modeChip: {
-    width: 108,
+  modePill: {
+    width: 108, // Same size for all pills
     height: 44,
     borderRadius: 20,
     position: 'relative',
   },
-  modeChipActive: {
+  modePillActive: {
     // Active styling handled by underline
   },
-  chipBlur: {
+  pillBlur: {
     flex: 1,
     borderRadius: 20,
     overflow: 'hidden',
   },
-  chipContent: {
+  pillContent: {
     flex: 1,
     backgroundColor: 'rgba(25,25,25,0.35)',
     flexDirection: 'row',
@@ -465,10 +431,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 8,
   },
-  chipIcon: {
-    fontSize: 16,
-  },
-  chipLabel: {
+  pillLabel: {
     fontSize: 14,
     fontWeight: '500',
     color: '#F8F8F8',
@@ -478,7 +441,7 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  chipUnderline: {
+  pillUnderline: {
     position: 'absolute',
     bottom: -2,
     left: '25%',
@@ -492,37 +455,40 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  carouselSection: {
-    flex: 1,
-    marginBottom: 100, // Space for dock
+  taglineContainer: {
+    paddingHorizontal: 24,
+    marginBottom: 32,
   },
-  carouselTitle: {
+  tagline: {
     fontSize: 16,
     fontWeight: '400',
     color: 'rgba(255,255,255,0.75)',
-    textAlign: 'center',
-    marginBottom: 24,
-    paddingHorizontal: 24,
+    textAlign: 'left', // Left-aligned as requested
     fontFamily: Platform.select({
       ios: 'NeueHaasDisplayRoman',
       android: 'NeueHaasDisplayRoman',
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
+  carouselContainer: {
+    flex: 1,
+    marginBottom: 90, // Space for bottom dock
+  },
   carousel: {
     flex: 1,
   },
   carouselContent: {
-    paddingHorizontal: 12,
+    paddingHorizontal: 0,
   },
-  cardContainer: {
-    width: width - 24,
-    marginHorizontal: 12,
+  cardWrapper: {
+    width: width,
+    paddingHorizontal: 24,
   },
   destinationCard: {
-    height: height * 0.75,
+    height: height * 0.72, // 72% of screen height as requested
     borderRadius: 28,
     overflow: 'hidden',
+    position: 'relative',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
@@ -541,16 +507,6 @@ const styles = StyleSheet.create({
   cardImage: {
     borderRadius: 28,
   },
-  cardOverlay: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    ...Platform.select({
-      web: {
-        background: 'linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.25))',
-      },
-    }),
-  },
   bookmarkButton: {
     position: 'absolute',
     top: 24,
@@ -558,34 +514,43 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
+    zIndex: 10,
+  },
+  bookmarkBlur: {
+    flex: 1,
+    borderRadius: 22,
+    overflow: 'hidden',
+  },
+  bookmarkInner: {
+    flex: 1,
     backgroundColor: 'rgba(25,25,25,0.3)',
     alignItems: 'center',
     justifyContent: 'center',
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(10px)',
-      },
-    }),
   },
-  cardContent: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    padding: 24,
+  contentBlockContainer: {
+    position: 'absolute',
+    left: 24,
+    top: '25%', // Positioned in the middle-left area
+    width: '40%', // 40% width as requested
+    height: '50%', // 50% height as requested
+    justifyContent: 'center',
   },
-  textPanel: {
-    borderRadius: 18,
+  contentBlock: {
+    borderRadius: 20,
     overflow: 'hidden',
-    marginBottom: 20,
+    flex: 1,
   },
-  textPanelInner: {
-    backgroundColor: 'rgba(25,25,25,0.35)',
+  contentBlockInner: {
+    flex: 1,
+    backgroundColor: 'rgba(25,25,25,0.35)', // As specified
     padding: 20,
+    justifyContent: 'center',
   },
   cityName: {
-    fontSize: 22,
-    fontWeight: '600',
+    fontSize: 24,
+    fontWeight: '600', // Semi-bold as requested
     color: '#F8F8F8',
-    marginBottom: 6,
+    marginBottom: 8,
     fontFamily: Platform.select({
       ios: 'NeueHaasDisplayMedium',
       android: 'NeueHaasDisplayMedium',
@@ -596,6 +561,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '400',
     color: 'rgba(255,255,255,0.85)',
+    marginBottom: 16,
     lineHeight: 20,
     fontFamily: Platform.select({
       ios: 'NeueHaasDisplayRoman',
@@ -604,21 +570,15 @@ const styles = StyleSheet.create({
     }),
   },
   transportRow: {
-    flexDirection: 'row',
-    gap: 12,
-    marginBottom: 20,
+    marginBottom: 16,
   },
-  transportChip: {
-    borderRadius: 12,
-    overflow: 'hidden',
-  },
-  transportChipInner: {
-    backgroundColor: 'rgba(255,255,255,0.08)',
+  transportItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    gap: 6,
+    marginBottom: 8,
+  },
+  transportIcon: {
+    marginRight: 8,
   },
   transportTime: {
     fontSize: 14,
@@ -630,41 +590,25 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  featureTag: {
+  pillTagContainer: {
     alignSelf: 'flex-start',
+  },
+  pillTag: {
     borderRadius: 16,
     overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.1)',
   },
-  featureTagInner: {
-    backgroundColor: 'rgba(25,25,25,0.45)',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
+  pillTagInner: {
+    backgroundColor: '#C9A96D', // Bronze background as requested
+    paddingHorizontal: 12,
+    paddingVertical: 6,
   },
-  featureText: {
+  pillTagText: {
     fontSize: 12,
     fontWeight: '500',
-    color: 'rgba(255,255,255,0.85)',
+    color: '#FFFFFF',
     fontFamily: Platform.select({
       ios: 'NeueHaasDisplayMedium',
       android: 'NeueHaasDisplayMedium',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  searchPlaceholder: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 24,
-  },
-  searchText: {
-    fontSize: 16,
-    color: 'rgba(255,255,255,0.75)',
-    textAlign: 'center',
-    fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayRoman',
-      android: 'NeueHaasDisplayRoman',
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
@@ -751,10 +695,10 @@ const styles = StyleSheet.create({
   dockActiveIndicator: {
     position: 'absolute',
     bottom: 2,
-    width: 4,
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: 'rgba(201,169,109,0.8)',
+    width: 20,
+    height: 2,
+    borderRadius: 1,
+    backgroundColor: '#C9A96D', // Bronze underline as requested
     ...Platform.select({
       web: {
         boxShadow: '0 0 6px rgba(201,169,109,0.4)',
