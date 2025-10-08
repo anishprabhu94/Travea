@@ -89,7 +89,7 @@ export default function Index() {
         <View style={styles.contentContainer}>
           {/* Logo and Tagline */}
           <View style={styles.header}>
-            <Text style={styles.logo}>TRAVEA</Text>
+            <TraveaLogo variant="white" animated={true} size="large" />
             <Text style={styles.tagline}>Travel, refined.</Text>
           </View>
 
