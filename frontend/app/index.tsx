@@ -110,9 +110,9 @@ export default function Index() {
 
         {/* Content Container - No Scroll */}
         <View style={styles.contentContainer}>
-          {/* Logo and Tagline */}
+          {/* Luxury Wordmark */}
           <View style={styles.header}>
-            <Text style={styles.logo}>TRAVEA</Text>
+            <TraveaWordmark size="large" />
             <Text style={styles.tagline}>Travel, refined.</Text>
           </View>
 
