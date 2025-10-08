@@ -247,10 +247,11 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   beginButtonBlur: {
-    borderRadius: 16,
+    borderRadius: 12,
     overflow: 'hidden',
     borderWidth: 1,
     borderColor: 'rgba(201, 169, 109, 0.4)',
+    height: 44,
     ...Platform.select({
       web: {
         backdropFilter: 'blur(25px)',
@@ -259,14 +260,16 @@ const styles = StyleSheet.create({
     }),
   },
   beginButtonInner: {
-    backgroundColor: 'rgba(201, 169, 109, 0.35)',
-    paddingVertical: 18,
+    backgroundColor: 'rgba(201, 169, 109, 0.50)',
+    paddingVertical: 12,
     paddingHorizontal: 24,
     alignItems: 'center',
     position: 'relative',
+    flex: 1,
+    justifyContent: 'center',
     ...Platform.select({
       web: {
-        background: 'rgba(201, 169, 109, 0.35)',
+        background: 'rgba(201, 169, 109, 0.50)',
       },
     }),
   },
