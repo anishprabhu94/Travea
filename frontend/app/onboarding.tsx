@@ -457,14 +457,15 @@ const styles = StyleSheet.create({
     }),
   },
   bubbleText: {
-    fontSize: 15, // Kept smaller than question font (18px) for classy appearance
-    color: '#F2F2F2',
-    fontWeight: '500',
+    fontSize: 18, // Editorial luxury size for answers
+    color: '#F8F8F8', // Matching question text color
+    fontWeight: '400', // Light weight for elegance
     textAlign: 'center',
+    letterSpacing: 0.2, // Refined letter spacing
     fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayMedium',
-      android: 'NeueHaasDisplayMedium', 
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      ios: 'Canela',
+      android: 'serif', // Fallback to system serif on Android
+      web: 'Canela, "Tiempos Text", "Playfair Display", Georgia, serif', // Luxury serif stack
     }),
   },
   selectedBubble: {
