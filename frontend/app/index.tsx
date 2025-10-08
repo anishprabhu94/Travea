@@ -381,9 +381,10 @@ const styles = StyleSheet.create({
   },
   secondaryLink: {
     fontSize: 14,
-    color: '#EAEAEA',
+    color: '#FFFFFF',
     textAlign: 'center',
-    opacity: 0.8,
+    fontWeight: '700',
+    opacity: 1,
   },
   dividerContainer: {
     flexDirection: 'row',
