@@ -167,7 +167,9 @@ export default function Landing() {
 
   const getCurrentCards = () => {
     if (activeMode === 'search') return []
-    return destinationCards.filter(card => card.category === activeMode)
+    const filteredCards = destinationCards.filter(card => card.category === activeMode)
+    console.log(`Active mode: ${activeMode}, Found cards:`, filteredCards.length)
+    return filteredCards
   }
 
   const renderDestinationCard = (destination: DestinationCard, index: number) => (
