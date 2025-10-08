@@ -516,8 +516,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#C9A96D',
   },
   nextButtonInner: {
-    paddingVertical: 18,
-    paddingHorizontal: 24,
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
