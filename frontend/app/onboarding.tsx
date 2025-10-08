@@ -250,6 +250,8 @@ export default function Onboarding() {
               styles.nextButtonInner,
               !canProceed() ? styles.nextButtonInnerDisabled : styles.nextButtonInnerEnabled
             ]}>
+              {/* Inner Bronze Glow */}
+              {canProceed() && <View style={styles.nextButtonGlow} />}
               <Text style={[
                 styles.nextButtonText,
                 !canProceed() ? styles.nextButtonTextDisabled : styles.nextButtonTextEnabled
