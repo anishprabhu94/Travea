@@ -333,10 +333,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   onboardContent: {
-    paddingTop: 0,
+    position: 'absolute',
+    top: 120, // Pinned to progress bar bottom + 12px
+    left: 0,
+    right: 0,
     paddingHorizontal: 24,
-    paddingBottom: 12,
-    marginTop: -120,
+    paddingBottom: 20,
   },
   questionPaneContainer: {
     backgroundColor: 'rgba(25, 25, 25, 0.38)',
