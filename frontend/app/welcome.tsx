@@ -12,6 +12,7 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
+import TraveaWordmark from '../components/TraveaWordmark';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 
 const { width, height } = Dimensions.get('window');
