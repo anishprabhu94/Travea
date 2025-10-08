@@ -353,34 +353,36 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   selectedBubble: {
-    borderRadius: 14,
+    borderRadius: 20,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(201, 169, 109, 0.45)',
-    minHeight: 46,
+    borderColor: 'rgba(201, 169, 109, 0.55)',
+    height: 48,
     justifyContent: 'center',
     ...Platform.select({
       ios: {
-        shadowColor: '#C9A96D',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.4,
-        shadowRadius: 12,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.35,
+        shadowRadius: 14,
       },
       android: {
-        elevation: 4,
+        elevation: 10,
       },
       web: {
-        boxShadow: '0px 4px 12px rgba(201, 169, 109, 0.4)',
+        boxShadow: '0 10px 28px -6px rgba(0, 0, 0, 0.35), 0 0 0 3px rgba(201, 169, 109, 0.22)',
+        backdropFilter: 'blur(30px)',
+        WebkitBackdropFilter: 'blur(30px)',
       },
     }),
   },
   selectedBubbleInner: {
-    backgroundColor: 'rgba(201, 169, 109, 0.18)',
-    paddingVertical: 10,
+    backgroundColor: 'rgba(201, 169, 109, 0.20)',
+    paddingVertical: 14,
     paddingHorizontal: 16,
     ...Platform.select({
       web: {
-        boxShadow: 'inset 0 0 8px rgba(255, 255, 255, 0.05)',
+        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 40%)',
       },
     }),
   },
