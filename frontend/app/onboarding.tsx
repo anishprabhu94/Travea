@@ -46,7 +46,7 @@ const questions: Question[] = [
   {
     id: 4,
     question: 'How do you like to explore?',
-    options: ['Guided Tours', 'Solo Discovery', 'Local Connections', 'Off the Beaten Path'],
+    options: ['Guided Tours', 'Solo Discovery', 'Local Connections', 'Hidden Gems'],
     multiSelect: true,
   },
 ];
