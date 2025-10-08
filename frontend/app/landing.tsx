@@ -7,7 +7,8 @@ import {
   ImageBackground, 
   Platform, 
   Animated,
-  Dimensions 
+  Dimensions,
+  TextInput 
 } from 'react-native'
 import { useRouter } from 'expo-router'
 import { BlurView } from 'expo-blur'
@@ -16,47 +17,47 @@ import TraveaWordmark from '../components/TraveaWordmark'
 
 const { width, height } = Dimensions.get('window')
 
-interface Tab {
+interface Mode {
   id: string
   label: string
   icon: keyof typeof Ionicons.glyphMap
   image: string
-  tagline: string
+  title: string
+  subtitle: string
+  content: string[]
   cta: string
 }
 
-const tabs: Tab[] = [
+const modes: Mode[] = [
   {
     id: 'weekend',
-    label: 'Weekend Getaways',
+    label: 'Weekend Trips',
     icon: 'airplane-outline',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/nbtzgzgu_weekend%202.jpg',
-    tagline: 'Hidden coastal towns within a few hours\' reach.',
-    cta: 'Explore nearby escapes'
+    title: 'Weekend Escapes',
+    subtitle: 'Short trips nearby for a quick reset.',
+    content: ['Sonoma – 1.5h drive', 'Big Sur – 2h drive', 'Carmel – 1h'],
+    cta: 'Explore Nearby'
   },
   {
-    id: 'seasonal',
-    label: 'Seasonal Escapes',
+    id: 'inspire',
+    label: 'Inspire Me',
     icon: 'leaf-outline',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/9fi0vlp6_seasonal%203.jpg',
-    tagline: 'Destinations shaped by the season\'s rhythm.',
-    cta: 'Discover this season\'s highlights'
+    title: 'Get Inspired',
+    subtitle: 'Explore destinations worth adding to your list.',
+    content: ['Kyoto in Spring', 'Santorini Summers', 'Iceland\'s Winter Glow'],
+    cta: 'See Inspiration'
   },
   {
-    id: 'region',
-    label: 'Explore by Region',
-    icon: 'globe-outline',
+    id: 'search',
+    label: 'Search',
+    icon: 'search-outline',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sh631agb_globe.jpg',
-    tagline: 'Search by continent, country, or curiosity.',
-    cta: 'Choose your region'
-  },
-  {
-    id: 'wellness',
-    label: 'Wellness Retreats',
-    icon: 'flower-outline',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/x7v4kyuv_wellness.jpg',
-    tagline: 'Find stillness in nature and balance in design.',
-    cta: 'View curated retreats'
+    title: 'Know where you\'re going?',
+    subtitle: 'Find guides, stays, and highlights for your chosen city.',
+    content: [],
+    cta: ''
   }
 ]
 
