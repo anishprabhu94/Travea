@@ -13,6 +13,7 @@ import { StatusBar } from 'expo-status-bar';
 import { BlurView } from 'expo-blur';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const { width, height } = Dimensions.get('window');
 
@@ -44,183 +45,181 @@ export default function Index() {
     <View style={styles.container}>
       <StatusBar style="light" />
       
-      {/* Background Image with Overlay */}
+      {/* Full-Screen Background */}
       <ImageBackground
         source={{
-          uri: 'https://customer-assets.emergentagent.com/job_modern-journey-app/artifacts/a765up15_output.jpg',
+          uri: 'https://customer-assets.emergentagent.com/job_modern-journey-app/artifacts/5463kk1k_output.jpg',
         }}
         style={styles.backgroundImage}
         resizeMode="cover"
-        blurRadius={Platform.OS === 'ios' ? 30 : 25}
+        blurRadius={Platform.OS === 'ios' ? 25 : 20}
       >
-        {/* Dark overlay for contrast */}
-        <View style={styles.darkOverlay} />
-        
-        {/* Optional warm tint */}
-        <View style={styles.warmTint} />
+        {/* Mild vignette effect */}
+        <LinearGradient
+          colors={[
+            'rgba(0, 0, 0, 0.15)',
+            'rgba(0, 0, 0, 0.05)',
+            'rgba(0, 0, 0, 0.05)',
+            'rgba(0, 0, 0, 0.15)',
+          ]}
+          style={styles.vignetteOverlay}
+          start={{ x: 0.5, y: 0 }}
+          end={{ x: 0.5, y: 1 }}
+        />
 
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          style={styles.keyboardView}
-        >
-          <ScrollView
-            contentContainerStyle={styles.scrollContent}
-            keyboardShouldPersistTaps="handled"
-            showsVerticalScrollIndicator={false}
-            bounces={false}
-          >
-            {/* Logo and Tagline */}
-            <View style={styles.header}>
-              <Text style={styles.logo}>TRAVEA</Text>
-              <Text style={styles.tagline}>Travel, refined.</Text>
-            </View>
+        {/* Content Container - No Scroll */}
+        <View style={styles.contentContainer}>
+          {/* Logo and Tagline */}
+          <View style={styles.header}>
+            <Text style={styles.logo}>TRAVEA</Text>
+            <Text style={styles.tagline}>Travel, refined.</Text>
+          </View>
 
-            {/* Apple-Style Frosted Glass Pane */}
-            <View style={styles.paneContainer}>
-              <BlurView intensity={35} tint="light" style={styles.glassPaneBlur}>
-                <View style={styles.glassPaneInner}>
-                  {/* Tab Toggle: Sign In / Sign Up */}
-                  <View style={styles.toggleContainer}>
-                    <TouchableOpacity
-                      style={styles.toggleButton}
-                      onPress={() => setIsSignUp(false)}
-                      activeOpacity={0.7}
-                    >
-                      <Text style={[styles.toggleText, !isSignUp && styles.toggleTextActive]}>
-                        Sign In
-                      </Text>
-                      {!isSignUp && <View style={styles.activeUnderline} />}
-                    </TouchableOpacity>
-                    
-                    <View style={styles.toggleSpacer} />
-                    
-                    <TouchableOpacity
-                      style={styles.toggleButton}
-                      onPress={() => setIsSignUp(true)}
-                      activeOpacity={0.7}
-                    >
-                      <Text style={[styles.toggleText, isSignUp && styles.toggleTextActive]}>
-                        Sign Up
-                      </Text>
-                      {isSignUp && <View style={styles.activeUnderline} />}
-                    </TouchableOpacity>
-                  </View>
-
-                  {/* Input Fields */}
-                  <View style={styles.inputContainer}>
-                    {isSignUp && (
-                      <View style={styles.inputWrapper}>
-                        <Text style={styles.inputLabel}>Full Name</Text>
-                        <TextInput
-                          style={styles.input}
-                          placeholder=""
-                          placeholderTextColor="#EAEAEA"
-                          value={name}
-                          onChangeText={setName}
-                          autoCapitalize="words"
-                          onFocus={() => setFocusedField('name')}
-                          onBlur={() => setFocusedField(null)}
-                        />
-                        <View style={[
-                          styles.inputUnderline,
-                          focusedField === 'name' && styles.inputUnderlineFocused
-                        ]} />
-                      </View>
-                    )}
-
-                    <View style={styles.inputWrapper}>
-                      <Text style={styles.inputLabel}>Email</Text>
-                      <TextInput
-                        style={styles.input}
-                        placeholder=""
-                        placeholderTextColor="#EAEAEA"
-                        value={email}
-                        onChangeText={setEmail}
-                        keyboardType="email-address"
-                        autoCapitalize="none"
-                        onFocus={() => setFocusedField('email')}
-                        onBlur={() => setFocusedField(null)}
-                      />
-                      <View style={[
-                        styles.inputUnderline,
-                        focusedField === 'email' && styles.inputUnderlineFocused
-                      ]} />
-                    </View>
-
-                    <View style={styles.inputWrapper}>
-                      <Text style={styles.inputLabel}>Password</Text>
-                      <TextInput
-                        style={styles.input}
-                        placeholder=""
-                        placeholderTextColor="#EAEAEA"
-                        value={password}
-                        onChangeText={setPassword}
-                        secureTextEntry
-                        onFocus={() => setFocusedField('password')}
-                        onBlur={() => setFocusedField(null)}
-                      />
-                      <View style={[
-                        styles.inputUnderline,
-                        focusedField === 'password' && styles.inputUnderlineFocused
-                      ]} />
-                    </View>
-                  </View>
-
-                  {/* Primary CTA Button */}
+          {/* Frosted Glass Pane */}
+          <View style={styles.paneContainer}>
+            <BlurView intensity={25} tint="light" style={styles.glassPaneBlur}>
+              <View style={styles.glassPaneInner}>
+                {/* Tab Toggle */}
+                <View style={styles.toggleContainer}>
                   <TouchableOpacity
-                    style={styles.primaryButton}
-                    onPress={isSignUp ? handleSignUp : handleSignIn}
-                    activeOpacity={0.85}
+                    style={styles.toggleButton}
+                    onPress={() => setIsSignUp(false)}
+                    activeOpacity={0.7}
                   >
-                    <Text style={styles.primaryButtonText}>
-                      {isSignUp ? 'SIGN UP' : 'SIGN IN'}
+                    <Text style={[styles.toggleText, !isSignUp && styles.toggleTextActive]}>
+                      Sign In
                     </Text>
+                    {!isSignUp && <View style={styles.activeUnderline} />}
                   </TouchableOpacity>
-
-                  {/* Secondary Toggle Link */}
-                  <TouchableOpacity 
-                    onPress={() => setIsSignUp(!isSignUp)}
-                    style={styles.secondaryLinkContainer}
+                  
+                  <View style={styles.toggleSpacer} />
+                  
+                  <TouchableOpacity
+                    style={styles.toggleButton}
+                    onPress={() => setIsSignUp(true)}
+                    activeOpacity={0.7}
                   >
-                    <Text style={styles.secondaryLink}>
-                      {isSignUp
-                        ? 'Already have an account? Sign in'
-                        : "Don't have an account? Sign up"}
+                    <Text style={[styles.toggleText, isSignUp && styles.toggleTextActive]}>
+                      Sign Up
                     </Text>
+                    {isSignUp && <View style={styles.activeUnderline} />}
                   </TouchableOpacity>
+                </View>
 
-                  {/* Divider */}
-                  <View style={styles.dividerContainer}>
-                    <View style={styles.dividerLine} />
-                    <Text style={styles.dividerText}>OR CONTINUE WITH</Text>
-                    <View style={styles.dividerLine} />
+                {/* Input Fields */}
+                <View style={styles.inputContainer}>
+                  {isSignUp && (
+                    <View style={styles.inputWrapper}>
+                      <Text style={styles.inputLabel}>Full Name</Text>
+                      <TextInput
+                        style={styles.input}
+                        placeholder="Enter your full name"
+                        placeholderTextColor="rgba(191, 191, 191, 0.9)"
+                        value={name}
+                        onChangeText={setName}
+                        autoCapitalize="words"
+                        onFocus={() => setFocusedField('name')}
+                        onBlur={() => setFocusedField(null)}
+                      />
+                      <View style={[
+                        styles.inputUnderline,
+                        focusedField === 'name' && styles.inputUnderlineFocused
+                      ]} />
+                    </View>
+                  )}
+
+                  <View style={styles.inputWrapper}>
+                    <Text style={styles.inputLabel}>Email</Text>
+                    <TextInput
+                      style={styles.input}
+                      placeholder="Enter your email"
+                      placeholderTextColor="rgba(191, 191, 191, 0.9)"
+                      value={email}
+                      onChangeText={setEmail}
+                      keyboardType="email-address"
+                      autoCapitalize="none"
+                      onFocus={() => setFocusedField('email')}
+                      onBlur={() => setFocusedField(null)}
+                    />
+                    <View style={[
+                      styles.inputUnderline,
+                      focusedField === 'email' && styles.inputUnderlineFocused
+                    ]} />
                   </View>
 
-                  {/* OAuth Buttons */}
-                  <View style={styles.oauthContainer}>
-                    <TouchableOpacity
-                      style={styles.oauthButton}
-                      onPress={handleOAuthGoogle}
-                      activeOpacity={0.8}
-                    >
-                      <Ionicons name="logo-google" size={20} color="#FFFFFF" />
-                      <Text style={styles.oauthButtonText}>Continue with Google</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={[styles.oauthButton, styles.oauthButtonApple]}
-                      onPress={handleOAuthApple}
-                      activeOpacity={0.8}
-                    >
-                      <Ionicons name="logo-apple" size={20} color="#FFFFFF" />
-                      <Text style={styles.oauthButtonText}>Continue with Apple</Text>
-                    </TouchableOpacity>
+                  <View style={styles.inputWrapper}>
+                    <Text style={styles.inputLabel}>Password</Text>
+                    <TextInput
+                      style={styles.input}
+                      placeholder="Enter your password"
+                      placeholderTextColor="rgba(191, 191, 191, 0.9)"
+                      value={password}
+                      onChangeText={setPassword}
+                      secureTextEntry
+                      onFocus={() => setFocusedField('password')}
+                      onBlur={() => setFocusedField(null)}
+                    />
+                    <View style={[
+                      styles.inputUnderline,
+                      focusedField === 'password' && styles.inputUnderlineFocused
+                    ]} />
                   </View>
                 </View>
-              </BlurView>
-            </View>
-          </ScrollView>
-        </KeyboardAvoidingView>
+
+                {/* Primary CTA Button */}
+                <TouchableOpacity
+                  style={styles.primaryButton}
+                  onPress={isSignUp ? handleSignUp : handleSignIn}
+                  activeOpacity={0.85}
+                >
+                  <Text style={styles.primaryButtonText}>
+                    {isSignUp ? 'SIGN UP' : 'SIGN IN'}
+                  </Text>
+                </TouchableOpacity>
+
+                {/* Secondary Toggle Link */}
+                <TouchableOpacity 
+                  onPress={() => setIsSignUp(!isSignUp)}
+                  style={styles.secondaryLinkContainer}
+                >
+                  <Text style={styles.secondaryLink}>
+                    {isSignUp
+                      ? 'Already have an account? Sign in'
+                      : "Don't have an account? Sign up"}
+                  </Text>
+                </TouchableOpacity>
+
+                {/* Divider */}
+                <View style={styles.dividerContainer}>
+                  <View style={styles.dividerLine} />
+                  <Text style={styles.dividerText}>OR CONTINUE WITH</Text>
+                  <View style={styles.dividerLine} />
+                </View>
+
+                {/* OAuth Buttons */}
+                <View style={styles.oauthContainer}>
+                  <TouchableOpacity
+                    style={styles.oauthButton}
+                    onPress={handleOAuthGoogle}
+                    activeOpacity={0.8}
+                  >
+                    <Ionicons name="logo-google" size={20} color="#FFFFFF" />
+                    <Text style={styles.oauthButtonText}>Continue with Google</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    style={[styles.oauthButton, styles.oauthButtonApple]}
+                    onPress={handleOAuthApple}
+                    activeOpacity={0.8}
+                  >
+                    <Ionicons name="logo-apple" size={20} color="#FFFFFF" />
+                    <Text style={styles.oauthButtonText}>Continue with Apple</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </BlurView>
+          </View>
+        </View>
       </ImageBackground>
     </View>
   );
@@ -236,34 +235,25 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  darkOverlay: {
+  vignetteOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 0.35)',
   },
-  warmTint: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(58, 50, 41, 0.1)',
-  },
-  keyboardView: {
+  contentContainer: {
     flex: 1,
-  },
-  scrollContent: {
-    flexGrow: 1,
+    justifyContent: 'center',
     paddingHorizontal: 24,
-    paddingTop: 88,
-    paddingBottom: 40,
-    justifyContent: 'flex-start',
+    paddingVertical: 24,
   },
   header: {
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 32,
   },
   logo: {
     fontSize: 46,
     fontWeight: '700',
     color: '#F8F8F8',
     letterSpacing: 4,
-    marginBottom: 14,
+    marginBottom: 18,
   },
   tagline: {
     fontSize: 18,
@@ -276,7 +266,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   glassPaneBlur: {
-    width: width * 0.82,
+    width: width - 48,
     borderRadius: 24,
     overflow: 'hidden',
     borderWidth: 1,
@@ -297,7 +287,7 @@ const styles = StyleSheet.create({
     }),
   },
   glassPaneInner: {
-    backgroundColor: 'rgba(255, 255, 255, 0.12)',
+    backgroundColor: 'rgba(255, 255, 255, 0.08)',
     paddingTop: 24,
     paddingHorizontal: 20,
     paddingBottom: 28,
@@ -341,13 +331,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   inputLabel: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#EAEAEA',
     marginBottom: 8,
-    fontWeight: '400',
+    fontWeight: '500',
   },
   input: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#F8F8F8',
     paddingVertical: 8,
     paddingHorizontal: 0,
@@ -374,7 +364,7 @@ const styles = StyleSheet.create({
   },
   primaryButton: {
     backgroundColor: '#C9A96D',
-    height: 48,
+    height: 52,
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
@@ -390,10 +380,10 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   secondaryLink: {
-    fontSize: 13,
-    color: '#D47A63',
+    fontSize: 14,
+    color: '#EAEAEA',
     textAlign: 'center',
-    opacity: 0.6,
+    opacity: 0.8,
   },
   dividerContainer: {
     flexDirection: 'row',
@@ -403,16 +393,16 @@ const styles = StyleSheet.create({
   dividerLine: {
     flex: 1,
     height: 1,
-    backgroundColor: '#A8A8A8',
+    backgroundColor: '#5A5A5A',
     opacity: 0.3,
   },
   dividerText: {
-    fontSize: 12,
-    color: '#A8A8A8',
+    fontSize: 13,
+    color: '#CFCFCF',
     marginHorizontal: 16,
     letterSpacing: 1,
-    fontWeight: '300',
-    opacity: 0.6,
+    fontWeight: '500',
+    opacity: 0.75,
   },
   oauthContainer: {
     gap: 12,
