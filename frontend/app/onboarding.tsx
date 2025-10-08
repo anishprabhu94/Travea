@@ -285,12 +285,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   questionContainer: {
-    marginBottom: 32,
+    marginBottom: 20,
   },
   questionText: {
     fontSize: 22,
     fontWeight: '500',
-    color: '#F8F8F8',
+    color: '#F2F2F2',
     lineHeight: 32,
     letterSpacing: 0.3,
   },
@@ -305,9 +305,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 16,
+    marginBottom: 24,
   },
   bubbleWrapper: {
-    width: (width - 80) / 2,
+    minWidth: 156,
+    flex: 1,
+    maxWidth: '48%',
   },
   bubble: {
     borderRadius: 14,
