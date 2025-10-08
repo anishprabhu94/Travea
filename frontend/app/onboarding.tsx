@@ -364,7 +364,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(60, 60, 60, 0.35)', // Maintained as requested
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.08)', // Updated border for subtle luminous effect
+    borderColor: 'rgba(255, 255, 255, 0.12)', // Enhanced border for better visibility
     paddingVertical: 14,
     paddingHorizontal: 16,
     marginBottom: 32, // Increased for world-class spacing
