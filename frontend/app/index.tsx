@@ -240,21 +240,29 @@ export default function Index() {
                 {/* OAuth Buttons */}
                 <View style={styles.oauthContainer}>
                   <TouchableOpacity
-                    style={styles.oauthButton}
+                    style={styles.oauthButtonContainer}
                     onPress={handleOAuthGoogle}
-                    activeOpacity={0.8}
+                    activeOpacity={0.9}
                   >
-                    <Ionicons name="logo-google" size={20} color="#FFFFFF" />
-                    <Text style={styles.oauthButtonText}>Continue with Google</Text>
+                    <BlurView intensity={20} tint="light" style={styles.oauthButton}>
+                      <View style={styles.oauthButtonInner}>
+                        <Ionicons name="logo-google" size={18} color="rgba(255,255,255,0.85)" />
+                        <Text style={styles.oauthButtonText}>Continue with Google</Text>
+                      </View>
+                    </BlurView>
                   </TouchableOpacity>
 
                   <TouchableOpacity
-                    style={[styles.oauthButton, styles.oauthButtonApple]}
+                    style={styles.oauthButtonContainer}
                     onPress={handleOAuthApple}
-                    activeOpacity={0.8}
+                    activeOpacity={0.9}
                   >
-                    <Ionicons name="logo-apple" size={20} color="#FFFFFF" />
-                    <Text style={styles.oauthButtonText}>Continue with Apple</Text>
+                    <BlurView intensity={20} tint="light" style={styles.oauthButton}>
+                      <View style={styles.oauthButtonInner}>
+                        <Ionicons name="logo-apple" size={18} color="rgba(255,255,255,0.85)" />
+                        <Text style={styles.oauthButtonText}>Continue with Apple</Text>
+                      </View>
+                    </BlurView>
                   </TouchableOpacity>
                 </View>
               </View>
