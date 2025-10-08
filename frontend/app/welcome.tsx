@@ -138,8 +138,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   subtext: {
-    fontSize: 16,
-    color: 'rgba(255, 255, 255, 0.6)',
+    fontSize: 18,
+    color: '#FFFFFF',
     textAlign: 'center',
     lineHeight: 24,
     paddingHorizontal: 16,
