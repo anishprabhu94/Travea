@@ -101,7 +101,9 @@ export default function Welcome() {
           ]}
         >
           {/* TRAVEA Luxury Wordmark */}
-          <TraveaWordmark size="large" />
+          <View style={styles.logoContainer}>
+            <TraveaWordmark size="large" />
+          </View>
 
           {/* Centered Frosted Glass Pane */}
           <Animated.View
