@@ -485,8 +485,8 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   oauthButtonContainer: {
-    height: 50,
-    borderRadius: 18,
+    height: 44, // Match Sign In button height
+    borderRadius: 12, // Match Sign In button radius for consistency
     overflow: 'hidden',
     ...Platform.select({
       ios: {
@@ -505,14 +505,14 @@ const styles = StyleSheet.create({
   },
   oauthButton: {
     flex: 1,
-    borderRadius: 18,
+    borderRadius: 12, // Match Sign In button radius
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.08)',
+    borderColor: 'rgba(255,255,255,0.12)', // Slightly more visible border for frostier effect
   },
   oauthButtonInner: {
     flex: 1,
-    backgroundColor: 'rgba(25,25,25,0.35)',
+    backgroundColor: 'rgba(20,20,20,0.25)', // More transparent for frostier appearance
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
