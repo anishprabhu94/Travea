@@ -370,7 +370,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0.2,
     textAlign: 'left',
     maxWidth: '90%',
-    numberOfLines: 1,
     fontFamily: Platform.select({
       ios: 'NeueHaasDisplayMedium',
       android: 'NeueHaasDisplayMedium', 
