@@ -354,14 +354,7 @@ const styles = StyleSheet.create({
       android: 'NeueHaasDisplayMedium',
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
-    ...Platform.select({
-      web: {
-        background: 'linear-gradient(135deg, #F8F8F8 0%, #C9A96D 100%)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-        textShadow: '0 0 20px rgba(201,169,109,0.3)',
-      },
-    }),
+    // Removed complex web gradient that was causing transparency issues
   },
   profileButton: {
     width: 44,
