@@ -356,12 +356,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   questionText: {
-    fontSize: 22,
-    fontWeight: '500',
-    color: 'rgba(255, 255, 255, 0.9)',
-    lineHeight: 32,
+    fontSize: 20,
+    fontWeight: '600',
+    color: 'rgba(255, 255, 255, 0.92)',
+    lineHeight: 26,
     letterSpacing: 0.3,
     textAlign: 'left',
+    maxWidth: '80%',
+    fontFamily: Platform.select({
+      ios: 'NeueHaasDisplayMedium',
+      android: 'NeueHaasDisplayMedium', 
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
   },
   multiSelectHint: {
     fontSize: 14,
