@@ -359,7 +359,7 @@ const styles = StyleSheet.create({
   },
   selectedGlow: {
     ...StyleSheet.absoluteFillObject,
-    borderRadius: 32,
+    borderRadius: 16,
     backgroundColor: 'rgba(201, 169, 109, 0.2)',
     zIndex: -1,
     transform: [{ scale: 1.05 }],
