@@ -532,10 +532,10 @@ const styles = StyleSheet.create({
     }),
   },
   nextButtonInnerEnabled: {
-    backgroundColor: 'rgba(201, 169, 109, 0.35)',
+    backgroundColor: 'rgba(201, 169, 109, 0.50)',
     ...Platform.select({
       web: {
-        background: 'rgba(201, 169, 109, 0.35)',
+        background: 'rgba(201, 169, 109, 0.50)',
       },
     }),
   },
