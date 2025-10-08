@@ -331,7 +331,8 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     paddingTop: 50,
-    zIndex: 1,
+    zIndex: 10,
+    elevation: 10, // Android compatibility
   },
   header: {
     flexDirection: 'row',
