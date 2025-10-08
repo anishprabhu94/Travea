@@ -192,9 +192,6 @@ export default function Onboarding() {
         <View style={styles.questionPaneContainer}>
           <View style={styles.questionContainer}>
             <Text style={styles.questionText}>{currentQuestion.question}</Text>
-            {currentQuestion.multiSelect && (
-              <Text style={styles.multiSelectHint}>Select all that apply</Text>
-            )}
           </View>
         </View>
 
