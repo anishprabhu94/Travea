@@ -320,11 +320,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     height: '100%',
-    backgroundColor: '#161616',
+    backgroundColor: '#FF0000', // Temporary red background to debug
     zIndex: 0,
     ...Platform.select({
       web: {
-        background: 'linear-gradient(135deg, #161616 0%, #222222 100%)',
+        background: 'red',
       },
     }),
   },
