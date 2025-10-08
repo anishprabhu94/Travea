@@ -190,7 +190,7 @@ export default function Onboarding() {
                 ]}
               >
                 <TouchableOpacity
-                  activeOpacity={0.7}
+                  activeOpacity={1}
                   onPress={() => handleSelectAnswer(option)}
                 >
                   {selected ? (
