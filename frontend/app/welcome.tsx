@@ -118,7 +118,7 @@ export default function Welcome() {
                 
                 {/* Subtitle */}
                 <Text style={styles.subtitleText}>
-                  Let's learn a little about your travel style…
+                  Let's learn about your travel style
                 </Text>
 
                 {/* Begin Personalization Button */}
