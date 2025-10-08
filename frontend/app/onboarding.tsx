@@ -347,9 +347,9 @@ const styles = StyleSheet.create({
   progressGradient: {
     flex: 1,
   },
-  onboardContent: {
+  contentLayer: {
     position: 'absolute',
-    top: 120, // Pinned to progress bar bottom + 12px
+    top: 84, // Pinned to header bottom + 12px (72px header + 12px gap)
     left: 0,
     right: 0,
     paddingHorizontal: 24,
