@@ -130,61 +130,64 @@ export default function Index() {
                 {/* Input Fields */}
                 <View style={styles.inputContainer}>
                   {isSignUp && (
-                    <View style={styles.inputWrapper}>
-                      <Text style={styles.inputLabel}>Full Name</Text>
+                    <BlurView intensity={12} tint="light" style={styles.inputCapsule}>
+                      <View style={[
+                        styles.inputCapsuleInner,
+                        focusedField === 'name' && styles.inputCapsuleFocused
+                      ]}>
+                        <Text style={styles.inputLabel}>Full Name</Text>
+                        <TextInput
+                          style={styles.input}
+                          placeholder=""
+                          placeholderTextColor="rgba(255, 255, 255, 0.45)"
+                          value={name}
+                          onChangeText={setName}
+                          autoCapitalize="words"
+                          onFocus={() => setFocusedField('name')}
+                          onBlur={() => setFocusedField(null)}
+                        />
+                      </View>
+                    </BlurView>
+                  )}
+
+                  <BlurView intensity={12} tint="light" style={styles.inputCapsule}>
+                    <View style={[
+                      styles.inputCapsuleInner,
+                      focusedField === 'email' && styles.inputCapsuleFocused
+                    ]}>
+                      <Text style={styles.inputLabel}>Email</Text>
                       <TextInput
                         style={styles.input}
                         placeholder=""
-                        placeholderTextColor="rgba(191, 191, 191, 0.9)"
-                        value={name}
-                        onChangeText={setName}
-                        autoCapitalize="words"
-                        onFocus={() => setFocusedField('name')}
+                        placeholderTextColor="rgba(255, 255, 255, 0.45)"
+                        value={email}
+                        onChangeText={setEmail}
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        onFocus={() => setFocusedField('email')}
                         onBlur={() => setFocusedField(null)}
                       />
-                      <View style={[
-                        styles.inputUnderline,
-                        focusedField === 'name' && styles.inputUnderlineFocused
-                      ]} />
                     </View>
-                  )}
+                  </BlurView>
 
-                  <View style={styles.inputWrapper}>
-                    <Text style={styles.inputLabel}>Email</Text>
-                    <TextInput
-                      style={styles.input}
-                      placeholder=""
-                      placeholderTextColor="rgba(191, 191, 191, 0.9)"
-                      value={email}
-                      onChangeText={setEmail}
-                      keyboardType="email-address"
-                      autoCapitalize="none"
-                      onFocus={() => setFocusedField('email')}
-                      onBlur={() => setFocusedField(null)}
-                    />
+                  <BlurView intensity={12} tint="light" style={styles.inputCapsule}>
                     <View style={[
-                      styles.inputUnderline,
-                      focusedField === 'email' && styles.inputUnderlineFocused
-                    ]} />
-                  </View>
-
-                  <View style={styles.inputWrapper}>
-                    <Text style={styles.inputLabel}>Password</Text>
-                    <TextInput
-                      style={styles.input}
-                      placeholder=""
-                      placeholderTextColor="rgba(191, 191, 191, 0.9)"
-                      value={password}
-                      onChangeText={setPassword}
-                      secureTextEntry
-                      onFocus={() => setFocusedField('password')}
-                      onBlur={() => setFocusedField(null)}
-                    />
-                    <View style={[
-                      styles.inputUnderline,
-                      focusedField === 'password' && styles.inputUnderlineFocused
-                    ]} />
-                  </View>
+                      styles.inputCapsuleInner,
+                      focusedField === 'password' && styles.inputCapsuleFocused
+                    ]}>
+                      <Text style={styles.inputLabel}>Password</Text>
+                      <TextInput
+                        style={styles.input}
+                        placeholder=""
+                        placeholderTextColor="rgba(255, 255, 255, 0.45)"
+                        value={password}
+                        onChangeText={setPassword}
+                        secureTextEntry
+                        onFocus={() => setFocusedField('password')}
+                        onBlur={() => setFocusedField(null)}
+                      />
+                    </View>
+                  </BlurView>
                 </View>
 
                 {/* Primary CTA Button */}
