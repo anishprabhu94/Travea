@@ -157,75 +157,138 @@ export default function Welcome() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0C0C0C',
+    backgroundColor: '#000000',
   },
-  background: {
+  backgroundImage: {
+    flex: 1,
+    width: width,
+    height: height,
+  },
+  darkOverlay: {
     ...StyleSheet.absoluteFillObject,
   },
-  content: {
+  bronzeOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(201, 169, 109, 0.08)',
+  },
+  contentContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 32,
+    paddingHorizontal: 24,
   },
   logo: {
-    fontSize: 46,
+    fontSize: 48,
     fontWeight: '700',
     color: '#F8F8F8',
-    letterSpacing: 4,
-    marginBottom: 60,
-  },
-  greetingContainer: {
-    alignItems: 'center',
+    letterSpacing: 5,
     marginBottom: 80,
-  },
-  greeting: {
-    fontSize: 24,
-    fontWeight: '500',
-    color: '#FFFFFF',
-    marginBottom: 24,
     textAlign: 'center',
+    textShadowColor: 'rgba(0, 0, 0, 0.5)',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 8,
   },
-  subtext: {
-    fontSize: 18,
-    color: '#FFFFFF',
-    textAlign: 'center',
-    lineHeight: 24,
-    paddingHorizontal: 16,
-    fontWeight: '400',
-  },
-  buttonContainer: {
+  glassPaneContainer: {
     width: '100%',
+    maxWidth: 380,
   },
-  buttonWrapper: {
+  glassPane: {
+    borderRadius: 24,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.26)',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 12 },
+        shadowOpacity: 0.35,
+        shadowRadius: 20,
+      },
+      android: {
+        elevation: 12,
+      },
+      web: {
+        boxShadow: '0 12px 40px -8px rgba(0, 0, 0, 0.35)',
+        backdropFilter: 'blur(30px) saturate(130%)',
+        WebkitBackdropFilter: 'blur(30px) saturate(130%)',
+      },
+    }),
+  },
+  glassPaneInner: {
+    backgroundColor: 'rgba(255, 255, 255, 0.10)',
+    paddingVertical: 40,
+    paddingHorizontal: 32,
+    alignItems: 'center',
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.00) 42%)',
+      },
+    }),
+  },
+  welcomeText: {
+    fontSize: 28,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    marginBottom: 16,
+    letterSpacing: 0.5,
+  },
+  subtitleText: {
+    fontSize: 16,
+    fontWeight: '400',
+    color: 'rgba(255, 255, 255, 0.85)',
+    textAlign: 'center',
+    lineHeight: 22,
+    marginBottom: 40,
+    paddingHorizontal: 8,
+  },
+  beginButton: {
+    width: '100%',
     position: 'relative',
   },
-  button: {
-    borderRadius: 14,
+  beginButtonBlur: {
+    borderRadius: 16,
     overflow: 'hidden',
     borderWidth: 1,
     borderColor: 'rgba(201, 169, 109, 0.4)',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+        WebkitBackdropFilter: 'blur(25px)',
+      },
+    }),
   },
-  buttonInner: {
-    backgroundColor: 'rgba(201, 169, 109, 0.20)',
+  beginButtonInner: {
+    backgroundColor: 'rgba(201, 169, 109, 0.25)',
     paddingVertical: 18,
+    paddingHorizontal: 24,
     alignItems: 'center',
-  },
-  buttonText: {
-    fontSize: 16,
-    color: '#FFFFFF',
-    fontWeight: '500',
-    letterSpacing: 1.5,
+    position: 'relative',
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.00) 50%)',
+      },
+    }),
   },
   buttonGlow: {
     position: 'absolute',
-    bottom: -10,
-    left: '15%',
-    right: '15%',
-    height: 24,
-    backgroundColor: 'rgba(201, 169, 109, 0.2)',
-    borderRadius: 24,
-    opacity: 0.8,
-    zIndex: -1,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(201, 169, 109, 0.15)',
+    borderRadius: 16,
+    ...Platform.select({
+      web: {
+        boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(201, 169, 109, 0.2)',
+      },
+    }),
+  },
+  beginButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: 'rgba(255, 255, 255, 0.9)',
+    letterSpacing: 1.2,
+    zIndex: 1,
   },
 });
