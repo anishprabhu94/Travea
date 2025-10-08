@@ -362,34 +362,34 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: 0.35,
-        shadowRadius: 14,
+        shadowOffset: { width: 0, height: 12 },
+        shadowOpacity: 0.40,
+        shadowRadius: 15,
       },
       android: {
-        elevation: 10,
+        elevation: 12,
       },
       web: {
-        boxShadow: '0 10px 28px -6px rgba(0, 0, 0, 0.35), 0 0 0 3px rgba(201, 169, 109, 0.22)',
-        backdropFilter: 'blur(30px)',
-        WebkitBackdropFilter: 'blur(30px)',
+        boxShadow: '0 12px 30px -6px rgba(0, 0, 0, 0.40), 0 0 0 2px rgba(201, 169, 109, 0.18)',
+        backdropFilter: 'blur(30px) saturate(130%)',
+        WebkitBackdropFilter: 'blur(30px) saturate(130%)',
       },
     }),
   },
   selectedBubbleInner: {
-    backgroundColor: 'rgba(201, 169, 109, 0.20)',
+    backgroundColor: 'rgba(201, 169, 109, 0.22)',
     paddingVertical: 14,
     paddingHorizontal: 16,
     ...Platform.select({
       web: {
-        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 40%)',
+        background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.00) 42%)',
       },
     }),
   },
   bubbleTextSelected: {
     fontSize: 15,
     color: '#FFFFFF',
-    fontWeight: '500',
+    fontWeight: '600',
     textAlign: 'center',
   },
   bottomContainer: {
