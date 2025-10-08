@@ -173,6 +173,8 @@ agent_communication:
       message: "Successfully unified material design between login pane and onboarding bubbles. Both now use identical frosted-glass specifications with proper selection states and 2-column grid layout. Screenshots verified all states are working correctly including default, selected, and bronze accent styling."
     - agent: "main"
       message: "Completed VisionOS-inspired input field refinement across Sign In and Sign Up screens. Implemented exact specifications: rgba(255,255,255,0.08) background, 1px rgba(255,255,255,0.15) border, 10px radius, 12×14 padding, Neue Montreal Regular 15px font. Removed all harsh outlines, blue iOS highlighting, and focus animations. Added subtle rgba(255,255,255,0.12) active state. Input fields now feel tactile yet quiet, unified with frosted glass panes. 10px vertical spacing maintained for premium, refined experience."
+    - agent: "main"
+      message: "Starting implementation of onboarding ergonomic improvements: 1) Renaming 'Local Connections' to 'Local Immersions' and 'Outdoor Adventurer' to 'Adventure', 2) Adjusting content positioning lower for better visual balance, 3) Pinning NEXT button at screen bottom, 4) Enhancing question pane styling with lighter background, increased blur, and shadow. Also investigating welcome.tsx black screen issue."
 
   - task: "Create cinematic onboarding screens with aerial beach background"
     implemented: true
