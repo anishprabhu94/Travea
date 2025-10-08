@@ -329,7 +329,8 @@ const styles = StyleSheet.create({
   onboardContent: {
     paddingTop: 16,
     paddingHorizontal: 24,
-    paddingBottom: 24,
+    paddingBottom: 12,
+    marginTop: -40,
   },
   questionPaneContainer: {
     backgroundColor: 'rgba(25, 25, 25, 0.40)',
