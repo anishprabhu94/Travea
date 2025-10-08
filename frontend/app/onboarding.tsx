@@ -365,9 +365,14 @@ const styles = StyleSheet.create({
     }),
   },
   selectedBubbleInner: {
-    backgroundColor: 'rgba(201, 169, 109, 0.25)',
+    backgroundColor: 'rgba(201, 169, 109, 0.18)',
     paddingVertical: 10,
     paddingHorizontal: 16,
+    ...Platform.select({
+      web: {
+        boxShadow: 'inset 0 0 8px rgba(255, 255, 255, 0.05)',
+      },
+    }),
   },
   bubbleTextSelected: {
     fontSize: 15,
