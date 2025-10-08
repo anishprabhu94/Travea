@@ -562,15 +562,15 @@ const styles = StyleSheet.create({
   },
   chipGlow: {
     position: 'absolute',
-    top: -8,
-    left: -8,
-    right: -8,
-    bottom: -8,
-    borderRadius: 38,
-    backgroundColor: 'rgba(201,169,109,0.25)',
+    top: -12,
+    left: -12,
+    right: -12,
+    bottom: -12,
+    borderRadius: 42,
+    backgroundColor: 'rgba(201,169,109,0.4)',
     ...Platform.select({
       web: {
-        boxShadow: '0 0 20px rgba(201,169,109,0.4)',
+        boxShadow: '0 0 25px rgba(201,169,109,0.6)',
       },
     }),
     zIndex: -1,
