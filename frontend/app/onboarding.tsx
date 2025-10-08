@@ -251,8 +251,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 24,
-    paddingTop: 60,
-    paddingBottom: 16,
+    paddingTop: 50,
+    paddingBottom: 12,
   },
   logoText: {
     fontSize: 24,
