@@ -1,45 +1,63 @@
-diff --git a/frontend/app/home.tsx b/frontend/app/home.tsx
-index c2116ae..d87a630 100644
---- a/frontend/app/home.tsx
-+++ b/frontend/app/home.tsx
-@@ -91,6 +91,15 @@ export default function Home() {
-           </Text>
-         </View>
- 
-+        {/* Onboarding Button */}
-+        <TouchableOpacity
-+          style={styles.onboardingButton}
-+          onPress={() => router.push('/onboarding')}
-+        >
-+          <Ionicons name="star-outline" size={20} color="#C9A96D" />
-+          <Text style={styles.onboardingText}>Customize Your Preferences</Text>
-+        </TouchableOpacity>
-+
-         {/* Back to Login */}
-         <TouchableOpacity
-           style={styles.backButton}
-@@ -261,6 +270,24 @@ const styles = StyleSheet.create({
-     color: '#BEBEBE',
-     textAlign: 'center',
-   },
-+  onboardingButton: {
-+    flexDirection: 'row',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    gap: 8,
-+    paddingVertical: 16,
-+    paddingHorizontal: 24,
-+    backgroundColor: 'rgba(201, 169, 109, 0.1)',
-+    borderRadius: 12,
-+    borderWidth: 1,
-+    borderColor: '#C9A96D',
-+    marginBottom: 16,
-+  },
-+  onboardingText: {
-+    fontSize: 15,
-+    color: '#C9A96D',
-+    fontWeight: '500',
-+  },
-   backButton: {
-     flexDirection: 'row',
-     alignItems: 'center',
+diff --git a/frontend/app/index.tsx b/frontend/app/index.tsx
+index e51fd2f..ed607d8 100644
+--- a/frontend/app/index.tsx
++++ b/frontend/app/index.tsx
+@@ -134,7 +134,7 @@ export default function Index() {
+                       <Text style={styles.inputLabel}>Full Name</Text>
+                       <TextInput
+                         style={styles.input}
+-                        placeholder="Enter your full name"
++                        placeholder=""
+                         placeholderTextColor="rgba(191, 191, 191, 0.9)"
+                         value={name}
+                         onChangeText={setName}
+diff --git a/model.patch b/model.patch
+index 90c18b1..e69de29 100644
+--- a/model.patch
++++ b/model.patch
+@@ -1,45 +0,0 @@
+-diff --git a/frontend/app/home.tsx b/frontend/app/home.tsx
+-index c2116ae..d87a630 100644
+---- a/frontend/app/home.tsx
+-+++ b/frontend/app/home.tsx
+-@@ -91,6 +91,15 @@ export default function Home() {
+-           </Text>
+-         </View>
+- 
+-+        {/* Onboarding Button */}
+-+        <TouchableOpacity
+-+          style={styles.onboardingButton}
+-+          onPress={() => router.push('/onboarding')}
+-+        >
+-+          <Ionicons name="star-outline" size={20} color="#C9A96D" />
+-+          <Text style={styles.onboardingText}>Customize Your Preferences</Text>
+-+        </TouchableOpacity>
+-+
+-         {/* Back to Login */}
+-         <TouchableOpacity
+-           style={styles.backButton}
+-@@ -261,6 +270,24 @@ const styles = StyleSheet.create({
+-     color: '#BEBEBE',
+-     textAlign: 'center',
+-   },
+-+  onboardingButton: {
+-+    flexDirection: 'row',
+-+    alignItems: 'center',
+-+    justifyContent: 'center',
+-+    gap: 8,
+-+    paddingVertical: 16,
+-+    paddingHorizontal: 24,
+-+    backgroundColor: 'rgba(201, 169, 109, 0.1)',
+-+    borderRadius: 12,
+-+    borderWidth: 1,
+-+    borderColor: '#C9A96D',
+-+    marginBottom: 16,
+-+  },
+-+  onboardingText: {
+-+    fontSize: 15,
+-+    color: '#C9A96D',
+-+    fontWeight: '500',
+-+  },
+-   backButton: {
+-     flexDirection: 'row',
+-     alignItems: 'center',
