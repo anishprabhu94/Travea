@@ -358,7 +358,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingVertical: 14,
     paddingHorizontal: 16,
-    marginBottom: 12,
+    marginBottom: 12, // 12px pane→grid
     minHeight: 52,
     maxHeight: 80,
     justifyContent: 'center',
