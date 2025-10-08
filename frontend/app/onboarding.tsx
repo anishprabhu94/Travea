@@ -363,10 +363,10 @@ const styles = StyleSheet.create({
   questionPane: {
     // Remove all background elements for clean, glowing text effect
     paddingVertical: 16, // Increased padding for text breathing room
-    paddingHorizontal: 20,
+    paddingHorizontal: 0, // Remove horizontal padding to align with bubbles
     marginBottom: 32, // Maintained spacing from answer bubbles
-    justifyContent: 'center',
-    alignSelf: 'center',
+    justifyContent: 'flex-start', // Align to start (left)
+    alignSelf: 'stretch', // Take full width
     width: '100%',
   },
   // questionContainer removed - no longer needed
