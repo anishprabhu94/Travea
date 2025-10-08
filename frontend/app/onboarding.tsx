@@ -348,7 +348,7 @@ const styles = StyleSheet.create({
     paddingBottom: 40, // Increased bottom padding for better distribution
   },
   questionPane: {
-    backgroundColor: 'rgba(25, 25, 25, 0.38)',
+    backgroundColor: 'rgba(35, 35, 35, 0.45)', // Made lighter for better visibility
     borderRadius: 20,
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.08)',
