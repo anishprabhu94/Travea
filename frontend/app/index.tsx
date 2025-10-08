@@ -358,55 +358,56 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     marginBottom: 24,
-    gap: 8,
+    gap: 10,
   },
-  inputCapsule: {
-    borderRadius: 10,
-    overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.15)',
-    ...Platform.select({
-      ios: {
-        shadowColor: '#FFF',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.08,
-        shadowRadius: 6,
-      },
-      android: {
-        elevation: 1,
-      },
-      web: {
-        boxShadow: '0 1px 6px rgba(255, 255, 255, 0.08)',
-      },
-    }),
-  },
-  inputCapsuleInner: {
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(255, 255, 255, 0.25)',
-  },
-  inputCapsuleFocused: {
-    borderBottomColor: 'rgba(201, 169, 109, 0.7)',
-    ...Platform.select({
-      web: {
-        boxShadow: '0 1px 0 rgba(201, 169, 109, 0.7), inset 0 -1px 6px rgba(201, 169, 109, 0.15)',
-      },
-    }),
+  inputField: {
+    marginBottom: 0,
   },
   inputLabel: {
-    fontSize: 14,
+    fontSize: 13,
     color: 'rgba(255, 255, 255, 0.65)',
-    marginBottom: 3,
+    marginBottom: 6,
     fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'NeueHaasDisplayRoman',
+      android: 'NeueHaasDisplayRoman',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
   },
   input: {
-    fontSize: 16,
+    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.15)',
+    borderRadius: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    fontSize: 15,
     color: '#FFFFFF',
-    paddingVertical: 2,
-    paddingHorizontal: 0,
     fontWeight: '400',
+    fontFamily: Platform.select({
+      ios: 'NeueHaasDisplayRoman',
+      android: 'NeueHaasDisplayRoman',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        outline: 'none',
+        '&:focus': {
+          outline: 'none',
+          borderColor: 'rgba(255, 255, 255, 0.15)',
+        },
+      },
+      ios: {
+        // Remove iOS blue outline
+        borderWidth: 1,
+      },
+    }),
+  },
+  inputActive: {
+    backgroundColor: 'rgba(255, 255, 255, 0.12)',
+    borderColor: 'rgba(255, 255, 255, 0.15)',
   },
   primaryButton: {
     backgroundColor: '#C9A96D',
