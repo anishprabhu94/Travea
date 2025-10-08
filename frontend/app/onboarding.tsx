@@ -503,10 +503,15 @@ const styles = StyleSheet.create({
     }),
   },
   bubbleTextSelected: {
-    fontSize: 15,
+    fontSize: 15, // Kept smaller than question font (18px) for classy appearance
     color: '#FFFFFF',
     fontWeight: '600',
     textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'NeueHaasDisplayMedium',
+      android: 'NeueHaasDisplayMedium', 
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
   },
   // bottomContainer removed - Next button now in content flow
   nextButtonWrapper: {
