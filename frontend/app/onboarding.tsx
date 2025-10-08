@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(201, 169, 109, 0.08)',
   },
-  headerLayer: {
+  header: {
     position: 'absolute',
     top: 0,
     left: 0,
