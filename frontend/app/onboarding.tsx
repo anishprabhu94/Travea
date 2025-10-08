@@ -371,21 +371,21 @@ const styles = StyleSheet.create({
   },
   // questionContainer removed - no longer needed
   questionText: {
-    fontSize: 22, // Luxury editorial size
-    fontWeight: '500', // Medium weight for refined elegance
+    fontSize: 22, // Keep current size for luxury presence
+    fontWeight: '600', // Semi-bold as it was before
     color: '#F8F8F8', // Pure white with warmth
     lineHeight: 29, // 1.3 line height for balanced rhythm
-    letterSpacing: 0.2, // Refined letter spacing
-    textAlign: 'left', // Left-aligned to match bubble alignment
-    width: '100%', // Full width for proper alignment
+    letterSpacing: 0.3, // Back to previous letter spacing
+    textAlign: 'left', // Keep left alignment - this is working now
+    width: '100%', // Keep full width for proper alignment
     fontFamily: Platform.select({
-      ios: 'Canela',
-      android: 'serif', // Fallback to system serif on Android
-      web: 'Canela, "Tiempos Text", "Playfair Display", Georgia, serif', // Luxury serif stack
+      ios: 'NeueHaasDisplayMedium', // Back to previous sans-serif
+      android: 'NeueHaasDisplayMedium', 
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
     ...Platform.select({
       ios: {
-        // iOS text shadow for subtle bronze glow
+        // iOS text shadow for bronze glow
         shadowColor: 'rgba(201, 169, 109, 0.25)',
         shadowOffset: { width: 0, height: 0 },
         shadowRadius: 10,
