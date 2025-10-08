@@ -485,7 +485,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   bottomContainer: {
-    width: '100%',
+    position: 'absolute',
+    bottom: 20,
+    left: 24,
+    right: 24,
+    width: 'auto',
   },
   nextButtonWrapper: {
     width: '100%',
