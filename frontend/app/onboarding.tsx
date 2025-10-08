@@ -141,13 +141,30 @@ export default function Onboarding() {
     <View style={styles.container}>
       <StatusBar style="light" translucent backgroundColor="transparent" />
       
-      <LinearGradient
-        colors={['#000000', '#0C0C0C', '#0C0C0C', '#000000']}
-        style={styles.background}
-        start={{ x: 0.5, y: 0 }}
-        end={{ x: 0.5, y: 1 }}
-        locations={[0, 0.2, 0.8, 1]}
-      />
+      {/* Aerial Beach Background - Same as Welcome Screen */}
+      <ImageBackground
+        source={{
+          uri: 'https://customer-assets.emergentagent.com/job_travea-auth/artifacts/zl0td0x2_output%20%286%29.jpg',
+        }}
+        style={styles.backgroundImage}
+        resizeMode="cover"
+      >
+        {/* Dark matte gradient with bronze warmth */}
+        <LinearGradient
+          colors={[
+            'rgba(0, 0, 0, 0.45)',
+            'rgba(0, 0, 0, 0.55)',
+            'rgba(0, 0, 0, 0.65)',
+            'rgba(0, 0, 0, 0.75)',
+          ]}
+          style={styles.darkOverlay}
+          start={{ x: 0.5, y: 0 }}
+          end={{ x: 0.5, y: 1 }}
+        />
+        
+        {/* Bronze warmth overlay */}
+        <View style={styles.bronzeOverlay} />
+      </ImageBackground>
 
       <View style={styles.topBar}>
         <Text style={styles.logoText}>TRAVEA</Text>
