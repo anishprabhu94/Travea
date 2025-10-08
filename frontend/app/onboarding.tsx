@@ -187,7 +187,7 @@ export default function Onboarding() {
         </View>
       </View>
 
-      <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
+      <Animated.View style={[styles.onboardContent, { opacity: fadeAnim }]}>
         {/* Frosted Glass Question Pane */}
         <View style={styles.questionPaneContainer}>
           <View style={styles.questionContainer}>
@@ -195,7 +195,9 @@ export default function Onboarding() {
           </View>
         </View>
 
-        <View style={styles.bubblesGrid}>
+        {/* Bubble Grid Backplate */}
+        <BlurView intensity={20} tint="light" style={styles.bubbleGridBackplate}>
+          <View style={styles.bubblesGrid}>
           {currentQuestion.options.map((option, index) => {
             const selected = isSelected(option);
             const scaleAnim = getScaleAnim(option);
