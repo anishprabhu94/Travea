@@ -172,7 +172,7 @@ export default function Onboarding() {
       {/* Layer 2: Header (Fixed 72px) - NOT nested inside Content */}
       <View style={styles.header}>
         <View style={styles.headerContent}>
-          <Text style={styles.logoText}>TRAVEA</Text>
+          <TraveaWordmark size="small" />
           <View style={styles.profileIcon}>
             <Ionicons name="person-outline" size={16} color="#F8F8F8" />
           </View>
