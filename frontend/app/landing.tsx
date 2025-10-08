@@ -63,12 +63,12 @@ const modes: Mode[] = [
 
 export default function Landing() {
   const router = useRouter()
-  const [activeTab, setActiveTab] = useState('weekend')
+  const [activeMode, setActiveMode] = useState('weekend')
   
   // Animation refs
   const greetingAnim = useRef(new Animated.Value(0)).current
-  const tabsAnim = useRef(new Animated.Value(0)).current
-  const contentAnim = useRef(new Animated.Value(0)).current
+  const modeChipsAnim = useRef(new Animated.Value(0)).current
+  const heroAnim = useRef(new Animated.Value(0)).current
   const contentOpacity = useRef(new Animated.Value(1)).current
 
   useEffect(() => {
@@ -79,12 +79,12 @@ export default function Landing() {
         duration: 280,
         useNativeDriver: true,
       }),
-      Animated.timing(tabsAnim, {
+      Animated.timing(modeChipsAnim, {
         toValue: 1,
         duration: 240,
         useNativeDriver: true,
       }),
-      Animated.timing(contentAnim, {
+      Animated.timing(heroAnim, {
         toValue: 1,
         duration: 300,
         useNativeDriver: true,
@@ -92,26 +92,26 @@ export default function Landing() {
     ]).start()
   }, [])
 
-  const handleTabPress = (tabId: string) => {
-    if (tabId === activeTab) return
+  const handleModePress = (modeId: string) => {
+    if (modeId === activeMode) return
 
-    // Fade out current content
+    // Cross-fade animation
     Animated.timing(contentOpacity, {
       toValue: 0.7,
-      duration: 150,
+      duration: 160,
       useNativeDriver: true,
     }).start(() => {
-      setActiveTab(tabId)
-      // Fade in new content
+      setActiveMode(modeId)
+      // Fade in new content with slight upward movement
       Animated.timing(contentOpacity, {
         toValue: 1,
-        duration: 170,
+        duration: 200,
         useNativeDriver: true,
       }).start()
     })
   }
 
-  const activeTabData = tabs.find(tab => tab.id === activeTab)!
+  const activeModeData = modes.find(mode => mode.id === activeMode)!
 
   return (
     <View style={styles.container}>
