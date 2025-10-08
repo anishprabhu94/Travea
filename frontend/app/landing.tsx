@@ -592,6 +592,7 @@ const styles = StyleSheet.create({
   },
   carouselContainer: {
     flex: 1,
+    minHeight: 300, // Ensure minimum height for cards to be visible
     marginBottom: 100, // Space for bottom dock
   },
   carousel: {
