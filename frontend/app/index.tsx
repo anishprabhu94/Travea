@@ -41,6 +41,23 @@ export default function Index() {
     router.push('/home');
   };
 
+  // Set body style for web to remove margins
+  React.useEffect(() => {
+    if (Platform.OS === 'web') {
+      const style = document.createElement('style');
+      style.innerHTML = `
+        body, html, #root {
+          margin: 0 !important;
+          padding: 0 !important;
+          width: 100% !important;
+          height: 100% !important;
+          overflow: hidden !important;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }, []);
+
   return (
     <View style={styles.container}>
       <StatusBar style="light" translucent backgroundColor="transparent" />
