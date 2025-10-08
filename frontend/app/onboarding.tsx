@@ -27,6 +27,12 @@ interface Question {
 const questions: Question[] = [
   {
     id: 1,
+    question: 'Where do you live?',
+    options: ['North America', 'South America', 'Europe', 'Africa', 'Middle East', 'Asia', 'Oceania'],
+    multiSelect: true,
+  },
+  {
+    id: 2,
     question: 'What kind of traveler are you?',
     options: ['Adventurer', 'Cultural Nomad', 'Wellness Seeker', 'City Explorer'],
     multiSelect: true,
