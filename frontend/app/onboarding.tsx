@@ -395,9 +395,8 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   bubbleWrapper: {
-    minWidth: 156,
-    flex: 1,
-    maxWidth: '48%',
+    width: '48%',
+    maxWidth: 150,
   },
   bubble: {
     borderRadius: 20,
