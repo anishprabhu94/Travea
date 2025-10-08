@@ -325,7 +325,21 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+    paddingTop: 60,
     paddingHorizontal: 24,
+    paddingBottom: 40,
+  },
+  questionPaneContainer: {
+    backgroundColor: 'rgba(25, 25, 25, 0.35)',
+    borderRadius: 20,
+    padding: 24,
+    marginBottom: 24,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(30px)',
+        WebkitBackdropFilter: 'blur(30px)',
+      },
+    }),
   },
   questionContainer: {
     marginBottom: 20,
