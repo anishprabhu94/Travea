@@ -356,11 +356,41 @@ export default function Landing() {
           </View>
         )}
 
-        {/* Search State */}
+        {/* Search Pane */}
         {activeMode === 'search' && (
-          <View style={styles.searchContainer}>
-            <Text style={styles.searchPlaceholder}>Search destinations...</Text>
-          </View>
+          <Animated.View style={[styles.searchContainer, { opacity: 1 }]}>
+            <BlurView intensity={25} tint="light" style={styles.searchPane}>
+              <View style={styles.searchPaneContent}>
+                {/* Header */}
+                <Text style={styles.searchTitle}>Where would you like to go?</Text>
+                <Text style={styles.searchSubtitle}>We'll tailor your stay, your way.</Text>
+                
+                {/* Search Bar */}
+                <View style={styles.searchBarContainer}>
+                  <BlurView intensity={30} tint="light" style={styles.searchBar}>
+                    <View style={styles.searchBarContent}>
+                      <Ionicons name="search-outline" size={20} color="rgba(255,255,255,0.85)" style={styles.searchIcon} />
+                      <Text style={styles.searchPlaceholder}>Search by city, region, or landmark</Text>
+                    </View>
+                  </BlurView>
+                </View>
+                
+                {/* Trending Destinations */}
+                <View style={styles.trendingContainer}>
+                  <Text style={styles.trendingLabel}>Trending right now</Text>
+                  <View style={styles.trendingChips}>
+                    {['Lisbon', 'Kyoto', 'Marrakech', 'Reykjavík'].map((destination, index) => (
+                      <TouchableOpacity key={index} style={styles.trendingChip} activeOpacity={0.8}>
+                        <BlurView intensity={25} tint="light" style={styles.trendingChipBlur}>
+                          <Text style={styles.trendingChipText}>{destination}</Text>
+                        </BlurView>
+                      </TouchableOpacity>
+                    ))}
+                  </View>
+                </View>
+              </View>
+            </BlurView>
+          </Animated.View>
         )}
       </Animated.View>
 
