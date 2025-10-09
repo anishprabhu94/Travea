@@ -275,12 +275,12 @@ export default function Landing() {
             }
           ]}
         >
-          <BlurView intensity={25} tint="light" style={styles.greetingBlur}>
-            <View style={styles.greetingInner}>
-              <Text style={styles.greetingMain}>Good to see you, Anish.</Text>
-              <Text style={styles.greetingSub}>Let's find your next escape.</Text>
-            </View>
-          </BlurView>
+          <Text style={styles.greetingMain}>Hello, Anish</Text>
+          <Text style={styles.greetingSub}>
+            {activeMode === 'inspire' && 'Curated escapes, just for you.'}
+            {activeMode === 'weekend' && 'Getaways, made for you.'}
+            {activeMode === 'search' && 'Where would you like to go?'}
+          </Text>
         </Animated.View>
 
         {/* Category Chips */}
