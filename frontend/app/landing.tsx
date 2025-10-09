@@ -16,15 +16,6 @@ import { Ionicons } from '@expo/vector-icons'
 
 const { width, height } = Dimensions.get('window')
 
-interface DestinationCard {
-  id: string
-  city: string
-  tagline: string
-  image: string
-  transport: TransportInfo[]
-  category: 'inspire' | 'weekend'
-}
-
 interface TransportInfo {
   icon: keyof typeof Ionicons.glyphMap
   time: string
