@@ -65,7 +65,7 @@ const destinationCards: DestinationCard[] = [
 export default function Landing() {
   const router = useRouter()
   const { bookmarkedItems, addBookmark, removeBookmark } = useBookmarks()
-  const [activeMode, setActiveMode] = useState('inspire') // Default to Inspire Me
+  const [activeMode, setActiveMode] = useState('vacations') // Default to Vacations
   const [bookmarkAnimations, setBookmarkAnimations] = useState<{[key: string]: Animated.Value}>({})
   
   // Animation refs
