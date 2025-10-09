@@ -452,22 +452,22 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   primaryButton: {
-    backgroundColor: 'rgba(201,169,109,0.3)', // Light bronze fill with transparency
+    backgroundColor: 'rgba(201,169,109,0.65)', // Darker bronze fill for better visibility
     borderWidth: 1,
-    borderColor: 'rgba(201,169,109,0.4)', // Subtle bronze border
+    borderColor: 'rgba(201,169,109,0.7)', // More visible bronze border
     height: 44,
     alignItems: 'center',
     justifyContent: 'center',
     ...Platform.select({
       web: {
-        boxShadow: 'inset 0 1px 4px rgba(255,255,255,0.1), 0 2px 8px rgba(0,0,0,0.1)', // Frosted glass effect
+        boxShadow: 'inset 0 1px 6px rgba(255,255,255,0.15), 0 3px 12px rgba(0,0,0,0.15)', // Enhanced frosted glass effect
       },
       default: {
-        shadowColor: 'rgba(0,0,0,0.2)',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 4,
-        elevation: 2,
+        shadowColor: 'rgba(0,0,0,0.25)',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.25,
+        shadowRadius: 6,
+        elevation: 3,
       },
     }),
   },
