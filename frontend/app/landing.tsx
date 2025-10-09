@@ -360,50 +360,37 @@ export default function Landing() {
 
         {/* Search Pane */}
         {activeMode === 'search' && (
-          <View key="search" style={styles.carouselContainer}>
-            <View style={styles.cardWrapper}>
-              <ImageBackground
-                source={{
-                  uri: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/68nm6crc_globe.jpg'
-                }}
-                style={styles.destinationCard}
-                imageStyle={styles.cardImage}
-              >
-                {/* Gradient Overlay */}
-                <View style={styles.gradientOverlay} />
+          <View style={styles.searchContainer}>
+            <BlurView intensity={25} tint="light" style={styles.searchPane}>
+              <View style={styles.searchPaneContent}>
+                {/* Title */}
+                <Text style={styles.searchTitle}>Where to?</Text>
                 
-                {/* Frosted Search Content Pane */}
-                <View style={styles.searchContentContainer}>
-                  <BlurView intensity={25} tint="light" style={styles.searchContentPane}>
-                    <View style={styles.searchPaneInner}>
-                      {/* Header */}
-                      <Text style={styles.searchTitle}>Where would you like to go?</Text>
-                      <Text style={styles.searchSubtitle}>We'll tailor your stay, your way.</Text>
-                      
-                      {/* Search Bar */}
-                      <TouchableOpacity style={styles.searchBarWrapper} activeOpacity={0.8}>
-                        <View style={styles.searchBarPill}>
-                          <Ionicons name="search-outline" size={20} color="rgba(255,255,255,0.85)" style={styles.searchIcon} />
-                          <Text style={styles.searchPlaceholder}>Search by city or country</Text>
-                        </View>
+                {/* Search Bar */}
+                <BlurView intensity={15} tint="light" style={styles.searchBarContainer}>
+                  <View style={styles.searchBarContent}>
+                    <Ionicons name="search-outline" size={18} color="rgba(255,255,255,0.75)" style={styles.searchIcon} />
+                    <Text style={styles.searchPlaceholder}>By city or country</Text>
+                  </View>
+                </BlurView>
+                
+                {/* Trending Section */}
+                <View style={styles.trendingSection}>
+                  <Text style={styles.trendingLabel}>Trending</Text>
+                  <View style={styles.trendingGrid}>
+                    {['Lisbon', 'Kyoto', 'Marrakech', 'Reykjavík'].map((destination, index) => (
+                      <TouchableOpacity key={index} activeOpacity={0.8}>
+                        <BlurView intensity={20} tint="light" style={styles.trendingPill}>
+                          <View style={styles.trendingPillInner}>
+                            <Text style={styles.trendingPillText}>{destination}</Text>
+                          </View>
+                        </BlurView>
                       </TouchableOpacity>
-                      
-                      {/* Trending Destinations */}
-                      <View style={styles.trendingContainer}>
-                        <Text style={styles.trendingLabel}>Trending right now</Text>
-                        <View style={styles.trendingChips}>
-                          {['Lisbon', 'Kyoto', 'Marrakech', 'Reykjavík'].map((destination, index) => (
-                            <TouchableOpacity key={index} style={styles.trendingChipPill} activeOpacity={0.8}>
-                              <Text style={styles.trendingChipText}>{destination}</Text>
-                            </TouchableOpacity>
-                          ))}
-                        </View>
-                      </View>
-                    </View>
-                  </BlurView>
+                    ))}
+                  </View>
                 </View>
-              </ImageBackground>
-            </View>
+              </View>
+            </BlurView>
           </View>
         )}
       </Animated.View>
