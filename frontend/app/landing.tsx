@@ -363,8 +363,7 @@ export default function Landing() {
 
         {/* Sticky Category Chips */}
         <View style={styles.stickyChipsContainer}>
-          <BlurView intensity={25} tint="light" style={styles.stickyChipsBlur}>
-            <View style={styles.categoryChips}>
+          <View style={styles.categoryChips}>
               <TouchableOpacity
                 style={styles.chip}
                 onPress={() => handleModeSwitch('inspire')}
