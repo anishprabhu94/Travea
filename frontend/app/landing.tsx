@@ -360,39 +360,51 @@ export default function Landing() {
 
         {/* Search Pane */}
         {activeMode === 'search' && (
-          <Animated.View style={[styles.searchContainer, { opacity: 1 }]}>
-            <BlurView intensity={25} tint="light" style={styles.searchPane}>
-              <View style={styles.searchPaneContent}>
-                {/* Header */}
-                <Text style={styles.searchTitle}>Where would you like to go?</Text>
-                <Text style={styles.searchSubtitle}>We'll tailor your stay, your way.</Text>
+          <View key="search" style={styles.carouselContainer}>
+            <View style={styles.cardWrapper}>
+              <ImageBackground
+                source={{
+                  uri: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/68nm6crc_globe.jpg'
+                }}
+                style={styles.destinationCard}
+                imageStyle={styles.cardImage}
+              >
+                {/* Gradient Overlay */}
+                <View style={styles.gradientOverlay} />
                 
-                {/* Search Bar */}
-                <View style={styles.searchBarContainer}>
-                  <BlurView intensity={30} tint="light" style={styles.searchBar}>
-                    <View style={styles.searchBarContent}>
-                      <Ionicons name="search-outline" size={20} color="rgba(255,255,255,0.85)" style={styles.searchIcon} />
-                      <Text style={styles.searchPlaceholder}>Search by city, region, or landmark</Text>
+                {/* Frosted Search Content Pane */}
+                <View style={styles.searchContentContainer}>
+                  <BlurView intensity={25} tint="light" style={styles.searchContentPane}>
+                    <View style={styles.searchPaneInner}>
+                      {/* Header */}
+                      <Text style={styles.searchTitle}>Where would you like to go?</Text>
+                      <Text style={styles.searchSubtitle}>We'll tailor your stay, your way.</Text>
+                      
+                      {/* Search Bar */}
+                      <TouchableOpacity style={styles.searchBarWrapper} activeOpacity={0.8}>
+                        <View style={styles.searchBarPill}>
+                          <Ionicons name="search-outline" size={20} color="rgba(255,255,255,0.85)" style={styles.searchIcon} />
+                          <Text style={styles.searchPlaceholder}>Search by city or country</Text>
+                        </View>
+                      </TouchableOpacity>
+                      
+                      {/* Trending Destinations */}
+                      <View style={styles.trendingContainer}>
+                        <Text style={styles.trendingLabel}>Trending right now</Text>
+                        <View style={styles.trendingChips}>
+                          {['Lisbon', 'Kyoto', 'Marrakech', 'Reykjavík'].map((destination, index) => (
+                            <TouchableOpacity key={index} style={styles.trendingChipPill} activeOpacity={0.8}>
+                              <Text style={styles.trendingChipText}>{destination}</Text>
+                            </TouchableOpacity>
+                          ))}
+                        </View>
+                      </View>
                     </View>
                   </BlurView>
                 </View>
-                
-                {/* Trending Destinations */}
-                <View style={styles.trendingContainer}>
-                  <Text style={styles.trendingLabel}>Trending right now</Text>
-                  <View style={styles.trendingChips}>
-                    {['Lisbon', 'Kyoto', 'Marrakech', 'Reykjavík'].map((destination, index) => (
-                      <TouchableOpacity key={index} style={styles.trendingChip} activeOpacity={0.8}>
-                        <BlurView intensity={25} tint="light" style={styles.trendingChipBlur}>
-                          <Text style={styles.trendingChipText}>{destination}</Text>
-                        </BlurView>
-                      </TouchableOpacity>
-                    ))}
-                  </View>
-                </View>
-              </View>
-            </BlurView>
-          </Animated.View>
+              </ImageBackground>
+            </View>
+          </View>
         )}
       </Animated.View>
 
