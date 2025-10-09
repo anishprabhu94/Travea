@@ -758,10 +758,119 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  searchPane: {
+    width: '100%',
+    maxWidth: width * 0.9, // 90% of screen width
+    borderRadius: 28,
+    overflow: 'hidden',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.5,
+        shadowRadius: 30,
+      },
+      android: {
+        elevation: 15,
+      },
+      web: {
+        boxShadow: '0 8px 30px rgba(0,0,0,0.5)',
+      },
+    }),
+  },
+  searchPaneContent: {
+    backgroundColor: 'rgba(25,25,25,0.45)',
+    padding: 24,
+  },
+  searchTitle: {
+    fontSize: 22,
+    fontWeight: '600',
+    color: '#F8F8F8',
+    marginBottom: 8,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+    ...Platform.select({
+      web: {
+        textShadow: '0 0 15px rgba(201,169,109,0.25)',
+      },
+    }),
+  },
+  searchSubtitle: {
+    fontSize: 15,
+    color: 'rgba(255,255,255,0.75)',
+    letterSpacing: 0.5,
+    marginBottom: 20,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  searchBarContainer: {
+    marginBottom: 24,
+  },
+  searchBar: {
+    borderRadius: 30,
+    overflow: 'hidden',
+    height: 48,
+  },
+  searchBarContent: {
+    backgroundColor: 'rgba(25,25,25,0.55)',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    height: 48,
+  },
+  searchIcon: {
+    marginRight: 12,
   },
   searchPlaceholder: {
-    fontSize: 18,
-    color: 'rgba(255,255,255,0.6)',
+    fontSize: 16,
+    color: 'rgba(255,255,255,0.9)',
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  trendingContainer: {
+    marginTop: 8,
+  },
+  trendingLabel: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.7)',
+    marginBottom: 12,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  trendingChips: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  trendingChip: {
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  trendingChipBlur: {
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  trendingChipText: {
+    backgroundColor: 'rgba(25,25,25,0.45)',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    fontSize: 15,
+    color: '#FFFFFF',
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
