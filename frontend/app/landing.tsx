@@ -111,13 +111,13 @@ export default function Landing() {
   const router = useRouter()
   const [activeMode, setActiveMode] = useState('inspire') // Default to Inspire Me
   const [bookmarkedItems, setBookmarkedItems] = useState<string[]>([])
+  const [bookmarkAnimations, setBookmarkAnimations] = useState<{[key: string]: Animated.Value}>({})
   
   // Animation refs
   const fadeAnim = useRef(new Animated.Value(0)).current
   const greetingAnim = useRef(new Animated.Value(0)).current
   const dockAnim = useRef(new Animated.Value(0)).current
   const dockGlowAnim = useRef(new Animated.Value(0)).current
-  const bookmarkPulseAnim = useRef(new Animated.Value(1)).current
 
   useEffect(() => {
     // Page load animations
