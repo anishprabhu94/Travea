@@ -549,6 +549,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 6, // Space between icon and text
     paddingHorizontal: 16,
     paddingVertical: 12,
   },
