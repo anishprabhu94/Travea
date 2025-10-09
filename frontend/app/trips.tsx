@@ -748,6 +748,14 @@ const styles = StyleSheet.create({
     color: 'rgba(255,255,255,0.6)',
     fontWeight: '500',
   },
+  integratedActions: {
+    flexDirection: 'row',
+    gap: 12,
+    marginTop: 16,
+  },
+  actionIcon: {
+    marginRight: 6,
+  },
   cardActions: {
     flexDirection: 'row',
     gap: 12,
