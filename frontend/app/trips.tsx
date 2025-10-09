@@ -249,13 +249,13 @@ export default function MyTrips() {
               <View style={styles.integratedActions}>
                 <TouchableOpacity style={styles.primaryAction} activeOpacity={0.8}>
                   <View style={styles.canvasIconContainer}>
-                    <Ionicons name="add" size={12} color="rgba(255,255,255,0.9)" />
+                    <Ionicons name="add" size={10} color="rgba(255,255,255,0.9)" />
                   </View>
                   <Text style={styles.primaryActionText}>Canvas</Text>
                 </TouchableOpacity>
                 
                 <TouchableOpacity style={styles.secondaryAction} activeOpacity={0.8}>
-                  <Ionicons name="information-circle-outline" size={14} color="rgba(255,255,255,0.8)" style={styles.actionIcon} />
+                  <Ionicons name="information-circle-outline" size={16} color="rgba(255,255,255,0.8)" style={styles.actionIcon} />
                   <Text style={styles.secondaryActionText}>Learn More</Text>
                 </TouchableOpacity>
               </View>
