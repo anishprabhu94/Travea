@@ -276,11 +276,12 @@ export default function Landing() {
         
         {/* Bookmark Icon with Frosted Container */}
         <TouchableOpacity
-          style={styles.bookmarkButton}
+          style={[styles.bookmarkButton, { backgroundColor: 'rgba(255,0,0,0.3)' }]} // DEBUG: Red background
           onPress={() => {
             console.log('=== BOOKMARK BUTTON CLICKED ===')
             console.log('City:', destination.city)
             console.log('ID:', destination.id)
+            console.log('Base ID extracted:', getBaseId(destination.id))
             
             // Use the simple destination ID
             handleBookmark(destination.id)
