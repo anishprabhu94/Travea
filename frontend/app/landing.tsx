@@ -847,13 +847,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     alignItems: 'flex-start', // Left align everything
   },
+  titleContainer: {
+    alignSelf: 'flex-start',
+    marginBottom: 28,
+  },
   searchTitle: {
     fontSize: 24,
     fontWeight: '500', // Poise, not bold
     color: '#F8F8F8',
-    marginBottom: 28, // More breathing space
+    marginBottom: 6,
     textAlign: 'left',
-    alignSelf: 'flex-start',
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
@@ -864,6 +867,11 @@ const styles = StyleSheet.create({
         textShadow: '0 0 15px rgba(201,169,109,0.25)', // Faint bronze glow
       },
     }),
+  },
+  titleAccent: {
+    width: 25,
+    height: 1,
+    backgroundColor: 'rgba(201,169,109,0.3)', // Bronze accent line
   },
   searchBarContainer: {
     width: '100%',
