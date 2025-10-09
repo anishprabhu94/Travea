@@ -176,7 +176,9 @@ export default function MyTrips() {
     return groups
   }
 
-  const renderSavedCard = (destination: SavedDestination, index: number, isOnlyCard: boolean) => (
+  const renderSavedCard = (destination: SavedDestination, index: number, isOnlyCard: boolean) => {
+    console.log('renderSavedCard: Called for destination:', destination.id)
+    return (
     <View key={destination.id} style={[styles.savedCardWrapper, isOnlyCard && styles.singleCardWrapper]}>
       <ImageBackground
         source={{ uri: destination.image }}
