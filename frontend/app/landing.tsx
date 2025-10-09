@@ -171,9 +171,9 @@ export default function Landing() {
     const isBookmarked = bookmarkedItems.includes(itemId)
     
     if (isBookmarked) {
-      setBookmarkedItems(prev => prev.filter(id => id !== itemId))
+      removeBookmark(itemId)
     } else {
-      setBookmarkedItems(prev => [...prev, itemId])
+      addBookmark(itemId)
       
       // Get individual animation for this specific bookmark
       const bookmarkAnim = getBookmarkAnimation(itemId)
