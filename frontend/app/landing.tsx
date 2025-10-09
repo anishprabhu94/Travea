@@ -810,46 +810,48 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   searchTitle: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: '600',
     color: '#F8F8F8',
-    marginBottom: 8,
+    marginBottom: 6,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-    ...Platform.select({
-      web: {
-        textShadow: '0 0 15px rgba(201,169,109,0.25)',
-      },
     }),
   },
   searchSubtitle: {
-    fontSize: 15,
+    fontSize: 14,
     color: 'rgba(255,255,255,0.75)',
-    letterSpacing: 0.5,
-    marginBottom: 20,
+    marginBottom: 16,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  searchBarContainer: {
-    marginBottom: 24,
+  searchBarWrapper: {
+    marginBottom: 16,
   },
-  searchBar: {
-    borderRadius: 30,
-    overflow: 'hidden',
-    height: 48,
-  },
-  searchBarContent: {
-    backgroundColor: 'rgba(25,25,25,0.55)',
+  searchBarPill: {
+    backgroundColor: '#000000', // Black like Conde Nast pill
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 16,
-    height: 48,
+    paddingVertical: 10,
+    borderRadius: 30,
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 8px rgba(0,0,0,0.4)',
+      },
+      default: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.4,
+        shadowRadius: 4,
+        elevation: 3,
+      },
+    }),
   },
   searchIcon: {
     marginRight: 12,
