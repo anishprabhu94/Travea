@@ -859,22 +859,20 @@ const styles = StyleSheet.create({
   bookmarkInner: {
     flex: 1,
     backgroundColor: 'rgba(20,20,20,0.65)', // Darker frosted background for better visibility
-    borderWidth: 1,
-    borderColor: 'rgba(201,169,109,0.6)', // Stronger bronze stroke
     alignItems: 'center',
     justifyContent: 'center',
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(201,169,109,0.4)',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.8,
-        shadowRadius: 6,
+        shadowColor: 'rgba(201,169,109,0.6)',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 1,
+        shadowRadius: 8,
       },
       android: {
-        elevation: 4,
+        elevation: 6,
       },
       web: {
-        boxShadow: '0 2px 12px rgba(201,169,109,0.35), inset 0 0 16px rgba(255,255,255,0.08)',
+        boxShadow: '0 0 16px rgba(201,169,109,0.5), inset 0 0 12px rgba(255,255,255,0.08)', // Elegant bronze glow
       },
     }),
   },
