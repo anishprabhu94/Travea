@@ -178,8 +178,14 @@ export default function Landing() {
 
   const getCurrentCards = () => {
     if (activeMode === 'search') return []
-    const filteredCards = destinationCards.filter(card => card.category === activeMode)
-    console.log(`Active mode: ${activeMode}, Found cards:`, filteredCards.length)
+    // Map new mode names to card categories
+    const categoryMap = {
+      'vacations': 'inspire',  // Vacations tab shows inspire category cards
+      'discover': 'weekend'    // Discover tab shows weekend category cards
+    }
+    const category = categoryMap[activeMode] || activeMode
+    const filteredCards = destinationCards.filter(card => card.category === category)
+    console.log(`Active mode: ${activeMode}, Mapped to category: ${category}, Found cards:`, filteredCards.length)
     return filteredCards
   }
 
