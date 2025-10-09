@@ -756,9 +756,10 @@ const styles = StyleSheet.create({
   },
   carouselHeader: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'center', // This ensures vertical center alignment
     paddingHorizontal: 20,
     marginBottom: 16,
+    justifyContent: 'flex-start', // Align items to the start
   },
   carouselTitle: {
     fontSize: 22,
