@@ -111,7 +111,7 @@ export default function MyTrips() {
     const groups: { [key: string]: SavedDestination[] } = {}
     
     savedDestinations.forEach(dest => {
-      const groupKey = `${dest.sourceTab} — ${dest.sourceCarousel}`
+      const groupKey = dest.sourceCarousel // Remove prefixes, just use carousel name
       if (!groups[groupKey]) {
         groups[groupKey] = []
       }
