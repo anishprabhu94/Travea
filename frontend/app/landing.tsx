@@ -841,16 +841,20 @@ const styles = StyleSheet.create({
   },
   searchTitle: {
     fontSize: 24,
-    fontWeight: '600',
+    fontWeight: '500', // Poise, not bold
     color: '#F8F8F8',
-    marginBottom: 24,
-    textAlign: 'left', // Left aligned
+    marginBottom: 28, // More breathing space
+    textAlign: 'left',
     alignSelf: 'flex-start',
-    marginLeft: 18, // Inline with search bar starting position
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+    ...Platform.select({
+      web: {
+        textShadow: '0 0 15px rgba(201,169,109,0.25)', // Faint bronze glow
+      },
     }),
   },
   searchBarContainer: {
