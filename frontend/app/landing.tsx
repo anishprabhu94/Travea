@@ -875,27 +875,51 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  cityName: {
-    fontSize: 22,
+  destinationHeader: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    marginBottom: 4,
+  },
+  destinationCity: {
+    fontSize: 20,
     fontWeight: '600',
     color: '#F8F8F8',
-    marginBottom: 6,
+    letterSpacing: 0.3,
+    lineHeight: 26,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  cityTagline: {
-    fontSize: 16,
+  destinationSeparator: {
+    fontSize: 20,
+    color: 'rgba(255,255,255,0.6)',
+    fontWeight: '500',
+  },
+  destinationRegion: {
+    fontSize: 18,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.7)',
+    letterSpacing: 0.3,
+    lineHeight: 26,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  editorialTagline: {
+    fontSize: 15,
     fontWeight: '400',
     color: 'rgba(255,255,255,0.85)',
-    marginBottom: 14,
-    lineHeight: 22,
+    marginBottom: 12,
+    lineHeight: 20,
+    letterSpacing: 0.1,
     fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Neue Montreal',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
   transportRow: {
