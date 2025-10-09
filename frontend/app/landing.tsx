@@ -146,6 +146,8 @@ export default function Landing() {
 
   const handleModeSwitch = (mode: string) => {
     if (mode === activeMode) return
+    // Reset city counters when switching modes
+    cityCounters.current = {}
     setActiveMode(mode)
     console.log(`Switched to mode: ${mode}`)
     
