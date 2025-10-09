@@ -932,4 +932,71 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
+  // Bottom Dock Styles
+  bottomDock: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+    zIndex: 100,
+  },
+  dockContainer: {
+    width: '92%',
+    marginBottom: Platform.select({
+      ios: 34, // Safe area for iPhone home indicator
+      android: 20,
+      web: 20,
+    }),
+    borderRadius: 30,
+    overflow: 'hidden',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(30px)',
+        boxShadow: '0 10px 40px rgba(0,0,0,0.3)',
+      },
+      default: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.3,
+        shadowRadius: 20,
+        elevation: 10,
+      },
+    }),
+  },
+  dockContent: {
+    backgroundColor: 'rgba(30,30,30,0.7)',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+  },
+  dockItem: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
+  dockLabelActive: {
+    fontSize: 12,
+    color: '#C9A96D',
+    marginTop: 4,
+    fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  dockLabelInactive: {
+    fontSize: 12,
+    color: 'rgba(255,255,255,0.6)',
+    marginTop: 4,
+    fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
 })
