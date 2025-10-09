@@ -813,7 +813,9 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#F8F8F8',
     marginBottom: 24,
-    textAlign: 'center',
+    textAlign: 'left', // Left aligned
+    alignSelf: 'flex-start',
+    marginLeft: 18, // Inline with search bar starting position
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
