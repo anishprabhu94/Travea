@@ -213,11 +213,6 @@ export default function MyTrips() {
                   </View>
                   <Text style={styles.primaryActionText}>Canvas</Text>
                 </TouchableOpacity>
-                
-                <TouchableOpacity style={styles.secondaryAction} activeOpacity={0.8}>
-                  <Ionicons name="information-circle-outline" size={16} color="rgba(255,255,255,0.8)" style={styles.actionIcon} />
-                  <Text style={styles.secondaryActionText}>Learn More</Text>
-                </TouchableOpacity>
               </View>
             </View>
           </BlurView>
