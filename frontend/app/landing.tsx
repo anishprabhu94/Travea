@@ -834,57 +834,63 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
   },
   searchIcon: {
-    marginRight: 10,
+    marginRight: 12,
   },
   searchPlaceholder: {
-    fontSize: 15,
-    color: '#FFFFFF', // White text
+    fontSize: 16,
+    color: 'rgba(255,255,255,0.75)',
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  trendingContainer: {
-    marginTop: 4,
+  trendingSection: {
+    width: '100%',
+    alignItems: 'center',
   },
   trendingLabel: {
-    fontSize: 13,
+    fontSize: 16,
     fontWeight: '600',
-    color: 'rgba(255,255,255,0.7)',
-    marginBottom: 8,
+    color: 'rgba(255,255,255,0.8)',
+    marginBottom: 16,
+    textAlign: 'center',
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  trendingChips: {
+  trendingGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 6,
+    justifyContent: 'center',
+    gap: 10,
   },
-  trendingChipPill: {
-    backgroundColor: '#000000', // Black like other pills
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 20,
+  trendingPill: {
+    borderRadius: 22,
+    overflow: 'hidden',
+  },
+  trendingPillInner: {
+    backgroundColor: 'rgba(30,30,30,0.4)', // Slightly darker than search bar with subtle glow
+    paddingHorizontal: 16,
+    paddingVertical: 10,
     ...Platform.select({
       web: {
-        boxShadow: '0 0 6px rgba(0,0,0,0.3)',
+        boxShadow: '0 0 8px rgba(201,169,109,0.15)', // Subtle bronze glow
       },
       default: {
-        shadowColor: '#000',
+        shadowColor: 'rgba(201,169,109,0.5)',
         shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.3,
-        shadowRadius: 3,
+        shadowOpacity: 0.15,
+        shadowRadius: 4,
         elevation: 2,
       },
     }),
   },
-  trendingChipText: {
-    fontSize: 13,
-    color: '#FFFFFF', // White text
+  trendingPillText: {
+    fontSize: 15,
+    color: '#F8F8F8',
     fontWeight: '500',
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
