@@ -366,7 +366,7 @@ export default function MyTrips() {
         {activeTab === 'ongoing' && (
           <View style={styles.placeholderContent}>
             <Text style={styles.placeholderText}>Ongoing Trips</Text>
-            <Text style={styles.placeholderSubtext}>Your active travel experiences will appear here</Text>
+            <Text style={styles.placeholderSubtext}>Your active trips will appear here</Text>
           </View>
         )}
         
@@ -377,6 +377,32 @@ export default function MyTrips() {
           </View>
         )}
       </Animated.View>
+
+      {/* Bottom Dock */}
+      <View style={styles.bottomDock}>
+        <BlurView intensity={30} tint="light" style={styles.dockContainer}>
+          <View style={styles.dockContent}>
+            <TouchableOpacity 
+              style={styles.dockItem} 
+              activeOpacity={0.8}
+              onPress={() => router.push('/landing')}
+            >
+              <Ionicons name="compass-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>Discover</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
+              <Ionicons name="bookmark" size={22} color="#C9A96D" />
+              <Text style={styles.dockLabelActive}>My Trips</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
+              <Ionicons name="person-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>Profile</Text>
+            </TouchableOpacity>
+          </View>
+        </BlurView>
+      </View>
     </ImageBackground>
   )
 }
