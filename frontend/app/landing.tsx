@@ -854,11 +854,11 @@ const styles = StyleSheet.create({
     }),
   },
   searchIcon: {
-    marginRight: 12,
+    marginRight: 10,
   },
   searchPlaceholder: {
-    fontSize: 16,
-    color: 'rgba(255,255,255,0.9)',
+    fontSize: 15,
+    color: '#FFFFFF', // White text
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
@@ -866,13 +866,13 @@ const styles = StyleSheet.create({
     }),
   },
   trendingContainer: {
-    marginTop: 8,
+    marginTop: 4,
   },
   trendingLabel: {
-    fontSize: 15,
+    fontSize: 13,
     fontWeight: '600',
     color: 'rgba(255,255,255,0.7)',
-    marginBottom: 12,
+    marginBottom: 8,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
@@ -882,22 +882,30 @@ const styles = StyleSheet.create({
   trendingChips: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 8,
+    gap: 6,
   },
-  trendingChip: {
+  trendingChipPill: {
+    backgroundColor: '#000000', // Black like other pills
+    paddingHorizontal: 12,
+    paddingVertical: 6,
     borderRadius: 20,
-    overflow: 'hidden',
-  },
-  trendingChipBlur: {
-    borderRadius: 20,
-    overflow: 'hidden',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 6px rgba(0,0,0,0.3)',
+      },
+      default: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+        elevation: 2,
+      },
+    }),
   },
   trendingChipText: {
-    backgroundColor: 'rgba(25,25,25,0.45)',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    fontSize: 15,
-    color: '#FFFFFF',
+    fontSize: 13,
+    color: '#FFFFFF', // White text
+    fontWeight: '500',
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
