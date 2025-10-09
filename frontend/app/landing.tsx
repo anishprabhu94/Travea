@@ -297,7 +297,7 @@ export default function Landing() {
         >
           <Text style={styles.greetingMain}>Hello, Anish</Text>
           <Text style={styles.greetingSub}>
-            {activeMode === 'inspire' && 'Curated escapes, just for you.'}
+            {activeMode === 'inspire' && 'Curated vacations, just for you.'}
             {activeMode === 'weekend' && 'Getaways, made for you.'}
             {activeMode === 'search' && 'Where would you like to go?'}
           </Text>
