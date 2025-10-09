@@ -993,21 +993,21 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   editorialBadgeInner: {
-    backgroundColor: 'rgba(201,169,109,0.25)',
+    backgroundColor: 'rgba(0,0,0,0.6)', // Matte black semi-transparent background
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.1)',
+    borderColor: 'rgba(255,255,255,0.15)', // Subtle border
     paddingHorizontal: 12,
     paddingVertical: 6,
     flexDirection: 'row',
     alignItems: 'center',
     ...Platform.select({
       web: {
-        boxShadow: '0 0 8px rgba(201,169,109,0.25)',
+        boxShadow: '0 0 6px rgba(0,0,0,0.3)', // Subtle glow
       },
       default: {
-        shadowColor: 'rgba(201,169,109,0.8)',
+        shadowColor: 'rgba(0,0,0,0.8)',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.25,
+        shadowOpacity: 0.3,
         shadowRadius: 4,
         elevation: 3,
       },
