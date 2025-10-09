@@ -534,13 +534,13 @@ export default function Landing() {
         <BlurView intensity={20} tint="light" style={styles.dockContainer}>
           <View style={styles.dockContent}>
             <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
-              <Ionicons name="home" size={22} color="#F8F8F8" />
-              <Text style={styles.dockLabel}>Home</Text>
+              <Ionicons name="home" size={22} color="#C9A96D" />
+              <Text style={styles.dockLabelActive}>Home</Text>
             </TouchableOpacity>
             
             <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
-              <Ionicons name="compass" size={22} color="#C9A96D" />
-              <Text style={styles.dockLabel}>Discover</Text>
+              <Ionicons name="map-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
             </TouchableOpacity>
             
             <TouchableOpacity 
@@ -553,6 +553,11 @@ export default function Landing() {
               </Animated.View>
               <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.7)" />
               <Text style={styles.dockLabelInactive}>My Trips</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
+              <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>Concierge</Text>
             </TouchableOpacity>
           </View>
         </BlurView>
