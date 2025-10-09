@@ -1175,20 +1175,22 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   trendingPillInner: {
-    backgroundColor: 'rgba(45,45,45,0.6)', // Lighter for better visibility
-    paddingHorizontal: 20, // 8px 20px as specified
+    backgroundColor: 'rgba(30,30,30,0.55)', // Enhanced frosted glass appearance
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)', // Subtle frosted border
+    paddingHorizontal: 20,
     paddingVertical: 8,
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(20px)',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.3)', // Elevated ambient shadow
+        backdropFilter: 'blur(25px)', // Increased blur for more frosted effect
+        boxShadow: '0 4px 16px rgba(0,0,0,0.25), inset 0 1px 3px rgba(255,255,255,0.05)', // Enhanced frosted shadows
       },
       default: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 12,
-        elevation: 6,
+        shadowColor: 'rgba(0,0,0,0.4)',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.4,
+        shadowRadius: 8,
+        elevation: 4,
       },
     }),
   },
