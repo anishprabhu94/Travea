@@ -477,9 +477,9 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  titleContainer: {
-    flex: 2,
-    alignItems: 'flex-start',
+  pageTitleSection: {
+    paddingHorizontal: 20,
+    marginBottom: 8,
   },
   pageTitleSection: {
     paddingHorizontal: 20,
