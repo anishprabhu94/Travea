@@ -633,8 +633,8 @@ const styles = StyleSheet.create({
   },
   greetingSection: {
     paddingHorizontal: 20,
-    marginBottom: 16,
-    marginTop: 8,
+    marginBottom: 24, // Increased for better spacing from tabs
+    marginTop: -8, // Moved up for better spacing
   },
   greetingMain: {
     fontSize: 22,
