@@ -554,7 +554,11 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    paddingTop: 20,
+    paddingTop: Platform.select({
+      ios: 50, // Account for status bar on iOS
+      android: 30, // Account for status bar on Android
+      web: 20,
+    }),
     paddingHorizontal: 0,
   },
   header: {
