@@ -849,14 +849,15 @@ const styles = StyleSheet.create({
   },
   trendingSection: {
     width: '100%',
-    alignItems: 'center',
+    alignItems: 'flex-start', // Left align the section
   },
   trendingLabel: {
     fontSize: 16,
     fontWeight: '600',
     color: 'rgba(255,255,255,0.8)',
     marginBottom: 16,
-    textAlign: 'center',
+    marginLeft: 18, // Inline with search bar starting position
+    textAlign: 'left',
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
@@ -866,8 +867,9 @@ const styles = StyleSheet.create({
   trendingGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    justifyContent: 'flex-start', // Left align pills
     gap: 10,
+    paddingHorizontal: 18, // Match alignment
   },
   trendingPill: {
     borderRadius: 22,
