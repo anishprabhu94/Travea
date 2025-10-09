@@ -1296,6 +1296,16 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
+  dockLabelActive: {
+    fontSize: 14,
+    color: '#C9A96D',
+    marginTop: 4,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
   dockLabelInactive: {
     fontSize: 14,
     color: 'rgba(255,255,255,0.7)',
