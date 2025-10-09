@@ -134,6 +134,9 @@ frontend:
         - working: true
           agent: "main"
           comment: "ADDITIONAL REFINEMENTS: 1) Reduced destination card width from (width-32) to (width-80) for cleaner, more compact layout, 2) Removed feather icon from Condé Nast Pick badge for cleaner text-only design, 3) Added elegant 32px top margin to scrollableContent for better spacing between tabs and carousel, 4) Enhanced bookmark frosted pane visibility with darker background rgba(20,20,20,0.65) and stronger bronze stroke rgba(201,169,109,0.6), 5) Improved carousel header alignment with center-aligned arrow circles next to titles. Landing page now has refined, elegant spacing and enhanced visibility of all interactive elements."
+        - working: true
+          agent: "main"
+          comment: "FINAL POLISH: 1) Made 'trending now' title consistent with carousel titles - fontSize 22, fontWeight 600, color #F8F8F8, removed uppercase transform for unified typography, 2) Removed bronze border outline from bookmark circle and replaced with elegant bronze glow effect rgba(201,169,109,0.5) for prominent, clean appearance. All typography now consistent across landing page with sophisticated glow effects on interactive elements."
 
 metadata:
   created_by: "main_agent"
