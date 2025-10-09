@@ -849,8 +849,33 @@ const styles = StyleSheet.create({
     right: 16,
     zIndex: 10,
   },
-  bookmarkIcon: {
-    // Luxury bronze bookmark - hollow stroke
+  bookmarkContainer: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    overflow: 'hidden',
+  },
+  bookmarkInner: {
+    flex: 1,
+    backgroundColor: 'rgba(30,30,30,0.35)', // Frosted background
+    borderWidth: 1,
+    borderColor: 'rgba(201,169,109,0.4)', // Bronze stroke
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(201,169,109,0.3)',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.6,
+        shadowRadius: 4,
+      },
+      android: {
+        elevation: 3,
+      },
+      web: {
+        boxShadow: '0 2px 8px rgba(201,169,109,0.25), inset 0 0 12px rgba(255,255,255,0.05)',
+      },
+    }),
   },
   luxuryInfoContainer: {
     position: 'absolute',
