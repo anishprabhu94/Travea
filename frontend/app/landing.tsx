@@ -301,17 +301,62 @@ export default function Landing() {
   // Carousel configurations
   const getCarouselConfig = () => {
     const baseCards = getCurrentCards()
+    
     if (activeMode === 'inspire') {
+      // Distribute unique destinations across 3 carousels (4 cards each = 12 total)
       return [
-        { title: 'Curated for You', cards: get4Cards(baseCards, 'inspire_curated') },
-        { title: 'Trending', cards: get4Cards(baseCards, 'inspire_trending') },
-        { title: 'Seasonal Highlights', cards: get4Cards(baseCards, 'inspire_seasonal') },
+        { 
+          id: 'inspire_curated', 
+          title: 'Curated for You', 
+          cards: baseCards.slice(0, 4).map((card, index) => ({
+            ...card,
+            id: `inspire_curated_${card.id}_${index}`
+          }))
+        },
+        { 
+          id: 'inspire_trending', 
+          title: 'Trending Now', 
+          cards: baseCards.slice(1, 5).map((card, index) => ({
+            ...card,
+            id: `inspire_trending_${card.id}_${index}`
+          }))
+        },
+        { 
+          id: 'inspire_seasonal', 
+          title: 'Seasonal Highlights', 
+          cards: baseCards.slice(2, 6).map((card, index) => ({
+            ...card,
+            id: `inspire_seasonal_${card.id}_${index}`
+          }))
+        }
       ]
     } else if (activeMode === 'weekend') {
+      // Distribute unique destinations across 3 carousels for weekend
       return [
-        { title: 'Quick Getaways', cards: get4Cards(baseCards, 'weekend_quick') },
-        { title: 'Slow Living', cards: get4Cards(baseCards, 'weekend_slow') },
-        { title: 'Escape Themes', cards: get4Cards(baseCards, 'weekend_escape') },
+        { 
+          id: 'weekend_slow', 
+          title: 'Slow Living', 
+          cards: baseCards.slice(0, 4).map((card, index) => ({
+            ...card,
+            id: `weekend_slow_${card.id}_${index}`
+          }))
+        },
+        { 
+          id: 'weekend_quick', 
+          title: 'Quick Getaways', 
+          cards: baseCards.slice(1, 5).map((card, index) => ({
+            ...card,
+            id: `weekend_quick_${card.id}_${index}`
+          }))
+        },
+        { 
+          id: 'weekend_escape', 
+          title: 'Escape Themes', 
+          cards: baseCards.slice(2, 6).map((card, index) => ({
+            ...card,
+            id: `weekend_escape_${card.id}_${index}`
+          }))
+        }
       ]
     }
     return []
