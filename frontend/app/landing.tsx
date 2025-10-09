@@ -1126,12 +1126,12 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   trendingLabel: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: 'rgba(255,255,255,0.75)', // Warm white
+    fontSize: 22, // Consistent with carousel titles
+    fontWeight: '600', // Consistent with carousel titles
+    color: '#F8F8F8', // Consistent with carousel titles
     marginBottom: 18, // More breathing space
-    textTransform: 'uppercase',
-    letterSpacing: 0.8, // Elegant spacing
+    textTransform: 'none', // Remove uppercase for consistency
+    letterSpacing: 0, // Reset letter spacing for consistency
     textAlign: 'left',
     alignSelf: 'flex-start',
     fontFamily: Platform.select({
