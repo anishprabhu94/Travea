@@ -1107,22 +1107,22 @@ const styles = StyleSheet.create({
     }),
   },
   searchBarContent: {
-    backgroundColor: 'rgba(30,30,30,0.5)', // More frosted glass appearance
+    backgroundColor: 'rgba(255,255,255,0.04)', // Much lighter for elegant frosted appearance
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.08)', // Subtle frosted border
+    borderColor: 'rgba(255,255,255,0.12)', // More visible but still subtle frosted border
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 18,
     paddingVertical: 14,
     ...Platform.select({
       web: {
-        boxShadow: 'inset 0 1px 4px rgba(255,255,255,0.06), 0 0 12px rgba(0,0,0,0.15)', // Enhanced frosted effect
+        boxShadow: 'inset 0 1px 6px rgba(255,255,255,0.08), 0 0 16px rgba(0,0,0,0.12)', // Lighter, more elegant shadows
       },
       default: {
-        shadowColor: 'rgba(0,0,0,0.2)',
+        shadowColor: 'rgba(0,0,0,0.15)',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 4,
+        shadowOpacity: 0.2,
+        shadowRadius: 6,
         elevation: 2,
       },
     }),
