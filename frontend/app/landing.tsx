@@ -746,6 +746,7 @@ const styles = StyleSheet.create({
   },
   scrollableContent: {
     flex: 1,
+    marginTop: 32, // Add elegant spacing between tabs and carousel content
   },
   scrollableContentContainer: {
     paddingBottom: 120, // Space for bottom dock
