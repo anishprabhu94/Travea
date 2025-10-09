@@ -134,12 +134,16 @@ export default function Landing() {
   }
 
   const handleBookmark = (itemId: string) => {
-    const isBookmarked = bookmarkedItems.includes(itemId)
+    // Extract base ID for consistent bookmark storage
+    const baseId = getBaseId(itemId)
+    console.log('handleBookmark: Complex ID:', itemId, 'Base ID:', baseId)
+    
+    const isBookmarked = bookmarkedItems.includes(baseId)
     
     if (isBookmarked) {
-      removeBookmark(itemId)
+      removeBookmark(baseId)
     } else {
-      addBookmark(itemId)
+      addBookmark(baseId)
       
       // Get individual animation for this specific bookmark
       const bookmarkAnim = getBookmarkAnimation(itemId)
