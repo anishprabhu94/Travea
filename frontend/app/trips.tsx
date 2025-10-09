@@ -803,8 +803,18 @@ const styles = StyleSheet.create({
   },
   secondaryAction: {
     flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(25,25,25,0.45)',
     borderRadius: 12,
-    overflow: 'hidden',
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    ...Platform.select({
+      web: {
+        boxShadow: 'inset 0 1px 3px rgba(255,255,255,0.05)',
+      },
+    }),
   },
   secondaryActionBlur: {
     borderRadius: 12,
