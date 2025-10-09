@@ -110,6 +110,7 @@ export default function Landing() {
   const greetingAnim = useRef(new Animated.Value(0)).current
   const dockAnim = useRef(new Animated.Value(0)).current
   const dockGlowAnim = useRef(new Animated.Value(0)).current
+  const bookmarkPulseAnim = useRef(new Animated.Value(1)).current
 
   useEffect(() => {
     // Page load animations
