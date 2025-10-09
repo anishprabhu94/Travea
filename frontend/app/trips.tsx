@@ -315,54 +315,55 @@ export default function MyTrips() {
 
         {/* Sticky Tab Pills */}
         <View style={styles.stickyTabsContainer}>
-          <BlurView intensity={25} tint="light" style={styles.stickyTabsBlur}>
-            <View style={styles.tabChips}>
-              <TouchableOpacity
-                style={styles.tabChip}
-                onPress={() => handleTabSwitch('ongoing')}
-                activeOpacity={0.8}
-              >
-                {activeTab === 'ongoing' && <View style={styles.tabChipGlow} />}
-                <BlurView intensity={20} tint="light" style={styles.tabChipBlur}>
-                  <View style={styles.tabChipContent}>
-                    <Text style={[styles.tabChipLabel, activeTab === 'ongoing' && styles.tabChipLabelActive]}>
-                      Ongoing
-                    </Text>
-                  </View>
-                </BlurView>
-              </TouchableOpacity>
+          <View style={styles.tabChips}>
+            <TouchableOpacity
+              style={styles.tabChip}
+              onPress={() => handleTabSwitch('ongoing')}
+              activeOpacity={0.8}
+            >
+              {activeTab === 'ongoing' && <View style={styles.tabChipGlow} />}
+              <BlurView intensity={20} tint="light" style={styles.tabChipBlur}>
+                <View style={styles.tabChipContent}>
+                  <Ionicons name="play-circle-outline" size={16} color="rgba(255,255,255,0.9)" />
+                  <Text style={[styles.tabChipLabel, activeTab === 'ongoing' && styles.tabChipLabelActive]}>
+                    Ongoing
+                  </Text>
+                </View>
+              </BlurView>
+            </TouchableOpacity>
 
-              <TouchableOpacity
-                style={styles.tabChip}
-                onPress={() => handleTabSwitch('upcoming')}
-                activeOpacity={0.8}
-              >
-                {activeTab === 'upcoming' && <View style={styles.tabChipGlow} />}
-                <BlurView intensity={20} tint="light" style={styles.tabChipBlur}>
-                  <View style={styles.tabChipContent}>
-                    <Text style={[styles.tabChipLabel, activeTab === 'upcoming' && styles.tabChipLabelActive]}>
-                      Upcoming
-                    </Text>
-                  </View>
-                </BlurView>
-              </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.tabChip}
+              onPress={() => handleTabSwitch('upcoming')}
+              activeOpacity={0.8}
+            >
+              {activeTab === 'upcoming' && <View style={styles.tabChipGlow} />}
+              <BlurView intensity={20} tint="light" style={styles.tabChipBlur}>
+                <View style={styles.tabChipContent}>
+                  <Ionicons name="calendar-outline" size={16} color="rgba(255,255,255,0.9)" />
+                  <Text style={[styles.tabChipLabel, activeTab === 'upcoming' && styles.tabChipLabelActive]}>
+                    Upcoming
+                  </Text>
+                </View>
+              </BlurView>
+            </TouchableOpacity>
 
-              <TouchableOpacity
-                style={styles.tabChip}
-                onPress={() => handleTabSwitch('saved')}
-                activeOpacity={0.8}
-              >
-                {activeTab === 'saved' && <View style={styles.tabChipGlow} />}
-                <BlurView intensity={20} tint="light" style={styles.tabChipBlur}>
-                  <View style={styles.tabChipContent}>
-                    <Text style={[styles.tabChipLabel, activeTab === 'saved' && styles.tabChipLabelActive]}>
-                      Saved
-                    </Text>
-                  </View>
-                </BlurView>
-              </TouchableOpacity>
-            </View>
-          </BlurView>
+            <TouchableOpacity
+              style={styles.tabChip}
+              onPress={() => handleTabSwitch('saved')}
+              activeOpacity={0.8}
+            >
+              {activeTab === 'saved' && <View style={styles.tabChipGlow} />}
+              <BlurView intensity={20} tint="light" style={styles.tabChipBlur}>
+                <View style={styles.tabChipContent}>
+                  <Ionicons name="bookmark-outline" size={16} color="rgba(255,255,255,0.9)" />
+                  <Text style={[styles.tabChipLabel, activeTab === 'saved' && styles.tabChipLabelActive]}>
+                    Saved
+                  </Text>
+                </View>
+              </BlurView>
+            </TouchableOpacity>
+          </View>
         </View>
 
         {/* Tab Content */}
