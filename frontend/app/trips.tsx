@@ -300,11 +300,6 @@ export default function MyTrips() {
             <Text style={styles.logoText}>TRĀVEA</Text>
           </View>
           
-          {/* Page Title */}
-          <View style={styles.titleContainer}>
-            <Text style={styles.pageTitle}>MY TRIPS</Text>
-          </View>
-          
           {/* Profile Icon */}
           <TouchableOpacity style={styles.profileButton} activeOpacity={0.8}>
             <View style={styles.profileIcon}>
@@ -312,6 +307,11 @@ export default function MyTrips() {
             </View>
           </TouchableOpacity>
         </Animated.View>
+
+        {/* Page Title - Separate and Left Aligned */}
+        <View style={styles.pageTitleSection}>
+          <Text style={styles.pageTitle}>MY TRIPS</Text>
+        </View>
 
         {/* Sticky Tab Pills */}
         <View style={styles.stickyTabsContainer}>
