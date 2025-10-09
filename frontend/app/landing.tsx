@@ -885,7 +885,7 @@ const styles = StyleSheet.create({
     }),
   },
   searchBarContent: {
-    backgroundColor: 'rgba(30,30,30,0.45)', // Deeper tactile feeling
+    backgroundColor: 'rgba(50,50,50,0.6)', // Lighter for better visibility
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 18,
