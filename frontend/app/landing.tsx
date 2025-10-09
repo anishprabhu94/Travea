@@ -210,15 +210,22 @@ export default function Landing() {
               {/* Transport Row */}
               <View style={styles.transportRow}>
                 {destination.transport.map((transport, transportIndex) => (
-                  <View key={transportIndex} style={styles.transportItem}>
-                    <Ionicons 
-                      name={transport.icon} 
-                      size={15} 
-                      color="rgba(255,255,255,0.8)" 
-                      style={styles.transportIcon}
-                    />
-                    <Text style={styles.transportTime}>{transport.time}</Text>
-                  </View>
+                  <React.Fragment key={transportIndex}>
+                    <View style={styles.transportItem}>
+                      <Ionicons 
+                        name={transport.icon} 
+                        size={15} 
+                        color="rgba(255,255,255,0.8)" 
+                        style={styles.transportIcon}
+                      />
+                      <Text style={styles.transportTime}>{transport.time}</Text>
+                    </View>
+                    {transportIndex < destination.transport.length - 1 && (
+                      <View style={styles.transportSeparator}>
+                        <Text style={styles.separatorDot}>•</Text>
+                      </View>
+                    )}
+                  </React.Fragment>
                 ))}
               </View>
               
