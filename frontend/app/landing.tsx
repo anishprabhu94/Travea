@@ -189,7 +189,7 @@ export default function Landing() {
     const baseCards = getCurrentCards()
     
     if (activeMode === 'inspire') {
-      // Distribute unique destinations across 3 carousels (4 cards each = 12 total)
+      // Distribute unique destinations across 3 carousels (4 cards each = 12 total, NO OVERLAP)
       return [
         { 
           id: 'inspire_curated', 
@@ -202,7 +202,7 @@ export default function Landing() {
         { 
           id: 'inspire_trending', 
           title: 'Trending Now', 
-          cards: baseCards.slice(1, 5).map((card, index) => ({
+          cards: baseCards.slice(4, 8).map((card, index) => ({
             ...card,
             id: `inspire_trending_${card.id}_${index}`
           }))
@@ -210,7 +210,7 @@ export default function Landing() {
         { 
           id: 'inspire_seasonal', 
           title: 'Seasonal Highlights', 
-          cards: baseCards.slice(2, 6).map((card, index) => ({
+          cards: baseCards.slice(8, 12).map((card, index) => ({
             ...card,
             id: `inspire_seasonal_${card.id}_${index}`
           }))
