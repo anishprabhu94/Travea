@@ -615,14 +615,27 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
+  stickyChipsContainer: {
+    position: 'sticky',
+    top: 0,
+    zIndex: 100,
+    ...Platform.select({
+      web: {
+        position: 'sticky',
+      },
+    }),
+  },
+  stickyChipsBlur: {
+    paddingVertical: 12,
+    overflow: 'hidden',
+  },
   categoryChips: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-    marginTop: 20, // Added spacing from greeting/tagline
-    marginBottom: 36, // More spacing to carousel
     gap: 10,
+    backgroundColor: 'rgba(25,25,25,0.3)',
   },
   chip: {
     position: 'relative',
