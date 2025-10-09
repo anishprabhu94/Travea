@@ -849,24 +849,31 @@ const styles = StyleSheet.create({
   bookmarkIcon: {
     // Luxury bronze bookmark - hollow stroke
   },
-  infoPaneContainer: {
+  luxuryInfoContainer: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    height: '30%',
+    height: '29%',
     justifyContent: 'flex-end',
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingHorizontal: 16,
+    paddingBottom: 16,
   },
-  infoPane: {
-    borderRadius: 24,
+  luxuryInfoPane: {
+    borderRadius: 28,
     overflow: 'hidden',
-    width: '95%', // Increased from 85% to 95%
+    width: '100%',
   },
-  infoPaneInner: {
-    backgroundColor: 'rgba(25,25,25,0.35)',
-    padding: 20,
+  luxuryInfoInner: {
+    backgroundColor: 'rgba(25,25,25,0.45)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
+    padding: 18,
+    ...Platform.select({
+      web: {
+        boxShadow: 'inset 0 1px 0 rgba(201,169,109,0.15)',
+      },
+    }),
   },
   cityName: {
     fontSize: 22,
