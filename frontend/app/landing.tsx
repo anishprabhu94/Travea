@@ -30,6 +30,7 @@ interface DestinationCard {
   image: string
   transport: TransportInfo[]
   category: 'inspire' | 'weekend'
+  isCondeNastPick?: boolean
 }
 
 const destinationCards: DestinationCard[] = [
