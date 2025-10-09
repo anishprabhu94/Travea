@@ -30,11 +30,22 @@ interface TransportInfo {
   time: string
 }
 
+interface DestinationCard {
+  id: string
+  city: string
+  region: string
+  tagline: string
+  image: string
+  transport: TransportInfo[]
+  category: 'inspire' | 'weekend'
+}
+
 const destinationCards: DestinationCard[] = [
   // Inspire Me Cards
   {
     id: 'amalfi',
     city: 'Amalfi',
+    region: 'Italy',
     tagline: 'Coastal drives & lemon air',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
     transport: [
@@ -46,7 +57,8 @@ const destinationCards: DestinationCard[] = [
   {
     id: 'kyoto',
     city: 'Kyoto',
-    tagline: 'Temples, lanterns, and still mornings',
+    region: 'Japan',
+    tagline: 'Temples, lanterns & still mornings',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
     transport: [
       { icon: 'airplane-outline', time: '11h 30m' },
@@ -55,9 +67,10 @@ const destinationCards: DestinationCard[] = [
     category: 'inspire'
   },
   {
-    id: 'iceland',
-    city: 'Iceland',
-    tagline: 'Where glaciers meet the sea',
+    id: 'reykjavik',
+    city: 'Reykjavík',
+    region: 'Iceland',
+    tagline: 'Nordic calm & aurora skies',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/71gsrwd0_output%20%286%29.jpg',
     transport: [
       { icon: 'airplane-outline', time: '6h 45m' }
@@ -68,6 +81,7 @@ const destinationCards: DestinationCard[] = [
   {
     id: 'sonoma',
     city: 'Sonoma',
+    region: 'USA',
     tagline: 'Wine alleys & golden light',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/cjd9m4ea_Sonoma.jpg',
     transport: [
@@ -79,6 +93,7 @@ const destinationCards: DestinationCard[] = [
   {
     id: 'carmel',
     city: 'Carmel-by-the-Sea',
+    region: 'USA',
     tagline: 'Cliffside cafés & slow tides',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/wokepbpr_carmel.jpg',
     transport: [
@@ -90,6 +105,7 @@ const destinationCards: DestinationCard[] = [
   {
     id: 'bigsur',
     city: 'Big Sur',
+    region: 'USA',
     tagline: 'Misty cliffs & endless roads',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/pk6sky07_big%20sur.jpg',
     transport: [
