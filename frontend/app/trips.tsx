@@ -29,10 +29,10 @@ interface SavedDestination {
   isCondeNastPick?: boolean
 }
 
-// Mock saved destinations data - matches all available cards from landing page
+// Mock saved destinations data - unique IDs matching landing page carousel contexts
 const mockSavedDestinations: SavedDestination[] = [
   {
-    id: 'amalfi', // This should match the bookmark ID from landing page
+    id: 'amalfi-inspire', // Unique ID: city + carousel context
     city: 'Amalfi',
     region: 'Italy',
     tagline: 'Coastal drives & lemon air',
@@ -46,7 +46,7 @@ const mockSavedDestinations: SavedDestination[] = [
     isCondeNastPick: true
   },
   {
-    id: 'kyoto',
+    id: 'kyoto-inspire', 
     city: 'Kyoto',
     region: 'Japan',
     tagline: 'Temples, lanterns & still mornings',
@@ -59,7 +59,7 @@ const mockSavedDestinations: SavedDestination[] = [
     sourceTab: 'Vacations'
   },
   {
-    id: 'reykjavik',
+    id: 'reykjavík-inspire',
     city: 'Reykjavík',
     region: 'Iceland',
     tagline: 'Nordic calm & aurora skies',
@@ -71,7 +71,7 @@ const mockSavedDestinations: SavedDestination[] = [
     sourceTab: 'Vacations'
   },
   {
-    id: 'sonoma',
+    id: 'sonoma-weekend',
     city: 'Sonoma',
     region: 'USA',
     tagline: 'Wine alleys & golden light',
@@ -83,9 +83,9 @@ const mockSavedDestinations: SavedDestination[] = [
     sourceTab: 'Discover'
   },
   {
-    id: 'carmel',
+    id: 'carmel-by-the-sea-weekend',
     city: 'Carmel-by-the-Sea',
-    region: 'USA',
+    region: 'USA', 
     tagline: 'Cliffside cafés & slow tides',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/wokepbpr_carmel.jpg',
     transport: [
@@ -96,7 +96,7 @@ const mockSavedDestinations: SavedDestination[] = [
     sourceTab: 'Discover'
   },
   {
-    id: 'bigsur',
+    id: 'big sur-weekend',
     city: 'Big Sur',
     region: 'USA',
     tagline: 'Misty cliffs & endless roads',
