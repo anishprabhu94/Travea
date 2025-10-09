@@ -896,7 +896,7 @@ const styles = StyleSheet.create({
   },
   trendingSection: {
     width: '100%',
-    alignItems: 'flex-start', // Left align the section
+    alignItems: 'flex-start',
   },
   trendingLabel: {
     fontSize: 14,
