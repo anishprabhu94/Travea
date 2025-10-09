@@ -959,7 +959,7 @@ const styles = StyleSheet.create({
   luxuryTransportRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 14,
+    marginBottom: 10, // Reduced margin for tighter layout
   },
   luxuryTransportItem: {
     flexDirection: 'row',
