@@ -752,6 +752,9 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
+  titleArrowSpacing: {
+    width: 12, // Elegant spacing between title and arrow
+  },
   frostedButton: {
     width: 24,
     height: 24,
