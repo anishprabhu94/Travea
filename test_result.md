@@ -199,25 +199,40 @@ test_plan:
           agent: "main"
           comment: "Successfully resolved landing page layering issue where content was invisible due to z-index conflicts. Root cause identified by troubleshoot agent: content layer (zIndex: 1) was rendering behind dark background (zIndex: 0). Fixed by increasing content z-index from 1 to 10 and adding elevation: 10 for Android compatibility. All 7 key elements now visible: TRĀVEA logo, greeting text, Weekend pill, Inspire Me pill, Search pill, tagline, and bottom dock. Removed problematic WebkitTextFillColor: transparent gradient that was causing additional invisibility. Landing page now displays correctly with all cinematic design elements visible."
 
+  - task: "Verify unique card names across all carousels and tabs"
+    implemented: true
+    working: true
+    file: "/app/frontend/app/landing.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: false
+          agent: "main"
+          comment: "IDENTIFIED CRITICAL ISSUE: Carousel slicing logic was causing card overlap. Vacations tab carousels used slice(0,4), slice(1,5), slice(2,6) - creating repeated cities across carousels (Kyoto, Reykjavik, Barcelona appeared in multiple carousels). User reported 'Amalfi 1 across all Amalfi cards and same for other cities'."
+        - working: true
+          agent: "main"
+          comment: "FIXED: Updated carousel slicing to non-overlapping segments. Vacations: slice(0,4), slice(4,8), slice(8,12) and Discover: slice(0,4), slice(4,8), slice(8,12). Now each carousel shows completely unique cities. Verified via screenshots: Vacations tab shows 'Amalfi, Italy' in Curated for You, Discover tab shows 'Santorini, Greece' in Slow Living. Console confirms 'Active mode: inspire, Found cards: 12' and 'Active mode: weekend, Found cards: 12' with all 24 unique destinations properly distributed."
+
+  - task: "Test bookmark routing logic with unique card IDs"
+    implemented: true
+    working: false
+    file: "/app/frontend/app/trips.tsx, /app/frontend/contexts/BookmarkContext.tsx"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: false
+          agent: "main"
+          comment: "ISSUE IDENTIFIED: Bookmark functionality not persisting between pages. Console shows 'bookmarkedItems from context: []' and 'Filtered destinations: []' in My Trips page, indicating bookmarks are not being saved or context state is resetting. My Trips shows empty state message 'No saved destinations yet' even after attempted bookmark interactions."
+
 agent_communication:
     - agent: "main"
-      message: "Completed input field height reduction task. Reduced padding and margins to make the input panes more compact. Screenshots confirm the changes are working correctly in both Sign In and Sign Up modes."
+      message: "CRITICAL ISSUE RESOLVED: Fixed carousel card overlap problem that was causing repeated city names. Root cause was overlapping slice ranges (0-4, 1-5, 2-6) creating duplicate cities across carousels. Solution: Changed to non-overlapping ranges (0-4, 4-8, 8-12) ensuring all 24 destinations are unique across all carousels and tabs. Verified via screenshots showing Amalfi (Vacations) vs Santorini (Discover) - completely different cities as required."
     - agent: "main"
-      message: "COMPLETED: Successfully implemented all carousel card styling refinements for landing page. 1) Made luxury info panes lighter and airier with rgba(30,30,30,0.25) background, removed hard borders, added soft inner glow, reduced padding to 14px for more refined footprint. 2) Added missing bookmarkContainer (32px frosted circular) and bookmarkInner styles with bronze stroke rgba(201,169,109,0.4) and elegant shadow effects. 3) Redesigned Condé Nast Pick badge with matte black semi-transparent background rgba(0,0,0,0.6) and subtle border. 4) Reduced content block height by tightening margins - editorialTagline from 12px to 8px, luxuryTransportRow from 14px to 10px. All styling changes achieve the desired 'misted glass' luxury aesthetic that makes content panes appear to float. Ready for testing."
-    - agent: "main"
-      message: "Successfully unified material design between login pane and onboarding bubbles. Both now use identical frosted-glass specifications with proper selection states and 2-column grid layout. Screenshots verified all states are working correctly including default, selected, and bronze accent styling."
-    - agent: "main"
-      message: "Completed VisionOS-inspired input field refinement across Sign In and Sign Up screens. Implemented exact specifications: rgba(255,255,255,0.08) background, 1px rgba(255,255,255,0.15) border, 10px radius, 12×14 padding, Neue Montreal Regular 15px font. Removed all harsh outlines, blue iOS highlighting, and focus animations. Added subtle rgba(255,255,255,0.12) active state. Input fields now feel tactile yet quiet, unified with frosted glass panes. 10px vertical spacing maintained for premium, refined experience."
-    - agent: "main"
-      message: "Starting implementation of onboarding ergonomic improvements: 1) Renaming 'Local Connections' to 'Local Immersions' and 'Outdoor Adventurer' to 'Adventure', 2) Adjusting content positioning lower for better visual balance, 3) Pinning NEXT button at screen bottom, 4) Enhancing question pane styling with lighter background, increased blur, and shadow. Also investigating welcome.tsx black screen issue."
-    - agent: "main"
-      message: "COMPLETED: Successfully implemented all onboarding ergonomic improvements. 1) Renamed 'Outdoor Adventurer' to 'Adventure' in question 4, 2) Content shifted lower (top: 160px) for better visual balance, 3) NEXT button now pinned at screen bottom with proper thumb-friendly positioning, 4) Enhanced question pane with rgba(60,60,60,0.35) background, 30px blur, rgba(255,255,255,0.15) border, and shadow 0 6px 25px rgba(0,0,0,0.25). 5) FIXED welcome.tsx black screen issue by removing web-specific 'minHeight: 100vh' CSS. All screens tested and working correctly with proper frosted glass aesthetic maintained."
-    - agent: "main"
-      message: "ENHANCED: Added soft luminous glow to question pane for superior depth and contrast. Implemented rgba(60,60,60,0.35) background with 30px backdrop blur, 0px 8px 32px rgba(0,0,0,0.45) outer shadow for soft elevation, 1px rgba(255,255,255,0.08) border, plus inset 0 0 25px rgba(255,255,255,0.05) for luminous frosted effect. Question pane now feels softly elevated with excellent readability against dark backgrounds while maintaining minimalist aesthetic. Screenshots confirm consistent beautiful glow effect across all onboarding questions."
-    - agent: "main"
-      message: "REFINED: Optimized question pane proportion and visibility with precise specifications. Implemented: Fixed 70px height with 16px×20px padding, enhanced rgba(70,70,70,0.35) background, 30px backdrop blur, soft shadow 0 6px 24px rgba(0,0,0,0.5) + bronze glow 0 0 18px rgba(201,169,109,0.15) matching app accent, subtle 1px rgba(255,255,255,0.12) border, left-aligned text with 20px font-size/1.3 line-height/600 weight, moved upward (-20px margin) for optimal visual balance under progress bar. Question pane now has perfect proportions, excellent contrast, and cohesive bronze design language integration. Screenshots show consistent styling across all questions."
-    - agent: "main"
-      message: "RESOLVED: Successfully fixed landing page layering issue that was making all content invisible. Root cause identified via troubleshoot agent: content layer z-index (1) was too low, rendering behind dark background (0). Fixed by increasing content z-index to 10 and adding elevation: 10 for Android. Also removed problematic WebkitTextFillColor: transparent gradient. All 7 key elements now visible and functional: TRĀVEA logo, greeting, mode pills (Weekend/Inspire Me/Search), tagline, and bottom dock. Landing page cinematic design fully restored and working correctly."
+      message: "UNIQUE NAMES VERIFICATION COMPLETE: All 24 card names now genuinely unique across carousels. Vacations tab (inspire mode): Amalfi, Kyoto, Reykjavik, Barcelona (Curated) + Vienna, Lisbon, Prague, Budapest (Trending) + Amsterdam, Stockholm, Copenhagen, Dubrovnik (Seasonal). Discover tab (weekend mode): Santorini, Provence, Tuscany, Bali (Slow Living) + Maldives, Patagonia, Marrakech, Cape Town (Quick Getaways) + Queenstown, Aspen, Gstaad, Napa Valley (Escape Themes). MECE principle satisfied."
+    - agent: "main"  
+      message: "BOOKMARK ROUTING ISSUE DETECTED: While unique names are working perfectly, bookmark persistence is failing. Context shows empty array and My Trips displays placeholder. Need to investigate BookmarkContext state management and AsyncStorage persistence. This is now the primary remaining issue to resolve for complete functionality."
 
   - task: "Create cinematic onboarding screens with aerial beach background"
     implemented: true
