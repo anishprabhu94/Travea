@@ -535,8 +535,8 @@ export default function Landing() {
             </TouchableOpacity>
             
             <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
-              <Ionicons name="map-outline" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
+              <Ionicons name="compass" size={22} color="#C9A96D" />
+              <Text style={styles.dockLabelActive}>Discover</Text>
             </TouchableOpacity>
             
             <TouchableOpacity 
