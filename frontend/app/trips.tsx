@@ -104,7 +104,14 @@ export default function MyTrips() {
   }
 
   const handleRemoveBookmark = (destinationId: string) => {
-    setSavedDestinations(prev => prev.filter(dest => dest.id !== destinationId))
+    removeBookmark(destinationId)
+  }
+
+  // Get actual saved destinations from bookmarked items
+  // In a real app, this would fetch from a database or API
+  // For now, we'll use the mock data that matches bookmarked IDs
+  const getSavedDestinations = (): SavedDestination[] => {
+    return mockSavedDestinations.filter(dest => bookmarkedItems.includes(dest.id))
   }
 
   // Group saved destinations by their source carousel
