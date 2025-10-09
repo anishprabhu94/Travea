@@ -112,7 +112,13 @@ const mockSavedDestinations: SavedDestination[] = [
 
 export default function MyTrips() {
   const router = useRouter()
+  
+  console.log('MyTrips: Component rendering')
+  
   const { bookmarkedItems, removeBookmark } = useBookmarks()
+  
+  console.log('MyTrips: Hook returned bookmarkedItems:', bookmarkedItems)
+  
   const [activeTab, setActiveTab] = useState('saved') // Default to Saved
   
   // Animation refs
