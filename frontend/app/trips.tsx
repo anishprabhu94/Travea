@@ -583,6 +583,10 @@ const styles = StyleSheet.create({
     width: width - 80,
     marginRight: 16,
   },
+  singleCardWrapper: {
+    width: width - 40,
+    alignSelf: 'center',
+  },
   savedCard: {
     height: height * 0.35,
     borderRadius: 32,
