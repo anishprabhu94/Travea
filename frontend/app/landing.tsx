@@ -738,7 +738,6 @@ const styles = StyleSheet.create({
   carouselHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
     paddingHorizontal: 20,
     marginBottom: 16,
   },
