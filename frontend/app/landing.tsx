@@ -265,6 +265,7 @@ export default function Landing() {
           onPress={() => {
             // Extract original ID from transformed ID (format: carouselId_originalId_index)
             const originalId = destination.id.split('_').slice(-2, -1)[0]
+            console.log('Bookmark pressed:', { fullId: destination.id, extractedId: originalId })
             handleBookmark(originalId)
           }}
           activeOpacity={0.8}
