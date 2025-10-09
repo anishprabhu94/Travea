@@ -117,6 +117,7 @@ export default function MyTrips() {
   // Group saved destinations by their source carousel
   const getGroupedDestinations = () => {
     const groups: { [key: string]: SavedDestination[] } = {}
+    const savedDestinations = getSavedDestinations()
     
     savedDestinations.forEach(dest => {
       const groupKey = dest.sourceCarousel // Remove prefixes, just use carousel name
