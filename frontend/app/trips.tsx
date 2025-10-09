@@ -763,8 +763,18 @@ const styles = StyleSheet.create({
   },
   primaryAction: {
     flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(201,169,109,0.25)',
     borderRadius: 12,
-    overflow: 'hidden',
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    ...Platform.select({
+      web: {
+        boxShadow: 'inset 0 1px 3px rgba(255,255,255,0.1)',
+      },
+    }),
   },
   primaryActionBlur: {
     borderRadius: 12,
