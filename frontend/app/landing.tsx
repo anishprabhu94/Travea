@@ -111,6 +111,18 @@ export default function Landing() {
     }, 100)
   }
 
+  // Helper function to extract base ID from complex carousel ID
+  const getBaseId = (complexId: string) => {
+    // Complex ID format: "inspire_curated_amalfi_0" or "weekend_slow_santorini_1"
+    // We want to extract the base ID: "amalfi" or "santorini"
+    const parts = complexId.split('_')
+    if (parts.length >= 3) {
+      // Remove carousel prefix and index suffix, keep the base ID
+      return parts.slice(2, -1).join('_') // Handle cases where base ID might have underscores
+    }
+    return complexId // Fallback to original if format doesn't match
+  }
+
   const getBookmarkAnimation = (itemId: string) => {
     if (!bookmarkAnimations[itemId]) {
       setBookmarkAnimations(prev => ({
