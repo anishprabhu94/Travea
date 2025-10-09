@@ -156,6 +156,16 @@ export default function Landing() {
     }, 100)
   }
 
+  const getBookmarkAnimation = (itemId: string) => {
+    if (!bookmarkAnimations[itemId]) {
+      setBookmarkAnimations(prev => ({
+        ...prev,
+        [itemId]: new Animated.Value(1)
+      }))
+    }
+    return bookmarkAnimations[itemId] || new Animated.Value(1)
+  }
+
   const handleBookmark = (itemId: string) => {
     const isBookmarked = bookmarkedItems.includes(itemId)
     
@@ -164,15 +174,18 @@ export default function Landing() {
     } else {
       setBookmarkedItems(prev => [...prev, itemId])
       
-      // Elegant bookmark animation sequence
+      // Get individual animation for this specific bookmark
+      const bookmarkAnim = getBookmarkAnimation(itemId)
+      
+      // Elegant bookmark animation sequence for this item only
       Animated.sequence([
-        // 1. Pulse the bookmark icon
-        Animated.timing(bookmarkPulseAnim, {
+        // 1. Pulse the specific bookmark icon
+        Animated.timing(bookmarkAnim, {
           toValue: 1.2,
           duration: 150,
           useNativeDriver: true,
         }),
-        Animated.timing(bookmarkPulseAnim, {
+        Animated.timing(bookmarkAnim, {
           toValue: 1,
           duration: 150,
           useNativeDriver: true,
