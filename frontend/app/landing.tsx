@@ -819,22 +819,25 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.3,
-        shadowRadius: 25,
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.25,
+        shadowRadius: 20,
       },
       android: {
-        elevation: 10,
+        elevation: 8,
       },
       web: {
-        boxShadow: '0 8px 25px rgba(0,0,0,0.3)',
+        boxShadow: '0 6px 20px rgba(0,0,0,0.25)',
+        backdropFilter: 'blur(30px)', // Higher blur for weightless feeling
       },
     }),
   },
   searchPaneContent: {
-    backgroundColor: 'rgba(25,25,25,0.4)',
-    padding: 28,
-    alignItems: 'center',
+    backgroundColor: 'rgba(25,25,25,0.35)', // Slightly lighter for airiness
+    paddingTop: 28,
+    paddingBottom: 24,
+    paddingHorizontal: 24,
+    alignItems: 'flex-start', // Left align everything
   },
   searchTitle: {
     fontSize: 24,
