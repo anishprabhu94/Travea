@@ -257,7 +257,7 @@ export default function Landing() {
         imageStyle={styles.cardImage}
       >
         {/* Light Vignette */}
-        <View style={styles.vignetteOverlay} />
+        <View style={styles.cardVignetteOverlay} />
         
         {/* Bookmark Icon with Frosted Container */}
         <TouchableOpacity
