@@ -268,9 +268,11 @@ export default function Landing() {
             console.log('Destination ID:', destination.id)
             console.log('City:', destination.city)
             
-            // Let's use the city name as the ID for now to make it simple
-            const bookmarkId = destination.city.toLowerCase()
-            console.log('Using bookmark ID:', bookmarkId)
+            // Create unique ID: city + carousel context to handle duplicates
+            // Extract carousel info from the transformed ID
+            const carouselId = destination.id.split('_')[0] // e.g., "inspire", "weekend"
+            const bookmarkId = `${destination.city.toLowerCase()}-${carouselId}`
+            console.log('Using unique bookmark ID:', bookmarkId)
             
             handleBookmark(bookmarkId)
           }}
