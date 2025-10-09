@@ -217,7 +217,7 @@ export default function Landing() {
         }
       ]
     } else if (activeMode === 'weekend') {
-      // Distribute unique destinations across 3 carousels for weekend
+      // Distribute unique destinations across 3 carousels for weekend (4 cards each = 12 total, NO OVERLAP)
       return [
         { 
           id: 'weekend_slow', 
@@ -230,7 +230,7 @@ export default function Landing() {
         { 
           id: 'weekend_quick', 
           title: 'Quick Getaways', 
-          cards: baseCards.slice(1, 5).map((card, index) => ({
+          cards: baseCards.slice(4, 8).map((card, index) => ({
             ...card,
             id: `weekend_quick_${card.id}_${index}`
           }))
@@ -238,7 +238,7 @@ export default function Landing() {
         { 
           id: 'weekend_escape', 
           title: 'Escape Themes', 
-          cards: baseCards.slice(2, 6).map((card, index) => ({
+          cards: baseCards.slice(8, 12).map((card, index) => ({
             ...card,
             id: `weekend_escape_${card.id}_${index}`
           }))
