@@ -473,12 +473,13 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: 'rgba(255,255,255,0.85)',
+    backgroundColor: 'rgba(25,25,25,0.45)',
     justifyContent: 'center',
     alignItems: 'center',
     ...Platform.select({
       web: {
-        boxShadow: '0 0 15px rgba(201,169,109,0.2)',
+        backdropFilter: 'blur(25px)',
+        boxShadow: '0 0 15px rgba(0,0,0,0.3)',
       },
     }),
   },
