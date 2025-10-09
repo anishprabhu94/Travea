@@ -113,7 +113,7 @@ export default function Landing() {
 
   // Helper function to extract base ID from complex carousel ID
   const getBaseId = (complexId: string) => {
-    // Complex ID format: "inspire_curated_amalfi_0" or "weekend_slow_santorini_1"
+    // Complex ID format: "vacations_curated_amalfi_0" or "discover_slow_santorini_1"
     // We want to extract the base ID: "amalfi" or "santorini"
     const parts = complexId.split('_')
     if (parts.length >= 3) {
