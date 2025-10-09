@@ -74,8 +74,8 @@ const mockSavedDestinations: SavedDestination[] = [
 
 export default function MyTrips() {
   const router = useRouter()
+  const { bookmarkedItems, removeBookmark } = useBookmarks()
   const [activeTab, setActiveTab] = useState('saved') // Default to Saved
-  const [savedDestinations, setSavedDestinations] = useState<SavedDestination[]>(mockSavedDestinations)
   
   // Animation refs
   const fadeAnim = useRef(new Animated.Value(0)).current
