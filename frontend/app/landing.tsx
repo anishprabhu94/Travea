@@ -737,20 +737,35 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  arrowButton: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: 'rgba(25,25,25,0.4)',
+  frostedButton: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+  },
+  frostedButtonBlur: {
+    flex: 1,
+    borderRadius: 12,
+    overflow: 'hidden',
+  },
+  frostedButtonInner: {
+    flex: 1,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.12)',
     alignItems: 'center',
     justifyContent: 'center',
     ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 2,
+      },
       web: {
-        transition: 'all 0.2s ease-in-out',
-        '&:hover': {
-          backgroundColor: 'rgba(201,169,109,0.65)',
-          transform: 'scale(1.05)',
-        },
+        boxShadow: '0 1px 3px rgba(0,0,0,0.2)',
       },
     }),
   },
