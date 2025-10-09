@@ -32,7 +32,7 @@ interface SavedDestination {
 // Mock saved destinations data - in real app, this would come from state/storage
 const mockSavedDestinations: SavedDestination[] = [
   {
-    id: 'inspire_curated_amalfi_0',
+    id: 'amalfi', // Using original card ID
     city: 'Amalfi',
     region: 'Italy',
     tagline: 'Coastal drives & lemon air',
@@ -46,7 +46,7 @@ const mockSavedDestinations: SavedDestination[] = [
     isCondeNastPick: true
   },
   {
-    id: 'inspire_trending_kyoto_1',
+    id: 'kyoto', // Using original card ID
     city: 'Kyoto',
     region: 'Japan',
     tagline: 'Temples, lanterns & still mornings',
@@ -59,7 +59,7 @@ const mockSavedDestinations: SavedDestination[] = [
     sourceTab: 'Vacations'
   },
   {
-    id: 'weekend_slow_sonoma_0',
+    id: 'sonoma', // Using original card ID
     city: 'Sonoma',
     region: 'USA',
     tagline: 'Wine alleys & golden light',
