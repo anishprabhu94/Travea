@@ -410,14 +410,14 @@ export default function Landing() {
           <View style={styles.categoryChips}>
               <TouchableOpacity
                 style={styles.chip}
-                onPress={() => handleModeSwitch('inspire')}
+                onPress={() => handleModeSwitch('vacations')}
                 activeOpacity={0.8}
               >
-                {activeMode === 'inspire' && <View style={styles.chipGlow} />}
+                {activeMode === 'vacations' && <View style={styles.chipGlow} />}
                 <BlurView intensity={20} tint="light" style={styles.chipBlur}>
                   <View style={styles.chipContent}>
                     <Ionicons name="calendar-outline" size={16} color="rgba(255,255,255,0.9)" />
-                    <Text style={[styles.chipLabel, activeMode === 'inspire' && styles.chipLabelActive]}>
+                    <Text style={[styles.chipLabel, activeMode === 'vacations' && styles.chipLabelActive]}>
                       Vacations
                     </Text>
                   </View>
@@ -426,14 +426,14 @@ export default function Landing() {
 
               <TouchableOpacity
                 style={styles.chip}
-                onPress={() => handleModeSwitch('weekend')}
+                onPress={() => handleModeSwitch('discover')}
                 activeOpacity={0.8}
               >
-                {activeMode === 'weekend' && <View style={styles.chipGlow} />}
+                {activeMode === 'discover' && <View style={styles.chipGlow} />}
                 <BlurView intensity={20} tint="light" style={styles.chipBlur}>
                   <View style={styles.chipContent}>
                     <Ionicons name="compass-outline" size={16} color="rgba(255,255,255,0.9)" />
-                    <Text style={[styles.chipLabel, activeMode === 'weekend' && styles.chipLabelActive]}>
+                    <Text style={[styles.chipLabel, activeMode === 'discover' && styles.chipLabelActive]}>
                       Discover
                     </Text>
                   </View>
