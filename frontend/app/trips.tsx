@@ -935,7 +935,7 @@ const styles = StyleSheet.create({
     }),
   },
   secondaryActionText: {
-    fontSize: 15,
+    fontSize: 13, // Matching primary action text size
     fontWeight: '500',
     color: 'rgba(255,255,255,0.85)',
     fontFamily: Platform.select({
