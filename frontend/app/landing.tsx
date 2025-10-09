@@ -219,7 +219,8 @@ export default function Landing() {
           title: 'Curated for You', 
           cards: baseCards.slice(0, 4).map((card, index) => ({
             ...card,
-            id: `vacations_curated_${card.id}_${index}`
+            id: `vacations_curated_${card.id}_${index}`,
+            isCondeNastPick: index < 2 // First 2 cards get Condé Nast badge
           }))
         },
         { 
@@ -227,7 +228,8 @@ export default function Landing() {
           title: 'Trending Now', 
           cards: baseCards.slice(4, 8).map((card, index) => ({
             ...card,
-            id: `vacations_trending_${card.id}_${index}`
+            id: `vacations_trending_${card.id}_${index}`,
+            isCondeNastPick: index < 2 // First 2 cards get Condé Nast badge
           }))
         },
         { 
@@ -235,7 +237,8 @@ export default function Landing() {
           title: 'Seasonal Highlights', 
           cards: baseCards.slice(8, 12).map((card, index) => ({
             ...card,
-            id: `vacations_seasonal_${card.id}_${index}`
+            id: `vacations_seasonal_${card.id}_${index}`,
+            isCondeNastPick: index < 2 // First 2 cards get Condé Nast badge
           }))
         }
       ]
@@ -247,7 +250,8 @@ export default function Landing() {
           title: 'Slow Living', 
           cards: baseCards.slice(0, 4).map((card, index) => ({
             ...card,
-            id: `discover_slow_${card.id}_${index}`
+            id: `discover_slow_${card.id}_${index}`,
+            isCondeNastPick: index < 2 // First 2 cards get Condé Nast badge
           }))
         },
         { 
@@ -255,7 +259,8 @@ export default function Landing() {
           title: 'Quick Getaways', 
           cards: baseCards.slice(4, 8).map((card, index) => ({
             ...card,
-            id: `discover_quick_${card.id}_${index}`
+            id: `discover_quick_${card.id}_${index}`,
+            isCondeNastPick: index < 2 // First 2 cards get Condé Nast badge
           }))
         },
         { 
@@ -263,7 +268,8 @@ export default function Landing() {
           title: 'Escape Themes', 
           cards: baseCards.slice(8, 12).map((card, index) => ({
             ...card,
-            id: `discover_escape_${card.id}_${index}`
+            id: `discover_escape_${card.id}_${index}`,
+            isCondeNastPick: index < 2 // First 2 cards get Condé Nast badge
           }))
         }
       ]
