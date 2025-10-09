@@ -1091,9 +1091,16 @@ const styles = StyleSheet.create({
     }),
   },
   titleAccent: {
-    width: 25,
-    height: 1,
-    backgroundColor: 'rgba(201,169,109,0.3)', // Bronze accent line
+    width: 32, // Increased width to be more prominent
+    height: 2, // Increased height for better visibility
+    backgroundColor: 'rgba(201,169,109,0.6)', // More opaque bronze for prominence
+    alignSelf: 'flex-start', // Ensure it aligns to the left edge of the text
+    marginLeft: 0, // Start at the very beginning of the "W"
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 4px rgba(201,169,109,0.4)', // Subtle glow for elegance
+      },
+    }),
   },
   searchBarContainer: {
     width: '100%',
