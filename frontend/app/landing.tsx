@@ -402,11 +402,15 @@ export default function Landing() {
           >
             {getCarouselConfig().map((carousel, carouselIndex) => (
               <View key={`${activeMode}-${carouselIndex}`} style={styles.carouselSection}>
-                {/* Carousel Title with Arrow */}
+                {/* Carousel Title with Frosted Button */}
                 <View style={styles.carouselHeader}>
                   <Text style={styles.carouselTitle}>{carousel.title}</Text>
-                  <TouchableOpacity style={styles.arrowButton} activeOpacity={0.8}>
-                    <Ionicons name="arrow-forward" size={18} color="rgba(255,255,255,0.7)" />
+                  <TouchableOpacity style={styles.frostedButton} activeOpacity={0.8}>
+                    <BlurView intensity={12} tint="light" style={styles.frostedButtonBlur}>
+                      <View style={styles.frostedButtonInner}>
+                        <Ionicons name="chevron-forward" size={14} color="rgba(201,169,109,0.8)" />
+                      </View>
+                    </BlurView>
                   </TouchableOpacity>
                 </View>
 
