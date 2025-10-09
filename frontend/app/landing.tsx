@@ -544,7 +544,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-    marginBottom: 16,
+    marginTop: 20, // Added spacing from greeting/tagline
+    marginBottom: 24, // Increased spacing to carousel
     gap: 10,
   },
   chip: {
