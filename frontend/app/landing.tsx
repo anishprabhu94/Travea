@@ -329,9 +329,9 @@ export default function Landing() {
             {activeMode === 'weekend' && <View style={styles.chipGlow} />}
             <BlurView intensity={20} tint="light" style={styles.chipBlur}>
               <View style={styles.chipContent}>
-                <Ionicons name="airplane-outline" size={16} color="rgba(255,255,255,0.9)" />
+                <Ionicons name="compass-outline" size={16} color="rgba(255,255,255,0.9)" />
                 <Text style={[styles.chipLabel, activeMode === 'weekend' && styles.chipLabelActive]}>
-                  Getaways
+                  Discover
                 </Text>
               </View>
             </BlurView>
