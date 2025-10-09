@@ -146,21 +146,19 @@ export default function MyTrips() {
   }
 
   // Get actual saved destinations from bookmarked items
-  // For debugging, let's temporarily return some mock data to test
+  // TEMPORARY FIX: Return all mock destinations so we can see something
   const getSavedDestinations = (): SavedDestination[] => {
     console.log('=== TRIPS PAGE DEBUG ===')
     console.log('bookmarkedItems from context:', bookmarkedItems)
     console.log('mockSavedDestinations IDs:', mockSavedDestinations.map(d => d.id))
     
-    // Temporarily return first item for testing
-    const testDestinations = mockSavedDestinations.slice(0, 1)
-    console.log('Returning test destinations:', testDestinations.map(d => d.id))
+    // TEMPORARY: Return all destinations to test rendering
+    console.log('TEMPORARY: Returning ALL destinations for testing')
+    return mockSavedDestinations
     
-    const filtered = mockSavedDestinations.filter(dest => bookmarkedItems.includes(dest.id))
-    console.log('Actual filtered destinations:', filtered.map(d => d.id))
-    
-    // Return test data for now to see if rendering works
-    return testDestinations.length > 0 ? testDestinations : filtered
+    // TODO: Fix context routing later
+    // const filtered = mockSavedDestinations.filter(dest => bookmarkedItems.includes(dest.id))
+    // return filtered
   }
 
   // Group saved destinations by their source carousel
