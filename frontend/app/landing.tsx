@@ -876,19 +876,21 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   trendingPillInner: {
-    backgroundColor: 'rgba(30,30,30,0.4)', // Slightly darker than search bar with subtle glow
+    backgroundColor: 'rgba(30,30,30,0.5)', 
     paddingHorizontal: 16,
     paddingVertical: 10,
+    borderWidth: 0.5,
+    borderColor: 'rgba(201,169,109,0.3)', // Elegant bronze border
     ...Platform.select({
       web: {
-        boxShadow: '0 0 8px rgba(201,169,109,0.15)', // Subtle bronze glow
+        boxShadow: '0 0 12px rgba(201,169,109,0.25), inset 0 0 8px rgba(201,169,109,0.1)', // Enhanced glow + inner glow
       },
       default: {
-        shadowColor: 'rgba(201,169,109,0.5)',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.15,
-        shadowRadius: 4,
-        elevation: 2,
+        shadowColor: 'rgba(201,169,109,0.8)',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 6,
+        elevation: 4,
       },
     }),
   },
