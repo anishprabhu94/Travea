@@ -27,7 +27,7 @@ export default function Index() {
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
   const handleSignIn = () => {
-    router.push('/home');
+    router.push('/landing');
   };
 
   const handleSignUp = () => {
