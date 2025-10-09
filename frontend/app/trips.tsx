@@ -149,7 +149,11 @@ export default function MyTrips() {
   // In a real app, this would fetch from a database or API
   // For now, we'll use the mock data that matches bookmarked IDs
   const getSavedDestinations = (): SavedDestination[] => {
-    return mockSavedDestinations.filter(dest => bookmarkedItems.includes(dest.id))
+    console.log('Trips page - bookmarkedItems:', bookmarkedItems)
+    console.log('Trips page - mockSavedDestinations IDs:', mockSavedDestinations.map(d => d.id))
+    const filtered = mockSavedDestinations.filter(dest => bookmarkedItems.includes(dest.id))
+    console.log('Trips page - filtered destinations:', filtered.map(d => d.id))
+    return filtered
   }
 
   // Group saved destinations by their source carousel
