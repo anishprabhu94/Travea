@@ -264,7 +264,7 @@ export default function Landing() {
           onPress={() => handleBookmark(destination.id)}
           activeOpacity={0.8}
         >
-          <Animated.View style={[{ transform: [{ scale: bookmarkPulseAnim }] }]}>
+          <Animated.View style={[{ transform: [{ scale: getBookmarkAnimation(destination.id) }] }]}>
             <BlurView intensity={18} tint="light" style={styles.bookmarkContainer}>
               <View style={styles.bookmarkInner}>
                 <Ionicons
