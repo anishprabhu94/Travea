@@ -121,8 +121,8 @@ export default function MyTrips() {
     return groups
   }
 
-  const renderSavedCard = (destination: SavedDestination, index: number) => (
-    <View key={destination.id} style={styles.savedCardWrapper}>
+  const renderSavedCard = (destination: SavedDestination, index: number, isOnlyCard: boolean) => (
+    <View key={destination.id} style={[styles.savedCardWrapper, isOnlyCard && styles.singleCardWrapper]}>
       <ImageBackground
         source={{ uri: destination.image }}
         style={styles.savedCard}
@@ -148,7 +148,7 @@ export default function MyTrips() {
           </BlurView>
         </TouchableOpacity>
 
-        {/* Frosted Info Pane */}
+        {/* Frosted Info Pane with integrated CTAs */}
         <View style={styles.cardInfoContainer}>
           <BlurView intensity={24} tint="light" style={styles.cardInfoPane}>
             <View style={styles.cardInfoInner}>
@@ -193,29 +193,23 @@ export default function MyTrips() {
                   ))}
                 </View>
               )}
+
+              {/* Integrated Action Buttons */}
+              <View style={styles.integratedActions}>
+                <TouchableOpacity style={styles.primaryAction} activeOpacity={0.8}>
+                  <Ionicons name="canvas-outline" size={16} color="rgba(255,255,255,0.9)" style={styles.actionIcon} />
+                  <Text style={styles.primaryActionText}>Add to Canvas</Text>
+                </TouchableOpacity>
+                
+                <TouchableOpacity style={styles.secondaryAction} activeOpacity={0.8}>
+                  <Ionicons name="information-circle-outline" size={16} color="rgba(255,255,255,0.8)" style={styles.actionIcon} />
+                  <Text style={styles.secondaryActionText}>Learn More</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </BlurView>
         </View>
       </ImageBackground>
-      
-      {/* Action Buttons */}
-      <View style={styles.cardActions}>
-        <TouchableOpacity style={styles.primaryAction} activeOpacity={0.8}>
-          <BlurView intensity={20} tint="light" style={styles.primaryActionBlur}>
-            <View style={styles.primaryActionInner}>
-              <Text style={styles.primaryActionText}>Add to Canvas</Text>
-            </View>
-          </BlurView>
-        </TouchableOpacity>
-        
-        <TouchableOpacity style={styles.secondaryAction} activeOpacity={0.8}>
-          <BlurView intensity={20} tint="light" style={styles.secondaryActionBlur}>
-            <View style={styles.secondaryActionInner}>
-              <Text style={styles.secondaryActionText}>Learn More</Text>
-            </View>
-          </BlurView>
-        </TouchableOpacity>
-      </View>
     </View>
   )
 
