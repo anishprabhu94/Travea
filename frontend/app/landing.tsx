@@ -273,9 +273,9 @@ export default function Landing() {
             <BlurView intensity={18} tint="light" style={styles.bookmarkContainer}>
               <View style={styles.bookmarkInner}>
                 <Ionicons
-                  name={bookmarkedItems.includes(destination.id) ? "bookmark" : "bookmark-outline"}
+                  name={bookmarkedItems.includes(destination.id.split('_').slice(-2, -1)[0]) ? "bookmark" : "bookmark-outline"}
                   size={16}
-                  color={bookmarkedItems.includes(destination.id) ? "#C9A96D" : "rgba(201,169,109,0.8)"}
+                  color={bookmarkedItems.includes(destination.id.split('_').slice(-2, -1)[0]) ? "#C9A96D" : "rgba(201,169,109,0.8)"}
                 />
               </View>
             </BlurView>
