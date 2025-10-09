@@ -150,16 +150,28 @@ export default function Landing() {
     } else {
       setBookmarkedItems(prev => [...prev, itemId])
       
-      // Animate dock glow for "My Trips"
+      // Elegant bookmark animation sequence
       Animated.sequence([
+        // 1. Pulse the bookmark icon
+        Animated.timing(bookmarkPulseAnim, {
+          toValue: 1.2,
+          duration: 150,
+          useNativeDriver: true,
+        }),
+        Animated.timing(bookmarkPulseAnim, {
+          toValue: 1,
+          duration: 150,
+          useNativeDriver: true,
+        }),
+        // 2. Gentle glow on dock after a slight delay
         Animated.timing(dockGlowAnim, {
           toValue: 1,
-          duration: 300,
+          duration: 400,
           useNativeDriver: true,
         }),
         Animated.timing(dockGlowAnim, {
           toValue: 0,
-          duration: 800,
+          duration: 600,
           useNativeDriver: true,
         })
       ]).start()
