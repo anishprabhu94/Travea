@@ -868,13 +868,19 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   luxuryInfoInner: {
-    backgroundColor: 'rgba(25,25,25,0.45)',
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.1)',
-    padding: 18,
+    backgroundColor: 'rgba(30,30,30,0.25)', // Lighter and airier - more transparent
+    borderWidth: 0, // Remove hard border
+    padding: 14, // Reduced padding for smaller footprint  
     ...Platform.select({
       web: {
-        boxShadow: 'inset 0 1px 0 rgba(201,169,109,0.15)',
+        boxShadow: 'inset 0 0 20px rgba(255,255,255,0.08)', // Soft inner glow instead of border
+      },
+      default: {
+        // Add soft inner glow for mobile
+        shadowColor: 'rgba(255,255,255,0.08)',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 1,
+        shadowRadius: 8,
       },
     }),
   },
