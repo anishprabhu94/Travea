@@ -389,7 +389,7 @@ export default function Landing() {
                 
                 {/* Trending Section */}
                 <View style={styles.trendingSection}>
-                  <Text style={styles.trendingLabel}>Trending</Text>
+                  <Text style={styles.trendingLabel}>trending now</Text>
                   <View style={styles.trendingGrid}>
                     {['Lisbon', 'Kyoto', 'Marrakech', 'Reykjavík'].map((destination, index) => (
                       <TouchableOpacity key={index} activeOpacity={0.8}>
