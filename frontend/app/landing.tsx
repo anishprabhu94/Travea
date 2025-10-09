@@ -334,11 +334,6 @@ export default function Landing() {
           </TouchableOpacity>
         </View>
 
-        {/* Section Tagline */}
-        <View style={styles.taglineContainer}>
-          <Text style={styles.tagline}>Closer than you think — perfect weekends await.</Text>
-        </View>
-
         {/* Carousel */}
         {activeMode !== 'search' && (
           <View key={activeMode} style={styles.carouselContainer}>
