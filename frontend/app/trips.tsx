@@ -166,11 +166,9 @@ export default function MyTrips() {
               {/* Condé Nast Pick Badge - Top Right */}
               {destination.isCondeNastPick && (
                 <View style={styles.condeNastBadgeTopRight}>
-                  <BlurView intensity={18} tint="light" style={styles.condeNastBadgeBlur}>
-                    <View style={styles.condeNastBadgeInner}>
-                      <Text style={styles.condeNastBadgeText}>Condé Nast</Text>
-                    </View>
-                  </BlurView>
+                  <View style={styles.condeNastBadgeInner}>
+                    <Text style={styles.condeNastBadgeText}>Condé Nast</Text>
+                  </View>
                 </View>
               )}
               
