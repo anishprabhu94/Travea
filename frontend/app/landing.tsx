@@ -478,7 +478,7 @@ export default function Landing() {
                 </View>
                 
                 {/* Search Bar */}
-                <BlurView intensity={15} tint="light" style={styles.searchBarContainer}>
+                <BlurView intensity={25} tint="light" style={styles.searchBarContainer}>
                   <View style={styles.searchBarContent}>
                     <Ionicons name="search-outline" size={18} color="rgba(255,255,255,0.75)" style={styles.searchIcon} />
                     <Text style={styles.searchPlaceholder}>By city or country</Text>
