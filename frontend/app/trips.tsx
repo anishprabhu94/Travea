@@ -32,7 +32,7 @@ interface SavedDestination {
 // Mock saved destinations data - matches all available cards from landing page
 const mockSavedDestinations: SavedDestination[] = [
   {
-    id: 'amalfi',
+    id: 'amalfi', // This should match the bookmark ID from landing page
     city: 'Amalfi',
     region: 'Italy',
     tagline: 'Coastal drives & lemon air',
