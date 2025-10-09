@@ -515,25 +515,23 @@ const styles = StyleSheet.create({
   },
   greetingSection: {
     paddingHorizontal: 20,
-    marginBottom: 20,
-  },
-  greetingBlur: {
-    borderRadius: 20,
-    overflow: 'hidden',
-  },
-  greetingInner: {
-    backgroundColor: 'rgba(25,25,25,0.35)',
-    padding: 18,
+    marginBottom: 16,
+    marginTop: 8,
   },
   greetingMain: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: '600',
     color: '#F8F8F8',
-    marginBottom: 4,
+    marginBottom: 6,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+    ...Platform.select({
+      web: {
+        textShadow: '0 0 20px rgba(201,169,109,0.25)',
+      },
     }),
   },
   greetingSub: {
