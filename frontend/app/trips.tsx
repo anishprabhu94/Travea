@@ -29,10 +29,10 @@ interface SavedDestination {
   isCondeNastPick?: boolean
 }
 
-// Mock saved destinations data - in real app, this would come from state/storage
+// Mock saved destinations data - matches all available cards from landing page
 const mockSavedDestinations: SavedDestination[] = [
   {
-    id: 'amalfi', // Using original card ID
+    id: 'amalfi',
     city: 'Amalfi',
     region: 'Italy',
     tagline: 'Coastal drives & lemon air',
@@ -46,7 +46,7 @@ const mockSavedDestinations: SavedDestination[] = [
     isCondeNastPick: true
   },
   {
-    id: 'kyoto', // Using original card ID
+    id: 'kyoto',
     city: 'Kyoto',
     region: 'Japan',
     tagline: 'Temples, lanterns & still mornings',
@@ -59,7 +59,19 @@ const mockSavedDestinations: SavedDestination[] = [
     sourceTab: 'Vacations'
   },
   {
-    id: 'sonoma', // Using original card ID
+    id: 'reykjavik',
+    city: 'Reykjavík',
+    region: 'Iceland',
+    tagline: 'Nordic calm & aurora skies',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/71gsrwd0_output%20%286%29.jpg',
+    transport: [
+      { icon: 'airplane-outline', time: '6h 45m' }
+    ],
+    sourceCarousel: 'Seasonal Highlights',
+    sourceTab: 'Vacations'
+  },
+  {
+    id: 'sonoma',
     city: 'Sonoma',
     region: 'USA',
     tagline: 'Wine alleys & golden light',
@@ -68,6 +80,32 @@ const mockSavedDestinations: SavedDestination[] = [
       { icon: 'car-outline', time: '1h 30m' }
     ],
     sourceCarousel: 'Slow Living',
+    sourceTab: 'Discover'
+  },
+  {
+    id: 'carmel',
+    city: 'Carmel-by-the-Sea',
+    region: 'USA',
+    tagline: 'Cliffside cafés & slow tides',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/wokepbpr_carmel.jpg',
+    transport: [
+      { icon: 'car-outline', time: '2h 15m' },
+      { icon: 'train-outline', time: '2h 45m' }
+    ],
+    sourceCarousel: 'Quick Getaways',
+    sourceTab: 'Discover'
+  },
+  {
+    id: 'bigsur',
+    city: 'Big Sur',
+    region: 'USA',
+    tagline: 'Misty cliffs & endless roads',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/pk6sky07_big%20sur.jpg',
+    transport: [
+      { icon: 'car-outline', time: '3h 05m' },
+      { icon: 'airplane-outline', time: '1h 15m' }
+    ],
+    sourceCarousel: 'Escape Themes',
     sourceTab: 'Discover'
   }
 ]
