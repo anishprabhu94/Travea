@@ -498,7 +498,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: 'rgba(25,25,25,0.45)',
+    backgroundColor: 'rgba(60,60,60,0.55)', // Lighter for better visibility
     justifyContent: 'center',
     alignItems: 'center',
     ...Platform.select({
