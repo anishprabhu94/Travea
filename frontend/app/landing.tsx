@@ -185,6 +185,35 @@ export default function Landing() {
     return filteredCards
   }
 
+  // Get 4 cards for each carousel (using existing cards + placeholder)
+  const get4Cards = (cards: DestinationCard[]) => {
+    const result = [...cards]
+    // If we have fewer than 4 cards, use the first card as placeholder for the 4th
+    while (result.length < 4) {
+      result.push({...cards[0], id: `${cards[0].id}_${result.length}`})
+    }
+    return result.slice(0, 4)
+  }
+
+  // Carousel configurations
+  const getCarouselConfig = () => {
+    if (activeMode === 'inspire') {
+      return [
+        { title: 'Curated for You', cards: get4Cards(getCurrentCards()) },
+        { title: 'Trending', cards: get4Cards(getCurrentCards()) },
+        { title: 'Seasonal Highlights', cards: get4Cards(getCurrentCards()) },
+        { title: 'Escape Themes', cards: get4Cards(getCurrentCards()) },
+      ]
+    } else if (activeMode === 'weekend') {
+      return [
+        { title: 'Quick Getaways', cards: get4Cards(getCurrentCards()) },
+        { title: 'Slow Living', cards: get4Cards(getCurrentCards()) },
+        { title: 'Escape Themes', cards: get4Cards(getCurrentCards()) },
+      ]
+    }
+    return []
+  }
+
   const renderDestinationCard = (destination: DestinationCard, index: number) => (
     <View key={destination.id} style={styles.cardWrapper}>
       <ImageBackground
