@@ -519,6 +519,18 @@ export default function Landing() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // Edge-to-edge "infinity-pool" effect
+    ...Platform.select({
+      ios: {
+        paddingTop: 0, // No padding, extends under status bar
+      },
+      android: {
+        paddingTop: 0, // No padding, extends under status bar
+      },
+      web: {
+        minHeight: '100vh', // Full viewport height
+      },
+    }),
   },
   backgroundImage: {
     // No overlay here - applied in separate view
