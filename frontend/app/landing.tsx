@@ -234,59 +234,67 @@ export default function Landing() {
         style={styles.destinationCard}
         imageStyle={styles.cardImage}
       >
-        {/* Gradient Overlay */}
-        <View style={styles.gradientOverlay} />
+        {/* Light Vignette */}
+        <View style={styles.vignetteOverlay} />
         
-        {/* Bookmark Icon */}
+        {/* Bookmark Icon - Luxury Design */}
         <TouchableOpacity
           style={styles.bookmarkButton}
           onPress={() => handleBookmark(destination.id)}
           activeOpacity={0.8}
         >
-          <Animated.View style={[styles.bookmarkIcon, { transform: [{ scale: bookmarkPulseAnim }] }]}>
+          <Animated.View style={[{ transform: [{ scale: bookmarkPulseAnim }] }]}>
             <Ionicons
               name={bookmarkedItems.includes(destination.id) ? "bookmark" : "bookmark-outline"}
               size={20}
-              color={bookmarkedItems.includes(destination.id) ? "#C9A96D" : "rgba(255,255,255,0.85)"}
+              color={bookmarkedItems.includes(destination.id) ? "#C9A96D" : "rgba(201,169,109,0.8)"}
+              style={styles.bookmarkIcon}
             />
           </Animated.View>
         </TouchableOpacity>
 
-        {/* Frosted Info Pane */}
-        <View style={styles.infoPaneContainer}>
-          <BlurView intensity={25} tint="light" style={styles.infoPane}>
-            <View style={styles.infoPaneInner}>
-              {/* City Name */}
-              <Text style={styles.cityName}>{destination.city}</Text>
+        {/* Luxury Frosted Info Pane */}
+        <View style={styles.luxuryInfoContainer}>
+          <BlurView intensity={25} tint="light" style={styles.luxuryInfoPane}>
+            <View style={styles.luxuryInfoInner}>
+              {/* Inline Destination Header: "City • Region" */}
+              <View style={styles.destinationHeader}>
+                <Text style={styles.destinationCity}>{destination.city}</Text>
+                <Text style={styles.destinationSeparator}> • </Text>
+                <Text style={styles.destinationRegion}>{destination.region}</Text>
+              </View>
               
-              {/* Tagline */}
-              <Text style={styles.cityTagline}>{destination.tagline}</Text>
+              {/* Editorial Tagline */}
+              <Text style={styles.editorialTagline}>{destination.tagline}</Text>
               
-              {/* Transport Row */}
-              <View style={styles.transportRow}>
+              {/* Transport Info Row - Inline */}
+              <View style={styles.luxuryTransportRow}>
                 {destination.transport.map((transport, transportIndex) => (
                   <React.Fragment key={transportIndex}>
-                    <View style={styles.transportItem}>
+                    <View style={styles.luxuryTransportItem}>
                       <Ionicons 
                         name={transport.icon} 
-                        size={15} 
-                        color="rgba(255,255,255,0.8)" 
-                        style={styles.transportIcon}
+                        size={16} 
+                        color="rgba(255,255,255,0.7)" 
+                        style={styles.luxuryTransportIcon}
                       />
-                      <Text style={styles.transportTime}>{transport.time}</Text>
+                      <Text style={styles.luxuryTransportTime}>{transport.time}</Text>
                     </View>
                     {transportIndex < destination.transport.length - 1 && (
-                      <View style={styles.transportSeparator}>
-                        <Text style={styles.separatorDot}>•</Text>
-                      </View>
+                      <Text style={styles.luxuryTransportSeparator}> • </Text>
                     )}
                   </React.Fragment>
                 ))}
               </View>
               
-              {/* Tag Pill */}
-              <View style={styles.tagPill}>
-                <Text style={styles.tagPillText}>Condé Nast Pick</Text>
+              {/* Editorial Badge - Condé Nast Pick */}
+              <View style={styles.editorialBadge}>
+                <BlurView intensity={18} tint="light" style={styles.editorialBadgeBlur}>
+                  <View style={styles.editorialBadgeInner}>
+                    <Ionicons name="leaf-outline" size={12} color="rgba(255,255,255,0.6)" style={styles.editorialIcon} />
+                    <Text style={styles.editorialBadgeText}>Condé Nast Pick</Text>
+                  </View>
+                </BlurView>
               </View>
             </View>
           </BlurView>
