@@ -1061,25 +1061,23 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   dockLabelActive: {
-    fontSize: 12,
+    fontSize: 14, // Matching landing page
     color: '#C9A96D',
     marginTop: 4,
-    fontWeight: '500',
     fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
   dockLabelInactive: {
-    fontSize: 12,
-    color: 'rgba(255,255,255,0.6)',
+    fontSize: 14, // Matching landing page
+    color: 'rgba(255,255,255,0.7)', // Matching landing page
     marginTop: 4,
-    fontWeight: '500',
     fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
 })
