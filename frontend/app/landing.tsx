@@ -861,14 +861,24 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 25,
     overflow: 'hidden',
-    marginBottom: 24,
+    marginBottom: 32, // More breathing space
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+      },
+    }),
   },
   searchBarContent: {
-    backgroundColor: 'rgba(40,40,40,0.3)', // Lighter shade for search bar
+    backgroundColor: 'rgba(30,30,30,0.45)', // Deeper tactile feeling
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 18,
     paddingVertical: 14,
+    ...Platform.select({
+      web: {
+        boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.05)', // Sculpted capsule feel
+      },
+    }),
   },
   searchIcon: {
     marginRight: 12,
