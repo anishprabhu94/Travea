@@ -918,40 +918,42 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  trendingGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start', // Left align pills
-    gap: 10,
-    paddingHorizontal: 18, // Match alignment
+  trendingScrollView: {
+    width: '100%',
+  },
+  trendingContent: {
+    paddingHorizontal: 0,
+    gap: 12,
+  },
+  trendingPillWrapper: {
+    marginRight: 12,
   },
   trendingPill: {
     borderRadius: 22,
     overflow: 'hidden',
   },
   trendingPillInner: {
-    backgroundColor: 'rgba(30,30,30,0.5)', 
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderWidth: 0.5,
-    borderColor: 'rgba(201,169,109,0.3)', // Elegant bronze border
+    backgroundColor: 'rgba(25,25,25,0.45)', // Luxury travel tag background
+    paddingHorizontal: 20, // 8px 20px as specified
+    paddingVertical: 8,
     ...Platform.select({
       web: {
-        boxShadow: '0 0 12px rgba(201,169,109,0.25), inset 0 0 8px rgba(201,169,109,0.1)', // Enhanced glow + inner glow
+        backdropFilter: 'blur(20px)',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.3)', // Elevated ambient shadow
       },
       default: {
-        shadowColor: 'rgba(201,169,109,0.8)',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.25,
-        shadowRadius: 6,
-        elevation: 4,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+        elevation: 6,
       },
     }),
   },
   trendingPillText: {
     fontSize: 15,
-    color: '#F8F8F8',
-    fontWeight: '500',
+    color: 'rgba(255,255,255,0.9)', // White 90% opacity
+    fontWeight: '600', // Semi-bold
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
