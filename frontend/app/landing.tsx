@@ -33,147 +33,33 @@ interface DestinationCard {
 }
 
 const destinationCards: DestinationCard[] = [
-  // Vacations Cards - Multiple Unique Cities
-  {
-    id: 'amalfi',
-    city: 'Amalfi',
-    region: 'Italy',
-    tagline: 'Coastal drives & lemon air',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
-    transport: [
-      { icon: 'car-outline', time: '2h 45m' },
-      { icon: 'airplane-outline', time: '1h 20m' }
-    ],
-    category: 'inspire'
-  },
-  {
-    id: 'kyoto',
-    city: 'Kyoto',
-    region: 'Japan',
-    tagline: 'Temples, lanterns & still mornings',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
-    transport: [
-      { icon: 'airplane-outline', time: '11h 30m' },
-      { icon: 'train-outline', time: '3h 15m' }
-    ],
-    category: 'inspire'
-  },
-  {
-    id: 'reykjavik',
-    city: 'Reykjavík',
-    region: 'Iceland',
-    tagline: 'Nordic calm & aurora skies',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/71gsrwd0_output%20%286%29.jpg',
-    transport: [
-      { icon: 'airplane-outline', time: '6h 45m' }
-    ],
-    category: 'inspire'
-  },
-  {
-    id: 'barcelona',
-    city: 'Barcelona',
-    region: 'Spain',
-    tagline: 'Gaudi dreams & tapas nights',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
-    transport: [
-      { icon: 'airplane-outline', time: '8h 30m' },
-      { icon: 'train-outline', time: '12h 15m' }
-    ],
-    category: 'inspire'
-  },
-  {
-    id: 'vienna',
-    city: 'Vienna',
-    region: 'Austria',
-    tagline: 'Imperial elegance & coffee culture',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
-    transport: [
-      { icon: 'airplane-outline', time: '9h 45m' },
-      { icon: 'train-outline', time: '14h 20m' }
-    ],
-    category: 'inspire'
-  },
-  {
-    id: 'lisbon',
-    city: 'Lisbon',
-    region: 'Portugal',
-    tagline: 'Tram rides & golden sunsets',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/71gsrwd0_output%20%286%29.jpg',
-    transport: [
-      { icon: 'airplane-outline', time: '10h 15m' }
-    ],
-    category: 'inspire'
-  },
-  // Discover Cards - Multiple Unique Cities
-  {
-    id: 'santorini',
-    city: 'Santorini',
-    region: 'Greece',
-    tagline: 'Whitewashed beauty & wine views',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/cjd9m4ea_Sonoma.jpg',
-    transport: [
-      { icon: 'car-outline', time: '1h 30m' },
-      { icon: 'airplane-outline', time: '3h 20m' }
-    ],
-    category: 'weekend'
-  },
-  {
-    id: 'provence',
-    city: 'Provence',
-    region: 'France',
-    tagline: 'Lavender fields & market towns',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/wokepbpr_carmel.jpg',
-    transport: [
-      { icon: 'car-outline', time: '2h 15m' },
-      { icon: 'train-outline', time: '2h 45m' }
-    ],
-    category: 'weekend'
-  },
-  {
-    id: 'tuscany',
-    city: 'Tuscany',
-    region: 'Italy',
-    tagline: 'Rolling hills & vineyard paths',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/pk6sky07_big%20sur.jpg',
-    transport: [
-      { icon: 'car-outline', time: '3h 05m' },
-      { icon: 'airplane-outline', time: '1h 15m' }
-    ],
-    category: 'weekend'
-  },
-  {
-    id: 'bali',
-    city: 'Bali',
-    region: 'Indonesia',
-    tagline: 'Temple serenity & rice terraces',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/cjd9m4ea_Sonoma.jpg',
-    transport: [
-      { icon: 'airplane-outline', time: '15h 30m' }
-    ],
-    category: 'weekend'
-  },
-  {
-    id: 'maldives',
-    city: 'Maldives',
-    region: 'Indian Ocean',
-    tagline: 'Overwater luxury & crystal seas',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/wokepbpr_carmel.jpg',
-    transport: [
-      { icon: 'airplane-outline', time: '18h 45m' }
-    ],
-    category: 'weekend'
-  },
-  {
-    id: 'patagonia',
-    city: 'Patagonia',
-    region: 'Chile',
-    tagline: 'Wild landscapes & glacier views',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/pk6sky07_big%20sur.jpg',
-    transport: [
-      { icon: 'airplane-outline', time: '20h 15m' }
-    ],
-    category: 'weekend'
-  }
+  // 12 UNIQUE VACATIONS DESTINATIONS
+  { id: 'amalfi', city: 'Amalfi', region: 'Italy', tagline: 'Coastal drives & lemon air', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', transport: [{ icon: 'airplane-outline', time: '8h 30m' }], category: 'inspire' },
+  { id: 'kyoto', city: 'Kyoto', region: 'Japan', tagline: 'Temples & still mornings', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', transport: [{ icon: 'airplane-outline', time: '12h 15m' }], category: 'inspire' },
+  { id: 'reykjavik', city: 'Reykjavík', region: 'Iceland', tagline: 'Aurora skies & Nordic calm', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/71gsrwd0_output%20%286%29.jpg', transport: [{ icon: 'airplane-outline', time: '6h 45m' }], category: 'inspire' },
+  { id: 'barcelona', city: 'Barcelona', region: 'Spain', tagline: 'Gaudi dreams & tapas nights', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', transport: [{ icon: 'airplane-outline', time: '7h 20m' }], category: 'inspire' },
+  { id: 'vienna', city: 'Vienna', region: 'Austria', tagline: 'Imperial elegance & coffee', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', transport: [{ icon: 'airplane-outline', time: '9h 45m' }], category: 'inspire' },
+  { id: 'lisbon', city: 'Lisbon', region: 'Portugal', tagline: 'Tram rides & golden sunsets', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/71gsrwd0_output%20%286%29.jpg', transport: [{ icon: 'airplane-outline', time: '10h 15m' }], category: 'inspire' },
+  { id: 'prague', city: 'Prague', region: 'Czech Republic', tagline: 'Castle views & beer halls', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', transport: [{ icon: 'airplane-outline', time: '8h 50m' }], category: 'inspire' },
+  { id: 'budapest', city: 'Budapest', region: 'Hungary', tagline: 'Thermal baths & river cruises', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', transport: [{ icon: 'airplane-outline', time: '9h 30m' }], category: 'inspire' },
+  { id: 'amsterdam', city: 'Amsterdam', region: 'Netherlands', tagline: 'Canals & cycling paths', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/71gsrwd0_output%20%286%29.jpg', transport: [{ icon: 'airplane-outline', time: '8h 10m' }], category: 'inspire' },
+  { id: 'stockholm', city: 'Stockholm', region: 'Sweden', tagline: 'Archipelago & midnight sun', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', transport: [{ icon: 'airplane-outline', time: '10h 45m' }], category: 'inspire' },
+  { id: 'copenhagen', city: 'Copenhagen', region: 'Denmark', tagline: 'Hygge culture & harbor views', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', transport: [{ icon: 'airplane-outline', time: '9h 20m' }], category: 'inspire' },
+  { id: 'dubrovnik', city: 'Dubrovnik', region: 'Croatia', tagline: 'Medieval walls & azure seas', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/71gsrwd0_output%20%286%29.jpg', transport: [{ icon: 'airplane-outline', time: '11h 30m' }], category: 'inspire' },
+
+  // 12 UNIQUE DISCOVER DESTINATIONS  
+  { id: 'santorini', city: 'Santorini', region: 'Greece', tagline: 'Whitewashed cliffs & wine', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/cjd9m4ea_Sonoma.jpg', transport: [{ icon: 'airplane-outline', time: '12h 20m' }], category: 'weekend' },
+  { id: 'provence', city: 'Provence', region: 'France', tagline: 'Lavender fields & markets', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/wokepbpr_carmel.jpg', transport: [{ icon: 'car-outline', time: '2h 15m' }], category: 'weekend' },
+  { id: 'tuscany', city: 'Tuscany', region: 'Italy', tagline: 'Rolling hills & vineyards', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/pk6sky07_big%20sur.jpg', transport: [{ icon: 'car-outline', time: '3h 05m' }], category: 'weekend' },
+  { id: 'bali', city: 'Bali', region: 'Indonesia', tagline: 'Rice terraces & temples', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/cjd9m4ea_Sonoma.jpg', transport: [{ icon: 'airplane-outline', time: '15h 30m' }], category: 'weekend' },
+  { id: 'maldives', city: 'Maldives', region: 'Indian Ocean', tagline: 'Overwater luxury & reefs', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/wokepbpr_carmel.jpg', transport: [{ icon: 'airplane-outline', time: '18h 45m' }], category: 'weekend' },
+  { id: 'patagonia', city: 'Patagonia', region: 'Chile', tagline: 'Glaciers & wild landscapes', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/pk6sky07_big%20sur.jpg', transport: [{ icon: 'airplane-outline', time: '20h 15m' }], category: 'weekend' },
+  { id: 'marrakech', city: 'Marrakech', region: 'Morocco', tagline: 'Souks & desert sunsets', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/cjd9m4ea_Sonoma.jpg', transport: [{ icon: 'airplane-outline', time: '13h 40m' }], category: 'weekend' },
+  { id: 'capetown', city: 'Cape Town', region: 'South Africa', tagline: 'Table Mountain & vineyards', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/wokepbpr_carmel.jpg', transport: [{ icon: 'airplane-outline', time: '17h 25m' }], category: 'weekend' },
+  { id: 'queenstown', city: 'Queenstown', region: 'New Zealand', tagline: 'Adventure & alpine lakes', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/pk6sky07_big%20sur.jpg', transport: [{ icon: 'airplane-outline', time: '22h 10m' }], category: 'weekend' },
+  { id: 'aspen', city: 'Aspen', region: 'USA', tagline: 'Powder snow & luxury lodges', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/cjd9m4ea_Sonoma.jpg', transport: [{ icon: 'airplane-outline', time: '6h 30m' }], category: 'weekend' },
+  { id: 'gstaad', city: 'Gstaad', region: 'Switzerland', tagline: 'Alpine elegance & skiing', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/wokepbpr_carmel.jpg', transport: [{ icon: 'airplane-outline', time: '9h 45m' }], category: 'weekend' },
+  { id: 'napa', city: 'Napa Valley', region: 'USA', tagline: 'World-class wines & cuisine', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/pk6sky07_big%20sur.jpg', transport: [{ icon: 'car-outline', time: '1h 45m' }], category: 'weekend' }
 ]
 
 export default function Landing() {
