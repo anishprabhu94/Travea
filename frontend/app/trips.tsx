@@ -206,17 +206,7 @@ export default function MyTrips() {
               {/* Add to Canvas Button - Redesigned */}
               <View style={styles.canvasButtonContainer}>
                 <TouchableOpacity 
-                  style={[
-                    styles.canvasButton,
-                    Platform.select({
-                      web: {
-                        ':hover': {
-                          backgroundColor: 'rgba(201,169,109,0.35)', // Brighter on hover
-                          transform: 'scale(1.03)', // 220ms scale animation handled by CSS
-                        }
-                      }
-                    })
-                  ]}
+                  style={styles.canvasButton}
                   activeOpacity={0.8}
                 >
                   <Ionicons 
