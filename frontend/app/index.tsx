@@ -443,38 +443,33 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255, 255, 255, 0.15)',
   },
   primaryButtonContainer: {
-    position: 'relative',
     marginBottom: 12,
     borderRadius: 12,
+    overflow: 'hidden',
   },
-  primaryButtonGlow: {
-    position: 'absolute',
-    top: -8,
-    left: -8,
-    right: -8,
-    bottom: -8,
-    borderRadius: 20,
-    backgroundColor: 'rgba(201,169,109,0.4)',
-    ...Platform.select({
-      web: {
-        boxShadow: '0 0 20px rgba(201,169,109,0.6)',
-      },
-      default: {
-        shadowColor: 'rgba(201,169,109,0.8)',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.6,
-        shadowRadius: 10,
-        elevation: 8,
-      },
-    }),
-    zIndex: -1,
+  primaryButtonBlur: {
+    borderRadius: 12,
+    overflow: 'hidden',
   },
   primaryButton: {
-    backgroundColor: '#C9A96D',
-    height: 44, // Reduced height for classier appearance
-    borderRadius: 12,
+    backgroundColor: 'rgba(201,169,109,0.3)', // Light bronze fill with transparency
+    borderWidth: 1,
+    borderColor: 'rgba(201,169,109,0.4)', // Subtle bronze border
+    height: 44,
     alignItems: 'center',
     justifyContent: 'center',
+    ...Platform.select({
+      web: {
+        boxShadow: 'inset 0 1px 4px rgba(255,255,255,0.1), 0 2px 8px rgba(0,0,0,0.1)', // Frosted glass effect
+      },
+      default: {
+        shadowColor: 'rgba(0,0,0,0.2)',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+        elevation: 2,
+      },
+    }),
   },
   primaryButtonText: {
     fontSize: 16,
