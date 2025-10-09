@@ -264,15 +264,12 @@ export default function Landing() {
           style={styles.bookmarkButton}
           onPress={() => {
             console.log('=== BOOKMARK BUTTON CLICKED ===')
-            console.log('Full destination object:', destination)
-            console.log('Destination ID:', destination.id)
             console.log('City:', destination.city)
+            console.log('ID:', destination.id)
             
-            // Create unique ID: city + carousel context to handle duplicates
-            // Extract carousel info from the transformed ID
-            const carouselId = destination.id.split('_')[0] // e.g., "inspire", "weekend"
-            const bookmarkId = `${destination.city.toLowerCase()}-${carouselId}`
-            console.log('Using unique bookmark ID:', bookmarkId)
+            // Simple ID using the unique city name
+            const bookmarkId = destination.id
+            console.log('Using bookmark ID:', bookmarkId)
             
             handleBookmark(bookmarkId)
           }}
