@@ -117,6 +117,18 @@ frontend:
           agent: "main"
           comment: "Successfully reduced input field heights by decreasing paddingVertical from 12px to 8px, inputLabel marginBottom from 6px to 3px, and input paddingVertical from 4px to 2px. All three input panes (Full Name, Email, Password) are now more compact while maintaining the frosted glass appearance. Screenshots verified the changes are working correctly in both Sign In and Sign Up modes."
 
+  - task: "Complete landing page carousel card styling refinements"
+    implemented: false
+    working: false
+    file: "/app/frontend/app/landing.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: false
+          agent: "main"
+          comment: "Starting implementation of carousel card refinements: 1) Make frosted info panes lighter/airier with 25% card height, 2) Fix destination header format from 'City • Country' to 'City, Country', 3) Add missing bookmarkContainer styles with frosted circular container and bronze stroke, 4) Refine Condé Nast Pick badge design, 5) Reduce content block height and improve text alignment."
+
 metadata:
   created_by: "main_agent"
   version: "1.0"
