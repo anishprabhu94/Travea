@@ -824,7 +824,7 @@ const styles = StyleSheet.create({
   cardImage: {
     borderRadius: 32,
   },
-  gradientOverlay: {
+  vignetteOverlay: {
     position: 'absolute',
     top: 0,
     left: 0,
@@ -833,11 +833,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     ...Platform.select({
       web: {
-        background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 100%)',
+        background: 'radial-gradient(ellipse at center, rgba(0,0,0,0) 30%, rgba(0,0,0,0.2) 100%)',
       },
       default: {
-        // For mobile platforms, use a simple overlay
-        backgroundColor: 'rgba(0,0,0,0.15)',
+        backgroundColor: 'rgba(0,0,0,0.1)',
       },
     }),
   },
