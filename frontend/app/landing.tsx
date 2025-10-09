@@ -538,7 +538,11 @@ export default function Landing() {
               <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
             </TouchableOpacity>
             
-            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
+            <TouchableOpacity 
+              style={styles.dockItem} 
+              activeOpacity={0.8}
+              onPress={() => router.push('/trips')}
+            >
               <Animated.View style={[styles.dockGlowContainer, { opacity: dockGlowAnim }]}>
                 <View style={styles.dockGlow} />
               </Animated.View>
