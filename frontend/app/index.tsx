@@ -473,9 +473,14 @@ const styles = StyleSheet.create({
   },
   primaryButtonText: {
     fontSize: 16,
-    color: '#FFFFFF',
+    color: '#FFFFFF', // White text for good contrast against bronze
     fontWeight: '600',
     letterSpacing: 1.5,
+    ...Platform.select({
+      web: {
+        textShadow: '0 1px 2px rgba(0,0,0,0.3)', // Subtle shadow for better readability
+      },
+    }),
   },
   secondaryLinkContainer: {
     marginBottom: 24,
