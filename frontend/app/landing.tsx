@@ -301,7 +301,6 @@ export default function Landing() {
               <View style={styles.editorialBadge}>
                 <BlurView intensity={18} tint="light" style={styles.editorialBadgeBlur}>
                   <View style={styles.editorialBadgeInner}>
-                    <Ionicons name="leaf-outline" size={12} color="rgba(255,255,255,0.6)" style={styles.editorialIcon} />
                     <Text style={styles.editorialBadgeText}>Condé Nast Pick</Text>
                   </View>
                 </BlurView>
