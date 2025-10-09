@@ -246,7 +246,7 @@ export default function MyTrips() {
               contentContainerStyle={styles.carouselContent}
             >
               {destinations.map((destination, cardIndex) => 
-                renderSavedCard(destination, cardIndex)
+                renderSavedCard(destination, cardIndex, destinations.length === 1)
               )}
             </ScrollView>
           </View>
