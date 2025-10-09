@@ -377,7 +377,10 @@ export default function Landing() {
             <BlurView intensity={25} tint="light" style={styles.searchPane}>
               <View style={styles.searchPaneContent}>
                 {/* Title */}
-                <Text style={styles.searchTitle}>Where to?</Text>
+                <View style={styles.titleContainer}>
+                  <Text style={styles.searchTitle}>Where to?</Text>
+                  <View style={styles.titleAccent} />
+                </View>
                 
                 {/* Search Bar */}
                 <BlurView intensity={15} tint="light" style={styles.searchBarContainer}>
