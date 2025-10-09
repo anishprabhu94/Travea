@@ -203,13 +203,22 @@ export default function MyTrips() {
                 </View>
               )}
 
-              {/* Integrated Action Buttons */}
-              <View style={styles.integratedActions}>
-                <TouchableOpacity style={styles.primaryAction} activeOpacity={0.8}>
-                  <View style={styles.canvasIconContainer}>
-                    <Ionicons name="add" size={10} color="rgba(255,255,255,0.9)" />
-                  </View>
-                  <Text style={styles.primaryActionText}>Canvas</Text>
+              {/* Add to Canvas Button - Redesigned */}
+              <View style={styles.canvasButtonContainer}>
+                <TouchableOpacity 
+                  style={styles.canvasButton} 
+                  activeOpacity={0.8}
+                  onPressIn={() => {
+                    // Scale animation on press
+                  }}
+                >
+                  <Ionicons 
+                    name="add" 
+                    size={12} 
+                    color="#C9A96D" 
+                    style={styles.canvasIcon}
+                  />
+                  <Text style={styles.canvasButtonText}>Add to Canvas</Text>
                 </TouchableOpacity>
               </View>
             </View>
