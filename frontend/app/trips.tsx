@@ -274,9 +274,12 @@ export default function MyTrips() {
   )
 
   const renderSavedContent = () => {
+    console.log('renderSavedContent: Called')
     const groupedDestinations = getGroupedDestinations()
+    console.log('renderSavedContent: groupedDestinations:', groupedDestinations)
     
     if (Object.keys(groupedDestinations).length === 0) {
+      console.log('renderSavedContent: No destinations found, showing empty state')
       return (
         <View style={styles.emptyState}>
           <Text style={styles.emptyStateText}>No saved destinations yet</Text>
