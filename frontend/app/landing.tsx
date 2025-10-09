@@ -1043,38 +1043,20 @@ const styles = StyleSheet.create({
   },
   editorialBadge: {
     alignSelf: 'flex-start',
-    borderRadius: 18,
-    overflow: 'hidden',
-  },
-  editorialBadgeBlur: {
-    borderRadius: 18,
-    overflow: 'hidden',
   },
   editorialBadgeInner: {
-    backgroundColor: 'rgba(0,0,0,0.6)', // Matte black semi-transparent background
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.15)', // Subtle border
-    paddingHorizontal: 12,
+    backgroundColor: 'rgba(0,0,0,0.55)', // Matte black pill
+    borderRadius: 12, // 12px border radius
+    paddingHorizontal: 8, // 6-8px padding
     paddingVertical: 6,
     flexDirection: 'row',
     alignItems: 'center',
-    ...Platform.select({
-      web: {
-        boxShadow: '0 0 6px rgba(0,0,0,0.3)', // Subtle glow
-      },
-      default: {
-        shadowColor: 'rgba(0,0,0,0.8)',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 4,
-        elevation: 3,
-      },
-    }),
+    // No glow - keep understated
   },
   editorialBadgeText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#F8F8F8',
+    fontSize: 12, // 12px
+    fontWeight: '500', // Inter Medium
+    color: '#FFFFFF', // White text
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
