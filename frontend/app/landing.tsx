@@ -265,10 +265,9 @@ export default function Landing() {
         <View style={styles.luxuryInfoContainer}>
           <BlurView intensity={25} tint="light" style={styles.luxuryInfoPane}>
             <View style={styles.luxuryInfoInner}>
-              {/* Inline Destination Header: "City • Region" */}
+              {/* Refined Destination Header: "City, Country" */}
               <View style={styles.destinationHeader}>
-                <Text style={styles.destinationCity}>{destination.city}</Text>
-                <Text style={styles.destinationSeparator}> • </Text>
+                <Text style={styles.destinationCity}>{destination.city}, </Text>
                 <Text style={styles.destinationRegion}>{destination.region}</Text>
               </View>
               
