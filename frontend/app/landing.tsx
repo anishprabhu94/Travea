@@ -263,13 +263,16 @@ export default function Landing() {
         <TouchableOpacity
           style={styles.bookmarkButton}
           onPress={() => {
-            // Extract original ID from transformed ID - the format varies, let me check what destination.id actually is
+            console.log('=== BOOKMARK BUTTON CLICKED ===')
             console.log('Full destination object:', destination)
-            // If the ID is already original (not transformed), use it directly
-            // If it contains underscores, it's transformed and we need to extract
-            const originalId = destination.id.includes('_') ? destination.id.split('_')[1] : destination.id
-            console.log('Bookmark pressed:', { fullId: destination.id, extractedId: originalId })
-            handleBookmark(originalId)
+            console.log('Destination ID:', destination.id)
+            console.log('City:', destination.city)
+            
+            // Let's use the city name as the ID for now to make it simple
+            const bookmarkId = destination.city.toLowerCase()
+            console.log('Using bookmark ID:', bookmarkId)
+            
+            handleBookmark(bookmarkId)
           }}
           activeOpacity={0.8}
         >
