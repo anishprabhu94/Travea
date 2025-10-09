@@ -29,12 +29,11 @@ interface SavedDestination {
   isCondeNastPick?: boolean
 }
 
-// Mock saved destinations data - IDs match bookmark system (cityname without spaces)
+// Mock saved destinations data - matching unique city names from landing page
 const mockSavedDestinations: SavedDestination[] = [
-  // Generate multiple variations to match the dynamic naming system
   {
-    id: 'amalfi1',
-    city: 'Amalfi 1',
+    id: 'amalfi',
+    city: 'Amalfi',
     region: 'Italy',
     tagline: 'Coastal drives & lemon air',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
@@ -47,35 +46,8 @@ const mockSavedDestinations: SavedDestination[] = [
     isCondeNastPick: true
   },
   {
-    id: 'amalfi2',
-    city: 'Amalfi 2',
-    region: 'Italy',
-    tagline: 'Coastal drives & lemon air',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
-    transport: [
-      { icon: 'car-outline', time: '2h 45m' },
-      { icon: 'airplane-outline', time: '1h 20m' }
-    ],
-    sourceCarousel: 'Trending Now',
-    sourceTab: 'Vacations',
-    isCondeNastPick: true
-  },
-  {
-    id: 'kyoto1',
-    city: 'Kyoto 1',
-    region: 'Japan',
-    tagline: 'Temples, lanterns & still mornings',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
-    transport: [
-      { icon: 'airplane-outline', time: '11h 30m' },
-      { icon: 'train-outline', time: '3h 15m' }
-    ],
-    sourceCarousel: 'Curated for You',
-    sourceTab: 'Vacations'
-  },
-  {
-    id: 'kyoto2',
-    city: 'Kyoto 2',
+    id: 'kyoto',
+    city: 'Kyoto',
     region: 'Japan',
     tagline: 'Temples, lanterns & still mornings',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
@@ -87,8 +59,8 @@ const mockSavedDestinations: SavedDestination[] = [
     sourceTab: 'Vacations'
   },
   {
-    id: 'reykjavík1',
-    city: 'Reykjavík 1',
+    id: 'reykjavik',
+    city: 'Reykjavík',
     region: 'Iceland',
     tagline: 'Nordic calm & aurora skies',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/71gsrwd0_output%20%286%29.jpg',
@@ -99,9 +71,9 @@ const mockSavedDestinations: SavedDestination[] = [
     sourceTab: 'Vacations'
   },
   {
-    id: 'sonoma1',
-    city: 'Sonoma 1',
-    region: 'USA',
+    id: 'santorini',
+    city: 'Santorini',
+    region: 'Greece',
     tagline: 'Wine alleys & golden light',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/cjd9m4ea_Sonoma.jpg',
     transport: [
@@ -111,9 +83,9 @@ const mockSavedDestinations: SavedDestination[] = [
     sourceTab: 'Discover'
   },
   {
-    id: 'carmel1',
-    city: 'Carmel 1',
-    region: 'USA',
+    id: 'provence',
+    city: 'Provence',
+    region: 'France',
     tagline: 'Cliffside cafés & slow tides',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/wokepbpr_carmel.jpg',
     transport: [
@@ -124,9 +96,9 @@ const mockSavedDestinations: SavedDestination[] = [
     sourceTab: 'Discover'
   },
   {
-    id: 'bigsur1',
-    city: 'Big Sur 1',
-    region: 'USA',
+    id: 'tuscany',
+    city: 'Tuscany',
+    region: 'Italy',
     tagline: 'Misty cliffs & endless roads',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/pk6sky07_big%20sur.jpg',
     transport: [
