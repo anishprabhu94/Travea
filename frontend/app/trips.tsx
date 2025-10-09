@@ -492,10 +492,10 @@ const styles = StyleSheet.create({
   },
   pageTitleSection: {
     paddingHorizontal: 20,
-    marginBottom: 8,
+    marginBottom: 20, // Increased spacing from pills
   },
   pageTitle: {
-    fontSize: 24,
+    fontSize: 22, // Reduced font size as requested
     fontWeight: '600', // Semi-bold
     color: '#F8F8F8',
     letterSpacing: 0.5,
