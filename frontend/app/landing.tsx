@@ -720,12 +720,21 @@ const styles = StyleSheet.create({
     }),
   },
   transportRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 14,
   },
   transportItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 6,
+  },
+  transportSeparator: {
+    marginHorizontal: 8,
+  },
+  separatorDot: {
+    fontSize: 12,
+    color: 'rgba(255,255,255,0.6)',
+    fontWeight: 'bold',
   },
   transportIcon: {
     marginRight: 8,
