@@ -207,18 +207,19 @@ export default function Index() {
                   </View>
                 </View>
 
-                {/* Primary CTA Button with Bronze Glow */}
+                {/* Primary CTA Button with Frosted Glass */}
                 <TouchableOpacity
                   style={styles.primaryButtonContainer}
                   onPress={isSignUp ? handleSignUp : handleSignIn}
                   activeOpacity={0.85}
                 >
-                  <View style={styles.primaryButtonGlow} />
-                  <View style={styles.primaryButton}>
-                    <Text style={styles.primaryButtonText}>
-                      {isSignUp ? 'SIGN UP' : 'SIGN IN'}
-                    </Text>
-                  </View>
+                  <BlurView intensity={20} tint="light" style={styles.primaryButtonBlur}>
+                    <View style={styles.primaryButton}>
+                      <Text style={styles.primaryButtonText}>
+                        {isSignUp ? 'SIGN UP' : 'SIGN IN'}
+                      </Text>
+                    </View>
+                  </BlurView>
                 </TouchableOpacity>
 
                 {/* Secondary Toggle Link */}
