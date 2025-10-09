@@ -288,8 +288,15 @@ export default function MyTrips() {
             }
           ]}
         >
-          {/* TRĀVEA Logo */}
+          {/* Back Button & TRĀVEA Logo */}
           <View style={styles.logoContainer}>
+            <TouchableOpacity 
+              style={styles.backButton} 
+              onPress={() => router.back()}
+              activeOpacity={0.8}
+            >
+              <Ionicons name="chevron-back" size={24} color="rgba(255,255,255,0.85)" />
+            </TouchableOpacity>
             <Text style={styles.logoText}>TRĀVEA</Text>
           </View>
           
