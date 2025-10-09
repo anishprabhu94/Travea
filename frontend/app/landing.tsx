@@ -303,55 +303,59 @@ export default function Landing() {
           </Text>
         </Animated.View>
 
-        {/* Category Chips */}
-        <View style={styles.categoryChips}>
-          <TouchableOpacity
-            style={styles.chip}
-            onPress={() => handleModeSwitch('inspire')}
-            activeOpacity={0.8}
-          >
-            {activeMode === 'inspire' && <View style={styles.chipGlow} />}
-            <BlurView intensity={20} tint="light" style={styles.chipBlur}>
-              <View style={styles.chipContent}>
-                <Ionicons name="calendar-outline" size={16} color="rgba(255,255,255,0.9)" />
-                <Text style={[styles.chipLabel, activeMode === 'inspire' && styles.chipLabelActive]}>
-                  Vacations
-                </Text>
-              </View>
-            </BlurView>
-          </TouchableOpacity>
+        {/* Sticky Category Chips */}
+        <View style={styles.stickyChipsContainer}>
+          <BlurView intensity={25} tint="light" style={styles.stickyChipsBlur}>
+            <View style={styles.categoryChips}>
+              <TouchableOpacity
+                style={styles.chip}
+                onPress={() => handleModeSwitch('inspire')}
+                activeOpacity={0.8}
+              >
+                {activeMode === 'inspire' && <View style={styles.chipGlow} />}
+                <BlurView intensity={20} tint="light" style={styles.chipBlur}>
+                  <View style={styles.chipContent}>
+                    <Ionicons name="calendar-outline" size={16} color="rgba(255,255,255,0.9)" />
+                    <Text style={[styles.chipLabel, activeMode === 'inspire' && styles.chipLabelActive]}>
+                      Vacations
+                    </Text>
+                  </View>
+                </BlurView>
+              </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.chip}
-            onPress={() => handleModeSwitch('weekend')}
-            activeOpacity={0.8}
-          >
-            {activeMode === 'weekend' && <View style={styles.chipGlow} />}
-            <BlurView intensity={20} tint="light" style={styles.chipBlur}>
-              <View style={styles.chipContent}>
-                <Ionicons name="compass-outline" size={16} color="rgba(255,255,255,0.9)" />
-                <Text style={[styles.chipLabel, activeMode === 'weekend' && styles.chipLabelActive]}>
-                  Discover
-                </Text>
-              </View>
-            </BlurView>
-          </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.chip}
+                onPress={() => handleModeSwitch('weekend')}
+                activeOpacity={0.8}
+              >
+                {activeMode === 'weekend' && <View style={styles.chipGlow} />}
+                <BlurView intensity={20} tint="light" style={styles.chipBlur}>
+                  <View style={styles.chipContent}>
+                    <Ionicons name="compass-outline" size={16} color="rgba(255,255,255,0.9)" />
+                    <Text style={[styles.chipLabel, activeMode === 'weekend' && styles.chipLabelActive]}>
+                      Discover
+                    </Text>
+                  </View>
+                </BlurView>
+              </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.chip}
-            onPress={() => handleModeSwitch('search')}
-            activeOpacity={0.8}
-          >
-            {activeMode === 'search' && <View style={styles.chipGlow} />}
-            <BlurView intensity={20} tint="light" style={styles.chipBlur}>
-              <View style={styles.chipContent}>
-                <Ionicons name="search-outline" size={16} color="rgba(255,255,255,0.9)" />
-                <Text style={[styles.chipLabel, activeMode === 'search' && styles.chipLabelActive]}>
-                  Search
-                </Text>
-              </View>
-            </BlurView>
-          </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.chip}
+                onPress={() => handleModeSwitch('search')}
+                activeOpacity={0.8}
+              >
+                {activeMode === 'search' && <View style={styles.chipGlow} />}
+                <BlurView intensity={20} tint="light" style={styles.chipBlur}>
+                  <View style={styles.chipContent}>
+                    <Ionicons name="search-outline" size={16} color="rgba(255,255,255,0.9)" />
+                    <Text style={[styles.chipLabel, activeMode === 'search' && styles.chipLabelActive]}>
+                      Search
+                    </Text>
+                  </View>
+                </BlurView>
+              </TouchableOpacity>
+            </View>
+          </BlurView>
         </View>
 
         {/* Carousel */}
