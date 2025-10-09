@@ -151,16 +151,13 @@ export default function MyTrips() {
     removeBookmark(destinationId)
   }
 
-  // Get actual saved destinations from bookmarked items
+  // DIRECT TEST: Bypass context and return hardcoded data
   const getSavedDestinations = (): SavedDestination[] => {
-    console.log('=== TRIPS PAGE DEBUG ===')
-    console.log('bookmarkedItems from context:', bookmarkedItems)
-    console.log('mockSavedDestinations IDs:', mockSavedDestinations.map(d => d.id))
+    console.log('=== DIRECT TEST ===')
+    console.log('Returning first 2 destinations directly')
     
-    const filtered = mockSavedDestinations.filter(dest => bookmarkedItems.includes(dest.id))
-    console.log('Filtered destinations:', filtered.map(d => d.id))
-    
-    return filtered
+    // Return first 2 destinations directly to test rendering
+    return mockSavedDestinations.slice(0, 2)
   }
 
   // Group saved destinations by their source carousel
