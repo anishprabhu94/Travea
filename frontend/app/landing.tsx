@@ -200,11 +200,18 @@ export default function Landing() {
   }
 
   // Get 4 cards for each carousel (using existing cards + placeholder)
-  const get4Cards = (cards: DestinationCard[]) => {
-    const result = [...cards]
+  const get4Cards = (cards: DestinationCard[], carouselId: string) => {
+    const result = cards.map((card, index) => ({
+      ...card,
+      id: `${carouselId}_${card.id}_${index}` // Unique ID per carousel
+    }))
     // If we have fewer than 4 cards, use the first card as placeholder for the 4th
     while (result.length < 4) {
-      result.push({...cards[0], id: `${cards[0].id}_${result.length}`})
+      const originalCard = cards[0]
+      result.push({
+        ...originalCard, 
+        id: `${carouselId}_${originalCard.id}_placeholder_${result.length}`
+      })
     }
     return result.slice(0, 4)
   }
