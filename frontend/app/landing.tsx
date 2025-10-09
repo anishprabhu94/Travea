@@ -790,35 +790,24 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  searchContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  searchContentContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: '30%',
+    justifyContent: 'flex-end',
     paddingHorizontal: 20,
+    paddingBottom: 20,
   },
-  searchPane: {
-    width: '100%',
-    maxWidth: width * 0.9, // 90% of screen width
-    borderRadius: 28,
+  searchContentPane: {
+    borderRadius: 24,
     overflow: 'hidden',
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.5,
-        shadowRadius: 30,
-      },
-      android: {
-        elevation: 15,
-      },
-      web: {
-        boxShadow: '0 8px 30px rgba(0,0,0,0.5)',
-      },
-    }),
+    width: '95%',
   },
-  searchPaneContent: {
-    backgroundColor: 'rgba(25,25,25,0.45)',
-    padding: 24,
+  searchPaneInner: {
+    backgroundColor: 'rgba(25,25,25,0.35)',
+    padding: 20,
   },
   searchTitle: {
     fontSize: 22,
