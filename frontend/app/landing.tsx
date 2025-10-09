@@ -783,7 +783,7 @@ const styles = StyleSheet.create({
     marginRight: 16,
   },
   destinationCard: {
-    height: height * 0.45, // Further reduced for better spacing
+    height: height * 0.38, // Reduced so users can see next carousel title
     borderRadius: 26,
     overflow: 'hidden',
     position: 'relative',
