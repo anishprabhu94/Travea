@@ -245,19 +245,22 @@ export default function Landing() {
         {/* Light Vignette */}
         <View style={styles.vignetteOverlay} />
         
-        {/* Bookmark Icon - Luxury Design */}
+        {/* Bookmark Icon with Frosted Container */}
         <TouchableOpacity
           style={styles.bookmarkButton}
           onPress={() => handleBookmark(destination.id)}
           activeOpacity={0.8}
         >
           <Animated.View style={[{ transform: [{ scale: bookmarkPulseAnim }] }]}>
-            <Ionicons
-              name={bookmarkedItems.includes(destination.id) ? "bookmark" : "bookmark-outline"}
-              size={20}
-              color={bookmarkedItems.includes(destination.id) ? "#C9A96D" : "rgba(201,169,109,0.8)"}
-              style={styles.bookmarkIcon}
-            />
+            <BlurView intensity={18} tint="light" style={styles.bookmarkContainer}>
+              <View style={styles.bookmarkInner}>
+                <Ionicons
+                  name={bookmarkedItems.includes(destination.id) ? "bookmark" : "bookmark-outline"}
+                  size={16}
+                  color={bookmarkedItems.includes(destination.id) ? "#C9A96D" : "rgba(201,169,109,0.8)"}
+                />
+              </View>
+            </BlurView>
           </Animated.View>
         </TouchableOpacity>
 
