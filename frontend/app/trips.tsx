@@ -398,8 +398,13 @@ export default function MyTrips() {
               activeOpacity={0.8}
               onPress={() => router.push('/landing')}
             >
-              <Ionicons name="compass-outline" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockLabelInactive}>Discover</Text>
+              <Ionicons name="home-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>Home</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
+              <Ionicons name="map-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
@@ -408,8 +413,8 @@ export default function MyTrips() {
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
-              <Ionicons name="person-outline" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockLabelInactive}>Profile</Text>
+              <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>Concierge</Text>
             </TouchableOpacity>
           </View>
         </BlurView>
