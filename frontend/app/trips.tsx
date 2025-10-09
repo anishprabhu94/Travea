@@ -823,8 +823,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(201,169,109,0.25)',
-    borderRadius: 12,
-    paddingVertical: 10,
+    borderRadius: 8, // Smaller radius for sleeker look
+    paddingVertical: 6, // Reduced height
     paddingHorizontal: 12,
     ...Platform.select({
       web: {
