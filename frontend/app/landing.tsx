@@ -216,46 +216,17 @@ export default function Landing() {
   }
 
   // Get 4 cards for each carousel (using existing cards + placeholder)
-  // Global counter for unique city names
-  const cityCounters = useRef<{[key: string]: number}>({})
-
   const get4Cards = (cards: DestinationCard[], carouselId: string) => {
-    const result = cards.map((card, index) => {
-      // Extract base city name (remove existing number if present)
-      const baseCityName = card.city.replace(/ \d+$/, '')
-      
-      // Initialize counter for this base city if not exists
-      if (!cityCounters.current[baseCityName]) {
-        cityCounters.current[baseCityName] = 1
-      }
-      
-      // Create unique city name and increment counter
-      const uniqueCityName = `${baseCityName} ${cityCounters.current[baseCityName]}`
-      cityCounters.current[baseCityName]++
-      
-      return {
-        ...card,
-        id: `${carouselId}_${card.id}_${index}`, // Unique ID per carousel
-        city: uniqueCityName // Unique city name
-      }
-    })
-    
+    const result = cards.map((card, index) => ({
+      ...card,
+      id: `${carouselId}_${card.id}_${index}` // Unique ID per carousel
+    }))
     // If we have fewer than 4 cards, use the first card as placeholder for the 4th
     while (result.length < 4) {
       const originalCard = cards[0]
-      const baseCityName = originalCard.city.replace(/ \d+$/, '')
-      
-      if (!cityCounters.current[baseCityName]) {
-        cityCounters.current[baseCityName] = 1
-      }
-      
-      const uniqueCityName = `${baseCityName} ${cityCounters.current[baseCityName]}`
-      cityCounters.current[baseCityName]++
-      
       result.push({
-        ...originalCard,
-        id: `${carouselId}_${originalCard.id}_placeholder_${result.length}`,
-        city: uniqueCityName
+        ...originalCard, 
+        id: `${carouselId}_${originalCard.id}_placeholder_${result.length}`
       })
     }
     return result.slice(0, 4)
