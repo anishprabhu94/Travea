@@ -895,7 +895,7 @@ const styles = StyleSheet.create({
     }),
   },
   primaryActionText: {
-    fontSize: 13, // Consistent with secondary action
+    fontSize: 12, // Smaller for canvas button
     fontWeight: '600',
     color: '#F8F8F8',
     fontFamily: Platform.select({
