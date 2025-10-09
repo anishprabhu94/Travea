@@ -641,7 +641,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
     gap: 10,
-    backgroundColor: 'rgba(25,25,25,0.3)',
+    // Removed background color to fix weird pane behind tabs
   },
   chip: {
     position: 'relative',
