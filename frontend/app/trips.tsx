@@ -793,7 +793,21 @@ const styles = StyleSheet.create({
   integratedActions: {
     flexDirection: 'row',
     gap: 12,
-    marginTop: 16,
+    marginTop: 12, // Reduced margin for tighter layout
+  },
+  canvasIconContainer: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: 'rgba(255,255,255,0.15)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 8,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(10px)',
+      },
+    }),
   },
   actionIcon: {
     marginRight: 6,
