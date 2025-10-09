@@ -716,22 +716,18 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 16,
     right: 16,
-    borderRadius: 14,
-    overflow: 'hidden',
-  },
-  condeNastBadgeBlur: {
-    borderRadius: 14,
-    overflow: 'hidden',
   },
   condeNastBadgeInner: {
-    backgroundColor: 'rgba(0,0,0,0.55)',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
+    backgroundColor: 'rgba(0,0,0,0.55)', // Matte black pill
+    borderRadius: 12, // 12px border radius
+    paddingHorizontal: 8, // 6-8px padding
+    paddingVertical: 6,
+    // No glow - keep understated
   },
   condeNastBadgeText: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: '#FFFFFF',
+    fontSize: 12, // 12px
+    fontWeight: '500', // Inter Medium
+    color: '#FFFFFF', // White text
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
