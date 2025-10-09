@@ -313,9 +313,9 @@ export default function Landing() {
             {activeMode === 'inspire' && <View style={styles.chipGlow} />}
             <BlurView intensity={20} tint="light" style={styles.chipBlur}>
               <View style={styles.chipContent}>
-                <Ionicons name="leaf-outline" size={16} color="rgba(255,255,255,0.9)" />
+                <Ionicons name="calendar-outline" size={16} color="rgba(255,255,255,0.9)" />
                 <Text style={[styles.chipLabel, activeMode === 'inspire' && styles.chipLabelActive]}>
-                  Inspire Me
+                  Vacations
                 </Text>
               </View>
             </BlurView>
