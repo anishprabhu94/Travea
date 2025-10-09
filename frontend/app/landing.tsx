@@ -323,7 +323,7 @@ export default function Landing() {
               <View style={styles.editorialBadge}>
                 <BlurView intensity={18} tint="light" style={styles.editorialBadgeBlur}>
                   <View style={styles.editorialBadgeInner}>
-                    <Text style={styles.editorialBadgeText}>Condé Nast Pick</Text>
+                    <Text style={styles.editorialBadgeText}>Condé Nast</Text>
                   </View>
                 </BlurView>
               </View>
