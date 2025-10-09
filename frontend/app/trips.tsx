@@ -1011,50 +1011,47 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  // Bottom Dock Styles
+  // Bottom Dock Styles - Matching Landing Page Exactly
   bottomDock: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 12,
     left: 0,
     right: 0,
     alignItems: 'center',
-    zIndex: 100,
+    zIndex: 100, // Ensure dock is always visible on top
   },
   dockContainer: {
     width: '92%',
-    marginBottom: Platform.select({
-      ios: 34, // Safe area for iPhone home indicator
-      android: 20,
-      web: 20,
-    }),
-    borderRadius: 30,
+    height: 60,
+    borderRadius: 28,
     overflow: 'hidden',
     ...Platform.select({
-      web: {
-        backdropFilter: 'blur(30px)',
-        boxShadow: '0 10px 40px rgba(0,0,0,0.3)',
-      },
-      default: {
+      ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 10 },
+        shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
         shadowRadius: 20,
-        elevation: 10,
+      },
+      android: {
+        elevation: 8,
+      },
+      web: {
+        boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
       },
     }),
   },
   dockContent: {
-    backgroundColor: 'rgba(30,30,30,0.7)',
+    flex: 1,
+    backgroundColor: 'rgba(25,25,25,0.35)', // Exact match to landing page
     flexDirection: 'row',
-    justifyContent: 'space-around',
     alignItems: 'center',
-    paddingVertical: 16,
-    paddingHorizontal: 20,
+    paddingHorizontal: 16,
   },
   dockItem: {
-    alignItems: 'center',
-    justifyContent: 'center',
     flex: 1,
+    alignItems: 'center',
+    paddingVertical: 8,
+    position: 'relative',
   },
   dockLabelActive: {
     fontSize: 12,
