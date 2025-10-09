@@ -672,9 +672,24 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: 'rgba(25,25,25,0.4)',
+    backgroundColor: 'rgba(0,0,0,0.6)', // Darker for better visibility
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.2)', // Elegant white border
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(20px)',
+        boxShadow: '0 4px 20px rgba(0,0,0,0.3)', // Subtle shadow for depth
+      },
+      default: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        elevation: 5,
+      },
+    }),
   },
   infoPaneContainer: {
     position: 'absolute',
