@@ -441,13 +441,39 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.12)',
     borderColor: 'rgba(255, 255, 255, 0.15)',
   },
+  primaryButtonContainer: {
+    position: 'relative',
+    marginBottom: 12,
+    borderRadius: 12,
+  },
+  primaryButtonGlow: {
+    position: 'absolute',
+    top: -8,
+    left: -8,
+    right: -8,
+    bottom: -8,
+    borderRadius: 20,
+    backgroundColor: 'rgba(201,169,109,0.4)',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 20px rgba(201,169,109,0.6)',
+      },
+      default: {
+        shadowColor: 'rgba(201,169,109,0.8)',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.6,
+        shadowRadius: 10,
+        elevation: 8,
+      },
+    }),
+    zIndex: -1,
+  },
   primaryButton: {
     backgroundColor: '#C9A96D',
     height: 44, // Reduced height for classier appearance
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 12,
   },
   primaryButtonText: {
     fontSize: 16,
