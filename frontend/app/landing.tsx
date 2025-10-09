@@ -846,7 +846,7 @@ const styles = StyleSheet.create({
   cardImage: {
     borderRadius: 32,
   },
-  vignetteOverlay: {
+  cardVignetteOverlay: {
     position: 'absolute',
     top: 0,
     left: 0,
