@@ -270,7 +270,8 @@ export default function MyTrips() {
         </View>
       </ImageBackground>
     </View>
-  )
+    )
+  }
 
   const renderSavedContent = () => {
     console.log('renderSavedContent: Called')
