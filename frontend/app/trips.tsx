@@ -29,8 +29,9 @@ interface SavedDestination {
   isCondeNastPick?: boolean
 }
 
-// Mock saved destinations data - matching unique city names from landing page
+// Mock saved destinations data - IDs match bookmark system (cityname without spaces)
 const mockSavedDestinations: SavedDestination[] = [
+  // Generate multiple variations to match the dynamic naming system
   {
     id: 'amalfi1',
     city: 'Amalfi 1',
@@ -46,8 +47,35 @@ const mockSavedDestinations: SavedDestination[] = [
     isCondeNastPick: true
   },
   {
+    id: 'amalfi2',
+    city: 'Amalfi 2',
+    region: 'Italy',
+    tagline: 'Coastal drives & lemon air',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+    transport: [
+      { icon: 'car-outline', time: '2h 45m' },
+      { icon: 'airplane-outline', time: '1h 20m' }
+    ],
+    sourceCarousel: 'Trending Now',
+    sourceTab: 'Vacations',
+    isCondeNastPick: true
+  },
+  {
     id: 'kyoto1',
     city: 'Kyoto 1',
+    region: 'Japan',
+    tagline: 'Temples, lanterns & still mornings',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+    transport: [
+      { icon: 'airplane-outline', time: '11h 30m' },
+      { icon: 'train-outline', time: '3h 15m' }
+    ],
+    sourceCarousel: 'Curated for You',
+    sourceTab: 'Vacations'
+  },
+  {
+    id: 'kyoto2',
+    city: 'Kyoto 2',
     region: 'Japan',
     tagline: 'Temples, lanterns & still mornings',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
@@ -59,7 +87,7 @@ const mockSavedDestinations: SavedDestination[] = [
     sourceTab: 'Vacations'
   },
   {
-    id: 'reykjavik1',
+    id: 'reykjavík1',
     city: 'Reykjavík 1',
     region: 'Iceland',
     tagline: 'Nordic calm & aurora skies',
