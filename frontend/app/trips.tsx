@@ -54,7 +54,7 @@ const mockSavedDestinations: SavedDestination[] = [
       { icon: 'airplane-outline', time: '11h 30m' },
       { icon: 'train-outline', time: '3h 15m' }
     ],
-    sourceCarousel: 'Trending',
+    sourceCarousel: 'Trending Now',
     sourceTab: 'Vacations'
   },
   {
