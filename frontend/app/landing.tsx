@@ -922,34 +922,31 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  transportRow: {
+  luxuryTransportRow: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 14,
   },
-  transportItem: {
+  luxuryTransportItem: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  transportSeparator: {
-    marginHorizontal: 8,
-  },
-  separatorDot: {
-    fontSize: 12,
+  luxuryTransportSeparator: {
+    fontSize: 14,
     color: 'rgba(255,255,255,0.6)',
-    fontWeight: 'bold',
+    fontWeight: '500',
   },
-  transportIcon: {
-    marginRight: 8,
+  luxuryTransportIcon: {
+    marginRight: 6,
   },
-  transportTime: {
-    fontSize: 15,
-    fontWeight: '400',
+  luxuryTransportTime: {
+    fontSize: 14,
+    fontWeight: '500',
     color: 'rgba(255,255,255,0.8)',
     fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Neue Montreal',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
   tagPill: {
