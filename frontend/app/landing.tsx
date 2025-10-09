@@ -201,13 +201,13 @@ export default function Landing() {
           onPress={() => handleBookmark(destination.id)}
           activeOpacity={0.8}
         >
-          <View style={styles.bookmarkIcon}>
+          <Animated.View style={[styles.bookmarkIcon, { transform: [{ scale: bookmarkPulseAnim }] }]}>
             <Ionicons
               name={bookmarkedItems.includes(destination.id) ? "bookmark" : "bookmark-outline"}
               size={20}
               color={bookmarkedItems.includes(destination.id) ? "#C9A96D" : "rgba(255,255,255,0.85)"}
             />
-          </View>
+          </Animated.View>
         </TouchableOpacity>
 
         {/* Frosted Info Pane */}
