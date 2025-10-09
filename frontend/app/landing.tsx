@@ -282,9 +282,9 @@ export default function Landing() {
             <BlurView intensity={18} tint="light" style={styles.bookmarkContainer}>
               <View style={styles.bookmarkInner}>
                 <Ionicons
-                  name={bookmarkedItems.includes(destination.city.toLowerCase()) ? "bookmark" : "bookmark-outline"}
+                  name={bookmarkedItems.includes(`${destination.city.toLowerCase()}-${destination.id.split('_')[0]}`) ? "bookmark" : "bookmark-outline"}
                   size={16}
-                  color={bookmarkedItems.includes(destination.city.toLowerCase()) ? "#C9A96D" : "rgba(201,169,109,0.8)"}
+                  color={bookmarkedItems.includes(`${destination.city.toLowerCase()}-${destination.id.split('_')[0]}`) ? "#C9A96D" : "rgba(201,169,109,0.8)"}
                 />
               </View>
             </BlurView>
