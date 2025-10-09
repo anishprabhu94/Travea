@@ -816,13 +816,13 @@ const styles = StyleSheet.create({
     marginRight: 16,
   },
   destinationCard: {
-    height: height * 0.38, // Reduced so users can see next carousel title
-    borderRadius: 26,
+    height: height * 0.38, // 3:2 aspect ratio portrait mobile
+    borderRadius: 32, // Updated to luxury specs
     overflow: 'hidden',
     position: 'relative',
   },
   cardImage: {
-    borderRadius: 26,
+    borderRadius: 32,
   },
   gradientOverlay: {
     position: 'absolute',
