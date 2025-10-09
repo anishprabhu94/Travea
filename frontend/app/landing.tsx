@@ -140,6 +140,13 @@ export default function Landing() {
     if (mode === activeMode) return
     setActiveMode(mode)
     console.log(`Switched to mode: ${mode}`)
+    
+    // Reset scroll to top when switching tabs
+    setTimeout(() => {
+      if (Platform.OS === 'web') {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+    }, 100)
   }
 
   const handleBookmark = (itemId: string) => {
