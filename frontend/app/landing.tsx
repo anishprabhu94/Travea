@@ -347,14 +347,14 @@ export default function Landing() {
                 ))}
               </View>
               
-              {/* Editorial Badge - Condé Nast */}
-              <View style={styles.editorialBadge}>
-                <BlurView intensity={18} tint="light" style={styles.editorialBadgeBlur}>
+              {/* Editorial Badge - Condé Nast (conditional) */}
+              {destination.isCondeNastPick && (
+                <View style={styles.editorialBadge}>
                   <View style={styles.editorialBadgeInner}>
                     <Text style={styles.editorialBadgeText}>Condé Nast</Text>
                   </View>
-                </BlurView>
-              </View>
+                </View>
+              )}
             </View>
           </BlurView>
         </View>
