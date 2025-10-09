@@ -263,8 +263,11 @@ export default function Landing() {
         <TouchableOpacity
           style={styles.bookmarkButton}
           onPress={() => {
-            // Extract original ID from transformed ID (format: carouselId_originalId_index)
-            const originalId = destination.id.split('_').slice(-2, -1)[0]
+            // Extract original ID from transformed ID - the format varies, let me check what destination.id actually is
+            console.log('Full destination object:', destination)
+            // If the ID is already original (not transformed), use it directly
+            // If it contains underscores, it's transformed and we need to extract
+            const originalId = destination.id.includes('_') ? destination.id.split('_')[1] : destination.id
             console.log('Bookmark pressed:', { fullId: destination.id, extractedId: originalId })
             handleBookmark(originalId)
           }}
