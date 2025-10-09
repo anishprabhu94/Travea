@@ -519,16 +519,14 @@ export default function Landing() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    margin: 0,
+    padding: 0,
     // Edge-to-edge "infinity-pool" effect
     ...Platform.select({
-      ios: {
-        paddingTop: 0, // No padding, extends under status bar
-      },
-      android: {
-        paddingTop: 0, // No padding, extends under status bar
-      },
       web: {
-        minHeight: '100vh', // Full viewport height
+        minHeight: '100vh',
+        margin: 0,
+        padding: 0,
       },
     }),
   },
