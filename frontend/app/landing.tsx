@@ -412,7 +412,6 @@ export default function Landing() {
                 </BlurView>
               </TouchableOpacity>
             </View>
-          </BlurView>
         </View>
 
         {/* Multi-Carousel Content */}
