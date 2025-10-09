@@ -39,11 +39,11 @@ export default function Index() {
   };
 
   const handleOAuthGoogle = () => {
-    router.push('/home');
+    router.push('/landing');
   };
 
   const handleOAuthApple = () => {
-    router.push('/home');
+    router.push('/landing');
   };
 
   // Set body style for web to remove margins and input outlines
