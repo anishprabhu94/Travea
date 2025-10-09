@@ -833,6 +833,11 @@ const styles = StyleSheet.create({
         backdropFilter: 'blur(20px)',
         boxShadow: 'inset 0 0 8px rgba(201,169,109,0.25)', // Soft inner glow
         transition: 'all 220ms ease-in-out',
+        cursor: 'pointer',
+        ':hover': {
+          backgroundColor: 'rgba(201,169,109,0.35)', // Brighter on hover
+          transform: 'scale(1.03)', // Scale animation
+        }
       },
     }),
   },
