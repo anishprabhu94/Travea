@@ -487,7 +487,7 @@ export default function Landing() {
                 
                 {/* Trending Section */}
                 <View style={styles.trendingSection}>
-                  <Text style={styles.trendingLabel}>trending now</Text>
+                  <Text style={styles.trendingLabel}>Trending now</Text>
                   <ScrollView
                     horizontal
                     showsHorizontalScrollIndicator={false}
