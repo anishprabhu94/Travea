@@ -207,15 +207,18 @@ export default function Index() {
                   </View>
                 </View>
 
-                {/* Primary CTA Button */}
+                {/* Primary CTA Button with Bronze Glow */}
                 <TouchableOpacity
-                  style={styles.primaryButton}
+                  style={styles.primaryButtonContainer}
                   onPress={isSignUp ? handleSignUp : handleSignIn}
                   activeOpacity={0.85}
                 >
-                  <Text style={styles.primaryButtonText}>
-                    {isSignUp ? 'SIGN UP' : 'SIGN IN'}
-                  </Text>
+                  <View style={styles.primaryButtonGlow} />
+                  <View style={styles.primaryButton}>
+                    <Text style={styles.primaryButtonText}>
+                      {isSignUp ? 'SIGN UP' : 'SIGN IN'}
+                    </Text>
+                  </View>
                 </TouchableOpacity>
 
                 {/* Secondary Toggle Link */}
