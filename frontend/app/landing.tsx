@@ -33,10 +33,10 @@ interface DestinationCard {
 }
 
 const destinationCards: DestinationCard[] = [
-  // Inspire Me Cards
+  // Inspire Me Cards (Vacations)
   {
-    id: 'amalfi',
-    city: 'Amalfi',
+    id: 'amalfi1',
+    city: 'Amalfi 1',
     region: 'Italy',
     tagline: 'Coastal drives & lemon air',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
@@ -47,8 +47,8 @@ const destinationCards: DestinationCard[] = [
     category: 'inspire'
   },
   {
-    id: 'kyoto',
-    city: 'Kyoto',
+    id: 'kyoto1',
+    city: 'Kyoto 1',
     region: 'Japan',
     tagline: 'Temples, lanterns & still mornings',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
@@ -59,8 +59,8 @@ const destinationCards: DestinationCard[] = [
     category: 'inspire'
   },
   {
-    id: 'reykjavik',
-    city: 'Reykjavík',
+    id: 'reykjavik1',
+    city: 'Reykjavík 1',
     region: 'Iceland',
     tagline: 'Nordic calm & aurora skies',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/71gsrwd0_output%20%286%29.jpg',
@@ -69,10 +69,10 @@ const destinationCards: DestinationCard[] = [
     ],
     category: 'inspire'
   },
-  // Weekend Cards
+  // Weekend Cards (Discover)
   {
-    id: 'sonoma',
-    city: 'Sonoma',
+    id: 'sonoma1',
+    city: 'Sonoma 1',
     region: 'USA',
     tagline: 'Wine alleys & golden light',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/cjd9m4ea_Sonoma.jpg',
@@ -83,8 +83,8 @@ const destinationCards: DestinationCard[] = [
     category: 'weekend'
   },
   {
-    id: 'carmel',
-    city: 'Carmel-by-the-Sea',
+    id: 'carmel1',
+    city: 'Carmel 1',
     region: 'USA',
     tagline: 'Cliffside cafés & slow tides',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/wokepbpr_carmel.jpg',
@@ -95,8 +95,8 @@ const destinationCards: DestinationCard[] = [
     category: 'weekend'
   },
   {
-    id: 'bigsur',
-    city: 'Big Sur',
+    id: 'bigsur1',
+    city: 'Big Sur 1',
     region: 'USA',
     tagline: 'Misty cliffs & endless roads',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/pk6sky07_big%20sur.jpg',
