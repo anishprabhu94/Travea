@@ -262,7 +262,11 @@ export default function Landing() {
         {/* Bookmark Icon with Frosted Container */}
         <TouchableOpacity
           style={styles.bookmarkButton}
-          onPress={() => handleBookmark(destination.id)}
+          onPress={() => {
+            // Extract original ID from transformed ID (format: carouselId_originalId_index)
+            const originalId = destination.id.split('_').slice(-2, -1)[0]
+            handleBookmark(originalId)
+          }}
           activeOpacity={0.8}
         >
           <Animated.View style={[{ transform: [{ scale: getBookmarkAnimation(destination.id) }] }]}>
