@@ -949,33 +949,47 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  tagPill: {
+  editorialBadge: {
     alignSelf: 'flex-start',
-    backgroundColor: '#000000', // Black background for Conde Nast branding
+    borderRadius: 18,
+    overflow: 'hidden',
+  },
+  editorialBadgeBlur: {
+    borderRadius: 18,
+    overflow: 'hidden',
+  },
+  editorialBadgeInner: {
+    backgroundColor: 'rgba(201,169,109,0.25)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
     paddingHorizontal: 12,
     paddingVertical: 6,
-    borderRadius: 30,
+    flexDirection: 'row',
+    alignItems: 'center',
     ...Platform.select({
       web: {
-        boxShadow: '0 0 8px rgba(0,0,0,0.4)', // Subtle glow
+        boxShadow: '0 0 8px rgba(201,169,109,0.25)',
       },
       default: {
-        shadowColor: '#000',
+        shadowColor: 'rgba(201,169,109,0.8)',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.4,
+        shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 3,
       },
     }),
   },
-  tagPillText: {
+  editorialIcon: {
+    marginRight: 4,
+  },
+  editorialBadgeText: {
     fontSize: 14,
-    fontWeight: '500',
-    color: '#FFFFFF', // White text
+    fontWeight: '600',
+    color: '#F8F8F8',
     fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Neue Montreal',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
   searchContainer: {
