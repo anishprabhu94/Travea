@@ -671,11 +671,6 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  stickyChipsBlur: {
-    paddingVertical: 12,
-    overflow: 'hidden',
-    backgroundColor: 'transparent', // Remove any background
-  },
   categoryChips: {
     flexDirection: 'row',
     justifyContent: 'center',
