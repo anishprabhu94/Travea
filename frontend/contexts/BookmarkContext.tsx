@@ -23,8 +23,7 @@ interface BookmarkProviderProps {
 }
 
 export const BookmarkProvider: React.FC<BookmarkProviderProps> = ({ children }) => {
-  // TESTING: Start with some hardcoded bookmarks to test if context works
-  const [bookmarkedItems, setBookmarkedItems] = useState<string[]>(['amalfi', 'kyoto'])
+  const [bookmarkedItems, setBookmarkedItems] = useState<string[]>([])
 
   console.log('BookmarkProvider: Rendering with bookmarkedItems:', bookmarkedItems)
 
