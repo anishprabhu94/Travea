@@ -455,6 +455,10 @@ const styles = StyleSheet.create({
     flex: 2,
     alignItems: 'flex-start',
   },
+  pageTitleSection: {
+    paddingHorizontal: 20,
+    marginBottom: 8,
+  },
   pageTitle: {
     fontSize: 24,
     fontWeight: '600', // Semi-bold
