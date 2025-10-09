@@ -1014,9 +1014,6 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  editorialIcon: {
-    marginRight: 4,
-  },
   editorialBadgeText: {
     fontSize: 14,
     fontWeight: '600',
