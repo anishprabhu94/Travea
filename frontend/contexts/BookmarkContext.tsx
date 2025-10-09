@@ -25,11 +25,21 @@ export const BookmarkProvider: React.FC<BookmarkProviderProps> = ({ children }) 
   const [bookmarkedItems, setBookmarkedItems] = useState<string[]>([])
 
   const addBookmark = (itemId: string) => {
-    setBookmarkedItems(prev => [...prev, itemId])
+    console.log('BookmarkContext: Adding bookmark for ID:', itemId)
+    setBookmarkedItems(prev => {
+      const newItems = [...prev, itemId]
+      console.log('BookmarkContext: Updated bookmarkedItems:', newItems)
+      return newItems
+    })
   }
 
   const removeBookmark = (itemId: string) => {
-    setBookmarkedItems(prev => prev.filter(id => id !== itemId))
+    console.log('BookmarkContext: Removing bookmark for ID:', itemId)
+    setBookmarkedItems(prev => {
+      const newItems = prev.filter(id => id !== itemId)
+      console.log('BookmarkContext: Updated bookmarkedItems:', newItems)
+      return newItems
+    })
   }
 
   const isBookmarked = (itemId: string) => {
