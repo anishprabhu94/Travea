@@ -751,15 +751,27 @@ const styles = StyleSheet.create({
   },
   tagPill: {
     alignSelf: 'flex-start',
-    backgroundColor: 'rgba(201,169,109,0.25)',
+    backgroundColor: '#000000', // Black background for Conde Nast branding
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 30,
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 8px rgba(0,0,0,0.4)', // Subtle glow
+      },
+      default: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.4,
+        shadowRadius: 4,
+        elevation: 3,
+      },
+    }),
   },
   tagPillText: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#F8F8F8',
+    color: '#FFFFFF', // White text
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
