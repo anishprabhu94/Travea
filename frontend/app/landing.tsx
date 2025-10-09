@@ -399,8 +399,8 @@ export default function Landing() {
         >
           <Text style={styles.greetingMain}>Hello, Anish</Text>
           <Text style={styles.greetingSub}>
-            {activeMode === 'inspire' && 'Curated vacations, just for you.'}
-            {activeMode === 'weekend' && 'Hidden gems, waiting to be found.'}
+            {activeMode === 'vacations' && 'Curated vacations, just for you.'}
+            {activeMode === 'discover' && 'Hidden gems, waiting to be found.'}
             {activeMode === 'search' && 'Where would you like to go?'}
           </Text>
         </Animated.View>
