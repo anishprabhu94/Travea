@@ -701,10 +701,51 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  carouselContainer: {
+  scrollableContent: {
     flex: 1,
-    minHeight: 300, // Ensure minimum height for cards to be visible
-    marginBottom: 100, // Space for bottom dock
+  },
+  scrollableContentContainer: {
+    paddingBottom: 120, // Space for bottom dock
+  },
+  carouselSection: {
+    marginBottom: 32,
+  },
+  carouselHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    marginBottom: 16,
+  },
+  carouselTitle: {
+    fontSize: 22,
+    fontWeight: '600',
+    color: '#F8F8F8',
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  arrowButton: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: 'rgba(25,25,25,0.4)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...Platform.select({
+      web: {
+        transition: 'all 0.2s ease-in-out',
+        '&:hover': {
+          backgroundColor: 'rgba(201,169,109,0.65)',
+          transform: 'scale(1.05)',
+        },
+      },
+    }),
+  },
+  carouselContainer: {
+    marginBottom: 100, // Space for bottom dock (legacy - can remove)
   },
   carousel: {
     flex: 1,
