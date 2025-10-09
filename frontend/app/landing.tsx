@@ -815,7 +815,7 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
   },
   cardWrapper: {
-    width: width - 32,
+    width: width - 80, // Reduced from 32 to 80 for cleaner, more compact cards
     marginRight: 16,
   },
   destinationCard: {
