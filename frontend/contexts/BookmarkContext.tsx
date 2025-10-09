@@ -23,7 +23,10 @@ interface BookmarkProviderProps {
 }
 
 export const BookmarkProvider: React.FC<BookmarkProviderProps> = ({ children }) => {
-  const [bookmarkedItems, setBookmarkedItems] = useState<string[]>([])
+  // TESTING: Start with some hardcoded bookmarks to test if context works
+  const [bookmarkedItems, setBookmarkedItems] = useState<string[]>(['amalfi', 'kyoto'])
+
+  console.log('BookmarkProvider: Rendering with bookmarkedItems:', bookmarkedItems)
 
   // Load bookmarks from storage on mount
   useEffect(() => {
@@ -34,6 +37,9 @@ export const BookmarkProvider: React.FC<BookmarkProviderProps> = ({ children }) 
           const parsed = JSON.parse(stored)
           console.log('BookmarkContext: Loaded from storage:', parsed)
           setBookmarkedItems(parsed)
+        } else {
+          // If no stored data, keep the test data
+          console.log('BookmarkContext: No stored data, using test bookmarks')
         }
       } catch (error) {
         console.log('BookmarkContext: Error loading bookmarks:', error)
