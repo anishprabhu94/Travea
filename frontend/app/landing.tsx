@@ -202,7 +202,6 @@ export default function Landing() {
         { title: 'Curated for You', cards: get4Cards(getCurrentCards()) },
         { title: 'Trending', cards: get4Cards(getCurrentCards()) },
         { title: 'Seasonal Highlights', cards: get4Cards(getCurrentCards()) },
-        { title: 'Escape Themes', cards: get4Cards(getCurrentCards()) },
       ]
     } else if (activeMode === 'weekend') {
       return [
