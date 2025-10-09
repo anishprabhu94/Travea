@@ -38,8 +38,7 @@ export const BookmarkProvider: React.FC<BookmarkProviderProps> = ({ children }) 
           setBookmarkedItems(parsed)
         } else {
           // If no stored data, keep the test data
-          console.log('BookmarkContext: No stored data, adding demo bookmarks to show reverted button')
-        setBookmarkedItems(['amalfi', 'santorini']) // Demo bookmarks to show reverted Canvas button
+          console.log('BookmarkContext: No stored data, using test bookmarks')
         }
       } catch (error) {
         console.log('BookmarkContext: Error loading bookmarks:', error)
