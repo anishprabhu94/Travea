@@ -947,7 +947,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '400',
     color: 'rgba(255,255,255,0.85)',
-    marginBottom: 12,
+    marginBottom: 8, // Reduced margin for tighter layout
     lineHeight: 20,
     letterSpacing: 0.1,
     fontFamily: Platform.select({
