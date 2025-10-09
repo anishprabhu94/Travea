@@ -602,7 +602,6 @@ const styles = StyleSheet.create({
   cardWrapper: {
     width: width - 32,
     marginRight: 16,
-    backgroundColor: 'rgba(255,0,0,0.3)', // Temporary red tint to see if cards exist
   },
   destinationCard: {
     height: height * 0.55, // Reduced from 68% to 55%
