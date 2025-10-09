@@ -29,8 +29,9 @@ interface SavedDestination {
   isCondeNastPick?: boolean
 }
 
-// Mock saved destinations data - matching unique city names from landing page
+// Mock saved destinations data - all unique cities from landing page
 const mockSavedDestinations: SavedDestination[] = [
+  // Vacations destinations
   {
     id: 'amalfi',
     city: 'Amalfi',
@@ -71,13 +72,53 @@ const mockSavedDestinations: SavedDestination[] = [
     sourceTab: 'Vacations'
   },
   {
+    id: 'barcelona',
+    city: 'Barcelona',
+    region: 'Spain',
+    tagline: 'Gaudi dreams & tapas nights',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+    transport: [
+      { icon: 'airplane-outline', time: '8h 30m' },
+      { icon: 'train-outline', time: '12h 15m' }
+    ],
+    sourceCarousel: 'Curated for You',
+    sourceTab: 'Vacations'
+  },
+  {
+    id: 'vienna',
+    city: 'Vienna',
+    region: 'Austria',
+    tagline: 'Imperial elegance & coffee culture',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+    transport: [
+      { icon: 'airplane-outline', time: '9h 45m' },
+      { icon: 'train-outline', time: '14h 20m' }
+    ],
+    sourceCarousel: 'Trending Now',
+    sourceTab: 'Vacations'
+  },
+  {
+    id: 'lisbon',
+    city: 'Lisbon',
+    region: 'Portugal',
+    tagline: 'Tram rides & golden sunsets',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/71gsrwd0_output%20%286%29.jpg',
+    transport: [
+      { icon: 'airplane-outline', time: '10h 15m' }
+    ],
+    sourceCarousel: 'Seasonal Highlights',
+    sourceTab: 'Vacations'
+  },
+  // Discover destinations
+  {
     id: 'santorini',
     city: 'Santorini',
     region: 'Greece',
-    tagline: 'Wine alleys & golden light',
+    tagline: 'Whitewashed beauty & wine views',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/cjd9m4ea_Sonoma.jpg',
     transport: [
-      { icon: 'car-outline', time: '1h 30m' }
+      { icon: 'car-outline', time: '1h 30m' },
+      { icon: 'airplane-outline', time: '3h 20m' }
     ],
     sourceCarousel: 'Slow Living',
     sourceTab: 'Discover'
@@ -86,7 +127,7 @@ const mockSavedDestinations: SavedDestination[] = [
     id: 'provence',
     city: 'Provence',
     region: 'France',
-    tagline: 'Cliffside cafés & slow tides',
+    tagline: 'Lavender fields & market towns',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/wokepbpr_carmel.jpg',
     transport: [
       { icon: 'car-outline', time: '2h 15m' },
@@ -99,11 +140,47 @@ const mockSavedDestinations: SavedDestination[] = [
     id: 'tuscany',
     city: 'Tuscany',
     region: 'Italy',
-    tagline: 'Misty cliffs & endless roads',
+    tagline: 'Rolling hills & vineyard paths',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/pk6sky07_big%20sur.jpg',
     transport: [
       { icon: 'car-outline', time: '3h 05m' },
       { icon: 'airplane-outline', time: '1h 15m' }
+    ],
+    sourceCarousel: 'Escape Themes',
+    sourceTab: 'Discover'
+  },
+  {
+    id: 'bali',
+    city: 'Bali',
+    region: 'Indonesia',
+    tagline: 'Temple serenity & rice terraces',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/cjd9m4ea_Sonoma.jpg',
+    transport: [
+      { icon: 'airplane-outline', time: '15h 30m' }
+    ],
+    sourceCarousel: 'Slow Living',
+    sourceTab: 'Discover'
+  },
+  {
+    id: 'maldives',
+    city: 'Maldives',
+    region: 'Indian Ocean',
+    tagline: 'Overwater luxury & crystal seas',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/wokepbpr_carmel.jpg',
+    transport: [
+      { icon: 'airplane-outline', time: '18h 45m' }
+    ],
+    sourceCarousel: 'Quick Getaways',
+    sourceTab: 'Discover'
+  },
+  {
+    id: 'patagonia',
+    city: 'Patagonia',
+    region: 'Chile',
+    tagline: 'Wild landscapes & glacier views',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/pk6sky07_big%20sur.jpg',
+    transport: [
+      { icon: 'airplane-outline', time: '20h 15m' }
     ],
     sourceCarousel: 'Escape Themes',
     sourceTab: 'Discover'
