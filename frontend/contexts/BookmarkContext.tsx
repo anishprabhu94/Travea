@@ -25,12 +25,47 @@ interface BookmarkProviderProps {
 export const BookmarkProvider: React.FC<BookmarkProviderProps> = ({ children }) => {
   const [bookmarkedItems, setBookmarkedItems] = useState<string[]>([])
 
+  // Load bookmarks from storage on mount
+  useEffect(() => {
+    const loadBookmarks = async () => {
+      try {
+        const stored = await AsyncStorage.getItem('@travea_bookmarks')
+        if (stored) {
+          const parsed = JSON.parse(stored)
+          console.log('BookmarkContext: Loaded from storage:', parsed)
+          setBookmarkedItems(parsed)
+        }
+      } catch (error) {
+        console.log('BookmarkContext: Error loading bookmarks:', error)
+      }
+    }
+    loadBookmarks()
+  }, [])
+
+  // Save to storage whenever bookmarks change
+  useEffect(() => {
+    const saveBookmarks = async () => {
+      try {
+        await AsyncStorage.setItem('@travea_bookmarks', JSON.stringify(bookmarkedItems))
+        console.log('BookmarkContext: Saved to storage:', bookmarkedItems)
+      } catch (error) {
+        console.log('BookmarkContext: Error saving bookmarks:', error)
+      }
+    }
+    if (bookmarkedItems.length > 0) {
+      saveBookmarks()
+    }
+  }, [bookmarkedItems])
+
   const addBookmark = (itemId: string) => {
     console.log('BookmarkContext: Adding bookmark for ID:', itemId)
     setBookmarkedItems(prev => {
-      const newItems = [...prev, itemId]
-      console.log('BookmarkContext: Updated bookmarkedItems:', newItems)
-      return newItems
+      if (!prev.includes(itemId)) {
+        const newItems = [...prev, itemId]
+        console.log('BookmarkContext: Updated bookmarkedItems:', newItems)
+        return newItems
+      }
+      return prev
     })
   }
 
