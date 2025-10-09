@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Reduce the height of the email, password and full name panes"
+user_problem_statement: "Complete landing page carousel card styling refinements - make frosted info panes lighter and airier, fix destination header format, ensure bookmark icons are in frosted containers with bronze stroke, and refine overall card aesthetics"
 
 frontend:
   - task: "Reduce input field height for all input panes"
