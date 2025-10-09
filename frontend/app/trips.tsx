@@ -585,7 +585,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollableContentContainer: {
-    paddingBottom: 40,
+    paddingBottom: 120, // Space for bottom dock
   },
   carouselSection: {
     marginBottom: 32,
