@@ -405,6 +405,7 @@ export default function Landing() {
                 {/* Carousel Title with Frosted Button */}
                 <View style={styles.carouselHeader}>
                   <Text style={styles.carouselTitle}>{carousel.title}</Text>
+                  <View style={styles.titleArrowSpacing} />
                   <TouchableOpacity style={styles.frostedButton} activeOpacity={0.8}>
                     <BlurView intensity={12} tint="light" style={styles.frostedButtonBlur}>
                       <View style={styles.frostedButtonInner}>
