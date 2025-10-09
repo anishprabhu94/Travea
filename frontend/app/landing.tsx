@@ -267,11 +267,8 @@ export default function Landing() {
             console.log('City:', destination.city)
             console.log('ID:', destination.id)
             
-            // Use the unique city name as bookmark ID (e.g., "Amalfi 2", "Kyoto 1")
-            const bookmarkId = destination.city.toLowerCase().replace(/\s+/g, '')
-            console.log('Using bookmark ID:', bookmarkId)
-            
-            handleBookmark(bookmarkId)
+            // Use the simple destination ID
+            handleBookmark(destination.id)
           }}
           activeOpacity={0.8}
         >
