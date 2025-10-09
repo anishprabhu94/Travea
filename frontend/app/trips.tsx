@@ -755,6 +755,13 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     overflow: 'hidden',
   },
+  condeNastBadgeTopRight: {
+    position: 'absolute',
+    top: 16,
+    right: 16,
+    borderRadius: 14,
+    overflow: 'hidden',
+  },
   condeNastBadgeBlur: {
     borderRadius: 14,
     overflow: 'hidden',
