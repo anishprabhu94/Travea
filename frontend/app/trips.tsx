@@ -843,13 +843,13 @@ const styles = StyleSheet.create({
     marginTop: 12, // Reduced margin for tighter layout
   },
   canvasIconContainer: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
+    width: 16,
+    height: 16,
+    borderRadius: 8,
     backgroundColor: 'rgba(255,255,255,0.15)',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 8,
+    marginRight: 6,
     ...Platform.select({
       web: {
         backdropFilter: 'blur(10px)',
