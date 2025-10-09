@@ -857,7 +857,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: '29%',
+    height: '25%', // Smaller footprint - more refined
     justifyContent: 'flex-end',
     paddingHorizontal: 16,
     paddingBottom: 16,
