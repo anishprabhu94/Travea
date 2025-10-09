@@ -218,17 +218,18 @@ export default function Landing() {
 
   // Carousel configurations
   const getCarouselConfig = () => {
+    const baseCards = getCurrentCards()
     if (activeMode === 'inspire') {
       return [
-        { title: 'Curated for You', cards: get4Cards(getCurrentCards()) },
-        { title: 'Trending', cards: get4Cards(getCurrentCards()) },
-        { title: 'Seasonal Highlights', cards: get4Cards(getCurrentCards()) },
+        { title: 'Curated for You', cards: get4Cards(baseCards, 'inspire_curated') },
+        { title: 'Trending', cards: get4Cards(baseCards, 'inspire_trending') },
+        { title: 'Seasonal Highlights', cards: get4Cards(baseCards, 'inspire_seasonal') },
       ]
     } else if (activeMode === 'weekend') {
       return [
-        { title: 'Quick Getaways', cards: get4Cards(getCurrentCards()) },
-        { title: 'Slow Living', cards: get4Cards(getCurrentCards()) },
-        { title: 'Escape Themes', cards: get4Cards(getCurrentCards()) },
+        { title: 'Quick Getaways', cards: get4Cards(baseCards, 'weekend_quick') },
+        { title: 'Slow Living', cards: get4Cards(baseCards, 'weekend_slow') },
+        { title: 'Escape Themes', cards: get4Cards(baseCards, 'weekend_escape') },
       ]
     }
     return []
