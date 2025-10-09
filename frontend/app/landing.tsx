@@ -298,7 +298,7 @@ export default function Landing() {
           <Text style={styles.greetingMain}>Hello, Anish</Text>
           <Text style={styles.greetingSub}>
             {activeMode === 'inspire' && 'Curated vacations, just for you.'}
-            {activeMode === 'weekend' && 'Getaways, made for you.'}
+            {activeMode === 'weekend' && 'Hidden gems, waiting to be found.'}
             {activeMode === 'search' && 'Where would you like to go?'}
           </Text>
         </Animated.View>
