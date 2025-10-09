@@ -390,9 +390,14 @@ export default function Landing() {
                 {/* Trending Section */}
                 <View style={styles.trendingSection}>
                   <Text style={styles.trendingLabel}>trending now</Text>
-                  <View style={styles.trendingGrid}>
-                    {['Lisbon', 'Kyoto', 'Marrakech', 'Reykjavík'].map((destination, index) => (
-                      <TouchableOpacity key={index} activeOpacity={0.8}>
+                  <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    style={styles.trendingScrollView}
+                    contentContainerStyle={styles.trendingContent}
+                  >
+                    {['Lisbon', 'Kyoto', 'Marrakech', 'Reykjavík', 'Venice', 'Santorini'].map((destination, index) => (
+                      <TouchableOpacity key={index} activeOpacity={0.7} style={styles.trendingPillWrapper}>
                         <BlurView intensity={20} tint="light" style={styles.trendingPill}>
                           <View style={styles.trendingPillInner}>
                             <Text style={styles.trendingPillText}>{destination}</Text>
@@ -400,7 +405,7 @@ export default function Landing() {
                         </BlurView>
                       </TouchableOpacity>
                     ))}
-                  </View>
+                  </ScrollView>
                 </View>
               </View>
             </BlurView>
