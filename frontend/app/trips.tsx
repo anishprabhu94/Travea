@@ -863,8 +863,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(25,25,25,0.45)',
-    borderRadius: 12,
-    paddingVertical: 10,
+    borderRadius: 8, // Matching primary action
+    paddingVertical: 6, // Reduced height to match
     paddingHorizontal: 12,
     ...Platform.select({
       web: {
