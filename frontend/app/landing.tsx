@@ -944,7 +944,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   trendingPillInner: {
-    backgroundColor: 'rgba(25,25,25,0.45)', // Luxury travel tag background
+    backgroundColor: 'rgba(45,45,45,0.6)', // Lighter for better visibility
     paddingHorizontal: 20, // 8px 20px as specified
     paddingVertical: 8,
     ...Platform.select({
