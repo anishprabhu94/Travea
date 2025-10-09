@@ -387,21 +387,37 @@ export default function Landing() {
           </BlurView>
         </View>
 
-        {/* Carousel */}
+        {/* Multi-Carousel Content */}
         {activeMode !== 'search' && (
-          <View key={activeMode} style={styles.carouselContainer}>
-            <ScrollView
-              horizontal
-              pagingEnabled
-              showsHorizontalScrollIndicator={false}
-              style={styles.carousel}
-              contentContainerStyle={styles.carouselContent}
-            >
-              {getCurrentCards().map((destination, index) => 
-                renderDestinationCard(destination, index)
-              )}
-            </ScrollView>
-          </View>
+          <ScrollView 
+            style={styles.scrollableContent}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.scrollableContentContainer}
+          >
+            {getCarouselConfig().map((carousel, carouselIndex) => (
+              <View key={`${activeMode}-${carouselIndex}`} style={styles.carouselSection}>
+                {/* Carousel Title with Arrow */}
+                <View style={styles.carouselHeader}>
+                  <Text style={styles.carouselTitle}>{carousel.title}</Text>
+                  <TouchableOpacity style={styles.arrowButton} activeOpacity={0.8}>
+                    <Ionicons name="arrow-forward" size={18} color="rgba(255,255,255,0.7)" />
+                  </TouchableOpacity>
+                </View>
+
+                {/* Horizontal Carousel */}
+                <ScrollView
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  style={styles.carousel}
+                  contentContainerStyle={styles.carouselContent}
+                >
+                  {carousel.cards.map((destination, cardIndex) => 
+                    renderDestinationCard(destination, cardIndex)
+                  )}
+                </ScrollView>
+              </View>
+            ))}
+          </ScrollView>
         )}
 
         {/* Search Pane */}
