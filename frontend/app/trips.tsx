@@ -806,71 +806,41 @@ const styles = StyleSheet.create({
     color: 'rgba(255,255,255,0.6)',
     fontWeight: '500',
   },
-  integratedActions: {
-    flexDirection: 'row',
-    gap: 12,
-    marginTop: 12, // Reduced margin for tighter layout
+  canvasButtonContainer: {
+    marginTop: 6, // 6px vertical padding between transport row and button
+    alignItems: 'flex-start', // Align left under transport row
   },
-  canvasIconContainer: {
-    width: 16,
-    height: 16,
-    borderRadius: 8,
-    backgroundColor: 'rgba(255,255,255,0.15)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 6,
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(10px)',
-      },
-    }),
-  },
-  actionIcon: {
-    marginRight: 6,
-  },
-  cardActions: {
-    flexDirection: 'row',
-    gap: 12,
-    paddingTop: 12,
-  },
-  primaryAction: {
-    flex: 1,
+  canvasButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(201,169,109,0.25)',
-    borderRadius: 8, // Smaller radius for sleeker look
-    paddingVertical: 6, // Reduced height
-    paddingHorizontal: 12,
+    width: 85, // 80-90px width
+    height: 29, // 28-30px height
+    borderRadius: 15, // 14-16px for pill feel
+    backgroundColor: 'rgba(201,169,109,0.25)', // Frosted bronze glass
+    borderWidth: 0.5,
+    borderColor: 'rgba(201,169,109,0.35)',
+    paddingHorizontal: 8,
     ...Platform.select({
       web: {
-        boxShadow: 'inset 0 1px 3px rgba(255,255,255,0.1)',
+        backdropFilter: 'blur(20px)',
+        boxShadow: 'inset 0 0 8px rgba(201,169,109,0.25)', // Soft inner glow
+        transition: 'all 220ms ease-in-out',
       },
     }),
   },
-  primaryActionBlur: {
-    borderRadius: 12,
-    overflow: 'hidden',
+  canvasIcon: {
+    marginRight: 5, // 4-6px spacing
   },
-  primaryActionInner: {
-    backgroundColor: 'rgba(201,169,109,0.25)', // Frosted bronze
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    alignItems: 'center',
-    ...Platform.select({
-      web: {
-        boxShadow: 'inset 0 1px 3px rgba(255,255,255,0.1)',
-      },
-    }),
-  },
-  primaryActionText: {
-    fontSize: 12, // Smaller for canvas button
-    fontWeight: '600',
-    color: '#F8F8F8',
+  canvasButtonText: {
+    fontSize: 13, // 13px
+    fontWeight: '500', // Inter Medium
+    color: '#F8F8F8', // Warm white
+    letterSpacing: 0.25, // +0.25px letter spacing
     fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Neue Montreal',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      ios: 'Inter',
+      android: 'Inter', 
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
   secondaryAction: {
