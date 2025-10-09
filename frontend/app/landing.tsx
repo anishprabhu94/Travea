@@ -899,12 +899,14 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start', // Left align the section
   },
   trendingLabel: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: 'rgba(255,255,255,0.8)',
-    marginBottom: 16,
-    marginLeft: 18, // Inline with search bar starting position
+    fontSize: 14,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.75)', // Warm white
+    marginBottom: 18, // More breathing space
+    textTransform: 'uppercase',
+    letterSpacing: 0.8, // Elegant spacing
     textAlign: 'left',
+    alignSelf: 'flex-start',
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
