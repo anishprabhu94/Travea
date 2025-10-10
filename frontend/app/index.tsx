@@ -143,7 +143,7 @@ export default function Index() {
                 activeOpacity={0.8}
               >
                 <LinearGradient
-                  colors={['#C9A96D', '#B8956A']}
+                  colors={['#B8956A', '#A8855C']} 
                   style={styles.gradientButton}
                 >
                   <Text style={styles.primaryButtonText}>
