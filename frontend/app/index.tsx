@@ -92,9 +92,16 @@ export default function Index() {
       {/* Content */}
       <View style={styles.contentContainer}>
         
-        {/* Center-aligned frosted glass pane */}
-        <BlurView intensity={25} tint="dark" style={styles.mainPane}>
-          <View style={styles.paneInner}>
+        {/* Center-aligned frosted glass pane with luxury travel image */}
+        <View style={styles.mainPane}>
+          <ImageBackground
+            source={{ uri: 'https://customer-assets.emergentagent.com/job_c851a5c2-e443-4a96-b503-41a7575b9658/artifacts/eym75xuh_sign%20in%20final.jpg' }}
+            style={styles.paneImageBackground}
+            imageStyle={styles.paneImageStyle}
+          >
+            <BlurView intensity={25} tint="dark" style={styles.paneBlurOverlay}>
+              <View style={styles.bronzeGradientOverlay} />
+              <View style={styles.paneInner}>
             
             {/* TRĀVEA Logo and tagline */}
             <View style={styles.logoSection}>
