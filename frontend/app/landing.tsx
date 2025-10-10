@@ -768,18 +768,24 @@ const styles = StyleSheet.create({
   },
   chipGlow: {
     position: 'absolute',
-    top: -12,
-    left: -12,
-    right: -12,
-    bottom: -12,
-    borderRadius: 42,
-    backgroundColor: 'rgba(201,169,109,0.4)',
+    top: -2,
+    left: -2,
+    right: -2,
+    bottom: -2,
+    borderRadius: 20, // Adjust radius to match new chip radius
+    backgroundColor: 'transparent', // Transparent background for glow only
     ...Platform.select({
       web: {
-        boxShadow: '0 0 25px rgba(201,169,109,0.6)',
+        boxShadow: '0 0 12px rgba(201,169,109,0.6)', // Soft bronze glow as specified
+      },
+      default: {
+        shadowColor: '#C9A96D',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.6,
+        shadowRadius: 6,
+        elevation: 5,
       },
     }),
-    zIndex: -1,
   },
   taglineContainer: {
     paddingHorizontal: 20,
