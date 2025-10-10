@@ -750,10 +750,93 @@ export default function TripCanvas() {
     )
   }
 
-  // Booking Overview - 2×2 Grid
-  const BookingHub = () => (
+  // Booking Hub - Illuminated Ribbons
+  const BookingHub = () => {
+    const ribbons = [
+      { icon: 'airplane', title: 'Flights', progress: 100, count: '2 of 2', cta: 'booked', color: '#CBB88C' },
+      { icon: 'bed', title: 'Stays', progress: 67, count: '2 of 3', cta: 'booked', color: '#CBB88C' },
+      { icon: 'car', title: 'Transport', progress: 50, count: '1 of 2', cta: 'book', color: '#D6C7A1' },
+      { icon: 'ticket', title: 'Experiences', progress: 0, count: '0 of 5', cta: 'explore', color: '#B4ADA2' },
+      { icon: 'restaurant', title: 'Restaurants', progress: 0, count: '0 of 8', cta: 'explore', color: '#B4ADA2' },
+    ]
+
+    return (
+      <View style={styles.ribbonContainer}>
+        {ribbons.map((ribbon, index) => (
+          <Animated.View 
+            key={ribbon.title}
+            style={[
+              styles.ribbonWrapper,
+              { 
+                opacity: fadeAnimation,
+                transform: [{ translateY: fadeAnimation.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [20, 0]
+                })}]
+              }
+            ]}
+          >
+            <TouchableOpacity 
+              style={styles.ribbon}
+              activeOpacity={0.85}
+            >
+              <BlurView intensity={40} tint="dark" style={styles.ribbonBlur}>
+                <View style={[styles.ribbonInner, { borderBottomColor: ribbon.color }]}>
+                  {/* Left: Icon + Title */}
+                  <View style={styles.ribbonLeft}>
+                    <View style={styles.ribbonIconContainer}>
+                      <Ionicons 
+                        name={ribbon.icon as any} 
+                        size={22} 
+                        color="#F8F8F8" 
+                        style={styles.ribbonIcon} 
+                      />
+                    </View>
+                    <Text style={styles.ribbonTitle}>{ribbon.title}</Text>
+                  </View>
+
+                  {/* Center: Progress Line + Text */}
+                  <View style={styles.ribbonCenter}>
+                    <Text style={styles.ribbonProgressText}>{ribbon.count}</Text>
+                    <View style={styles.ribbonProgressContainer}>
+                      <View style={[
+                        styles.ribbonProgressFill,
+                        { 
+                          width: `${ribbon.progress}%`,
+                          backgroundColor: ribbon.color
+                        }
+                      ]} />
+                    </View>
+                  </View>
+
+                  {/* Right: CTA Pill */}
+                  <View style={styles.ribbonRight}>
+                    <View style={[
+                      styles.ribbonCTA,
+                      ribbon.cta === 'booked' && styles.ctaBooked,
+                      ribbon.cta === 'book' && styles.ctaBook,
+                      ribbon.cta === 'explore' && styles.ctaExplore
+                    ]}>
+                      <Text style={[
+                        styles.ribbonCTAText,
+                        ribbon.cta === 'booked' && styles.ctaTextBooked
+                      ]}>
+                        {ribbon.cta === 'booked' ? 'Booked' : ribbon.cta === 'book' ? 'Book' : 'Explore'}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </BlurView>
+            </TouchableOpacity>
+          </Animated.View>
+        ))}
+      </View>
+    )
+  }
+
+  // Old grid structure removed
+  const OldBookingGrid = () => (
     <View style={styles.bookingOverviewContainer}>
-      {/* 5-tile Grid: Row 1 (3 tiles), Row 2 (2 tiles) */}
       <View style={styles.bookingGrid}>
         {/* Row 1 - Flights, Stays, Transport */}
         <View style={styles.bookingGridRow}>
