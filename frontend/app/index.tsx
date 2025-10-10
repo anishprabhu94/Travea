@@ -284,22 +284,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 24,
   },
+  
+  // Center-aligned frosted glass pane
   mainPane: {
-    width: width - 48,
-    maxWidth: 400,
-    borderRadius: 20,
+    borderRadius: 28, // radius 28px as specified
     overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.2)',
+    width: '100%',
+    maxWidth: 380,
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(25px)',
-        WebkitBackdropFilter: 'blur(25px)',
+        boxShadow: '0 12px 40px rgba(0, 0, 0, 0.45)', // Diffuse glow, no drop shadows
+      },
+      default: {
+        shadowColor: 'rgba(0, 0, 0, 0.8)',
+        shadowOffset: { width: 0, height: 12 },
+        shadowOpacity: 0.45,
+        shadowRadius: 20,
+        elevation: 15,
       },
     }),
   },
   paneInner: {
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: 'rgba(25,25,25,0.35)', // rgba(25,25,25,0.35), blur 25px as specified
     padding: 32,
   },
   logoSection: {
