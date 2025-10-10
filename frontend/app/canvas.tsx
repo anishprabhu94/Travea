@@ -1161,10 +1161,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   
-  // Small frosted status pill (centered)
+  // Slightly larger frosted status pill (centered) - more prominent
   statusPill: {
-    paddingHorizontal: 12,
-    paddingVertical: 4,
+    paddingHorizontal: 14, // Increased from 12
+    paddingVertical: 5, // Increased from 4
     borderRadius: 12,
     backgroundColor: 'rgba(255,255,255,0.1)', // Frosted translucency
     ...Platform.select({
@@ -1185,20 +1185,20 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Status pill color variations with tint matching
+  // Status pill color variations with darker, more distinct shades
   pillBooked: {
-    backgroundColor: 'rgba(203,184,140,0.3)', // Champagne Gold tint
+    backgroundColor: 'rgba(183,164,120,0.38)', // Darker Champagne Gold - more distinct
   },
   pillSaved: {
-    backgroundColor: 'rgba(214,199,161,0.3)', // Sand Beige tint
+    backgroundColor: 'rgba(194,179,141,0.35)', // Darker Sand Beige - distinct from Booked
   },
   pillPending: {
-    backgroundColor: 'rgba(180,173,162,0.3)', // Warm Gray tint
+    backgroundColor: 'rgba(160,153,142,0.32)', // Darker Warm Gray
   },
   
   statusPillText: {
-    fontSize: 11,
-    color: 'rgba(248,248,248,0.8)', // 80% white as specified
+    fontSize: 12, // Increased from 11 for better readability
+    color: 'rgba(248,248,248,0.85)', // Increased opacity from 80% to 85%
     fontWeight: '500',
     letterSpacing: 0.2,
     textAlign: 'center',
