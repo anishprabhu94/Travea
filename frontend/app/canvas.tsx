@@ -322,7 +322,7 @@ export default function TripCanvas() {
                 styles.segmentText,
                 activeSegmentId === segment.id && styles.segmentTextActive
               ]}>
-                {segment.days} {segment.city}
+                {segment.days}
               </Text>
             </TouchableOpacity>
           ))}
