@@ -601,17 +601,19 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 0,
     padding: 0,
-    // Edge-to-edge "infinity-pool" effect
+    backgroundColor: '#0E0E0E', // Deep charcoal base
     ...Platform.select({
       web: {
         minHeight: '100vh',
         margin: 0,
         padding: 0,
+        background: 'linear-gradient(180deg, #0E0E0E 0%, #151515 100%)', // Deep charcoal gradient
+      },
+      default: {
+        // Gradient simulation for native using backgroundColor
+        backgroundColor: '#0E0E0E',
       },
     }),
-  },
-  backgroundImage: {
-    // No overlay here - applied in separate view
   },
   vignetteOverlay: {
     position: 'absolute',
@@ -619,14 +621,12 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'transparent',
     ...Platform.select({
       web: {
-        background: 'radial-gradient(circle, rgba(0,0,0,0) 30%, rgba(0,0,0,0.3) 100%)',
+        background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.4) 100%)', // Subtle vignette edge fade
       },
       default: {
-        // For mobile, we'll use a subtle dark overlay
-        backgroundColor: 'rgba(0,0,0,0.1)',
+        backgroundColor: 'rgba(0, 0, 0, 0.1)', // Subtle vignette for native
       },
     }),
   },
