@@ -334,7 +334,7 @@ const styles = StyleSheet.create({
   },
   tagline: {
     fontSize: 16,
-    color: '#F8F8F8', // Warm White
+    color: 'rgba(255,255,255,0.7)', // Light gray as specified
     marginTop: 12,
     letterSpacing: 1.2,
     fontFamily: Platform.select({
