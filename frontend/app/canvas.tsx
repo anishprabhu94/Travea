@@ -621,8 +621,8 @@ const styles = StyleSheet.create({
   headerTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    marginBottom: 32, // Generous spacing to avoid congestion
+    alignItems: 'center', // Align profile icon inline with logo
+    marginBottom: 24, // Reduced for more compact header
   },
   logoContainer: {
     // Clean spacing for logo
