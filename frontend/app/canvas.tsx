@@ -813,9 +813,64 @@ export default function TripCanvas() {
           </TouchableOpacity>
         </View>
 
-        {/* Row 2 */}
+        {/* Row 2 - Experiences, Restaurants */}
         <View style={styles.bookingGridRow}>
-          {/* Transport Tile */}
+          {/* Experiences Tile */}
+          <TouchableOpacity style={styles.bookingTile} activeOpacity={0.85}>
+            <BlurView intensity={35} tint="light" style={styles.bookingTileBlur}>
+              <View style={styles.bookingTileInner}>
+                <View style={styles.tileArrowCircle}>
+                  <Ionicons name="arrow-forward" size={12} color="#F8F8F8" style={{ opacity: 0.98 }} />
+                </View>
+                
+                <Ionicons name="ticket-outline" size={32} color="#F8F8F8" style={styles.tileIcon} />
+                <Text style={styles.tileLabel}>Experiences</Text>
+                
+                <View style={styles.tileProgressBand}>
+                  <View style={[styles.tileProgressFill, styles.tileProgressPending, { width: '0%' }]} />
+                </View>
+                
+                <Text style={styles.tileRatioText}>0 of 5 Booked</Text>
+                
+                <View style={[styles.tileStatusPill, styles.tileStatusExplore]}>
+                  <Text style={styles.tileStatusText}>Explore</Text>
+                </View>
+              </View>
+            </BlurView>
+          </TouchableOpacity>
+
+          {/* Restaurants Tile */}
+          <TouchableOpacity style={styles.bookingTile} activeOpacity={0.85}>
+            <BlurView intensity={35} tint="light" style={styles.bookingTileBlur}>
+              <View style={styles.bookingTileInner}>
+                <View style={styles.tileArrowCircle}>
+                  <Ionicons name="arrow-forward" size={12} color="#F8F8F8" style={{ opacity: 0.98 }} />
+                </View>
+                
+                <Ionicons name="restaurant-outline" size={32} color="#F8F8F8" style={styles.tileIcon} />
+                <Text style={styles.tileLabel}>Restaurants</Text>
+                
+                <View style={styles.tileProgressBand}>
+                  <View style={[styles.tileProgressFill, styles.tileProgressPending, { width: '0%' }]} />
+                </View>
+                
+                <Text style={styles.tileRatioText}>0 of 8 Booked</Text>
+                
+                <View style={[styles.tileStatusPill, styles.tileStatusExplore]}>
+                  <Text style={styles.tileStatusText}>Explore</Text>
+                </View>
+              </View>
+            </BlurView>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
+  )
+
+  // Remove old Transport tile from here
+  const OldTransportTileRemoved = () => (
+    <View style={styles.bookingGridRow}>
+          {/* Old Transport Tile - REMOVED */}
           <TouchableOpacity style={styles.bookingTile} activeOpacity={0.85}>
             <BlurView intensity={35} tint="light" style={styles.bookingTileBlur}>
               <View style={styles.bookingTileInner}>
