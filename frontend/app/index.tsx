@@ -57,8 +57,8 @@ export default function Index() {
       {/* Content */}
       <View style={styles.contentContainer}>
         
-        {/* Center-aligned frosted glass pane */}
-        <BlurView intensity={20} tint="dark" style={styles.mainPane}>
+        {/* Center-aligned glass pane */}
+        <View style={styles.mainPane}>
           <View style={styles.paneInner}>
             
             {/* TRĀVEA Logo and tagline */}
