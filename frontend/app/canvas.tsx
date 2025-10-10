@@ -1899,7 +1899,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: 'rgba(248,248,248,0.85)',
     letterSpacing: 0.3,
-    marginBottom: 14,
+    marginBottom: 12,
     fontFamily: Platform.select({
       ios: 'SF Pro Rounded',
       android: 'Neue Montreal',
@@ -1907,33 +1907,66 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Micro-line container
-  tileMicroLineContainer: {
-    flexDirection: 'row',
-    height: 4,
-    backgroundColor: 'rgba(255,255,255,0.08)',
-    borderRadius: 2,
+  // Horizontal progress band
+  tileProgressBand: {
+    height: 5,
+    backgroundColor: 'rgba(180,173,162,0.2)', // Translucent warm gray
+    borderRadius: 3,
     overflow: 'hidden',
-    marginBottom: 14,
-    gap: 2,
+    marginBottom: 8,
   },
   
-  tileMicroSegment: {
-    flex: 1,
-    height: 4,
-    borderRadius: 2,
+  tileProgressFill: {
+    height: '100%',
+    borderRadius: 3,
   },
   
-  tileMicroBooked: {
-    backgroundColor: '#CBB88C', // Champagne gold
+  tileProgressBooked: {
+    backgroundColor: '#CBB88C', // Gold glow
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 10px rgba(203,184,140,0.6)',
+      },
+      default: {
+        shadowColor: '#CBB88C',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.6,
+        shadowRadius: 5,
+      },
+    }),
   },
   
-  tileMicroSaved: {
+  tileProgressSaved: {
     backgroundColor: '#D6C7A1', // Sand beige
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 8px rgba(214,199,161,0.5)',
+      },
+      default: {
+        shadowColor: '#D6C7A1',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.5,
+        shadowRadius: 4,
+      },
+    }),
   },
   
-  tileMicroPending: {
-    backgroundColor: 'rgba(180,173,162,0.3)', // Warm gray
+  tileProgressPending: {
+    backgroundColor: 'rgba(180,173,162,0.4)', // Warm gray
+  },
+  
+  // Ratio text
+  tileRatioText: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: 'rgba(248,248,248,0.7)',
+    letterSpacing: 0.2,
+    marginBottom: 10,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Rounded',
+      android: 'Neue Montreal',
+      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
   },
   
   // Status pill
