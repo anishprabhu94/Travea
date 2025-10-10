@@ -467,16 +467,16 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   input: {
-    backgroundColor: 'rgba(255,255,255,0.08)', // Lighter input fields as specified
+    backgroundColor: 'rgba(255,255,255,0.12)', // Luminous translucency as specified (0.1-0.15 range)
     paddingHorizontal: 18,
     paddingVertical: 16,
     fontSize: 16,
-    color: '#F8F8F8', // White text
+    color: '#F8F8F8', // Warm white text
     fontWeight: '400',
     letterSpacing: 0.2,
     borderRadius: 14,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.1)',
+    borderColor: 'rgba(255,255,255,0.15)', // Enhanced border translucency
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
@@ -485,10 +485,11 @@ const styles = StyleSheet.create({
     ...Platform.select({
       web: {
         outline: 'none',
-        transition: 'all 200ms ease-in-out', // Smooth focus transition
+        transition: 'all 200ms ease-in-out',
+        boxShadow: 'inset 0 0 20px rgba(255,255,255,0.05)', // Subtle inner luminosity
         ':focus': {
-          borderColor: 'rgba(201,169,109,0.6)', // Bronze focus glow
-          boxShadow: '0 0 0 3px rgba(201,169,109,0.2)', // Inputs subtly glow on focus
+          borderColor: 'rgba(201,169,109,0.7)', // Enhanced bronze focus
+          boxShadow: '0 0 0 3px rgba(201,169,109,0.25), inset 0 0 20px rgba(255,255,255,0.08)', // Focus glow + inner luminosity
         },
       },
     }),
