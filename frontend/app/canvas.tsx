@@ -1154,11 +1154,11 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Status Dots
+  // Status Dots - Reduced
   statusDot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
+    width: 8, // Reduced from 10
+    height: 8, // Reduced from 10
+    borderRadius: 4, // Reduced from 5
   },
   
   statusDotOngoing: {
