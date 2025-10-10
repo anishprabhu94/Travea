@@ -645,18 +645,17 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   logoContainer: {
-    // TRĀVEA logo with soft bronze glow
+    // Reduced bronze glow for logo
     ...Platform.select({
       web: {
-        filter: 'drop-shadow(0 0 8px rgba(201,169,109,0.6))', // Soft bronze glow
+        filter: 'drop-shadow(0 0 6px rgba(201,169,109,0.4))', // Reduced from 8px/0.6 to 6px/0.4
       },
       default: {
-        // Native shadow for logo
         shadowColor: '#C9A96D',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.6,
-        shadowRadius: 8,
-        elevation: 4,
+        shadowOpacity: 0.4,
+        shadowRadius: 6,
+        elevation: 3,
       },
     }),
   },
