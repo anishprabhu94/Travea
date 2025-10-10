@@ -565,7 +565,7 @@ export default function TripCanvas() {
       >
         <TripHeader />
         <DayScroller />
-        <CityPane />
+        {activeSegment && <CityPane />}
         <BookingHub />
         
         {/* Bottom padding for dock */}
