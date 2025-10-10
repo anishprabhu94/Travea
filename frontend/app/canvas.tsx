@@ -197,14 +197,8 @@ export default function MyCanvas() {
             {/* Soft neutral grey veil overlay */}
             <View style={styles.cityCardGreyVeilOverlay} />
             
-            {/* Brightness and contrast adjustment overlay */}
-            <View style={styles.cityCardToneAdjustmentOverlay} />
-            
             {/* Refined vignette with depth */}
             <View style={styles.cityCardImageOverlay} />
-            
-            {/* Frosted glass pane overlay */}
-            <View style={styles.cityCardFrostedGlassOverlay} />
             
             {/* Bookmark Icon */}
             <View style={styles.cityCardBookmark}>
