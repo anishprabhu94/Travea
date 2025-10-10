@@ -353,7 +353,7 @@ export default function MyTrips() {
             >
               {activeTab === 'saved' && <View style={styles.tabChipGlow} />}
               <BlurView intensity={20} tint="light" style={styles.tabChipBlur}>
-                <View style={styles.tabChipContent}>
+                <View style={[styles.tabChipContent, activeTab === 'saved' && styles.tabChipContentActive]}>
                   <Ionicons name="bookmark-outline" size={16} color="rgba(255,255,255,0.9)" />
                   <Text style={[styles.tabChipLabel, activeTab === 'saved' && styles.tabChipLabelActive]}>
                     Saved
