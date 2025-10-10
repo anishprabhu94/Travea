@@ -331,9 +331,15 @@ const styles = StyleSheet.create({
   },
   tagline: {
     fontSize: 16,
-    color: 'rgba(255, 255, 255, 0.8)',
-    letterSpacing: 2,
-    fontWeight: '300',
+    color: '#F8F8F8', // Warm White
+    marginTop: 12,
+    letterSpacing: 1.2,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+    textAlign: 'center',
   },
   tabToggleContainer: {
     marginBottom: 24,
