@@ -1094,16 +1094,16 @@ const styles = StyleSheet.create({
   },
   
   arrowIcon: {
-    // Elegant smaller icon styling
+    opacity: 0.98, // Pearl-white, slightly brighter (95-100% opacity range)
     ...Platform.select({
       web: {
-        filter: 'drop-shadow(0 0 3px rgba(255,255,255,0.2))',
+        filter: 'drop-shadow(0 0 4px rgba(255,255,255,0.3)) brightness(1.05)', // Subtle glow
       },
       default: {
         shadowColor: '#FFFFFF',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.2,
-        shadowRadius: 1.5,
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
       },
     }),
   },
