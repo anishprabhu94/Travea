@@ -104,7 +104,7 @@ const mockCitySegments: CitySegment[] = [
 
 const mockActivities: { [key: string]: ActivityData } = {
   'segment-amalfi': {
-    stay: { status: 'booked', detail: 'Palazzo Avino' },
+    stay: { status: 'booked' },
     transport: { status: 'saved', count: 2 },
     restaurants: { status: 'pending' },
     experiences: { status: 'saved', count: 3 },
@@ -118,8 +118,8 @@ const mockActivities: { [key: string]: ActivityData } = {
   'segment-rome': {
     stay: { status: 'pending' },
     transport: { status: 'pending' },
-    restaurants: { status: 'saved', count: 2 },
-    experiences: { status: 'booked', detail: 'Vatican Museums' },
+    restaurants: { status: 'pending' },
+    experiences: { status: 'saved', count: 3 },
   },
 }
 
