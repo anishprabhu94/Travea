@@ -1041,7 +1041,7 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Bottom Navigation Dock
+  // Bottom Navigation Dock - Consistent across app
   dockContainer: {
     position: 'absolute',
     bottom: 0,
@@ -1051,47 +1051,50 @@ const styles = StyleSheet.create({
     paddingBottom: Platform.OS === 'ios' ? 34 : 24,
   },
   dock: {
+    width: '92%', // Match landing page width
+    height: 60, // Match landing page height
     borderRadius: 28,
     overflow: 'hidden',
-    shadowColor: 'rgba(0, 0, 0, 0.8)',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.3,
-    shadowRadius: 24,
-    elevation: 16,
+    alignSelf: 'center',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 20,
+      },
+      android: {
+        elevation: 8,
+      },
+      web: {
+        boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+      },
+    }),
   },
   dockInner: {
+    flex: 1,
+    backgroundColor: 'rgba(25,25,25,0.35)', // Match landing page background
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around',
-    paddingVertical: 16,
-    paddingHorizontal: 20,
-    backgroundColor: 'rgba(25,25,25,0.42)',
+    paddingHorizontal: 16,
   },
   dockItem: {
+    flex: 1,
     alignItems: 'center',
     paddingVertical: 8,
-    paddingHorizontal: 20,
-    borderRadius: 16,
-    position: 'relative',
   },
   dockItemActive: {
-    backgroundColor: 'rgba(201,169,109,0.1)',
+    // Active state handled by bronze color in icon and text
   },
   dockGlow: {
-    ...StyleSheet.absoluteFillObject,
-    borderRadius: 16,
-    shadowColor: '#C9A96D',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
+    // Removed for consistency with landing page
   },
   dockLabel: {
-    fontSize: 11,
+    fontSize: 10,
     color: 'rgba(255,255,255,0.6)',
-    marginTop: 4,
-    fontWeight: '400',
-    letterSpacing: 0.1,
+    marginTop: 2,
+    fontWeight: '500',
+    letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Inter',
