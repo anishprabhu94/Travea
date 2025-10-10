@@ -341,121 +341,203 @@ const styles = StyleSheet.create({
     }),
     textAlign: 'center',
   },
+  
+  // Frosted tab toggle for Sign In / Sign Up
   tabToggleContainer: {
-    marginBottom: 24,
+    marginBottom: 32,
   },
   tabToggleBlur: {
-    borderRadius: 12,
+    borderRadius: 16,
     overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.15)',
   },
   tabToggleInner: {
     flexDirection: 'row',
-    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    backgroundColor: 'rgba(255,255,255,0.05)', // Low opacity frosted background
     padding: 4,
   },
   tabButton: {
     flex: 1,
-    position: 'relative',
     paddingVertical: 12,
+    paddingHorizontal: 20,
     alignItems: 'center',
-    borderRadius: 8,
-    overflow: 'hidden',
+    borderRadius: 12,
+    position: 'relative',
   },
   tabButtonActive: {
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    // Active tab styling handled by bronze glow
   },
   tabGlow: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(201, 169, 109, 0.2)',
-    borderRadius: 8,
+    position: 'absolute',
+    top: -2,
+    left: -2,
+    right: -2,
+    bottom: -2,
+    borderRadius: 14,
+    backgroundColor: 'transparent',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 12px rgba(201,169,109,0.6)', // Bronze glow on active tab
+      },
+      default: {
+        shadowColor: '#C9A96D',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.6,
+        shadowRadius: 6,
+        elevation: 5,
+      },
+    }),
   },
   tabText: {
-    fontSize: 14,
-    color: 'rgba(255, 255, 255, 0.6)',
+    fontSize: 15,
+    color: 'rgba(255,255,255,0.7)',
     fontWeight: '500',
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
   },
   tabTextActive: {
-    color: '#FFFFFF',
+    color: '#F8F8F8',
     fontWeight: '600',
   },
+  
+  // Form content
   formSection: {
-    gap: 16,
+    width: '100%',
   },
   inputGroup: {
-    marginBottom: 8,
+    marginBottom: 18,
   },
   inputBlur: {
-    borderRadius: 10,
+    borderRadius: 14,
     overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.1)',
   },
   input: {
-    backgroundColor: 'rgba(255, 255, 255, 0.05)',
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    fontSize: 15,
-    color: '#FFFFFF',
+    backgroundColor: 'rgba(255,255,255,0.08)', // Low-opacity glass background
+    paddingHorizontal: 18,
+    paddingVertical: 16,
+    fontSize: 16,
+    color: '#F8F8F8', // White text
     fontWeight: '400',
+    letterSpacing: 0.2,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+    ...Platform.select({
+      web: {
+        outline: 'none',
+        border: 'none',
+      },
+    }),
   },
+  
+  // Bronze-gradient primary button
   primaryButton: {
-    borderRadius: 12,
-    overflow: 'hidden',
-    marginTop: 8,
+    marginTop: 12,
+    marginBottom: 28,
+    ...Platform.select({
+      web: {
+        transition: 'all 300ms ease-in-out', // Smooth transitions
+      },
+    }),
   },
   gradientButton: {
-    paddingVertical: 16,
+    paddingVertical: 18,
+    paddingHorizontal: 32,
+    borderRadius: 14,
     alignItems: 'center',
-    justifyContent: 'center',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 20px rgba(201,169,109,0.25)', // Subtle bronze glow
+      },
+      default: {
+        shadowColor: '#C9A96D',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.25,
+        shadowRadius: 10,
+        elevation: 8,
+      },
+    }),
   },
   primaryButtonText: {
     fontSize: 16,
-    color: '#FFFFFF',
     fontWeight: '600',
-    letterSpacing: 0.5,
+    color: '#F8F8F8',
+    letterSpacing: 0.4,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
   },
+  
+  // Divider
   dividerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 20,
+    marginBottom: 28,
   },
   dividerLine: {
     flex: 1,
     height: 1,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    backgroundColor: 'rgba(255,255,255,0.15)',
   },
   dividerText: {
-    fontSize: 12,
-    color: 'rgba(255, 255, 255, 0.6)',
-    marginHorizontal: 16,
+    fontSize: 13,
+    color: 'rgba(255,255,255,0.6)',
+    marginHorizontal: 20,
     fontWeight: '500',
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
   },
+  
+  // Frosted secondary buttons for OAuth
   oauthSection: {
-    gap: 12,
+    width: '100%',
   },
   oauthButton: {
-    borderRadius: 12,
-    overflow: 'hidden',
+    marginBottom: 14,
+    ...Platform.select({
+      web: {
+        transition: 'all 280ms ease-in-out', // Smooth transitions 280–320ms
+      },
+    }),
   },
   oauthBlur: {
-    borderRadius: 12,
+    borderRadius: 14,
     overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.1)',
   },
   oauthInner: {
-    backgroundColor: 'rgba(255, 255, 255, 0.05)',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 14,
-    gap: 10,
+    paddingVertical: 16,
+    paddingHorizontal: 24,
+    backgroundColor: 'rgba(255,255,255,0.05)', // Frosted secondary button background
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(15px)', // Subtle blur depth
+      },
+    }),
   },
   oauthText: {
-    fontSize: 14,
-    color: 'rgba(255, 255, 255, 0.85)',
+    fontSize: 15,
+    color: '#F8F8F8',
+    marginLeft: 14,
     fontWeight: '500',
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
   },
 });
