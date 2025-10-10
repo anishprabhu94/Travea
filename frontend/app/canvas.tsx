@@ -371,30 +371,56 @@ export default function TripCanvas() {
     </View>
   )
 
-  // Trip-Map Progress Line
-  const TripMapLine = () => (
-    <View style={styles.tripMapContainer}>
-      <Animated.View style={[styles.tripMapLine, { opacity: pulseAnimation }]}>
-        {/* Progress segments */}
-        <View style={styles.mapSegmentContainer}>
-          {/* Segment 1: Booked (Amalfi) */}
-          <View style={[styles.mapSegment, styles.mapSegmentBooked, { width: '30%' }]}>
-            <View style={[styles.mapDot, styles.mapDotFilled]} />
+  // Orbit Path - Semi-circular journey visualization
+  const OrbitPath = () => {
+    const destinations = [
+      { name: 'Rome', status: 'booked' },
+      { name: 'Amalfi', status: 'booked' },
+      { name: 'Florence', status: 'booked' },
+      { name: 'Venice', status: 'saved' },
+      { name: 'Milan', status: 'pending' },
+    ]
+
+    return (
+      <View style={styles.orbitPathContainer}>
+        {/* Semi-circular arc background */}
+        <View style={styles.orbitArcContainer}>
+          <Animated.View style={[styles.orbitArc, { opacity: pulseAnimation }]} />
+          
+          {/* Destination orbs positioned along the arc */}
+          <View style={styles.orbsContainer}>
+            {destinations.map((dest, index) => {
+              const totalOrbs = destinations.length
+              const position = (index / (totalOrbs - 1)) * 100 // 0% to 100%
+              
+              return (
+                <View
+                  key={dest.name}
+                  style={[
+                    styles.orbPosition,
+                    { left: `${position}%` }
+                  ]}
+                >
+                  <Animated.View
+                    style={[
+                      styles.orb,
+                      dest.status === 'booked' && styles.orbBooked,
+                      dest.status === 'saved' && styles.orbSaved,
+                      dest.status === 'pending' && styles.orbPending,
+                      index === 2 && { opacity: pulseAnimation }, // Active orb breathing
+                    ]}
+                  />
+                </View>
+              )
+            })}
           </View>
           
-          {/* Segment 2: Booked (Florence) */}
-          <View style={[styles.mapSegment, styles.mapSegmentBooked, { width: '35%' }]}>
-            <View style={[styles.mapDot, styles.mapDotFilled]} />
-          </View>
-          
-          {/* Segment 3: Pending (Rome) */}
-          <View style={[styles.mapSegment, styles.mapSegmentPending, { width: '35%' }]}>
-            <View style={[styles.mapDot, styles.mapDotEmpty]} />
-          </View>
+          {/* Motion shimmer particle */}
+          <Animated.View style={[styles.shimmerParticle, { opacity: pulseAnimation }]} />
         </View>
-      </Animated.View>
-    </View>
-  )
+      </View>
+    )
+  }
 
   // View Toggle
   const ViewToggle = () => (
