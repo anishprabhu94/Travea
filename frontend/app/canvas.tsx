@@ -371,6 +371,70 @@ export default function TripCanvas() {
     </View>
   )
 
+  // Trip-Map Progress Line
+  const TripMapLine = () => (
+    <View style={styles.tripMapContainer}>
+      <Animated.View style={[styles.tripMapLine, { opacity: pulseAnimation }]}>
+        {/* Progress segments */}
+        <View style={styles.mapSegmentContainer}>
+          {/* Segment 1: Booked (Amalfi) */}
+          <View style={[styles.mapSegment, styles.mapSegmentBooked, { width: '30%' }]}>
+            <View style={[styles.mapDot, styles.mapDotFilled]} />
+          </View>
+          
+          {/* Segment 2: Booked (Florence) */}
+          <View style={[styles.mapSegment, styles.mapSegmentBooked, { width: '35%' }]}>
+            <View style={[styles.mapDot, styles.mapDotFilled]} />
+          </View>
+          
+          {/* Segment 3: Pending (Rome) */}
+          <View style={[styles.mapSegment, styles.mapSegmentPending, { width: '35%' }]}>
+            <View style={[styles.mapDot, styles.mapDotEmpty]} />
+          </View>
+        </View>
+      </Animated.View>
+    </View>
+  )
+
+  // View Toggle
+  const ViewToggle = () => (
+    <View style={styles.viewToggleContainer}>
+      <View style={styles.viewToggleInner}>
+        <TouchableOpacity 
+          style={[
+            styles.togglePill,
+            activeView === 'booking' && styles.togglePillActive
+          ]}
+          onPress={() => setActiveView('booking')}
+          activeOpacity={0.8}
+        >
+          <Text style={[
+            styles.togglePillText,
+            activeView === 'booking' && styles.togglePillTextActive
+          ]}>
+            Booking Overview
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={[
+            styles.togglePill,
+            activeView === 'journey' && styles.togglePillActive
+          ]}
+          onPress={() => setActiveView('journey')}
+          activeOpacity={0.8}
+        >
+          <Text style={[
+            styles.togglePillText,
+            activeView === 'journey' && styles.togglePillTextActive
+          ]}>
+            Trip Journey
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  )
+
   const DayScroller = () => (
     <View style={styles.scrollerContainer}>
       <BlurView intensity={26} tint="dark" style={styles.dayScroller}>
