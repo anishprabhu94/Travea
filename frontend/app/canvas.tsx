@@ -305,7 +305,7 @@ export default function TripCanvas() {
                   })
                 }] 
               }}>
-                <Ionicons name="chevron-down" size={16} color="rgba(248,248,248,0.8)" />
+                <Ionicons name="chevron-down" size={14} color="rgba(248,248,248,0.8)" />
               </Animated.View>
             </TouchableOpacity>
 
