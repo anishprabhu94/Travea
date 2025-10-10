@@ -1917,9 +1917,12 @@ const styles = StyleSheet.create({
   },
   
   ribbonCTA: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
+    minWidth: 80, // Ensure equal dimensions
+    paddingHorizontal: 18,
+    paddingVertical: 9,
     borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
     ...Platform.select({
       web: {
         backdropFilter: 'blur(10px)',
