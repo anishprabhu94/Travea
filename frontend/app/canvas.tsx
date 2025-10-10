@@ -615,7 +615,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   tripHeaderInner: {
-    padding: 28,
+    padding: 20, // Reduced from 28 for more compact elegant look
     backgroundColor: 'rgba(25,25,25,0.42)',
   },
   headerTop: {
