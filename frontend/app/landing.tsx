@@ -432,7 +432,7 @@ export default function Landing() {
               >
                 {activeMode === 'discover' && <View style={styles.chipGlow} />}
                 <BlurView intensity={25} tint="light" style={styles.chipBlur}>
-                  <View style={styles.chipContent}>
+                  <View style={[styles.chipContent, activeMode === 'discover' && styles.chipContentActive]}>
                     <Ionicons name="compass-outline" size={16} color="rgba(255,255,255,0.9)" />
                     <Text style={[styles.chipLabel, activeMode === 'discover' && styles.chipLabelActive]}>
                       Discover
