@@ -781,6 +781,29 @@ export default function TripCanvas() {
               activeOpacity={0.85}
             >
               <BlurView intensity={40} tint="dark" style={styles.ribbonBlur}>
+                {/* Micro-particle light layer */}
+                <View style={styles.particleLayer} pointerEvents="none">
+                  {Array.from({ length: 12 }).map((_, i) => (
+                    <Animated.View
+                      key={i}
+                      style={[
+                        styles.particle,
+                        {
+                          left: `${Math.random() * 100}%`,
+                          top: `${Math.random() * 100}%`,
+                          width: 1.5 + Math.random() * 2,
+                          height: 1.5 + Math.random() * 2,
+                          backgroundColor: i < 7 ? '#CBB88C' : i < 10 ? '#D6C7A1' : '#B4ADA2',
+                          opacity: pulseAnimation.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [0.03 + Math.random() * 0.03, 0.05 + Math.random() * 0.03]
+                          }),
+                        }
+                      ]}
+                    />
+                  ))}
+                </View>
+                
                 <View style={[styles.ribbonInner, { borderBottomColor: ribbon.color }]}>
                   {/* Left: Icon with Circular Halo Progress */}
                   <View style={styles.ribbonLeft}>
