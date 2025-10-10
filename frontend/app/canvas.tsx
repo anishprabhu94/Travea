@@ -13,7 +13,7 @@ import {
 import { router } from 'expo-router'
 import { BlurView } from 'expo-blur'
 import { Ionicons } from '@expo/vector-icons'
-import { useBookmarkContext } from '../contexts/BookmarkContext'
+import { BookmarkContext } from '../contexts/BookmarkContext'
 import TraveaWordmark from '../components/TraveaWordmark'
 
 const { width, height } = Dimensions.get('window')
