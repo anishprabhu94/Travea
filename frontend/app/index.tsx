@@ -402,7 +402,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 16,
+    paddingVertical: 14, // Reduced from 16 to match main buttons
     paddingHorizontal: 24,
     backgroundColor: 'rgba(128,128,128,0.15)',
     borderWidth: 1,
