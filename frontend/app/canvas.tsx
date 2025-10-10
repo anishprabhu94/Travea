@@ -1011,25 +1011,27 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
 
-  // Trip Header - Properly Spaced
+  // Trip Header - Compact
   headerContainer: {
-    paddingTop: Platform.OS === 'web' ? 24 : 54,
+    paddingTop: Platform.OS === 'web' ? 12 : 42, // Reduced from 24/54
     paddingHorizontal: 24,
-    marginBottom: 20,
+    marginBottom: 16, // Reduced from 20
   },
   tripHeader: {
     borderRadius: 24,
     overflow: 'hidden',
+    marginTop: 12, // Add space below logo/profile
   },
   tripHeaderInner: {
-    padding: 20, // Reduced from 28 for more compact elegant look
+    paddingVertical: 16, // Reduced from 20
+    paddingHorizontal: 20,
     backgroundColor: 'rgba(25,25,25,0.42)',
   },
   headerTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center', // Align profile icon inline with logo
-    marginBottom: 24, // Reduced for more compact header
+    alignItems: 'center',
+    marginBottom: 0, // No margin, let tripHeader marginTop handle it
   },
   logoContainer: {
     // Clean spacing for logo
