@@ -398,12 +398,8 @@ export default function Landing() {
             }
           ]}
         >
-          <Text style={styles.greetingMain}>Hello, Anish</Text>
-          <Text style={styles.greetingSub}>
-            {activeMode === 'vacations' && 'Curated vacations, just for you.'}
-            {activeMode === 'discover' && 'Hidden gems, waiting to be found.'}
-            {activeMode === 'search' && 'Where would you like to go?'}
-          </Text>
+          <Text style={styles.greetingMain}>Hello, Anish.</Text>
+          <Text style={styles.greetingSub}>Curated trips, just for you.</Text>
         </Animated.View>
 
         {/* Sticky Category Chips */}
