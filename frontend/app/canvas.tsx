@@ -262,18 +262,18 @@ export default function TripCanvas() {
   // Components
   const TripHeader = () => (
     <View style={styles.headerContainer}>
+      {/* Logo and Profile - Outside trip pane */}
+      <View style={styles.headerTop}>
+        <View style={styles.logoContainer}>
+          <TraveaWordmark />
+        </View>
+        <TouchableOpacity style={styles.profileButton}>
+          <Ionicons name="person-circle-outline" size={26} color="#F8F8F8" />
+        </TouchableOpacity>
+      </View>
+
       <BlurView intensity={30} tint="dark" style={styles.tripHeader}>
         <View style={styles.tripHeaderInner}>
-          {/* Logo and Profile - Same positions */}
-          <View style={styles.headerTop}>
-            <View style={styles.logoContainer}>
-              <TraveaWordmark />
-            </View>
-            <TouchableOpacity style={styles.profileButton}>
-              <Ionicons name="person-circle-outline" size={26} color="#F8F8F8" />
-            </TouchableOpacity>
-          </View>
-
           {/* Trip Info Block */}
           <View style={styles.tripInfoBlock}>
             {/* Large elegant title with emoji */}
