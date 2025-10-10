@@ -418,7 +418,9 @@ export default function TripCanvas() {
             </View>
           </View>
         </View>
-      </BlurView>
+          </BlurView>
+        </ImageBackground>
+      </View>
     </View>
   )
 
