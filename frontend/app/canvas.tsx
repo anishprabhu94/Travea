@@ -2010,15 +2010,15 @@ const styles = StyleSheet.create({
   },
 
   // Bottom Navigation Dock - Exactly matches landing.tsx
-  dockContainer: {
+  bottomDock: {
     position: 'absolute',
-    bottom: 12, // Match landing page
+    bottom: 12,
     left: 0,
     right: 0,
     alignItems: 'center',
     zIndex: 100,
   },
-  dock: {
+  dockContainer: {
     width: '92%',
     height: 60,
     borderRadius: 28,
@@ -2038,7 +2038,7 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  dockInner: {
+  dockContent: {
     flex: 1,
     backgroundColor: 'rgba(25,25,25,0.35)',
     flexDirection: 'row',
@@ -2049,37 +2049,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingVertical: 8,
-    position: 'relative',
-  },
-  dockGlowContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  dockGlow: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    backgroundColor: 'rgba(201,169,109,0.25)',
-    ...Platform.select({
-      web: {
-        boxShadow: '0 0 20px rgba(201,169,109,0.4)',
-      },
-    }),
-  },
-  dockLabel: {
-    fontSize: 14, // Match landing page
-    color: '#F8F8F8',
-    marginTop: 4,
-    fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Neue Montreal',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
   },
   dockLabelActive: {
     fontSize: 14,
