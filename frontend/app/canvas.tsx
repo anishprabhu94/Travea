@@ -594,26 +594,82 @@ export default function TripCanvas() {
         <View style={styles.bookingHubInner}>
           <Text style={styles.bookingHubTitle}>Booking Hub</Text>
           
-          <View style={styles.bookingChips}>
-            <TouchableOpacity style={styles.bookingChip}>
-              <Ionicons name="airplane-outline" size={16} color="#F8F8F8" />
-              <Text style={styles.bookingChipText}>Flights — 2 Booked</Text>
+          {/* Three frosted-glass cards for Flights, Stays, Transport */}
+          <View style={styles.bookingCardsRow}>
+            {/* Flights Card */}
+            <TouchableOpacity style={styles.bookingCard} activeOpacity={0.8}>
+              <BlurView intensity={35} tint="light" style={styles.bookingCardBlur}>
+                <View style={styles.bookingCardInner}>
+                  {/* Top-right arrow */}
+                  <View style={styles.bookingArrowCircle}>
+                    <Ionicons name="arrow-forward" size={11} color="#F8F8F8" style={{ opacity: 0.98 }} />
+                  </View>
+                  
+                  {/* Icon top-left with white glow */}
+                  <View style={styles.bookingIconContainer}>
+                    <Ionicons name="airplane" size={20} color="#F8F8F8" style={styles.bookingIcon} />
+                  </View>
+                  
+                  {/* Category name */}
+                  <Text style={styles.bookingCategoryName}>Flights</Text>
+                  
+                  {/* Progress bar */}
+                  <View style={styles.progressBarContainer}>
+                    <View style={[styles.progressBar, { width: '100%' }]} />
+                  </View>
+                  
+                  {/* Status text */}
+                  <Text style={styles.bookingStatusText}>2 Booked</Text>
+                </View>
+              </BlurView>
             </TouchableOpacity>
-            
-            <TouchableOpacity style={styles.bookingChip}>
-              <Ionicons name="bed-outline" size={16} color="#F8F8F8" />
-              <Text style={styles.bookingChipText}>Stays — 2 of 3 Booked</Text>
+
+            {/* Stays Card */}
+            <TouchableOpacity style={styles.bookingCard} activeOpacity={0.8}>
+              <BlurView intensity={35} tint="light" style={styles.bookingCardBlur}>
+                <View style={styles.bookingCardInner}>
+                  <View style={styles.bookingArrowCircle}>
+                    <Ionicons name="arrow-forward" size={11} color="#F8F8F8" style={{ opacity: 0.98 }} />
+                  </View>
+                  
+                  <View style={styles.bookingIconContainer}>
+                    <Ionicons name="bed" size={20} color="#F8F8F8" style={styles.bookingIcon} />
+                  </View>
+                  
+                  <Text style={styles.bookingCategoryName}>Stays</Text>
+                  
+                  <View style={styles.progressBarContainer}>
+                    <View style={[styles.progressBar, { width: '66%' }]} />
+                  </View>
+                  
+                  <Text style={styles.bookingStatusText}>2 of 3 Booked</Text>
+                </View>
+              </BlurView>
             </TouchableOpacity>
-            
-            <TouchableOpacity style={styles.bookingChip}>
-              <Ionicons name="car-outline" size={16} color="#F8F8F8" />
-              <Text style={styles.bookingChipText}>Transport — 1 Saved</Text>
+
+            {/* Transport Card */}
+            <TouchableOpacity style={styles.bookingCard} activeOpacity={0.8}>
+              <BlurView intensity={35} tint="light" style={styles.bookingCardBlur}>
+                <View style={styles.bookingCardInner}>
+                  <View style={styles.bookingArrowCircle}>
+                    <Ionicons name="arrow-forward" size={11} color="#F8F8F8" style={{ opacity: 0.98 }} />
+                  </View>
+                  
+                  <View style={styles.bookingIconContainer}>
+                    <Ionicons name="car" size={20} color="#F8F8F8" style={styles.bookingIcon} />
+                  </View>
+                  
+                  <Text style={styles.bookingCategoryName}>Transport</Text>
+                  
+                  <View style={styles.progressBarContainer}>
+                    <View style={[styles.progressBar, styles.progressSaved, { width: '33%' }]} />
+                  </View>
+                  
+                  <Text style={styles.bookingStatusText}>1 Saved</Text>
+                </View>
+              </BlurView>
             </TouchableOpacity>
           </View>
-
-          <TouchableOpacity style={styles.continueCTA}>
-            <Text style={styles.continueCTAText}>Continue planning your trip →</Text>
-          </TouchableOpacity>
         </View>
       </BlurView>
     </View>
