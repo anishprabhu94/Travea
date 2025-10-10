@@ -1761,228 +1761,196 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Booking Overview - 2×2 Grid Layout
-  bookingOverviewContainer: {
+  // Booking Hub - Illuminated Ribbons
+  ribbonContainer: {
     paddingHorizontal: 24,
     marginBottom: 32,
   },
   
-  bookingGrid: {
-    gap: 14, // Apple Card-style balanced spacing
+  ribbonWrapper: {
+    marginBottom: 20, // Even spacing between ribbons
   },
   
-  bookingGridRow: {
-    flexDirection: 'row',
-    gap: 14,
-    marginBottom: 14,
-  },
-  
-  // Individual tile
-  bookingTile: {
-    flex: 1,
-    borderRadius: 24,
+  ribbon: {
+    borderRadius: 20,
     overflow: 'hidden',
-    minHeight: 180,
     ...Platform.select({
       web: {
-        boxShadow: '0 4px 25px rgba(0,0,0,0.25)',
-        transition: 'transform 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+        transition: 'all 200ms ease-in-out',
         ':hover': {
-          transform: 'translateY(-4px)',
-          boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+          transform: 'translateY(-2px)',
+          boxShadow: '0 6px 20px rgba(0,0,0,0.3)',
         },
       },
-      default: {
-        shadowColor: 'rgba(0,0,0,0.25)',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.25,
-        shadowRadius: 12,
-        elevation: 8,
-      },
     }),
   },
   
-  bookingTileBlur: {
-    borderRadius: 24,
+  ribbonBlur: {
+    borderRadius: 20,
     overflow: 'hidden',
   },
   
-  bookingTileInner: {
-    backgroundColor: 'rgba(255,255,255,0.06)',
+  ribbonInner: {
+    backgroundColor: 'rgba(22,22,22,0.25)', // Base tint
+    paddingVertical: 18,
     paddingHorizontal: 20,
-    paddingVertical: 22,
-    minHeight: 180,
-    position: 'relative',
-    ...Platform.select({
-      web: {
-        backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%)',
-        border: '1px solid rgba(255,255,255,0.08)',
-      },
-    }),
-  },
-  
-  // Arrow circle (top-right)
-  tileArrowCircle: {
-    position: 'absolute',
-    top: 14,
-    right: 14,
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    backgroundColor: 'rgba(255,255,255,0.15)',
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    borderBottomWidth: 2,
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(12px)',
-        boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.12)',
-        border: '1px solid rgba(255,255,255,0.2)',
-      },
-      default: {
-        shadowColor: 'rgba(0,0,0,0.18)',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.18,
-        shadowRadius: 3,
-        elevation: 2,
+        backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(233,226,197,0.1) 100%)', // White blur 15% + beige-gold overlay 10%
+        boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
       },
     }),
   },
   
-  // Icon with white glow
-  tileIcon: {
-    marginBottom: 12,
+  // Left: Icon + Title
+  ribbonLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 0.3,
+  },
+  
+  ribbonIconContainer: {
+    marginRight: 12,
+  },
+  
+  ribbonIcon: {
     ...Platform.select({
       web: {
-        filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.35))',
+        filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.4))',
       },
       default: {
         shadowColor: '#FFFFFF',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.35,
+        shadowOpacity: 0.4,
         shadowRadius: 4,
       },
     }),
   },
   
-  // Label
-  tileLabel: {
-    fontSize: 16,
+  ribbonTitle: {
+    fontSize: 15,
     fontWeight: '500',
-    color: 'rgba(248,248,248,0.85)',
+    color: 'rgba(248,248,248,0.9)',
     letterSpacing: 0.3,
-    marginBottom: 12,
     fontFamily: Platform.select({
-      ios: 'SF Pro Rounded',
+      ios: 'Neue Montreal',
       android: 'Neue Montreal',
-      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      web: 'Neue Montreal, SF Pro Rounded, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
   
-  // Horizontal progress band
-  tileProgressBand: {
-    height: 5,
-    backgroundColor: 'rgba(180,173,162,0.2)', // Translucent warm gray
-    borderRadius: 3,
+  // Center: Progress text + Line
+  ribbonCenter: {
+    flex: 0.4,
+    alignItems: 'center',
+  },
+  
+  ribbonProgressText: {
+    fontSize: 13,
+    fontWeight: '300',
+    color: 'rgba(248,248,248,0.75)',
+    letterSpacing: 0.2,
+    marginBottom: 6,
+    fontFamily: Platform.select({
+      ios: 'SF Pro',
+      android: 'Neue Montreal',
+      web: 'SF Pro, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  
+  ribbonProgressContainer: {
+    width: '100%',
+    height: 3,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    borderRadius: 2,
     overflow: 'hidden',
-    marginBottom: 8,
   },
   
-  tileProgressFill: {
+  ribbonProgressFill: {
     height: '100%',
-    borderRadius: 3,
-  },
-  
-  tileProgressBooked: {
-    backgroundColor: '#CBB88C', // Gold glow
+    borderRadius: 2,
     ...Platform.select({
       web: {
-        boxShadow: '0 0 10px rgba(203,184,140,0.6)',
+        boxShadow: '0 0 8px rgba(203,184,140,0.6)',
       },
       default: {
         shadowColor: '#CBB88C',
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 0.6,
-        shadowRadius: 5,
-      },
-    }),
-  },
-  
-  tileProgressSaved: {
-    backgroundColor: '#D6C7A1', // Sand beige
-    ...Platform.select({
-      web: {
-        boxShadow: '0 0 8px rgba(214,199,161,0.5)',
-      },
-      default: {
-        shadowColor: '#D6C7A1',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.5,
         shadowRadius: 4,
       },
     }),
   },
   
-  tileProgressPending: {
-    backgroundColor: 'rgba(180,173,162,0.4)', // Warm gray
+  // Right: CTA Pill
+  ribbonRight: {
+    flex: 0.3,
+    alignItems: 'flex-end',
   },
   
-  // Ratio text
-  tileRatioText: {
-    fontSize: 13,
-    fontWeight: '400',
-    color: 'rgba(248,248,248,0.7)',
-    letterSpacing: 0.2,
-    marginBottom: 10,
-    fontFamily: Platform.select({
-      ios: 'SF Pro Rounded',
-      android: 'Neue Montreal',
-      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    }),
-  },
-  
-  // Status pill
-  tileStatusPill: {
-    alignSelf: 'flex-start',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 12,
-    backgroundColor: 'rgba(255,255,255,0.1)',
+  ribbonCTA: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 16,
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(8px)',
+        backdropFilter: 'blur(10px)',
+        transition: 'all 200ms ease-in-out',
       },
     }),
   },
   
-  tileStatusBooked: {
-    backgroundColor: 'rgba(203,184,140,0.25)', // Champagne gold tint
-  },
-  
-  tileStatusSaved: {
-    backgroundColor: 'rgba(214,199,161,0.25)', // Sand beige tint
-  },
-  
-  tileStatusPending: {
-    backgroundColor: 'rgba(180,173,162,0.2)', // Warm gray tint
-  },
-  
-  tileStatusExplore: {
+  ctaExplore: {
     backgroundColor: 'rgba(255,255,255,0.08)', // Transparent frosted
     borderWidth: 1,
-    borderColor: 'rgba(180,173,162,0.3)',
+    borderColor: 'rgba(180,173,162,0.4)', // Soft silver
   },
   
-  tileStatusText: {
-    fontSize: 12,
+  ctaBook: {
+    backgroundColor: 'rgba(214,199,161,0.25)', // Sand pulse
+    borderWidth: 1,
+    borderColor: '#D6C7A1',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 12px rgba(214,199,161,0.4)',
+      },
+    }),
+  },
+  
+  ctaBooked: {
+    backgroundColor: 'rgba(203,184,140,0.3)', // Steady gold
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 16px rgba(203,184,140,0.5)',
+      },
+      default: {
+        shadowColor: '#CBB88C',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.5,
+        shadowRadius: 8,
+      },
+    }),
+  },
+  
+  ribbonCTAText: {
+    fontSize: 14,
     fontWeight: '500',
-    color: 'rgba(248,248,248,0.8)',
-    letterSpacing: 0.2,
+    color: 'rgba(248,248,248,0.85)',
+    letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'SF Pro Rounded',
       android: 'Neue Montreal',
       web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
+  
+  ctaTextBooked: {
+    color: 'rgba(248,248,248,0.95)',
+  },
+
 
   // Bottom Navigation Dock - Exactly matches landing.tsx
   bottomDock: {
