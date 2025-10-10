@@ -992,103 +992,115 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Elegant Activity Grid - Apple + Aman Inspired
+  // Refined Activity Grid - Floating Glass Pills Design
   activityGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    paddingHorizontal: 4, // Generous white space
-    marginTop: 8,
+    paddingHorizontal: 8, // Generous spacing for calm rhythm
+    marginTop: 12,
   },
   
-  // Soft gradient background for floating glass effect
-  activityGridBackground: {
+  // Ambient frosted gradient backdrop
+  ambientBackdrop: {
     ...StyleSheet.absoluteFillObject,
-    borderRadius: 20,
+    borderRadius: 28,
+    backgroundColor: 'rgba(20,20,20,0.02)', // Soft black base
     ...Platform.select({
       web: {
-        background: 'radial-gradient(ellipse at center, rgba(245,245,220,0.02) 0%, rgba(105,105,105,0.02) 50%, rgba(255,248,220,0.01) 100%)',
-      },
-      default: {
-        backgroundColor: 'rgba(245,245,220,0.01)', // Muted sand/ivory tones
+        background: 'radial-gradient(ellipse at center, rgba(20,20,20,0.03) 0%, rgba(64,64,64,0.02) 40%, rgba(255,248,220,0.015) 100%)',
       },
     }),
   },
   
-  // Elegant floating glass cards
-  elegantCard: {
-    width: '48%',
-    marginBottom: 20, // Generous spacing
-    borderRadius: 24, // 24px radius as specified
+  // Refined floating glass cards with varied tints
+  refinedCard: {
+    width: '47%', // Slightly narrower for better spacing
+    marginBottom: 24, // Generous spacing
+    borderRadius: 28, // Slightly larger radius for premium feel
     overflow: 'hidden',
     ...Platform.select({
       web: {
-        boxShadow: '0 0 25px rgba(0,0,0,0.25)', // Minimal drop shadow
+        boxShadow: '0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08)', // Faint outer shadow for lift
       },
       default: {
-        shadowColor: 'rgba(0,0,0,0.25)',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.25,
-        shadowRadius: 12,
+        shadowColor: 'rgba(0,0,0,0.15)',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.15,
+        shadowRadius: 16,
         elevation: 8,
       },
     }),
   },
   
-  elegantCardBlur: {
-    borderRadius: 24,
+  // Card tint variations - warm neutral palette
+  stayCardTint: {
+    backgroundColor: 'rgba(108,117,125,0.08)', // Slate tint
+  },
+  transportCardTint: {
+    backgroundColor: 'rgba(73,80,87,0.08)', // Graphite tint
+  },
+  restaurantsCardTint: {
+    backgroundColor: 'rgba(52,58,64,0.08)', // Charcoal tint
+  },
+  experiencesCardTint: {
+    backgroundColor: 'rgba(33,37,41,0.08)', // Espresso tint
+  },
+  
+  refinedCardBlur: {
+    borderRadius: 28,
     overflow: 'hidden',
   },
   
-  elegantCardInner: {
-    backgroundColor: 'rgba(255,255,255,0.03)', // Semi-transparent frosted glass
-    minHeight: 140, // Balanced proportions
-    paddingTop: 24,
-    paddingHorizontal: 20,
-    paddingBottom: 0, // No bottom padding for status strip
+  refinedCardInner: {
+    backgroundColor: 'rgba(255,255,255,0.04)', // Semi-transparent frosted glass
+    minHeight: 160, // Slightly taller for better proportions
+    paddingTop: 28,
+    paddingHorizontal: 24,
+    paddingBottom: 20,
     justifyContent: 'space-between',
     ...Platform.select({
       web: {
-        // Subtle inner glow and faint edge light
-        background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
-        border: '1px solid rgba(255,255,255,0.08)', // Faint edge light
+        // Muted inner glow
+        background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)',
+        border: '1px solid rgba(255,255,255,0.06)', // Faint outer edge
       },
     }),
   },
   
-  // Top section with icon and label
-  cardTopSection: {
+  // Content section with icon and label
+  cardContentSection: {
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
   },
   
   iconContainer: {
-    marginBottom: 16,
+    marginBottom: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },
   
-  elegantIcon: {
-    // Soft white glow for icons
+  refinedIcon: {
+    // Gentle glow for icons
     ...Platform.select({
       web: {
-        filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.3))',
+        filter: 'drop-shadow(0 0 12px rgba(255,255,255,0.25))',
       },
       default: {
         shadowColor: '#FFFFFF',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.3,
-        shadowRadius: 4,
+        shadowOpacity: 0.25,
+        shadowRadius: 6,
       },
     }),
   },
   
-  categoryLabel: {
-    fontSize: 16,
+  refinedCategoryLabel: {
+    fontSize: 17,
     color: 'rgba(248,248,248,0.85)', // 85% opacity as specified
-    fontWeight: '500', // Medium weight
-    letterSpacing: 0.3,
+    fontWeight: '600', // Semibold as requested
+    letterSpacing: 0.4,
     textAlign: 'center',
     fontFamily: Platform.select({
       ios: 'SF Pro Rounded',
@@ -1097,66 +1109,134 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Status strip at bottom
-  statusStrip: {
-    height: 44, // Thin horizontal band
+  // Floating glass pills container
+  pillsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(128,128,128,0.2)', // Default warm gray for pending
-    marginHorizontal: -20, // Extend to card edges
-    marginBottom: 0,
+    marginTop: 16,
+    paddingHorizontal: 4, // Elegant spacing between pills
+  },
+  
+  // Status pill (left) with halo glow
+  statusPill: {
+    position: 'relative',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255,255,255,0.08)', // Default frosted translucency
     ...Platform.select({
       web: {
-        // Gentle glow for status strips
-        backdropFilter: 'blur(10px)',
+        backdropFilter: 'blur(15px)',
+        boxShadow: '0 2px 12px rgba(0,0,0,0.08)', // Soft shadow
+      },
+      default: {
+        shadowColor: 'rgba(0,0,0,0.1)',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.1,
+        shadowRadius: 6,
+        elevation: 2,
       },
     }),
   },
   
-  // Different strip colors based on status
-  statusStripBooked: {
-    backgroundColor: 'rgba(218,165,32,0.25)', // Champagne gold for booked
+  // Status pill color variations with specified hues
+  statusPillBooked: {
+    backgroundColor: '#CBB88C', // Champagne Gold
+    opacity: 0.9,
+  },
+  statusPillSaved: {
+    backgroundColor: '#D6C7A1', // Soft Sand  
+    opacity: 0.9,
+  },
+  statusPillPending: {
+    backgroundColor: '#B4ADA2', // Warm Gray
+    opacity: 0.9,
+  },
+  
+  // Halo glow behind status pills
+  statusPillHalo: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 20,
+    opacity: 0.3,
     ...Platform.select({
       web: {
-        background: 'linear-gradient(90deg, rgba(218,165,32,0.15) 0%, rgba(218,165,32,0.25) 50%, rgba(218,165,32,0.15) 100%)',
+        filter: 'blur(2px)',
+      },
+    }),
+  },
+  haloBooked: {
+    backgroundColor: '#CBB88C',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 8px rgba(203,184,140,0.4)',
+      },
+    }),
+  },
+  haloSaved: {
+    backgroundColor: '#D6C7A1',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 8px rgba(214,199,161,0.4)',
+      },
+    }),
+  },
+  haloPending: {
+    backgroundColor: '#B4ADA2',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 8px rgba(180,173,162,0.4)',
       },
     }),
   },
   
-  statusStripSaved: {
-    backgroundColor: 'rgba(255,191,0,0.2)', // Soft amber for saved
-    ...Platform.select({
-      web: {
-        background: 'linear-gradient(90deg, rgba(255,191,0,0.12) 0%, rgba(255,191,0,0.2) 50%, rgba(255,191,0,0.12) 100%)',
-      },
-    }),
-  },
-  
-  statusStripPending: {
-    backgroundColor: 'rgba(128,128,128,0.15)', // Warm gray for pending
-    ...Platform.select({
-      web: {
-        background: 'linear-gradient(90deg, rgba(128,128,128,0.1) 0%, rgba(128,128,128,0.15) 50%, rgba(128,128,128,0.1) 100%)',
-      },
-    }),
-  },
-  
-  statusStripTouchable: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 12,
-  },
-  
-  statusStripText: {
-    fontSize: 13,
-    color: 'rgba(248,248,248,0.85)', // 85% opacity
-    fontWeight: '500', // Medium weight
+  statusPillText: {
+    fontSize: 12,
+    color: 'rgba(40,40,40,0.9)', // Dark text for contrast on colored pills
+    fontWeight: '600',
     letterSpacing: 0.2,
     textAlign: 'center',
     fontFamily: Platform.select({
       ios: 'SF Pro Rounded',
-      android: 'Neue Montreal', 
+      android: 'Neue Montreal',
+      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  
+  // Action pill (right) - pearl white
+  actionPill: {
+    position: 'relative',
+    borderRadius: 20,
+    backgroundColor: 'rgba(255,255,255,0.28)', // Pearl white with 25-30% opacity
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(20px)',
+        boxShadow: '0 2px 16px rgba(255,255,255,0.15)', // Soft glow
+      },
+      default: {
+        shadowColor: 'rgba(255,255,255,0.2)',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 8,
+        elevation: 3,
+      },
+    }),
+  },
+  
+  actionPillTouchable: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+  },
+  
+  actionPillText: {
+    fontSize: 12,
+    color: 'rgba(248,248,248,0.9)',
+    fontWeight: '600',
+    letterSpacing: 0.2,
+    textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'SF Pro Rounded',
+      android: 'Neue Montreal',
       web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
