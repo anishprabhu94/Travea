@@ -202,20 +202,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#121212', // Deep Charcoal base
   },
-  vignetteOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    ...Platform.select({
-      web: {
-        background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.4) 100%)',
-      },
-      default: {
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
-      },
-    }),
+  backgroundGradient: {
+    ...StyleSheet.absoluteFillObject,
   },
   contentContainer: {
     flex: 1,
@@ -224,62 +212,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   
-  // Center-aligned frosted glass pane with luxury travel image
+  // Center-aligned frosted glass pane
   mainPane: {
     borderRadius: 28,
     overflow: 'hidden',
     width: '100%',
     maxWidth: 400,
-    ...Platform.select({
-      web: {
-        boxShadow: '0 16px 48px rgba(0, 0, 0, 0.6)', // Enhanced shadow for glass realism
-        transform: 'scale(1)',
-        transition: 'all 280ms ease-in-out',
-      },
-      default: {
-        shadowColor: 'rgba(0, 0, 0, 0.9)',
-        shadowOffset: { width: 0, height: 16 },
-        shadowOpacity: 0.6,
-        shadowRadius: 24,
-        elevation: 22,
-      },
-    }),
+    shadowColor: 'rgba(0, 0, 0, 0.9)',
+    shadowOffset: { width: 0, height: 16 },
+    shadowOpacity: 0.6,
+    shadowRadius: 24,
+    elevation: 22,
   },
   
-  // Image background within the pane
-  paneImageBackground: {
-    width: '100%',
-    height: '100%',
-    borderRadius: 28,
-    overflow: 'hidden',
-  },
-  paneImageStyle: {
-    borderRadius: 28,
-    ...Platform.select({
-      web: {
-        filter: 'blur(15px)', // Image blur 15px as specified
-      },
-    }),
-  },
-  
-  // Blur overlay for frosted glass effect
-  paneBlurOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    borderRadius: 28,
-    overflow: 'hidden',
-    backgroundColor: 'rgba(25,25,25,0.3)', // Reduced opacity for image visibility
-  },
-  
-  // Light bronze gradient overlay for warmth
-  bronzeGradientOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    borderRadius: 28,
-    backgroundColor: 'rgba(201,169,109,0.1)', // Simple bronze tint
-    opacity: 0.6,
-  },
   paneInner: {
-    backgroundColor: 'rgba(25,25,25,0.45)', // Enhanced from 0.35 to 0.45 for elevated calm aesthetic
-    padding: 36, // Increased padding for more premium feel
+    backgroundColor: 'rgba(25,25,25,0.4)',
+    padding: 36,
   },
   
   // TRĀVEA logo and tagline at top
@@ -288,20 +236,15 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   logoContainer: {
-    // TRĀVEA logo with bronze glow
-    ...Platform.select({
-      default: {
-        shadowColor: '#C9A96D',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.8,
-        shadowRadius: 12,
-        elevation: 6,
-      },
-    }),
+    shadowColor: '#C9A96D',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 12,
+    elevation: 6,
   },
   tagline: {
     fontSize: 16,
-    color: 'rgba(255,255,255,0.7)', // Light gray as specified
+    color: 'rgba(255,255,255,0.7)',
     marginTop: 12,
     letterSpacing: 1.2,
     fontFamily: Platform.select({
@@ -312,17 +255,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   
-  // Frosted tab toggle for Sign In / Sign Up
+  // Tab toggle for Sign In / Sign Up
   tabToggleContainer: {
     marginBottom: 32,
-  },
-  tabToggleBlur: {
-    borderRadius: 16,
-    overflow: 'hidden',
   },
   tabToggleInner: {
     flexDirection: 'row',
     backgroundColor: 'rgba(255,255,255,0.12)',
+    borderRadius: 16,
     padding: 4,
   },
   tabButton: {
@@ -331,31 +271,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     alignItems: 'center',
     borderRadius: 12,
-    position: 'relative',
   },
   tabButtonActive: {
-    // Active tab styling handled by bronze glow
-  },
-  tabGlow: {
-    position: 'absolute',
-    top: -2,
-    left: -2,
-    right: -2,
-    bottom: -2,
-    borderRadius: 14,
-    backgroundColor: 'transparent',
-    ...Platform.select({
-      web: {
-        boxShadow: '0 0 12px rgba(201,169,109,0.6)', // Bronze glow on active tab
-      },
-      default: {
-        shadowColor: '#C9A96D',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.6,
-        shadowRadius: 6,
-        elevation: 5,
-      },
-    }),
+    backgroundColor: 'rgba(201,169,109,0.3)',
   },
   tabText: {
     fontSize: 15,
@@ -380,14 +298,10 @@ const styles = StyleSheet.create({
   inputGroup: {
     marginBottom: 18,
   },
-  inputBlur: {
-    borderRadius: 14,
-    overflow: 'hidden',
-  },
   input: {
-    backgroundColor: 'rgba(255,255,255,0.12)', // Luminous translucency
+    backgroundColor: 'rgba(255,255,255,0.08)',
     paddingHorizontal: 18,
-    paddingVertical: 16,
+    paddingVertical: 14,
     fontSize: 16,
     color: '#F8F8F8',
     fontWeight: '400',
@@ -406,26 +320,17 @@ const styles = StyleSheet.create({
   primaryButton: {
     marginTop: 12,
     marginBottom: 28,
-    ...Platform.select({
-      web: {
-        transition: 'all 300ms ease-in-out', // Smooth transitions
-      },
-    }),
   },
   gradientButton: {
     paddingVertical: 18,
     paddingHorizontal: 32,
     borderRadius: 14,
     alignItems: 'center',
-    ...Platform.select({
-      default: {
-        shadowColor: '#C9A96D',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.3,
-        shadowRadius: 12,
-        elevation: 10,
-      },
-    }),
+    shadowColor: '#C9A96D',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
+    elevation: 10,
   },
   primaryButtonText: {
     fontSize: 16,
@@ -463,19 +368,12 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Frosted secondary buttons for OAuth
+  // OAuth buttons
   oauthSection: {
     width: '100%',
   },
   oauthButton: {
     marginBottom: 14,
-    ...Platform.select({
-      web: {
-        transition: 'all 280ms ease-in-out', // Smooth transitions 280–320ms
-      },
-    }),
-  },
-  oauthBlur: {
     borderRadius: 14,
     overflow: 'hidden',
   },
@@ -485,19 +383,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 16,
     paddingHorizontal: 24,
-    backgroundColor: 'rgba(128,128,128,0.15)', // Frosted gray as specified
+    backgroundColor: 'rgba(128,128,128,0.15)',
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.1)',
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(18px)', // Enhanced blur depth
-        transition: 'all 200ms ease-in-out',
-        ':hover': {
-          backgroundColor: 'rgba(128,128,128,0.2)', // Lighter on hover
-          borderColor: 'rgba(255,255,255,0.15)',
-        },
-      },
-    }),
   },
   oauthText: {
     fontSize: 15,
