@@ -1138,118 +1138,116 @@ const styles = StyleSheet.create({
     backgroundColor: '#AEBEA4', // Sage green
   },
 
-  // Orbit Path - Semi-circular journey visualization
-  orbitPathContainer: {
+  // Trip Line - Elevated Acronym Capsules
+  tripLineContainer: {
     paddingHorizontal: 24,
-    marginTop: 28,
-    marginBottom: 32,
-    height: 80, // 1/3 of space allocation
+    marginTop: 24,
+    marginBottom: 28,
+  },
+  
+  tripLineContent: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingVertical: 4,
   },
   
-  orbitArcContainer: {
-    width: '100%',
-    height: 80,
-    position: 'relative',
-    alignItems: 'center',
-  },
-  
-  orbitArc: {
-    width: '90%',
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: '#CBB88C', // Golden arc
-    ...Platform.select({
-      web: {
-        boxShadow: '0 0 20px rgba(203,184,140,0.6)',
-        background: 'linear-gradient(90deg, rgba(203,184,140,0.4) 0%, rgba(203,184,140,0.9) 50%, rgba(203,184,140,0.4) 100%)',
-      },
-      default: {
-        shadowColor: '#CBB88C',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.6,
-        shadowRadius: 10,
-      },
-    }),
-  },
-  
-  orbsContainer: {
-    position: 'absolute',
-    width: '90%',
-    height: '100%',
+  capsuleWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   
-  orbPosition: {
-    position: 'absolute',
-    marginLeft: -8, // Center the orb on its position
-  },
-  
-  orb: {
-    width: 16,
-    height: 16,
-    borderRadius: 8,
-    borderWidth: 2,
-  },
-  
-  orbBooked: {
-    backgroundColor: '#CBB88C', // Filled champagne gold
-    borderColor: '#CBB88C',
+  cityCapsule: {
+    height: 30,
+    paddingHorizontal: 14,
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
     ...Platform.select({
       web: {
-        boxShadow: '0 0 16px rgba(203,184,140,0.8)',
+        backdropFilter: 'blur(20px)',
+        transition: 'all 200ms ease-in-out',
+      },
+    }),
+  },
+  
+  capsuleBooked: {
+    backgroundColor: '#CBB88C', // Filled champagne gold
+    ...Platform.select({
+      web: {
+        boxShadow: '0 4px 12px rgba(203,184,140,0.5), inset 0 1px 2px rgba(255,255,255,0.2)',
       },
       default: {
         shadowColor: '#CBB88C',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.8,
-        shadowRadius: 8,
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.5,
+        shadowRadius: 6,
+        elevation: 4,
       },
     }),
   },
   
-  orbSaved: {
-    backgroundColor: 'transparent', // Hollow
+  capsuleSaved: {
+    backgroundColor: 'rgba(255,255,255,0.08)', // Frosted
+    borderWidth: 1.5,
     borderColor: '#D6C7A1', // Sand beige outline
     ...Platform.select({
       web: {
-        boxShadow: '0 0 12px rgba(214,199,161,0.6)',
+        boxShadow: '0 3px 10px rgba(214,199,161,0.4), inset 0 1px 2px rgba(255,255,255,0.15)',
       },
       default: {
         shadowColor: '#D6C7A1',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.6,
-        shadowRadius: 6,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.4,
+        shadowRadius: 5,
+        elevation: 3,
       },
     }),
   },
   
-  orbPending: {
-    backgroundColor: 'transparent', // Hollow
-    borderColor: 'rgba(180,173,162,0.5)', // Faint warm gray
+  capsulePending: {
+    backgroundColor: 'rgba(255,255,255,0.05)',
     borderWidth: 1,
-  },
-  
-  shimmerParticle: {
-    position: 'absolute',
-    left: '45%',
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-    backgroundColor: '#F8F8F8',
+    borderColor: 'rgba(180,173,162,0.4)', // Thin warm gray
     ...Platform.select({
       web: {
-        boxShadow: '0 0 10px rgba(248,248,248,0.8)',
+        boxShadow: '0 2px 6px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.1)',
       },
       default: {
-        shadowColor: '#F8F8F8',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.8,
-        shadowRadius: 5,
+        shadowColor: 'rgba(0,0,0,0.2)',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        elevation: 2,
       },
     }),
+  },
+  
+  capsuleInner: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  
+  capsuleText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: 'rgba(248,248,248,0.85)',
+    letterSpacing: 1,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Rounded',
+      android: 'Neue Montreal',
+      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  
+  capsuleTextBooked: {
+    color: 'rgba(25,25,25,0.9)', // Dark text on gold
+  },
+  
+  connectingLine: {
+    width: 16,
+    height: 2,
+    backgroundColor: 'rgba(255,255,255,0.15)',
+    marginHorizontal: 4,
   },
 
   // View Toggle Section - Refined and elegant
