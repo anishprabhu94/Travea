@@ -857,9 +857,18 @@ export default function TripCanvas() {
         contentContainerStyle={styles.scrollContent}
       >
         <TripHeader />
-        <DayScroller />
-        {activeSegment && <CityPane />}
-        <BookingHub />
+        <TripMapLine />
+        <ViewToggle />
+        
+        {/* Conditional rendering based on active view */}
+        {activeView === 'booking' ? (
+          <BookingHub />
+        ) : (
+          <>
+            <DayScroller />
+            {activeSegment && <CityPane />}
+          </>
+        )}
         
         {/* Bottom padding for dock */}
         <View style={styles.bottomPadding} />
