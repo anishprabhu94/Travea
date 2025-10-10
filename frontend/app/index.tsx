@@ -255,15 +255,28 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000000',
-    backgroundImage: 'url("https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/7685c7d9-489b-4dcd-97de-18a2f10d0c3d_2024-10-03_20-55-13.png")',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
+    backgroundColor: '#121212', // Deep Charcoal
+    ...Platform.select({
+      web: {
+        minHeight: '100vh',
+        background: 'linear-gradient(180deg, #0E0E0E 0%, #151515 100%)', // Full-screen blurred dark gradient
+      },
+    }),
   },
   vignetteOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    ...Platform.select({
+      web: {
+        background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.4) 100%)',
+      },
+      default: {
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+      },
+    }),
   },
   contentContainer: {
     flex: 1,
