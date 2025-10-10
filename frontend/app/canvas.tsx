@@ -1019,9 +1019,9 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
 
-  // Trip Header - More compact
+  // Trip Header - Reduced top space
   headerContainer: {
-    paddingTop: Platform.OS === 'web' ? 20 : 50, // Moved down (was 12/42)
+    paddingTop: Platform.OS === 'web' ? 8 : 38, // Reduced top padding
     paddingHorizontal: 24,
     marginBottom: 16,
   },
