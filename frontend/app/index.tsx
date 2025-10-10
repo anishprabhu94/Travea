@@ -266,11 +266,12 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   logoContainer: {
+    // Clean logo without background pane - just subtle bronze glow
     shadowColor: '#C9A96D',
     shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.8,
-    shadowRadius: 12,
-    elevation: 6,
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 3,
   },
   tagline: {
     fontSize: 16,
