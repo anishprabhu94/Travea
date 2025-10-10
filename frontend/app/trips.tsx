@@ -139,8 +139,17 @@ export default function MyTrips() {
         style={styles.savedCard}
         imageStyle={styles.savedCardImage}
       >
-        {/* Light Vignette */}
+        {/* Soft neutral grey veil overlay */}
+        <View style={styles.cardGreyVeilOverlay} />
+        
+        {/* Brightness and contrast adjustment overlay */}
+        <View style={styles.cardToneAdjustmentOverlay} />
+        
+        {/* Refined vignette with depth */}
         <View style={styles.cardVignette} />
+        
+        {/* Frosted glass pane overlay */}
+        <View style={styles.cardFrostedGlassOverlay} />
         
         {/* Bookmark Icon */}
         <TouchableOpacity
