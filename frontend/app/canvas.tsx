@@ -1964,10 +1964,11 @@ const styles = StyleSheet.create({
   },
   
   ribbonCTAText: {
-    fontSize: 14,
+    fontSize: 13, // Uniform size for all states
     fontWeight: '500',
     color: 'rgba(248,248,248,0.85)',
     letterSpacing: 0.3,
+    textAlign: 'center',
     fontFamily: Platform.select({
       ios: 'SF Pro Rounded',
       android: 'Neue Montreal',
