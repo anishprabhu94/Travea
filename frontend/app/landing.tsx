@@ -675,12 +675,22 @@ const styles = StyleSheet.create({
     height: 44,
     borderRadius: 22,
     overflow: 'hidden',
-    backgroundColor: 'rgba(255,255,255,0.05)', // Frosted circle as specified
+    backgroundColor: 'rgba(255,255,255,0.12)', // Enhanced frosted glass circle for visibility
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.15)', // Subtle border for definition
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(20px)',
+        backdropFilter: 'blur(24px)',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.2)', // Soft shadow for depth
+      },
+      default: {
+        shadowColor: 'rgba(0,0,0,0.8)',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 6,
+        elevation: 3,
       },
     }),
   },
