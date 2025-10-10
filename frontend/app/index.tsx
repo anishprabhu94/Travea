@@ -486,30 +486,6 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     alignItems: 'center',
     ...Platform.select({
-      web: {
-        boxShadow: '0 0 25px rgba(201,169,109,0.3)', // Enhanced bronze glow
-        transition: 'all 280ms ease-in-out', // Smooth motion timing
-        position: 'relative',
-        overflow: 'hidden',
-        ':hover': {
-          boxShadow: '0 0 35px rgba(201,169,109,0.5)', // Intensified glow on hover
-          transform: 'scale(1.03)', // Soft motion scale
-        },
-        '::before': {
-          content: '""',
-          position: 'absolute',
-          top: '-50%',
-          left: '-50%',
-          width: '200%',
-          height: '200%',
-          background: 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%)',
-          transform: 'translateX(-100%)',
-          transition: 'transform 600ms ease-in-out',
-        },
-        ':hover::before': {
-          transform: 'translateX(100%)', // Soft motion sheen effect
-        },
-      },
       default: {
         shadowColor: '#C9A96D',
         shadowOffset: { width: 0, height: 0 },
