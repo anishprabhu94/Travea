@@ -1001,11 +1001,13 @@ const styles = StyleSheet.create({
   bookingChip: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 16,
-    paddingHorizontal: 20,
-    borderRadius: 16,
+    paddingVertical: 12, // Reduced from 16 for more compact
+    paddingHorizontal: 16, // Reduced from 20 for tighter spacing
+    borderRadius: 12, // Smaller radius for sleeker look
     backgroundColor: 'rgba(255,255,255,0.06)',
-    marginBottom: 12,
+    marginBottom: 8, // Reduced from 12 for tighter spacing
+    flex: 1,
+    marginHorizontal: 4, // Add space between chips when they're in a row
   },
   bookingChipText: {
     fontSize: 15,
