@@ -1111,20 +1111,20 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Dropdown Menu - Reduced size
+  // Dropdown Menu - Extremely compact
   statusDropdownMenu: {
     position: 'absolute',
-    top: 100, // Adjusted for smaller header
+    top: 100,
     left: 0,
     right: 0,
     zIndex: 1000,
-    marginTop: 6,
-    borderRadius: 16,
+    marginTop: 4, // Reduced from 6
+    borderRadius: 12, // Reduced from 16
     overflow: 'hidden',
   },
   
   dropdownMenuBlur: {
-    borderRadius: 16,
+    borderRadius: 12, // Reduced from 16
     overflow: 'hidden',
   },
   
