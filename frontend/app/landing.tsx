@@ -708,7 +708,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   greetingMain: {
-    fontSize: 24, // Further reduced for better proportion
+    fontSize: 20, // Reduced to 20px as requested
     fontWeight: '700',
     color: 'rgba(255,255,255,0.9)',
     marginBottom: 4,
