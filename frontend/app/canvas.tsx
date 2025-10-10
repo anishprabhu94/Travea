@@ -199,7 +199,7 @@ export default function TripCanvas() {
   }
 
   const getStatusText = (status: string, count?: number, detail?: string) => {
-    if (status === 'booked' && detail) return 'Booked'
+    if (status === 'booked') return 'Booked'
     if (status === 'saved' && count) return `${count} Saved`
     if (status === 'saved') return 'Saved'
     if (status === 'pending') return 'Pending'
