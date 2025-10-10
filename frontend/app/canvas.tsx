@@ -144,7 +144,7 @@ const mockTravelSegments: { [key: string]: TravelSegment } = {
 export default function TripCanvas() {
   const [trip, setTrip] = useState<TripData>(mockTrip)
   const [segments, setSegments] = useState<CitySegment[]>(mockCitySegments)
-  const [activeSegmentId, setActiveSegmentId] = useState<string>(segments[0]?.id || '')
+  const [activeSegmentId, setActiveSegmentId] = useState<string>('segment-amalfi')
   const [isEditingTitle, setIsEditingTitle] = useState(false)
   
   const progressAnimation = useRef(new Animated.Value(0)).current
