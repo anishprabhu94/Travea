@@ -1814,28 +1814,87 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Left: Icon + Title
+  // Left: Icon with Halo + Title
   ribbonLeft: {
     flexDirection: 'row',
     alignItems: 'center',
-    flex: 0.3,
+    flex: 1,
   },
   
-  ribbonIconContainer: {
-    marginRight: 12,
+  // Circular Halo Container
+  haloContainer: {
+    alignItems: 'center',
+    marginRight: 16,
+  },
+  
+  progressHalo: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    borderWidth: 3,
+    borderColor: 'rgba(255,255,255,0.2)', // Base ring
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(30px)',
+        boxShadow: '0 0 12px rgba(203,184,140,0.25)', // Feathered 6px diffusion
+      },
+      default: {
+        shadowColor: 'rgba(203,184,140,0.3)',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.3,
+        shadowRadius: 6,
+      },
+    }),
+  },
+  
+  progressArc: {
+    position: 'absolute',
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    borderWidth: 3,
+    borderColor: 'transparent',
+    borderTopColor: 'currentColor', // Uses parent borderColor
+    opacity: 0.25, // 25% opacity as specified
+    ...Platform.select({
+      web: {
+        filter: 'blur(1px)', // Soft edge
+      },
+    }),
+  },
+  
+  haloIconContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   
   ribbonIcon: {
     ...Platform.select({
       web: {
-        filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.4))',
+        filter: 'drop-shadow(0 0 6px rgba(255,255,255,0.35))',
       },
       default: {
         shadowColor: '#FFFFFF',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.4,
-        shadowRadius: 4,
+        shadowOpacity: 0.35,
+        shadowRadius: 3,
       },
+    }),
+  },
+  
+  haloProgressText: {
+    fontSize: 10,
+    fontWeight: '400',
+    color: 'rgba(248,248,248,0.65)',
+    letterSpacing: 0.2,
+    marginTop: 4,
+    fontFamily: Platform.select({
+      ios: 'SF Pro',
+      android: 'Neue Montreal',
+      web: 'SF Pro, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
   
@@ -1848,49 +1907,6 @@ const styles = StyleSheet.create({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
       web: 'Neue Montreal, SF Pro Rounded, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    }),
-  },
-  
-  // Center: Progress text + Line
-  ribbonCenter: {
-    flex: 0.4,
-    alignItems: 'center',
-  },
-  
-  ribbonProgressText: {
-    fontSize: 13,
-    fontWeight: '300',
-    color: 'rgba(248,248,248,0.75)',
-    letterSpacing: 0.2,
-    marginBottom: 6,
-    fontFamily: Platform.select({
-      ios: 'SF Pro',
-      android: 'Neue Montreal',
-      web: 'SF Pro, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    }),
-  },
-  
-  ribbonProgressContainer: {
-    width: '100%',
-    height: 3,
-    backgroundColor: 'rgba(255,255,255,0.1)',
-    borderRadius: 2,
-    overflow: 'hidden',
-  },
-  
-  ribbonProgressFill: {
-    height: '100%',
-    borderRadius: 2,
-    ...Platform.select({
-      web: {
-        boxShadow: '0 0 8px rgba(203,184,140,0.6)',
-      },
-      default: {
-        shadowColor: '#CBB88C',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.6,
-        shadowRadius: 4,
-      },
     }),
   },
   
