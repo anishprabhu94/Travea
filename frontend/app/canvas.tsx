@@ -1177,7 +1177,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(180,173,162,0.6)',
   },
 
-  // View Toggle Section
+  // View Toggle Section - Refined and elegant
   viewToggleContainer: {
     paddingHorizontal: 24,
     marginBottom: 28,
@@ -1185,17 +1185,19 @@ const styles = StyleSheet.create({
   
   viewToggleInner: {
     flexDirection: 'row',
-    gap: 16, // Thumb-friendly spacing
+    gap: 12, // Refined spacing
     justifyContent: 'center',
+    alignItems: 'center',
   },
   
   togglePill: {
     flex: 1,
-    paddingVertical: 14,
-    paddingHorizontal: 20,
-    borderRadius: 20,
+    paddingVertical: 11, // Reduced for more elegant proportions
+    paddingHorizontal: 18, // Reduced for tighter look
+    borderRadius: 18, // Smaller radius
     backgroundColor: 'rgba(255,255,255,0.06)',
     alignItems: 'center',
+    justifyContent: 'center', // Ensure vertical centering
     ...Platform.select({
       web: {
         backdropFilter: 'blur(20px)',
@@ -1231,10 +1233,11 @@ const styles = StyleSheet.create({
   },
   
   togglePillText: {
-    fontSize: 15,
+    fontSize: 14, // Reduced from 15 for elegance
     fontWeight: '500',
     color: 'rgba(248,248,248,0.7)',
     letterSpacing: 0.3,
+    textAlign: 'center', // Ensure horizontal centering
     fontFamily: Platform.select({
       ios: 'SF Pro Rounded',
       android: 'Neue Montreal',
