@@ -871,7 +871,7 @@ export default function TripCanvas() {
                         <View style={styles.haloIconContainer}>
                           <Ionicons 
                             name={ribbon.icon as any} 
-                            size={20} 
+                            size={18} 
                             color="#F8F8F8" 
                             style={styles.ribbonIcon} 
                           />
