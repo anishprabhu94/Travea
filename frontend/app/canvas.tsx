@@ -1143,10 +1143,10 @@ const styles = StyleSheet.create({
   },
   
   dropdownOptionText: {
-    fontSize: 14, // Reduced from 16
+    fontSize: 13, // Further reduced from 14
     fontWeight: '500',
     color: 'rgba(248,248,248,0.9)',
-    letterSpacing: 0.3,
+    letterSpacing: 0.2, // Reduced from 0.3
     fontFamily: Platform.select({
       ios: 'SF Pro Rounded',
       android: 'Neue Montreal',
