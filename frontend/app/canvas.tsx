@@ -1345,7 +1345,7 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Booking Hub
+  // Booking Hub - VisionOS-style glassmorphic cards
   bookingHubContainer: {
     paddingHorizontal: 24,
     marginBottom: 32,
@@ -1355,64 +1355,163 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   bookingHubInner: {
-    padding: 32,
+    padding: 28,
     backgroundColor: 'rgba(25,25,25,0.42)',
   },
   bookingHubTitle: {
     fontSize: 20,
     fontWeight: '500',
-    color: '#C9A96D', // Bronze header text as specified
+    color: '#CBB88C', // Champagne gold header
     letterSpacing: 0.4,
-    marginBottom: 24,
+    marginBottom: 20,
     fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Inter',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      ios: 'SF Pro Rounded',
+      android: 'Neue Montreal',
+      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-  bookingChips: {
-    flexDirection: 'row', // Make chips horizontal instead of vertical
-    marginBottom: 20, // Reduced from 24
-  },
-  bookingChip: {
+  
+  // Three-card row layout
+  bookingCardsRow: {
     flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 12, // Reduced from 16 for more compact
-    paddingHorizontal: 16, // Reduced from 20 for tighter spacing
-    borderRadius: 12, // Smaller radius for sleeker look
-    backgroundColor: 'rgba(255,255,255,0.06)',
-    marginBottom: 8, // Reduced from 12 for tighter spacing
-    flex: 1,
-    marginHorizontal: 4, // Add space between chips when they're in a row
+    justifyContent: 'space-between',
+    gap: 12, // Even spacing between cards
   },
-  bookingChipText: {
+  
+  // Individual booking card
+  bookingCard: {
+    flex: 1,
+    borderRadius: 24,
+    overflow: 'hidden',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+      },
+      default: {
+        shadowColor: 'rgba(0,0,0,0.18)',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.18,
+        shadowRadius: 10,
+        elevation: 6,
+      },
+    }),
+  },
+  
+  bookingCardBlur: {
+    borderRadius: 24,
+    overflow: 'hidden',
+  },
+  
+  bookingCardInner: {
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    paddingHorizontal: 16,
+    paddingVertical: 18,
+    minHeight: 140,
+    position: 'relative',
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%)',
+        border: '1px solid rgba(255,255,255,0.08)',
+      },
+    }),
+  },
+  
+  // Top-right arrow circle (mini version)
+  bookingArrowCircle: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: 'rgba(255,255,255,0.15)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(10px)',
+        boxShadow: 'inset 0 1px 1px rgba(0,0,0,0.1), 0 1px 4px rgba(0,0,0,0.1)',
+        border: '1px solid rgba(255,255,255,0.2)',
+      },
+      default: {
+        shadowColor: 'rgba(0,0,0,0.15)',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.15,
+        shadowRadius: 2,
+        elevation: 2,
+      },
+    }),
+  },
+  
+  // Icon with white glow (top-left)
+  bookingIconContainer: {
+    marginBottom: 12,
+  },
+  
+  bookingIcon: {
+    ...Platform.select({
+      web: {
+        filter: 'drop-shadow(0 0 6px rgba(255,255,255,0.3))',
+      },
+      default: {
+        shadowColor: '#FFFFFF',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+      },
+    }),
+  },
+  
+  // Category name
+  bookingCategoryName: {
     fontSize: 15,
-    color: 'rgba(248,248,248,0.8)',
+    fontWeight: '500',
+    color: 'rgba(248,248,248,0.9)',
+    letterSpacing: 0.3,
+    marginBottom: 10,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Rounded',
+      android: 'Neue Montreal',
+      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  
+  // Progress bar container
+  progressBarContainer: {
+    height: 4,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    borderRadius: 2,
+    overflow: 'hidden',
+    marginBottom: 10,
+  },
+  
+  // Progress bar fill (warm gold for booked)
+  progressBar: {
+    height: '100%',
+    backgroundColor: '#CBB88C', // Champagne gold
+    borderRadius: 2,
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 6px rgba(203,184,140,0.4)',
+      },
+    }),
+  },
+  
+  // Saved state uses sand beige
+  progressSaved: {
+    backgroundColor: '#D6C7A1',
+  },
+  
+  // Status text below progress
+  bookingStatusText: {
+    fontSize: 13,
+    color: 'rgba(248,248,248,0.75)',
     fontWeight: '400',
-    marginLeft: 16,
     letterSpacing: 0.2,
     fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Inter',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    }),
-  },
-  continueCTA: {
-    paddingVertical: 18,
-    paddingHorizontal: 32,
-    borderRadius: 20,
-    backgroundColor: 'rgba(201,169,109,0.15)',
-    alignItems: 'center',
-  },
-  continueCTAText: {
-    fontSize: 16,
-    color: '#C9A96D',
-    fontWeight: '500',
-    letterSpacing: 0.3,
-    fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Inter',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      ios: 'SF Pro Rounded',
+      android: 'Neue Montreal',
+      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
 
