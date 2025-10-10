@@ -891,60 +891,7 @@ export default function TripCanvas() {
     </View>
   )
 
-  // Remove old Transport tile from here
-  const OldTransportTileRemoved = () => (
-    <View style={styles.bookingGridRow}>
-          {/* Old Transport Tile - REMOVED */}
-          <TouchableOpacity style={styles.bookingTile} activeOpacity={0.85}>
-            <BlurView intensity={35} tint="light" style={styles.bookingTileBlur}>
-              <View style={styles.bookingTileInner}>
-                <View style={styles.tileArrowCircle}>
-                  <Ionicons name="arrow-forward" size={12} color="#F8F8F8" style={{ opacity: 0.98 }} />
-                </View>
-                
-                <Ionicons name="car-outline" size={32} color="#F8F8F8" style={styles.tileIcon} />
-                <Text style={styles.tileLabel}>Transport</Text>
-                
-                <View style={styles.tileProgressBand}>
-                  <View style={[styles.tileProgressFill, styles.tileProgressSaved, { width: '50%' }]} />
-                </View>
-                
-                <Text style={styles.tileRatioText}>1 of 2 Saved</Text>
-                
-                <View style={[styles.tileStatusPill, styles.tileStatusSaved]}>
-                  <Text style={styles.tileStatusText}>Saved</Text>
-                </View>
-              </View>
-            </BlurView>
-          </TouchableOpacity>
-
-          {/* Experiences Tile */}
-          <TouchableOpacity style={styles.bookingTile} activeOpacity={0.85}>
-            <BlurView intensity={35} tint="light" style={styles.bookingTileBlur}>
-              <View style={styles.bookingTileInner}>
-                <View style={styles.tileArrowCircle}>
-                  <Ionicons name="arrow-forward" size={12} color="#F8F8F8" style={{ opacity: 0.98 }} />
-                </View>
-                
-                <Ionicons name="ticket-outline" size={32} color="#F8F8F8" style={styles.tileIcon} />
-                <Text style={styles.tileLabel}>Experiences</Text>
-                
-                <View style={styles.tileProgressBand}>
-                  <View style={[styles.tileProgressFill, styles.tileProgressPending, { width: '0%' }]} />
-                </View>
-                
-                <Text style={styles.tileRatioText}>0 of 5 Booked</Text>
-                
-                <View style={[styles.tileStatusPill, styles.tileStatusPending]}>
-                  <Text style={styles.tileStatusText}>Pending</Text>
-                </View>
-              </View>
-            </BlurView>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </View>
-  )
+  // Booking Hub component ends above
 
   // Bottom Navigation - Exactly matches landing.tsx
   const BottomDock = () => (
