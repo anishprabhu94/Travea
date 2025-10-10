@@ -960,16 +960,18 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   bookmarkContainer: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
+    width: 36, // Increased size for better visibility
+    height: 36,
+    borderRadius: 18,
     overflow: 'hidden',
   },
   bookmarkInner: {
     flex: 1,
-    backgroundColor: 'rgba(20,20,20,0.65)', // Darker frosted background for better visibility
+    backgroundColor: 'rgba(10,10,10,0.85)', // Much darker background for higher contrast
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.2)', // Subtle border for definition
     ...Platform.select({
       ios: {
         shadowColor: 'rgba(201,169,109,0.6)',
