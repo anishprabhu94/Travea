@@ -732,8 +732,14 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   chipBlur: {
-    borderRadius: 30,
+    borderRadius: 18, // radius 18px as specified
     overflow: 'hidden',
+    backgroundColor: 'rgba(255,255,255,0.05)', // rgba(255,255,255,0.05) as specified
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)', // blur 25px as specified
+      },
+    }),
   },
   chipContent: {
     backgroundColor: 'rgba(25,25,25,0.45)',
