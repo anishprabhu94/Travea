@@ -500,8 +500,13 @@ export default function Landing() {
         {/* Search Pane */}
         {activeMode === 'search' && (
           <View style={styles.searchContainer}>
-            <BlurView intensity={25} tint="light" style={styles.searchPane}>
-              <View style={styles.searchPaneContent}>
+            <ImageBackground
+              source={{ uri: 'https://customer-assets.emergentagent.com/job_c851a5c2-e443-4a96-b503-41a7575b9658/artifacts/86nrn7i6_output%20%286%29.jpg' }}
+              style={styles.searchImageBackground}
+              imageStyle={styles.searchImageStyle}
+            >
+              <BlurView intensity={25} tint="light" style={styles.searchPane}>
+                <View style={styles.searchPaneContent}>
                 {/* Title */}
                 <View style={styles.titleContainer}>
                   <Text style={styles.searchTitle}>Where to?</Text>
