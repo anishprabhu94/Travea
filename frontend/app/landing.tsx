@@ -288,14 +288,8 @@ export default function Landing() {
         {/* Soft neutral grey veil overlay */}
         <View style={styles.cardGreyVeilOverlay} />
         
-        {/* Brightness and contrast adjustment overlay */}
-        <View style={styles.cardToneAdjustmentOverlay} />
-        
         {/* Refined vignette with depth */}
         <View style={styles.cardVignetteOverlay} />
-        
-        {/* Frosted glass pane overlay */}
-        <View style={styles.cardFrostedGlassOverlay} />
         
         {/* Bookmark Icon with Frosted Container */}
         <TouchableOpacity
