@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   
-  // Center-aligned frosted glass pane - Enhanced
+  // Center-aligned frosted glass pane with luxury travel image
   mainPane: {
     borderRadius: 28,
     overflow: 'hidden',
@@ -303,16 +303,56 @@ const styles = StyleSheet.create({
     maxWidth: 400,
     ...Platform.select({
       web: {
-        boxShadow: '0 16px 48px rgba(0, 0, 0, 0.5)', // Enhanced shadow for elevated calm aesthetic
-        transform: 'scale(1)', // Prepared for fade and scale in animation
-        transition: 'all 280ms ease-in-out', // Pane fades and scales in (280ms)
+        boxShadow: '0 16px 48px rgba(0, 0, 0, 0.6)', // Enhanced shadow for glass realism
+        transform: 'scale(1)',
+        transition: 'all 280ms ease-in-out',
       },
       default: {
         shadowColor: 'rgba(0, 0, 0, 0.9)',
         shadowOffset: { width: 0, height: 16 },
-        shadowOpacity: 0.5,
+        shadowOpacity: 0.6,
         shadowRadius: 24,
-        elevation: 20,
+        elevation: 22,
+      },
+    }),
+  },
+  
+  // Image background within the pane
+  paneImageBackground: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 28,
+    overflow: 'hidden',
+  },
+  paneImageStyle: {
+    borderRadius: 28,
+    ...Platform.select({
+      web: {
+        filter: 'blur(15px)', // Image blur 15px as specified
+      },
+    }),
+  },
+  
+  // Blur overlay for frosted glass effect
+  paneBlurOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 28,
+    overflow: 'hidden',
+    backgroundColor: 'rgba(25,25,25,0.3)', // Reduced opacity for image visibility
+  },
+  
+  // Light bronze gradient overlay for warmth
+  bronzeGradientOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 28,
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(135deg, rgba(201,169,109,0.15) 0%, rgba(201,169,109,0.05) 100%)', // Light bronze gradient overlay
+        opacity: 0.6, // Frost overlay 0.6 opacity as specified
+      },
+      default: {
+        backgroundColor: 'rgba(201,169,109,0.1)', // Fallback bronze tint
+        opacity: 0.6,
       },
     }),
   },
