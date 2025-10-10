@@ -10,6 +10,7 @@ import {
   Animated,
   StyleSheet,
   FlatList,
+  TextInput,
 } from 'react-native'
 import { router } from 'expo-router'
 import { BlurView } from 'expo-blur'
@@ -18,1128 +19,881 @@ import TraveaWordmark from '../components/TraveaWordmark'
 
 const { width, height } = Dimensions.get('window')
 
-// Trip and destination interfaces
+// Trip Canvas Interfaces
 interface TripData {
   id: string
   title: string
   dates: string
-  travelers: number
-  days: number
-  cities: number
+  state: 'Planning' | 'Planned' | 'Ongoing'
   progress: number
-  status: 'planning' | 'in-progress' | 'completed'
 }
 
-interface DestinationData {
+interface DayRange {
   id: string
+  days: string
   city: string
-  region: string
-  tagline: string
+  country: string
+  dateRange: string
   image: string
-  transport: TransportInfo[]
-  isCondeNastPick?: boolean
-  isHiddenGem?: boolean
-  modules: {
-    stay: ModuleStatus
-    move: ModuleStatus
-    explore: ModuleStatus
-    dine: ModuleStatus
-  }
+  isExpanded: boolean
 }
 
-interface TransportInfo {
+interface ActivityStatus {
+  type: 'stay' | 'transport' | 'dining' | 'experiences'
+  status: 'booked' | 'saved' | 'not-explored'
+  label: string
   icon: string
-  time: string
-}
-
-interface ModuleStatus {
-  status: 'not-set' | 'suggested' | 'saved' | 'booked'
   count?: number
-  details?: string
 }
 
-// Mock active trip data
-const mockActiveTrip: TripData = {
-  id: 'summer-italy-2024',
-  title: 'Summer in Italy',
-  dates: 'June 8–14',
-  travelers: 2,
-  days: 7,
-  cities: 2,
-  progress: 0.4, // 40% complete
-  status: 'planning'
+interface CityPaneData extends DayRange {
+  activities: ActivityStatus[]
 }
 
-// Mock destinations (will be populated from bookmarked items)
-const mockDestinations: DestinationData[] = [
+// Mock Data
+const mockTrip: TripData = {
+  id: 'trip-1',
+  title: 'Italian Coast Explorer',
+  dates: 'Jun 8 – Jun 16, 2025',
+  state: 'Planning',
+  progress: 65,
+}
+
+const mockDayRanges: DayRange[] = [
   {
-    id: 'amalfi',
+    id: 'range-1',
+    days: 'Day 1–2',
     city: 'Amalfi',
-    region: 'Italy',
-    tagline: 'Coastal drives & lemon air',
+    country: 'Italy',
+    dateRange: 'Jun 8–9',
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
-    transport: [{ icon: 'airplane-outline', time: '8h 30m' }],
-    isCondeNastPick: true,
-    modules: {
-      stay: { status: 'not-set' },
-      move: { status: 'not-set' },
-      explore: { status: 'saved', count: 2 },
-      dine: { status: 'not-set' }
-    }
+    isExpanded: false,
   },
   {
-    id: 'santorini',
-    city: 'Santorini',
-    region: 'Greece',
-    tagline: 'Whitewashed cliffs & wine',
-    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/cjd9m4ea_Sonoma.jpg',
-    transport: [{ icon: 'airplane-outline', time: '12h 20m' }],
-    isHiddenGem: true,
-    modules: {
-      stay: { status: 'saved', details: 'Katikies Hotel' },
-      move: { status: 'booked', details: 'Ferry booked' },
-      explore: { status: 'saved', count: 3 },
-      dine: { status: 'booked', count: 1, details: 'Selene Restaurant' }
-    }
-  }
+    id: 'range-2',
+    days: 'Day 3–4',
+    city: 'Florence',
+    country: 'Italy',
+    dateRange: 'Jun 10–11',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+    isExpanded: false,
+  },
+  {
+    id: 'range-3',
+    days: 'Day 5–6',
+    city: 'Rome',
+    country: 'Italy',
+    dateRange: 'Jun 12–13',
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/wokepbpr_carmel.jpg',
+    isExpanded: false,
+  },
 ]
 
-export default function MyCanvas() {
-  // const { bookmarkedItems } = useBookmarks()
-  const bookmarkedItems: string[] = [] // Mock for now
-  const [activeTrip, setActiveTrip] = useState<TripData>(mockActiveTrip)
-  const [destinations, setDestinations] = useState<DestinationData[]>(mockDestinations)
-  const [selectedDay, setSelectedDay] = useState(1)
-  const scrollViewRef = useRef<ScrollView>(null)
-  const progressAnim = useRef(new Animated.Value(0)).current
+const mockActivities: { [key: string]: ActivityStatus[] } = {
+  'range-1': [
+    { type: 'stay', status: 'booked', label: 'Booked • Palazzo Avino', icon: 'bed-outline' },
+    { type: 'transport', status: 'saved', label: '2 saved', icon: 'car-outline' },
+    { type: 'dining', status: 'not-explored', label: 'Not explored', icon: 'restaurant-outline' },
+    { type: 'experiences', status: 'saved', label: '3 saved', icon: 'ticket-outline' },
+  ],
+  'range-2': [
+    { type: 'stay', status: 'saved', label: '1 saved', icon: 'bed-outline' },
+    { type: 'transport', status: 'not-explored', label: 'Not explored', icon: 'train-outline' },
+    { type: 'dining', status: 'not-explored', label: 'Not explored', icon: 'restaurant-outline' },
+    { type: 'experiences', status: 'not-explored', label: 'Not explored', icon: 'ticket-outline' },
+  ],
+  'range-3': [
+    { type: 'stay', status: 'not-explored', label: 'Not explored', icon: 'bed-outline' },
+    { type: 'transport', status: 'not-explored', label: 'Not explored', icon: 'airplane-outline' },
+    { type: 'dining', status: 'not-explored', label: 'Not explored', icon: 'restaurant-outline' },
+    { type: 'experiences', status: 'not-explored', label: 'Not explored', icon: 'ticket-outline' },
+  ],
+}
 
-  // Animation on mount
+export default function TripCanvas() {
+  const [trip, setTrip] = useState<TripData>(mockTrip)
+  const [dayRanges, setDayRanges] = useState<DayRange[]>(mockDayRanges)
+  const [expandedRange, setExpandedRange] = useState<string | null>(null)
+  const [isEditingTitle, setIsEditingTitle] = useState(false)
+  const progressAnimation = useRef(new Animated.Value(0)).current
+
   useEffect(() => {
-    Animated.timing(progressAnim, {
-      toValue: activeTrip.progress,
-      duration: 1200,
+    Animated.timing(progressAnimation, {
+      toValue: trip.progress,
+      duration: 1000,
       useNativeDriver: false,
     }).start()
-  }, [activeTrip.progress])
+  }, [trip.progress])
 
-  // Get smart CTA text based on booking status
-  const getSmartCTA = () => {
-    // Logic for dynamic CTA based on what's missing
-    if (activeTrip.progress < 0.3) {
-      return "Find flights for JFK → NAP"
-    } else if (activeTrip.progress < 0.6) {
-      return "Choose stay in Amalfi"
-    } else if (activeTrip.progress < 0.9) {
-      return "Plan transport Amalfi → Rome"
-    } else {
-      return "Trip ready ✈︎"
+  const toggleRangeExpansion = (rangeId: string) => {
+    setExpandedRange(expandedRange === rangeId ? null : rangeId)
+  }
+
+  const getStatusDotColor = (status: string) => {
+    switch (status) {
+      case 'booked': return '#C9A96D'
+      case 'saved': return 'transparent'
+      case 'not-explored': return 'rgba(255,255,255,0.3)'
+      default: return 'rgba(255,255,255,0.3)'
     }
   }
 
-  // Render booking hub pills
-  const renderBookingHub = () => {
-    const bookingItems = [
-      { icon: 'airplane-outline', label: 'Flights', status: 'saved' as const },
-      { icon: 'home-outline', label: 'Stays', status: 'not-set' as const },
-      { icon: 'car-outline', label: 'Transport', status: 'not-set' as const },
-      { icon: 'compass-outline', label: 'Experiences', status: 'saved' as const },
-      { icon: 'restaurant-outline', label: 'Dining', status: 'not-set' as const }
-    ]
+  const getStatusDotBorder = (status: string) => {
+    return status === 'saved' ? '2px solid #C9A96D' : 'none'
+  }
 
-    return (
+  const getCTAText = (activity: ActivityStatus) => {
+    const typeMap = {
+      'stay': 'stays',
+      'transport': 'transport',
+      'dining': 'restaurants',
+      'experiences': 'experiences'
+    }
+    
+    switch (activity.status) {
+      case 'booked': return 'View booking'
+      case 'saved': return `Review saved ${typeMap[activity.type]}`
+      case 'not-explored': return `Browse ${typeMap[activity.type]}`
+      default: return `Browse ${typeMap[activity.type]}`
+    }
+  }
+
+  const handleNavigation = (destination: string) => {
+    router.push(destination as any)
+  }
+
+  // Components
+  const TripHeader = () => (
+    <BlurView intensity={26} tint="dark" style={styles.tripHeader}>
+      <View style={styles.tripHeaderInner}>
+        {/* Logo and Profile */}
+        <View style={styles.headerTop}>
+          <View style={styles.logoContainer}>
+            <TraveaWordmark />
+          </View>
+          <TouchableOpacity style={styles.profileButton}>
+            <Ionicons name="person-circle-outline" size={28} color="#F8F8F8" />
+          </TouchableOpacity>
+        </View>
+
+        {/* Trip Info */}
+        <View style={styles.tripInfo}>
+          <View style={styles.tripTitleRow}>
+            {isEditingTitle ? (
+              <TextInput
+                style={styles.tripTitleInput}
+                value={trip.title}
+                onChangeText={(text) => setTrip({ ...trip, title: text })}
+                onBlur={() => setIsEditingTitle(false)}
+                autoFocus
+                returnKeyType="done"
+                onSubmitEditing={() => setIsEditingTitle(false)}
+              />
+            ) : (
+              <TouchableOpacity onPress={() => setIsEditingTitle(true)}>
+                <Text style={styles.tripTitle}>{trip.title}</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+          
+          <Text style={styles.tripDates}>{trip.dates}</Text>
+          
+          {/* State Pill */}
+          <View style={[styles.statePill, trip.state === 'Ongoing' && styles.statePillActive]}>
+            {trip.state === 'Ongoing' && <View style={styles.statePillGlow} />}
+            <Text style={[styles.statePillText, trip.state === 'Ongoing' && styles.statePillTextActive]}>
+              {trip.state}
+            </Text>
+          </View>
+        </View>
+
+        {/* Progress Bar */}
+        {trip.state === 'Planning' && (
+          <View style={styles.progressContainer}>
+            <View style={styles.progressTrack}>
+              <Animated.View 
+                style={[
+                  styles.progressFill,
+                  {
+                    width: progressAnimation.interpolate({
+                      inputRange: [0, 100],
+                      outputRange: ['0%', '100%'],
+                      extrapolate: 'clamp'
+                    })
+                  }
+                ]} 
+              />
+            </View>
+          </View>
+        )}
+      </View>
+    </BlurView>
+  )
+
+  const DayScroller = () => (
+    <BlurView intensity={24} tint="dark" style={styles.dayScroller}>
       <ScrollView 
         horizontal 
-        showsHorizontalScrollIndicator={false}
-        style={styles.bookingHubScroll}
-        contentContainerStyle={styles.bookingHubContent}
+        showsHorizontalScrollIndicator={false} 
+        contentContainerStyle={styles.dayScrollerContent}
       >
-        {bookingItems.map((item, index) => (
+        {dayRanges.map((range, index) => (
           <TouchableOpacity
-            key={index}
-            style={styles.bookingPill}
+            key={range.id}
+            style={[styles.dayRangeButton, expandedRange === range.id && styles.dayRangeButtonActive]}
+            onPress={() => toggleRangeExpansion(range.id)}
             activeOpacity={0.8}
           >
-            <BlurView intensity={20} tint="light" style={styles.bookingPillBlur}>
-              <View style={styles.bookingPillInner}>
-                <Ionicons name={item.icon} size={18} color="#F8F8F8" />
-                <Text style={styles.bookingPillLabel}>{item.label}</Text>
-                <View style={[
-                  styles.statusChip, 
-                  styles[`statusChip${item.status.charAt(0).toUpperCase() + item.status.slice(1).replace('-', '')}`]
-                ]}>
-                  <Text style={[
-                    styles.statusChipText,
-                    item.status === 'booked' && styles.statusChipTextBooked
-                  ]}>
-                    {item.status === 'not-set' ? 'Not set' : 
-                     item.status === 'saved' ? 'Saved' : 'Booked'}
-                  </Text>
-                </View>
-              </View>
-            </BlurView>
+            {expandedRange === range.id && <View style={styles.dayRangeGlow} />}
+            <Text style={[styles.dayRangeText, expandedRange === range.id && styles.dayRangeTextActive]}>
+              {range.days} • {range.city}
+            </Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
+    </BlurView>
+  )
+
+  const ActivityCard = ({ activity, rangeId }: { activity: ActivityStatus, rangeId: string }) => (
+    <BlurView intensity={22} tint="dark" style={styles.activityCard}>
+      <View style={styles.activityCardInner}>
+        {/* Icon and Status */}
+        <View style={styles.activityHeader}>
+          <Ionicons name={activity.icon as any} size={20} color="#F8F8F8" />
+          <View style={styles.activityStatus}>
+            <View 
+              style={[
+                styles.statusDot, 
+                { 
+                  backgroundColor: getStatusDotColor(activity.status),
+                  borderWidth: activity.status === 'saved' ? 2 : 0,
+                  borderColor: activity.status === 'saved' ? '#C9A96D' : 'transparent'
+                }
+              ]} 
+            />
+            <Text style={styles.activityLabel}>{activity.label}</Text>
+          </View>
+        </View>
+        
+        {/* CTA Button */}
+        <TouchableOpacity style={styles.activityCTA}>
+          <Text style={styles.activityCTAText}>{getCTAText(activity)}</Text>
+        </TouchableOpacity>
+        
+        {/* Day Range Caption */}
+        <Text style={styles.activityCaption}>
+          Applies to {dayRanges.find(r => r.id === rangeId)?.days}
+        </Text>
+      </View>
+    </BlurView>
+  )
+
+  const CityPane = ({ range }: { range: DayRange }) => {
+    if (!expandedRange || expandedRange !== range.id) return null
+    
+    const activities = mockActivities[range.id] || []
+    
+    return (
+      <Animated.View style={styles.cityPaneContainer}>
+        <BlurView intensity={25} tint="dark" style={styles.cityPane}>
+          <View style={styles.cityPaneInner}>
+            {/* City Title */}
+            <Text style={styles.cityTitle}>{range.city}, {range.country} — {range.dateRange}</Text>
+            
+            {/* Hero Image Strip */}
+            <View style={styles.heroImageContainer}>
+              <ImageBackground
+                source={{ uri: range.image }}
+                style={styles.heroImage}
+                imageStyle={styles.heroImageStyle}
+              >
+                <View style={styles.heroImageOverlay} />
+              </ImageBackground>
+            </View>
+            
+            {/* Activity Grid */}
+            <View style={styles.activityGrid}>
+              {activities.map((activity, index) => (
+                <ActivityCard key={index} activity={activity} rangeId={range.id} />
+              ))}
+            </View>
+          </View>
+        </BlurView>
+      </Animated.View>
     )
   }
 
-  // Render destination city card
-  const renderCityCard = (destination: DestinationData, index: number) => (
-    <View key={destination.id} style={[styles.cityCard, { marginTop: index === 0 ? 0 : -12 }]}>
-      <BlurView intensity={26} tint="dark" style={styles.cityCardBlur}>
-        <View style={styles.cityCardInner}>
-          {/* Hero Image */}
-          <ImageBackground
-            source={{ uri: destination.image }}
-            style={styles.cityCardImage}
-            imageStyle={styles.cityCardImageStyle}
+  const BookingHub = () => (
+    <BlurView intensity={22} tint="dark" style={styles.bookingHub}>
+      <View style={styles.bookingHubInner}>
+        <Text style={styles.bookingHubTitle}>Quick Actions</Text>
+        <View style={styles.bookingChips}>
+          <TouchableOpacity style={styles.bookingChip}>
+            <Ionicons name="airplane-outline" size={16} color="#F8F8F8" />
+            <Text style={styles.bookingChipText}>Flights</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.bookingChip}>
+            <Ionicons name="bed-outline" size={16} color="#F8F8F8" />
+            <Text style={styles.bookingChipText}>Stays</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.bookingChip}>
+            <Ionicons name="car-outline" size={16} color="#F8F8F8" />
+            <Text style={styles.bookingChipText}>Transport</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </BlurView>
+  )
+
+  const ProgressMarker = () => (
+    <View style={styles.progressMarker}>
+      <View style={styles.progressMarkerTrack}>
+        <Animated.View 
+          style={[
+            styles.progressMarkerFill,
+            {
+              height: progressAnimation.interpolate({
+                inputRange: [0, 100],
+                outputRange: ['0%', '100%'],
+                extrapolate: 'clamp'
+              })
+            }
+          ]} 
+        />
+      </View>
+    </View>
+  )
+
+  // Bottom Navigation Dock (same as other pages)
+  const BottomDock = () => (
+    <View style={styles.dockContainer}>
+      <BlurView intensity={28} tint="dark" style={styles.dock}>
+        <View style={styles.dockInner}>
+          <TouchableOpacity 
+            style={styles.dockItem} 
+            onPress={() => handleNavigation('/landing')}
+            activeOpacity={0.7}
           >
-            {/* Soft neutral grey veil overlay */}
-            <View style={styles.cityCardGreyVeilOverlay} />
-            
-            {/* Refined vignette with depth */}
-            <View style={styles.cityCardImageOverlay} />
-            
-            {/* Bookmark Icon */}
-            <View style={styles.cityCardBookmark}>
-              <BlurView intensity={18} tint="light" style={styles.bookmarkBlur}>
-                <Ionicons name="bookmark" size={16} color="#C9A96D" />
-              </BlurView>
-            </View>
+            <Ionicons name="compass-outline" size={24} color="rgba(255,255,255,0.6)" />
+            <Text style={styles.dockLabel}>Discover</Text>
+          </TouchableOpacity>
 
-            {/* Tags */}
-            <View style={styles.cityCardTags}>
-              {destination.isCondeNastPick && (
-                <View style={styles.cityCardTag}>
-                  <Text style={styles.cityCardTagText}>Condé Nast</Text>
-                </View>
-              )}
-              {destination.isHiddenGem && (
-                <View style={styles.cityCardTag}>
-                  <Text style={styles.cityCardTagText}>Hidden Gem</Text>
-                </View>
-              )}
-            </View>
-          </ImageBackground>
+          <TouchableOpacity 
+            style={styles.dockItem} 
+            onPress={() => handleNavigation('/trips')}
+            activeOpacity={0.7}
+          >
+            <Ionicons name="bookmark-outline" size={24} color="rgba(255,255,255,0.6)" />
+            <Text style={styles.dockLabel}>My Trips</Text>
+          </TouchableOpacity>
 
-          {/* City Info */}
-          <View style={styles.cityCardContent}>
-            <View style={styles.cityCardHeader}>
-              <Text style={styles.cityCardTitle}>{destination.city}</Text>
-              <View style={styles.regionTag}>
-                <Text style={styles.regionTagText}>{destination.region}</Text>
-              </View>
-            </View>
-            
-            <Text style={styles.cityCardTagline}>{destination.tagline}</Text>
-            
-            {/* Transport Info */}
-            <View style={styles.cityCardTransport}>
-              {destination.transport.map((transport, idx) => (
-                <View key={idx} style={styles.transportItem}>
-                  <Ionicons name={transport.icon} size={14} color="rgba(255,255,255,0.8)" />
-                  <Text style={styles.transportTime}>{transport.time}</Text>
-                </View>
-              ))}
-            </View>
-
-            {/* City Sub-Modules */}
-            {renderCityModules(destination)}
-
-            {/* CTA Button */}
-            <TouchableOpacity style={styles.cityCTA} activeOpacity={0.8}>
-              <BlurView intensity={20} tint="light" style={styles.cityCTABlur}>
-                <Text style={styles.cityCTAText}>Plan Trip</Text>
-                <Ionicons name="arrow-forward" size={16} color="#F8F8F8" />
-              </BlurView>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity 
+            style={[styles.dockItem, styles.dockItemActive]} 
+            onPress={() => handleNavigation('/canvas')}
+            activeOpacity={0.7}
+          >
+            <View style={styles.dockActiveGlow} />
+            <Ionicons name="layers-outline" size={24} color="#C9A96D" />
+            <Text style={[styles.dockLabel, styles.dockLabelActive]}>Trip Canvas</Text>
+          </TouchableOpacity>
         </View>
       </BlurView>
     </View>
   )
 
-  // Render city sub-modules (Stay, Move, Explore, Dine)
-  const renderCityModules = (destination: DestinationData) => {
-    const modules = [
-      { key: 'stay', icon: 'home-outline', label: 'Stay', cta: 'Browse stays' },
-      { key: 'move', icon: 'car-outline', label: 'Move', cta: 'Plan transport' },
-      { key: 'explore', icon: 'compass-outline', label: 'Explore', cta: 'Add experiences' },
-      { key: 'dine', icon: 'restaurant-outline', label: 'Dine', cta: 'Add dining' }
-    ]
-
-    return (
-      <View style={styles.cityModules}>
-        {modules.map((module) => {
-          const moduleData = destination.modules[module.key as keyof typeof destination.modules]
-          const needsAttention = (module.key === 'stay' || module.key === 'move') && moduleData.status === 'not-set'
-          
-          return (
-            <TouchableOpacity
-              key={module.key}
-              style={[styles.cityModule, needsAttention && styles.cityModuleNeedsAttention]}
-              activeOpacity={0.8}
-            >
-              <BlurView intensity={15} tint="dark" style={styles.cityModuleBlur}>
-                <View style={styles.cityModuleInner}>
-                  <View style={styles.cityModuleLeft}>
-                    <Ionicons name={module.icon} size={16} color="#F8F8F8" />
-                    <Text style={styles.cityModuleLabel}>{module.label}</Text>
-                    {moduleData.status === 'booked' && (
-                      <Ionicons name="checkmark-circle" size={14} color="#C9A96D" />
-                    )}
-                  </View>
-                  
-                  <View style={styles.cityModuleRight}>
-                    <Text style={styles.cityModuleCTA}>{module.cta}</Text>
-                    <Ionicons name="chevron-forward" size={12} color="rgba(255,255,255,0.6)" />
-                  </View>
-                </View>
-              </BlurView>
-            </TouchableOpacity>
-          )
-        })}
-      </View>
-    )
-  }
-
-  // Render timeline bar
-  const renderTimelineBar = () => {
-    const days = Array.from({ length: activeTrip.days }, (_, i) => i + 1)
-    
-    return (
-      <View style={styles.timelineBar}>
-        <BlurView intensity={22} tint="dark" style={styles.timelineBarBlur}>
-          <ScrollView 
-            horizontal 
-            showsHorizontalScrollIndicator={false}
-            style={styles.timelineScroll}
-            contentContainerStyle={styles.timelineContent}
-          >
-            {days.map((day) => (
-              <TouchableOpacity
-                key={day}
-                style={[styles.timelineDay, selectedDay === day && styles.timelineDayActive]}
-                onPress={() => setSelectedDay(day)}
-                activeOpacity={0.8}
-              >
-                <Text style={[styles.timelineDayText, selectedDay === day && styles.timelineDayTextActive]}>
-                  Day {day}
-                </Text>
-                <View style={styles.timelineProgress}>
-                  <View style={[styles.timelineProgressDot, styles.timelineProgressDotFilled]} />
-                  <View style={styles.timelineProgressDot} />
-                  <View style={styles.timelineProgressDot} />
-                </View>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        </BlurView>
-      </View>
-    )
-  }
-
   return (
-    <ImageBackground
-      source={{
-        uri: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/7685c7d9-489b-4dcd-97de-18a2f10d0c3d_2024-10-03_20-55-13.png'
-      }}
-      style={styles.container}
-      resizeMode="cover"
-    >
-      {/* Header */}
-      <View style={styles.header}>
-        <BlurView intensity={24} tint="dark" style={styles.headerBlur}>
-          <View style={styles.headerInner}>
-            {/* TRAVEA Logo */}
-            <View style={styles.headerLeft}>
-              <TraveaWordmark />
-            </View>
-
-            {/* Trip Selector */}
-            <TouchableOpacity style={styles.tripSelector} activeOpacity={0.8}>
-              <BlurView intensity={18} tint="light" style={styles.tripSelectorBlur}>
-                <View style={styles.tripSelectorInner}>
-                  <Text style={styles.tripSelectorText}>
-                    {activeTrip.title.split(' ')[0]} & {activeTrip.title.split(' ')[2]} • {activeTrip.dates}
-                  </Text>
-                  <Ionicons name="chevron-down" size={16} color="rgba(255,255,255,0.8)" />
-                </View>
-              </BlurView>
-            </TouchableOpacity>
-
-            {/* Profile & Chat */}
-            <View style={styles.headerRight}>
-              <TouchableOpacity style={styles.chatOrb} activeOpacity={0.8}>
-                <BlurView intensity={20} tint="light" style={styles.chatOrbBlur}>
-                  <Ionicons name="chatbubble-ellipses-outline" size={18} color="#F8F8F8" />
-                </BlurView>
-              </TouchableOpacity>
-              
-              <TouchableOpacity style={styles.profileAvatar} activeOpacity={0.8}>
-                <BlurView intensity={20} tint="light" style={styles.profileAvatarBlur}>
-                  <Ionicons name="person-outline" size={18} color="#F8F8F8" />
-                </BlurView>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </BlurView>
-      </View>
-
-      <ScrollView 
-        ref={scrollViewRef}
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
-        {/* Hero Trip Overview */}
-        <View style={styles.heroSection}>
-          <BlurView intensity={26} tint="dark" style={styles.heroBlur}>
-            <View style={styles.heroInner}>
-              {/* Trip Title & Info */}
-              <Text style={styles.heroTitle}>{activeTrip.title}</Text>
-              <Text style={styles.heroSubtext}>
-                {activeTrip.travelers} Travelers • {activeTrip.days} Days • {activeTrip.cities} Cities
-              </Text>
-
-              {/* Progress Bar */}
-              <View style={styles.progressContainer}>
-                <View style={styles.progressTrack}>
-                  <Animated.View 
-                    style={[
-                      styles.progressFill,
-                      {
-                        width: progressAnim.interpolate({
-                          inputRange: [0, 1],
-                          outputRange: ['0%', '100%']
-                        })
-                      }
-                    ]} 
-                  />
-                </View>
-                <Text style={styles.progressText}>
-                  {Math.round(activeTrip.progress * 100)}% Complete
-                </Text>
-              </View>
-
-              {/* Booking Hub */}
-              <Text style={styles.bookingHubTitle}>Booking Hub</Text>
-              {renderBookingHub()}
-
-              {/* Smart CTA */}
-              <TouchableOpacity style={styles.smartCTA} activeOpacity={0.8}>
-                <BlurView intensity={20} tint="light" style={styles.smartCTABlur}>
-                  <Text style={styles.smartCTAText}>{getSmartCTA()}</Text>
-                  <Ionicons name="arrow-forward" size={18} color="#C9A96D" />
-                </BlurView>
-              </TouchableOpacity>
-            </View>
-          </BlurView>
-        </View>
-
-        {/* City Stack */}
-        <View style={styles.cityStack}>
-          {destinations.map((destination, index) => renderCityCard(destination, index))}
-        </View>
-
-        {/* Bottom Spacing */}
-        <View style={{ height: 120 }} />
+    <View style={styles.container}>
+      {/* Deep charcoal gradient background */}
+      <View style={styles.backgroundGradient} />
+      
+      {/* Soft vignette overlay */}
+      <View style={styles.vignetteOverlay} />
+      
+      {/* Progress Marker */}
+      <ProgressMarker />
+      
+      <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+        {/* Trip Header */}
+        <TripHeader />
+        
+        {/* Day Scroller */}
+        <DayScroller />
+        
+        {/* Expanded City Pane */}
+        {dayRanges.map(range => (
+          <CityPane key={range.id} range={range} />
+        ))}
+        
+        {/* Booking Hub */}
+        <BookingHub />
+        
+        {/* Bottom padding for dock */}
+        <View style={styles.bottomPadding} />
       </ScrollView>
-
-      {/* Timeline Bar */}
-      {renderTimelineBar()}
-
-      {/* Bottom Dock */}
-      <View style={styles.dock}>
-        <BlurView intensity={28} tint="dark" style={styles.dockBlur}>
-          <View style={styles.dockInner}>
-            <TouchableOpacity 
-              style={styles.dockItem} 
-              onPress={() => router.push('/landing')}
-              activeOpacity={0.8}
-            >
-              <Ionicons name="home-outline" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockText}>Home</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity 
-              style={styles.dockItem} 
-              activeOpacity={0.8}
-            >
-              <Ionicons name="brush" size={22} color="#C9A96D" />
-              <Text style={[styles.dockText, styles.dockTextActive]}>Trip Canvas</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity 
-              style={styles.dockItem} 
-              onPress={() => router.push('/trips')}
-              activeOpacity={0.8}
-            >
-              <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockText}>My Trips</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity 
-              style={styles.dockItem} 
-              activeOpacity={0.8}
-            >
-              <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockText}>Concierge</Text>
-            </TouchableOpacity>
-          </View>
-        </BlurView>
-      </View>
-    </ImageBackground>
+      
+      {/* Bottom Navigation Dock */}
+      <BottomDock />
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212',
+    backgroundColor: '#121212', // Deep charcoal base
   },
-  
-  // Header Styles
-  header: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 100,
-    paddingTop: Platform.select({ ios: 50, android: 40, web: 20 }),
-  },
-  headerBlur: {
-    borderRadius: 0,
-  },
-  headerInner: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 16,
-    justifyContent: 'space-between',
-  },
-  headerLeft: {
-    flex: 1,
-  },
-  tripSelector: {
-    flex: 2,
-    marginHorizontal: 12,
-  },
-  tripSelectorBlur: {
-    borderRadius: 16,
-    overflow: 'hidden',
-  },
-  tripSelectorInner: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    backgroundColor: 'rgba(255,255,255,0.08)',
-  },
-  tripSelectorText: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#F8F8F8',
-    marginRight: 8,
-    letterSpacing: 0.2,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  headerRight: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  chatOrb: {
-    marginRight: 12,
-  },
-  chatOrbBlur: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    overflow: 'hidden',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.08)',
-  },
-  profileAvatar: {
-    // Profile avatar styles
-  },
-  profileAvatarBlur: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    overflow: 'hidden',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.08)',
-  },
-
-  // Scroll View
-  scrollView: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingTop: Platform.select({ ios: 120, android: 110, web: 100 }),
-    paddingHorizontal: 20,
-  },
-
-  // Hero Section
-  heroSection: {
-    marginBottom: 32,
-  },
-  heroBlur: {
-    borderRadius: 24,
-    overflow: 'hidden',
+  backgroundGradient: {
+    ...StyleSheet.absoluteFillObject,
     ...Platform.select({
       web: {
-        boxShadow: '0 6px 28px rgba(0,0,0,0.35)',
+        background: 'linear-gradient(180deg, #121212 0%, #0a0a0a 100%)',
       },
       default: {
-        shadowColor: 'rgba(0,0,0,0.8)',
-        shadowOffset: { width: 0, height: 6 },
-        shadowOpacity: 0.35,
-        shadowRadius: 14,
-        elevation: 8,
+        backgroundColor: '#121212',
       },
     }),
   },
-  heroInner: {
-    padding: 24,
-    backgroundColor: 'rgba(25,25,25,0.40)',
-  },
-  heroTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: '#F8F8F8',
-    marginBottom: 8,
-    letterSpacing: 0.2,
-    fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Neue Montreal',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+  vignetteOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    ...Platform.select({
+      web: {
+        background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.3) 100%)',
+      },
+      default: {
+        backgroundColor: 'rgba(0, 0, 0, 0.1)',
+      },
     }),
   },
-  heroSubtext: {
-    fontSize: 16,
-    color: 'rgba(248,248,248,0.85)',
+  scrollContainer: {
+    flex: 1,
+  },
+
+  // Trip Header
+  tripHeader: {
+    marginTop: Platform.OS === 'web' ? 0 : 44,
+    marginHorizontal: 24,
+    marginBottom: 16,
+    borderRadius: 24,
+    overflow: 'hidden',
+  },
+  tripHeaderInner: {
+    padding: 24,
+    backgroundColor: 'rgba(25,25,25,0.42)',
+  },
+  headerTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: 20,
-    letterSpacing: 0.2,
+  },
+  logoContainer: {
+    // Consistent with landing page positioning
+  },
+  profileButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.08)',
+  },
+  tripInfo: {
+    marginBottom: 16,
+  },
+  tripTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  tripTitle: {
+    fontSize: 28,
+    fontWeight: '600',
+    color: '#F8F8F8',
+    letterSpacing: 0.5,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-
-  // Progress Bar
+  tripTitleInput: {
+    fontSize: 28,
+    fontWeight: '600',
+    color: '#F8F8F8',
+    letterSpacing: 0.5,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#C9A96D',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  tripDates: {
+    fontSize: 16,
+    color: 'rgba(248,248,248,0.8)',
+    marginBottom: 12,
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  statePill: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 16,
+    backgroundColor: 'rgba(255,255,255,0.12)',
+    position: 'relative',
+  },
+  statePillActive: {
+    backgroundColor: 'rgba(201,169,109,0.2)',
+  },
+  statePillGlow: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 16,
+    shadowColor: '#C9A96D',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.6,
+    shadowRadius: 8,
+    elevation: 8,
+  },
+  statePillText: {
+    fontSize: 14,
+    color: 'rgba(248,248,248,0.8)',
+    fontWeight: '500',
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  statePillTextActive: {
+    color: '#C9A96D',
+  },
   progressContainer: {
-    marginBottom: 24,
+    marginTop: 16,
   },
   progressTrack: {
-    height: 6,
+    height: 3,
     backgroundColor: 'rgba(255,255,255,0.15)',
-    borderRadius: 3,
+    borderRadius: 2,
     overflow: 'hidden',
-    marginBottom: 8,
   },
   progressFill: {
     height: '100%',
     backgroundColor: '#C9A96D',
-    borderRadius: 3,
+    borderRadius: 2,
+  },
+
+  // Day Scroller
+  dayScroller: {
+    marginHorizontal: 24,
+    marginBottom: 16,
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  dayScrollerContent: {
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    backgroundColor: 'rgba(25,25,25,0.42)',
+  },
+  dayRangeButton: {
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 16,
+    marginRight: 12,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    position: 'relative',
+  },
+  dayRangeButtonActive: {
+    backgroundColor: 'rgba(201,169,109,0.15)',
+  },
+  dayRangeGlow: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 16,
+    shadowColor: '#C9A96D',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.4,
+    shadowRadius: 6,
+    elevation: 6,
+  },
+  dayRangeText: {
+    fontSize: 15,
+    color: 'rgba(248,248,248,0.8)',
+    fontWeight: '500',
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  dayRangeTextActive: {
+    color: '#C9A96D',
+  },
+
+  // City Pane
+  cityPaneContainer: {
+    marginHorizontal: 24,
+    marginBottom: 16,
+  },
+  cityPane: {
+    borderRadius: 24,
+    overflow: 'hidden',
+  },
+  cityPaneInner: {
+    padding: 24,
+    backgroundColor: 'rgba(25,25,25,0.42)',
+  },
+  cityTitle: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#F8F8F8',
+    marginBottom: 16,
+    letterSpacing: 0.4,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  heroImageContainer: {
+    height: 120,
+    marginBottom: 20,
+    borderRadius: 16,
+    overflow: 'hidden',
+  },
+  heroImage: {
+    flex: 1,
+  },
+  heroImageStyle: {
+    borderRadius: 16,
     ...Platform.select({
       web: {
-        background: 'linear-gradient(90deg, #C9A96D 0%, #D4B477 100%)',
+        filter: 'brightness(0.78) contrast(0.72)',
       },
     }),
   },
-  progressText: {
+  heroImageOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(18,18,18,0.12)',
+  },
+  activityGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+
+  // Activity Cards
+  activityCard: {
+    width: '48%',
+    marginBottom: 12,
+    borderRadius: 16,
+    overflow: 'hidden',
+  },
+  activityCardInner: {
+    padding: 16,
+    backgroundColor: 'rgba(25,25,25,0.42)',
+  },
+  activityHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  activityStatus: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 12,
+  },
+  statusDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    marginRight: 8,
+  },
+  activityLabel: {
     fontSize: 14,
-    color: 'rgba(248,248,248,0.7)',
+    color: 'rgba(248,248,248,0.8)',
+    fontWeight: '500',
+    letterSpacing: 0.2,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  activityCTA: {
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    marginBottom: 8,
+  },
+  activityCTAText: {
+    fontSize: 13,
+    color: '#F8F8F8',
+    fontWeight: '500',
     textAlign: 'center',
     letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Inter',
-      android: 'Inter', 
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  activityCaption: {
+    fontSize: 12,
+    color: 'rgba(248,248,248,0.65)',
+    textAlign: 'center',
+    letterSpacing: 0.1,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
 
   // Booking Hub
+  bookingHub: {
+    marginHorizontal: 24,
+    marginBottom: 20,
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  bookingHubInner: {
+    padding: 20,
+    backgroundColor: 'rgba(25,25,25,0.42)',
+  },
   bookingHubTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '600',
     color: '#F8F8F8',
-    marginBottom: 16,
-    letterSpacing: 0.2,
-    fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Neue Montreal',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  bookingHubScroll: {
-    marginBottom: 24,
-  },
-  bookingHubContent: {
-    paddingRight: 20,
-  },
-  bookingPill: {
-    marginRight: 12,
-  },
-  bookingPillBlur: {
-    borderRadius: 16,
-    overflow: 'hidden',
-  },
-  bookingPillInner: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    backgroundColor: 'rgba(255,255,255,0.08)',
-    minWidth: 90,
-  },
-  bookingPillLabel: {
-    fontSize: 12,
-    fontWeight: '500',
-    color: '#F8F8F8',
-    marginTop: 6,
-    marginBottom: 8,
-    letterSpacing: 0.2,
+    marginBottom: 12,
+    letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-
-  // Status Chips
-  statusChip: {
-    paddingVertical: 4,
-    paddingHorizontal: 8,
-    borderRadius: 8,
-    minWidth: 60,
-    alignItems: 'center',
-  },
-  statusChipNotset: {
-    backgroundColor: 'rgba(255,255,255,0.55)',
-  },
-  statusChipSaved: {
-    backgroundColor: 'rgba(255,255,255,0.90)',
-  },
-  statusChipBooked: {
-    backgroundColor: 'rgba(201,169,109,0.25)',
-    borderWidth: 1,
-    borderColor: '#C9A96D',
-  },
-  statusChipText: {
-    fontSize: 10,
-    fontWeight: '500',
-    color: '#121212',
-    letterSpacing: 0.2,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  statusChipTextBooked: {
-    color: '#F8F8F8',
-  },
-
-  // Smart CTA
-  smartCTA: {
-    alignSelf: 'flex-end',
-  },
-  smartCTABlur: {
-    borderRadius: 18,
-    overflow: 'hidden',
+  bookingChips: {
     flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 18,
-    backgroundColor: 'rgba(201,169,109,0.25)',
-  },
-  smartCTAText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#F8F8F8',
-    marginRight: 8,
-    letterSpacing: 0.2,
-    fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Neue Montreal', 
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-
-  // City Stack
-  cityStack: {
-    marginBottom: 32,
-  },
-  cityCard: {
-    marginBottom: 24,
-  },
-  cityCardBlur: {
-    borderRadius: 24,
-    overflow: 'hidden',
-    ...Platform.select({
-      web: {
-        boxShadow: '0 8px 30px rgba(0,0,0,0.4)',
-      },
-      default: {
-        shadowColor: 'rgba(0,0,0,0.8)',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.4,
-        shadowRadius: 15,
-        elevation: 10,
-      },
-    }),
-  },
-  cityCardInner: {
-    backgroundColor: 'rgba(25,25,25,0.40)',
-  },
-  cityCardImage: {
-    height: 180,
     justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    flexDirection: 'row',
-    padding: 16,
   },
-  cityCardImageStyle: {
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
-    ...Platform.select({
-      web: {
-        // Further reduced brightness and contrast for more toned down appearance
-        filter: 'brightness(0.78) contrast(0.72)',
-      },
+  bookingChip: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    marginHorizontal: 4,
+  },
+  bookingChipText: {
+    fontSize: 14,
+    color: '#F8F8F8',
+    fontWeight: '500',
+    marginLeft: 8,
+    letterSpacing: 0.2,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  
-  // Soft neutral grey veil overlay for subtle desaturation
-  cityCardGreyVeilOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(18,18,18,0.12)', // Reduced opacity for subtlety
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
+
+  // Progress Marker
+  progressMarker: {
+    position: 'absolute',
+    right: 16,
+    top: 100,
+    bottom: 100,
+    width: 4,
     zIndex: 1,
   },
-  
-  // Enhanced vignette with depth (no blur)
-  cityCardImageOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
-    zIndex: 2,
-    ...Platform.select({
-      web: {
-        background: 'radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.12) 100%)',
-      },
-      default: {
-        backgroundColor: 'rgba(0,0,0,0.20)',
-      },
-    }),
-  },
-  cityCardBookmark: {
-    position: 'absolute',
-    top: 16,
-    right: 16,
-  },
-  bookmarkBlur: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    overflow: 'hidden',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.15)',
-  },
-  cityCardTags: {
-    position: 'absolute',
-    bottom: 16,
-    left: 16,
-    flexDirection: 'row',
-  },
-  cityCardTag: {
-    backgroundColor: 'rgba(0,0,0,0.55)',
-    borderRadius: 12,
-    paddingVertical: 6,
-    paddingHorizontal: 8,
-    marginRight: 8,
-  },
-  cityCardTagText: {
-    fontSize: 12,
-    fontWeight: '500',
-    color: '#FFFFFF',
-    letterSpacing: 0.2,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-
-  // City Card Content
-  cityCardContent: {
-    padding: 20,
-  },
-  cityCardHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  cityCardTitle: {
-    fontSize: 22,
-    fontWeight: '600',
-    color: '#F8F8F8',
-    marginRight: 12,
-    letterSpacing: 0.2,
-    fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Neue Montreal',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  regionTag: {
-    backgroundColor: 'rgba(0,0,0,0.55)',
-    borderRadius: 8,
-    paddingVertical: 4,
-    paddingHorizontal: 8,
-  },
-  regionTagText: {
-    fontSize: 12,
-    fontWeight: '500',
-    color: '#F8F8F8',
-    letterSpacing: 0.2,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  cityCardTagline: {
-    fontSize: 16,
-    color: 'rgba(248,248,248,0.85)',
-    marginBottom: 12,
-    letterSpacing: 0.2,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  cityCardTransport: {
-    flexDirection: 'row',
-    marginBottom: 16,
-  },
-  transportItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginRight: 16,
-  },
-  transportTime: {
-    fontSize: 14,
-    color: 'rgba(255,255,255,0.8)',
-    marginLeft: 6,
-    letterSpacing: 0.2,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-
-  // City Modules
-  cityModules: {
-    marginBottom: 16,
-  },
-  cityModule: {
-    marginBottom: 8,
-  },
-  cityModuleNeedsAttention: {
-    ...Platform.select({
-      web: {
-        boxShadow: '0 0 12px rgba(201,169,109,0.3)',
-      },
-      default: {
-        shadowColor: '#C9A96D',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.3,
-        shadowRadius: 6,
-        elevation: 3,
-      },
-    }),
-  },
-  cityModuleBlur: {
-    borderRadius: 12,
-    overflow: 'hidden',
-  },
-  cityModuleInner: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    backgroundColor: 'rgba(15,15,15,0.40)',
-  },
-  cityModuleLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  progressMarkerTrack: {
     flex: 1,
-  },
-  cityModuleLabel: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#F8F8F8',
-    marginLeft: 10,
-    letterSpacing: 0.2,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  cityModuleRight: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  cityModuleCTA: {
-    fontSize: 12,
-    color: 'rgba(248,248,248,0.7)',
-    marginRight: 6,
-    letterSpacing: 0.2,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-
-  // City CTA
-  cityCTA: {
-    alignSelf: 'flex-end',
-  },
-  cityCTABlur: {
-    borderRadius: 18,
-    overflow: 'hidden',
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    backgroundColor: 'rgba(201,169,109,0.25)',
-  },
-  cityCTAText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#F8F8F8',
-    marginRight: 8,
-    letterSpacing: 0.2,
-    fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Neue Montreal',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-
-  // Timeline Bar
-  timelineBar: {
-    position: 'absolute',
-    bottom: 100,
-    left: 0,
-    right: 0,
-    paddingHorizontal: 20,
-  },
-  timelineBarBlur: {
-    borderRadius: 16,
-    overflow: 'hidden',
-  },
-  timelineScroll: {
-    // No additional styles needed
-  },
-  timelineContent: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-  },
-  timelineDay: {
-    alignItems: 'center',
-    marginRight: 24,
-  },
-  timelineDayActive: {
-    ...Platform.select({
-      web: {
-        boxShadow: '0 0 12px rgba(201,169,109,0.4)',
-      },
-      default: {
-        shadowColor: '#C9A96D',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.4,
-        shadowRadius: 6,
-        elevation: 3,
-      },
-    }),
-  },
-  timelineDayText: {
-    fontSize: 12,
-    fontWeight: '500',
-    color: 'rgba(248,248,248,0.7)',
-    marginBottom: 6,
-    letterSpacing: 0.2,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  timelineDayTextActive: {
-    color: '#C9A96D',
-  },
-  timelineProgress: {
-    flexDirection: 'row',
-  },
-  timelineProgressDot: {
-    width: 4,
-    height: 4,
+    backgroundColor: 'rgba(255,255,255,0.15)',
     borderRadius: 2,
-    backgroundColor: 'rgba(255,255,255,0.3)',
-    marginHorizontal: 1,
+    overflow: 'hidden',
   },
-  timelineProgressDotFilled: {
+  progressMarkerFill: {
     backgroundColor: '#C9A96D',
-  },
-
-  // Bottom Dock
-  dock: {
+    borderRadius: 2,
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    paddingBottom: Platform.select({ ios: 30, android: 20, web: 20 }),
   },
-  dockBlur: {
-    borderRadius: 0,
+
+  // Bottom Navigation Dock (consistent with other pages)
+  dockContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    paddingHorizontal: 24,
+    paddingBottom: Platform.OS === 'ios' ? 34 : 24,
+  },
+  dock: {
+    borderRadius: 28,
+    overflow: 'hidden',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 16px 48px rgba(0, 0, 0, 0.4)',
+      },
+      default: {
+        shadowColor: 'rgba(0, 0, 0, 0.8)',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.4,
+        shadowRadius: 24,
+        elevation: 16,
+      },
+    }),
   },
   dockInner: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
     alignItems: 'center',
+    justifyContent: 'space-around',
     paddingVertical: 16,
     paddingHorizontal: 20,
-    backgroundColor: 'rgba(15,15,15,0.45)',
+    backgroundColor: 'rgba(25,25,25,0.42)',
   },
   dockItem: {
     alignItems: 'center',
-    flex: 1,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 16,
+    position: 'relative',
   },
-  dockText: {
+  dockItemActive: {
+    backgroundColor: 'rgba(201,169,109,0.15)',
+  },
+  dockActiveGlow: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 16,
+    shadowColor: '#C9A96D',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.4,
+    shadowRadius: 8,
+    elevation: 8,
+  },
+  dockLabel: {
     fontSize: 12,
-    color: 'rgba(255,255,255,0.7)',
+    color: 'rgba(255,255,255,0.6)',
     marginTop: 4,
+    fontWeight: '500',
     letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Inter',
@@ -1147,7 +901,10 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  dockTextActive: {
+  dockLabelActive: {
     color: '#C9A96D',
+  },
+  bottomPadding: {
+    height: 120,
   },
 })
