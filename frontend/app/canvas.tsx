@@ -460,7 +460,7 @@ export default function TripCanvas() {
                     
                     <View style={styles.centerContent}>
                       <View style={styles.categoryIconContainer}>
-                        <Ionicons name="car-outline" size={32} color="#F8F8F8" style={styles.categoryIcon} />
+                        <Ionicons name="car-outline" size={28} color="#F8F8F8" style={styles.categoryIcon} />
                       </View>
                       <Text style={styles.categoryLabel}>Transport</Text>
                     </View>
