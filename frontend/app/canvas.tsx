@@ -390,132 +390,190 @@ export default function TripCanvas() {
               </TouchableOpacity>
             )}
 
-            {/* Elegant Activity Grid - Apple + Aman Inspired */}
+            {/* Refined Activity Grid - Floating Glass Pills Design */}
             <View style={styles.activityGrid}>
-              {/* Soft gradient background for floating glass effect */}
-              <View style={styles.activityGridBackground} />
+              {/* Ambient frosted gradient backdrop */}
+              <View style={styles.ambientBackdrop} />
               
-              {/* Stay Card */}
-              <Animated.View style={[styles.elegantCard, { transform: [{ scale: scaleAnimation }] }]}>
-                <BlurView intensity={35} tint="light" style={styles.elegantCardBlur}>
-                  <View style={styles.elegantCardInner}>
-                    <View style={styles.cardTopSection}>
-                      {/* Minimalist icon with soft glow */}
+              {/* Stay Card - Slate Tint */}
+              <Animated.View style={[styles.refinedCard, styles.stayCardTint, { transform: [{ scale: scaleAnimation }] }]}>
+                <BlurView intensity={38} tint="light" style={styles.refinedCardBlur}>
+                  <View style={styles.refinedCardInner}>
+                    <View style={styles.cardContentSection}>
+                      {/* Minimalist icon with gentle glow */}
                       <View style={styles.iconContainer}>
-                        <Ionicons name="bed-outline" size={28} color="#F8F8F8" style={styles.elegantIcon} />
+                        <Ionicons name="bed-outline" size={32} color="#F8F8F8" style={styles.refinedIcon} />
                       </View>
-                      <Text style={styles.categoryLabel}>Stay</Text>
+                      <Text style={styles.refinedCategoryLabel}>Stay</Text>
                     </View>
                     
-                    {/* Status strip at bottom */}
-                    <View style={[
-                      styles.statusStrip, 
-                      activities.stay?.status === 'booked' && styles.statusStripBooked,
-                      activities.stay?.status === 'saved' && styles.statusStripSaved,
-                      activities.stay?.status === 'pending' && styles.statusStripPending
-                    ]}>
-                      <TouchableOpacity 
-                        style={styles.statusStripTouchable}
-                        onPress={() => handleCTAPress('stay', activities.stay?.status)}
-                        activeOpacity={0.8}
-                      >
-                        <Text style={styles.statusStripText}>
-                          {getStatusText(activities.stay?.status, activities.stay?.count)} • {getCTAText(activities.stay?.status)}
+                    {/* Floating Glass Pills at Bottom */}
+                    <View style={styles.pillsContainer}>
+                      {/* Status Pill - Left */}
+                      <View style={[
+                        styles.statusPill,
+                        activities.stay?.status === 'booked' && styles.statusPillBooked,
+                        activities.stay?.status === 'saved' && styles.statusPillSaved,
+                        activities.stay?.status === 'pending' && styles.statusPillPending
+                      ]}>
+                        <View style={[
+                          styles.statusPillHalo,
+                          activities.stay?.status === 'booked' && styles.haloBooked,
+                          activities.stay?.status === 'saved' && styles.haloSaved,
+                          activities.stay?.status === 'pending' && styles.haloPending
+                        ]} />
+                        <Text style={styles.statusPillText}>
+                          {getStatusText(activities.stay?.status, activities.stay?.count)}
                         </Text>
-                      </TouchableOpacity>
+                      </View>
+                      
+                      {/* Action Pill - Right */}
+                      <Animated.View style={[styles.actionPill, { transform: [{ scale: scaleAnimation }] }]}>
+                        <TouchableOpacity 
+                          style={styles.actionPillTouchable}
+                          onPress={() => handleCTAPress('stay', activities.stay?.status)}
+                          activeOpacity={0.7}
+                        >
+                          <Text style={styles.actionPillText}>
+                            {getCTAText(activities.stay?.status)}
+                          </Text>
+                        </TouchableOpacity>
+                      </Animated.View>
                     </View>
                   </View>
                 </BlurView>
               </Animated.View>
 
-              {/* Transport Card */}
-              <Animated.View style={[styles.elegantCard, { transform: [{ scale: scaleAnimation }] }]}>
-                <BlurView intensity={35} tint="light" style={styles.elegantCardBlur}>
-                  <View style={styles.elegantCardInner}>
-                    <View style={styles.cardTopSection}>
+              {/* Transport Card - Graphite Tint */}
+              <Animated.View style={[styles.refinedCard, styles.transportCardTint, { transform: [{ scale: scaleAnimation }] }]}>
+                <BlurView intensity={38} tint="light" style={styles.refinedCardBlur}>
+                  <View style={styles.refinedCardInner}>
+                    <View style={styles.cardContentSection}>
                       <View style={styles.iconContainer}>
-                        <Ionicons name="car-outline" size={28} color="#F8F8F8" style={styles.elegantIcon} />
+                        <Ionicons name="car-outline" size={32} color="#F8F8F8" style={styles.refinedIcon} />
                       </View>
-                      <Text style={styles.categoryLabel}>Transport</Text>
+                      <Text style={styles.refinedCategoryLabel}>Transport</Text>
                     </View>
                     
-                    <View style={[
-                      styles.statusStrip, 
-                      activities.transport?.status === 'booked' && styles.statusStripBooked,
-                      activities.transport?.status === 'saved' && styles.statusStripSaved,
-                      activities.transport?.status === 'pending' && styles.statusStripPending
-                    ]}>
-                      <TouchableOpacity 
-                        style={styles.statusStripTouchable}
-                        onPress={() => handleCTAPress('transport', activities.transport?.status)}
-                        activeOpacity={0.8}
-                      >
-                        <Text style={styles.statusStripText}>
-                          {getStatusText(activities.transport?.status, activities.transport?.count)} • {getCTAText(activities.transport?.status)}
+                    <View style={styles.pillsContainer}>
+                      <View style={[
+                        styles.statusPill,
+                        activities.transport?.status === 'booked' && styles.statusPillBooked,
+                        activities.transport?.status === 'saved' && styles.statusPillSaved,
+                        activities.transport?.status === 'pending' && styles.statusPillPending
+                      ]}>
+                        <View style={[
+                          styles.statusPillHalo,
+                          activities.transport?.status === 'booked' && styles.haloBooked,
+                          activities.transport?.status === 'saved' && styles.haloSaved,
+                          activities.transport?.status === 'pending' && styles.haloPending
+                        ]} />
+                        <Text style={styles.statusPillText}>
+                          {getStatusText(activities.transport?.status, activities.transport?.count)}
                         </Text>
-                      </TouchableOpacity>
+                      </View>
+                      
+                      <Animated.View style={[styles.actionPill, { transform: [{ scale: scaleAnimation }] }]}>
+                        <TouchableOpacity 
+                          style={styles.actionPillTouchable}
+                          onPress={() => handleCTAPress('transport', activities.transport?.status)}
+                          activeOpacity={0.7}
+                        >
+                          <Text style={styles.actionPillText}>
+                            {getCTAText(activities.transport?.status)}
+                          </Text>
+                        </TouchableOpacity>
+                      </Animated.View>
                     </View>
                   </View>
                 </BlurView>
               </Animated.View>
 
-              {/* Restaurants Card */}
-              <Animated.View style={[styles.elegantCard, { transform: [{ scale: scaleAnimation }] }]}>
-                <BlurView intensity={35} tint="light" style={styles.elegantCardBlur}>
-                  <View style={styles.elegantCardInner}>
-                    <View style={styles.cardTopSection}>
+              {/* Restaurants Card - Charcoal Tint */}
+              <Animated.View style={[styles.refinedCard, styles.restaurantsCardTint, { transform: [{ scale: scaleAnimation }] }]}>
+                <BlurView intensity={38} tint="light" style={styles.refinedCardBlur}>
+                  <View style={styles.refinedCardInner}>
+                    <View style={styles.cardContentSection}>
                       <View style={styles.iconContainer}>
-                        <Ionicons name="restaurant-outline" size={28} color="#F8F8F8" style={styles.elegantIcon} />
+                        <Ionicons name="restaurant-outline" size={32} color="#F8F8F8" style={styles.refinedIcon} />
                       </View>
-                      <Text style={styles.categoryLabel}>Restaurants</Text>
+                      <Text style={styles.refinedCategoryLabel}>Restaurants</Text>
                     </View>
                     
-                    <View style={[
-                      styles.statusStrip, 
-                      activities.restaurants?.status === 'booked' && styles.statusStripBooked,
-                      activities.restaurants?.status === 'saved' && styles.statusStripSaved,
-                      activities.restaurants?.status === 'pending' && styles.statusStripPending
-                    ]}>
-                      <TouchableOpacity 
-                        style={styles.statusStripTouchable}
-                        onPress={() => handleCTAPress('restaurants', activities.restaurants?.status)}
-                        activeOpacity={0.8}
-                      >
-                        <Text style={styles.statusStripText}>
-                          {getStatusText(activities.restaurants?.status, activities.restaurants?.count)} • {getCTAText(activities.restaurants?.status)}
+                    <View style={styles.pillsContainer}>
+                      <View style={[
+                        styles.statusPill,
+                        activities.restaurants?.status === 'booked' && styles.statusPillBooked,
+                        activities.restaurants?.status === 'saved' && styles.statusPillSaved,
+                        activities.restaurants?.status === 'pending' && styles.statusPillPending
+                      ]}>
+                        <View style={[
+                          styles.statusPillHalo,
+                          activities.restaurants?.status === 'booked' && styles.haloBooked,
+                          activities.restaurants?.status === 'saved' && styles.haloSaved,
+                          activities.restaurants?.status === 'pending' && styles.haloPending
+                        ]} />
+                        <Text style={styles.statusPillText}>
+                          {getStatusText(activities.restaurants?.status, activities.restaurants?.count)}
                         </Text>
-                      </TouchableOpacity>
+                      </View>
+                      
+                      <Animated.View style={[styles.actionPill, { transform: [{ scale: scaleAnimation }] }]}>
+                        <TouchableOpacity 
+                          style={styles.actionPillTouchable}
+                          onPress={() => handleCTAPress('restaurants', activities.restaurants?.status)}
+                          activeOpacity={0.7}
+                        >
+                          <Text style={styles.actionPillText}>
+                            {getCTAText(activities.restaurants?.status)}
+                          </Text>
+                        </TouchableOpacity>
+                      </Animated.View>
                     </View>
                   </View>
                 </BlurView>
               </Animated.View>
 
-              {/* Experiences Card */}
-              <Animated.View style={[styles.elegantCard, { transform: [{ scale: scaleAnimation }] }]}>
-                <BlurView intensity={35} tint="light" style={styles.elegantCardBlur}>
-                  <View style={styles.elegantCardInner}>
-                    <View style={styles.cardTopSection}>
+              {/* Experiences Card - Espresso Tint */}
+              <Animated.View style={[styles.refinedCard, styles.experiencesCardTint, { transform: [{ scale: scaleAnimation }] }]}>
+                <BlurView intensity={38} tint="light" style={styles.refinedCardBlur}>
+                  <View style={styles.refinedCardInner}>
+                    <View style={styles.cardContentSection}>
                       <View style={styles.iconContainer}>
-                        <Ionicons name="ticket-outline" size={28} color="#F8F8F8" style={styles.elegantIcon} />
+                        <Ionicons name="ticket-outline" size={32} color="#F8F8F8" style={styles.refinedIcon} />
                       </View>
-                      <Text style={styles.categoryLabel}>Experiences</Text>
+                      <Text style={styles.refinedCategoryLabel}>Experiences</Text>
                     </View>
                     
-                    <View style={[
-                      styles.statusStrip, 
-                      activities.experiences?.status === 'booked' && styles.statusStripBooked,
-                      activities.experiences?.status === 'saved' && styles.statusStripSaved,
-                      activities.experiences?.status === 'pending' && styles.statusStripPending
-                    ]}>
-                      <TouchableOpacity 
-                        style={styles.statusStripTouchable}
-                        onPress={() => handleCTAPress('experiences', activities.experiences?.status)}
-                        activeOpacity={0.8}
-                      >
-                        <Text style={styles.statusStripText}>
-                          {getStatusText(activities.experiences?.status, activities.experiences?.count)} • {getCTAText(activities.experiences?.status)}
+                    <View style={styles.pillsContainer}>
+                      <View style={[
+                        styles.statusPill,
+                        activities.experiences?.status === 'booked' && styles.statusPillBooked,
+                        activities.experiences?.status === 'saved' && styles.statusPillSaved,
+                        activities.experiences?.status === 'pending' && styles.statusPillPending
+                      ]}>
+                        <View style={[
+                          styles.statusPillHalo,
+                          activities.experiences?.status === 'booked' && styles.haloBooked,
+                          activities.experiences?.status === 'saved' && styles.haloSaved,
+                          activities.experiences?.status === 'pending' && styles.haloPending
+                        ]} />
+                        <Text style={styles.statusPillText}>
+                          {getStatusText(activities.experiences?.status, activities.experiences?.count)}
                         </Text>
-                      </TouchableOpacity>
+                      </View>
+                      
+                      <Animated.View style={[styles.actionPill, { transform: [{ scale: scaleAnimation }] }]}>
+                        <TouchableOpacity 
+                          style={styles.actionPillTouchable}
+                          onPress={() => handleCTAPress('experiences', activities.experiences?.status)}
+                          activeOpacity={0.7}
+                        >
+                          <Text style={styles.actionPillText}>
+                            {getCTAText(activities.experiences?.status)}
+                          </Text>
+                        </TouchableOpacity>
+                      </Animated.View>
                     </View>
                   </View>
                 </BlurView>
