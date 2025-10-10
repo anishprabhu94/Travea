@@ -285,28 +285,30 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   
-  // Center-aligned frosted glass pane
+  // Center-aligned frosted glass pane - Enhanced
   mainPane: {
-    borderRadius: 28, // radius 28px as specified
+    borderRadius: 28,
     overflow: 'hidden',
     width: '100%',
-    maxWidth: 380,
+    maxWidth: 400,
     ...Platform.select({
       web: {
-        boxShadow: '0 12px 40px rgba(0, 0, 0, 0.45)', // Diffuse glow, no drop shadows
+        boxShadow: '0 16px 48px rgba(0, 0, 0, 0.5)', // Enhanced shadow for elevated calm aesthetic
+        transform: 'scale(1)', // Prepared for fade and scale in animation
+        transition: 'all 280ms ease-in-out', // Pane fades and scales in (280ms)
       },
       default: {
-        shadowColor: 'rgba(0, 0, 0, 0.8)',
-        shadowOffset: { width: 0, height: 12 },
-        shadowOpacity: 0.45,
-        shadowRadius: 20,
-        elevation: 15,
+        shadowColor: 'rgba(0, 0, 0, 0.9)',
+        shadowOffset: { width: 0, height: 16 },
+        shadowOpacity: 0.5,
+        shadowRadius: 24,
+        elevation: 20,
       },
     }),
   },
   paneInner: {
-    backgroundColor: 'rgba(25,25,25,0.35)', // rgba(25,25,25,0.35), blur 25px as specified
-    padding: 32,
+    backgroundColor: 'rgba(25,25,25,0.45)', // Enhanced from 0.35 to 0.45 for elevated calm aesthetic
+    padding: 36, // Increased padding for more premium feel
   },
   
   // TRĀVEA logo and tagline at top
