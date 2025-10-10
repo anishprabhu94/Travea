@@ -749,6 +749,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 10,
     paddingHorizontal: 16,
+    borderRadius: 16, // Match parent radius
+  },
+  chipContentActive: {
+    backgroundColor: 'rgba(201,169,109,0.15)', // Elegant light bronze fill
   },
   chipContent: {
     backgroundColor: 'rgba(25,25,25,0.45)',
