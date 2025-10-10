@@ -367,17 +367,18 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   logoContainer: {
-    // TRĀVEA logo with bronze edge glow
+    // TRĀVEA logo with subtle glow and refraction
     ...Platform.select({
       web: {
-        filter: 'drop-shadow(0 0 10px rgba(201,169,109,0.7))', // Enhanced bronze edge glow
+        filter: 'drop-shadow(0 0 12px rgba(201,169,109,0.8)) drop-shadow(0 0 4px rgba(255,255,255,0.3))', // Bronze glow + refraction effect
+        transform: 'perspective(100px) rotateX(2deg)', // Subtle refraction perspective
       },
       default: {
         shadowColor: '#C9A96D',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.7,
-        shadowRadius: 10,
-        elevation: 5,
+        shadowOpacity: 0.8,
+        shadowRadius: 12,
+        elevation: 6,
       },
     }),
   },
