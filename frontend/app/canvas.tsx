@@ -1055,35 +1055,35 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Top-right circular arrow icon - smaller and more elegant with better spacing
+  // VisionOS-style frosted glass arrow circle - tactile and elevated
   circularArrow: {
     position: 'absolute',
-    top: 10, // Better positioning
+    top: 10,
     right: 10,
-    width: 22, // Reduced size for elegance
-    height: 22,
-    borderRadius: 11,
-    backgroundColor: 'rgba(255,255,255,0.12)', // Darker shade to stand out
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.15)', // Frosted glass base
     alignItems: 'center',
     justifyContent: 'center',
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(12px)',
-        boxShadow: '0 2px 6px rgba(0,0,0,0.15), inset 0 1px 2px rgba(255,255,255,0.15)', // Shadow + subtle glow
-        border: '1px solid rgba(255,255,255,0.08)',
-        transition: 'all 200ms ease-in-out',
-        ':hover': {
-          backgroundColor: 'rgba(255,255,255,0.18)',
-          transform: 'scale(1.05)', // Subtle bloom
-          boxShadow: '0 3px 10px rgba(0,0,0,0.2), inset 0 1px 3px rgba(255,255,255,0.2)',
-        },
+        backdropFilter: 'blur(14px) saturate(180%)', // Enhanced glass effect
+        // Warm neutral radial glow behind arrow
+        background: 'radial-gradient(circle at center, rgba(234,228,214,0.35) 0%, rgba(255,255,255,0.15) 60%)',
+        // Micro inner shadow (pressed into glass)
+        boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.15), inset 0 -1px 1px rgba(255,255,255,0.2), 0 2px 8px rgba(0,0,0,0.12)',
+        border: '1px solid rgba(255,255,255,0.25)', // Faint halo reflection at upper edge
+        borderTopColor: 'rgba(255,255,255,0.4)', // Upper edge glow (VisionOS)
+        transition: 'all 2s cubic-bezier(0.4, 0, 0.2, 1)', // Breathing animation curve
+        animation: 'breathing 2s ease-in-out infinite',
       },
       default: {
-        shadowColor: 'rgba(0,0,0,0.2)',
+        shadowColor: 'rgba(234,228,214,0.4)',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-        elevation: 3,
+        shadowOpacity: 0.4,
+        shadowRadius: 6,
+        elevation: 4,
       },
     }),
   },
