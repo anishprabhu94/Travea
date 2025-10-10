@@ -2012,9 +2012,9 @@ const styles = StyleSheet.create({
   },
   
   ribbonCTA: {
-    minWidth: 80, // Ensure equal dimensions
-    paddingHorizontal: 18,
-    paddingVertical: 9,
+    minWidth: 90, // Increased from 80 to prevent "Booked" cutoff
+    paddingHorizontal: 20, // Increased from 18
+    paddingVertical: 8, // Reduced from 9 for better proportions
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
