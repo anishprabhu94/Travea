@@ -543,13 +543,23 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: 'rgba(60,60,60,0.55)',
+    overflow: 'hidden',
+    backgroundColor: 'rgba(255,255,255,0.12)', // Enhanced frosted glass circle for visibility
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.15)', // Subtle border for definition
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(25px)',
-        boxShadow: '0 0 15px rgba(0,0,0,0.3)',
+        backdropFilter: 'blur(24px)',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.2)', // Soft shadow for depth
+      },
+      default: {
+        shadowColor: 'rgba(0,0,0,0.8)',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 6,
+        elevation: 3,
       },
     }),
   },
