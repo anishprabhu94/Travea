@@ -1715,130 +1715,116 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Booking Hub - VisionOS-style glassmorphic cards
-  bookingHubContainer: {
+  // Booking Overview - 2×2 Grid Layout
+  bookingOverviewContainer: {
     paddingHorizontal: 24,
     marginBottom: 32,
   },
-  bookingHub: {
-    borderRadius: 24,
-    overflow: 'hidden',
-  },
-  bookingHubInner: {
-    padding: 28,
-    backgroundColor: 'rgba(25,25,25,0.42)',
-  },
-  bookingHubTitle: {
-    fontSize: 20,
-    fontWeight: '500',
-    color: '#CBB88C', // Champagne gold header
-    letterSpacing: 0.4,
-    marginBottom: 20,
-    fontFamily: Platform.select({
-      ios: 'SF Pro Rounded',
-      android: 'Neue Montreal',
-      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    }),
+  
+  bookingGrid: {
+    gap: 14, // Apple Card-style balanced spacing
   },
   
-  // Three-card row layout
-  bookingCardsRow: {
+  bookingGridRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: 12, // Even spacing between cards
+    gap: 14,
+    marginBottom: 14,
   },
   
-  // Individual booking card
-  bookingCard: {
+  // Individual tile
+  bookingTile: {
     flex: 1,
     borderRadius: 24,
     overflow: 'hidden',
+    minHeight: 180,
     ...Platform.select({
       web: {
-        boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+        boxShadow: '0 4px 25px rgba(0,0,0,0.25)',
+        transition: 'transform 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+        ':hover': {
+          transform: 'translateY(-4px)',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+        },
       },
       default: {
-        shadowColor: 'rgba(0,0,0,0.18)',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.18,
-        shadowRadius: 10,
-        elevation: 6,
+        shadowColor: 'rgba(0,0,0,0.25)',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.25,
+        shadowRadius: 12,
+        elevation: 8,
       },
     }),
   },
   
-  bookingCardBlur: {
+  bookingTileBlur: {
     borderRadius: 24,
     overflow: 'hidden',
   },
   
-  bookingCardInner: {
+  bookingTileInner: {
     backgroundColor: 'rgba(255,255,255,0.06)',
-    paddingHorizontal: 16,
-    paddingVertical: 18,
-    minHeight: 140,
+    paddingHorizontal: 20,
+    paddingVertical: 22,
+    minHeight: 180,
     position: 'relative',
     ...Platform.select({
       web: {
-        background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%)',
+        backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%)',
         border: '1px solid rgba(255,255,255,0.08)',
       },
     }),
   },
   
-  // Top-right arrow circle (mini version)
-  bookingArrowCircle: {
+  // Arrow circle (top-right)
+  tileArrowCircle: {
     position: 'absolute',
-    top: 12,
-    right: 12,
-    width: 20,
-    height: 20,
-    borderRadius: 10,
+    top: 14,
+    right: 14,
+    width: 22,
+    height: 22,
+    borderRadius: 11,
     backgroundColor: 'rgba(255,255,255,0.15)',
     alignItems: 'center',
     justifyContent: 'center',
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(10px)',
-        boxShadow: 'inset 0 1px 1px rgba(0,0,0,0.1), 0 1px 4px rgba(0,0,0,0.1)',
+        backdropFilter: 'blur(12px)',
+        boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.12)',
         border: '1px solid rgba(255,255,255,0.2)',
       },
       default: {
-        shadowColor: 'rgba(0,0,0,0.15)',
+        shadowColor: 'rgba(0,0,0,0.18)',
         shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.15,
-        shadowRadius: 2,
+        shadowOpacity: 0.18,
+        shadowRadius: 3,
         elevation: 2,
       },
     }),
   },
   
-  // Icon with white glow (top-left)
-  bookingIconContainer: {
+  // Icon with white glow
+  tileIcon: {
     marginBottom: 12,
-  },
-  
-  bookingIcon: {
     ...Platform.select({
       web: {
-        filter: 'drop-shadow(0 0 6px rgba(255,255,255,0.3))',
+        filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.35))',
       },
       default: {
         shadowColor: '#FFFFFF',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.3,
-        shadowRadius: 3,
+        shadowOpacity: 0.35,
+        shadowRadius: 4,
       },
     }),
   },
   
-  // Category name
-  bookingCategoryName: {
-    fontSize: 15,
+  // Label
+  tileLabel: {
+    fontSize: 16,
     fontWeight: '500',
-    color: 'rgba(248,248,248,0.9)',
+    color: 'rgba(248,248,248,0.85)',
     letterSpacing: 0.3,
-    marginBottom: 10,
+    marginBottom: 14,
     fontFamily: Platform.select({
       ios: 'SF Pro Rounded',
       android: 'Neue Montreal',
@@ -1846,37 +1832,65 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Progress bar container
-  progressBarContainer: {
+  // Micro-line container
+  tileMicroLineContainer: {
+    flexDirection: 'row',
     height: 4,
-    backgroundColor: 'rgba(255,255,255,0.1)',
+    backgroundColor: 'rgba(255,255,255,0.08)',
     borderRadius: 2,
     overflow: 'hidden',
-    marginBottom: 10,
+    marginBottom: 14,
+    gap: 2,
   },
   
-  // Progress bar fill (warm gold for booked)
-  progressBar: {
-    height: '100%',
-    backgroundColor: '#CBB88C', // Champagne gold
+  tileMicroSegment: {
+    flex: 1,
+    height: 4,
     borderRadius: 2,
+  },
+  
+  tileMicroBooked: {
+    backgroundColor: '#CBB88C', // Champagne gold
+  },
+  
+  tileMicroSaved: {
+    backgroundColor: '#D6C7A1', // Sand beige
+  },
+  
+  tileMicroPending: {
+    backgroundColor: 'rgba(180,173,162,0.3)', // Warm gray
+  },
+  
+  // Status pill
+  tileStatusPill: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.1)',
     ...Platform.select({
       web: {
-        boxShadow: '0 0 6px rgba(203,184,140,0.4)',
+        backdropFilter: 'blur(8px)',
       },
     }),
   },
   
-  // Saved state uses sand beige
-  progressSaved: {
-    backgroundColor: '#D6C7A1',
+  tileStatusBooked: {
+    backgroundColor: 'rgba(203,184,140,0.25)', // Champagne gold tint
   },
   
-  // Status text below progress
-  bookingStatusText: {
-    fontSize: 13,
-    color: 'rgba(248,248,248,0.75)',
-    fontWeight: '400',
+  tileStatusSaved: {
+    backgroundColor: 'rgba(214,199,161,0.25)', // Sand beige tint
+  },
+  
+  tileStatusPending: {
+    backgroundColor: 'rgba(180,173,162,0.2)', // Warm gray tint
+  },
+  
+  tileStatusText: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: 'rgba(248,248,248,0.8)',
     letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'SF Pro Rounded',
