@@ -406,7 +406,7 @@ export default function TripCanvas() {
                       activeOpacity={0.8}
                     >
                       <View style={styles.arrowIconContainer}>
-                        <Ionicons name="arrow-forward" size={16} color="#F8F8F8" style={styles.arrowIcon} />
+                        <Ionicons name="arrow-forward" size={13} color="#F8F8F8" style={styles.arrowIcon} />
                       </View>
                     </TouchableOpacity>
                     
