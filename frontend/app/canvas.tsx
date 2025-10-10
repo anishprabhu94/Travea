@@ -1822,6 +1822,34 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   
+  // Particle layer
+  particleLayer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    overflow: 'hidden',
+  },
+  
+  particle: {
+    position: 'absolute',
+    borderRadius: 2,
+    ...Platform.select({
+      web: {
+        filter: 'blur(2px)',
+        mixBlendMode: 'screen', // Additive blend
+        animation: 'particleDrift 15s ease-in-out infinite', // CSS animation
+      },
+      default: {
+        shadowColor: '#FFFFFF',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+      },
+    }),
+  },
+  
   ribbonInner: {
     backgroundColor: 'rgba(22,22,22,0.25)', // Base tint
     paddingVertical: 18,
