@@ -1016,41 +1016,41 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Modern frosted-glass cards
+  // Modern frosted-glass cards - refined sizing
   modernCard: {
-    width: '48%',
-    marginBottom: 20,
-    borderRadius: 24, // Softly-rounded
+    width: '47%', // Slightly smaller for better proportions
+    marginBottom: 18, // Tighter spacing
+    borderRadius: 20, // Smaller radius for refined look
     overflow: 'hidden',
     ...Platform.select({
       web: {
-        boxShadow: '0 0 25px rgba(0,0,0,0.25)', // Faint outer shadow as specified
+        boxShadow: '0 4px 20px rgba(0,0,0,0.15)', // Softer shadow
       },
       default: {
-        shadowColor: 'rgba(0,0,0,0.25)',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.25,
-        shadowRadius: 12,
-        elevation: 8,
+        shadowColor: 'rgba(0,0,0,0.18)',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.18,
+        shadowRadius: 10,
+        elevation: 6,
       },
     }),
   },
   
   modernCardBlur: {
-    borderRadius: 24,
+    borderRadius: 20,
     overflow: 'hidden',
   },
   
   modernCardInner: {
-    backgroundColor: 'rgba(255,255,255,0.06)', // Semi-transparent frosted glass
-    minHeight: 140, // Generous but intentional padding
-    padding: 20,
+    backgroundColor: 'rgba(255,255,255,0.05)', // Refined transparency
+    minHeight: 120, // Reduced from 140 for more elegant proportions
+    padding: 16, // Reduced padding for tighter, elegant look
     position: 'relative',
     ...Platform.select({
       web: {
         // Subtle inner glow
-        background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%)',
-        border: '1px solid rgba(255,255,255,0.05)',
+        background: 'linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%)',
+        border: '1px solid rgba(255,255,255,0.06)',
       },
     }),
   },
