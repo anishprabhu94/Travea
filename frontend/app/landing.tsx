@@ -735,14 +735,20 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   chipBlur: {
-    borderRadius: 18, // radius 18px as specified
+    borderRadius: 18,
     overflow: 'hidden',
-    backgroundColor: 'rgba(255,255,255,0.05)', // rgba(255,255,255,0.05) as specified
+    backgroundColor: 'rgba(255,255,255,0.05)',
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(25px)', // blur 25px as specified
+        backdropFilter: 'blur(25px)',
       },
     }),
+  },
+  chipContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 16,
   },
   chipContent: {
     backgroundColor: 'rgba(25,25,25,0.45)',
