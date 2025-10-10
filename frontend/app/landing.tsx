@@ -1098,6 +1098,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     marginBottom: 120, // Space from dock
   },
+  searchImageBackground: {
+    width: '100%',
+    borderRadius: 28,
+    overflow: 'hidden',
+  },
+  searchImageStyle: {
+    borderRadius: 28,
+  },
   searchPane: {
     width: '100%',
     borderRadius: 28,
