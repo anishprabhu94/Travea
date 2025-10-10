@@ -458,31 +458,20 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   input: {
-    backgroundColor: 'rgba(255,255,255,0.12)', // Luminous translucency as specified (0.1-0.15 range)
+    backgroundColor: 'rgba(255,255,255,0.12)', // Luminous translucency
     paddingHorizontal: 18,
     paddingVertical: 16,
     fontSize: 16,
-    color: '#F8F8F8', // Warm white text
+    color: '#F8F8F8',
     fontWeight: '400',
     letterSpacing: 0.2,
     borderRadius: 14,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.15)', // Enhanced border translucency
+    borderColor: 'rgba(255,255,255,0.15)',
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-    ...Platform.select({
-      web: {
-        outline: 'none',
-        transition: 'all 200ms ease-in-out',
-        boxShadow: 'inset 0 0 20px rgba(255,255,255,0.05)', // Subtle inner luminosity
-        ':focus': {
-          borderColor: 'rgba(201,169,109,0.7)', // Enhanced bronze focus
-          boxShadow: '0 0 0 3px rgba(201,169,109,0.25), inset 0 0 20px rgba(255,255,255,0.08)', // Focus glow + inner luminosity
-        },
-      },
     }),
   },
   
