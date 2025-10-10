@@ -1131,10 +1131,10 @@ const styles = StyleSheet.create({
   dropdownOption: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 12, // Reduced from 18
-    paddingHorizontal: 20, // Reduced from 24
+    paddingVertical: 8, // Further reduced from 12
+    paddingHorizontal: 16, // Further reduced from 20
     backgroundColor: 'rgba(255,255,255,0.05)',
-    gap: 10, // Reduced from 12
+    gap: 8, // Further reduced from 10
   },
   
   dropdownSeparator: {
@@ -1143,7 +1143,7 @@ const styles = StyleSheet.create({
   },
   
   dropdownOptionText: {
-    fontSize: 16,
+    fontSize: 14, // Reduced from 16
     fontWeight: '500',
     color: 'rgba(248,248,248,0.9)',
     letterSpacing: 0.3,
