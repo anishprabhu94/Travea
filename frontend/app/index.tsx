@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   
-  // Center-aligned frosted glass pane
+  // Center-aligned glass pane with background image
   mainPane: {
     borderRadius: 28,
     overflow: 'hidden',
@@ -234,8 +234,27 @@ const styles = StyleSheet.create({
     elevation: 22,
   },
   
+  // Background image styles
+  paneImageBackground: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 28,
+    overflow: 'hidden',
+  },
+  paneImageStyle: {
+    borderRadius: 28,
+  },
+  
+  // Blur overlay for frosted glass effect
+  paneBlurOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 28,
+    overflow: 'hidden',
+    backgroundColor: 'rgba(25,25,25,0.3)', // Reduced opacity for image visibility
+  },
+  
   paneInner: {
-    backgroundColor: 'rgba(40,40,40,0.8)',
+    backgroundColor: 'rgba(25,25,25,0.4)', // Semi-transparent overlay
     padding: 36,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.1)',
