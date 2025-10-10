@@ -870,7 +870,7 @@ const styles = StyleSheet.create({
   },
   
   tripTitleLarge: {
-    fontSize: 36,
+    fontSize: 28,
     fontWeight: '600',
     color: 'rgba(248,248,248,0.95)',
     letterSpacing: 0.4,
