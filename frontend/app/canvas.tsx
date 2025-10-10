@@ -365,6 +365,51 @@ export default function TripCanvas() {
                 </BlurView>
               </Animated.View>
             )}
+            
+            {/* Trip Path - Moved into header */}
+            <View style={styles.tripPathInHeader}>
+              <ScrollView 
+                horizontal 
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.tripLineContent}
+              >
+                {[
+                  { name: 'Florence', acronym: 'FLR', status: 'booked' },
+                  { name: 'Rome', acronym: 'ROM', status: 'booked' },
+                  { name: 'Venice', acronym: 'VCE', status: 'saved' },
+                  { name: 'Milan', acronym: 'MIL', status: 'pending' },
+                  { name: 'Naples', acronym: 'NAP', status: 'pending' },
+                ].map((city, index) => (
+                  <View key={city.acronym} style={styles.capsuleWrapper}>
+                    <TouchableOpacity 
+                      style={[
+                        styles.cityCapsule,
+                        city.status === 'booked' && styles.capsuleBooked,
+                        city.status === 'saved' && styles.capsuleSaved,
+                        city.status === 'pending' && styles.capsulePending
+                      ]}
+                      activeOpacity={0.8}
+                    >
+                      <Animated.View style={[
+                        styles.capsuleInner,
+                        city.status === 'booked' && { opacity: pulseAnimation }
+                      ]}>
+                        <Text style={[
+                          styles.capsuleText,
+                          city.status === 'booked' && styles.capsuleTextBooked
+                        ]}>
+                          {city.acronym}
+                        </Text>
+                      </Animated.View>
+                    </TouchableOpacity>
+                    
+                    {index < 4 && (
+                      <View style={styles.connectingLine} />
+                    )}
+                  </View>
+                ))}
+              </ScrollView>
+            </View>
           </View>
         </View>
       </BlurView>
