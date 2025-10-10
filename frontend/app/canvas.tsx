@@ -1016,35 +1016,35 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Modern frosted-glass cards - refined sizing
+  // Modern frosted-glass cards - more compact and elegant
   modernCard: {
-    width: '47%', // Slightly smaller for better proportions
-    marginBottom: 18, // Tighter spacing
-    borderRadius: 20, // Smaller radius for refined look
+    width: '46%', // Reduced for more elegant proportions
+    marginBottom: 16, // Tighter spacing
+    borderRadius: 18, // Smaller radius for refined look
     overflow: 'hidden',
     ...Platform.select({
       web: {
-        boxShadow: '0 4px 20px rgba(0,0,0,0.15)', // Softer shadow
+        boxShadow: '0 3px 16px rgba(0,0,0,0.14)', // Softer shadow
       },
       default: {
-        shadowColor: 'rgba(0,0,0,0.18)',
+        shadowColor: 'rgba(0,0,0,0.16)',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.18,
-        shadowRadius: 10,
-        elevation: 6,
+        shadowOpacity: 0.16,
+        shadowRadius: 8,
+        elevation: 5,
       },
     }),
   },
   
   modernCardBlur: {
-    borderRadius: 20,
+    borderRadius: 18,
     overflow: 'hidden',
   },
   
   modernCardInner: {
     backgroundColor: 'rgba(255,255,255,0.05)', // Refined transparency
-    minHeight: 120, // Reduced from 140 for more elegant proportions
-    padding: 16, // Reduced padding for tighter, elegant look
+    minHeight: 108, // Reduced from 120 for more compact elegance
+    padding: 14, // Reduced padding for tighter look
     position: 'relative',
     ...Platform.select({
       web: {
@@ -1055,34 +1055,34 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Top-right circular arrow icon - refined and elegant
+  // Top-right circular arrow icon - smaller and more elegant with better spacing
   circularArrow: {
     position: 'absolute',
-    top: 12, // Better positioning
-    right: 12,
-    width: 26, // Smaller size for elegance
-    height: 26,
-    borderRadius: 13,
-    backgroundColor: 'rgba(255,255,255,0.15)', // Slightly more visible
+    top: 10, // Better positioning
+    right: 10,
+    width: 22, // Reduced size for elegance
+    height: 22,
+    borderRadius: 11,
+    backgroundColor: 'rgba(255,255,255,0.12)', // Darker shade to stand out
     alignItems: 'center',
     justifyContent: 'center',
     ...Platform.select({
       web: {
         backdropFilter: 'blur(12px)',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.1), 0 1px 3px rgba(255,255,255,0.2)', // Added shadow + glow
-        border: '1px solid rgba(255,255,255,0.1)',
+        boxShadow: '0 2px 6px rgba(0,0,0,0.15), inset 0 1px 2px rgba(255,255,255,0.15)', // Shadow + subtle glow
+        border: '1px solid rgba(255,255,255,0.08)',
         transition: 'all 200ms ease-in-out',
         ':hover': {
-          backgroundColor: 'rgba(255,255,255,0.22)',
+          backgroundColor: 'rgba(255,255,255,0.18)',
           transform: 'scale(1.05)', // Subtle bloom
-          boxShadow: '0 3px 12px rgba(0,0,0,0.15), 0 2px 6px rgba(255,255,255,0.3)',
+          boxShadow: '0 3px 10px rgba(0,0,0,0.2), inset 0 1px 3px rgba(255,255,255,0.2)',
         },
       },
       default: {
-        shadowColor: 'rgba(0,0,0,0.12)',
+        shadowColor: 'rgba(0,0,0,0.2)',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.12,
-        shadowRadius: 4,
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
         elevation: 3,
       },
     }),
