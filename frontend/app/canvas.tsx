@@ -1108,16 +1108,16 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Center content: icon and label with more spacing from arrow
+  // Center content: icon and label with optimal spacing
   centerContent: {
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
-    marginTop: 4, // Reduced to give more breathing room
+    marginTop: 2, // Minimal top margin for compact square look
   },
   
   categoryIconContainer: {
-    marginBottom: 12,
+    marginBottom: 8, // Reduced from 12 for more compact spacing
     alignItems: 'center',
     justifyContent: 'center',
   },
