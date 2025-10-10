@@ -723,90 +723,114 @@ export default function TripCanvas() {
     )
   }
 
+  // Booking Overview - 2×2 Grid
   const BookingHub = () => (
-    <View style={styles.bookingHubContainer}>
-      <BlurView intensity={26} tint="dark" style={styles.bookingHub}>
-        <View style={styles.bookingHubInner}>
-          <Text style={styles.bookingHubTitle}>Booking Hub</Text>
-          
-          {/* Three frosted-glass cards for Flights, Stays, Transport */}
-          <View style={styles.bookingCardsRow}>
-            {/* Flights Card */}
-            <TouchableOpacity style={styles.bookingCard} activeOpacity={0.8}>
-              <BlurView intensity={35} tint="light" style={styles.bookingCardBlur}>
-                <View style={styles.bookingCardInner}>
-                  {/* Top-right arrow */}
-                  <View style={styles.bookingArrowCircle}>
-                    <Ionicons name="arrow-forward" size={11} color="#F8F8F8" style={{ opacity: 0.98 }} />
-                  </View>
-                  
-                  {/* Icon top-left with white glow */}
-                  <View style={styles.bookingIconContainer}>
-                    <Ionicons name="airplane" size={20} color="#F8F8F8" style={styles.bookingIcon} />
-                  </View>
-                  
-                  {/* Category name */}
-                  <Text style={styles.bookingCategoryName}>Flights</Text>
-                  
-                  {/* Progress bar */}
-                  <View style={styles.progressBarContainer}>
-                    <View style={[styles.progressBar, { width: '100%' }]} />
-                  </View>
-                  
-                  {/* Status text */}
-                  <Text style={styles.bookingStatusText}>2 Booked</Text>
+    <View style={styles.bookingOverviewContainer}>
+      {/* 2x2 Grid */}
+      <View style={styles.bookingGrid}>
+        {/* Row 1 */}
+        <View style={styles.bookingGridRow}>
+          {/* Flights Tile */}
+          <TouchableOpacity style={styles.bookingTile} activeOpacity={0.85}>
+            <BlurView intensity={35} tint="light" style={styles.bookingTileBlur}>
+              <View style={styles.bookingTileInner}>
+                {/* Arrow circle top-right */}
+                <View style={styles.tileArrowCircle}>
+                  <Ionicons name="arrow-forward" size={12} color="#F8F8F8" style={{ opacity: 0.98 }} />
                 </View>
-              </BlurView>
-            </TouchableOpacity>
+                
+                {/* Icon with glow */}
+                <Ionicons name="airplane-outline" size={32} color="#F8F8F8" style={styles.tileIcon} />
+                
+                {/* Label */}
+                <Text style={styles.tileLabel}>Flights</Text>
+                
+                {/* Micro-line */}
+                <View style={styles.tileMicroLineContainer}>
+                  <View style={[styles.tileMicroSegment, styles.tileMicroBooked]} />
+                  <View style={[styles.tileMicroSegment, styles.tileMicroBooked]} />
+                </View>
+                
+                {/* Status pill */}
+                <View style={[styles.tileStatusPill, styles.tileStatusBooked]}>
+                  <Text style={styles.tileStatusText}>2 Booked</Text>
+                </View>
+              </View>
+            </BlurView>
+          </TouchableOpacity>
 
-            {/* Stays Card */}
-            <TouchableOpacity style={styles.bookingCard} activeOpacity={0.8}>
-              <BlurView intensity={35} tint="light" style={styles.bookingCardBlur}>
-                <View style={styles.bookingCardInner}>
-                  <View style={styles.bookingArrowCircle}>
-                    <Ionicons name="arrow-forward" size={11} color="#F8F8F8" style={{ opacity: 0.98 }} />
-                  </View>
-                  
-                  <View style={styles.bookingIconContainer}>
-                    <Ionicons name="bed" size={20} color="#F8F8F8" style={styles.bookingIcon} />
-                  </View>
-                  
-                  <Text style={styles.bookingCategoryName}>Stays</Text>
-                  
-                  <View style={styles.progressBarContainer}>
-                    <View style={[styles.progressBar, { width: '66%' }]} />
-                  </View>
-                  
-                  <Text style={styles.bookingStatusText}>2 of 3 Booked</Text>
+          {/* Stays Tile */}
+          <TouchableOpacity style={styles.bookingTile} activeOpacity={0.85}>
+            <BlurView intensity={35} tint="light" style={styles.bookingTileBlur}>
+              <View style={styles.bookingTileInner}>
+                <View style={styles.tileArrowCircle}>
+                  <Ionicons name="arrow-forward" size={12} color="#F8F8F8" style={{ opacity: 0.98 }} />
                 </View>
-              </BlurView>
-            </TouchableOpacity>
-
-            {/* Transport Card */}
-            <TouchableOpacity style={styles.bookingCard} activeOpacity={0.8}>
-              <BlurView intensity={35} tint="light" style={styles.bookingCardBlur}>
-                <View style={styles.bookingCardInner}>
-                  <View style={styles.bookingArrowCircle}>
-                    <Ionicons name="arrow-forward" size={11} color="#F8F8F8" style={{ opacity: 0.98 }} />
-                  </View>
-                  
-                  <View style={styles.bookingIconContainer}>
-                    <Ionicons name="car" size={20} color="#F8F8F8" style={styles.bookingIcon} />
-                  </View>
-                  
-                  <Text style={styles.bookingCategoryName}>Transport</Text>
-                  
-                  <View style={styles.progressBarContainer}>
-                    <View style={[styles.progressBar, styles.progressSaved, { width: '33%' }]} />
-                  </View>
-                  
-                  <Text style={styles.bookingStatusText}>1 Saved</Text>
+                
+                <Ionicons name="bed-outline" size={32} color="#F8F8F8" style={styles.tileIcon} />
+                <Text style={styles.tileLabel}>Stays</Text>
+                
+                <View style={styles.tileMicroLineContainer}>
+                  <View style={[styles.tileMicroSegment, styles.tileMicroBooked]} />
+                  <View style={[styles.tileMicroSegment, styles.tileMicroBooked]} />
+                  <View style={[styles.tileMicroSegment, styles.tileMicroPending]} />
                 </View>
-              </BlurView>
-            </TouchableOpacity>
-          </View>
+                
+                <View style={[styles.tileStatusPill, styles.tileStatusBooked]}>
+                  <Text style={styles.tileStatusText}>2 of 3 Booked</Text>
+                </View>
+              </View>
+            </BlurView>
+          </TouchableOpacity>
         </View>
-      </BlurView>
+
+        {/* Row 2 */}
+        <View style={styles.bookingGridRow}>
+          {/* Transport Tile */}
+          <TouchableOpacity style={styles.bookingTile} activeOpacity={0.85}>
+            <BlurView intensity={35} tint="light" style={styles.bookingTileBlur}>
+              <View style={styles.bookingTileInner}>
+                <View style={styles.tileArrowCircle}>
+                  <Ionicons name="arrow-forward" size={12} color="#F8F8F8" style={{ opacity: 0.98 }} />
+                </View>
+                
+                <Ionicons name="car-outline" size={32} color="#F8F8F8" style={styles.tileIcon} />
+                <Text style={styles.tileLabel}>Transport</Text>
+                
+                <View style={styles.tileMicroLineContainer}>
+                  <View style={[styles.tileMicroSegment, styles.tileMicroSaved]} />
+                </View>
+                
+                <View style={[styles.tileStatusPill, styles.tileStatusSaved]}>
+                  <Text style={styles.tileStatusText}>1 Saved</Text>
+                </View>
+              </View>
+            </BlurView>
+          </TouchableOpacity>
+
+          {/* Experiences Tile */}
+          <TouchableOpacity style={styles.bookingTile} activeOpacity={0.85}>
+            <BlurView intensity={35} tint="light" style={styles.bookingTileBlur}>
+              <View style={styles.bookingTileInner}>
+                <View style={styles.tileArrowCircle}>
+                  <Ionicons name="arrow-forward" size={12} color="#F8F8F8" style={{ opacity: 0.98 }} />
+                </View>
+                
+                <Ionicons name="ticket-outline" size={32} color="#F8F8F8" style={styles.tileIcon} />
+                <Text style={styles.tileLabel}>Experiences</Text>
+                
+                <View style={styles.tileMicroLineContainer}>
+                  <View style={[styles.tileMicroSegment, styles.tileMicroPending]} />
+                </View>
+                
+                <View style={[styles.tileStatusPill, styles.tileStatusPending]}>
+                  <Text style={styles.tileStatusText}>Pending</Text>
+                </View>
+              </View>
+            </BlurView>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   )
 
