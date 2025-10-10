@@ -259,7 +259,8 @@ const styles = StyleSheet.create({
     ...Platform.select({
       web: {
         minHeight: '100vh',
-        background: 'linear-gradient(180deg, #0E0E0E 0%, #151515 100%)', // Full-screen blurred dark gradient
+        background: 'linear-gradient(180deg, #0E0E0E 0%, #151515 100%)', // Full-screen blurred dark gradient with subtle bronze light accent
+        position: 'relative',
       },
     }),
   },
