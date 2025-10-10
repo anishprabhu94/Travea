@@ -343,15 +343,15 @@ const styles = StyleSheet.create({
     marginBottom: 28,
   },
   gradientButton: {
-    paddingVertical: 18,
+    paddingVertical: 14, // Reduced from 18 to 14
     paddingHorizontal: 32,
     borderRadius: 14,
     alignItems: 'center',
     shadowColor: '#C9A96D',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 12,
-    elevation: 10,
+    shadowOffset: { width: 0, height: 2 }, // Reduced shadow
+    shadowOpacity: 0.15, // Reduced from 0.3 to 0.15
+    shadowRadius: 6, // Reduced from 12 to 6
+    elevation: 5, // Reduced from 10 to 5
   },
   primaryButtonText: {
     fontSize: 16,
