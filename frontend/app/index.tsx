@@ -3,7 +3,6 @@ import {
   Text,
   View,
   StyleSheet,
-  ImageBackground,
   TextInput,
   TouchableOpacity,
   Platform,
@@ -24,7 +23,6 @@ export default function Index() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [focusedField, setFocusedField] = useState<string | null>(null);
 
   const handleSignIn = () => {
     router.push('/landing');
@@ -46,62 +44,22 @@ export default function Index() {
     router.push('/landing');
   };
 
-  // Set body style for web to remove margins and input outlines
-  React.useEffect(() => {
-    if (Platform.OS === 'web') {
-      const style = document.createElement('style');
-      style.innerHTML = `
-        body, html, #root {
-          margin: 0 !important;
-          padding: 0 !important;
-          width: 100% !important;
-          height: 100% !important;
-          overflow: hidden !important;
-        }
-        
-        input, textarea {
-          outline: none !important;
-          border-radius: 10px !important;
-          -webkit-appearance: none !important;
-          appearance: none !important;
-        }
-        
-        input:focus, textarea:focus {
-          outline: none !important;
-          box-shadow: none !important;
-          border-color: rgba(255, 255, 255, 0.15) !important;
-        }
-        
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-          -webkit-appearance: none !important;
-          margin: 0 !important;
-        }
-      `;
-      document.head.appendChild(style);
-    }
-  }, []);
-
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
       
-      {/* Vignette overlay */}
-      <View style={styles.vignetteOverlay} />
+      {/* Deep charcoal gradient background */}
+      <LinearGradient
+        colors={['#1a1a1a', '#0a0a0a']}
+        style={styles.backgroundGradient}
+      />
       
       {/* Content */}
       <View style={styles.contentContainer}>
         
-        {/* Center-aligned frosted glass pane with luxury travel image */}
-        <View style={styles.mainPane}>
-          <ImageBackground
-            source={{ uri: 'https://customer-assets.emergentagent.com/job_c851a5c2-e443-4a96-b503-41a7575b9658/artifacts/eym75xuh_sign%20in%20final.jpg' }}
-            style={styles.paneImageBackground}
-            imageStyle={styles.paneImageStyle}
-          >
-            <BlurView intensity={25} tint="dark" style={styles.paneBlurOverlay}>
-              <View style={styles.bronzeGradientOverlay} />
-              <View style={styles.paneInner}>
+        {/* Center-aligned frosted glass pane */}
+        <BlurView intensity={20} tint="dark" style={styles.mainPane}>
+          <View style={styles.paneInner}>
             
             {/* TRĀVEA Logo and tagline */}
             <View style={styles.logoSection}>
@@ -111,33 +69,29 @@ export default function Index() {
               <Text style={styles.tagline}>Travel, refined.</Text>
             </View>
 
-            {/* Frosted tab toggle for Sign In / Sign Up */}
+            {/* Tab toggle for Sign In / Sign Up */}
             <View style={styles.tabToggleContainer}>
-              <BlurView intensity={20} tint="light" style={styles.tabToggleBlur}>
-                <View style={styles.tabToggleInner}>
-                  <TouchableOpacity
-                    style={[styles.tabButton, !isSignUp && styles.tabButtonActive]}
-                    onPress={() => setIsSignUp(false)}
-                    activeOpacity={0.8}
-                  >
-                    {!isSignUp && <View style={styles.tabGlow} />}
-                    <Text style={[styles.tabText, !isSignUp && styles.tabTextActive]}>
-                      Sign In
-                    </Text>
-                  </TouchableOpacity>
-                  
-                  <TouchableOpacity
-                    style={[styles.tabButton, isSignUp && styles.tabButtonActive]}
-                    onPress={() => setIsSignUp(true)}
-                    activeOpacity={0.8}
-                  >
-                    {isSignUp && <View style={styles.tabGlow} />}
-                    <Text style={[styles.tabText, isSignUp && styles.tabTextActive]}>
-                      Sign Up
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </BlurView>
+              <View style={styles.tabToggleInner}>
+                <TouchableOpacity
+                  style={[styles.tabButton, !isSignUp && styles.tabButtonActive]}
+                  onPress={() => setIsSignUp(false)}
+                  activeOpacity={0.8}
+                >
+                  <Text style={[styles.tabText, !isSignUp && styles.tabTextActive]}>
+                    Sign In
+                  </Text>
+                </TouchableOpacity>
+                
+                <TouchableOpacity
+                  style={[styles.tabButton, isSignUp && styles.tabButtonActive]}
+                  onPress={() => setIsSignUp(true)}
+                  activeOpacity={0.8}
+                >
+                  <Text style={[styles.tabText, isSignUp && styles.tabTextActive]}>
+                    Sign Up
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
 
             {/* Form content */}
@@ -146,51 +100,39 @@ export default function Index() {
               {/* Name Field (Sign Up only) */}
               {isSignUp && (
                 <View style={styles.inputGroup}>
-                  <BlurView intensity={12} tint="light" style={styles.inputBlur}>
-                    <TextInput
-                      style={styles.input}
-                      placeholder="Full name"
-                      placeholderTextColor="rgba(255,255,255,0.6)"
-                      value={name}
-                      onChangeText={setName}
-                      onFocus={() => setFocusedField('name')}
-                      onBlur={() => setFocusedField(null)}
-                    />
-                  </BlurView>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Full name"
+                    placeholderTextColor="rgba(255,255,255,0.45)"
+                    value={name}
+                    onChangeText={setName}
+                  />
                 </View>
               )}
               
               {/* Email Field */}
               <View style={styles.inputGroup}>
-                <BlurView intensity={12} tint="light" style={styles.inputBlur}>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Email address"
-                    placeholderTextColor="rgba(255,255,255,0.6)"
-                    value={email}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                    onFocus={() => setFocusedField('email')}
-                    onBlur={() => setFocusedField(null)}
-                  />
-                </BlurView>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Email address"
+                  placeholderTextColor="rgba(255,255,255,0.45)"
+                  value={email}
+                  onChangeText={setEmail}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                />
               </View>
               
               {/* Password Field */}
               <View style={styles.inputGroup}>
-                <BlurView intensity={12} tint="light" style={styles.inputBlur}>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Password"
-                    placeholderTextColor="rgba(255,255,255,0.6)"
-                    value={password}
-                    onChangeText={setPassword}
-                    secureTextEntry
-                    onFocus={() => setFocusedField('password')}
-                    onBlur={() => setFocusedField(null)}
-                  />
-                </BlurView>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Password"
+                  placeholderTextColor="rgba(255,255,255,0.45)"
+                  value={password}
+                  onChangeText={setPassword}
+                  secureTextEntry
+                />
               </View>
               
               {/* Bronze-gradient primary button */}
@@ -216,7 +158,7 @@ export default function Index() {
                 <View style={styles.dividerLine} />
               </View>
               
-              {/* Frosted secondary buttons for OAuth */}
+              {/* OAuth buttons */}
               <View style={styles.oauthSection}>
                 
                 {/* Google Button */}
@@ -225,12 +167,10 @@ export default function Index() {
                   onPress={handleOAuthGoogle}
                   activeOpacity={0.8}
                 >
-                  <BlurView intensity={18} tint="light" style={styles.oauthBlur}>
-                    <View style={styles.oauthInner}>
-                      <Ionicons name="logo-google" size={18} color="#F8F8F8" />
-                      <Text style={styles.oauthText}>Continue with Google</Text>
-                    </View>
-                  </BlurView>
+                  <View style={styles.oauthInner}>
+                    <Ionicons name="logo-google" size={18} color="#F8F8F8" />
+                    <Text style={styles.oauthText}>Continue with Google</Text>
+                  </View>
                 </TouchableOpacity>
                 
                 {/* Apple Button */}
@@ -239,12 +179,10 @@ export default function Index() {
                   onPress={handleOAuthApple}
                   activeOpacity={0.8}
                 >
-                  <BlurView intensity={18} tint="light" style={styles.oauthBlur}>
-                    <View style={styles.oauthInner}>
-                      <Ionicons name="logo-apple" size={18} color="#F8F8F8" />
-                      <Text style={styles.oauthText}>Continue with Apple</Text>
-                    </View>
-                  </BlurView>
+                  <View style={styles.oauthInner}>
+                    <Ionicons name="logo-apple" size={18} color="#F8F8F8" />
+                    <Text style={styles.oauthText}>Continue with Apple</Text>
+                  </View>
                 </TouchableOpacity>
                 
               </View>
@@ -253,8 +191,6 @@ export default function Index() {
             
           </View>
         </BlurView>
-        </ImageBackground>
-        </View>
         
       </View>
     </View>
