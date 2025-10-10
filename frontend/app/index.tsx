@@ -190,7 +190,7 @@ export default function Index() {
             </View>
             
           </View>
-        </BlurView>
+        </View>
         
       </View>
     </View>
