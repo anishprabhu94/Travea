@@ -448,13 +448,12 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'transparent',
     ...Platform.select({
       web: {
-        background: 'radial-gradient(circle, rgba(0,0,0,0) 30%, rgba(0,0,0,0.3) 100%)',
+        background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.4) 100%)', // Subtle vignette edge fade
       },
       default: {
-        backgroundColor: 'rgba(0,0,0,0.1)',
+        backgroundColor: 'rgba(0, 0, 0, 0.1)', // Subtle vignette for native
       },
     }),
   },
