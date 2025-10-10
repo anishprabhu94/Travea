@@ -404,8 +404,13 @@ const styles = StyleSheet.create({
   },
   tabToggleInner: {
     flexDirection: 'row',
-    backgroundColor: 'rgba(255,255,255,0.05)', // Low opacity frosted background
+    backgroundColor: 'rgba(255,255,255,0.12)', // Luminous translucency (0.1-0.15 range)
     padding: 4,
+    ...Platform.select({
+      web: {
+        boxShadow: 'inset 0 0 15px rgba(255,255,255,0.08)', // Subtle inner luminosity
+      },
+    }),
   },
   tabButton: {
     flex: 1,
