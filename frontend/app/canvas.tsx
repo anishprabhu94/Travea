@@ -864,93 +864,146 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'rgba(255,255,255,0.06)',
   },
-  tripTitleContainer: {
-    alignItems: 'flex-start',
+  // Trip Info Block - Redesigned
+  tripInfoBlock: {
+    marginTop: 8,
   },
-  tripTitle: {
-    fontSize: 32,
-    fontWeight: '500', // Medium weight as requested
-    color: 'rgba(248,248,248,0.9)', // 90% opacity for headings
-    letterSpacing: 0.6, // Slight spacing for elegance
-    marginBottom: 8,
-    fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Inter',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    }),
-  },
-  tripTitleInput: {
-    fontSize: 32,
-    fontWeight: '500',
-    color: 'rgba(248,248,248,0.9)',
-    letterSpacing: 0.6,
-    backgroundColor: 'rgba(255,255,255,0.06)',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: '#C9A96D',
-    marginBottom: 8,
-    fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Inter',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    }),
-  },
-  tripDates: {
-    fontSize: 16,
-    color: 'rgba(248,248,248,0.8)', // 80% opacity for body text
+  
+  tripTitleLarge: {
+    fontSize: 36,
+    fontWeight: '600',
+    color: 'rgba(248,248,248,0.95)',
     letterSpacing: 0.4,
-    marginBottom: 16,
+    marginBottom: 8,
     fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Inter',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      ios: 'SF Pro Rounded',
+      android: 'Neue Montreal',
+      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-  statePill: {
+  
+  tripSubtext: {
+    fontSize: 15,
+    fontWeight: '400',
+    color: 'rgba(248,248,248,0.7)', // 70% opacity
+    letterSpacing: 0.3,
+    marginBottom: 20,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Rounded',
+      android: 'Neue Montreal',
+      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  
+  // Status Dropdown Button
+  statusDropdownButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
     alignSelf: 'flex-start',
     paddingHorizontal: 18,
-    paddingVertical: 8,
+    paddingVertical: 10,
     borderRadius: 20,
-    backgroundColor: 'rgba(255,255,255,0.08)',
-    marginBottom: 20,
-  },
-  statePillGlow: {
-    backgroundColor: 'rgba(201,169,109,0.15)',
-    shadowColor: '#C9A96D',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.4,
-    shadowRadius: 12,
-    elevation: 8,
-  },
-  statePillText: {
-    fontSize: 14,
-    color: 'rgba(248,248,248,0.8)',
-    fontWeight: '500',
-    letterSpacing: 0.3,
-    fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Inter',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    gap: 8,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(20px)',
+        boxShadow: 'inset 0 1px 2px rgba(255,255,255,0.15), 0 2px 8px rgba(0,0,0,0.15)',
+        border: '1px solid rgba(255,255,255,0.15)',
+      },
+      default: {
+        shadowColor: 'rgba(0,0,0,0.2)',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+        elevation: 3,
+      },
     }),
   },
-  statePillTextActive: {
-    color: '#C9A96D',
+  
+  statusDropdownText: {
+    fontSize: 15,
+    fontWeight: '500',
+    color: 'rgba(248,248,248,0.9)',
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Rounded',
+      android: 'Neue Montreal',
+      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
   },
-  progressContainer: {
-    marginTop: 0,
-  },
-  progressTrack: {
-    height: 2,
-    backgroundColor: 'rgba(255,255,255,0.12)',
-    borderRadius: 1,
+  
+  // Dropdown Menu
+  statusDropdownMenu: {
+    position: 'absolute',
+    top: 160,
+    left: 0,
+    right: 0,
+    zIndex: 1000,
+    marginTop: 8,
+    borderRadius: 20,
     overflow: 'hidden',
   },
-  progressFill: {
-    height: '100%',
-    backgroundColor: '#C9A96D',
-    borderRadius: 1,
+  
+  dropdownMenuBlur: {
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  
+  dropdownOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 18,
+    paddingHorizontal: 24,
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    gap: 12,
+  },
+  
+  dropdownSeparator: {
+    height: 1,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+  },
+  
+  dropdownOptionText: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: 'rgba(248,248,248,0.9)',
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Rounded',
+      android: 'Neue Montreal',
+      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  
+  // Status Dots
+  statusDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+  },
+  
+  statusDotOngoing: {
+    backgroundColor: '#CBB88C', // Champagne gold
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 10px rgba(203,184,140,0.6)',
+      },
+      default: {
+        shadowColor: '#CBB88C',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.6,
+        shadowRadius: 5,
+      },
+    }),
+  },
+  
+  statusDotPlanning: {
+    backgroundColor: '#D6C7A1', // Sand beige
+  },
+  
+  statusDotCompleted: {
+    backgroundColor: '#AEBEA4', // Sage green
   },
 
   // Day Scroller - Sticky and Elegant
