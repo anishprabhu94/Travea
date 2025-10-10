@@ -226,8 +226,10 @@ const styles = StyleSheet.create({
   },
   
   paneInner: {
-    backgroundColor: 'rgba(25,25,25,0.4)',
+    backgroundColor: 'rgba(40,40,40,0.8)',
     padding: 36,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
   },
   
   // TRĀVEA logo and tagline at top
