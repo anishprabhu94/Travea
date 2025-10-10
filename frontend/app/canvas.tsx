@@ -1896,8 +1896,8 @@ const styles = StyleSheet.create({
   
   ribbonInner: {
     backgroundColor: 'rgba(22,22,22,0.25)', // Base tint
-    paddingVertical: 14, // Reduced from 18
-    paddingHorizontal: 20,
+    paddingVertical: 10, // Aggressively reduced from 14
+    paddingHorizontal: 18, // Also reduced
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 2,
