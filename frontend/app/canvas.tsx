@@ -1923,10 +1923,10 @@ const styles = StyleSheet.create({
   },
   
   progressHalo: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
-    borderWidth: 3,
+    width: 36, // Reduced from 42
+    height: 36, // Reduced from 42
+    borderRadius: 18, // Reduced from 21
+    borderWidth: 2.5, // Reduced from 3
     borderColor: 'rgba(255,255,255,0.2)', // Base ring
     alignItems: 'center',
     justifyContent: 'center',
