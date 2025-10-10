@@ -934,75 +934,172 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Activity Grid - Clean 2x2 Layout
+  // Elegant Activity Grid - Apple + Aman Inspired
   activityGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+    paddingHorizontal: 4, // Generous white space
+    marginTop: 8,
   },
-  activityCard: {
-    width: '48%',
-    marginBottom: 16,
+  
+  // Soft gradient background for floating glass effect
+  activityGridBackground: {
+    ...StyleSheet.absoluteFillObject,
     borderRadius: 20,
-    overflow: 'hidden',
-  },
-  activityCardBlur: {
-    borderRadius: 20,
-    overflow: 'hidden',
-  },
-  activityCardInner: {
-    padding: 16, // Reduced from 24 for more compact look
-    backgroundColor: 'rgba(255,255,255,0.06)', // Subtle frosted background
-    alignItems: 'center',
-    minHeight: 100, // Reduced from 140 for more elegant proportions
-    justifyContent: 'space-between',
-  },
-  activityStatus: {
-    fontSize: 13,
-    color: 'rgba(248,248,248,0.7)',
-    fontWeight: '400',
-    letterSpacing: 0.2,
-    textAlign: 'center',
-    fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Inter',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    ...Platform.select({
+      web: {
+        background: 'radial-gradient(ellipse at center, rgba(245,245,220,0.02) 0%, rgba(105,105,105,0.02) 50%, rgba(255,248,220,0.01) 100%)',
+      },
+      default: {
+        backgroundColor: 'rgba(245,245,220,0.01)', // Muted sand/ivory tones
+      },
     }),
   },
-  activityCenter: {
+  
+  // Elegant floating glass cards
+  elegantCard: {
+    width: '48%',
+    marginBottom: 20, // Generous spacing
+    borderRadius: 24, // 24px radius as specified
+    overflow: 'hidden',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 25px rgba(0,0,0,0.25)', // Minimal drop shadow
+      },
+      default: {
+        shadowColor: 'rgba(0,0,0,0.25)',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.25,
+        shadowRadius: 12,
+        elevation: 8,
+      },
+    }),
+  },
+  
+  elegantCardBlur: {
+    borderRadius: 24,
+    overflow: 'hidden',
+  },
+  
+  elegantCardInner: {
+    backgroundColor: 'rgba(255,255,255,0.03)', // Semi-transparent frosted glass
+    minHeight: 140, // Balanced proportions
+    paddingTop: 24,
+    paddingHorizontal: 20,
+    paddingBottom: 0, // No bottom padding for status strip
+    justifyContent: 'space-between',
+    ...Platform.select({
+      web: {
+        // Subtle inner glow and faint edge light
+        background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+        border: '1px solid rgba(255,255,255,0.08)', // Faint edge light
+      },
+    }),
+  },
+  
+  // Top section with icon and label
+  cardTopSection: {
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
   },
-  activityLabel: {
+  
+  iconContainer: {
+    marginBottom: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  
+  elegantIcon: {
+    // Soft white glow for icons
+    ...Platform.select({
+      web: {
+        filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.3))',
+      },
+      default: {
+        shadowColor: '#FFFFFF',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+      },
+    }),
+  },
+  
+  categoryLabel: {
     fontSize: 16,
-    color: 'rgba(248,248,248,0.9)',
-    fontWeight: '500',
-    marginTop: 12,
+    color: 'rgba(248,248,248,0.85)', // 85% opacity as specified
+    fontWeight: '500', // Medium weight
     letterSpacing: 0.3,
     textAlign: 'center',
     fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Inter',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      ios: 'SF Pro Rounded',
+      android: 'Neue Montreal',
+      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-  activityCTA: {
-    paddingHorizontal: 20,
-    paddingVertical: 8,
-    borderRadius: 16,
-    backgroundColor: 'rgba(201,169,109,0.15)',
+  
+  // Status strip at bottom
+  statusStrip: {
+    height: 44, // Thin horizontal band
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(128,128,128,0.2)', // Default warm gray for pending
+    marginHorizontal: -20, // Extend to card edges
+    marginBottom: 0,
+    ...Platform.select({
+      web: {
+        // Gentle glow for status strips
+        backdropFilter: 'blur(10px)',
+      },
+    }),
   },
-  activityCTAText: {
+  
+  // Different strip colors based on status
+  statusStripBooked: {
+    backgroundColor: 'rgba(218,165,32,0.25)', // Champagne gold for booked
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(90deg, rgba(218,165,32,0.15) 0%, rgba(218,165,32,0.25) 50%, rgba(218,165,32,0.15) 100%)',
+      },
+    }),
+  },
+  
+  statusStripSaved: {
+    backgroundColor: 'rgba(255,191,0,0.2)', // Soft amber for saved
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(90deg, rgba(255,191,0,0.12) 0%, rgba(255,191,0,0.2) 50%, rgba(255,191,0,0.12) 100%)',
+      },
+    }),
+  },
+  
+  statusStripPending: {
+    backgroundColor: 'rgba(128,128,128,0.15)', // Warm gray for pending
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(90deg, rgba(128,128,128,0.1) 0%, rgba(128,128,128,0.15) 50%, rgba(128,128,128,0.1) 100%)',
+      },
+    }),
+  },
+  
+  statusStripTouchable: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+  },
+  
+  statusStripText: {
     fontSize: 13,
-    color: '#C9A96D',
-    fontWeight: '500',
+    color: 'rgba(248,248,248,0.85)', // 85% opacity
+    fontWeight: '500', // Medium weight
     letterSpacing: 0.2,
     textAlign: 'center',
     fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Inter',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      ios: 'SF Pro Rounded',
+      android: 'Neue Montreal', 
+      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
 
