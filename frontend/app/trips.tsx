@@ -601,6 +601,10 @@ const styles = StyleSheet.create({
     gap: 6, // Space between icon and text
     paddingHorizontal: 16,
     paddingVertical: 12,
+    borderRadius: 28, // Match parent radius
+  },
+  tabChipContentActive: {
+    backgroundColor: 'rgba(201,169,109,0.15)', // Elegant light bronze fill for active state
   },
   tabChipLabel: {
     fontSize: 16,
