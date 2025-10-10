@@ -338,16 +338,8 @@ const styles = StyleSheet.create({
   bronzeGradientOverlay: {
     ...StyleSheet.absoluteFillObject,
     borderRadius: 28,
-    ...Platform.select({
-      web: {
-        background: 'linear-gradient(135deg, rgba(201,169,109,0.15) 0%, rgba(201,169,109,0.05) 100%)', // Light bronze gradient overlay
-        opacity: 0.6, // Frost overlay 0.6 opacity as specified
-      },
-      default: {
-        backgroundColor: 'rgba(201,169,109,0.1)', // Fallback bronze tint
-        opacity: 0.6,
-      },
-    }),
+    backgroundColor: 'rgba(201,169,109,0.1)', // Simple bronze tint
+    opacity: 0.6,
   },
   paneInner: {
     backgroundColor: 'rgba(25,25,25,0.45)', // Enhanced from 0.35 to 0.45 for elevated calm aesthetic
