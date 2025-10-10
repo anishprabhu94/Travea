@@ -684,64 +684,37 @@ const styles = StyleSheet.create({
     borderRadius: 32,
     ...Platform.select({
       web: {
-        // Reduce brightness by 8-10% and contrast by 10-12%
+        // Subtle brightness and contrast reduction only
         filter: 'brightness(0.92) contrast(0.88)',
       },
     }),
   },
   
-  // Soft neutral grey veil overlay for desaturation
+  // Soft neutral grey veil overlay for subtle desaturation
   cardGreyVeilOverlay: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(18,18,18,0.20)', // Subtle grey veil
+    backgroundColor: 'rgba(18,18,18,0.12)', // Reduced opacity for subtlety
     zIndex: 1,
   },
   
-  // Tone adjustment overlay for refined visual balance
-  cardToneAdjustmentOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(32,32,32,0.08)', // Additional tonal refinement
-    zIndex: 2,
-  },
-  
-  // Enhanced vignette with depth
+  // Enhanced vignette with depth (no blur)
   cardVignette: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: 3,
+    zIndex: 2,
     ...Platform.select({
       web: {
-        background: 'radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.15) 100%)',
+        background: 'radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.12) 100%)',
       },
       default: {
         backgroundColor: 'rgba(0,0,0,0.08)',
-      },
-    }),
-  },
-  
-  // Frosted glass pane overlay for muted daylight effect
-  cardFrostedGlassOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(255,255,255,0.04)', // Soft glass tint
-    zIndex: 4,
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(22px) saturate(0.85)',
       },
     }),
   },
