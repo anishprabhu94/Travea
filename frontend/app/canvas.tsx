@@ -1043,8 +1043,8 @@ const styles = StyleSheet.create({
   
   modernCardInner: {
     backgroundColor: 'rgba(255,255,255,0.05)', // Refined transparency
-    minHeight: 108, // Reduced from 120 for more compact elegance
-    padding: 14, // Reduced padding for tighter look
+    minHeight: 95, // Further reduced for almost-square proportions
+    padding: 12, // Reduced padding for more compact look
     position: 'relative',
     ...Platform.select({
       web: {
