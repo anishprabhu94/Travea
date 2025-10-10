@@ -915,10 +915,10 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   activityCardInner: {
-    padding: 24,
+    padding: 16, // Reduced from 24 for more compact look
     backgroundColor: 'rgba(255,255,255,0.06)', // Subtle frosted background
     alignItems: 'center',
-    minHeight: 140,
+    minHeight: 100, // Reduced from 140 for more elegant proportions
     justifyContent: 'space-between',
   },
   activityStatus: {
