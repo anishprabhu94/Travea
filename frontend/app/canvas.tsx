@@ -1185,15 +1185,27 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Status pill color variations with darker, more distinct shades
+  // Status pill color variations with distinct shades - Booked stands out
   pillBooked: {
-    backgroundColor: 'rgba(183,164,120,0.38)', // Darker Champagne Gold - more distinct
+    backgroundColor: 'rgba(201,169,109,0.45)', // Stronger Champagne Gold - clearly booked
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 8px rgba(201,169,109,0.3), inset 0 1px 1px rgba(255,255,255,0.15)', // Subtle glow
+      },
+      default: {
+        shadowColor: 'rgba(201,169,109,0.4)',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.4,
+        shadowRadius: 4,
+        elevation: 2,
+      },
+    }),
   },
   pillSaved: {
-    backgroundColor: 'rgba(194,179,141,0.35)', // Darker Sand Beige - distinct from Booked
+    backgroundColor: 'rgba(194,179,141,0.32)', // Lighter Sand Beige - distinct from Booked
   },
   pillPending: {
-    backgroundColor: 'rgba(160,153,142,0.32)', // Darker Warm Gray
+    backgroundColor: 'rgba(160,153,142,0.28)', // Lighter Warm Gray
   },
   
   statusPillText: {
