@@ -536,10 +536,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 16,
     paddingHorizontal: 24,
-    backgroundColor: 'rgba(255,255,255,0.05)', // Frosted secondary button background
+    backgroundColor: 'rgba(128,128,128,0.15)', // Frosted gray as specified
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(15px)', // Subtle blur depth
+        backdropFilter: 'blur(18px)', // Enhanced blur depth
+        transition: 'all 200ms ease-in-out',
+        ':hover': {
+          backgroundColor: 'rgba(128,128,128,0.2)', // Lighter on hover
+          borderColor: 'rgba(255,255,255,0.15)',
+        },
       },
     }),
   },
