@@ -811,6 +811,30 @@ export default function TripCanvas() {
               </View>
             </BlurView>
           </TouchableOpacity>
+
+          {/* Transport Tile */}
+          <TouchableOpacity style={styles.bookingTile} activeOpacity={0.85}>
+            <BlurView intensity={35} tint="light" style={styles.bookingTileBlur}>
+              <View style={styles.bookingTileInner}>
+                <View style={styles.tileArrowCircle}>
+                  <Ionicons name="arrow-forward" size={12} color="#F8F8F8" style={{ opacity: 0.98 }} />
+                </View>
+                
+                <Ionicons name="car-outline" size={32} color="#F8F8F8" style={styles.tileIcon} />
+                <Text style={styles.tileLabel}>Transport</Text>
+                
+                <View style={styles.tileProgressBand}>
+                  <View style={[styles.tileProgressFill, styles.tileProgressSaved, { width: '50%' }]} />
+                </View>
+                
+                <Text style={styles.tileRatioText}>1 of 2 Saved</Text>
+                
+                <View style={[styles.tileStatusPill, styles.tileStatusSaved]}>
+                  <Text style={styles.tileStatusText}>Saved</Text>
+                </View>
+              </View>
+            </BlurView>
+          </TouchableOpacity>
         </View>
 
         {/* Row 2 - Experiences, Restaurants */}
