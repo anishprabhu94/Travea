@@ -447,8 +447,8 @@ export default function Landing() {
                 activeOpacity={0.8}
               >
                 {activeMode === 'search' && <View style={styles.chipGlow} />}
-                <BlurView intensity={20} tint="light" style={styles.chipBlur}>
-                  <View style={styles.chipContent}>
+                <BlurView intensity={25} tint="light" style={styles.chipBlur}>
+                  <View style={[styles.chipContent, activeMode === 'search' && styles.chipContentActive]}>
                     <Ionicons name="search-outline" size={16} color="rgba(255,255,255,0.9)" />
                     <Text style={[styles.chipLabel, activeMode === 'search' && styles.chipLabelActive]}>
                       Search
