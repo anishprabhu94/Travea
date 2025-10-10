@@ -256,287 +256,167 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000000',
-    margin: 0,
-    padding: 0,
-  },
-  backgroundImage: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-    minHeight: '100vh',
+    backgroundImage: 'url("https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/7685c7d9-489b-4dcd-97de-18a2f10d0c3d_2024-10-03_20-55-13.png")',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
   },
   vignetteOverlay: {
     ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
   },
   contentContainer: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingHorizontal: 24,
-    paddingTop: 40,
-    paddingBottom: 0,
   },
-  header: {
-    alignItems: 'center',
-    marginBottom: 32,
-    marginTop: 0,
-  },
-  logo: {
-    fontSize: 46,
-    fontWeight: '700',
-    color: '#F8F8F8',
-    letterSpacing: 4,
-    marginBottom: 18,
-  },
-  tagline: {
-    fontSize: 18,
-    color: '#FFFFFF',
-    letterSpacing: 3,
-    opacity: 0.85,
-    fontWeight: '300',
-  },
-  paneContainer: {
-    alignItems: 'center',
-  },
-  glassPaneBlur: {
+  mainPane: {
     width: width - 48,
+    maxWidth: 400,
     borderRadius: 20,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.26)',
+    borderColor: 'rgba(255, 255, 255, 0.2)',
     ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: 0.35,
-        shadowRadius: 14,
-      },
-      android: {
-        elevation: 10,
-      },
       web: {
-        boxShadow: '0 10px 28px -6px rgba(0, 0, 0, 0.35)',
-        backdropFilter: 'blur(30px) saturate(130%)',
-        WebkitBackdropFilter: 'blur(30px) saturate(130%)',
+        backdropFilter: 'blur(25px)',
+        WebkitBackdropFilter: 'blur(25px)',
       },
     }),
   },
-  glassPaneInner: {
-    backgroundColor: 'rgba(255, 255, 255, 0.10)',
-    paddingTop: 24,
-    paddingHorizontal: 20,
-    paddingBottom: 28,
-    ...Platform.select({
-      web: {
-        background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.00) 42%)',
-      },
-    }),
+  paneInner: {
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    padding: 32,
   },
-  toggleContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+  logoSection: {
     alignItems: 'center',
-    marginBottom: 28,
+    marginBottom: 32,
   },
-  toggleButton: {
-    position: 'relative',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+  logoContainer: {
+    marginBottom: 8,
   },
-  toggleSpacer: {
-    width: 40,
-  },
-  toggleText: {
+  tagline: {
     fontSize: 16,
-    color: 'rgba(255, 255, 255, 0.5)',
-    fontWeight: '600',
-    letterSpacing: 0.5,
+    color: 'rgba(255, 255, 255, 0.8)',
+    letterSpacing: 2,
+    fontWeight: '300',
   },
-  toggleTextActive: {
-    color: '#FFFFFF',
-    fontWeight: '700',
-  },
-  activeUnderline: {
-    position: 'absolute',
-    bottom: 0,
-    left: 16,
-    right: 16,
-    height: 2,
-    backgroundColor: '#C9A96D',
-  },
-  inputContainer: {
+  tabToggleContainer: {
     marginBottom: 24,
-    gap: 10,
   },
-  inputField: {
-    marginBottom: 0,
+  tabToggleBlur: {
+    borderRadius: 12,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.15)',
   },
-  inputLabel: {
-    fontSize: 13,
-    color: '#F8F8F8', // Changed to white for better visibility
-    marginBottom: 6,
+  tabToggleInner: {
+    flexDirection: 'row',
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    padding: 4,
+  },
+  tabButton: {
+    flex: 1,
+    position: 'relative',
+    paddingVertical: 12,
+    alignItems: 'center',
+    borderRadius: 8,
+    overflow: 'hidden',
+  },
+  tabButtonActive: {
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+  },
+  tabGlow: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(201, 169, 109, 0.2)',
+    borderRadius: 8,
+  },
+  tabText: {
+    fontSize: 14,
+    color: 'rgba(255, 255, 255, 0.6)',
     fontWeight: '500',
-    fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayRoman',
-      android: 'NeueHaasDisplayRoman',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
+  },
+  tabTextActive: {
+    color: '#FFFFFF',
+    fontWeight: '600',
+  },
+  formSection: {
+    gap: 16,
+  },
+  inputGroup: {
+    marginBottom: 8,
+  },
+  inputBlur: {
+    borderRadius: 10,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.1)',
   },
   input: {
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.15)',
-    borderRadius: 10,
-    paddingVertical: 12,
-    paddingHorizontal: 14,
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    paddingVertical: 14,
+    paddingHorizontal: 16,
     fontSize: 15,
-    color: '#F8F8F8', // Brighter white for better visibility
+    color: '#FFFFFF',
     fontWeight: '400',
-    fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayRoman',
-      android: 'NeueHaasDisplayRoman',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        outline: 'none',
-        '&:focus': {
-          outline: 'none',
-          borderColor: 'rgba(255, 255, 255, 0.15)',
-        },
-      },
-      ios: {
-        // Remove iOS blue outline
-        borderWidth: 1,
-      },
-    }),
-  },
-  inputActive: {
-    backgroundColor: 'rgba(255, 255, 255, 0.12)',
-    borderColor: 'rgba(255, 255, 255, 0.15)',
-  },
-  primaryButtonContainer: {
-    marginBottom: 12,
-    borderRadius: 12,
-    overflow: 'hidden',
-  },
-  primaryButtonBlur: {
-    borderRadius: 12,
-    overflow: 'hidden',
   },
   primaryButton: {
-    backgroundColor: 'rgba(201,169,109,0.65)', // Darker bronze fill for better visibility
-    borderWidth: 1,
-    borderColor: 'rgba(201,169,109,0.7)', // More visible bronze border
-    height: 44,
+    borderRadius: 12,
+    overflow: 'hidden',
+    marginTop: 8,
+  },
+  gradientButton: {
+    paddingVertical: 16,
     alignItems: 'center',
     justifyContent: 'center',
-    ...Platform.select({
-      web: {
-        boxShadow: 'inset 0 1px 6px rgba(255,255,255,0.15), 0 3px 12px rgba(0,0,0,0.15)', // Enhanced frosted glass effect
-      },
-      default: {
-        shadowColor: 'rgba(0,0,0,0.25)',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.25,
-        shadowRadius: 6,
-        elevation: 3,
-      },
-    }),
   },
   primaryButtonText: {
     fontSize: 16,
-    color: '#FFFFFF', // White text for good contrast against bronze
-    fontWeight: '600',
-    letterSpacing: 1.5,
-    ...Platform.select({
-      web: {
-        textShadow: '0 1px 2px rgba(0,0,0,0.3)', // Subtle shadow for better readability
-      },
-    }),
-  },
-  secondaryLinkContainer: {
-    marginBottom: 24,
-  },
-  secondaryLink: {
-    fontSize: 14,
     color: '#FFFFFF',
-    textAlign: 'center',
-    fontWeight: '700',
-    opacity: 1,
+    fontWeight: '600',
+    letterSpacing: 0.5,
   },
   dividerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginVertical: 20,
   },
   dividerLine: {
     flex: 1,
     height: 1,
-    backgroundColor: '#5A5A5A',
-    opacity: 0.3,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
   },
   dividerText: {
-    fontSize: 13,
-    color: '#FFFFFF',
+    fontSize: 12,
+    color: 'rgba(255, 255, 255, 0.6)',
     marginHorizontal: 16,
-    letterSpacing: 1,
-    fontWeight: '400',
-    opacity: 0.75,
+    fontWeight: '500',
   },
-  oauthContainer: {
+  oauthSection: {
     gap: 12,
   },
-  oauthButtonContainer: {
-    height: 44, // Match Sign In button height
-    borderRadius: 12, // Match Sign In button radius for consistency
-    overflow: 'hidden',
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.25,
-        shadowRadius: 10,
-      },
-      android: {
-        elevation: 4,
-      },
-      web: {
-        boxShadow: '0 4px 20px rgba(0,0,0,0.25)',
-      },
-    }),
-  },
   oauthButton: {
-    flex: 1,
-    borderRadius: 12, // Match Sign In button radius
+    borderRadius: 12,
+    overflow: 'hidden',
+  },
+  oauthBlur: {
+    borderRadius: 12,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.12)', // Slightly more visible border for frostier effect
+    borderColor: 'rgba(255, 255, 255, 0.1)',
   },
-  oauthButtonInner: {
-    flex: 1,
-    backgroundColor: 'rgba(20,20,20,0.25)', // More transparent for frostier appearance
+  oauthInner: {
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 10, // 10px gap between icon and text as specified
-    paddingHorizontal: 16,
+    paddingVertical: 14,
+    gap: 10,
   },
-  oauthButtonGoogle: {
-    // Additional styling for Google button if needed
-  },
-  oauthButtonApple: {
-    // Additional styling for Apple button if needed
-  },
-  oauthButtonText: {
-    fontSize: 15,
-    color: 'rgba(255,255,255,0.85)', // Updated color as specified
-    fontWeight: '500', // Medium weight as specified
-    fontFamily: Platform.select({
-      ios: 'NeueHaasDisplayMedium',
-      android: 'NeueHaasDisplayMedium',
-      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
+  oauthText: {
+    fontSize: 14,
+    color: 'rgba(255, 255, 255, 0.85)',
+    fontWeight: '500',
   },
 });
