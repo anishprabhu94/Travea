@@ -416,7 +416,7 @@ export default function MyTrips() {
           </View>
         </BlurView>
       </View>
-    </ImageBackground>
+    </View>
   )
 }
 
