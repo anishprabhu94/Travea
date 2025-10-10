@@ -753,9 +753,9 @@ export default function TripCanvas() {
   // Booking Overview - 2×2 Grid
   const BookingHub = () => (
     <View style={styles.bookingOverviewContainer}>
-      {/* 2x2 Grid */}
+      {/* 5-tile Grid: Row 1 (3 tiles), Row 2 (2 tiles) */}
       <View style={styles.bookingGrid}>
-        {/* Row 1 */}
+        {/* Row 1 - Flights, Stays, Transport */}
         <View style={styles.bookingGridRow}>
           {/* Flights Tile */}
           <TouchableOpacity style={styles.bookingTile} activeOpacity={0.85}>
