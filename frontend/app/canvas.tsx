@@ -332,7 +332,11 @@ export default function TripCanvas() {
   )
 
   const CityPane = () => {
-    if (!activeSegment) return null
+    if (!activeSegment) {
+      console.log('No active segment found:', activeSegmentId)
+      return null
+    }
+    console.log('Rendering city pane for:', activeSegment.city)
 
     return (
       <Animated.View 
