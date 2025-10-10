@@ -919,8 +919,8 @@ const styles = StyleSheet.create({
     borderRadius: 32,
     ...Platform.select({
       web: {
-        // More prominent brightness and contrast reduction
-        filter: 'brightness(0.85) contrast(0.80)',
+        // Further reduced brightness and contrast for more toned down appearance
+        filter: 'brightness(0.78) contrast(0.72)',
       },
     }),
   },
