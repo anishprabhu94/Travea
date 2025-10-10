@@ -1030,10 +1030,22 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginTop: 16, // Increased space below logo/profile (was 12)
   },
+  tripHeaderBackground: {
+    width: '100%',
+    borderRadius: 24,
+  },
+  tripHeaderBackgroundImage: {
+    borderRadius: 24,
+    opacity: 0.5, // Subtle background
+  },
+  tripHeaderFrostedGlass: {
+    borderRadius: 24,
+    overflow: 'hidden',
+  },
   tripHeaderInner: {
     paddingVertical: 16, // Reduced from 20
     paddingHorizontal: 20,
-    backgroundColor: 'rgba(25,25,25,0.42)',
+    backgroundColor: 'rgba(25,25,25,0.5)', // Semi-transparent for image visibility
   },
   headerTop: {
     flexDirection: 'row',
