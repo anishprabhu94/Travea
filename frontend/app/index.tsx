@@ -264,14 +264,7 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212', // Deep Charcoal
-    ...Platform.select({
-      web: {
-        minHeight: '100vh',
-        background: 'linear-gradient(180deg, #0E0E0E 0%, #151515 100%)', // Full-screen blurred dark gradient with subtle bronze light accent
-        position: 'relative',
-      },
-    }),
+    backgroundColor: '#121212', // Deep Charcoal base
   },
   vignetteOverlay: {
     position: 'absolute',
