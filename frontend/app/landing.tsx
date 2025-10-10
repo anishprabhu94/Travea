@@ -411,11 +411,11 @@ export default function Landing() {
                 activeOpacity={0.8}
               >
                 {activeMode === 'vacations' && <View style={styles.chipGlow} />}
-                <BlurView intensity={20} tint="light" style={styles.chipBlur}>
+                <BlurView intensity={25} tint="light" style={styles.chipBlur}>
                   <View style={styles.chipContent}>
                     <Ionicons name="calendar-outline" size={16} color="rgba(255,255,255,0.9)" />
                     <Text style={[styles.chipLabel, activeMode === 'vacations' && styles.chipLabelActive]}>
-                      Vacations
+                      For You
                     </Text>
                   </View>
                 </BlurView>
@@ -427,7 +427,7 @@ export default function Landing() {
                 activeOpacity={0.8}
               >
                 {activeMode === 'discover' && <View style={styles.chipGlow} />}
-                <BlurView intensity={20} tint="light" style={styles.chipBlur}>
+                <BlurView intensity={25} tint="light" style={styles.chipBlur}>
                   <View style={styles.chipContent}>
                     <Ionicons name="compass-outline" size={16} color="rgba(255,255,255,0.9)" />
                     <Text style={[styles.chipLabel, activeMode === 'discover' && styles.chipLabelActive]}>
