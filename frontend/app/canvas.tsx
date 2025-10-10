@@ -771,15 +771,17 @@ export default function TripCanvas() {
                 {/* Label */}
                 <Text style={styles.tileLabel}>Flights</Text>
                 
-                {/* Micro-line */}
-                <View style={styles.tileMicroLineContainer}>
-                  <View style={[styles.tileMicroSegment, styles.tileMicroBooked]} />
-                  <View style={[styles.tileMicroSegment, styles.tileMicroBooked]} />
+                {/* Horizontal progress band */}
+                <View style={styles.tileProgressBand}>
+                  <View style={[styles.tileProgressFill, styles.tileProgressBooked, { width: '100%' }]} />
                 </View>
+                
+                {/* Ratio text */}
+                <Text style={styles.tileRatioText}>2 of 2 Booked</Text>
                 
                 {/* Status pill */}
                 <View style={[styles.tileStatusPill, styles.tileStatusBooked]}>
-                  <Text style={styles.tileStatusText}>2 Booked</Text>
+                  <Text style={styles.tileStatusText}>Booked</Text>
                 </View>
               </View>
             </BlurView>
