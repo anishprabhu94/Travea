@@ -272,8 +272,14 @@ export default function TripCanvas() {
         </TouchableOpacity>
       </View>
 
-      <BlurView intensity={30} tint="dark" style={styles.tripHeader}>
-        <View style={styles.tripHeaderInner}>
+      <View style={styles.tripHeader}>
+        <ImageBackground
+          source={{ uri: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' }}
+          style={styles.tripHeaderBackground}
+          imageStyle={styles.tripHeaderBackgroundImage}
+        >
+          <BlurView intensity={35} tint="dark" style={styles.tripHeaderFrostedGlass}>
+            <View style={styles.tripHeaderInner}>
           {/* Trip Info Block */}
           <View style={styles.tripInfoBlock}>
             {/* Large elegant title with emoji */}
