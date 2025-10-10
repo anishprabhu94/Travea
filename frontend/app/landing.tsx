@@ -639,36 +639,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 20,
-    marginBottom: 16,
+    paddingTop: 32, // 32px top as specified
+    paddingHorizontal: 24, // 24px side as specified  
+    paddingBottom: 16,
+    zIndex: 10,
   },
   logoContainer: {
-    alignItems: 'flex-start',
-  },
-  logoText: {
-    fontSize: 24,
-    fontWeight: '400',
-    color: '#F8F8F8',
-    letterSpacing: 4.8,
-    textTransform: 'uppercase',
-    fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Neue Montreal',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
+    // TRĀVEA logo with soft bronze glow
     ...Platform.select({
       web: {
-        textShadow: '0 0 20px rgba(201,169,109,0.25)',
+        filter: 'drop-shadow(0 0 8px rgba(201,169,109,0.6))', // Soft bronze glow
+      },
+      default: {
+        // Native shadow for logo
+        shadowColor: '#C9A96D',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.6,
+        shadowRadius: 8,
+        elevation: 4,
       },
     }),
-  },
-  profileButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   profileIcon: {
     width: 44,
@@ -682,13 +672,12 @@ const styles = StyleSheet.create({
     height: 44,
     borderRadius: 22,
     overflow: 'hidden',
-    backgroundColor: 'rgba(60,60,60,0.55)',
+    backgroundColor: 'rgba(255,255,255,0.05)', // Frosted circle as specified
     justifyContent: 'center',
     alignItems: 'center',
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(25px)',
-        boxShadow: '0 0 15px rgba(0,0,0,0.3)',
+        backdropFilter: 'blur(20px)',
       },
     }),
   },
