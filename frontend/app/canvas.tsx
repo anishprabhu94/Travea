@@ -2022,6 +2022,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(180,173,162,0.2)', // Warm gray tint
   },
   
+  tileStatusExplore: {
+    backgroundColor: 'rgba(255,255,255,0.08)', // Transparent frosted
+    borderWidth: 1,
+    borderColor: 'rgba(180,173,162,0.3)',
+  },
+  
   tileStatusText: {
     fontSize: 12,
     fontWeight: '500',
