@@ -849,9 +849,11 @@ export default function TripCanvas() {
                 <Ionicons name="ticket-outline" size={32} color="#F8F8F8" style={styles.tileIcon} />
                 <Text style={styles.tileLabel}>Experiences</Text>
                 
-                <View style={styles.tileMicroLineContainer}>
-                  <View style={[styles.tileMicroSegment, styles.tileMicroPending]} />
+                <View style={styles.tileProgressBand}>
+                  <View style={[styles.tileProgressFill, styles.tileProgressPending, { width: '0%' }]} />
                 </View>
+                
+                <Text style={styles.tileRatioText}>0 of 5 Booked</Text>
                 
                 <View style={[styles.tileStatusPill, styles.tileStatusPending]}>
                   <Text style={styles.tileStatusText}>Pending</Text>
