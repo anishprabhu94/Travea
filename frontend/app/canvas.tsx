@@ -916,7 +916,7 @@ export default function TripCanvas() {
         contentContainerStyle={styles.scrollContent}
       >
         <TripHeader />
-        <OrbitPath />
+        <TripLine />
         <ViewToggle />
         
         {/* Conditional rendering based on active view */}
