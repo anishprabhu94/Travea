@@ -1981,10 +1981,10 @@ const styles = StyleSheet.create({
   },
   
   haloProgressText: {
-    fontSize: 10,
-    fontWeight: '400',
-    color: 'rgba(248,248,248,0.65)',
-    letterSpacing: 0.2,
+    fontSize: 12, // Increased from 10 for better visibility
+    fontWeight: '500', // Medium weight for clarity
+    color: 'rgba(248,248,248,0.75)', // Increased opacity from 65% to 75%
+    letterSpacing: 0.3,
     marginTop: 4,
     fontFamily: Platform.select({
       ios: 'SF Pro',
