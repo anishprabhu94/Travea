@@ -684,8 +684,8 @@ const styles = StyleSheet.create({
     borderRadius: 32,
     ...Platform.select({
       web: {
-        // Subtle brightness and contrast reduction only
-        filter: 'brightness(0.92) contrast(0.88)',
+        // More prominent brightness and contrast reduction
+        filter: 'brightness(0.85) contrast(0.80)',
       },
     }),
   },
