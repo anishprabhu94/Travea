@@ -377,7 +377,7 @@ export default function Landing() {
           
           {/* Profile */}
           <TouchableOpacity style={styles.profileIcon} activeOpacity={0.8}>
-            <BlurView intensity={20} tint="dark" style={styles.profileIconBlur}>
+            <BlurView intensity={24} tint="dark" style={styles.profileIconBlur}>
               <Ionicons name="person-outline" size={18} color="rgba(255,255,255,0.9)" />
             </BlurView>
           </TouchableOpacity>
