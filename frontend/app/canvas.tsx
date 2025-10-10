@@ -1011,16 +1011,16 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
 
-  // Trip Header - Compact
+  // Trip Header - More compact
   headerContainer: {
-    paddingTop: Platform.OS === 'web' ? 12 : 42, // Reduced from 24/54
+    paddingTop: Platform.OS === 'web' ? 20 : 50, // Moved down (was 12/42)
     paddingHorizontal: 24,
-    marginBottom: 16, // Reduced from 20
+    marginBottom: 16,
   },
   tripHeader: {
     borderRadius: 24,
     overflow: 'hidden',
-    marginTop: 12, // Add space below logo/profile
+    marginTop: 16, // Increased space below logo/profile (was 12)
   },
   tripHeaderInner: {
     paddingVertical: 16, // Reduced from 20
