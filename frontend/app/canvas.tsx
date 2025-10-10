@@ -1515,21 +1515,20 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Bottom Navigation Dock - Consistent across app
+  // Bottom Navigation Dock - Exactly matches landing.tsx
   dockContainer: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 12, // Match landing page
     left: 0,
     right: 0,
-    paddingHorizontal: 24,
-    paddingBottom: Platform.OS === 'ios' ? 34 : 24,
+    alignItems: 'center',
+    zIndex: 100,
   },
   dock: {
-    width: '92%', // Match landing page width
-    height: 60, // Match landing page height
+    width: '92%',
+    height: 60,
     borderRadius: 28,
     overflow: 'hidden',
-    alignSelf: 'center',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
@@ -1547,7 +1546,7 @@ const styles = StyleSheet.create({
   },
   dockInner: {
     flex: 1,
-    backgroundColor: 'rgba(25,25,25,0.35)', // Match landing page background
+    backgroundColor: 'rgba(25,25,25,0.35)',
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 16,
@@ -1556,27 +1555,57 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingVertical: 8,
+    position: 'relative',
   },
-  dockItemActive: {
-    // Active state handled by bronze color in icon and text
+  dockGlowContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   dockGlow: {
-    // Removed for consistency with landing page
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: 'rgba(201,169,109,0.25)',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 20px rgba(201,169,109,0.4)',
+      },
+    }),
   },
   dockLabel: {
-    fontSize: 10,
-    color: 'rgba(255,255,255,0.6)',
-    marginTop: 2,
-    fontWeight: '500',
-    letterSpacing: 0.2,
+    fontSize: 14, // Match landing page
+    color: '#F8F8F8',
+    marginTop: 4,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
-      android: 'Inter',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
   dockLabelActive: {
+    fontSize: 14,
     color: '#C9A96D',
+    marginTop: 4,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  dockLabelInactive: {
+    fontSize: 14,
+    color: 'rgba(255,255,255,0.7)',
+    marginTop: 4,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
   },
   bottomPadding: {
     height: 120,
