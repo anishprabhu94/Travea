@@ -371,16 +371,15 @@ export default function Landing() {
       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
         {/* Header */}
         <View style={styles.header}>
-          {/* TRĀVEA Logo */}
           <View style={styles.logoContainer}>
-            <Text style={styles.logoText}>TRĀVEA</Text>
+            <TraveaWordmark />
           </View>
           
-          {/* Profile Icon */}
-          <TouchableOpacity style={styles.profileButton} activeOpacity={0.8}>
-            <View style={styles.profileIcon}>
-              <Ionicons name="person-outline" size={20} color="rgba(255,255,255,0.85)" />
-            </View>
+          {/* Profile */}
+          <TouchableOpacity style={styles.profileIcon} activeOpacity={0.8}>
+            <BlurView intensity={20} tint="dark" style={styles.profileIconBlur}>
+              <Ionicons name="person-outline" size={18} color="rgba(255,255,255,0.9)" />
+            </BlurView>
           </TouchableOpacity>
         </View>
 
