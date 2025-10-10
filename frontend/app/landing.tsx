@@ -682,34 +682,30 @@ const styles = StyleSheet.create({
     }),
   },
   greetingSection: {
-    paddingHorizontal: 20,
-    marginBottom: 24, // Increased for better spacing from tabs
-    marginTop: -8, // Moved up for better spacing
+    paddingHorizontal: 24, // 24px side padding as specified
+    marginBottom: 24,
   },
   greetingMain: {
-    fontSize: 22,
-    fontWeight: '600',
-    color: '#F8F8F8',
-    marginBottom: 6,
+    fontSize: 32,
+    fontWeight: '700',
+    color: 'rgba(255,255,255,0.9)', // rgba(255,255,255,0.9) for headline
+    marginBottom: 4,
+    letterSpacing: 0.8,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-    ...Platform.select({
-      web: {
-        textShadow: '0 0 20px rgba(201,169,109,0.25)',
-      },
     }),
   },
   greetingSub: {
-    fontSize: 16,
-    fontWeight: '400',
-    color: 'rgba(255,255,255,0.75)',
+    fontSize: 18,
+    color: 'rgba(255,255,255,0.7)', // rgba(255,255,255,0.7) for subhead
+    lineHeight: 24,
+    letterSpacing: 0.2,
     fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Neue Montreal',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
   stickyChipsContainer: {
