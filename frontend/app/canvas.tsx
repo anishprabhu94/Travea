@@ -413,7 +413,7 @@ export default function TripCanvas() {
                     {/* Center: icon and label */}
                     <View style={styles.centerContent}>
                       <View style={styles.categoryIconContainer}>
-                        <Ionicons name="bed-outline" size={32} color="#F8F8F8" style={styles.categoryIcon} />
+                        <Ionicons name="bed-outline" size={28} color="#F8F8F8" style={styles.categoryIcon} />
                       </View>
                       <Text style={styles.categoryLabel}>Stay</Text>
                     </View>
