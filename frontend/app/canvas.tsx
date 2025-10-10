@@ -782,31 +782,40 @@ export default function TripCanvas() {
             >
               <BlurView intensity={40} tint="dark" style={styles.ribbonBlur}>
                 <View style={[styles.ribbonInner, { borderBottomColor: ribbon.color }]}>
-                  {/* Left: Icon + Title */}
+                  {/* Left: Icon with Circular Halo Progress */}
                   <View style={styles.ribbonLeft}>
-                    <View style={styles.ribbonIconContainer}>
-                      <Ionicons 
-                        name={ribbon.icon as any} 
-                        size={22} 
-                        color="#F8F8F8" 
-                        style={styles.ribbonIcon} 
-                      />
-                    </View>
-                    <Text style={styles.ribbonTitle}>{ribbon.title}</Text>
-                  </View>
-
-                  {/* Center: Progress Line + Text */}
-                  <View style={styles.ribbonCenter}>
-                    <Text style={styles.ribbonProgressText}>{ribbon.count}</Text>
-                    <View style={styles.ribbonProgressContainer}>
+                    <View style={styles.haloContainer}>
+                      {/* Circular Progress Halo */}
                       <View style={[
-                        styles.ribbonProgressFill,
-                        { 
-                          width: `${ribbon.progress}%`,
-                          backgroundColor: ribbon.color
-                        }
-                      ]} />
+                        styles.progressHalo,
+                        { borderColor: ribbon.color }
+                      ]}>
+                        {/* Progress arc overlay */}
+                        <View style={[
+                          styles.progressArc,
+                          { 
+                            borderColor: ribbon.color,
+                            transform: [{ rotate: `${ribbon.progress * 3.6}deg` }]
+                          }
+                        ]} />
+                        
+                        {/* Icon centered */}
+                        <View style={styles.haloIconContainer}>
+                          <Ionicons 
+                            name={ribbon.icon as any} 
+                            size={20} 
+                            color="#F8F8F8" 
+                            style={styles.ribbonIcon} 
+                          />
+                        </View>
+                      </View>
+                      
+                      {/* Progress text beneath halo */}
+                      <Text style={styles.haloProgressText}>{ribbon.count}</Text>
                     </View>
+                    
+                    {/* Category Title */}
+                    <Text style={styles.ribbonTitle}>{ribbon.title}</Text>
                   </View>
 
                   {/* Right: CTA Pill */}
