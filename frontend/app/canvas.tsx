@@ -552,7 +552,7 @@ export default function TripCanvas() {
                     
                     <View style={styles.centerContent}>
                       <View style={styles.categoryIconContainer}>
-                        <Ionicons name="ticket-outline" size={32} color="#F8F8F8" style={styles.categoryIcon} />
+                        <Ionicons name="ticket-outline" size={28} color="#F8F8F8" style={styles.categoryIcon} />
                       </View>
                       <Text style={styles.categoryLabel}>Experiences</Text>
                     </View>
