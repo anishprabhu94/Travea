@@ -266,13 +266,7 @@ export default function MyTrips() {
   }
 
   return (
-    <ImageBackground
-      source={{
-        uri: 'https://customer-assets.emergentagent.com/job_travea-app/artifacts/d1bkqar3_output%20%286%29.jpg'
-      }}
-      style={styles.container}
-      imageStyle={styles.backgroundImage}
-    >
+    <View style={styles.container}>
       {/* Vignette Overlay */}
       <View style={styles.vignetteOverlay} />
 
