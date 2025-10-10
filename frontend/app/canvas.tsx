@@ -798,14 +798,14 @@ export default function TripCanvas() {
                 <Ionicons name="bed-outline" size={32} color="#F8F8F8" style={styles.tileIcon} />
                 <Text style={styles.tileLabel}>Stays</Text>
                 
-                <View style={styles.tileMicroLineContainer}>
-                  <View style={[styles.tileMicroSegment, styles.tileMicroBooked]} />
-                  <View style={[styles.tileMicroSegment, styles.tileMicroBooked]} />
-                  <View style={[styles.tileMicroSegment, styles.tileMicroPending]} />
+                <View style={styles.tileProgressBand}>
+                  <View style={[styles.tileProgressFill, styles.tileProgressBooked, { width: '67%' }]} />
                 </View>
                 
+                <Text style={styles.tileRatioText}>2 of 3 Booked</Text>
+                
                 <View style={[styles.tileStatusPill, styles.tileStatusBooked]}>
-                  <Text style={styles.tileStatusText}>2 of 3 Booked</Text>
+                  <Text style={styles.tileStatusText}>Booked</Text>
                 </View>
               </View>
             </BlurView>
