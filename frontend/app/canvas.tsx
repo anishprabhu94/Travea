@@ -825,12 +825,14 @@ export default function TripCanvas() {
                 <Ionicons name="car-outline" size={32} color="#F8F8F8" style={styles.tileIcon} />
                 <Text style={styles.tileLabel}>Transport</Text>
                 
-                <View style={styles.tileMicroLineContainer}>
-                  <View style={[styles.tileMicroSegment, styles.tileMicroSaved]} />
+                <View style={styles.tileProgressBand}>
+                  <View style={[styles.tileProgressFill, styles.tileProgressSaved, { width: '50%' }]} />
                 </View>
                 
+                <Text style={styles.tileRatioText}>1 of 2 Saved</Text>
+                
                 <View style={[styles.tileStatusPill, styles.tileStatusSaved]}>
-                  <Text style={styles.tileStatusText}>1 Saved</Text>
+                  <Text style={styles.tileStatusText}>Saved</Text>
                 </View>
               </View>
             </BlurView>
