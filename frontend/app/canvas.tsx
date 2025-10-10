@@ -1055,33 +1055,35 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Top-right circular arrow icon
+  // Top-right circular arrow icon - refined and elegant
   circularArrow: {
     position: 'absolute',
-    top: 16,
-    right: 16,
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: 'rgba(255,255,255,0.12)', // Frosted-glass circular
+    top: 12, // Better positioning
+    right: 12,
+    width: 26, // Smaller size for elegance
+    height: 26,
+    borderRadius: 13,
+    backgroundColor: 'rgba(255,255,255,0.15)', // Slightly more visible
     alignItems: 'center',
     justifyContent: 'center',
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(15px)',
-        boxShadow: '0 2px 8px rgba(255,255,255,0.1)', // Pearl glow
+        backdropFilter: 'blur(12px)',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.1), 0 1px 3px rgba(255,255,255,0.2)', // Added shadow + glow
+        border: '1px solid rgba(255,255,255,0.1)',
         transition: 'all 200ms ease-in-out',
         ':hover': {
-          backgroundColor: 'rgba(255,255,255,0.18)',
-          transform: 'scale(1.1)', // Slight bloom on hover
+          backgroundColor: 'rgba(255,255,255,0.22)',
+          transform: 'scale(1.05)', // Subtle bloom
+          boxShadow: '0 3px 12px rgba(0,0,0,0.15), 0 2px 6px rgba(255,255,255,0.3)',
         },
       },
       default: {
-        shadowColor: 'rgba(255,255,255,0.15)',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.15,
+        shadowColor: 'rgba(0,0,0,0.12)',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.12,
         shadowRadius: 4,
-        elevation: 2,
+        elevation: 3,
       },
     }),
   },
@@ -1092,16 +1094,16 @@ const styles = StyleSheet.create({
   },
   
   arrowIcon: {
-    // Gentle pearl glow
+    // Elegant icon styling
     ...Platform.select({
       web: {
-        filter: 'drop-shadow(0 0 6px rgba(255,255,255,0.3))',
+        filter: 'drop-shadow(0 0 4px rgba(255,255,255,0.25))',
       },
       default: {
         shadowColor: '#FFFFFF',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.3,
-        shadowRadius: 3,
+        shadowOpacity: 0.25,
+        shadowRadius: 2,
       },
     }),
   },
