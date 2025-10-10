@@ -463,6 +463,11 @@ const styles = StyleSheet.create({
     ...Platform.select({
       web: {
         boxShadow: '0 0 20px rgba(201,169,109,0.25)', // Subtle bronze glow
+        transition: 'all 200ms ease-in-out',
+        ':hover': {
+          boxShadow: '0 0 28px rgba(201,169,109,0.4)', // Soft glow on hover
+          transform: 'scale(1.02)', // Subtle scale on hover
+        },
       },
       default: {
         shadowColor: '#C9A96D',
