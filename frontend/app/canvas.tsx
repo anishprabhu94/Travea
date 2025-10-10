@@ -1129,67 +1129,87 @@ const styles = StyleSheet.create({
     backgroundColor: '#AEBEA4', // Sage green
   },
 
-  // Trip-Map Progress Line
-  tripMapContainer: {
+  // Orbit Path - Semi-circular journey visualization
+  orbitPathContainer: {
     paddingHorizontal: 24,
-    marginTop: 24,
-    marginBottom: 24,
-  },
-  
-  tripMapLine: {
-    height: 3,
-    borderRadius: 2,
-    overflow: 'visible',
-  },
-  
-  mapSegmentContainer: {
-    flexDirection: 'row',
+    marginTop: 28,
+    marginBottom: 32,
+    height: 80, // 1/3 of space allocation
     alignItems: 'center',
-    height: 3,
-  },
-  
-  mapSegment: {
-    height: 3,
-    position: 'relative',
     justifyContent: 'center',
-    alignItems: 'flex-end',
   },
   
-  mapSegmentBooked: {
-    backgroundColor: '#CBB88C', // Champagne gold
+  orbitArcContainer: {
+    width: '100%',
+    height: 80,
+    position: 'relative',
+    alignItems: 'center',
+  },
+  
+  orbitArc: {
+    width: '90%',
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: '#CBB88C', // Golden arc
     ...Platform.select({
       web: {
-        boxShadow: '0 0 10px rgba(203,184,140,0.5)',
+        boxShadow: '0 0 20px rgba(203,184,140,0.6)',
+        background: 'linear-gradient(90deg, rgba(203,184,140,0.4) 0%, rgba(203,184,140,0.9) 50%, rgba(203,184,140,0.4) 100%)',
       },
       default: {
         shadowColor: '#CBB88C',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.5,
-        shadowRadius: 5,
+        shadowOpacity: 0.6,
+        shadowRadius: 10,
       },
     }),
   },
   
-  mapSegmentPending: {
-    backgroundColor: 'rgba(180,173,162,0.4)', // Warm gray
-  },
-  
-  mapDot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
+  orbsContainer: {
     position: 'absolute',
-    right: -5,
+    width: '90%',
+    height: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   
-  mapDotFilled: {
-    backgroundColor: '#CBB88C',
+  orbPosition: {
+    position: 'absolute',
+    marginLeft: -8, // Center the orb on its position
+  },
+  
+  orb: {
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    borderWidth: 2,
+  },
+  
+  orbBooked: {
+    backgroundColor: '#CBB88C', // Filled champagne gold
+    borderColor: '#CBB88C',
     ...Platform.select({
       web: {
-        boxShadow: '0 0 12px rgba(203,184,140,0.6)',
+        boxShadow: '0 0 16px rgba(203,184,140,0.8)',
       },
       default: {
         shadowColor: '#CBB88C',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.8,
+        shadowRadius: 8,
+      },
+    }),
+  },
+  
+  orbSaved: {
+    backgroundColor: 'transparent', // Hollow
+    borderColor: '#D6C7A1', // Sand beige outline
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 12px rgba(214,199,161,0.6)',
+      },
+      default: {
+        shadowColor: '#D6C7A1',
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 0.6,
         shadowRadius: 6,
@@ -1197,10 +1217,30 @@ const styles = StyleSheet.create({
     }),
   },
   
-  mapDotEmpty: {
-    backgroundColor: 'rgba(255,255,255,0.15)',
-    borderWidth: 2,
-    borderColor: 'rgba(180,173,162,0.6)',
+  orbPending: {
+    backgroundColor: 'transparent', // Hollow
+    borderColor: 'rgba(180,173,162,0.5)', // Faint warm gray
+    borderWidth: 1,
+  },
+  
+  shimmerParticle: {
+    position: 'absolute',
+    left: '45%',
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: '#F8F8F8',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 10px rgba(248,248,248,0.8)',
+      },
+      default: {
+        shadowColor: '#F8F8F8',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.8,
+        shadowRadius: 5,
+      },
+    }),
   },
 
   // View Toggle Section - Refined and elegant
