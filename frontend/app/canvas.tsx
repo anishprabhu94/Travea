@@ -345,7 +345,7 @@ export default function TripCanvas() {
           <View style={styles.cityPaneInner}>
             {/* City Header */}
             <Text style={styles.cityHeader}>
-              {activeSegment.city}, {activeSegment.country} — {activeSegment.dateRange}
+              {activeSegment.city}, {activeSegment.country} • {activeSegment.dateRange}
             </Text>
 
             {/* Hero Image */}
