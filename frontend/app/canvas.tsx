@@ -1111,30 +1111,30 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Dropdown Menu
+  // Dropdown Menu - Reduced size
   statusDropdownMenu: {
     position: 'absolute',
-    top: 160,
+    top: 100, // Adjusted for smaller header
     left: 0,
     right: 0,
     zIndex: 1000,
-    marginTop: 8,
-    borderRadius: 20,
+    marginTop: 6,
+    borderRadius: 16,
     overflow: 'hidden',
   },
   
   dropdownMenuBlur: {
-    borderRadius: 20,
+    borderRadius: 16,
     overflow: 'hidden',
   },
   
   dropdownOption: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 18,
-    paddingHorizontal: 24,
+    paddingVertical: 12, // Reduced from 18
+    paddingHorizontal: 20, // Reduced from 24
     backgroundColor: 'rgba(255,255,255,0.05)',
-    gap: 12,
+    gap: 10, // Reduced from 12
   },
   
   dropdownSeparator: {
