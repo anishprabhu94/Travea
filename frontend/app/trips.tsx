@@ -423,7 +423,21 @@ export default function MyTrips() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212', // Deep charcoal background
+    margin: 0,
+    padding: 0,
+    backgroundColor: '#0E0E0E', // Deep charcoal base to match landing page
+    ...Platform.select({
+      web: {
+        minHeight: '100vh',
+        margin: 0,
+        padding: 0,
+        background: 'linear-gradient(180deg, #0E0E0E 0%, #151515 100%)', // Same gradient as landing page
+      },
+      default: {
+        // Gradient simulation for native using backgroundColor
+        backgroundColor: '#0E0E0E',
+      },
+    }),
   },
   backgroundImage: {
     // No overlay here - applied in separate view
