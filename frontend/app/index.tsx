@@ -219,37 +219,40 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     width: '100%',
     maxWidth: 400,
-    shadowColor: 'rgba(0, 0, 0, 0.9)',
-    shadowOffset: { width: 0, height: 16 },
-    shadowOpacity: 0.6,
-    shadowRadius: 24,
-    elevation: 22,
-  },
-  
-  // Background image styles
-  paneImageBackground: {
-    width: '100%',
-    height: '100%',
-    borderRadius: 28,
-    overflow: 'hidden',
-  },
-  paneImageStyle: {
-    borderRadius: 28,
-  },
-  
-  // Blur overlay for frosted glass effect
-  paneBlurOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    borderRadius: 28,
-    overflow: 'hidden',
-    backgroundColor: 'rgba(25,25,25,0.3)', // Reduced opacity for image visibility
+    ...Platform.select({
+      web: {
+        boxShadow: '0 16px 48px rgba(0, 0, 0, 0.6)',
+      },
+      default: {
+        shadowColor: 'rgba(0, 0, 0, 0.9)',
+        shadowOffset: { width: 0, height: 16 },
+        shadowOpacity: 0.6,
+        shadowRadius: 24,
+        elevation: 22,
+      },
+    }),
   },
   
   paneInner: {
-    backgroundColor: 'rgba(25,25,25,0.4)', // Semi-transparent overlay
     padding: 36,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.1)',
+    borderRadius: 28,
+    minHeight: 500,
+    ...Platform.select({
+      web: {
+        backgroundImage: "url('https://customer-assets.emergentagent.com/job_travea-luxury-app/artifacts/vyx1vpo5_sign%20in%20final.jpg')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backdropFilter: 'blur(15px)',
+        backgroundColor: 'rgba(25,25,25,0.7)',
+        backgroundBlendMode: 'overlay',
+      },
+      default: {
+        backgroundColor: 'rgba(40,40,40,0.8)',
+      },
+    }),
   },
   
   // TRĀVEA logo and tagline at top
