@@ -191,8 +191,6 @@ export default function Index() {
             </View>
             
           </View>
-        </BlurView>
-        </ImageBackground>
         </View>
         
       </View>
