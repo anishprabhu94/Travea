@@ -105,7 +105,7 @@ const mockDestinations: DestinationData[] = [
 ]
 
 export default function MyCanvas() {
-  const { bookmarkedItems } = React.useContext(BookmarkContext)
+  const { bookmarkedItems } = useBookmarks()
   const [activeTrip, setActiveTrip] = useState<TripData>(mockActiveTrip)
   const [destinations, setDestinations] = useState<DestinationData[]>(mockDestinations)
   const [selectedDay, setSelectedDay] = useState(1)
