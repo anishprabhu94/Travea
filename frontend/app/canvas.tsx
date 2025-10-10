@@ -163,6 +163,28 @@ export default function TripCanvas() {
     }).start()
   }, [trip.progress])
 
+  // Pulse animation for trip-map line
+  useEffect(() => {
+    const pulseLoop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(pulseAnimation, {
+          toValue: 1.08,
+          duration: 2000,
+          useNativeDriver: true,
+          easing: (t) => t * (2 - t), // ease-in-out
+        }),
+        Animated.timing(pulseAnimation, {
+          toValue: 1,
+          duration: 2000,
+          useNativeDriver: true,
+          easing: (t) => t * (2 - t),
+        }),
+      ])
+    )
+    pulseLoop.start()
+    return () => pulseLoop.stop()
+  }, [])
+
   const handleSegmentChange = (segmentId: string) => {
     if (segmentId === activeSegmentId) return
 
