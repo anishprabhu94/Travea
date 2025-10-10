@@ -84,196 +84,170 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <StatusBar style="light" translucent backgroundColor="transparent" />
+      <StatusBar style="light" />
       
-      {/* Full-Screen Background */}
-      <ImageBackground
-        source={{
-          uri: 'https://customer-assets.emergentagent.com/job_modern-journey-app/artifacts/rfhpzh4c_output%20%281%29.jpg',
-        }}
-        style={styles.backgroundImage}
-        resizeMode="cover"
-        blurRadius={Platform.OS === 'ios' ? 12 : 10}
-      >
-        {/* Mild vignette effect */}
-        <LinearGradient
-          colors={[
-            'rgba(0, 0, 0, 0.15)',
-            'rgba(0, 0, 0, 0.05)',
-            'rgba(0, 0, 0, 0.05)',
-            'rgba(0, 0, 0, 0.15)',
-          ]}
-          style={styles.vignetteOverlay}
-          start={{ x: 0.5, y: 0 }}
-          end={{ x: 0.5, y: 1 }}
-        />
+      {/* Vignette overlay */}
+      <View style={styles.vignetteOverlay} />
+      
+      {/* Content */}
+      <View style={styles.contentContainer}>
+        
+        {/* Center-aligned frosted glass pane */}
+        <BlurView intensity={25} tint="dark" style={styles.mainPane}>
+          <View style={styles.paneInner}>
+            
+            {/* TRĀVEA Logo and tagline */}
+            <View style={styles.logoSection}>
+              <View style={styles.logoContainer}>
+                <TraveaWordmark />
+              </View>
+              <Text style={styles.tagline}>Travel, refined.</Text>
+            </View>
 
-        {/* Content Container - No Scroll */}
-        <View style={styles.contentContainer}>
-          {/* Luxury Wordmark */}
-          <View style={styles.header}>
-            <TraveaWordmark size="large" />
-            <Text style={styles.tagline}>Travel, refined.</Text>
-          </View>
-
-          {/* Frosted Glass Pane */}
-          <View style={styles.paneContainer}>
-            <BlurView intensity={30} tint="light" style={styles.glassPaneBlur}>
-              <View style={styles.glassPaneInner}>
-                {/* Tab Toggle */}
-                <View style={styles.toggleContainer}>
+            {/* Frosted tab toggle for Sign In / Sign Up */}
+            <View style={styles.tabToggleContainer}>
+              <BlurView intensity={20} tint="light" style={styles.tabToggleBlur}>
+                <View style={styles.tabToggleInner}>
                   <TouchableOpacity
-                    style={styles.toggleButton}
+                    style={[styles.tabButton, !isSignUp && styles.tabButtonActive]}
                     onPress={() => setIsSignUp(false)}
-                    activeOpacity={0.7}
+                    activeOpacity={0.8}
                   >
-                    <Text style={[styles.toggleText, !isSignUp && styles.toggleTextActive]}>
+                    {!isSignUp && <View style={styles.tabGlow} />}
+                    <Text style={[styles.tabText, !isSignUp && styles.tabTextActive]}>
                       Sign In
                     </Text>
-                    {!isSignUp && <View style={styles.activeUnderline} />}
                   </TouchableOpacity>
-                  
-                  <View style={styles.toggleSpacer} />
                   
                   <TouchableOpacity
-                    style={styles.toggleButton}
+                    style={[styles.tabButton, isSignUp && styles.tabButtonActive]}
                     onPress={() => setIsSignUp(true)}
-                    activeOpacity={0.7}
+                    activeOpacity={0.8}
                   >
-                    <Text style={[styles.toggleText, isSignUp && styles.toggleTextActive]}>
+                    {isSignUp && <View style={styles.tabGlow} />}
+                    <Text style={[styles.tabText, isSignUp && styles.tabTextActive]}>
                       Sign Up
                     </Text>
-                    {isSignUp && <View style={styles.activeUnderline} />}
                   </TouchableOpacity>
                 </View>
+              </BlurView>
+            </View>
 
-                {/* Input Fields */}
-                <View style={styles.inputContainer}>
-                  {isSignUp && (
-                    <View style={styles.inputField}>
-                      <Text style={styles.inputLabel}>Full Name</Text>
-                      <TextInput
-                        style={[
-                          styles.input,
-                          focusedField === 'name' && styles.inputActive
-                        ]}
-                        placeholder=""
-                        placeholderTextColor="rgba(255, 255, 255, 0.45)"
-                        value={name}
-                        onChangeText={setName}
-                        autoCapitalize="words"
-                        onFocus={() => setFocusedField('name')}
-                        onBlur={() => setFocusedField(null)}
-                        selectionColor="rgba(255, 255, 255, 0.3)"
-                      />
-                    </View>
-                  )}
-
-                  <View style={styles.inputField}>
-                    <Text style={styles.inputLabel}>Email</Text>
+            {/* Form content */}
+            <View style={styles.formSection}>
+              
+              {/* Name Field (Sign Up only) */}
+              {isSignUp && (
+                <View style={styles.inputGroup}>
+                  <BlurView intensity={12} tint="light" style={styles.inputBlur}>
                     <TextInput
-                      style={[
-                        styles.input,
-                        focusedField === 'email' && styles.inputActive
-                      ]}
-                      placeholder=""
-                      placeholderTextColor="rgba(255, 255, 255, 0.45)"
-                      value={email}
-                      onChangeText={setEmail}
-                      keyboardType="email-address"
-                      autoCapitalize="none"
-                      onFocus={() => setFocusedField('email')}
+                      style={styles.input}
+                      placeholder="Full name"
+                      placeholderTextColor="rgba(255,255,255,0.6)"
+                      value={name}
+                      onChangeText={setName}
+                      onFocus={() => setFocusedField('name')}
                       onBlur={() => setFocusedField(null)}
-                      selectionColor="rgba(255, 255, 255, 0.3)"
                     />
-                  </View>
-
-                  <View style={styles.inputField}>
-                    <Text style={styles.inputLabel}>Password</Text>
-                    <TextInput
-                      style={[
-                        styles.input,
-                        focusedField === 'password' && styles.inputActive
-                      ]}
-                      placeholder=""
-                      placeholderTextColor="rgba(255, 255, 255, 0.45)"
-                      value={password}
-                      onChangeText={setPassword}
-                      secureTextEntry
-                      onFocus={() => setFocusedField('password')}
-                      onBlur={() => setFocusedField(null)}
-                      selectionColor="rgba(255, 255, 255, 0.3)"
-                    />
-                  </View>
+                  </BlurView>
                 </View>
-
-                {/* Primary CTA Button with Frosted Glass */}
-                <TouchableOpacity
-                  style={styles.primaryButtonContainer}
-                  onPress={isSignUp ? handleSignUp : handleSignIn}
-                  activeOpacity={0.85}
+              )}
+              
+              {/* Email Field */}
+              <View style={styles.inputGroup}>
+                <BlurView intensity={12} tint="light" style={styles.inputBlur}>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Email address"
+                    placeholderTextColor="rgba(255,255,255,0.6)"
+                    value={email}
+                    onChangeText={setEmail}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    onFocus={() => setFocusedField('email')}
+                    onBlur={() => setFocusedField(null)}
+                  />
+                </BlurView>
+              </View>
+              
+              {/* Password Field */}
+              <View style={styles.inputGroup}>
+                <BlurView intensity={12} tint="light" style={styles.inputBlur}>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Password"
+                    placeholderTextColor="rgba(255,255,255,0.6)"
+                    value={password}
+                    onChangeText={setPassword}
+                    secureTextEntry
+                    onFocus={() => setFocusedField('password')}
+                    onBlur={() => setFocusedField(null)}
+                  />
+                </BlurView>
+              </View>
+              
+              {/* Bronze-gradient primary button */}
+              <TouchableOpacity
+                style={styles.primaryButton}
+                onPress={isSignUp ? handleSignUp : handleSignIn}
+                activeOpacity={0.8}
+              >
+                <LinearGradient
+                  colors={['#C9A96D', '#B8956A']}
+                  style={styles.gradientButton}
                 >
-                  <BlurView intensity={20} tint="light" style={styles.primaryButtonBlur}>
-                    <View style={styles.primaryButton}>
-                      <Text style={styles.primaryButtonText}>
-                        {isSignUp ? 'SIGN UP' : 'SIGN IN'}
-                      </Text>
+                  <Text style={styles.primaryButtonText}>
+                    {isSignUp ? 'Create Account' : 'Sign In'}
+                  </Text>
+                </LinearGradient>
+              </TouchableOpacity>
+              
+              {/* Divider */}
+              <View style={styles.dividerContainer}>
+                <View style={styles.dividerLine} />
+                <Text style={styles.dividerText}>or</Text>
+                <View style={styles.dividerLine} />
+              </View>
+              
+              {/* Frosted secondary buttons for OAuth */}
+              <View style={styles.oauthSection}>
+                
+                {/* Google Button */}
+                <TouchableOpacity
+                  style={styles.oauthButton}
+                  onPress={handleOAuthGoogle}
+                  activeOpacity={0.8}
+                >
+                  <BlurView intensity={18} tint="light" style={styles.oauthBlur}>
+                    <View style={styles.oauthInner}>
+                      <Ionicons name="logo-google" size={18} color="#F8F8F8" />
+                      <Text style={styles.oauthText}>Continue with Google</Text>
                     </View>
                   </BlurView>
                 </TouchableOpacity>
-
-                {/* Secondary Toggle Link */}
-                <TouchableOpacity 
-                  onPress={() => setIsSignUp(!isSignUp)}
-                  style={styles.secondaryLinkContainer}
+                
+                {/* Apple Button */}
+                <TouchableOpacity
+                  style={styles.oauthButton}
+                  onPress={handleOAuthApple}
+                  activeOpacity={0.8}
                 >
-                  <Text style={styles.secondaryLink}>
-                    {isSignUp
-                      ? 'Already have an account? Sign in'
-                      : "Don't have an account? Sign up"}
-                  </Text>
+                  <BlurView intensity={18} tint="light" style={styles.oauthBlur}>
+                    <View style={styles.oauthInner}>
+                      <Ionicons name="logo-apple" size={18} color="#F8F8F8" />
+                      <Text style={styles.oauthText}>Continue with Apple</Text>
+                    </View>
+                  </BlurView>
                 </TouchableOpacity>
-
-                {/* Divider */}
-                <View style={styles.dividerContainer}>
-                  <View style={styles.dividerLine} />
-                  <Text style={styles.dividerText}>OR CONTINUE WITH</Text>
-                  <View style={styles.dividerLine} />
-                </View>
-
-                {/* OAuth Buttons */}
-                <View style={styles.oauthContainer}>
-                  <TouchableOpacity
-                    style={styles.oauthButtonContainer}
-                    onPress={handleOAuthGoogle}
-                    activeOpacity={0.85}
-                  >
-                    <BlurView intensity={25} tint="light" style={styles.oauthButton}>
-                      <View style={[styles.oauthButtonInner, styles.oauthButtonGoogle]}>
-                        <Ionicons name="logo-google" size={18} color="rgba(255,255,255,0.85)" />
-                        <Text style={styles.oauthButtonText}>Continue with Google</Text>
-                      </View>
-                    </BlurView>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    style={styles.oauthButtonContainer}
-                    onPress={handleOAuthApple}
-                    activeOpacity={0.85}
-                  >
-                    <BlurView intensity={25} tint="light" style={styles.oauthButton}>
-                      <View style={[styles.oauthButtonInner, styles.oauthButtonApple]}>
-                        <Ionicons name="logo-apple" size={18} color="rgba(255,255,255,0.85)" />
-                        <Text style={styles.oauthButtonText}>Continue with Apple</Text>
-                      </View>
-                    </BlurView>
-                  </TouchableOpacity>
-                </View>
+                
               </View>
-            </BlurView>
+              
+            </View>
+            
           </View>
-        </View>
-      </ImageBackground>
+        </BlurView>
+        
+      </View>
     </View>
   );
 }
