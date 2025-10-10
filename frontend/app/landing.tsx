@@ -960,9 +960,9 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   bookmarkContainer: {
-    width: 36, // Increased size for better visibility
-    height: 36,
-    borderRadius: 18,
+    width: 42, // Further increased for even better visibility
+    height: 42,
+    borderRadius: 21,
     overflow: 'hidden',
   },
   bookmarkInner: {
