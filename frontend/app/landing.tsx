@@ -678,7 +678,15 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: 'rgba(60,60,60,0.55)', // Lighter for better visibility
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  profileIconBlur: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    overflow: 'hidden',
+    backgroundColor: 'rgba(60,60,60,0.55)',
     justifyContent: 'center',
     alignItems: 'center',
     ...Platform.select({
