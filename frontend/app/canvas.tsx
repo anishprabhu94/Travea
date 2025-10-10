@@ -820,12 +820,60 @@ const styles = StyleSheet.create({
   cityCardImageStyle: {
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
+    ...Platform.select({
+      web: {
+        // Reduce brightness by 8-10% and contrast by 10-12%
+        filter: 'brightness(0.92) contrast(0.88)',
+      },
+    }),
   },
-  cityCardImageOverlay: {
+  
+  // Soft neutral grey veil overlay for desaturation
+  cityCardGreyVeilOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.35)',
+    backgroundColor: 'rgba(18,18,18,0.20)', // Subtle grey veil
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
+    zIndex: 1,
+  },
+  
+  // Tone adjustment overlay for refined visual balance
+  cityCardToneAdjustmentOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(32,32,32,0.08)', // Additional tonal refinement
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    zIndex: 2,
+  },
+  
+  // Enhanced vignette with depth
+  cityCardImageOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    zIndex: 3,
+    ...Platform.select({
+      web: {
+        background: 'radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.15) 100%)',
+      },
+      default: {
+        backgroundColor: 'rgba(0,0,0,0.25)',
+      },
+    }),
+  },
+  
+  // Frosted glass pane overlay for muted daylight effect
+  cityCardFrostedGlassOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(255,255,255,0.04)', // Soft glass tint
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    zIndex: 4,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(22px) saturate(0.85)',
+      },
+    }),
   },
   cityCardBookmark: {
     position: 'absolute',
