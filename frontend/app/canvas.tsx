@@ -371,53 +371,54 @@ export default function TripCanvas() {
     </View>
   )
 
-  // Orbit Path - Semi-circular journey visualization
-  const OrbitPath = () => {
-    const destinations = [
-      { name: 'Rome', status: 'booked' },
-      { name: 'Amalfi', status: 'booked' },
-      { name: 'Florence', status: 'booked' },
-      { name: 'Venice', status: 'saved' },
-      { name: 'Milan', status: 'pending' },
+  // Trip Line - Elevated Acronym Capsules
+  const TripLine = () => {
+    const cities = [
+      { name: 'Florence', acronym: 'FLR', status: 'booked' },
+      { name: 'Rome', acronym: 'ROM', status: 'booked' },
+      { name: 'Venice', acronym: 'VCE', status: 'saved' },
+      { name: 'Milan', acronym: 'MIL', status: 'pending' },
+      { name: 'Naples', acronym: 'NAP', status: 'pending' },
     ]
 
     return (
-      <View style={styles.orbitPathContainer}>
-        {/* Semi-circular arc background */}
-        <View style={styles.orbitArcContainer}>
-          <Animated.View style={[styles.orbitArc, { opacity: pulseAnimation }]} />
-          
-          {/* Destination orbs positioned along the arc */}
-          <View style={styles.orbsContainer}>
-            {destinations.map((dest, index) => {
-              const totalOrbs = destinations.length
-              const position = (index / (totalOrbs - 1)) * 100 // 0% to 100%
+      <View style={styles.tripLineContainer}>
+        <ScrollView 
+          horizontal 
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.tripLineContent}
+        >
+          {cities.map((city, index) => (
+            <View key={city.acronym} style={styles.capsuleWrapper}>
+              <TouchableOpacity 
+                style={[
+                  styles.cityCapsule,
+                  city.status === 'booked' && styles.capsuleBooked,
+                  city.status === 'saved' && styles.capsuleSaved,
+                  city.status === 'pending' && styles.capsulePending
+                ]}
+                activeOpacity={0.8}
+              >
+                <Animated.View style={[
+                  styles.capsuleInner,
+                  city.status === 'booked' && { opacity: pulseAnimation } // Warm pulse
+                ]}>
+                  <Text style={[
+                    styles.capsuleText,
+                    city.status === 'booked' && styles.capsuleTextBooked
+                  ]}>
+                    {city.acronym}
+                  </Text>
+                </Animated.View>
+              </TouchableOpacity>
               
-              return (
-                <View
-                  key={dest.name}
-                  style={[
-                    styles.orbPosition,
-                    { left: `${position}%` }
-                  ]}
-                >
-                  <Animated.View
-                    style={[
-                      styles.orb,
-                      dest.status === 'booked' && styles.orbBooked,
-                      dest.status === 'saved' && styles.orbSaved,
-                      dest.status === 'pending' && styles.orbPending,
-                      index === 2 && { opacity: pulseAnimation }, // Active orb breathing
-                    ]}
-                  />
-                </View>
-              )
-            })}
-          </View>
-          
-          {/* Motion shimmer particle */}
-          <Animated.View style={[styles.shimmerParticle, { opacity: pulseAnimation }]} />
-        </View>
+              {/* Connecting line */}
+              {index < cities.length - 1 && (
+                <View style={styles.connectingLine} />
+              )}
+            </View>
+          ))}
+        </ScrollView>
       </View>
     )
   }
