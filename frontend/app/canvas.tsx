@@ -1036,7 +1036,7 @@ const styles = StyleSheet.create({
   },
   tripHeaderBackgroundImage: {
     borderRadius: 24,
-    opacity: 0.5, // Subtle background
+    opacity: 0.75, // More prominent (increased from 0.5)
   },
   tripHeaderFrostedGlass: {
     borderRadius: 24,
