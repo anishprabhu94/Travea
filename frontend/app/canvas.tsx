@@ -1947,10 +1947,10 @@ const styles = StyleSheet.create({
   
   progressArc: {
     position: 'absolute',
-    width: 42,
-    height: 42,
-    borderRadius: 21,
-    borderWidth: 3,
+    width: 36, // Match reduced halo
+    height: 36, // Match reduced halo
+    borderRadius: 18, // Match reduced halo
+    borderWidth: 2.5, // Match reduced halo
     borderColor: 'transparent',
     borderTopColor: 'currentColor', // Uses parent borderColor
     opacity: 0.25, // 25% opacity as specified
