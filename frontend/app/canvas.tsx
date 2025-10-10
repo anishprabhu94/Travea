@@ -1094,26 +1094,26 @@ const styles = StyleSheet.create({
   },
   
   arrowIcon: {
-    // Elegant icon styling
+    // Elegant smaller icon styling
     ...Platform.select({
       web: {
-        filter: 'drop-shadow(0 0 4px rgba(255,255,255,0.25))',
+        filter: 'drop-shadow(0 0 3px rgba(255,255,255,0.2))',
       },
       default: {
         shadowColor: '#FFFFFF',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.25,
-        shadowRadius: 2,
+        shadowOpacity: 0.2,
+        shadowRadius: 1.5,
       },
     }),
   },
   
-  // Center content: icon and label
+  // Center content: icon and label with more spacing from arrow
   centerContent: {
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
-    marginTop: 8,
+    marginTop: 4, // Reduced to give more breathing room
   },
   
   categoryIconContainer: {
