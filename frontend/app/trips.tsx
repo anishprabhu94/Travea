@@ -477,6 +477,19 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    // Reduced bronze glow for logo to match landing page
+    ...Platform.select({
+      web: {
+        filter: 'drop-shadow(0 0 6px rgba(201,169,109,0.4))', // Same as landing page
+      },
+      default: {
+        shadowColor: '#C9A96D',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.4,
+        shadowRadius: 6,
+        elevation: 3,
+      },
+    }),
   },
   backButton: {
     width: 40,
