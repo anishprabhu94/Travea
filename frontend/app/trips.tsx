@@ -401,8 +401,12 @@ export default function MyTrips() {
               <Text style={styles.dockLabelInactive}>Home</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
-              <Ionicons name="map-outline" size={22} color="rgba(255,255,255,0.7)" />
+            <TouchableOpacity 
+              style={styles.dockItem} 
+              activeOpacity={0.8}
+              onPress={() => router.push('/canvas')}
+            >
+              <Ionicons name="brush" size={22} color="rgba(255,255,255,0.7)" />
               <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
             </TouchableOpacity>
 
