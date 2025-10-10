@@ -371,7 +371,7 @@ export default function TripCanvas() {
                     style={styles.travelIcon}
                   />
                   <Text style={styles.travelText}>
-                    Travel In: {travelSegment.route}
+                    {travelSegment.route}
                   </Text>
                   <View style={[
                     styles.travelStatus,
