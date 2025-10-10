@@ -308,12 +308,26 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(25,25,25,0.35)', // rgba(25,25,25,0.35), blur 25px as specified
     padding: 32,
   },
+  
+  // TRĀVEA logo and tagline at top
   logoSection: {
     alignItems: 'center',
     marginBottom: 32,
   },
   logoContainer: {
-    marginBottom: 8,
+    // Bronze glow for logo
+    ...Platform.select({
+      web: {
+        filter: 'drop-shadow(0 0 8px rgba(201,169,109,0.6))',
+      },
+      default: {
+        shadowColor: '#C9A96D',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.6,
+        shadowRadius: 8,
+        elevation: 4,
+      },
+    }),
   },
   tagline: {
     fontSize: 16,
