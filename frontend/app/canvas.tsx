@@ -59,7 +59,7 @@ interface TravelSegment {
 const mockTrip: TripData = {
   id: 'summer-italy-2025',
   title: 'Summer in Italy',
-  dates: 'June 8 – 14, 2025',
+  dates: 'June 8 – 14, 2025 • 2 Travelers',
   startDate: '2025-06-08',
   endDate: '2025-06-14',
   state: 'Planning',
