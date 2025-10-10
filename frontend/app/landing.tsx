@@ -686,9 +686,9 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   greetingMain: {
-    fontSize: 32,
+    fontSize: 28, // Reduced from 32
     fontWeight: '700',
-    color: 'rgba(255,255,255,0.9)', // rgba(255,255,255,0.9) for headline
+    color: 'rgba(255,255,255,0.9)',
     marginBottom: 4,
     letterSpacing: 0.8,
     fontFamily: Platform.select({
