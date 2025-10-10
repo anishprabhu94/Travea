@@ -754,6 +754,11 @@ const styles = StyleSheet.create({
   smartCTABlur: {
     borderRadius: 18,
     overflow: 'hidden',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 18,
+    backgroundColor: 'rgba(201,169,109,0.25)',
   },
   smartCTAText: {
     fontSize: 14,
