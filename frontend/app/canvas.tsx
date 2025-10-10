@@ -996,7 +996,8 @@ const styles = StyleSheet.create({
     }),
   },
   bookingChips: {
-    marginBottom: 24,
+    flexDirection: 'row', // Make chips horizontal instead of vertical
+    marginBottom: 20, // Reduced from 24
   },
   bookingChip: {
     flexDirection: 'row',
