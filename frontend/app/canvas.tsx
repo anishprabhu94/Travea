@@ -262,9 +262,9 @@ export default function TripCanvas() {
   // Components
   const TripHeader = () => (
     <View style={styles.headerContainer}>
-      <BlurView intensity={26} tint="dark" style={styles.tripHeader}>
+      <BlurView intensity={30} tint="dark" style={styles.tripHeader}>
         <View style={styles.tripHeaderInner}>
-          {/* Logo and Profile - Properly Spaced */}
+          {/* Logo and Profile - Same positions */}
           <View style={styles.headerTop}>
             <View style={styles.logoContainer}>
               <TraveaWordmark />
@@ -274,53 +274,98 @@ export default function TripCanvas() {
             </TouchableOpacity>
           </View>
 
-          {/* Trip Title */}
-          <View style={styles.tripTitleContainer}>
-            {isEditingTitle ? (
-              <TextInput
-                style={styles.tripTitleInput}
-                value={trip.title}
-                onChangeText={(text) => setTrip({ ...trip, title: text })}
-                onBlur={() => setIsEditingTitle(false)}
-                autoFocus
-                returnKeyType="done"
-                onSubmitEditing={() => setIsEditingTitle(false)}
-              />
-            ) : (
-              <TouchableOpacity onPress={() => setIsEditingTitle(true)}>
-                <Text style={styles.tripTitle}>{trip.title}</Text>
-              </TouchableOpacity>
-            )}
+          {/* Trip Info Block */}
+          <View style={styles.tripInfoBlock}>
+            {/* Large elegant title with emoji */}
+            <Text style={styles.tripTitleLarge}>Summer in Italy 🇮🇹</Text>
             
-            <Text style={styles.tripDates}>{trip.dates}</Text>
+            {/* Subtext line */}
+            <Text style={styles.tripSubtext}>June 8–14, 2025 • 2 Travelers</Text>
             
-            {/* State Pill */}
-            <View style={[styles.statePill, trip.state === 'Ongoing' && styles.statePillGlow]}>
-              <Text style={[styles.statePillText, trip.state === 'Ongoing' && styles.statePillTextActive]}>
-                {trip.state}
-              </Text>
-            </View>
-          </View>
+            {/* Status Dropdown */}
+            <TouchableOpacity 
+              style={styles.statusDropdownButton}
+              onPress={() => {
+                setIsDropdownOpen(!isDropdownOpen)
+                Animated.spring(dropdownAnimation, {
+                  toValue: isDropdownOpen ? 0 : 1,
+                  tension: 80,
+                  friction: 12,
+                  useNativeDriver: true,
+                }).start()
+              }}
+              activeOpacity={0.8}
+            >
+              <Text style={styles.statusDropdownText}>{trip.state}</Text>
+              <Animated.View style={{ 
+                transform: [{ 
+                  rotate: dropdownAnimation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ['0deg', '180deg']
+                  })
+                }] 
+              }}>
+                <Ionicons name="chevron-down" size={16} color="rgba(248,248,248,0.8)" />
+              </Animated.View>
+            </TouchableOpacity>
 
-          {/* Ambient Progress Bar */}
-          {trip.state === 'Planning' && (
-            <View style={styles.progressContainer}>
-              <View style={styles.progressTrack}>
-                <Animated.View 
-                  style={[
-                    styles.progressFill,
-                    {
-                      width: progressAnimation.interpolate({
-                        inputRange: [0, 100],
-                        outputRange: ['0%', '100%'],
-                        extrapolate: 'clamp'
+            {/* Dropdown Menu */}
+            {isDropdownOpen && (
+              <Animated.View 
+                style={[
+                  styles.statusDropdownMenu,
+                  {
+                    opacity: dropdownAnimation,
+                    transform: [{
+                      translateY: dropdownAnimation.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [-10, 0]
                       })
-                    }
-                  ]} 
-                />
-              </View>
-            </View>
-          )}
+                    }]
+                  }
+                ]}
+              >
+                <BlurView intensity={40} tint="dark" style={styles.dropdownMenuBlur}>
+                  <TouchableOpacity 
+                    style={styles.dropdownOption}
+                    onPress={() => {
+                      setTrip({ ...trip, state: 'Ongoing' })
+                      setIsDropdownOpen(false)
+                    }}
+                  >
+                    <View style={[styles.statusDot, styles.statusDotOngoing]} />
+                    <Text style={styles.dropdownOptionText}>Ongoing</Text>
+                  </TouchableOpacity>
+                  
+                  <View style={styles.dropdownSeparator} />
+                  
+                  <TouchableOpacity 
+                    style={styles.dropdownOption}
+                    onPress={() => {
+                      setTrip({ ...trip, state: 'Planning' })
+                      setIsDropdownOpen(false)
+                    }}
+                  >
+                    <View style={[styles.statusDot, styles.statusDotPlanning]} />
+                    <Text style={styles.dropdownOptionText}>Planning</Text>
+                  </TouchableOpacity>
+                  
+                  <View style={styles.dropdownSeparator} />
+                  
+                  <TouchableOpacity 
+                    style={styles.dropdownOption}
+                    onPress={() => {
+                      setTrip({ ...trip, state: 'Completed' })
+                      setIsDropdownOpen(false)
+                    }}
+                  >
+                    <View style={[styles.statusDot, styles.statusDotCompleted]} />
+                    <Text style={styles.dropdownOptionText}>Completed</Text>
+                  </TouchableOpacity>
+                </BlurView>
+              </Animated.View>
+            )}
+          </View>
         </View>
       </BlurView>
     </View>
