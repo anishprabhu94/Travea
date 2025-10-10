@@ -866,11 +866,11 @@ export default function TripCanvas() {
     </View>
   )
 
-  // Bottom Navigation - Matches landing.tsx exactly
+  // Bottom Navigation - Exactly matches landing.tsx
   const BottomDock = () => (
-    <View style={styles.dockContainer}>
-      <BlurView intensity={20} tint="light" style={styles.dock}>
-        <View style={styles.dockInner}>
+    <View style={styles.bottomDock}>
+      <BlurView intensity={20} tint="light" style={styles.dockContainer}>
+        <View style={styles.dockContent}>
           <TouchableOpacity 
             style={styles.dockItem} 
             onPress={() => router.push('/landing')}
@@ -878,6 +878,11 @@ export default function TripCanvas() {
           >
             <Ionicons name="home-outline" size={22} color="rgba(255,255,255,0.7)" />
             <Text style={styles.dockLabelInactive}>Home</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
+            <Ionicons name="brush" size={22} color="#C9A96D" />
+            <Text style={styles.dockLabelActive}>Trip Canvas</Text>
           </TouchableOpacity>
 
           <TouchableOpacity 
@@ -890,11 +895,8 @@ export default function TripCanvas() {
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
-            <View style={styles.dockGlowContainer}>
-              <View style={styles.dockGlow} />
-            </View>
-            <Ionicons name="layers" size={22} color="#C9A96D" />
-            <Text style={styles.dockLabelActive}>Trip Canvas</Text>
+            <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.7)" />
+            <Text style={styles.dockLabelInactive}>Concierge</Text>
           </TouchableOpacity>
         </View>
       </BlurView>
