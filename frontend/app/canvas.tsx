@@ -1079,6 +1079,150 @@ const styles = StyleSheet.create({
     backgroundColor: '#AEBEA4', // Sage green
   },
 
+  // Trip-Map Progress Line
+  tripMapContainer: {
+    paddingHorizontal: 24,
+    marginTop: 24,
+    marginBottom: 24,
+  },
+  
+  tripMapLine: {
+    height: 3,
+    borderRadius: 2,
+    overflow: 'visible',
+  },
+  
+  mapSegmentContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 3,
+  },
+  
+  mapSegment: {
+    height: 3,
+    position: 'relative',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+  
+  mapSegmentBooked: {
+    backgroundColor: '#CBB88C', // Champagne gold
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 10px rgba(203,184,140,0.5)',
+      },
+      default: {
+        shadowColor: '#CBB88C',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+      },
+    }),
+  },
+  
+  mapSegmentPending: {
+    backgroundColor: 'rgba(180,173,162,0.4)', // Warm gray
+  },
+  
+  mapDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    position: 'absolute',
+    right: -5,
+  },
+  
+  mapDotFilled: {
+    backgroundColor: '#CBB88C',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 12px rgba(203,184,140,0.6)',
+      },
+      default: {
+        shadowColor: '#CBB88C',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.6,
+        shadowRadius: 6,
+      },
+    }),
+  },
+  
+  mapDotEmpty: {
+    backgroundColor: 'rgba(255,255,255,0.15)',
+    borderWidth: 2,
+    borderColor: 'rgba(180,173,162,0.6)',
+  },
+
+  // View Toggle Section
+  viewToggleContainer: {
+    paddingHorizontal: 24,
+    marginBottom: 28,
+  },
+  
+  viewToggleInner: {
+    flexDirection: 'row',
+    gap: 16, // Thumb-friendly spacing
+    justifyContent: 'center',
+  },
+  
+  togglePill: {
+    flex: 1,
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    alignItems: 'center',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(20px)',
+        boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.15)',
+        border: '1px solid rgba(255,255,255,0.08)',
+        transition: 'all 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+      },
+      default: {
+        shadowColor: 'rgba(0,0,0,0.15)',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.15,
+        shadowRadius: 2,
+        elevation: 2,
+      },
+    }),
+  },
+  
+  togglePillActive: {
+    backgroundColor: 'rgba(201,169,109,0.25)',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 20px rgba(201,169,109,0.4), inset 0 1px 2px rgba(255,255,255,0.2)',
+        border: '1px solid rgba(201,169,109,0.4)',
+      },
+      default: {
+        shadowColor: '#CBB88C',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.4,
+        shadowRadius: 10,
+        elevation: 4,
+      },
+    }),
+  },
+  
+  togglePillText: {
+    fontSize: 15,
+    fontWeight: '500',
+    color: 'rgba(248,248,248,0.7)',
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Rounded',
+      android: 'Neue Montreal',
+      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  
+  togglePillTextActive: {
+    color: '#CBB88C', // Champagne gold
+    fontWeight: '600',
+  },
+
   // Day Scroller - Sticky and Elegant
   scrollerContainer: {
     paddingHorizontal: 24,
