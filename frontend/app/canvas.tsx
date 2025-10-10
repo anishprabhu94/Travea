@@ -675,7 +675,7 @@ export default function TripCanvas() {
     </View>
   )
 
-  // Bottom Navigation
+  // Bottom Navigation - Matches landing.tsx exactly
   const BottomDock = () => (
     <View style={styles.dockContainer}>
       <BlurView intensity={20} tint="light" style={styles.dock}>
@@ -683,22 +683,27 @@ export default function TripCanvas() {
           <TouchableOpacity 
             style={styles.dockItem} 
             onPress={() => router.push('/landing')}
+            activeOpacity={0.8}
           >
-            <Ionicons name="compass-outline" size={20} color="rgba(255,255,255,0.6)" />
-            <Text style={styles.dockLabel}>Discover</Text>
+            <Ionicons name="home-outline" size={22} color="rgba(255,255,255,0.7)" />
+            <Text style={styles.dockLabelInactive}>Home</Text>
           </TouchableOpacity>
 
           <TouchableOpacity 
             style={styles.dockItem} 
             onPress={() => router.push('/trips')}
+            activeOpacity={0.8}
           >
-            <Ionicons name="bookmark-outline" size={20} color="rgba(255,255,255,0.6)" />
-            <Text style={styles.dockLabel}>My Trips</Text>
+            <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.7)" />
+            <Text style={styles.dockLabelInactive}>My Trips</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={[styles.dockItem, styles.dockItemActive]}>
-            <Ionicons name="layers-outline" size={20} color="#C9A96D" />
-            <Text style={[styles.dockLabel, styles.dockLabelActive]}>Trip Canvas</Text>
+          <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
+            <View style={styles.dockGlowContainer}>
+              <View style={styles.dockGlow} />
+            </View>
+            <Ionicons name="layers" size={22} color="#C9A96D" />
+            <Text style={styles.dockLabelActive}>Trip Canvas</Text>
           </TouchableOpacity>
         </View>
       </BlurView>
