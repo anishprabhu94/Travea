@@ -146,10 +146,14 @@ export default function TripCanvas() {
   const [segments, setSegments] = useState<CitySegment[]>(mockCitySegments)
   const [activeSegmentId, setActiveSegmentId] = useState<string>('segment-amalfi')
   const [isEditingTitle, setIsEditingTitle] = useState(false)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [activeView, setActiveView] = useState<'booking' | 'journey'>('booking')
   
   const progressAnimation = useRef(new Animated.Value(0)).current
   const fadeAnimation = useRef(new Animated.Value(1)).current
   const scaleAnimation = useRef(new Animated.Value(1)).current
+  const dropdownAnimation = useRef(new Animated.Value(0)).current
+  const pulseAnimation = useRef(new Animated.Value(1)).current
 
   useEffect(() => {
     Animated.timing(progressAnimation, {
