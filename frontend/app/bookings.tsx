@@ -757,21 +757,21 @@ const styles = StyleSheet.create({
   statusDropdownMenu: {
     position: 'absolute',
     top: 110,
-    backgroundColor: 'rgba(255,255,255,0.06)',
+    backgroundColor: 'rgba(20,20,20,0.95)',
     borderRadius: 16,
     borderWidth: 0.5,
-    borderColor: 'rgba(181,155,115,0.15)',
+    borderColor: 'rgba(181,155,115,0.25)',
     padding: 8,
     zIndex: 100,
     ...Platform.select({
       web: {
         backdropFilter: 'blur(25px)',
-        boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
       },
       default: {
         shadowColor: '#000000',
         shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.3,
+        shadowOpacity: 0.4,
         shadowRadius: 12,
         elevation: 10,
       },
@@ -784,8 +784,8 @@ const styles = StyleSheet.create({
   },
   statusDropdownText: {
     fontSize: 13,
-    fontWeight: '500',
-    color: 'rgba(255,255,255,0.9)',
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.85)',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
