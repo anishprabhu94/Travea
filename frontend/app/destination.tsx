@@ -810,10 +810,10 @@ const styles = StyleSheet.create({
     }),
   },
   essentialsBlur: {
-    backgroundColor: 'rgba(255,255,255,0.04)',
+    backgroundColor: 'rgba(20,20,20,0.8)', // Solid background for iOS
     borderWidth: 1,
     borderColor: 'rgba(203,184,140,0.25)',
-    // Remove borderRadius from BlurView - let container handle it
+    borderRadius: 24, // iOS-friendly rounded corners
   },
   essentialsContent: {
     paddingHorizontal: 20,
