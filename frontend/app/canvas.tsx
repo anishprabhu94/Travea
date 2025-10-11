@@ -1067,7 +1067,7 @@ const styles = StyleSheet.create({
   // Trip Info Block - Redesigned
   tripInfoBlock: {
     marginTop: 6, // Reduced from 8 for tighter top spacing
-    marginBottom: 32, // Increased from 24 for more space before ribbons
+    marginBottom: 6, // Consistent with marginTop for balanced internal pane spacing
   },
   
   tripTitleLarge: {
