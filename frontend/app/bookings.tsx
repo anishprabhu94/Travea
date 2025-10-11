@@ -621,7 +621,6 @@ export default function TripCanvas() {
         {renderTransport()}
         {renderExperiences()}
         {renderRestaurants()}
-        {renderTripSummary()}
       </ScrollView>
 
       {/* Bottom Navigation */}
