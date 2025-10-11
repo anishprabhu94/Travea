@@ -500,7 +500,7 @@ export default function TripCanvas() {
             activeOpacity={0.8}
           >
             <Ionicons name="calendar" size={22} color="#CBB88C" />
-            <Text style={styles.dockLabelActive}>Bookings</Text>
+            <Text style={styles.dockLabelActive}>Trip Canvas</Text>
           </TouchableOpacity>
 
           <TouchableOpacity 
