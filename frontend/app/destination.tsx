@@ -1675,8 +1675,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     gap: 12,
   },
-  insightIcon: {
-    fontSize: 16,
+  insightBronzeIcon: {
     marginTop: 2,
   },
   insightText: {
