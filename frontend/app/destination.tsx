@@ -105,22 +105,22 @@ export default function DestinationInfo() {
                 style={styles.circularButton}
                 onPress={() => router.back()}
               >
-                <BlurView intensity={25} tint="light" style={styles.buttonBlur}>
+                <View style={styles.buttonBlur}>
                   <Ionicons name="arrow-back" size={18} color="#F3F1E7" />
-                </BlurView>
+                </View>
               </TouchableOpacity>
               
               <TouchableOpacity 
                 style={styles.circularButton}
                 onPress={() => setIsSaved(!isSaved)}
               >
-                <BlurView intensity={25} tint="light" style={styles.buttonBlur}>
+                <View style={styles.buttonBlur}>
                   <Ionicons 
                     name={isSaved ? "bookmark" : "bookmark-outline"} 
                     size={18} 
                     color={isSaved ? "#CBB88C" : "#F3F1E7"} 
                   />
-                </BlurView>
+                </View>
               </TouchableOpacity>
             </View>
 
