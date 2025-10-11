@@ -255,79 +255,37 @@ export default function DestinationInfo() {
   )
 
   return (
-    <View style={styles.container}>
-      {/* Dark onyx background with subtle vignette */}
+    <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
+      {/* Cinematic gradient background */}
       <View style={styles.backgroundGradient} />
-      <View style={styles.centerVignette} />
       
       <ScrollView 
         ref={scrollViewRef}
         style={styles.scrollContainer}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: parallaxValue } } }],
+          { useNativeDriver: true }
+        )}
+        scrollEventThrottle={16}
       >
-        {/* Header with TRĀVEA wordmark + profile icon */}
+        {/* Header - Minimal */}
         <View style={styles.header}>
           <TouchableOpacity 
             style={styles.backButton}
             onPress={() => router.back()}
           >
-            <Ionicons name="arrow-back" size={24} color="#F8F8F8" />
+            <BlurView intensity={20} tint="dark" style={styles.backBlur}>
+              <Ionicons name="arrow-back" size={20} color="#F8F8F8" />
+            </BlurView>
           </TouchableOpacity>
           
-          <View style={styles.logoContainer}>
-            <TraveaWordmark />
-          </View>
-          
-          <TouchableOpacity style={styles.profileButton}>
-            <Ionicons name="person-circle-outline" size={26} color="#F8F8F8" />
-          </TouchableOpacity>
-        </View>
-
-        {/* Image Gallery Section */}
-        <View style={styles.gallerySection}>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            pagingEnabled
-            contentContainerStyle={styles.galleryContent}
-          >
-            {destination.images.map((image, index) => (
-              <View key={index} style={styles.imageContainer}>
-                <ImageBackground
-                  source={{ uri: image }}
-                  style={styles.destinationImage}
-                  imageStyle={styles.destinationImageStyle}
-                >
-                  {/* Destination info overlay on first image */}
-                  {index === 0 && (
-                    <View style={styles.destinationInfoOverlay}>
-                      <BlurView intensity={30} tint="dark" style={styles.destinationInfoBlur}>
-                        <View style={styles.destinationInfoContent}>
-                          <Text style={styles.destinationName}>
-                            {destination.name}, {destination.country}
-                          </Text>
-                          <Text style={styles.destinationTagline}>
-                            {destination.tagline}
-                          </Text>
-                          <Text style={styles.destinationDistance}>
-                            {destination.distance}
-                          </Text>
-                        </View>
-                      </BlurView>
-                    </View>
-                  )}
-                </ImageBackground>
-              </View>
-            ))}
-          </ScrollView>
-
-          {/* Save icon - top right */}
           <TouchableOpacity 
             style={styles.saveButton}
             onPress={() => setIsSaved(!isSaved)}
           >
-            <BlurView intensity={30} tint="dark" style={styles.saveButtonBlur}>
+            <BlurView intensity={20} tint="dark" style={styles.saveBlur}>
               <Ionicons 
                 name={isSaved ? "bookmark" : "bookmark-outline"} 
                 size={20} 
@@ -337,77 +295,36 @@ export default function DestinationInfo() {
           </TouchableOpacity>
         </View>
 
+        {/* Parallax Gallery */}
+        <ParallaxGallery />
+
         {/* Action Pills */}
-        <View style={styles.actionPillsContainer}>
-          <TouchableOpacity style={[styles.actionPill, styles.addToTripsActive]}>
-            <Text style={[styles.actionPillText, styles.actionPillTextActive]}>
-              Add to My Trips
-            </Text>
+        <ActionPills />
+
+        {/* Essence Module */}
+        <EssenceModule />
+
+        {/* Discovery Row */}
+        <DiscoveryRow />
+
+        {/* Insights Strip */}
+        <InsightsStrip />
+
+        {/* Footer CTA */}
+        <View style={styles.footerContainer}>
+          <TouchableOpacity style={styles.exploreButton}>
+            <BlurView intensity={15} tint="dark" style={styles.exploreBlur}>
+              <Text style={styles.exploreText}>Explore More Destinations</Text>
+              <Ionicons name="arrow-forward" size={16} color="#CBB88C" />
+            </BlurView>
           </TouchableOpacity>
-          
-          <TouchableOpacity style={styles.actionPill}>
-            <Text style={styles.actionPillText}>
-              Create a Trip
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        {/* Info Cards */}
-        <View style={styles.infoSection}>
-          <InfoCard title="Overview">
-            <Text style={styles.infoText}>{destination.overview}</Text>
-          </InfoCard>
-
-          <InfoCard title="Things to Do">
-            <View style={styles.listContainer}>
-              {destination.thingsToDo.map((item, index) => (
-                <View key={index} style={styles.listItem}>
-                  <View style={styles.listBullet} />
-                  <Text style={styles.listText}>{item}</Text>
-                </View>
-              ))}
-            </View>
-          </InfoCard>
-
-          <InfoCard title="Fun Facts">
-            <View style={styles.listContainer}>
-              {destination.funFacts.map((fact, index) => (
-                <View key={index} style={styles.listItem}>
-                  <View style={styles.listBullet} />
-                  <Text style={styles.listText}>{fact}</Text>
-                </View>
-              ))}
-            </View>
-          </InfoCard>
-
-          <InfoCard title="Practical Info">
-            <View style={styles.listContainer}>
-              {destination.practicalInfo.map((info, index) => (
-                <View key={index} style={styles.listItem}>
-                  <View style={styles.listBullet} />
-                  <Text style={styles.listText}>{info}</Text>
-                </View>
-              ))}
-            </View>
-          </InfoCard>
-
-          <InfoCard title="Things to Note">
-            <View style={styles.listContainer}>
-              {destination.thingsToNote.map((note, index) => (
-                <View key={index} style={styles.listItem}>
-                  <View style={styles.listBullet} />
-                  <Text style={styles.listText}>{note}</Text>
-                </View>
-              ))}
-            </View>
-          </InfoCard>
         </View>
 
         {/* Bottom padding for dock */}
         <View style={styles.bottomPadding} />
       </ScrollView>
 
-      {/* Bottom Navigation - Exactly matches landing.tsx */}
+      {/* Global Navigation - Fixed */}
       <View style={styles.bottomDock}>
         <BlurView intensity={20} tint="light" style={styles.dockContainer}>
           <View style={styles.dockContent}>
@@ -445,7 +362,7 @@ export default function DestinationInfo() {
           </View>
         </BlurView>
       </View>
-    </View>
+    </Animated.View>
   )
 }
 
