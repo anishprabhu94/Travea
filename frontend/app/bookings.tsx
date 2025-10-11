@@ -71,13 +71,17 @@ const tripData = {
         {
           id: '1',
           title: 'Lemon Grove Walk',
-          details: '2 hrs · Ravello',
+          startTime: '10:00 AM',
+          duration: '2 hrs',
+          location: 'Ravello',
           image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg'
         },
         {
           id: '2',
           title: 'Cooking Class at Nonna Lucia\'s',
-          details: '3 hrs · Amalfi',
+          startTime: '3:00 PM',
+          duration: '3 hrs',
+          location: 'Amalfi',
           image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
         }
       ],
