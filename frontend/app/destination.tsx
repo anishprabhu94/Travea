@@ -738,10 +738,10 @@ const styles = StyleSheet.create({
   },
   expansionBlur: {
     flex: 1,
-    backgroundColor: 'rgba(255,255,255,0.05)',
+    backgroundColor: 'rgba(20,20,20,0.8)', // Solid background for iOS
     borderWidth: 1,
     borderColor: 'rgba(203,184,140,0.25)',
-    // Remove borderRadius from BlurView - let container handle it
+    borderRadius: 28, // iOS-friendly rounded corners
   },
   expansionContent: {
     flex: 1,
