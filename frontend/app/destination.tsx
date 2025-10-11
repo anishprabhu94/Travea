@@ -290,7 +290,7 @@ export default function DestinationInfo() {
               </TouchableOpacity>
             </View>
 
-            {/* Hero Text Overlay */}
+            {/* Hero Text Overlay - Positioned Higher */}
             <View style={styles.heroTextOverlay}>
               <Text style={styles.heroTitle}>{destinationData.name}</Text>
               <Text style={styles.heroSubtitle}>{destinationData.subtitle}</Text>
