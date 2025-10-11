@@ -80,6 +80,219 @@ export default function DestinationInfo() {
   const [isSaved, setIsSaved] = useState(false)
 
   return (
+    <View style={styles.container}>
+      {/* Faint gold grain overlay for texture depth */}
+      <View style={styles.grainOverlay} />
+      
+      <ScrollView 
+        style={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
+        {/* 1. Hero Gallery Header */}
+        <View style={styles.heroSection}>
+          <ImageBackground
+            source={{ uri: destinationData.heroImage }}
+            style={styles.heroImage}
+            imageStyle={styles.heroImageStyle}
+          >
+            {/* Dark gradient overlay */}
+            <View style={styles.heroOverlay} />
+            
+            {/* Top Controls */}
+            <View style={styles.topControls}>
+              <TouchableOpacity 
+                style={styles.circularButton}
+                onPress={() => router.back()}
+              >
+                <BlurView intensity={25} tint="light" style={styles.buttonBlur}>
+                  <Ionicons name="arrow-back" size={18} color="#F3F1E7" />
+                </BlurView>
+              </TouchableOpacity>
+              
+              <TouchableOpacity 
+                style={styles.circularButton}
+                onPress={() => setIsSaved(!isSaved)}
+              >
+                <BlurView intensity={25} tint="light" style={styles.buttonBlur}>
+                  <Ionicons 
+                    name={isSaved ? "bookmark" : "bookmark-outline"} 
+                    size={18} 
+                    color={isSaved ? "#CBB88C" : "#F3F1E7"} 
+                  />
+                </BlurView>
+              </TouchableOpacity>
+            </View>
+
+            {/* Hero Text Overlay */}
+            <View style={styles.heroTextOverlay}>
+              <Text style={styles.heroTitle}>{destinationData.name}</Text>
+              <Text style={styles.heroSubtitle}>{destinationData.subtitle}</Text>
+            </View>
+          </ImageBackground>
+        </View>
+
+        {/* 2. Essence Capsule */}
+        <View style={styles.essenceCapsule}>
+          <BlurView intensity={25} tint="dark" style={styles.essenceBlur}>
+            <View style={styles.essenceContent}>
+              {/* Row 1: Golden Tags */}
+              <View style={styles.essenceTagsRow}>
+                {destinationData.essenceTags.map((tag, index) => (
+                  <View key={index} style={styles.essenceTag}>
+                    <Text style={styles.essenceTagText}>{tag}</Text>
+                  </View>
+                ))}
+              </View>
+
+              {/* Row 2: Travel Icons */}
+              <View style={styles.travelIconsRow}>
+                {destinationData.travelInfo.map((info, index) => (
+                  <View key={index} style={styles.travelIconContainer}>
+                    <View style={styles.travelIcon}>
+                      <Ionicons name={info.icon as any} size={20} color="#F3F1E7" />
+                    </View>
+                    <Text style={styles.travelIconLabel}>{info.label}</Text>
+                  </View>
+                ))}
+              </View>
+
+              {/* Row 3: Poetic Line */}
+              <Text style={styles.poeticLine}>{destinationData.poeticLine}</Text>
+            </View>
+          </BlurView>
+        </View>
+
+        {/* 3. Discovery Grid */}
+        <View style={styles.discoverySection}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Discovery</Text>
+            <View style={styles.sectionDivider} />
+          </View>
+
+          <View style={styles.discoveryGrid}>
+            {destinationData.discoveryCards.map((card, index) => (
+              <TouchableOpacity key={card.id} style={styles.discoveryCard}>
+                <ImageBackground
+                  source={{ uri: card.image }}
+                  style={styles.discoveryCardImage}
+                  imageStyle={styles.discoveryCardImageStyle}
+                >
+                  <View style={styles.discoveryCardOverlay} />
+                  <View style={styles.discoveryCardContent}>
+                    <Text style={styles.discoveryCardTitle}>{card.title}</Text>
+                    <Text style={styles.discoveryCardSubtext}>{card.subtext}</Text>
+                  </View>
+                </ImageBackground>
+              </TouchableOpacity>
+            ))}
+          </View>
+
+          {/* Discovery Expansion Panel */}
+          <View style={styles.discoveryExpansion}>
+            <BlurView intensity={30} tint="dark" style={styles.expansionBlur}>
+              <View style={styles.expansionContent}>
+                {destinationData.detailsExpansion.map((detail, index) => (
+                  <View key={index} style={styles.expansionItem}>
+                    <ImageBackground
+                      source={{ uri: detail.image }}
+                      style={styles.expansionThumbnail}
+                      imageStyle={styles.expansionThumbnailStyle}
+                    />
+                    <View style={styles.expansionText}>
+                      <Text style={styles.expansionName}>{detail.name}</Text>
+                      <Text style={styles.expansionInfo}>{detail.info}</Text>
+                    </View>
+                  </View>
+                ))}
+              </View>
+            </BlurView>
+          </View>
+        </View>
+
+        {/* 4. Essentials Panel */}
+        <View style={styles.essentialsPanel}>
+          <BlurView intensity={30} tint="dark" style={styles.essentialsBlur}>
+            <View style={styles.essentialsContent}>
+              <View style={styles.essentialsColumns}>
+                {/* Left Column */}
+                <View style={styles.essentialsColumn}>
+                  {destinationData.essentials.left.map((item, index) => (
+                    <View key={index} style={styles.essentialItem}>
+                      <Ionicons name={item.icon as any} size={18} color="#CBB88C" />
+                      <View style={styles.essentialText}>
+                        <Text style={styles.essentialLabel}>{item.label}</Text>
+                        <Text style={styles.essentialValue}>{item.value}</Text>
+                      </View>
+                    </View>
+                  ))}
+                </View>
+
+                {/* Right Column */}
+                <View style={styles.essentialsColumn}>
+                  {destinationData.essentials.right.map((item, index) => (
+                    <View key={index} style={styles.essentialItem}>
+                      <Ionicons name={item.icon as any} size={18} color="#CBB88C" />
+                      <View style={styles.essentialText}>
+                        <Text style={styles.essentialLabel}>{item.label}</Text>
+                        <Text style={styles.essentialValue}>{item.value}</Text>
+                      </View>
+                    </View>
+                  ))}
+                </View>
+              </View>
+            </View>
+          </BlurView>
+        </View>
+
+        {/* 5. Local Insights */}
+        <View style={styles.insightsSection}>
+          <Text style={styles.sectionTitle}>Local Insights</Text>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.insightsScroll}
+          >
+            {destinationData.insights.map((insight, index) => (
+              <View key={index} style={styles.insightCard}>
+                <ImageBackground
+                  source={{ uri: destinationData.heroImage }}
+                  style={styles.insightCardImage}
+                  imageStyle={styles.insightCardImageStyle}
+                >
+                  <View style={styles.insightCardOverlay} />
+                  <View style={styles.insightCardContent}>
+                    <Text style={styles.insightQuote}>{insight.quote}</Text>
+                    {insight.attribution && (
+                      <Text style={styles.insightAttribution}>{insight.attribution}</Text>
+                    )}
+                  </View>
+                </ImageBackground>
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+
+        {/* Bottom spacing for fixed footer */}
+        <View style={styles.bottomSpacing} />
+      </ScrollView>
+
+      {/* 6. Footer Action Bar */}
+      <View style={styles.footerActionBar}>
+        <BlurView intensity={20} tint="dark" style={styles.footerBlur}>
+          <View style={styles.footerContent}>
+            <TouchableOpacity style={styles.addToTripsButton}>
+              <Text style={styles.addToTripsText}>Add to My Trips</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={styles.planTripButton}>
+              <Text style={styles.planTripText}>Plan This Trip</Text>
+            </TouchableOpacity>
+          </View>
+        </BlurView>
+      </View>
+    </View>
+  )
 
   return (
     <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
