@@ -415,7 +415,7 @@ export default function DestinationInfo() {
                 {/* Left Column */}
                 <View style={styles.insightsColumn}>
                   <View style={styles.insightItem}>
-                    <Text style={styles.insightIcon}>🗓</Text>
+                    <Ionicons name="calendar-outline" size={16} color="#CBB88C" style={styles.insightBronzeIcon} />
                     <View style={styles.insightText}>
                       <Text style={styles.insightLabel}>Best Time</Text>
                       <Text style={styles.insightDetail}>Apr–Jun, Sep–Oct</Text>
@@ -423,7 +423,7 @@ export default function DestinationInfo() {
                   </View>
                   
                   <View style={styles.insightItem}>
-                    <Text style={styles.insightIcon}>💶</Text>
+                    <Ionicons name="card-outline" size={16} color="#CBB88C" style={styles.insightBronzeIcon} />
                     <View style={styles.insightText}>
                       <Text style={styles.insightLabel}>Currency</Text>
                       <Text style={styles.insightDetail}>Euro (EUR)</Text>
@@ -431,7 +431,7 @@ export default function DestinationInfo() {
                   </View>
                   
                   <View style={styles.insightItem}>
-                    <Text style={styles.insightIcon}>💬</Text>
+                    <Ionicons name="chatbubble-outline" size={16} color="#CBB88C" style={styles.insightBronzeIcon} />
                     <View style={styles.insightText}>
                       <Text style={styles.insightLabel}>Language</Text>
                       <Text style={styles.insightDetail}>Italian · English common</Text>
