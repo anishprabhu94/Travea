@@ -572,14 +572,14 @@ export default function TripCanvas() {
                   <View style={styles.cardDateBadgeOnImage}>
                     <Text style={styles.cardDateText}>{item.date.toUpperCase()}</Text>
                   </View>
-                  <View style={styles.cardArrowIconTopRightOnImage}>
-                    <Ionicons name="arrow-forward" size={14} color="rgba(181,155,115,0.95)" />
-                  </View>
                   <LinearGradient
                     colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
                     style={styles.transportImageCardGradient}
                   />
                   <View style={styles.transportImageCardFrosted}>
+                    <View style={styles.cardArrowIconOnPane}>
+                      <Ionicons name="arrow-forward" size={12} color="rgba(181,155,115,0.95)" />
+                    </View>
                     <Text style={styles.transportCardTitle}>{item.title}</Text>
                     <Text style={styles.transportCardRoute}>{item.route}</Text>
                     <Text style={styles.transportCardTime}>Leave: {item.time}</Text>
