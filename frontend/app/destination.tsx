@@ -1318,6 +1318,22 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   
+  // Simple Discovery Styles
+  discoverySimple: {
+    paddingHorizontal: 20,
+    marginBottom: 40,
+  },
+  discoveryTitleSimple: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#F3F1E7',
+    marginBottom: 8,
+  },
+  discoverySubtext: {
+    fontSize: 14,
+    color: '#9B958D',
+  },
+  
   // Discovery Section Styles
   discoveryContainer: {
     marginBottom: 40,
