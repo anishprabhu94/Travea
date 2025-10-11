@@ -400,20 +400,15 @@ export default function DestinationInfo() {
 }
 
 const styles = StyleSheet.create({
+  // Main Container
   container: {
     flex: 1,
-    backgroundColor: '#0C0C0C',
+    backgroundColor: '#0A0A0A', // Primary background
   },
-  backgroundGradient: {
+  grainOverlay: {
     ...StyleSheet.absoluteFillObject,
-    ...Platform.select({
-      web: {
-        background: 'linear-gradient(135deg, #0C0C0C 0%, #1A1A1A 100%)',
-      },
-      default: {
-        backgroundColor: '#0C0C0C',
-      },
-    }),
+    backgroundColor: 'rgba(203,184,140,0.03)', // Faint gold grain overlay
+    pointerEvents: 'none',
   },
   scrollContainer: {
     flex: 1,
