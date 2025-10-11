@@ -173,33 +173,12 @@ const tripData = {
 }
 };
 
-export default function BookingsOverview() {
-  const [selectedDayId, setSelectedDayId] = useState(tripData.days[0].id);
-  const [expandedSections, setExpandedSections] = useState({
-    flights: true,
-    stays: true,
-    transport: true,
-    experiences: true,
-    restaurants: true
-  });
+export default function TripCanvas() {
+  const [showGallery, setShowGallery] = useState(false);
 
-  const selectedDay = tripData.days.find(day => day.id === selectedDayId) || tripData.days[0];
-
-  const toggleSection = (section: string) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [section]: !prev[section]
-    }));
-  };
-
-  const getStatusCount = (section: string) => {
-    const data = selectedDay[section as keyof typeof selectedDay] as any[];
-    if (Array.isArray(data)) {
-      const confirmed = data.filter(item => item.status === 'confirmed').length;
-      const total = data.length;
-      return total === 0 ? '0 Booked' : `${confirmed} of ${total} Booked`;
-    }
-    return '0 Booked';
+  // Navigate to Trip Gallery
+  const openGallery = () => {
+    router.push('/gallery');
   };
 
   const renderSectionHeader = (section: string, label: string) => (
