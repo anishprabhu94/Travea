@@ -11,17 +11,26 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
-// Multi-day trip data structure - "The Trip, Materialized"
+// "Every Journey, Beautifully Told" - Continuous Multi-City Chronicle
 const tripData = {
-  tripName: 'Amalfi Coast',
+  // Trip Identity
+  tripName: 'Summer in Italy 🇮🇹',
+  subtitle: 'June 8–14, 2025 · 2 Travelers',
+  status: 'Planning', // Planning | Booked | In Progress | Completed
   heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
-  days: [
+  
+  // Trip Path
+  cities: ['FLR', 'ROM', 'VCE', 'MIL'],
+  activeCityIndex: 1, // ROM is currently active
+  
+  // Continuous Chronicle Data
+  cityChapters: [
     {
-      id: 'day1',
-      title: 'Day 1 · Rome → Amalfi',
-      subtitle: 'Dawn departure to coastal dreams.',
-      city: 'Amalfi',
-      heroImage: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+      id: 'amalfi',
+      name: 'Amalfi, Italy',
+      dates: 'Jun 8–9',
+      description: 'Where azure meets ancient stone.',
+      heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
       flights: [
         {
           id: '1',
