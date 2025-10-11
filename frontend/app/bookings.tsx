@@ -178,11 +178,12 @@ const tripData = {
       ]
     },
     {
-      id: 'day5-7',
-      label: 'Day 5–7',
-      city: 'Capri, Italy',
-      dates: 'Jun 12–14',
-      description: 'Where cliffs meet the breeze.',
+      id: 'day5-6',
+      label: 'Day 5–6',
+      city: 'Venice, Italy',
+      cityCode: 'VCE',
+      dates: 'Jun 12–13',
+      description: 'Floating city of romance & canals.',
       heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
       flights: [
         {
