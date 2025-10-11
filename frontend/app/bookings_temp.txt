@@ -1,0 +1,143 @@
+// Transport Section - Horizontal Scroll
+  const renderTransport = () => {
+    if (activeDay.transport.length === 0) return null;
+    
+    return (
+      <View style={styles.categorySection}>
+        <View style={styles.frostedPanel}>
+          <View style={styles.categoryHeader}>
+            <Ionicons name="car" size={18} color="#B59B73" style={{marginRight: 8}} />
+            <Text style={styles.categoryTitle}>Transport</Text>
+          </View>
+          <View style={styles.categoryDivider} />
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            style={styles.horizontalScroll}
+          >
+            {activeDay.transport.map((item, index) => (
+              <View 
+                key={item.id} 
+                style={[styles.transportImageCard, index === activeDay.transport.length - 1 && {marginRight: 0}]}
+              >
+                <ImageBackground
+                  source={{ uri: item.image }}
+                  style={styles.transportImageCardBg}
+                  imageStyle={styles.transportImageCardBgStyle}
+                >
+                  <LinearGradient
+                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
+                    style={styles.transportImageCardGradient}
+                  />
+                  <View style={styles.transportImageCardFrosted}>
+                    <View style={styles.cardDateBadge}>
+                      <Text style={styles.cardDateText}>{item.date}</Text>
+                    </View>
+                    <Text style={styles.transportCardTitle}>{item.title}</Text>
+                    <Text style={styles.transportCardRoute}>{item.route}</Text>
+                    <Text style={styles.transportCardTime}>Leave: {item.time}</Text>
+                    <Text style={styles.transportCardDuration}>{item.duration}</Text>
+                  </View>
+                </ImageBackground>
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+      </View>
+    );
+  };
+
+  // Experiences Section - Horizontal Scroll
+  const renderExperiences = () => {
+    if (activeDay.experiences.length === 0) return null;
+    
+    return (
+      <View style={styles.categorySection}>
+        <View style={styles.frostedPanel}>
+          <View style={styles.categoryHeader}>
+            <Ionicons name="ticket" size={18} color="#B59B73" style={{marginRight: 8}} />
+            <Text style={styles.categoryTitle}>Experiences</Text>
+          </View>
+          <View style={styles.categoryDivider} />
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            style={styles.horizontalScroll}
+          >
+            {activeDay.experiences.map((exp, index) => (
+              <View 
+                key={exp.id} 
+                style={[styles.experienceImageCard, index === activeDay.experiences.length - 1 && {marginRight: 0}]}
+              >
+                <ImageBackground
+                  source={{ uri: exp.image }}
+                  style={styles.experienceImageCardBg}
+                  imageStyle={styles.experienceImageCardBgStyle}
+                >
+                  <LinearGradient
+                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
+                    style={styles.experienceImageCardGradient}
+                  />
+                  <View style={styles.experienceImageCardFrosted}>
+                    <View style={styles.cardDateBadge}>
+                      <Text style={styles.cardDateText}>{exp.date}</Text>
+                    </View>
+                    <Text style={styles.experienceCardTitle}>{exp.title}</Text>
+                    <Text style={styles.experienceCardDetails}>Start: {exp.startTime} · Duration: {exp.duration}</Text>
+                    <Text style={styles.experienceCardLocation}>{exp.location}</Text>
+                  </View>
+                </ImageBackground>
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+      </View>
+    );
+  };
+
+  // Restaurants Section - Horizontal Scroll
+  const renderRestaurants = () => {
+    if (activeDay.restaurants.length === 0) return null;
+    
+    return (
+      <View style={styles.categorySection}>
+        <View style={styles.frostedPanel}>
+          <View style={styles.categoryHeader}>
+            <Ionicons name="restaurant" size={18} color="#B59B73" style={{marginRight: 8}} />
+            <Text style={styles.categoryTitle}>Restaurants</Text>
+          </View>
+          <View style={styles.categoryDivider} />
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            style={styles.horizontalScroll}
+          >
+            {activeDay.restaurants.map((rest, index) => (
+              <View 
+                key={rest.id} 
+                style={[styles.restaurantImageCard, index === activeDay.restaurants.length - 1 && {marginRight: 0}]}
+              >
+                <ImageBackground
+                  source={{ uri: rest.image }}
+                  style={styles.restaurantImageCardBg}
+                  imageStyle={styles.restaurantImageCardBgStyle}
+                >
+                  <LinearGradient
+                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
+                    style={styles.restaurantImageCardGradient}
+                  />
+                  <View style={styles.restaurantImageCardFrosted}>
+                    <View style={styles.cardDateBadge}>
+                      <Text style={styles.cardDateText}>{rest.date}</Text>
+                    </View>
+                    <Text style={styles.restaurantCardTitle}>{rest.name}</Text>
+                    <Text style={styles.restaurantCardDetails}>{rest.time} · {rest.details}</Text>
+                  </View>
+                </ImageBackground>
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+      </View>
+    );
+  };
