@@ -220,8 +220,8 @@ export default function TripCanvas() {
       }),
     ]).start()
 
-    // Handle routing based on type and status
-    console.log(`CTA pressed: ${type} - ${status}`)
+    // Navigate to bookings overview
+    router.push('/bookings')
   }
 
   const getStatusText = (status: string, count?: number, detail?: string) => {
