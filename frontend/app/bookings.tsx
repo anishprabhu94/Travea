@@ -29,9 +29,10 @@ const tripData = {
     {
       id: 'day1-2',
       label: 'Day 1–2',
-      city: 'Amalfi, Italy',
+      city: 'Florence, Italy',
+      cityCode: 'FLR',
       dates: 'Jun 8–9',
-      description: 'Where azure meets ancient stone.',
+      description: 'Renaissance art meets Tuscan charm.',
       heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
       flights: [
         {
