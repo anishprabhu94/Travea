@@ -212,7 +212,7 @@ export default function DestinationInfo() {
 
         {/* 4. Essentials Panel */}
         <View style={styles.essentialsPanel}>
-          <BlurView intensity={30} tint="dark" style={styles.essentialsBlur}>
+          <View style={styles.essentialsBlur}>
             <View style={styles.essentialsContent}>
               <View style={styles.essentialsColumns}>
                 {/* Left Column */}
