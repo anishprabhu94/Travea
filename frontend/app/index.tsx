@@ -232,16 +232,19 @@ const styles = StyleSheet.create({
     minHeight: 680, // Increased from 650 to accommodate all content
   },
   
+  // Background Image Container
+  backgroundImage: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  
   // Background Image Style
   mainPaneImageStyle: {
     borderRadius: 28,
-    width: '100%',
-    height: '100%',
   },
   
   // Overlay for proper contrast
   paneOverlay: {
-    flex: 1,
+    ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(0,0,0,0.35)',
     borderRadius: 28,
   },
@@ -251,6 +254,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 32,
     justifyContent: 'center',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   
   // Remove paneInner - content goes directly in contentContainer
