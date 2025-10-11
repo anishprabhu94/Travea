@@ -300,6 +300,7 @@ export default function TripCanvas() {
   const [showStatusDropdown, setShowStatusDropdown] = useState(false);
   
   const activeDay = tripData.days.find(d => d.id === activeDayId) || tripData.days[0];
+  const activeCityCode = activeDay.cityCode;
   
   const statusOptions = ['Planning', 'Upcoming', 'Ongoing', 'Completed'];
 
