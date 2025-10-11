@@ -1043,9 +1043,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   tripHeaderInner: {
-    paddingVertical: 10, // Even more compact (reduced from 12)
+    paddingVertical: 8, // Even more compact (reduced from 10)
     paddingHorizontal: 20,
-    backgroundColor: 'rgba(25,25,25,0.4)', // More transparent for better image visibility
+    backgroundColor: 'rgba(25,25,25,0.35)', // Even more transparent for sleeker look
   },
   headerTop: {
     flexDirection: 'row',
