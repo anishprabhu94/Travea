@@ -379,9 +379,14 @@ export default function TripCanvas() {
             ))}
           </View>
           
-          {/* Day Selector Tabs - Expanded & Centered */}
+          {/* Day Selector Tabs - Scrollable & Elegant */}
           <View style={styles.dayTabsContainer}>
-            <View style={styles.dayTabs}>
+            <ScrollView 
+              horizontal 
+              showsHorizontalScrollIndicator={false}
+              style={styles.dayTabsScroll}
+              contentContainerStyle={styles.dayTabsContent}
+            >
               {tripData.days.map((day) => (
                 <TouchableOpacity
                   key={day.id}
