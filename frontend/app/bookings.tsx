@@ -836,20 +836,22 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 
-  // Dark Gradient Panel - Attached Image Style
+  // Frosted Glass Pane - Luxury Editorial Style
   frostedPanel: {
-    borderRadius: 24,
+    backgroundColor: 'rgba(15,15,15,0.45)',
+    borderRadius: 26,
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.25)',
     padding: 24,
     ...Platform.select({
       web: {
-        background: 'linear-gradient(135deg, rgba(54,65,71,0.95) 0%, rgba(74,66,62,0.95) 100%)',
-        boxShadow: '0 8px 24px rgba(0,0,0,0.35)',
+        backdropFilter: 'blur(25px)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.25), inset 1px 1px 0 rgba(255,255,255,0.05)',
       },
       default: {
-        backgroundColor: 'rgba(54,65,71,0.95)',
         shadowColor: '#000000',
         shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.35,
+        shadowOpacity: 0.25,
         shadowRadius: 12,
         elevation: 8,
       },
