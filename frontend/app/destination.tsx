@@ -190,7 +190,7 @@ export default function DestinationInfo() {
 
           {/* Discovery Expansion Panel */}
           <View style={styles.discoveryExpansion}>
-            <BlurView intensity={30} tint="dark" style={styles.expansionBlur}>
+            <View style={styles.expansionBlur}>
               <View style={styles.expansionContent}>
                 {destinationData.detailsExpansion.map((detail, index) => (
                   <View key={index} style={styles.expansionItem}>
