@@ -60,7 +60,12 @@ export default function Index() {
         
         {/* Center-aligned glass pane with background image */}
         <View style={styles.mainPane}>
-          <View style={styles.paneInner}>
+          <ImageBackground
+            source={{ uri: 'https://customer-assets.emergentagent.com/job_travea-luxury-app/artifacts/vyx1vpo5_sign%20in%20final.jpg' }}
+            style={styles.backgroundImage}
+            imageStyle={styles.backgroundImageStyle}
+          >
+            <View style={styles.paneInner}>
             
             {/* TRĀVEA Logo and tagline */}
             <View style={styles.logoSection}>
