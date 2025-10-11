@@ -518,10 +518,10 @@ const styles = StyleSheet.create({
   },
   essenceBlur: {
     flex: 1,
-    backgroundColor: 'rgba(255,255,255,0.05)', // Frosted overlay
+    backgroundColor: 'rgba(20,20,20,0.8)', // Solid background for iOS compatibility
     borderWidth: 1,
     borderColor: 'rgba(203,184,140,0.25)', // Divider gold line
-    // Remove borderRadius from BlurView - let container handle it
+    borderRadius: 28, // iOS-friendly rounded corners
   },
   essenceContent: {
     flex: 1,
