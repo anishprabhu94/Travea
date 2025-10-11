@@ -1043,7 +1043,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   tripHeaderInner: {
-    paddingVertical: 12, // Further reduced for smaller pane
+    paddingVertical: 10, // Even more compact (reduced from 12)
     paddingHorizontal: 20,
     backgroundColor: 'rgba(25,25,25,0.4)', // More transparent for better image visibility
   },
