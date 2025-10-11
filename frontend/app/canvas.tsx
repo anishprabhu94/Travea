@@ -1096,16 +1096,16 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Status Dropdown Button - Much smaller
+  // Status Dropdown Button - Increased size
   statusDropdownButton: {
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'flex-start',
-    paddingHorizontal: 12, // Reduced from 18
-    paddingVertical: 6, // Reduced from 10
-    borderRadius: 14, // Reduced from 20
+    paddingHorizontal: 16, // Increased from 12
+    paddingVertical: 8, // Increased from 6
+    borderRadius: 16, // Increased from 14
     backgroundColor: 'rgba(255,255,255,0.1)',
-    gap: 6, // Reduced from 8
+    gap: 8, // Increased from 6
     ...Platform.select({
       web: {
         backdropFilter: 'blur(20px)',
