@@ -1191,30 +1191,58 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 
-  // Inline Date Badge (Smaller, Next to Title)
-  categoryHeaderRow: {
+  // Frosted Panel Header (with Top Right Date)
+  frostedPanelHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     marginBottom: 12,
   },
-  inlineDateBadge: {
-    paddingVertical: 4,
-    paddingHorizontal: 10,
-    borderRadius: 12,
-    backgroundColor: 'rgba(181,155,115,0.15)',
-    borderWidth: 0.5,
-    borderColor: 'rgba(181,155,115,0.3)',
+  topRightDateBadge: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 14,
+    backgroundColor: 'rgba(181,155,115,0.2)',
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.4)',
   },
-  inlineDateText: {
-    fontSize: 9,
+  topRightDateText: {
+    fontSize: 10,
     fontWeight: '700',
-    color: '#B59B73',
+    color: '#C9A96D',
     textTransform: 'uppercase',
-    letterSpacing: 1.2,
+    letterSpacing: 1.5,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+
+  // Card Arrow Icon (Elegant Frosted Circle)
+  cardArrowIcon: {
+    position: 'absolute',
+    bottom: 16,
+    right: 16,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: 'rgba(255,255,255,0.12)',
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.3)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(10px)',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.2,
+        shadowRadius: 6,
+        elevation: 4,
+      },
     }),
   },
 
