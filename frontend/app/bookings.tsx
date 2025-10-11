@@ -1071,6 +1071,7 @@ const styles = StyleSheet.create({
   },
   dayTabActive: {
     backgroundColor: '#B59B73',
+    borderColor: '#B59B73',
   },
   dayTabText: {
     fontSize: 13,
