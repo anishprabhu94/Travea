@@ -488,7 +488,7 @@ export default function DestinationInfo() {
                     <Text style={styles.insightIcon}>🚶</Text>
                     <View style={styles.insightText}>
                       <Text style={styles.insightLabel}>Getting Around</Text>
-                      <Text style={styles.insightDetail}>Ferries · Footpaths · Local buses</Text>
+                      <Text style={styles.insightDetail}>Buses, ferries, and walk</Text>
                     </View>
                   </View>
                   
