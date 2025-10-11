@@ -73,6 +73,43 @@ const destinationData = {
     { quote: 'Lemons here grow as large as grapefruits.', attribution: null },
     { quote: 'Every evening, church bells echo over the cliffs.', attribution: null },
     { quote: 'Paper has been made by hand here since 1220.', attribution: null }
+  ],
+  experiences: [
+    {
+      title: 'Lemon Grove Walk',
+      subtext: '2 hrs · Ravello',
+      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
+    },
+    {
+      title: 'Villa Cimbrone Gardens',
+      subtext: 'Views from infinity',
+      image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg'
+    },
+    {
+      title: 'Hidden Coves by Boat',
+      subtext: 'Rock, sea, and silence',
+      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
+    }
+  ],
+  foodCulture: [
+    {
+      icon: '🍝',
+      title: 'Trattoria da Gemma',
+      subtext: 'Sea salt on lips, limoncello sunsets',
+      image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg'
+    },
+    {
+      icon: '🏛️',
+      title: 'Paper Museum',
+      subtext: 'Hands shaping history since 1220',
+      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
+    },
+    {
+      icon: '🍋',
+      title: 'Amalfi Cathedral',
+      subtext: 'Gold mosaics, evening bells',
+      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
+    }
   ]
 }
 
