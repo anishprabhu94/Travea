@@ -402,40 +402,14 @@ export default function TripCanvas() {
             <Text style={styles.categoryTitle}>Restaurants</Text>
           </View>
           <View style={styles.categoryDivider} />
-          <ScrollView 
-            horizontal 
-            showsHorizontalScrollIndicator={false}
-            style={styles.horizontalScroll}
-            contentContainerStyle={styles.horizontalScrollContent}
-          >
-            {activeDay.restaurants.map((rest, index) => (
-              <View 
-                key={rest.id}
-                style={[
-                  styles.imageCard,
-                  index === activeDay.restaurants.length - 1 && styles.imageCardLast
-                ]}
-              >
-                <ImageBackground
-                  source={{ uri: rest.image }}
-                  style={styles.imageCardBackground}
-                  imageStyle={styles.imageCardBackgroundImage}
-                >
-                  <LinearGradient
-                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
-                    style={styles.imageCardGradient}
-                  />
-                  <View style={styles.imageCardContent}>
-                    <Text style={styles.imageCardTitle}>{rest.name}</Text>
-                    <Text style={styles.imageCardDetails}>{rest.time} · {rest.details}</Text>
-                    <View style={styles.externalIconCircleSmall}>
-                      <Ionicons name="open-outline" size={14} color="#B59B73" />
-                    </View>
-                  </View>
-                </ImageBackground>
+          <View style={styles.restaurantsContainer}>
+            {activeDay.restaurants.map((rest) => (
+              <View key={rest.id} style={styles.restaurantItem}>
+                <Text style={styles.restaurantItemName}>{rest.name}</Text>
+                <Text style={styles.restaurantItemTime}>{rest.time} · {rest.details}</Text>
               </View>
             ))}
-          </ScrollView>
+          </View>
         </View>
       </View>
     );
