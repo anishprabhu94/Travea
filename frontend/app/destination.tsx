@@ -414,7 +414,7 @@ export default function DestinationInfo() {
               <Text style={styles.planTripText}>Plan This Trip</Text>
             </TouchableOpacity>
           </View>
-        </BlurView>
+        </View>
       </View>
     </View>
   )
