@@ -793,25 +793,24 @@ const styles = StyleSheet.create({
     gap: 20,
   },
 
-  // Standardized Frosted Pane
+  // Standardized Frosted Pane - Image Style (Dark Matte with Soft Shadow)
   categoryPane: {
-    height: 160,
-    backgroundColor: 'rgba(255,255,255,0.06)',
+    minHeight: 180,
+    backgroundColor: 'rgba(30,30,30,0.85)',
     borderRadius: 24,
-    borderWidth: 0.5,
-    borderColor: 'rgba(181,155,115,0.2)',
-    padding: 18,
+    borderWidth: 0,
+    padding: 24,
+    marginBottom: 20,
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(25px)',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.06)',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
       },
       default: {
         shadowColor: '#000000',
         shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.25,
+        shadowOpacity: 0.4,
         shadowRadius: 16,
-        elevation: 8,
+        elevation: 10,
       },
     }),
   },
