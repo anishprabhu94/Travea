@@ -536,7 +536,12 @@ export default function BookingsOverview() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0A0A0A', // Deep onyx
+    backgroundColor: '#0A0A0A', // Deep onyx with subtle gold gradient
+    ...Platform.select({
+      web: {
+        background: 'radial-gradient(ellipse at bottom right, rgba(203,184,140,0.06), transparent 50%), #0A0A0A',
+      },
+    }),
   },
   scrollContainer: {
     flex: 1,
@@ -545,42 +550,194 @@ const styles = StyleSheet.create({
     paddingBottom: 100, // Account for bottom navigation
   },
 
-  // Header Section
-  header: {
-    paddingTop: 28,
-    paddingHorizontal: 20,
-    paddingBottom: 24,
+  // Hero Pane (Top)
+  heroPaneContainer: {
+    height: 260,
+    marginHorizontal: 0,
+  },
+  heroPane: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  heroPaneImage: {
+    // No additional styling needed
+  },
+  heroOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: '40%', // Bottom 40% fade
+    backgroundColor: 'rgba(0,0,0,0.55)',
+  },
+  heroContent: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: 24,
     alignItems: 'center',
   },
-  headerTitle: {
-    fontSize: 22,
-    fontWeight: '700', // Playfair Display Bold equivalent
-    color: 'rgba(255,255,255,0.9)',
+  heroTitle: {
+    fontSize: 28, // Playfair Display Bold 28pt
+    fontWeight: '700',
+    color: 'rgba(255,255,255,0.95)',
     textAlign: 'center',
-    marginBottom: 6,
+    marginBottom: 8,
+    letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, "Times New Roman", serif',
     }),
   },
-  headerSubtitle: {
-    fontSize: 13,
+  heroSubtitle: {
+    fontSize: 13, // Inter Italic 13pt
     fontWeight: '400',
     fontStyle: 'italic',
-    color: 'rgba(203,184,140,0.7)', // Gold 70% opacity
+    color: 'rgba(203,184,140,0.7)', // Gold 70%
     textAlign: 'center',
-    marginBottom: 16,
+    marginBottom: 20,
+    letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-  headerDivider: {
+  heroButtons: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  heroButtonOutline: {
+    height: 42, // 42pt height
+    paddingHorizontal: 20,
+    borderRadius: 21, // rounded 21pt
+    borderWidth: 1,
+    borderColor: 'rgba(203,184,140,0.6)',
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(20px)',
+      },
+    }),
+  },
+  heroButtonOutlineText: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: 'rgba(203,184,140,0.9)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  heroButtonFilled: {
+    height: 42,
+    paddingHorizontal: 20,
+    borderRadius: 21,
+    backgroundColor: 'rgba(203,184,140,0.9)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  heroButtonFilledText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: 'rgba(10,10,10,0.9)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // City / Day Switcher
+  daysSwitcher: {
+    paddingVertical: 20,
+  },
+  daysScrollContent: {
+    paddingHorizontal: 24,
+    gap: 12,
+  },
+  dayPill: {
+    height: 34, // 34pt height
+    paddingHorizontal: 16,
+    borderRadius: 18, // radius 18pt
+    borderWidth: 1,
+    borderColor: 'rgba(203,184,140,0.2)', // Frosted outline
+    backgroundColor: 'rgba(255,255,255,0.04)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(15px)',
+      },
+    }),
+  },
+  dayPillActive: {
+    backgroundColor: 'rgba(203,184,140,0.9)', // Filled gold
+    borderColor: 'rgba(203,184,140,0.9)',
+  },
+  dayPillText: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: 'rgba(203,184,140,0.8)',
+    letterSpacing: 0.2,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  dayPillTextActive: {
+    color: 'rgba(10,10,10,0.9)', // White text on active
+  },
+
+  // Daily Overview
+  dailyOverview: {
+    paddingHorizontal: 24,
+    marginBottom: 24,
+  },
+  dailyTitle: {
+    fontSize: 22, // Playfair Display Semibold 22pt
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.95)',
+    marginBottom: 6,
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, "Times New Roman", serif',
+    }),
+  },
+  dailySubtitle: {
+    fontSize: 14, // Inter Italic 14pt
+    fontWeight: '400',
+    fontStyle: 'italic',
+    color: 'rgba(203,184,140,0.7)', // Gold 70%
+    marginBottom: 16,
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  dailyDivider: {
     width: 60,
     height: 1,
-    backgroundColor: 'rgba(203,184,140,0.3)', // Gold 30% opacity
+    backgroundColor: 'rgba(203,184,140,0.25)', // 1px fade line gold 25%
+  },
+
+  // Categories Container
+  categoriesContainer: {
+    paddingHorizontal: 24,
+    gap: 24, // 24pt padding between major sections
+  },
+  categorySection: {
+    marginBottom: 16,
   },
 
   // Section Styles
