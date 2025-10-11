@@ -369,11 +369,18 @@ export default function DestinationInfo() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0F0F0F', // Dark onyx background
+    backgroundColor: '#0C0C0C',
   },
   backgroundGradient: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: '#0F0F0F',
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(135deg, #0C0C0C 0%, #1A1A1A 100%)',
+      },
+      default: {
+        backgroundColor: '#0C0C0C',
+      },
+    }),
   },
   centerVignette: {
     ...StyleSheet.absoluteFillObject,
