@@ -14,7 +14,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 // "Frosted Editorial System v3" - Luxury Travel Chronicle
 const tripData = {
-  tripName: 'Summer in Italy 🇮🇹',
+  tripName: 'Summer in Italy',
   subtitle: 'June 8–14 · 2 Travelers',
   status: 'Planning',
   heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
