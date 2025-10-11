@@ -1498,7 +1498,7 @@ const styles = StyleSheet.create({
 
   // Carousel Styles
   carouselContainer: {
-    marginBottom: 32,
+    marginBottom: 24, // Reduced from 32 to 24 for elegant spacing
   },
   carouselHeader: {
     marginBottom: 16,
