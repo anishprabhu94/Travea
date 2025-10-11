@@ -168,41 +168,90 @@ export default function DestinationInfo() {
     </View>
   )
 
-  // Essence Module Component 
-  const EssenceModule = () => (
-    <View style={styles.essenceContainer}>
-      <BlurView intensity={15} tint="dark" style={styles.essenceBlur}>
-        <View style={styles.essenceInner}>
-          <View style={styles.essenceLeft}>
-            <Text style={styles.essenceTitle}>Atmosphere</Text>
-            <Text style={styles.essenceText}>{destination.atmosphere}</Text>
-          </View>
+  // Essence Module Component - Glass Poetry Design
+  const EssenceModule = () => {
+    const glowAnim = useRef(new Animated.Value(0)).current
+    
+    useEffect(() => {
+      const startGlow = () => {
+        Animated.loop(
+          Animated.sequence([
+            Animated.timing(glowAnim, {
+              toValue: 1,
+              duration: 3000,
+              useNativeDriver: false,
+            }),
+            Animated.timing(glowAnim, {
+              toValue: 0,
+              duration: 3000,
+              useNativeDriver: false,
+            }),
+          ])
+        ).start()
+      }
+      startGlow()
+    }, [])
+
+    const glowOpacity = glowAnim.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0.3, 0.8],
+    })
+
+    return (
+      <Animated.View style={[styles.essenceCapsule, { opacity: fadeAnim }]}>
+        <BlurView intensity={45} tint="dark" style={styles.essenceGlass}>
+          <Animated.View 
+            style={[
+              styles.essenceGlow,
+              { shadowOpacity: glowOpacity }
+            ]}
+          />
           
-          <View style={styles.essenceRight}>
-            <Text style={styles.essentialsTitle}>Essentials</Text>
-            <View style={styles.essentialsList}>
-              <View style={styles.essentialItem}>
-                <Text style={styles.essentialLabel}>Best time</Text>
-                <Text style={styles.essentialValue}>{destination.essentials.bestTime}</Text>
-              </View>
-              <View style={styles.essentialItem}>
-                <Text style={styles.essentialLabel}>Currency</Text>
-                <Text style={styles.essentialValue}>{destination.essentials.currency}</Text>
-              </View>
-              <View style={styles.essentialItem}>
-                <Text style={styles.essentialLabel}>Airport</Text>
-                <Text style={styles.essentialValue}>{destination.essentials.airport}</Text>
-              </View>
-              <View style={styles.essentialItem}>
-                <Text style={styles.essentialLabel}>Time Zone</Text>
-                <Text style={styles.essentialValue}>{destination.essentials.timezone}</Text>
-              </View>
+          {/* Layer 1: Poetic Tokens */}
+          <View style={styles.poeticLayer}>
+            <View style={styles.poeticPill}>
+              <Text style={styles.poeticText}>Azure Air</Text>
+            </View>
+            <Text style={styles.poeticSeparator}>·</Text>
+            <View style={styles.poeticPill}>
+              <Text style={styles.poeticText}>Lemon Calm</Text>
+            </View>
+            <Text style={styles.poeticSeparator}>·</Text>
+            <View style={styles.poeticPill}>
+              <Text style={styles.poeticText}>Cliff Light</Text>
             </View>
           </View>
-        </View>
-      </BlurView>
-    </View>
-  )
+
+          {/* Layer 2: Minimalist Icons Arc */}
+          <View style={styles.iconArc}>
+            <View style={styles.iconDisc}>
+              <Text style={styles.iconEmoji}>🗓</Text>
+              <Text style={styles.iconLabel}>Apr-Jun</Text>
+            </View>
+            <View style={styles.iconDisc}>
+              <Text style={styles.iconEmoji}>💶</Text>
+              <Text style={styles.iconLabel}>EUR</Text>
+            </View>
+            <View style={styles.iconDisc}>
+              <Text style={styles.iconEmoji}>✈️</Text>
+              <Text style={styles.iconLabel}>NAP</Text>
+            </View>
+            <View style={styles.iconDisc}>
+              <Text style={styles.iconEmoji}>🕓</Text>
+              <Text style={styles.iconLabel}>CET+1</Text>
+            </View>
+          </View>
+
+          {/* Layer 3: Sensory Line */}
+          <Animated.View style={[styles.sensoryLayer, { opacity: fadeAnim }]}>
+            <Text style={styles.sensoryText}>
+              Where time slows, and the sea hums in gold.
+            </Text>
+          </Animated.View>
+        </BlurView>
+      </Animated.View>
+    )
+  }
 
   // Discovery Row Component
   const DiscoveryRow = () => (
