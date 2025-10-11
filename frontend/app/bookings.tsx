@@ -977,7 +977,7 @@ const styles = StyleSheet.create({
   },
   dayTab: {
     flex: 1,
-    paddingVertical: 12,
+    paddingVertical: 10,
     borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
