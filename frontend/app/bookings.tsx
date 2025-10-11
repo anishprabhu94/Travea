@@ -315,9 +315,16 @@ export default function TripCanvas() {
     return (
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
-          <Text style={styles.categoryTitle}>🏨 Stays</Text>
+          <View style={styles.categoryHeader}>
+            <Ionicons name="bed" size={18} color="#B59B73" style={{marginRight: 8}} />
+            <Text style={styles.categoryTitle}>Stays</Text>
+          </View>
+          <View style={styles.categoryDivider} />
           {activeDay.stays.map((stay) => (
             <View key={stay.id} style={styles.stayContent}>
+              <TouchableOpacity style={styles.externalIconTopLeft}>
+                <Ionicons name="open-outline" size={14} color="#B59B73" />
+              </TouchableOpacity>
               <ImageBackground
                 source={{ uri: stay.image }}
                 style={styles.stayImage}
@@ -328,9 +335,6 @@ export default function TripCanvas() {
                 <Text style={styles.stayAddress}>{stay.address}</Text>
                 <Text style={styles.stayTimes}>{stay.checkin} · {stay.checkout}</Text>
                 <Text style={styles.stayPlatform}>{stay.platform}</Text>
-              </View>
-              <View style={styles.externalIconCircle}>
-                <Ionicons name="open-outline" size={16} color="#B59B73" />
               </View>
             </View>
           ))}
