@@ -149,8 +149,26 @@ const tripData = {
       dates: 'Jun 12–14',
       description: 'Where cliffs meet the breeze.',
       heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
-      flights: [],
-      stays: [],
+      flights: [
+        {
+          id: '2',
+          route: 'NAP → FCO',
+          airline: 'ITA AZ 5678',
+          time: '16:00 – 17:10 · 1h 10m Nonstop',
+          details: 'T1 Gate B8 · 1 Checked · Seat 14F Window'
+        }
+      ],
+      stays: [
+        {
+          id: '3',
+          name: 'Hotel La Palma',
+          address: 'Via V. Emanuele 39',
+          checkin: 'Check-in 2 PM',
+          checkout: 'Check-out 11 AM',
+          platform: 'via Hotels.com',
+          image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
+        }
+      ],
       transport: [],
       experiences: [
         {
@@ -160,7 +178,15 @@ const tripData = {
           image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
         }
       ],
-      restaurants: []
+      restaurants: [
+        {
+          id: '4',
+          name: 'Aurora Ristorante',
+          time: 'Lunch 1:00 PM',
+          details: 'Piazzetta View',
+          image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg'
+        }
+      ]
     }
   ],
   
