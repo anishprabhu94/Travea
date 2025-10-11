@@ -1611,6 +1611,263 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.05)',
     marginVertical: 8,
   },
+
+  // 3. Explore Section Styles
+  exploreSection: {
+    paddingHorizontal: 24,
+    marginBottom: 32,
+  },
+  exploreHeader: {
+    marginBottom: 24,
+  },
+  exploreTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#F3F1E7',
+    marginBottom: 8,
+    letterSpacing: 0.5,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  exploreDivider: {
+    width: 50,
+    height: 1,
+    backgroundColor: 'rgba(203,184,140,0.4)',
+  },
+
+  // Carousel Styles
+  carouselContainer: {
+    marginBottom: 32,
+  },
+  carouselHeader: {
+    marginBottom: 16,
+  },
+  carouselTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#F3F1E7',
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  carouselSubtitle: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: '#9B958D',
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'SF Pro Display',
+      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  carouselScroll: {
+    paddingRight: 24,
+  },
+
+  // Experience Cards - 280×220pt
+  experienceCard: {
+    width: 280,
+    height: 220,
+    borderRadius: 20,
+    overflow: 'hidden',
+    marginRight: 16,
+    ...Platform.select({
+      web: {
+        boxShadow: '0 4px 20px rgba(0,0,0,0.25)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.25,
+        shadowRadius: 10,
+        elevation: 6,
+      },
+    }),
+  },
+  firstCard: {
+    marginLeft: 0,
+  },
+  experienceCardImage: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  experienceCardImageStyle: {
+    borderRadius: 20,
+  },
+  experienceCardOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 80,
+    backgroundColor: 'rgba(0,0,0,0.75)',
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  experienceCardContent: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: 16,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  experienceCardTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#FFFFFF',
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  experienceCardSubtext: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: '#CBB88C',
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'SF Pro Display',
+      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Food & Culture specific styles
+  foodCultureHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  foodCultureIcon: {
+    fontSize: 18,
+    marginRight: 8,
+  },
+
+  // 5. Local Insights - Luxury Collector's Card Styles
+  localInsightsSection: {
+    paddingHorizontal: 24,
+    marginBottom: 32,
+  },
+  insightsCollectorCard: {
+    backgroundColor: 'rgba(20,20,20,0.85)', // Frosted glass effect
+    borderRadius: 26,
+    borderWidth: 1,
+    borderColor: 'rgba(203,184,140,0.25)', // Thin gold stroke
+    overflow: 'hidden',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(20px)',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.4,
+        shadowRadius: 16,
+        elevation: 10,
+      },
+    }),
+  },
+  insightsCardContent: {
+    padding: 24,
+  },
+  
+  // Title Bar
+  insightsTitleBar: {
+    marginBottom: 24,
+  },
+  insightsTitle: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#F3F1E7',
+    letterSpacing: 1.5, // Wide tracking
+    marginBottom: 12,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  insightsTitleDivider: {
+    width: '100%',
+    height: 1,
+    backgroundColor: 'rgba(203,184,140,0.3)', // Soft gold
+  },
+
+  // 2×3 Grid Layout
+  insightsGrid: {
+    flexDirection: 'row',
+    gap: 20,
+  },
+  insightsColumn: {
+    flex: 1,
+    gap: 20,
+  },
+  insightItem: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 12,
+  },
+  insightIcon: {
+    fontSize: 16,
+    marginTop: 2,
+  },
+  insightText: {
+    flex: 1,
+  },
+  insightLabel: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#F3F1E7',
+    marginBottom: 2,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  insightDetail: {
+    fontSize: 12,
+    fontWeight: '400',
+    color: '#9B958D',
+    lineHeight: 16,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'SF Pro Display',
+      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Elegant Footer One-Liner
+  insightsFooter: {
+    marginTop: 24,
+    paddingTop: 20,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(203,184,140,0.15)',
+    alignItems: 'center',
+  },
+  insightsWhisper: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: '#CBB88C',
+    fontStyle: 'italic',
+    letterSpacing: 0.3,
+    textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'Georgia',
+      android: 'serif',
+      web: 'Georgia, "Times New Roman", serif',
+    }),
+  },
 })
 
 // End of Practical Beauty design
