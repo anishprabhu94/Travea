@@ -367,19 +367,23 @@ export default function BookingsOverview() {
   );
 
   const renderSection = (section: string) => {
-    const data = bookingData[section as keyof typeof bookingData];
+    const data = selectedDay[section as keyof typeof selectedDay] as any[];
     const isExpanded = expandedSections[section as keyof typeof expandedSections];
     
     if (!isExpanded) return null;
 
+    // Handle carousel sections differently
+    if (section === 'experiences') {
+      return renderExperiencesCarousel(data || []);
+    }
+    
+    if (section === 'restaurants') {
+      return renderRestaurantsCarousel(data || []);
+    }
+
+    // Handle regular card sections
     if (!Array.isArray(data) || data.length === 0) {
-      return (
-        <View style={styles.emptyState}>
-          <Ionicons name={sectionIcons[section as keyof typeof sectionIcons] as any} size={48} color="#CBB88C" />
-          <Text style={styles.emptyStateTitle}>Nothing booked yet.</Text>
-          <Text style={styles.emptyStateSubtitle}>Add details from your Trip Canvas.</Text>
-        </View>
-      );
+      return renderEmptyState(section);
     }
 
     return (
@@ -392,10 +396,6 @@ export default function BookingsOverview() {
               return renderStayCard(item);
             case 'transport':
               return renderTransportCard(item);
-            case 'experiences':
-              return renderExperienceCard(item);
-            case 'restaurants':
-              return renderRestaurantCard(item);
             default:
               return null;
           }
