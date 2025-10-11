@@ -961,7 +961,17 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  stayTimes: {
+  stayCheckin: {
+    fontSize: 12,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.7)',
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  stayCheckout: {
     fontSize: 12,
     fontWeight: '400',
     color: 'rgba(255,255,255,0.7)',
