@@ -1137,26 +1137,49 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 
-  // Flight Card - Frosted Glass (No Image)
+  // Card Date Badge (Elegant)
+  cardDateBadge: {
+    alignSelf: 'flex-start',
+    paddingVertical: 6,
+    paddingHorizontal: 14,
+    borderRadius: 16,
+    backgroundColor: 'rgba(181,155,115,0.18)',
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.35)',
+    marginBottom: 14,
+  },
+  cardDateText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#B59B73',
+    textTransform: 'uppercase',
+    letterSpacing: 1.5,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+
+  // Flight Card - Enhanced Frosted Glass (No Image)
   flightCard: {
     width: 300,
-    backgroundColor: 'rgba(255,255,255,0.06)',
+    backgroundColor: 'rgba(255,255,255,0.1)',
     borderRadius: 24,
-    borderWidth: 0.5,
-    borderColor: 'rgba(181,155,115,0.15)',
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.25)',
     padding: 20,
     marginRight: 16,
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(25px)',
-        boxShadow: '0 8px 24px rgba(0,0,0,0.3), inset 1px 1px 0 rgba(255,255,255,0.05)',
+        backdropFilter: 'blur(30px)',
+        boxShadow: '0 12px 32px rgba(0,0,0,0.4), inset 2px 2px 0 rgba(255,255,255,0.08)',
       },
       default: {
         shadowColor: '#000000',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.3,
-        shadowRadius: 12,
-        elevation: 8,
+        shadowOffset: { width: 0, height: 12 },
+        shadowOpacity: 0.4,
+        shadowRadius: 16,
+        elevation: 12,
       },
     }),
   },
