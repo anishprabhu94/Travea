@@ -538,12 +538,21 @@ export default function TripCanvas() {
   const renderExperiences = () => {
     if (activeDay.experiences.length === 0) return null;
     
+    // Get unique dates for experiences
+    const uniqueDates = [...new Set(activeDay.experiences.map(exp => exp.date))];
+    const displayDate = uniqueDates.length === 1 ? uniqueDates[0] : `${uniqueDates[0]} – ${uniqueDates[uniqueDates.length - 1]}`;
+    
     return (
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
-          <View style={styles.categoryHeader}>
-            <Ionicons name="ticket" size={18} color="#B59B73" style={{marginRight: 8}} />
-            <Text style={styles.categoryTitle}>Experiences</Text>
+          <View style={styles.categoryHeaderRow}>
+            <View style={styles.categoryHeader}>
+              <Ionicons name="ticket" size={18} color="#B59B73" style={{marginRight: 8}} />
+              <Text style={styles.categoryTitle}>Experiences</Text>
+            </View>
+            <View style={styles.inlineDateBadge}>
+              <Text style={styles.inlineDateText}>{displayDate}</Text>
+            </View>
           </View>
           <View style={styles.categoryDivider} />
           <ScrollView 
@@ -566,9 +575,6 @@ export default function TripCanvas() {
                     style={styles.experienceImageCardGradient}
                   />
                   <View style={styles.experienceImageCardFrosted}>
-                    <View style={styles.cardDateBadge}>
-                      <Text style={styles.cardDateText}>{exp.date}</Text>
-                    </View>
                     <Text style={styles.experienceCardTitle}>{exp.title}</Text>
                     <Text style={styles.experienceCardDetails}>Start: {exp.startTime} · Duration: {exp.duration}</Text>
                     <Text style={styles.experienceCardLocation}>{exp.location}</Text>
