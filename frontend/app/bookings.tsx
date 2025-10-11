@@ -435,9 +435,14 @@ export default function TripCanvas() {
     return (
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
-          <View style={styles.categoryHeader}>
-            <Ionicons name="bed" size={18} color="#B59B73" style={{marginRight: 8}} />
-            <Text style={styles.categoryTitle}>Stays</Text>
+          <View style={styles.categoryHeaderRow}>
+            <View style={styles.categoryHeader}>
+              <Ionicons name="bed" size={18} color="#B59B73" style={{marginRight: 8}} />
+              <Text style={styles.categoryTitle}>Stays</Text>
+            </View>
+            <View style={styles.inlineDateBadge}>
+              <Text style={styles.inlineDateText}>{activeDay.stays[0].dates}</Text>
+            </View>
           </View>
           <View style={styles.categoryDivider} />
           <ScrollView 
@@ -460,9 +465,6 @@ export default function TripCanvas() {
                     style={styles.stayImageCardGradient}
                   />
                   <View style={styles.stayImageCardFrosted}>
-                    <View style={styles.cardDateBadge}>
-                      <Text style={styles.cardDateText}>{stay.dates}</Text>
-                    </View>
                     <Text style={styles.stayCardName}>{stay.name}</Text>
                     <Text style={styles.stayCardAddress}>{stay.address}</Text>
                     <Text style={styles.stayCardTimes}>{stay.checkin} · {stay.checkout}</Text>
