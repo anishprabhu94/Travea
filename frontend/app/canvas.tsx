@@ -832,6 +832,7 @@ export default function TripCanvas() {
             <TouchableOpacity 
               style={styles.ribbon}
               activeOpacity={0.85}
+              onPress={() => router.push('/bookings')}
             >
               <BlurView intensity={40} tint="dark" style={styles.ribbonBlur}>
                 {/* Micro-particle light layer */}
