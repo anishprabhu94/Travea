@@ -374,8 +374,12 @@ export default function TripCanvas() {
         />
         {/* Frosted glass card for city info */}
         <View style={styles.cityFrostedCard}>
-          <Text style={styles.cityName}>{activeDay.city}</Text>
-          <Text style={styles.cityDates}>{activeDay.dates}</Text>
+          <View style={styles.cityHeaderRow}>
+            <Text style={styles.cityName}>{activeDay.city}</Text>
+            <View style={styles.inlineDateBadge}>
+              <Text style={styles.inlineDateText}>{activeDay.dates}</Text>
+            </View>
+          </View>
           <Text style={styles.cityDescription}>{activeDay.description}</Text>
         </View>
       </ImageBackground>
