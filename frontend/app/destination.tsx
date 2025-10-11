@@ -134,7 +134,7 @@ export default function DestinationInfo() {
 
         {/* 2. Essence Capsule */}
         <View style={styles.essenceCapsule}>
-          <BlurView intensity={25} tint="dark" style={styles.essenceBlur}>
+          <View style={styles.essenceBlur}>
             <View style={styles.essenceContent}>
               {/* Row 1: Golden Tags */}
               <View style={styles.essenceTagsRow}>
