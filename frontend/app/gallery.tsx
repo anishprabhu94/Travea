@@ -430,7 +430,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     color: 'rgba(255,255,255,0.85)',
-    padding: 16,
+    padding: 24,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
