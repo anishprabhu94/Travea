@@ -744,6 +744,8 @@ const styles = StyleSheet.create({
 
   // Status Capsule
   statusCapsule: {
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingVertical: 8,
     paddingHorizontal: 20,
     borderRadius: 20,
@@ -751,6 +753,43 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(181,155,115,0.3)',
     marginBottom: 20,
+  },
+  statusDropdownMenu: {
+    position: 'absolute',
+    top: 110,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 16,
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.15)',
+    padding: 8,
+    zIndex: 100,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+        elevation: 10,
+      },
+    }),
+  },
+  statusDropdownItem: {
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: 12,
+  },
+  statusDropdownText: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.9)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
   },
   statusText: {
     fontSize: 13,
