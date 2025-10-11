@@ -239,9 +239,31 @@ export default function TripCanvas() {
           <Text style={styles.heroSubtitle}>{tripData.subtitle}</Text>
           
           {/* Status Dropdown */}
-          <View style={styles.statusCapsule}>
-            <Text style={styles.statusText}>{tripData.status}</Text>
-          </View>
+          <TouchableOpacity 
+            style={styles.statusCapsule}
+            onPress={() => setShowStatusDropdown(!showStatusDropdown)}
+            activeOpacity={0.7}
+          >
+            <Text style={styles.statusText}>{tripStatus}</Text>
+            <Ionicons name="chevron-down" size={14} color="rgba(181,155,115,0.8)" style={{marginLeft: 6}} />
+          </TouchableOpacity>
+          
+          {showStatusDropdown && (
+            <View style={styles.statusDropdownMenu}>
+              {statusOptions.map((status) => (
+                <TouchableOpacity
+                  key={status}
+                  style={styles.statusDropdownItem}
+                  onPress={() => {
+                    setTripStatus(status);
+                    setShowStatusDropdown(false);
+                  }}
+                >
+                  <Text style={styles.statusDropdownText}>{status}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          )}
           
           {/* City Strip - Centered Pills */}
           <View style={styles.cityStrip}>
