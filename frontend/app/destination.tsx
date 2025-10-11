@@ -1111,6 +1111,209 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
+
+  // Discovery Section Styles
+  discoveryContainer: {
+    paddingHorizontal: 24,
+    marginBottom: 28,
+  },
+  discoveryHeader: {
+    marginBottom: 16,
+  },
+  discoveryTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#F3F1E7',
+    marginBottom: 8,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  discoveryUnderline: {
+    width: 40,
+    height: 1,
+    backgroundColor: 'rgba(203,184,140,0.25)',
+  },
+  discoveryScroll: {
+    paddingRight: 24,
+  },
+  discoveryCard: {
+    width: 200,
+    height: 160,
+    borderRadius: 16,
+    overflow: 'hidden',
+    marginRight: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(203,184,140,0.2)',
+  },
+  firstDiscoveryCard: {
+    marginLeft: 0,
+  },
+  discoveryCardImage: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  discoveryCardImageStyle: {
+    borderRadius: 16,
+  },
+  discoveryCardGradient: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+  },
+  discoveryCardBand: {
+    backgroundColor: 'rgba(20,20,20,0.8)',
+    padding: 12,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(203,184,140,0.15)',
+  },
+  discoveryCardTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#F3F1E7',
+    marginBottom: 6,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  discoveryChipsRow: {
+    flexDirection: 'row',
+    gap: 6,
+  },
+  discoveryChip: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 8,
+    backgroundColor: 'rgba(203,184,140,0.15)',
+  },
+  discoveryChipText: {
+    fontSize: 11,
+    fontWeight: '500',
+    color: '#CBB88C',
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'SF Pro Display',
+      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Highlights Pane
+  highlightsPane: {
+    marginTop: 20,
+    backgroundColor: 'rgba(20,20,20,0.6)',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(203,184,140,0.15)',
+    padding: 16,
+  },
+  highlightsHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  highlightsLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  highlightsTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#F3F1E7',
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  highlightsRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  seeAllText: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: '#9B958D',
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'SF Pro Display',
+      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  highlightsDivider: {
+    height: 1,
+    backgroundColor: 'rgba(203,184,140,0.1)',
+    marginBottom: 12,
+  },
+  highlightRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    paddingVertical: 8,
+  },
+  highlightThumb: {
+    width: 48,
+    height: 48,
+    borderRadius: 8,
+    overflow: 'hidden',
+  },
+  highlightThumbStyle: {
+    borderRadius: 8,
+  },
+  highlightContent: {
+    flex: 1,
+  },
+  highlightName: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#F3F1E7',
+    marginBottom: 2,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  highlightMeta: {
+    fontSize: 11,
+    fontWeight: '400',
+    color: '#9B958D',
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'SF Pro Display',
+      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  highlightChips: {
+    flexDirection: 'row',
+    gap: 4,
+  },
+  highlightChip: {
+    paddingHorizontal: 6,
+    paddingVertical: 3,
+    borderRadius: 6,
+    backgroundColor: 'rgba(203,184,140,0.12)',
+  },
+  highlightChipText: {
+    fontSize: 10,
+    fontWeight: '500',
+    color: '#CBB88C',
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'SF Pro Display',
+      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  highlightRowDivider: {
+    height: 1,
+    backgroundColor: 'rgba(203,184,140,0.08)',
+    marginVertical: 8,
+  },
 })
 
 // End of Practical Beauty design
