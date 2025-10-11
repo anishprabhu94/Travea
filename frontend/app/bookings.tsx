@@ -347,6 +347,7 @@ export default function TripCanvas() {
     return (
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
+          <Text style={styles.categoryDate}>{activeDay.dates}</Text>
           <View style={styles.categoryHeader}>
             <Ionicons name="airplane" size={18} color="#B59B73" style={{marginRight: 8}} />
             <Text style={styles.categoryTitle}>Flights</Text>
