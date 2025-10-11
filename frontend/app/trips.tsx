@@ -134,11 +134,15 @@ export default function MyTrips() {
     console.log('renderSavedCard: Called for destination:', destination.id)
     return (
     <View key={destination.id} style={[styles.savedCardWrapper, isOnlyCard && styles.singleCardWrapper]}>
-      <ImageBackground
-        source={{ uri: destination.image }}
-        style={styles.savedCard}
-        imageStyle={styles.savedCardImage}
+      <TouchableOpacity 
+        onPress={() => router.push(`/destination?id=${destination.id}&city=${destination.city}&region=${destination.region}`)}
+        activeOpacity={0.9}
       >
+        <ImageBackground
+          source={{ uri: destination.image }}
+          style={styles.savedCard}
+          imageStyle={styles.savedCardImage}
+        >
         {/* Soft neutral grey veil overlay */}
         <View style={styles.cardGreyVeilOverlay} />
         
