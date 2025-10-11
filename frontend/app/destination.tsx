@@ -442,7 +442,7 @@ export default function DestinationInfo() {
                 {/* Right Column */}
                 <View style={styles.insightsColumn}>
                   <View style={styles.insightItem}>
-                    <Text style={styles.insightIcon}>✈️</Text>
+                    <Ionicons name="airplane-outline" size={16} color="#CBB88C" style={styles.insightBronzeIcon} />
                     <View style={styles.insightText}>
                       <Text style={styles.insightLabel}>Gateway</Text>
                       <Text style={styles.insightDetail}>Naples Intl (NAP)</Text>
@@ -450,7 +450,7 @@ export default function DestinationInfo() {
                   </View>
                   
                   <View style={styles.insightItem}>
-                    <Text style={styles.insightIcon}>🚶</Text>
+                    <Ionicons name="walk-outline" size={16} color="#CBB88C" style={styles.insightBronzeIcon} />
                     <View style={styles.insightText}>
                       <Text style={styles.insightLabel}>Getting Around</Text>
                       <Text style={styles.insightDetail}>Buses, ferries, and walk</Text>
@@ -458,7 +458,7 @@ export default function DestinationInfo() {
                   </View>
                   
                   <View style={styles.insightItem}>
-                    <Text style={styles.insightIcon}>🕊</Text>
+                    <Ionicons name="shirt-outline" size={16} color="#CBB88C" style={styles.insightBronzeIcon} />
                     <View style={styles.insightText}>
                       <Text style={styles.insightLabel}>Etiquette</Text>
                       <Text style={styles.insightDetail}>Dress modestly in churches</Text>
