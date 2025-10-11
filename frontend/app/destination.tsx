@@ -371,10 +371,6 @@ export default function DestinationInfo() {
         style={styles.scrollContainer}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: parallaxValue } } }],
-          { useNativeDriver: true }
-        )}
         scrollEventThrottle={16}
       >
         {/* Header - Minimal */}
