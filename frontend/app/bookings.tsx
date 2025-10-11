@@ -716,15 +716,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   heroBackgroundImage: {
-    opacity: 0.85,
-  },
-  heroDarkOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.4)',
+    opacity: 0.95,
   },
   heroGradient: {
     position: 'absolute',
