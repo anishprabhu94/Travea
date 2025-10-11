@@ -74,18 +74,183 @@ const mockDestination = {
 export default function DestinationInfo() {
   const params = useLocalSearchParams()
   const [isSaved, setIsSaved] = useState(false)
+  const [activeImageIndex, setActiveImageIndex] = useState(0)
+  const [selectedDiscovery, setSelectedDiscovery] = useState(null)
+  
+  const parallaxValue = useRef(new Animated.Value(0)).current
+  const fadeAnim = useRef(new Animated.Value(0)).current
   const scrollViewRef = useRef<ScrollView>(null)
 
-  const destination = mockDestination // In real app, would fetch based on params
+  const destination = mockDestination
 
-  const InfoCard = ({ title, children }: { title: string; children: React.ReactNode }) => (
-    <View style={styles.infoCardContainer}>
-      <BlurView intensity={25} tint="dark" style={styles.infoCard}>
-        <View style={styles.infoCardInner}>
-          <Text style={styles.infoCardTitle}>{title}</Text>
-          {children}
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 800,
+      useNativeDriver: true,
+    }).start()
+  }, [])
+
+  // Parallax Gallery Component
+  const ParallaxGallery = () => (
+    <View style={styles.galleryContainer}>
+      <ScrollView
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        onScroll={({ nativeEvent }) => {
+          const index = Math.round(nativeEvent.contentOffset.x / width)
+          setActiveImageIndex(index)
+        }}
+        scrollEventThrottle={16}
+      >
+        {destination.images.map((image, index) => (
+          <View key={index} style={styles.imageContainer}>
+            <Animated.View style={[
+              styles.parallaxWrapper,
+              {
+                transform: [{
+                  translateX: parallaxValue.interpolate({
+                    inputRange: [-width, 0, width],
+                    outputRange: [30, 0, -30],
+                    extrapolate: 'clamp'
+                  })
+                }]
+              }
+            ]}>
+              <ImageBackground
+                source={{ uri: image }}
+                style={styles.heroImage}
+                imageStyle={styles.heroImageStyle}
+              >
+                <View style={styles.imageOverlay} />
+              </ImageBackground>
+            </Animated.View>
+          </View>
+        ))}
+      </ScrollView>
+      
+      {/* Destination Name Overlay */}
+      <Animated.View style={[styles.nameOverlay, { opacity: fadeAnim }]}>
+        <Text style={styles.destinationName}>{destination.name}</Text>
+        <Text style={styles.destinationTagline}>{destination.tagline}</Text>
+      </Animated.View>
+
+      {/* Gallery Indicators */}
+      <View style={styles.indicators}>
+        {destination.images.map((_, index) => (
+          <View
+            key={index}
+            style={[
+              styles.indicator,
+              activeImageIndex === index && styles.activeIndicator
+            ]}
+          />
+        ))}
+      </View>
+    </View>
+  )
+
+  // Action Pills Component
+  const ActionPills = () => (
+    <View style={styles.actionPillsContainer}>
+      <TouchableOpacity style={[styles.actionPill, styles.primaryPill]}>
+        <BlurView intensity={20} tint="dark" style={styles.pillBlur}>
+          <Text style={[styles.pillText, styles.primaryPillText]}>Add to My Trips</Text>
+        </BlurView>
+      </TouchableOpacity>
+      
+      <TouchableOpacity style={styles.actionPill}>
+        <BlurView intensity={20} tint="dark" style={styles.pillBlur}>
+          <Text style={styles.pillText}>Create a Trip</Text>
+        </BlurView>
+      </TouchableOpacity>
+    </View>
+  )
+
+  // Essence Module Component 
+  const EssenceModule = () => (
+    <View style={styles.essenceContainer}>
+      <BlurView intensity={15} tint="dark" style={styles.essenceBlur}>
+        <View style={styles.essenceInner}>
+          <View style={styles.essenceLeft}>
+            <Text style={styles.essenceTitle}>Atmosphere</Text>
+            <Text style={styles.essenceText}>{destination.atmosphere}</Text>
+          </View>
+          
+          <View style={styles.essenceRight}>
+            <Text style={styles.essentialsTitle}>Essentials</Text>
+            <View style={styles.essentialsList}>
+              <View style={styles.essentialItem}>
+                <Text style={styles.essentialLabel}>Best time</Text>
+                <Text style={styles.essentialValue}>{destination.essentials.bestTime}</Text>
+              </View>
+              <View style={styles.essentialItem}>
+                <Text style={styles.essentialLabel}>Currency</Text>
+                <Text style={styles.essentialValue}>{destination.essentials.currency}</Text>
+              </View>
+              <View style={styles.essentialItem}>
+                <Text style={styles.essentialLabel}>Airport</Text>
+                <Text style={styles.essentialValue}>{destination.essentials.airport}</Text>
+              </View>
+              <View style={styles.essentialItem}>
+                <Text style={styles.essentialLabel}>Time Zone</Text>
+                <Text style={styles.essentialValue}>{destination.essentials.timezone}</Text>
+              </View>
+            </View>
+          </View>
         </View>
       </BlurView>
+    </View>
+  )
+
+  // Discovery Row Component
+  const DiscoveryRow = () => (
+    <View style={styles.discoveryContainer}>
+      <Text style={styles.sectionTitle}>Discovery</Text>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.discoveryScroll}
+      >
+        {destination.discovery.map((item, index) => (
+          <TouchableOpacity
+            key={item.id}
+            style={[styles.discoveryCard, index === 0 && styles.firstCard]}
+            onPress={() => setSelectedDiscovery(item)}
+          >
+            <ImageBackground
+              source={{ uri: item.image }}
+              style={styles.discoveryImage}
+              imageStyle={styles.discoveryImageStyle}
+            >
+              <View style={styles.discoveryOverlay} />
+              <View style={styles.discoveryContent}>
+                <Text style={styles.discoveryTitle}>{item.title}</Text>
+                <Text style={styles.discoveryPreview}>{item.preview}</Text>
+              </View>
+            </ImageBackground>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+    </View>
+  )
+
+  // Insights Strip Component
+  const InsightsStrip = () => (
+    <View style={styles.insightsContainer}>
+      <Text style={styles.sectionTitle}>Insights</Text>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.insightsScroll}
+      >
+        {destination.insights.map((insight, index) => (
+          <BlurView key={index} intensity={20} tint="dark" style={styles.insightCapsule}>
+            <Text style={styles.insightText}>{insight}</Text>
+          </BlurView>
+        ))}
+      </ScrollView>
     </View>
   )
 
