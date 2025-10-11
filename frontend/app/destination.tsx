@@ -658,10 +658,10 @@ const styles = StyleSheet.create({
     width: 165,
     height: 220,
     borderRadius: 20,
+    overflow: 'hidden', // Critical for iOS rounded corners
     marginBottom: 16,
     borderWidth: 1,
     borderColor: 'rgba(203,184,140,0.2)',
-    overflow: 'hidden',
     ...Platform.select({
       web: {
         boxShadow: '0 6px 20px rgba(0,0,0,0.25)',
@@ -680,7 +680,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   discoveryCardImageStyle: {
-    borderRadius: 20,
+    // Remove borderRadius from image - let container handle it
   },
   discoveryCardOverlay: {
     ...StyleSheet.absoluteFillObject,
