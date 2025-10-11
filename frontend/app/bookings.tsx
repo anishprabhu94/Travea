@@ -685,14 +685,14 @@ export default function TripCanvas() {
                   <View style={styles.cardDateBadgeOnImage}>
                     <Text style={styles.cardDateText}>{rest.date.toUpperCase()}</Text>
                   </View>
-                  <View style={styles.cardArrowIconTopRightOnImage}>
-                    <Ionicons name="arrow-forward" size={14} color="rgba(181,155,115,0.95)" />
-                  </View>
                   <LinearGradient
                     colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
                     style={styles.restaurantImageCardGradient}
                   />
                   <View style={styles.restaurantImageCardFrosted}>
+                    <View style={styles.cardArrowIconOnPane}>
+                      <Ionicons name="arrow-forward" size={12} color="rgba(181,155,115,0.95)" />
+                    </View>
                     <Text style={styles.restaurantCardTitle}>{rest.name}</Text>
                     <Text style={styles.restaurantCardDetails}>{rest.time} · {rest.details}</Text>
                   </View>
