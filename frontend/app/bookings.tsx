@@ -989,6 +989,20 @@ const styles = StyleSheet.create({
     }),
   },
 
+  // Category Date (Elegant Top Label)
+  categoryDate: {
+    fontSize: 11,
+    fontWeight: '500',
+    color: 'rgba(181,155,115,0.7)',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+    marginBottom: 12,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  
   // Category Header with Bronze Icon
   categoryHeader: {
     flexDirection: 'row',
