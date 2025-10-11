@@ -1123,10 +1123,10 @@ const styles = StyleSheet.create({
   },
   
   statusDropdownText: {
-    fontSize: 13, // Reduced from 15
+    fontSize: 15, // Increased back from 13
     fontWeight: '500',
     color: 'rgba(248,248,248,0.9)',
-    letterSpacing: 0.2, // Reduced from 0.3
+    letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'SF Pro Rounded',
       android: 'Neue Montreal',
