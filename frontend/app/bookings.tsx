@@ -418,14 +418,21 @@ export default function TripCanvas() {
             <Text style={styles.categoryTitle}>Experiences</Text>
           </View>
           <View style={styles.categoryDivider} />
-          <View style={styles.experiencesContainer}>
-            {activeDay.experiences.map((exp) => (
-              <View key={exp.id} style={styles.experienceItem}>
-                <Text style={styles.experienceItemTitle}>{exp.title}</Text>
-                <Text style={styles.experienceItemDetails}>{exp.details}</Text>
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            style={styles.horizontalScroll}
+          >
+            {activeDay.experiences.map((exp, index) => (
+              <View 
+                key={exp.id} 
+                style={[styles.experienceCard, index === activeDay.experiences.length - 1 && {marginRight: 0}]}
+              >
+                <Text style={styles.experienceCardTitle}>{exp.title}</Text>
+                <Text style={styles.experienceCardDetails}>{exp.details}</Text>
               </View>
             ))}
-          </View>
+          </ScrollView>
         </View>
       </View>
     );
