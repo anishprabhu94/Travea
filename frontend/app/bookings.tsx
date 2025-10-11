@@ -889,7 +889,7 @@ const styles = StyleSheet.create({
   cityDescription: {
     fontSize: 13,
     fontStyle: 'italic',
-    color: 'rgba(181,155,115,0.65)',
+    color: 'rgba(181,155,115,0.9)',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
