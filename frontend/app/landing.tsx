@@ -599,9 +599,13 @@ export default function Landing() {
               <Text style={styles.dockLabelInactive}>My Trips</Text>
             </TouchableOpacity>
             
-            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
-              <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockLabelInactive}>Concierge</Text>
+            <TouchableOpacity 
+              style={styles.dockItem} 
+              activeOpacity={0.8}
+              onPress={() => router.push('/bookings')}
+            >
+              <Ionicons name="calendar-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>Bookings</Text>
             </TouchableOpacity>
           </View>
         </BlurView>
