@@ -757,9 +757,11 @@ const styles = StyleSheet.create({
   expansionThumbnail: {
     width: 60,
     height: 60,
+    borderRadius: 8,
+    overflow: 'hidden', // Critical for iOS rounded corners
   },
   expansionThumbnailStyle: {
-    borderRadius: 8,
+    // Remove borderRadius from image - let container handle it
   },
   expansionText: {
     flex: 1,
