@@ -32,11 +32,19 @@ const tripData = {
       flights: [
         {
           id: '1',
+          traveler: 'Traveler 1',
           route: 'FCO → NAP',
           airline: 'ITA AZ 1234',
           time: '09:40 – 10:45 · 1h 05m Nonstop',
           details: 'T3 Gate C12 · 1 Checked · Seat 12A Window',
-          image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
+        },
+        {
+          id: '1b',
+          traveler: 'Traveler 2',
+          route: 'FCO → NAP',
+          airline: 'ITA AZ 1234',
+          time: '09:40 – 10:45 · 1h 05m Nonstop',
+          details: 'T3 Gate C12 · 1 Checked · Seat 12B Window',
         }
       ],
       stays: [
