@@ -978,8 +978,6 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-
 })
 
 // End of Practical Beauty design
-})
