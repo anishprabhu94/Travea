@@ -461,7 +461,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(255,255,255,0.05)', // Frosted glass
+    backgroundColor: 'rgba(20,20,20,0.8)', // Solid background for iOS
+    borderRadius: 20, // Match circular button
   },
 
   // Hero Text Overlay (bottom-left aligned)
