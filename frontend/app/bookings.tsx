@@ -239,7 +239,7 @@ export default function TripCanvas() {
   
   const statusOptions = ['Planning', 'Upcoming', 'Ongoing', 'Completed'];
 
-  // Hero Panel - 340px with darkened background
+  // Hero Panel - 340px with clean background
   const renderHeroPanel = () => (
     <View style={styles.heroContainer}>
       <ImageBackground
@@ -247,9 +247,6 @@ export default function TripCanvas() {
         style={styles.heroBackground}
         imageStyle={styles.heroBackgroundImage}
       >
-        {/* Dark overlay to tone down brightness */}
-        <View style={styles.heroDarkOverlay} />
-        
         <LinearGradient
           colors={['rgba(0,0,0,0.5)', 'rgba(0,0,0,0.7)']}
           style={styles.heroGradient}
@@ -257,7 +254,12 @@ export default function TripCanvas() {
         
         {/* Frosted pane container for hero content */}
         <View style={styles.heroFrostedPane}>
-          <Text style={styles.heroTitle}>{tripData.tripName}</Text>
+          <View style={styles.heroTitleContainer}>
+            <Text style={styles.heroTitle}>{tripData.tripName}</Text>
+            <TouchableOpacity style={styles.editIconButton} activeOpacity={0.7}>
+              <Ionicons name="create-outline" size={18} color="rgba(181,155,115,0.9)" />
+            </TouchableOpacity>
+          </View>
           <Text style={styles.heroSubtitle}>{tripData.subtitle}</Text>
           
           {/* Status Dropdown */}
