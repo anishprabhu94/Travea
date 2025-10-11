@@ -1314,6 +1314,169 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(203,184,140,0.08)',
     marginVertical: 8,
   },
+  
+  // Discovery Section Styles
+  discoveryContainer: {
+    marginBottom: 40,
+  },
+  discoveryHeader: {
+    paddingHorizontal: 20,
+    marginBottom: 16,
+  },
+  discoveryTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#F3F1E7',
+    marginBottom: 6,
+  },
+  discoveryUnderline: {
+    width: 40,
+    height: 1,
+    backgroundColor: 'rgba(203,184,140,0.3)',
+  },
+  discoveryScroll: {
+    paddingLeft: 20,
+  },
+  discoveryCard: {
+    width: 280,
+    height: 180,
+    marginRight: 16,
+    borderRadius: 22,
+    overflow: 'hidden',
+  },
+  firstDiscoveryCard: {
+    marginLeft: 0,
+  },
+  discoveryCardImage: {
+    flex: 1,
+  },
+  discoveryCardImageStyle: {
+    borderRadius: 22,
+  },
+  discoveryCardGradient: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+  },
+  discoveryCardBand: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 60,
+    backgroundColor: 'rgba(20,20,20,0.8)',
+    padding: 16,
+    justifyContent: 'space-between',
+  },
+  discoveryCardTitle: {
+    fontSize: 17,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  discoveryChipsRow: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  discoveryChip: {
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    height: 28,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderRadius: 14,
+  },
+  discoveryChipText: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: '#F3F1E7',
+  },
+  
+  // Highlights Pane
+  highlightsPane: {
+    width: '90%',
+    alignSelf: 'center',
+    backgroundColor: 'rgba(20,20,20,0.8)',
+    borderRadius: 24,
+    marginTop: 20,
+    marginBottom: 28,
+  },
+  highlightsHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingTop: 16,
+  },
+  highlightsLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  highlightsTitle: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#F3F1E7',
+  },
+  highlightsRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  seeAllText: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: '#9B958D',
+  },
+  highlightsDivider: {
+    height: 1,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    marginHorizontal: 16,
+    marginVertical: 8,
+  },
+  highlightRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    gap: 12,
+  },
+  highlightThumb: {
+    width: 60,
+    height: 60,
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  highlightThumbStyle: {
+    borderRadius: 10,
+  },
+  highlightContent: {
+    flex: 1,
+    gap: 2,
+  },
+  highlightName: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#F3F1E7',
+  },
+  highlightMeta: {
+    fontSize: 12,
+    fontWeight: '400',
+    color: '#9B958D',
+  },
+  highlightChips: {
+    flexDirection: 'row',
+    gap: 6,
+  },
+  highlightChip: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    height: 22,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderRadius: 11,
+  },
+  highlightChipText: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: '#F3F1E7',
+  },
   highlightRowDivider: {
     height: 1,
     backgroundColor: 'rgba(255,255,255,0.05)',
