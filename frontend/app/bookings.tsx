@@ -1039,9 +1039,16 @@ const styles = StyleSheet.create({
     color: 'rgba(10,10,10,0.9)',
   },
 
-  // Day Tabs - Expanded & Centered
+  // Day Tabs Container & Scrollable Tabs
   dayTabsContainer: {
-    width: '100%',
+    marginTop: 16,
+  },
+  dayTabsScroll: {
+    flexGrow: 0,
+  },
+  dayTabsContent: {
+    paddingHorizontal: 20,
+    gap: 10,
     alignItems: 'center',
   },
   dayTabs: {
