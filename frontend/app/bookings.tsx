@@ -596,15 +596,30 @@ const styles = StyleSheet.create({
     bottom: 0,
     height: '70%',
   },
-  heroFrostedContent: {
+  heroFrostedPane: {
     position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
+    bottom: 24,
+    left: '5%',
+    right: '5%',
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 24,
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.15)',
+    padding: 24,
     alignItems: 'center',
-    paddingHorizontal: 24,
-    paddingBottom: 32,
-    paddingTop: 24,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.3), inset 1px 1px 0 rgba(255,255,255,0.05)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+        elevation: 8,
+      },
+    }),
   },
   heroTitle: {
     fontSize: 28,
