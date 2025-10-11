@@ -220,33 +220,31 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   
-  // Pure iOS Container
-  mainPaneContainer: {
+  // Main Pane - Restored Design
+  mainPane: {
     width: '90%',
-    maxWidth: 400,
-    height: 500,
+    maxWidth: 420,
+    alignSelf: 'center',
     borderRadius: 28,
     overflow: 'hidden',
-    alignSelf: 'center',
+    minHeight: 600,
   },
   
-  // iOS Background Image
-  backgroundImage: {
+  // Background Image Style
+  mainPaneImageStyle: {
+    borderRadius: 28,
+  },
+  
+  // Overlay for proper contrast
+  paneOverlay: {
     flex: 1,
-    width: '100%',
-    height: '100%',
+    backgroundColor: 'rgba(0,0,0,0.4)',
   },
   
-  // Dark Overlay for iOS
-  darkOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.6)',
-  },
-  
-  // Content Container
-  formContent: {
+  // Inner container
+  paneInner: {
     flex: 1,
-    padding: 36,
+    padding: 32,
     justifyContent: 'center',
   },
   
