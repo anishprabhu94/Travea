@@ -496,14 +496,9 @@ export default function TripCanvas() {
     return (
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
-          <View style={styles.frostedPanelHeader}>
-            <View style={styles.categoryHeader}>
-              <Ionicons name="car" size={18} color="#B59B73" style={{marginRight: 8}} />
-              <Text style={styles.categoryTitle}>Transport</Text>
-            </View>
-            <View style={styles.topRightDateBadge}>
-              <Text style={styles.topRightDateText}>{displayDate}</Text>
-            </View>
+          <View style={styles.categoryHeader}>
+            <Ionicons name="car" size={18} color="#B59B73" style={{marginRight: 8}} />
+            <Text style={styles.categoryTitle}>Transport</Text>
           </View>
           <View style={styles.categoryDivider} />
           <ScrollView 
@@ -522,6 +517,12 @@ export default function TripCanvas() {
                   style={styles.transportImageCardBg}
                   imageStyle={styles.transportImageCardBgStyle}
                 >
+                  <View style={styles.cardDateBadgeOnImage}>
+                    <Text style={styles.cardDateText}>{item.date.toUpperCase()}</Text>
+                  </View>
+                  <View style={styles.cardArrowIconTopRightOnImage}>
+                    <Ionicons name="arrow-forward" size={14} color="rgba(181,155,115,0.95)" />
+                  </View>
                   <LinearGradient
                     colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
                     style={styles.transportImageCardGradient}
@@ -531,9 +532,6 @@ export default function TripCanvas() {
                     <Text style={styles.transportCardRoute}>{item.route}</Text>
                     <Text style={styles.transportCardTime}>Leave: {item.time}</Text>
                     <Text style={styles.transportCardDuration}>{item.duration}</Text>
-                    <View style={styles.cardArrowIcon}>
-                      <Ionicons name="chevron-forward" size={16} color="rgba(181,155,115,0.9)" />
-                    </View>
                   </View>
                 </ImageBackground>
               </TouchableOpacity>
