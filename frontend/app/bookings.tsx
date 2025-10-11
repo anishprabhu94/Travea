@@ -405,7 +405,7 @@ export default function TripCanvas() {
                   </Text>
                 </TouchableOpacity>
               ))}
-            </View>
+            </ScrollView>
           </View>
         </View>
       </ImageBackground>
