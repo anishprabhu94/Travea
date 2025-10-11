@@ -336,8 +336,8 @@ export default function DestinationInfo() {
         {/* Essence Glass Poetry */}
         <EssenceModule />
 
-        {/* Discovery Memory Fragments */}
-        <DiscoveryCarousel />
+        {/* Discovery Section - Redesigned */}
+        <DiscoverySection />
 
         {/* Footer CTA */}
         <View style={styles.footerContainer}>
