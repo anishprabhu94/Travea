@@ -564,10 +564,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(203,184,140,0.3)',
   },
 
-  // Hero Text Overlay (bottom-left aligned)
+  // Hero Text Overlay (positioned higher to avoid pane overlap)
   heroTextOverlay: {
     position: 'absolute',
-    bottom: 24,
+    bottom: 80, // Moved up from 24 to 80 to avoid overlap with essence pane
     left: 24,
     right: 24,
   },
