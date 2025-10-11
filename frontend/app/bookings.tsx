@@ -615,13 +615,13 @@ export default function TripCanvas() {
     return (
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
-          <View style={styles.categoryHeaderRow}>
+          <View style={styles.frostedPanelHeader}>
             <View style={styles.categoryHeader}>
               <Ionicons name="restaurant" size={18} color="#B59B73" style={{marginRight: 8}} />
               <Text style={styles.categoryTitle}>Restaurants</Text>
             </View>
-            <View style={styles.inlineDateBadge}>
-              <Text style={styles.inlineDateText}>{displayDate}</Text>
+            <View style={styles.topRightDateBadge}>
+              <Text style={styles.topRightDateText}>{displayDate}</Text>
             </View>
           </View>
           <View style={styles.categoryDivider} />
@@ -631,9 +631,10 @@ export default function TripCanvas() {
             style={styles.horizontalScroll}
           >
             {activeDay.restaurants.map((rest, index) => (
-              <View 
+              <TouchableOpacity 
                 key={rest.id} 
                 style={[styles.restaurantImageCard, index === activeDay.restaurants.length - 1 && {marginRight: 0}]}
+                activeOpacity={0.8}
               >
                 <ImageBackground
                   source={{ uri: rest.image }}
@@ -647,9 +648,12 @@ export default function TripCanvas() {
                   <View style={styles.restaurantImageCardFrosted}>
                     <Text style={styles.restaurantCardTitle}>{rest.name}</Text>
                     <Text style={styles.restaurantCardDetails}>{rest.time} · {rest.details}</Text>
+                    <View style={styles.cardArrowIcon}>
+                      <Ionicons name="chevron-forward" size={16} color="rgba(181,155,115,0.9)" />
+                    </View>
                   </View>
                 </ImageBackground>
-              </View>
+              </TouchableOpacity>
             ))}
           </ScrollView>
         </View>
