@@ -33,6 +33,7 @@ const tripData = {
         {
           id: '1',
           traveler: 'Traveler 1',
+          date: 'Jun 8',
           route: 'FCO → NAP',
           airline: 'ITA AZ 1234',
           time: '09:40 – 10:45 · 1h 05m Nonstop',
@@ -41,6 +42,7 @@ const tripData = {
         {
           id: '1b',
           traveler: 'Traveler 2',
+          date: 'Jun 8',
           route: 'FCO → NAP',
           airline: 'ITA AZ 1234',
           time: '09:40 – 10:45 · 1h 05m Nonstop',
