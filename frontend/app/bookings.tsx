@@ -1163,23 +1163,27 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 
-  // Card Date Badge (Elegant)
-  cardDateBadge: {
-    alignSelf: 'flex-start',
-    paddingVertical: 6,
-    paddingHorizontal: 14,
-    borderRadius: 16,
-    backgroundColor: 'rgba(181,155,115,0.18)',
-    borderWidth: 1,
-    borderColor: 'rgba(181,155,115,0.35)',
-    marginBottom: 14,
+  // Inline Date Badge (Smaller, Next to Title)
+  categoryHeaderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 12,
   },
-  cardDateText: {
-    fontSize: 11,
+  inlineDateBadge: {
+    paddingVertical: 4,
+    paddingHorizontal: 10,
+    borderRadius: 12,
+    backgroundColor: 'rgba(181,155,115,0.15)',
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.3)',
+  },
+  inlineDateText: {
+    fontSize: 9,
     fontWeight: '700',
     color: '#B59B73',
     textTransform: 'uppercase',
-    letterSpacing: 1.5,
+    letterSpacing: 1.2,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
