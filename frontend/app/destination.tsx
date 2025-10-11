@@ -447,26 +447,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     zIndex: 10,
   },
-  circularButton: {
+  backButton: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    overflow: 'hidden', // Critical for iOS rounded corners
-  },
-  buttonBlur: {
-    flex: 1,
+    backgroundColor: 'rgba(20,20,20,0.8)',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(20,20,20,0.8)', // Solid background for iOS
-    borderRadius: 20, // Match circular button
   },
   
-  saveBlur: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(20,20,20,0.8)', // Solid background for iOS
-    borderRadius: 20, // Match circular button
+  saveButtonActive: {
+    backgroundColor: 'rgba(203,184,140,0.3)',
   },
 
   // Hero Text Overlay (bottom-left aligned)
