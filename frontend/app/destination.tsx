@@ -722,7 +722,7 @@ const styles = StyleSheet.create({
   discoveryExpansion: {
     height: 120,
     borderRadius: 28,
-    overflow: 'hidden',
+    overflow: 'hidden', // Critical for iOS rounded corners
     ...Platform.select({
       web: {
         boxShadow: '0 8px 40px rgba(0,0,0,0.35)',
@@ -741,6 +741,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.05)',
     borderWidth: 1,
     borderColor: 'rgba(203,184,140,0.25)',
+    // Remove borderRadius from BlurView - let container handle it
   },
   expansionContent: {
     flex: 1,
