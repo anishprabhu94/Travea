@@ -2040,9 +2040,9 @@ const styles = StyleSheet.create({
   },
   
   ribbonCTA: {
-    minWidth: 90, // Increased from 80 to prevent "Booked" cutoff
-    paddingHorizontal: 20, // Increased from 18
-    paddingVertical: 8, // Reduced from 9 for better proportions
+    minWidth: 95, // Increased from 90 to prevent "Explore" text wrapping on iPhone
+    paddingHorizontal: 22, // Increased from 20 for more room
+    paddingVertical: 8,
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
