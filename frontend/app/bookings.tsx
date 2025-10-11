@@ -359,16 +359,37 @@ export default function TripCanvas() {
             <Text style={styles.categoryTitle}>Flights</Text>
           </View>
           <View style={styles.categoryDivider} />
-          {activeDay.flights.map((flight) => (
-            <View key={flight.id} style={styles.flightContent}>
-              <View style={styles.flightHeader}>
-                <Text style={styles.flightRoute}>{flight.route}</Text>
-                <Text style={styles.flightAirline}>{flight.airline}</Text>
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            style={styles.horizontalScroll}
+          >
+            {activeDay.flights.map((flight, index) => (
+              <View 
+                key={flight.id} 
+                style={[styles.flightImageCard, index === activeDay.flights.length - 1 && {marginRight: 0}]}
+              >
+                <ImageBackground
+                  source={{ uri: flight.image }}
+                  style={styles.flightImageCardBg}
+                  imageStyle={styles.flightImageCardBgStyle}
+                >
+                  <LinearGradient
+                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
+                    style={styles.flightImageCardGradient}
+                  />
+                  <View style={styles.flightImageCardFrosted}>
+                    <View style={styles.flightCardHeader}>
+                      <Text style={styles.flightCardRoute}>{flight.route}</Text>
+                      <Text style={styles.flightCardAirline}>{flight.airline}</Text>
+                    </View>
+                    <Text style={styles.flightCardTime}>{flight.time}</Text>
+                    <Text style={styles.flightCardDetails}>{flight.details}</Text>
+                  </View>
+                </ImageBackground>
               </View>
-              <Text style={styles.flightTime}>{flight.time}</Text>
-              <Text style={styles.flightDetails}>{flight.details}</Text>
-            </View>
-          ))}
+            ))}
+          </ScrollView>
         </View>
       </View>
     );
