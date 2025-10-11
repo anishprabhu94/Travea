@@ -367,7 +367,7 @@ export default function DestinationInfo() {
                 </View>
               </View>
             </View>
-          </BlurView>
+          </View>
         </View>
 
         {/* 5. Local Insights */}
