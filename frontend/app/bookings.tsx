@@ -629,14 +629,14 @@ export default function TripCanvas() {
                   <View style={styles.cardDateBadgeOnImage}>
                     <Text style={styles.cardDateText}>{exp.date.toUpperCase()}</Text>
                   </View>
-                  <View style={styles.cardArrowIconTopRightOnImage}>
-                    <Ionicons name="arrow-forward" size={14} color="rgba(181,155,115,0.95)" />
-                  </View>
                   <LinearGradient
                     colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
                     style={styles.experienceImageCardGradient}
                   />
                   <View style={styles.experienceImageCardFrosted}>
+                    <View style={styles.cardArrowIconOnPane}>
+                      <Ionicons name="arrow-forward" size={12} color="rgba(181,155,115,0.95)" />
+                    </View>
                     <Text style={styles.experienceCardTitle}>{exp.title}</Text>
                     <Text style={styles.experienceCardDetails}>Start: {exp.startTime} · Duration: {exp.duration}</Text>
                     <Text style={styles.experienceCardLocation}>{exp.location}</Text>
