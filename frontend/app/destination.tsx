@@ -494,15 +494,107 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Header - Minimal floating controls
-  header: {
-    position: 'absolute',
-    top: 50,
-    left: 24,
-    right: 24,
+  // 2. Essence Capsule (90% width, overlapping hero by -40px)
+  essenceCapsule: {
+    width: '90%',
+    alignSelf: 'center',
+    height: 180,
+    borderRadius: 28,
+    marginTop: -40, // Overlap with hero
+    marginBottom: 24,
+    ...Platform.select({
+      web: {
+        boxShadow: '0 8px 40px rgba(0,0,0,0.35)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.35,
+        shadowRadius: 20,
+        elevation: 8,
+      },
+    }),
+  },
+  essenceBlur: {
+    flex: 1,
+    backgroundColor: 'rgba(255,255,255,0.05)', // Frosted overlay
+    borderWidth: 1,
+    borderColor: 'rgba(203,184,140,0.25)', // Divider gold line
+    borderRadius: 28,
+  },
+  essenceContent: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    justifyContent: 'space-around',
+  },
+
+  // Essence Row 1: Golden Tags
+  essenceTagsRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    zIndex: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 8,
+  },
+  essenceTag: {
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderRadius: 14,
+    backgroundColor: 'rgba(203,184,140,0.15)',
+  },
+  essenceTagText: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: '#CBB88C', // Gold accent
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Essence Row 2: Travel Icons
+  travelIconsRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 16,
+  },
+  travelIconContainer: {
+    alignItems: 'center',
+  },
+  travelIcon: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  travelIconLabel: {
+    fontSize: 12,
+    fontWeight: '400',
+    color: '#9B958D', // Muted gray
+    marginTop: 4,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'SF Pro Display',
+      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Essence Row 3: Poetic Line
+  poeticLine: {
+    fontSize: 13,
+    fontWeight: '300',
+    fontStyle: 'italic',
+    color: '#CBB88C', // Gold accent
+    textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'SF Pro Display',
+      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
   },
   backButton: {
     width: 40,
