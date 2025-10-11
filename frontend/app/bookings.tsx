@@ -72,13 +72,6 @@ const tripData = {
           details: '2 hrs · Ravello',
           image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
           status: 'confirmed'
-        },
-        {
-          id: '2',
-          title: 'Villa Cimbrone Gardens',
-          details: 'Views from infinity',
-          image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
-          status: 'saved'
         }
       ],
       restaurants: [
@@ -93,10 +86,10 @@ const tripData = {
       ]
     },
     {
-      id: 'day2',
-      title: 'Day 2 · Ravello',
-      subtitle: 'Walks through lemon air.',
-      city: 'Ravello',
+      id: 'ravello',
+      name: 'Ravello, Italy',
+      dates: 'Jun 10–11',
+      description: 'Where silence hums between lemon trees.',
       heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
       flights: [],
       stays: [
@@ -142,10 +135,10 @@ const tripData = {
       ]
     },
     {
-      id: 'day3',
-      title: 'Day 3 · Capri',
-      subtitle: 'Blue grotto and endless views.',
-      city: 'Capri',
+      id: 'capri',
+      name: 'Capri, Italy',
+      dates: 'Jun 12–14',
+      description: 'Where cliffs meet the breeze.',
       heroImage: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
       flights: [],
       stays: [],
@@ -161,7 +154,23 @@ const tripData = {
       ],
       restaurants: []
     }
-  ]
+  ],
+  
+  // Trip End Summary Data
+  summary: {
+    title: 'Journey Completed.',
+    subtitle: 'June 8–14, 2025 · 4 Cities · 7 Days.',
+    stats: {
+      flights: 2,
+      nights: 6,
+      transfers: 3,
+      experiences: 5,
+      restaurants: 8
+    },
+    reflection: 'From Rome\'s hum to Amalfi\'s hush, your journey was a tapestry of motion and stillness. Every moment — planned or found — now lives here.',
+    finalImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
+  }
+}
 };
 
 export default function BookingsOverview() {
