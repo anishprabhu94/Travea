@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import {
   View,
   Text,
@@ -8,6 +8,8 @@ import {
   Platform,
   Dimensions,
   StyleSheet,
+  Animated,
+  PanResponder,
 } from 'react-native'
 import { router, useLocalSearchParams } from 'expo-router'
 import { BlurView } from 'expo-blur'
@@ -16,42 +18,56 @@ import TraveaWordmark from '../components/TraveaWordmark'
 
 const { width, height } = Dimensions.get('window')
 
-// Mock destination data
+// Enhanced destination data for modular design
 const mockDestination = {
   id: 'amalfi',
-  name: 'Amalfi',
-  country: 'Italy',
-  tagline: 'Coastal Paradise',
-  distance: '6,247 miles away',
+  name: 'Amalfi Coast',
+  tagline: 'Where azure meets ancient stone',
   images: [
     'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
     'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
     'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
   ],
-  overview: 'Perched dramatically along Italy\'s legendary Amalfi Coast, this UNESCO World Heritage site captivates with its vertical Byzantine architecture, azure Mediterranean waters, and centuries-old maritime traditions.',
-  thingsToDo: [
-    'Cathedral of Sant\'Andrea with bronze doors',
-    'Villa Cimbrone gardens and Terrace of Infinity',
-    'Lemon grove tours and limoncello tastings',
-    'Boat excursions to hidden coves'
+  atmosphere: 'Suspended between sky and sea, the Amalfi Coast whispers stories of maritime empires and sun-soaked terraces. Here, time moves with the rhythm of gentle waves against ancient stone, where every sunset paints the cliffs in shades of golden honey.',
+  essentials: {
+    bestTime: 'April–June, September–October',
+    currency: 'Euro (EUR)',
+    airport: 'Naples International (NAP)',
+    timezone: 'CET (UTC+1)'
+  },
+  discovery: [
+    {
+      id: 'experiences',
+      title: 'Experiences',
+      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+      preview: 'Terrace of Infinity, Lemon grove tours, Cathedral visits'
+    },
+    {
+      id: 'dining',
+      title: 'Dining',
+      image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+      preview: 'Coastal seafood, Limoncello tastings, Michelin venues'
+    },
+    {
+      id: 'culture',
+      title: 'Culture',
+      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+      preview: 'Maritime history, Byzantine architecture, Ancient traditions'
+    },
+    {
+      id: 'nature',
+      title: 'Nature',
+      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+      preview: 'Hidden coves, Clifftop gardens, Coastal walking paths'
+    }
   ],
-  funFacts: [
-    'Founded in the 4th century as a Roman settlement',
-    'Once a powerful maritime republic rivaling Venice',
-    'Famous for producing handmade paper since 1220',
-    'Lemons here are the size of grapefruits'
-  ],
-  practicalInfo: [
-    'Best time to visit: April to June, September to October',
-    'Currency: Euro (EUR)',
-    'Language: Italian (English widely spoken)',
-    'Getting around: Walking, local buses, boat transfers'
-  ],
-  thingsToNote: [
-    'Steep streets and stairs - comfortable shoes essential',
-    'Limited parking - consider staying car-free',
-    'Book restaurants in advance during peak season',
-    'Respect local customs at religious sites'
+  insights: [
+    'Lemons here grow as large as grapefruits',
+    'Once a maritime republic rivaling Venice',
+    'UNESCO World Heritage since 1997',
+    'Paper made by hand since 1220',
+    'Vertical gardens cascade down cliffs',
+    'Ancient Roman settlement origins'
   ]
 }
 
