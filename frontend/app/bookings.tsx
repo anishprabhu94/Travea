@@ -292,9 +292,6 @@ export default function TripCanvas() {
           <View style={styles.categoryDivider} />
           {activeDay.flights.map((flight) => (
             <View key={flight.id} style={styles.flightContent}>
-              <TouchableOpacity style={styles.externalIconTopLeft}>
-                <Ionicons name="open-outline" size={14} color="#B59B73" />
-              </TouchableOpacity>
               <View style={styles.flightHeader}>
                 <Text style={styles.flightRoute}>{flight.route}</Text>
                 <Text style={styles.flightAirline}>{flight.airline}</Text>
