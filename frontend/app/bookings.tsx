@@ -55,14 +55,16 @@ const tripData = {
           title: 'Private Transfer',
           time: '10 AM',
           route: 'Piazza Duomo → Villa Cimbrone',
-          duration: '45 min · Car'
+          duration: '45 min · Car',
+          image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
         },
         {
           id: '2',
           title: 'Ferry to Capri',
           time: '2 PM',
           route: 'Amalfi Pier → Capri Port',
-          duration: '1h 15 min · Boat'
+          duration: '1h 15 min · Boat',
+          image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg'
         }
       ],
       experiences: [
