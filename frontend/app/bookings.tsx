@@ -11,65 +11,146 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
-// Sample booking data for Amalfi
-const bookingData = {
-  city: 'Amalfi',
-  flights: [
+// Multi-day trip data structure - "The Trip, Materialized"
+const tripData = {
+  tripName: 'Amalfi Coast',
+  heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+  days: [
     {
-      id: '1',
-      route: 'FCO → NAP',
-      airline: 'ITA Airways AZ 1234',
-      departure: {
-        time: '09:40',
-        location: 'Rome FCO · T3 · Gate C12'
-      },
-      arrival: {
-        time: '10:45',
-        location: 'Naples NAP · T1'
-      },
-      duration: '1h 05m · Nonstop',
-      details: '🧳 1 Checked · 💺 12A Window · 👤 A. Sharma',
-      status: 'confirmed'
-    }
-  ],
-  stays: [
+      id: 'day1',
+      title: 'Day 1 · Rome → Amalfi',
+      subtitle: 'Dawn departure to coastal dreams.',
+      city: 'Amalfi',
+      heroImage: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+      flights: [
+        {
+          id: '1',
+          route: 'FCO → NAP',
+          airline: 'ITA Airways AZ 1234',
+          departure: { time: '09:40', location: 'Rome FCO · T3 · Gate C12' },
+          arrival: { time: '10:45', location: 'Naples NAP · T1' },
+          duration: '1h 05m · Nonstop',
+          details: '🧳 1 Checked · 💺 12A Window · 👤 A. Sharma',
+          status: 'confirmed'
+        }
+      ],
+      stays: [
+        {
+          id: '1',
+          name: 'Hotel Onda Blu',
+          address: 'Via Tragara 21',
+          checkin: 'Check-in 3 PM',
+          checkout: 'Check-out 11 AM',
+          platform: 'via Booking.com',
+          image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+          status: 'confirmed'
+        }
+      ],
+      transport: [
+        {
+          id: '1',
+          title: 'Private Transfer',
+          time: '10 AM',
+          details: 'Pickup Piazza Duomo → Drop Villa Cimbrone',
+          duration: '45 min',
+          status: 'confirmed'
+        }
+      ],
+      experiences: [
+        {
+          id: '1',
+          title: 'Lemon Grove Walk',
+          details: '2 hrs · Ravello',
+          image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+          status: 'confirmed'
+        },
+        {
+          id: '2',
+          title: 'Villa Cimbrone Gardens',
+          details: 'Views from infinity',
+          image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+          status: 'saved'
+        }
+      ],
+      restaurants: [
+        {
+          id: '1',
+          name: 'Trattoria del Mare',
+          time: 'Dinner · 7:30 PM',
+          address: 'Via della Marina',
+          image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+          status: 'confirmed'
+        }
+      ]
+    },
     {
-      id: '1',
-      name: 'Hotel Onda Blu',
-      address: 'Via Tragara 21',
-      checkin: 'Check-in 3 PM',
-      checkout: 'Check-out 11 AM',
-      platform: 'via Booking.com',
-      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
-      status: 'confirmed'
-    }
-  ],
-  transport: [
+      id: 'day2',
+      title: 'Day 2 · Ravello',
+      subtitle: 'Walks through lemon air.',
+      city: 'Ravello',
+      heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+      flights: [],
+      stays: [
+        {
+          id: '2',
+          name: 'Villa San Michele',
+          address: 'Via Capodimonte 14',
+          checkin: 'Check-in 2 PM',
+          checkout: 'Check-out 12 PM',
+          platform: 'via Relais & Châteaux',
+          image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+          status: 'confirmed'
+        }
+      ],
+      transport: [
+        {
+          id: '2',
+          title: 'Ferry to Capri',
+          time: '2 PM',
+          details: 'Amalfi Port → Marina Grande',
+          duration: '50 min',
+          status: 'pending'
+        }
+      ],
+      experiences: [
+        {
+          id: '3',
+          title: 'Limoncello Tasting',
+          details: '1 hr · Local estate',
+          image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+          status: 'confirmed'
+        }
+      ],
+      restaurants: [
+        {
+          id: '2',
+          name: 'Rossellinis',
+          time: 'Dinner · 8:00 PM',
+          address: 'Palazzo Avino',
+          image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+          status: 'pending'
+        }
+      ]
+    },
     {
-      id: '1',
-      title: 'Private Transfer to Ravello',
-      details: 'Pickup Piazza Duomo · 10 AM · 45 min',
-      status: 'confirmed'
-    }
-  ],
-  experiences: [
-    {
-      id: '1',
-      title: 'Lemon Grove Walk',
-      details: '2 hrs · Ravello',
-      image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
-      status: 'confirmed'
-    }
-  ],
-  restaurants: [
-    {
-      id: '1',
-      name: 'Trattoria del Mare',
-      time: 'Dinner · 7:30 PM Reservation',
-      address: 'Via della Marina, Amalfi',
-      platform: 'OpenTable',
-      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
-      status: 'confirmed'
+      id: 'day3',
+      title: 'Day 3 · Capri',
+      subtitle: 'Blue grotto and endless views.',
+      city: 'Capri',
+      heroImage: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+      flights: [],
+      stays: [],
+      transport: [],
+      experiences: [
+        {
+          id: '4',
+          title: 'Blue Grotto Tour',
+          details: '3 hrs · Boat excursion',
+          image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+          status: 'saved'
+        }
+      ],
+      restaurants: []
     }
   ]
 };
