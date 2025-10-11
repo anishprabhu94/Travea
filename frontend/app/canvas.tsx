@@ -1923,7 +1923,7 @@ const styles = StyleSheet.create({
   },
   
   ribbonInner: {
-    backgroundColor: 'rgba(22,22,22,0.25)', // Base tint
+    backgroundColor: 'rgba(35,35,35,0.2)', // Lighter shade (increased RGB values)
     paddingVertical: 10, // Aggressively reduced from 14
     paddingHorizontal: 18, // Also reduced
     flexDirection: 'row',
@@ -1931,7 +1931,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     ...Platform.select({
       web: {
-        backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(233,226,197,0.1) 100%)', // White blur 15% + beige-gold overlay 10%
+        backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(233,226,197,0.12) 100%)', // Slightly brighter white blur + beige-gold overlay
         boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
       },
     }),
