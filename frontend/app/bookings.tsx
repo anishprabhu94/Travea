@@ -393,9 +393,14 @@ export default function TripCanvas() {
     return (
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
-          <View style={styles.categoryHeader}>
-            <Ionicons name="airplane" size={18} color="#B59B73" style={{marginRight: 8}} />
-            <Text style={styles.categoryTitle}>Flights</Text>
+          <View style={styles.categoryHeaderRow}>
+            <View style={styles.categoryHeader}>
+              <Ionicons name="airplane" size={18} color="#B59B73" style={{marginRight: 8}} />
+              <Text style={styles.categoryTitle}>Flights</Text>
+            </View>
+            <View style={styles.inlineDateBadge}>
+              <Text style={styles.inlineDateText}>{activeDay.flights[0].date}</Text>
+            </View>
           </View>
           <View style={styles.categoryDivider} />
           <ScrollView 
@@ -408,9 +413,6 @@ export default function TripCanvas() {
                 key={flight.id} 
                 style={[styles.flightCard, index === activeDay.flights.length - 1 && {marginRight: 0}]}
               >
-                <View style={styles.cardDateBadge}>
-                  <Text style={styles.cardDateText}>{flight.date}</Text>
-                </View>
                 <Text style={styles.flightCardTraveler}>{flight.traveler}</Text>
                 <View style={styles.flightCardHeader}>
                   <Text style={styles.flightCardRoute}>{flight.route}</Text>
