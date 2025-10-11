@@ -232,6 +232,50 @@ const tripData = {
           image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg'
         }
       ]
+    },
+    {
+      id: 'day6-8',
+      label: 'Day 6–8',
+      city: 'Amalfi, Italy',
+      cityCode: 'AML',
+      dates: 'Jun 14–16',
+      description: 'Coastal paradise & azure waters.',
+      heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+      flights: [],
+      stays: [
+        {
+          id: '4',
+          name: 'Hotel Santa Caterina',
+          address: 'Via Mauro Comite 9',
+          dates: 'Jun 14–16',
+          checkin: 'Check-in 2 PM',
+          checkout: 'Check-out 11 AM',
+          platform: 'via Booking.com',
+          image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
+        }
+      ],
+      transport: [],
+      experiences: [
+        {
+          id: '5',
+          title: 'Coastal Boat Tour',
+          date: 'Jun 15',
+          startTime: '9:00 AM',
+          duration: '4 hrs',
+          location: 'Amalfi Coast',
+          image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
+        }
+      ],
+      restaurants: [
+        {
+          id: '5',
+          name: 'Ristorante Marina Grande',
+          date: 'Jun 14',
+          time: 'Dinner 7:30 PM',
+          details: 'Seafront Dining',
+          image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg'
+        }
+      ]
     }
   ],
   
