@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import {
   View,
   Text,
@@ -6,68 +6,73 @@ import {
   TouchableOpacity,
   ImageBackground,
   Platform,
-  Dimensions,
   StyleSheet,
-  Animated,
-  PanResponder,
 } from 'react-native'
-import { router, useLocalSearchParams } from 'expo-router'
+import { router } from 'expo-router'
 import { BlurView } from 'expo-blur'
 import { Ionicons } from '@expo/vector-icons'
-import TraveaWordmark from '../components/TraveaWordmark'
 
-const { width, height } = Dimensions.get('window')
-
-// Enhanced destination data for modular design
-const mockDestination = {
-  id: 'amalfi',
+// Static destination data for Amalfi Coast
+const destinationData = {
   name: 'Amalfi Coast',
-  tagline: 'Where azure meets ancient stone',
-  images: [
-    'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
-    'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
-    'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
+  subtitle: 'Where azure meets ancient stone',
+  heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+  essenceTags: ['Azure Air', 'Lemon Calm', 'Cliff Light'],
+  travelInfo: [
+    { icon: 'calendar-outline', label: 'Apr–Jun', sublabel: 'Best Time' },
+    { icon: 'card-outline', label: 'EUR', sublabel: 'Currency' },
+    { icon: 'airplane-outline', label: 'NAP', sublabel: 'Airport' },
+    { icon: 'time-outline', label: 'CET+1', sublabel: 'Time Zone' }
   ],
-  atmosphere: 'Suspended between sky and sea, the Amalfi Coast whispers stories of maritime empires and sun-soaked terraces. Here, time moves with the rhythm of gentle waves against ancient stone, where every sunset paints the cliffs in shades of golden honey.',
-  essentials: {
-    bestTime: 'April–June, September–October',
-    currency: 'Euro (EUR)',
-    airport: 'Naples International (NAP)',
-    timezone: 'CET (UTC+1)'
-  },
-  discovery: [
+  poeticLine: 'Where time slows, and the sea hums in gold.',
+  discoveryCards: [
     {
       id: 'experiences',
       title: 'Experiences',
-      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
-      preview: 'Terrace of Infinity, Lemon grove tours, Cathedral visits'
+      subtext: 'Lemon groves · Cathedral echoes',
+      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
     },
     {
       id: 'dining',
       title: 'Dining',
-      image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
-      preview: 'Coastal seafood, Limoncello tastings, Michelin venues'
+      subtext: 'Coastal flavors · Limoncello',
+      image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg'
     },
     {
       id: 'culture',
       title: 'Culture',
-      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
-      preview: 'Maritime history, Byzantine architecture, Ancient traditions'
+      subtext: 'Maritime heritage · Artisan craft',
+      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
     },
     {
       id: 'nature',
       title: 'Nature',
-      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
-      preview: 'Hidden coves, Clifftop gardens, Coastal walking paths'
+      subtext: 'Hidden coves · Clifftop gardens',
+      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
     }
   ],
+  detailsExpansion: [
+    { name: 'Villa Cimbrone Gardens', info: '9 AM–6 PM', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
+    { name: 'Lemon Farm Tour', info: '€35, 2 hrs', image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' }
+  ],
+  essentials: {
+    left: [
+      { icon: 'calendar-outline', label: 'Best Time', value: 'Apr–Jun, Sep–Oct' },
+      { icon: 'card-outline', label: 'Currency', value: 'Euro (EUR)' },
+      { icon: 'chatbubble-outline', label: 'Language', value: 'Italian (English common)' },
+      { icon: 'shirt-outline', label: 'Etiquette', value: 'Modest dress in churches' }
+    ],
+    right: [
+      { icon: 'airplane-outline', label: 'Airport', value: 'Naples Intl (NAP)' },
+      { icon: 'time-outline', label: 'Time Zone', value: 'CET+1' },
+      { icon: 'bus-outline', label: 'Getting Around', value: 'Buses, ferries, walk' },
+      { icon: 'restaurant-outline', label: 'Tipping', value: '10% common' }
+    ]
+  },
   insights: [
-    'Lemons here grow as large as grapefruits',
-    'Once a maritime republic rivaling Venice',
-    'UNESCO World Heritage since 1997',
-    'Paper made by hand since 1220',
-    'Vertical gardens cascade down cliffs',
-    'Ancient Roman settlement origins'
+    { quote: 'Lemons here grow as large as grapefruits.', attribution: null },
+    { quote: 'Every evening, church bells echo over the cliffs.', attribution: null },
+    { quote: 'Paper has been made by hand here since 1220.', attribution: null }
   ]
 }
 
