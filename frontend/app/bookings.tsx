@@ -210,8 +210,12 @@ const tripData = {
 
 export default function TripCanvas() {
   const [activeDayId, setActiveDayId] = useState('day1-2');
+  const [tripStatus, setTripStatus] = useState('Planning');
+  const [showStatusDropdown, setShowStatusDropdown] = useState(false);
   
   const activeDay = tripData.days.find(d => d.id === activeDayId) || tripData.days[0];
+  
+  const statusOptions = ['Upcoming', 'Ongoing', 'Completed'];
 
   // Hero Panel - 340px with darkened background
   const renderHeroPanel = () => (
