@@ -389,14 +389,14 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Moments Gallery - Consistent Pane Styling
+  // Moments Gallery - Better Spacing
   momentsGallery: {
     paddingHorizontal: 24,
     marginTop: 80,
     marginBottom: 48,
   },
   galleryGrid: {
-    gap: 20,
+    gap: 24,
   },
 
   // Photo Cards - Image Style
