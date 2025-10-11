@@ -250,12 +250,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   
-  paneInner: {
-    padding: 36,
-    borderRadius: 28,
-    minHeight: 500,
-    // Simple iOS-optimized styling - no border or backdrop filters that can cause issues
-  },
+  // Remove paneInner - content goes directly in contentContainer
   
   // TRĀVEA logo and tagline at top
   logoSection: {
