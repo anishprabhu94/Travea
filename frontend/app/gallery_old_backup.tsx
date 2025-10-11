@@ -11,11 +11,12 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
-// "Travel ends, but beauty remains" - Refined Gallery
+// Trip Gallery Data - "Travel ends, but beauty remains"
 const galleryData = {
   cover: {
     title: 'Summer in Italy',
     subtitle: 'June 8–14, 2025 · 4 Cities · 7 Days',
+    description: 'A journal of motion, stillness, and memory.',
     heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
     quote: 'To travel is to return with new eyes.'
   },
@@ -54,45 +55,44 @@ const galleryData = {
     }
   ],
   highlights: {
-    title: 'Journey Completed.',
-    subtitle: 'June 8–14, 2025 · 4 Cities · 7 Days.',
-    stats: [
-      { icon: '🛫', label: 'Flights', count: 2 },
-      { icon: '🏨', label: 'Nights', count: 6 },
-      { icon: '🚗', label: 'Transfers', count: 3 },
-      { icon: '🎟', label: 'Experiences', count: 5 },
-      { icon: '🍽', label: 'Restaurants', count: 8 }
+    title: 'Highlights from Your Journey',
+    subtitle: 'Collected from your moments.',
+    metrics: [
+      { icon: '🛫', label: '2 Flights' },
+      { icon: '🏨', label: '6 Nights Stayed' },
+      { icon: '🚗', label: '3 Transfers' },
+      { icon: '🎟', label: '5 Experiences' },
+      { icon: '🍽', label: '8 Restaurants' },
+      { icon: '📍', label: '4 Cities Visited' }
     ],
-    subline: 'All bookings confirmed · All memories saved',
     summary: 'In seven days, you covered 412 kilometers across Italy, tasted 8 local dishes, and collected 27 photos and 5 keepsakes.'
   },
   reflection: {
-    text: 'From Rome\'s hum to Amalfi\'s hush, your journey was a tapestry of motion and stillness. Every moment — planned or found — now lives here.'
+    quote: 'The best trips never end — they echo.',
+    memory: 'Favorite memory: ferry to Capri at sunrise.'
   }
 };
 
 export default function TripGallery() {
   const renderCoverSpread = () => (
     <View style={styles.coverSpread}>
-      {/* Cinematic Hero with Better Hierarchy */}
+      {/* Full-Width Cinematic Hero */}
       <View style={styles.coverHeroContainer}>
         <ImageBackground
           source={{ uri: galleryData.cover.heroImage }}
           style={styles.coverHero}
           imageStyle={styles.coverHeroImage}
         >
-          {/* Strong blur overlay for contrast */}
-          <View style={styles.coverBlurOverlay} />
           <View style={styles.coverHeroOverlay} />
-          
           <View style={styles.coverHeroContent}>
             <Text style={styles.coverTitle}>{galleryData.cover.title}</Text>
             <Text style={styles.coverSubtitle}>{galleryData.cover.subtitle}</Text>
+            <Text style={styles.coverDescription}>{galleryData.cover.description}</Text>
           </View>
         </ImageBackground>
       </View>
 
-      {/* Quote Pane Over Hero Bottom */}
+      {/* Frosted Quote Panel */}
       <View style={styles.quotePanel}>
         <Text style={styles.quoteText}>"{galleryData.cover.quote}"</Text>
       </View>
@@ -103,7 +103,7 @@ export default function TripGallery() {
     switch (moment.type) {
       case 'photo':
         return (
-          <View key={moment.id} style={styles.photoCard}>
+          <View key={moment.id} style={[styles.momentCard, styles.photoCard]}>
             <ImageBackground
               source={{ uri: moment.image }}
               style={styles.photoCardImage}
@@ -115,7 +115,7 @@ export default function TripGallery() {
 
       case 'quote':
         return (
-          <View key={moment.id} style={styles.quoteCard}>
+          <View key={moment.id} style={[styles.momentCard, styles.quoteCard]}>
             <Text style={styles.momentQuoteText}>"{moment.text}"</Text>
             <View style={styles.quoteAccentLine} />
           </View>
@@ -123,7 +123,7 @@ export default function TripGallery() {
 
       case 'booking':
         return (
-          <View key={moment.id} style={styles.bookingCard}>
+          <View key={moment.id} style={[styles.momentCard, styles.bookingCard]}>
             <ImageBackground
               source={{ uri: moment.image }}
               style={styles.bookingCardImage}
@@ -135,14 +135,14 @@ export default function TripGallery() {
               <Text style={styles.bookingCardPlatform}>{moment.platform}</Text>
             </View>
             <TouchableOpacity style={styles.bookingCardButton}>
-              <Ionicons name="open-outline" size={14} color="#B59B73" />
+              <Ionicons name="open-outline" size={14} color="#CBB88C" />
             </TouchableOpacity>
           </View>
         );
 
       case 'day':
         return (
-          <View key={moment.id} style={styles.dayCard}>
+          <View key={moment.id} style={[styles.momentCard, styles.dayCard]}>
             <ImageBackground
               source={{ uri: moment.image }}
               style={styles.dayCardImage}
@@ -172,49 +172,48 @@ export default function TripGallery() {
 
   const renderHighlightsRecap = () => (
     <View style={styles.highlightsSection}>
-      {/* Top Image with Blurred Overlay */}
-      <View style={styles.highlightsHeroContainer}>
-        <ImageBackground
-          source={{ uri: galleryData.cover.heroImage }}
-          style={styles.highlightsHeroPane}
-          imageStyle={styles.highlightsHeroPaneImage}
-        >
-          <View style={styles.highlightsHeroOverlay} />
-          <View style={styles.highlightsHeroContent}>
-            <Text style={styles.highlightsTitle}>{galleryData.highlights.title}</Text>
-            <Text style={styles.highlightsSubtitle}>{galleryData.highlights.subtitle}</Text>
+      <View style={styles.highlightsHeader}>
+        <Text style={styles.highlightsTitle}>{galleryData.highlights.title}</Text>
+        <Text style={styles.highlightsSubtitle}>{galleryData.highlights.subtitle}</Text>
+      </View>
+
+      <View style={styles.metricsContainer}>
+        {galleryData.highlights.metrics.map((metric, index) => (
+          <View key={index} style={styles.metricCard}>
+            <Text style={styles.metricIcon}>{metric.icon}</Text>
+            <Text style={styles.metricLabel}>{metric.label}</Text>
           </View>
-        </ImageBackground>
+        ))}
       </View>
 
-      {/* Frosted Summary Card */}
-      <View style={styles.recapCard}>
-        <View style={styles.recapGrid}>
-          {galleryData.highlights.stats.map((stat, index) => (
-            <View key={index} style={styles.recapRow}>
-              <Text style={styles.recapIcon}>{stat.icon}</Text>
-              <Text style={styles.recapLabel}>{stat.label} {stat.count}</Text>
-            </View>
-          ))}
-        </View>
-        <Text style={styles.recapSubline}>{galleryData.highlights.subline}</Text>
-      </View>
-
-      {/* Reflection Block */}
-      <View style={styles.reflectionBlock}>
-        <Text style={styles.reflectionBlockText}>{galleryData.reflection.text}</Text>
+      <View style={styles.memorySummaryPanel}>
+        <Text style={styles.memorySummaryText}>{galleryData.highlights.summary}</Text>
       </View>
     </View>
   );
 
-  const renderShareSection = () => (
-    <View style={styles.shareSection}>
-      {/* Centered Share Button */}
-      <TouchableOpacity style={styles.shareButton}>
-        <Text style={styles.shareButtonText}>Share Journal</Text>
-      </TouchableOpacity>
+  const renderReflectionShare = () => (
+    <View style={styles.reflectionSection}>
+      {/* Reflection Card */}
+      <View style={styles.reflectionCard}>
+        <Text style={styles.reflectionQuote}>"{galleryData.reflection.quote}"</Text>
+        <View style={styles.reflectionDivider} />
+        <Text style={styles.reflectionMemory}>{galleryData.reflection.memory}</Text>
+      </View>
 
-      {/* Footer Signature */}
+      {/* Share Capsule */}
+      <View style={styles.shareButtons}>
+        <TouchableOpacity style={styles.shareButtonFilled}>
+          <Text style={styles.shareButtonFilledText}>Share Gallery</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.shareButtonOutline}>
+          <Text style={styles.shareButtonOutlineText}>Export Journal</Text>
+        </TouchableOpacity>
+      </View>
+      
+      <Text style={styles.exportSubline}>Export as Trāvea Journal — PDF / Link / Story mode</Text>
+
+      {/* Signature Footer */}
       <View style={styles.signatureFooter}>
         <Text style={styles.signatureLogo}>Trāvea</Text>
         <Text style={styles.signatureTagline}>For travelers who collect moments, not miles.</Text>
@@ -227,7 +226,7 @@ export default function TripGallery() {
       {/* Back Button */}
       <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
         <View style={styles.backButtonCircle}>
-          <Ionicons name="arrow-back" size={18} color="#B59B73" />
+          <Ionicons name="arrow-back" size={18} color="#CBB88C" />
         </View>
       </TouchableOpacity>
 
@@ -239,7 +238,7 @@ export default function TripGallery() {
         {renderCoverSpread()}
         {renderMomentsGallery()}
         {renderHighlightsRecap()}
-        {renderShareSection()}
+        {renderReflectionShare()}
       </ScrollView>
     </View>
   );
@@ -248,7 +247,7 @@ export default function TripGallery() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0A0A0A',
+    backgroundColor: '#0A0A0A', // Onyx black with subtle gold vignette
   },
   backButton: {
     position: 'absolute',
@@ -278,12 +277,12 @@ const styles = StyleSheet.create({
     paddingBottom: 80,
   },
 
-  // Cover Spread - Better Hierarchy
+  // Section 1 - Cover Spread
   coverSpread: {
     marginBottom: 48,
   },
   coverHeroContainer: {
-    height: 340,
+    height: 340, // 340px as specified
     position: 'relative',
   },
   coverHero: {
@@ -292,27 +291,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   coverHeroImage: {
-    // No border radius for full bleed
-  },
-  coverBlurOverlay: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: '60%',
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(25px)',
-      },
-    }),
+    // No additional styling needed
   },
   coverHeroOverlay: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    height: '40%',
+    height: '40%', // Bottom 40% fade
     backgroundColor: 'rgba(0,0,0,0.55)',
   },
   coverHeroContent: {
@@ -324,7 +310,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   coverTitle: {
-    fontSize: 28,
+    fontSize: 28, // Playfair Bold 28pt
     fontWeight: '700',
     color: 'rgba(255,255,255,0.95)',
     textAlign: 'center',
@@ -337,9 +323,23 @@ const styles = StyleSheet.create({
     }),
   },
   coverSubtitle: {
-    fontSize: 13,
+    fontSize: 14, // Inter Regular 14pt
     fontWeight: '400',
-    color: 'rgba(181,155,115,0.7)',
+    color: 'rgba(203,184,140,0.7)', // Gold 70%
+    textAlign: 'center',
+    marginBottom: 6,
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  coverDescription: {
+    fontSize: 13, // Inter Italic 13pt
+    fontWeight: '400',
+    fontStyle: 'italic',
+    color: 'rgba(203,184,140,0.65)', // Gold 65%
     textAlign: 'center',
     letterSpacing: 0.3,
     fontFamily: Platform.select({
@@ -349,11 +349,11 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Quote Panel Over Hero
+  // Frosted Quote Panel
   quotePanel: {
     position: 'absolute',
-    bottom: -60,
-    left: '7.5%',
+    bottom: -60, // Overlays bottom of hero
+    left: '7.5%', // 85% width centered
     right: '7.5%',
     height: 120,
     backgroundColor: 'rgba(255,255,255,0.08)',
@@ -376,10 +376,10 @@ const styles = StyleSheet.create({
     }),
   },
   quoteText: {
-    fontSize: 15,
+    fontSize: 15, // Playfair Italic 15pt
     fontWeight: '400',
     fontStyle: 'italic',
-    color: 'rgba(255,255,255,0.8)',
+    color: 'rgba(255,255,255,0.8)', // White 80%
     textAlign: 'center',
     lineHeight: 22,
     fontFamily: Platform.select({
@@ -389,26 +389,26 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Moments Gallery - Consistent Pane Styling
+  // Section 2 - Moments Gallery
   momentsGallery: {
     paddingHorizontal: 24,
-    marginTop: 80,
+    marginTop: 80, // Account for overlapping quote panel
     marginBottom: 48,
   },
   galleryGrid: {
-    gap: 20,
+    gap: 16, // 16px spacing between cards
   },
 
-  // Photo Cards - Frosted Pane Style
-  photoCard: {
+  // Moment Cards Base
+  momentCard: {
     backgroundColor: 'rgba(255,255,255,0.06)',
     borderRadius: 24,
     borderWidth: 0.5,
-    borderColor: 'rgba(181,155,115,0.2)',
+    borderColor: 'rgba(203,184,140,0.15)',
     overflow: 'hidden',
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(25px)',
+        backdropFilter: 'blur(30px)',
         boxShadow: '0 8px 36px rgba(0,0,0,0.25)',
       },
       default: {
@@ -420,15 +420,20 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  photoCardImage: {
+
+  // Photo Cards
+  photoCard: {
     height: 240,
+  },
+  photoCardImage: {
+    flex: 1,
   },
   photoCardImageStyle: {
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
   },
   photoCaption: {
-    fontSize: 14,
+    fontSize: 14, // Playfair 14pt
     fontWeight: '600',
     color: 'rgba(255,255,255,0.85)',
     padding: 16,
@@ -439,35 +444,18 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Quote Cards - Frosted Pane Style
+  // Quote Cards
   quoteCard: {
-    backgroundColor: 'rgba(255,255,255,0.06)',
-    borderRadius: 24,
-    borderWidth: 0.5,
-    borderColor: 'rgba(181,155,115,0.2)',
     padding: 32,
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: 160,
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(25px)',
-        boxShadow: '0 8px 36px rgba(0,0,0,0.25)',
-      },
-      default: {
-        shadowColor: '#000000',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.25,
-        shadowRadius: 18,
-        elevation: 8,
-      },
-    }),
   },
   momentQuoteText: {
-    fontSize: 15,
+    fontSize: 15, // Playfair Italic 15pt
     fontWeight: '400',
     fontStyle: 'italic',
-    color: 'rgba(255,255,255,0.8)',
+    color: 'rgba(255,255,255,0.8)', // White 80%
     textAlign: 'center',
     lineHeight: 24,
     marginBottom: 16,
@@ -480,32 +468,15 @@ const styles = StyleSheet.create({
   quoteAccentLine: {
     width: 40,
     height: 1,
-    backgroundColor: 'rgba(181,155,115,0.6)',
+    backgroundColor: 'rgba(203,184,140,0.6)', // Gold accent line
   },
 
-  // Booking Cards - Frosted Pane Style
+  // Booking Cards
   bookingCard: {
     flexDirection: 'row',
-    backgroundColor: 'rgba(255,255,255,0.06)',
-    borderRadius: 24,
-    borderWidth: 0.5,
-    borderColor: 'rgba(181,155,115,0.2)',
     padding: 16,
     alignItems: 'center',
     height: 120,
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(25px)',
-        boxShadow: '0 8px 36px rgba(0,0,0,0.25)',
-      },
-      default: {
-        shadowColor: '#000000',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.25,
-        shadowRadius: 18,
-        elevation: 8,
-      },
-    }),
   },
   bookingCardImage: {
     width: 100,
@@ -534,7 +505,7 @@ const styles = StyleSheet.create({
   bookingCardSubtitle: {
     fontSize: 13,
     fontWeight: '500',
-    color: 'rgba(181,155,115,0.8)',
+    color: 'rgba(203,184,140,0.8)',
     marginBottom: 6,
     fontFamily: Platform.select({
       ios: 'Inter',
@@ -556,34 +527,16 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: 'rgba(181,155,115,0.15)',
+    backgroundColor: 'rgba(203,184,140,0.15)',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: 'rgba(181,155,115,0.3)',
+    borderColor: 'rgba(203,184,140,0.3)',
   },
 
-  // Day Cards - Frosted Pane Style
+  // Day Cards
   dayCard: {
     height: 180,
-    backgroundColor: 'rgba(255,255,255,0.06)',
-    borderRadius: 24,
-    borderWidth: 0.5,
-    borderColor: 'rgba(181,155,115,0.2)',
-    overflow: 'hidden',
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(25px)',
-        boxShadow: '0 8px 36px rgba(0,0,0,0.25)',
-      },
-      default: {
-        shadowColor: '#000000',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.25,
-        shadowRadius: 18,
-        elevation: 8,
-      },
-    }),
   },
   dayCardImage: {
     flex: 1,
@@ -623,7 +576,7 @@ const styles = StyleSheet.create({
   dayCardDescription: {
     fontSize: 13,
     fontWeight: '400',
-    color: 'rgba(181,155,115,0.8)',
+    color: 'rgba(203,184,140,0.8)',
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
@@ -631,43 +584,19 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Highlights Recap - Refined
+  // Section 3 - Highlights Recap
   highlightsSection: {
     paddingHorizontal: 24,
     marginBottom: 48,
   },
-  highlightsHeroContainer: {
-    height: 240,
+  highlightsHeader: {
     marginBottom: 24,
-    borderRadius: 24,
-    overflow: 'hidden',
-  },
-  highlightsHeroPane: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  highlightsHeroPaneImage: {
-    borderRadius: 24,
-  },
-  highlightsHeroOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    borderRadius: 24,
-  },
-  highlightsHeroContent: {
-    alignItems: 'center',
   },
   highlightsTitle: {
-    fontSize: 24,
-    fontWeight: '700',
-    color: 'rgba(255,255,255,0.9)',
-    textAlign: 'center',
-    marginBottom: 8,
+    fontSize: 22, // Playfair Semibold 22pt
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.95)',
+    marginBottom: 6,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
@@ -675,10 +604,9 @@ const styles = StyleSheet.create({
     }),
   },
   highlightsSubtitle: {
-    fontSize: 14,
+    fontSize: 13, // Inter Regular 13pt
     fontWeight: '400',
-    color: 'rgba(181,155,115,0.7)',
-    textAlign: 'center',
+    color: 'rgba(203,184,140,0.7)', // Gold 70%
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
@@ -686,55 +614,37 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Frosted Recap Card
-  recapCard: {
+  // Metric Cards
+  metricsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 16,
+    marginBottom: 24,
+  },
+  metricCard: {
+    width: 110,
+    height: 110,
     backgroundColor: 'rgba(255,255,255,0.06)',
-    borderRadius: 22,
+    borderRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
     borderWidth: 0.5,
-    borderColor: 'rgba(181,155,115,0.1)',
-    padding: 24,
-    marginBottom: 32,
+    borderColor: 'rgba(203,184,140,0.15)',
     ...Platform.select({
       web: {
         backdropFilter: 'blur(25px)',
-        boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
-      },
-      default: {
-        shadowColor: '#000000',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.25,
-        shadowRadius: 12,
-        elevation: 6,
       },
     }),
   },
-  recapGrid: {
-    gap: 12,
-    marginBottom: 16,
+  metricIcon: {
+    fontSize: 24,
+    marginBottom: 8,
   },
-  recapRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-  recapIcon: {
-    fontSize: 20,
-  },
-  recapLabel: {
-    fontSize: 15,
+  metricLabel: {
+    fontSize: 13, // Inter Medium 13pt
     fontWeight: '500',
-    color: 'rgba(181,155,115,0.9)',
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    }),
-  },
-  recapSubline: {
-    fontSize: 13,
-    fontWeight: '400',
-    fontStyle: 'italic',
-    color: 'rgba(181,155,115,0.65)',
+    color: 'rgba(255,255,255,0.85)',
+    textAlign: 'center',
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
@@ -742,43 +652,136 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Reflection Block
-  reflectionBlock: {
-    marginBottom: 32,
+  // Memory Summary Panel
+  memorySummaryPanel: {
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 22,
+    padding: 20,
+    borderWidth: 0.5,
+    borderColor: 'rgba(203,184,140,0.15)',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+      },
+    }),
   },
-  reflectionBlockText: {
-    fontSize: 15,
+  memorySummaryText: {
+    fontSize: 14, // Inter Medium 14pt
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.8)', // White 80%
+    lineHeight: 20,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Section 4 - Reflection & Share
+  reflectionSection: {
+    paddingHorizontal: 24,
+    alignItems: 'center',
+  },
+  reflectionCard: {
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 24,
+    padding: 32,
+    marginBottom: 32,
+    alignItems: 'center',
+    borderWidth: 0.5,
+    borderColor: 'rgba(203,184,140,0.15)',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+      },
+    }),
+  },
+  reflectionQuote: {
+    fontSize: 16, // Playfair Italic 16pt
     fontWeight: '400',
     fontStyle: 'italic',
-    color: 'rgba(255,255,255,0.85)',
-    lineHeight: 24,
+    color: 'rgba(255,255,255,0.85)', // White 85%
     textAlign: 'center',
-    paddingHorizontal: 16,
+    marginBottom: 16,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, "Times New Roman", serif',
     }),
   },
-
-  // Share Section
-  shareSection: {
-    alignItems: 'center',
-    paddingHorizontal: 24,
+  reflectionDivider: {
+    width: 50,
+    height: 1,
+    backgroundColor: 'rgba(203,184,140,0.4)',
+    marginBottom: 16,
   },
-  shareButton: {
+  reflectionMemory: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: 'rgba(203,184,140,0.7)',
+    textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Share Buttons
+  shareButtons: {
+    flexDirection: 'row',
+    gap: 16,
+    marginBottom: 16,
+  },
+  shareButtonFilled: {
+    height: 46, // 46pt height
+    paddingHorizontal: 24,
+    borderRadius: 23, // rounded 23pt
+    backgroundColor: 'rgba(203,184,140,0.9)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 20px rgba(203,184,140,0.2)',
+      },
+    }),
+  },
+  shareButtonFilledText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: 'rgba(10,10,10,0.9)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  shareButtonOutline: {
     height: 46,
     paddingHorizontal: 24,
     borderRadius: 23,
-    backgroundColor: 'rgba(181,155,115,0.9)',
+    borderWidth: 1,
+    borderColor: 'rgba(203,184,140,0.6)',
+    backgroundColor: 'rgba(255,255,255,0.08)',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 48,
   },
-  shareButtonText: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: 'rgba(255,255,255,0.95)',
+  shareButtonOutlineText: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: 'rgba(203,184,140,0.9)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  exportSubline: {
+    fontSize: 12, // Inter 12pt
+    fontWeight: '400',
+    color: 'rgba(203,184,140,0.65)', // Gold 65%
+    textAlign: 'center',
+    marginBottom: 48,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
@@ -789,7 +792,7 @@ const styles = StyleSheet.create({
   // Signature Footer
   signatureFooter: {
     alignItems: 'center',
-    marginBottom: 80,
+    marginBottom: 80, // Large bottom padding
   },
   signatureLogo: {
     fontSize: 18,
@@ -805,7 +808,9 @@ const styles = StyleSheet.create({
   signatureTagline: {
     fontSize: 12,
     fontWeight: '400',
-    color: 'rgba(181,155,115,0.7)',
+    color: 'rgba(203,184,140,0.7)', // Gold 70%
+    textTransform: 'uppercase',
+    letterSpacing: 1,
     textAlign: 'center',
     fontFamily: Platform.select({
       ios: 'Inter',
