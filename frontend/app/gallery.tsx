@@ -481,27 +481,26 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(181,155,115,0.6)',
   },
 
-  // Booking Cards - Frosted Pane Style
+  // Booking Cards - Image Style
   bookingCard: {
     flexDirection: 'row',
-    backgroundColor: 'rgba(255,255,255,0.06)',
+    backgroundColor: 'rgba(30,30,30,0.85)',
     borderRadius: 24,
-    borderWidth: 0.5,
-    borderColor: 'rgba(181,155,115,0.2)',
-    padding: 16,
+    borderWidth: 0,
+    padding: 20,
     alignItems: 'center',
-    height: 120,
+    minHeight: 140,
+    marginBottom: 24,
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(25px)',
-        boxShadow: '0 8px 36px rgba(0,0,0,0.25)',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
       },
       default: {
         shadowColor: '#000000',
         shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.25,
-        shadowRadius: 18,
-        elevation: 8,
+        shadowOpacity: 0.4,
+        shadowRadius: 16,
+        elevation: 10,
       },
     }),
   },
