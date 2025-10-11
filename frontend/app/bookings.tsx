@@ -1027,48 +1027,70 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Transport Container & Items
-  transportContainer: {
-    gap: 16,
+  // Horizontal Scroll
+  horizontalScroll: {
+    marginHorizontal: -24,
+    paddingHorizontal: 24,
   },
-  transportItem: {
-    marginBottom: 12,
+
+  // Horizontal Card (Transport)
+  horizontalCard: {
+    width: 280,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 24,
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.15)',
+    padding: 20,
+    marginRight: 16,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.3), inset 1px 1px 0 rgba(255,255,255,0.05)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+        elevation: 8,
+      },
+    }),
   },
-  transportTitle: {
+  horizontalCardTitle: {
     fontSize: 16,
     fontWeight: '600',
     color: 'rgba(255,255,255,0.9)',
-    marginBottom: 6,
+    marginBottom: 8,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
     }),
   },
-  transportRoute: {
+  horizontalCardRoute: {
     fontSize: 14,
     fontWeight: '400',
     color: 'rgba(255,255,255,0.8)',
-    marginBottom: 4,
+    marginBottom: 6,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  transportTime: {
-    fontSize: 13,
+  horizontalCardTime: {
+    fontSize: 14,
     fontWeight: '500',
-    color: 'rgba(181,155,115,0.8)',
-    marginBottom: 4,
+    color: 'rgba(181,155,115,0.9)',
+    marginBottom: 6,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  transportDuration: {
+  horizontalCardDuration: {
     fontSize: 13,
     fontWeight: '400',
-    color: 'rgba(181,155,115,0.7)',
+    color: 'rgba(181,155,115,0.75)',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
