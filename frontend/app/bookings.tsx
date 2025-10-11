@@ -469,10 +469,22 @@ export default function TripCanvas() {
             {activeDay.restaurants.map((rest, index) => (
               <View 
                 key={rest.id} 
-                style={[styles.restaurantCard, index === activeDay.restaurants.length - 1 && {marginRight: 0}]}
+                style={[styles.restaurantImageCard, index === activeDay.restaurants.length - 1 && {marginRight: 0}]}
               >
-                <Text style={styles.restaurantCardTitle}>{rest.name}</Text>
-                <Text style={styles.restaurantCardDetails}>{rest.time} · {rest.details}</Text>
+                <ImageBackground
+                  source={{ uri: rest.image }}
+                  style={styles.restaurantImageCardBg}
+                  imageStyle={styles.restaurantImageCardBgStyle}
+                >
+                  <LinearGradient
+                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
+                    style={styles.restaurantImageCardGradient}
+                  />
+                  <View style={styles.restaurantImageCardFrosted}>
+                    <Text style={styles.restaurantCardTitle}>{rest.name}</Text>
+                    <Text style={styles.restaurantCardDetails}>{rest.time} · {rest.details}</Text>
+                  </View>
+                </ImageBackground>
               </View>
             ))}
           </ScrollView>
