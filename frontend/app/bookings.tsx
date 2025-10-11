@@ -1625,9 +1625,9 @@ const styles = StyleSheet.create({
     height: 40,
   },
 
-  // Stay Image Card - Like Experiences
+  // Stay Image Card - Same as Transport
   stayImageCard: {
-    width: 320,
+    width: 300,
     height: 200,
     borderRadius: 24,
     overflow: 'hidden',
