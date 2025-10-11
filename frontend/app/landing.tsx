@@ -367,6 +367,7 @@ export default function Landing() {
           </BlurView>
         </View>
       </ImageBackground>
+      </TouchableOpacity>
     </View>
   )
 
