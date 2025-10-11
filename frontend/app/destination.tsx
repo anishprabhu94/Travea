@@ -867,15 +867,15 @@ const styles = StyleSheet.create({
     width: 280,
     height: 140,
     borderRadius: 22,
+    overflow: 'hidden', // Critical for iOS rounded corners
     marginRight: 16,
-    overflow: 'hidden',
   },
   insightCardImage: {
     flex: 1,
     justifyContent: 'flex-end',
   },
   insightCardImageStyle: {
-    borderRadius: 22,
+    // Remove borderRadius from image - let container handle it
   },
   insightCardOverlay: {
     ...StyleSheet.absoluteFillObject,
