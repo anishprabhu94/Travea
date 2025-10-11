@@ -238,7 +238,8 @@ const styles = StyleSheet.create({
   // Overlay for proper contrast
   paneOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.4)',
+    backgroundColor: 'rgba(0,0,0,0.35)',
+    borderRadius: 28,
   },
   
   // Inner container
