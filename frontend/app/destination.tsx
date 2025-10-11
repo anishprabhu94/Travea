@@ -285,7 +285,7 @@ export default function DestinationInfo() {
               {/* Row 3: Poetic Line */}
               <Text style={styles.poeticLine}>{destinationData.poeticLine}</Text>
             </View>
-          </BlurView>
+          </View>
         </View>
 
         {/* 3. Discovery Grid */}
