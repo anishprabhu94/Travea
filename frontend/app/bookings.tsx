@@ -338,7 +338,7 @@ export default function TripCanvas() {
     );
   };
 
-  // Stays Section
+  // Stays Section - Image-Based Cards
   const renderStays = () => {
     if (activeDay.stays.length === 0) return null;
     
@@ -350,22 +350,35 @@ export default function TripCanvas() {
             <Text style={styles.categoryTitle}>Stays</Text>
           </View>
           <View style={styles.categoryDivider} />
-          {activeDay.stays.map((stay) => (
-            <View key={stay.id} style={styles.stayContent}>
-              <ImageBackground
-                source={{ uri: stay.image }}
-                style={styles.stayImage}
-                imageStyle={styles.stayImageStyle}
-              />
-              <View style={styles.stayInfo}>
-                <Text style={styles.stayName}>{stay.name}</Text>
-                <Text style={styles.stayAddress}>{stay.address}</Text>
-                <Text style={styles.stayCheckin}>{stay.checkin}</Text>
-                <Text style={styles.stayCheckout}>{stay.checkout}</Text>
-                <Text style={styles.stayPlatform}>{stay.platform}</Text>
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            style={styles.horizontalScroll}
+          >
+            {activeDay.stays.map((stay, index) => (
+              <View 
+                key={stay.id} 
+                style={[styles.stayImageCard, index === activeDay.stays.length - 1 && {marginRight: 0}]}
+              >
+                <ImageBackground
+                  source={{ uri: stay.image }}
+                  style={styles.stayImageCardBg}
+                  imageStyle={styles.stayImageCardBgStyle}
+                >
+                  <LinearGradient
+                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
+                    style={styles.stayImageCardGradient}
+                  />
+                  <View style={styles.stayImageCardFrosted}>
+                    <Text style={styles.stayCardName}>{stay.name}</Text>
+                    <Text style={styles.stayCardAddress}>{stay.address}</Text>
+                    <Text style={styles.stayCardTimes}>{stay.checkin} · {stay.checkout}</Text>
+                    <Text style={styles.stayCardPlatform}>{stay.platform}</Text>
+                  </View>
+                </ImageBackground>
               </View>
-            </View>
-          ))}
+            ))}
+          </ScrollView>
         </View>
       </View>
     );
