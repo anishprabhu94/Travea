@@ -408,14 +408,11 @@ export default function DestinationInfo() {
         {/* Action Pills */}
         <ActionPills />
 
-        {/* Essence Module */}
+        {/* Essence Glass Poetry */}
         <EssenceModule />
 
-        {/* Discovery Row */}
-        <DiscoveryRow />
-
-        {/* Insights Strip */}
-        <InsightsStrip />
+        {/* Discovery Memory Fragments */}
+        <DiscoveryCarousel />
 
         {/* Footer CTA */}
         <View style={styles.footerContainer}>
