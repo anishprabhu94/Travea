@@ -1130,18 +1130,186 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(203,184,140,0.25)',
   },
 
-  // Empty State
-  emptyState: {
+  // Experience Cards (Horizontal Carousel) - 150×180 px
+  experienceCard: {
+    width: 150,
+    height: 180,
+    borderRadius: 20,
+    overflow: 'hidden',
+    marginRight: 16,
+    ...Platform.select({
+      web: {
+        boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 10,
+        elevation: 5,
+      },
+    }),
+  },
+  experienceCardImage: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  experienceCardImageStyle: {
+    borderRadius: 20,
+  },
+  experienceCardOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 80, // Gradient overlay
+    backgroundColor: 'rgba(0,0,0,0.35)',
+  },
+  experienceCardContent: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: 12,
+  },
+  experienceCardTitle: {
+    fontSize: 15, // Playfair Semibold 15pt
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.85)',
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, "Times New Roman", serif',
+    }),
+  },
+  experienceCardSubtext: {
+    fontSize: 13, // Inter 13pt gold 70%
+    fontWeight: '400',
+    color: 'rgba(203,184,140,0.7)',
+    marginBottom: 8,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  experienceCardButton: {
+    position: 'absolute',
+    bottom: 12,
+    right: 12,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: 'rgba(203,184,140,0.15)',
     alignItems: 'center',
-    paddingVertical: 32,
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(203,184,140,0.3)',
+  },
+
+  // Restaurant Cards (Horizontal Carousel)
+  restaurantCard: {
+    width: 150,
+    height: 180,
+    borderRadius: 20,
+    overflow: 'hidden',
+    marginRight: 16,
+    ...Platform.select({
+      web: {
+        boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 10,
+        elevation: 5,
+      },
+    }),
+  },
+  restaurantCardImage: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  restaurantCardImageStyle: {
+    borderRadius: 20,
+  },
+  restaurantCardOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 90,
+    backgroundColor: 'rgba(0,0,0,0.35)',
+  },
+  restaurantCardContent: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: 12,
+  },
+  restaurantCardTitle: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.85)',
+    marginBottom: 2,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, "Times New Roman", serif',
+    }),
+  },
+  restaurantCardTime: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: 'rgba(203,184,140,0.8)',
+    marginBottom: 2,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  restaurantCardAddress: {
+    fontSize: 11,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.7)',
+    marginBottom: 8,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  restaurantCardButton: {
+    position: 'absolute',
+    bottom: 12,
+    right: 12,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: 'rgba(203,184,140,0.15)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(203,184,140,0.3)',
+  },
+
+  // Empty State (Frosted placeholder 120pt height)
+  emptyState: {
+    height: 120, // 120pt height as specified
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingHorizontal: 20,
-    backgroundColor: 'rgba(255,255,255,0.05)',
-    borderRadius: 22,
+    backgroundColor: 'rgba(255,255,255,0.04)',
+    borderRadius: 24,
     marginTop: 8,
   },
   emptyStateTitle: {
-    fontSize: 14,
-    fontWeight: '400', // Inter Regular
+    fontSize: 14, // Inter Regular 14pt white 70%
+    fontWeight: '400',
     color: 'rgba(255,255,255,0.7)',
     marginTop: 12,
     marginBottom: 4,
@@ -1152,10 +1320,10 @@ const styles = StyleSheet.create({
     }),
   },
   emptyStateSubtitle: {
-    fontSize: 13,
+    fontSize: 13, // Inter Italic 13pt gold 70%
     fontWeight: '400',
     fontStyle: 'italic',
-    color: 'rgba(203,184,140,0.7)', // Gold 70%
+    color: 'rgba(203,184,140,0.7)',
     textAlign: 'center',
     fontFamily: Platform.select({
       ios: 'Inter',
