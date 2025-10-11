@@ -407,12 +407,24 @@ export default function TripCanvas() {
             {activeDay.transport.map((item, index) => (
               <View 
                 key={item.id} 
-                style={[styles.horizontalCard, index === activeDay.transport.length - 1 && {marginRight: 0}]}
+                style={[styles.transportImageCard, index === activeDay.transport.length - 1 && {marginRight: 0}]}
               >
-                <Text style={styles.horizontalCardTitle}>{item.title}</Text>
-                <Text style={styles.horizontalCardRoute}>{item.route}</Text>
-                <Text style={styles.horizontalCardTime}>Leave: {item.time}</Text>
-                <Text style={styles.horizontalCardDuration}>{item.duration}</Text>
+                <ImageBackground
+                  source={{ uri: item.image }}
+                  style={styles.transportImageCardBg}
+                  imageStyle={styles.transportImageCardBgStyle}
+                >
+                  <LinearGradient
+                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
+                    style={styles.transportImageCardGradient}
+                  />
+                  <View style={styles.transportImageCardFrosted}>
+                    <Text style={styles.transportCardTitle}>{item.title}</Text>
+                    <Text style={styles.transportCardRoute}>{item.route}</Text>
+                    <Text style={styles.transportCardTime}>Leave: {item.time}</Text>
+                    <Text style={styles.transportCardDuration}>{item.duration}</Text>
+                  </View>
+                </ImageBackground>
               </View>
             ))}
           </ScrollView>
