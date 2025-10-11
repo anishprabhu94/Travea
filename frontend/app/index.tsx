@@ -238,6 +238,21 @@ const styles = StyleSheet.create({
       },
     }),
   },
+
+  // ImageBackground styles for cross-platform compatibility
+  backgroundImage: {
+    flex: 1,
+    minHeight: 500,
+    justifyContent: 'center',
+  },
+  backgroundImageStyle: {
+    borderRadius: 28,
+    ...Platform.select({
+      web: {
+        filter: 'brightness(0.7) blur(1px)', // Subtle blur and darkening for readability
+      },
+    }),
+  },
   
   paneInner: {
     padding: 36,
