@@ -800,16 +800,73 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Discovery Row
-  discoveryContainer: {
-    marginBottom: 40,
+  // Discovery Memory Fragments - Frosted Ribbon
+  discoveryRibbon: {
+    width: '92%',
+    alignSelf: 'center',
+    marginBottom: 60,
+    borderRadius: 20,
+    overflow: 'hidden',
+    position: 'relative',
   },
-  sectionTitle: {
-    fontSize: 22,
-    fontWeight: '700',
-    color: 'rgba(255,255,255,0.9)',
-    marginBottom: 20,
-    marginHorizontal: 24,
+  ribbonGlass: {
+    backgroundColor: 'rgba(11,11,11,0.8)',
+    paddingVertical: 20,
+  },
+  ribbonEdge: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 1,
+    backgroundColor: '#CBB88C',
+    opacity: 0.4,
+  },
+  memoryScroll: {
+    paddingHorizontal: 20,
+  },
+  memoryTile: {
+    width: 160,
+    height: 200, // 4:5 ratio
+    marginRight: 16,
+    borderRadius: 12,
+    overflow: 'hidden',
+    position: 'relative',
+  },
+  firstTile: {
+    marginLeft: 0,
+  },
+  tileImage: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  tileImageStyle: {
+    borderRadius: 12,
+    ...Platform.select({
+      web: {
+        filter: 'brightness(0.75) contrast(1.15) saturate(1.1)',
+      },
+    }),
+  },
+  tileOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+  },
+  tileContent: {
+    padding: 16,
+    position: 'relative',
+    zIndex: 2,
+  },
+  tileHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 8,
+  },
+  tileCategory: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#FFFFFF',
     letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'SF Pro Display',
@@ -817,68 +874,30 @@ const styles = StyleSheet.create({
       web: 'SF Pro Display, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-  discoveryScroll: {
-    paddingLeft: 24,
-  },
-  discoveryCard: {
-    width: 160,
-    height: 200,
-    marginRight: 16,
-    borderRadius: 16,
-    overflow: 'hidden',
-  },
-  firstCard: {
-    marginLeft: 0,
-  },
-  discoveryImage: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
-  discoveryImageStyle: {
-    borderRadius: 16,
-    ...Platform.select({
-      web: {
-        filter: 'brightness(0.7) contrast(1.1)',
-      },
-    }),
-  },
-  discoveryOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    ...Platform.select({
-      web: {
-        background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%)',
-      },
-      default: {
-        backgroundColor: 'rgba(0,0,0,0.4)',
-      },
-    }),
-  },
-  discoveryContent: {
-    padding: 16,
-  },
-  discoveryTitle: {
+  tileIcon: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#FFFFFF',
-    marginBottom: 4,
+    opacity: 0.8,
+  },
+  tilePoetry: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.85)',
+    lineHeight: 18,
     letterSpacing: 0.2,
     fontFamily: Platform.select({
-      ios: 'SF Pro Rounded',
+      ios: 'Neue Montreal',
       android: 'Neue Montreal',
-      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-  discoveryPreview: {
-    fontSize: 12,
-    fontWeight: '400',
-    color: 'rgba(255,255,255,0.8)',
-    lineHeight: 16,
-    letterSpacing: 0.1,
-    fontFamily: Platform.select({
-      ios: 'SF Pro',
-      android: 'Neue Montreal',
-      web: 'SF Pro, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    }),
+  tileGlow: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 1,
+    backgroundColor: '#D6C7A1',
+    opacity: 0.3,
   },
 
   // Insights Strip
