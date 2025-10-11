@@ -268,21 +268,25 @@ export default function DestinationInfo() {
             {/* Top Controls */}
             <View style={styles.topControls}>
               <TouchableOpacity 
-                style={styles.backButton}
+                style={styles.topNavButton}
                 onPress={() => router.back()}
               >
-                <Ionicons name="arrow-back" size={18} color="#F3F1E7" />
+                <View style={styles.topNavCircle}>
+                  <Ionicons name="arrow-back" size={18} color="#CBB88C" />
+                </View>
               </TouchableOpacity>
               
               <TouchableOpacity 
-                style={[styles.backButton, isSaved && styles.saveButtonActive]}
+                style={styles.topNavButton}
                 onPress={() => setIsSaved(!isSaved)}
               >
-                <Ionicons 
-                  name={isSaved ? "bookmark" : "bookmark-outline"} 
-                  size={18} 
-                  color={isSaved ? "#CBB88C" : "#F3F1E7"} 
-                />
+                <View style={[styles.topNavCircle, isSaved && styles.topNavCircleActive]}>
+                  <Ionicons 
+                    name={isSaved ? "bookmark" : "bookmark-outline"} 
+                    size={18} 
+                    color="#CBB88C" 
+                  />
+                </View>
               </TouchableOpacity>
             </View>
 
