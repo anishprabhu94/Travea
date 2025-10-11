@@ -59,14 +59,16 @@ export default function Index() {
       <View style={styles.contentContainer}>
         
         {/* Main Pane with Correct Background */}
-        <ImageBackground
-          source={{ uri: 'https://customer-assets.emergentagent.com/job_travea-ui-canvas/artifacts/um7mpcif_sign%20in%20final.jpg' }}
-          style={styles.mainPane}
-          imageStyle={styles.mainPaneImageStyle}
-          resizeMode="cover"
-        >
-          <View style={styles.paneOverlay}>
-            <View style={styles.paneInner}>
+        <View style={styles.mainPane}>
+          <ImageBackground
+            source={{ uri: 'https://customer-assets.emergentagent.com/job_travea-ui-canvas/artifacts/um7mpcif_sign%20in%20final.jpg' }}
+            style={styles.backgroundImage}
+            imageStyle={styles.mainPaneImageStyle}
+            resizeMode="cover"
+          >
+            <View style={styles.paneOverlay} />
+          </ImageBackground>
+          <View style={styles.paneInner}>
             
             {/* TRĀVEA Logo and tagline */}
             <View style={styles.logoSection}>
