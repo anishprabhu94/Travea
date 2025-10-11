@@ -557,13 +557,13 @@ export default function TripCanvas() {
     return (
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
-          <View style={styles.categoryHeaderRow}>
+          <View style={styles.frostedPanelHeader}>
             <View style={styles.categoryHeader}>
               <Ionicons name="ticket" size={18} color="#B59B73" style={{marginRight: 8}} />
               <Text style={styles.categoryTitle}>Experiences</Text>
             </View>
-            <View style={styles.inlineDateBadge}>
-              <Text style={styles.inlineDateText}>{displayDate}</Text>
+            <View style={styles.topRightDateBadge}>
+              <Text style={styles.topRightDateText}>{displayDate}</Text>
             </View>
           </View>
           <View style={styles.categoryDivider} />
@@ -573,9 +573,10 @@ export default function TripCanvas() {
             style={styles.horizontalScroll}
           >
             {activeDay.experiences.map((exp, index) => (
-              <View 
+              <TouchableOpacity 
                 key={exp.id} 
                 style={[styles.experienceImageCard, index === activeDay.experiences.length - 1 && {marginRight: 0}]}
+                activeOpacity={0.8}
               >
                 <ImageBackground
                   source={{ uri: exp.image }}
@@ -590,9 +591,12 @@ export default function TripCanvas() {
                     <Text style={styles.experienceCardTitle}>{exp.title}</Text>
                     <Text style={styles.experienceCardDetails}>Start: {exp.startTime} · Duration: {exp.duration}</Text>
                     <Text style={styles.experienceCardLocation}>{exp.location}</Text>
+                    <View style={styles.cardArrowIcon}>
+                      <Ionicons name="chevron-forward" size={16} color="rgba(181,155,115,0.9)" />
+                    </View>
                   </View>
                 </ImageBackground>
-              </View>
+              </TouchableOpacity>
             ))}
           </ScrollView>
         </View>
