@@ -1084,11 +1084,11 @@ const styles = StyleSheet.create({
   },
   
   tripSubtext: {
-    fontSize: 15,
+    fontSize: 16, // Increased from 15
     fontWeight: '400',
-    color: 'rgba(248,248,248,0.7)', // 70% opacity
+    color: 'rgba(248,248,248,0.75)', // Increased from 70% to 75%
     letterSpacing: 0.3,
-    marginBottom: 20,
+    marginBottom: 16, // Reduced from 20 for more compact pane
     fontFamily: Platform.select({
       ios: 'SF Pro Rounded',
       android: 'Neue Montreal',
