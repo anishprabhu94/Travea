@@ -609,14 +609,9 @@ export default function TripCanvas() {
     return (
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
-          <View style={styles.frostedPanelHeader}>
-            <View style={styles.categoryHeader}>
-              <Ionicons name="restaurant" size={18} color="#B59B73" style={{marginRight: 8}} />
-              <Text style={styles.categoryTitle}>Restaurants</Text>
-            </View>
-            <View style={styles.topRightDateBadge}>
-              <Text style={styles.topRightDateText}>{displayDate}</Text>
-            </View>
+          <View style={styles.categoryHeader}>
+            <Ionicons name="restaurant" size={18} color="#B59B73" style={{marginRight: 8}} />
+            <Text style={styles.categoryTitle}>Restaurants</Text>
           </View>
           <View style={styles.categoryDivider} />
           <ScrollView 
@@ -635,6 +630,12 @@ export default function TripCanvas() {
                   style={styles.restaurantImageCardBg}
                   imageStyle={styles.restaurantImageCardBgStyle}
                 >
+                  <View style={styles.cardDateBadgeOnImage}>
+                    <Text style={styles.cardDateText}>{rest.date.toUpperCase()}</Text>
+                  </View>
+                  <View style={styles.cardArrowIconTopRightOnImage}>
+                    <Ionicons name="arrow-forward" size={14} color="rgba(181,155,115,0.95)" />
+                  </View>
                   <LinearGradient
                     colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
                     style={styles.restaurantImageCardGradient}
@@ -642,9 +643,6 @@ export default function TripCanvas() {
                   <View style={styles.restaurantImageCardFrosted}>
                     <Text style={styles.restaurantCardTitle}>{rest.name}</Text>
                     <Text style={styles.restaurantCardDetails}>{rest.time} · {rest.details}</Text>
-                    <View style={styles.cardArrowIcon}>
-                      <Ionicons name="chevron-forward" size={16} color="rgba(181,155,115,0.9)" />
-                    </View>
                   </View>
                 </ImageBackground>
               </TouchableOpacity>
