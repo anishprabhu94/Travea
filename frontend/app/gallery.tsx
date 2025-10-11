@@ -349,29 +349,29 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Quote Panel Over Hero
+  // Quote Panel Over Hero - Image Style
   quotePanel: {
     position: 'absolute',
     bottom: -60,
     left: '7.5%',
     right: '7.5%',
-    height: 120,
-    backgroundColor: 'rgba(255,255,255,0.08)',
+    minHeight: 140,
+    backgroundColor: 'rgba(30,30,30,0.85)',
     borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 24,
+    paddingHorizontal: 32,
+    paddingVertical: 28,
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(25px)',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
       },
       default: {
         shadowColor: '#000000',
         shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.3,
+        shadowOpacity: 0.4,
         shadowRadius: 16,
-        elevation: 8,
+        elevation: 10,
       },
     }),
   },
