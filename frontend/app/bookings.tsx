@@ -685,27 +685,24 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // City Strip
+  // City Strip - Centered with Dots
   cityStrip: {
-    position: 'relative',
-    width: '90%',
-    height: 40,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 24,
+    gap: 8,
   },
-  cityConnectorLine: {
-    position: 'absolute',
-    top: 13,
-    left: '15%',
-    right: '15%',
-    height: 1.5,
-    backgroundColor: 'rgba(181,155,115,0.3)',
-    zIndex: -1,
+  cityCapsuleWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
   },
-  cityCapsuleContainer: {
-    position: 'absolute',
-    top: 0,
-    transform: [{ translateX: -20 }],
-    zIndex: 1,
+  cityDot: {
+    width: 4,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: 'rgba(181,155,115,0.4)',
   },
   cityCapsule: {
     paddingVertical: 6,
