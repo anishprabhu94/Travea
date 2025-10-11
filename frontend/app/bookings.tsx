@@ -786,14 +786,29 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   heroTitle: {
-    fontSize: 28,
-    fontWeight: '700',
-    color: 'rgba(255,255,255,0.95)',
+    fontSize: 32,
+    fontWeight: '300',
+    color: 'rgba(255,255,255,0.98)',
     textAlign: 'center',
+    letterSpacing: 2,
+    lineHeight: 42,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
+    }),
+    ...Platform.select({
+      web: {
+        textShadow: '0 4px 12px rgba(0,0,0,0.6)',
+        fontVariant: 'small-caps',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.6,
+        shadowRadius: 8,
+        elevation: 6,
+      },
     }),
   },
   editIconButton: {
