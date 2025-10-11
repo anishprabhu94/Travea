@@ -450,14 +450,21 @@ export default function TripCanvas() {
             <Text style={styles.categoryTitle}>Restaurants</Text>
           </View>
           <View style={styles.categoryDivider} />
-          <View style={styles.restaurantsContainer}>
-            {activeDay.restaurants.map((rest) => (
-              <View key={rest.id} style={styles.restaurantItem}>
-                <Text style={styles.restaurantItemName}>{rest.name}</Text>
-                <Text style={styles.restaurantItemTime}>{rest.time} · {rest.details}</Text>
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            style={styles.horizontalScroll}
+          >
+            {activeDay.restaurants.map((rest, index) => (
+              <View 
+                key={rest.id} 
+                style={[styles.restaurantCard, index === activeDay.restaurants.length - 1 && {marginRight: 0}]}
+              >
+                <Text style={styles.restaurantCardTitle}>{rest.name}</Text>
+                <Text style={styles.restaurantCardDetails}>{rest.time} · {rest.details}</Text>
               </View>
             ))}
-          </View>
+          </ScrollView>
         </View>
       </View>
     );
