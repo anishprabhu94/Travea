@@ -279,7 +279,7 @@ export default function DestinationInfo() {
 
       {/* 6. Footer Action Bar */}
       <View style={styles.footerActionBar}>
-        <BlurView intensity={20} tint="dark" style={styles.footerBlur}>
+        <View style={styles.footerBlur}>
           <View style={styles.footerContent}>
             <TouchableOpacity style={styles.addToTripsButton}>
               <Text style={styles.addToTripsText}>Add to My Trips</Text>
