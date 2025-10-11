@@ -220,27 +220,34 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   
-  // iOS-optimized main pane with ImageBackground
-  mainPane: {
+  // Pure iOS Container
+  mainPaneContainer: {
     width: '90%',
     maxWidth: 400,
+    height: 500,
     borderRadius: 28,
-    overflow: 'hidden', // Critical for iOS
-    minHeight: 500,
-    // Remove any web-specific properties that might interfere with iOS
-  },
-
-  // Image style specifically for iOS compatibility
-  mainPaneImageStyle: {
-    borderRadius: 28, // Must match container
-    opacity: 0.8, // Darken image for iOS readability
+    overflow: 'hidden',
+    alignSelf: 'center',
   },
   
-  // Overlay for proper contrast on iOS
-  paneOverlay: {
+  // iOS Background Image
+  backgroundImage: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.4)', // Dark overlay for iOS text readability
-    borderRadius: 28,
+    width: '100%',
+    height: '100%',
+  },
+  
+  // Dark Overlay for iOS
+  darkOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.6)',
+  },
+  
+  // Form Content Container
+  formContentContainer: {
+    flex: 1,
+    padding: 36,
+    justifyContent: 'center',
   },
   
   paneInner: {
