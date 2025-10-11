@@ -414,7 +414,84 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingBottom: 20,
+    paddingBottom: 104, // Space for fixed footer
+  },
+
+  // 1. Hero Gallery Header (300px tall, rounded bottom corners 40px)
+  heroSection: {
+    height: 300,
+  },
+  heroImage: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  heroImageStyle: {
+    borderBottomLeftRadius: 40,
+    borderBottomRightRadius: 40,
+  },
+  heroOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.65) 100%)',
+      },
+      default: {
+        backgroundColor: 'rgba(0,0,0,0.4)',
+      },
+    }),
+  },
+
+  // Top Controls (24px from edge, 48px from top)
+  topControls: {
+    position: 'absolute',
+    top: 48,
+    left: 24,
+    right: 24,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    zIndex: 10,
+  },
+  circularButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  buttonBlur: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.05)', // Frosted glass
+  },
+
+  // Hero Text Overlay (bottom-left aligned)
+  heroTextOverlay: {
+    position: 'absolute',
+    bottom: 24,
+    left: 24,
+    right: 24,
+  },
+  heroTitle: {
+    fontSize: 32,
+    fontWeight: '600', // Neue Montreal SemiBold
+    color: '#F3F1E7', // Text white
+    marginBottom: 8,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  heroSubtitle: {
+    fontSize: 16,
+    fontWeight: '300', // SF Pro Display Light Italic
+    fontStyle: 'italic',
+    color: 'rgba(243,241,231,0.85)', // 85% opacity white
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'SF Pro Display',
+      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
   },
 
   // Header - Minimal floating controls
