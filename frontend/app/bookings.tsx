@@ -65,6 +65,7 @@ const tripData = {
         {
           id: '1',
           title: 'Private Transfer',
+          date: 'Jun 8',
           time: '10 AM',
           route: 'Piazza Duomo → Villa Cimbrone',
           duration: '45 min · Car',
@@ -73,6 +74,7 @@ const tripData = {
         {
           id: '2',
           title: 'Ferry to Capri',
+          date: 'Jun 9',
           time: '2 PM',
           route: 'Amalfi Pier → Capri Port',
           duration: '1h 15 min · Boat',
@@ -83,6 +85,7 @@ const tripData = {
         {
           id: '1',
           title: 'Lemon Grove Walk',
+          date: 'Jun 8',
           startTime: '10:00 AM',
           duration: '2 hrs',
           location: 'Ravello',
@@ -91,6 +94,7 @@ const tripData = {
         {
           id: '2',
           title: 'Cooking Class at Nonna Lucia\'s',
+          date: 'Jun 9',
           startTime: '3:00 PM',
           duration: '3 hrs',
           location: 'Amalfi',
@@ -101,6 +105,7 @@ const tripData = {
         {
           id: '1',
           name: 'Trattoria del Mare',
+          date: 'Jun 8',
           time: 'Dinner 7:30 PM',
           details: 'Sea View',
           image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
@@ -108,6 +113,7 @@ const tripData = {
         {
           id: '2',
           name: 'La Caravella Ristorante',
+          date: 'Jun 9',
           time: 'Lunch 12:00 PM',
           details: 'Michelin Star',
           image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
