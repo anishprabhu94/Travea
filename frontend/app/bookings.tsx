@@ -393,14 +393,9 @@ export default function TripCanvas() {
     return (
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
-          <View style={styles.frostedPanelHeader}>
-            <View style={styles.categoryHeader}>
-              <Ionicons name="airplane" size={18} color="#B59B73" style={{marginRight: 8}} />
-              <Text style={styles.categoryTitle}>Flights</Text>
-            </View>
-            <View style={styles.topRightDateBadge}>
-              <Text style={styles.topRightDateText}>{activeDay.flights[0].date}</Text>
-            </View>
+          <View style={styles.categoryHeader}>
+            <Ionicons name="airplane" size={18} color="#B59B73" style={{marginRight: 8}} />
+            <Text style={styles.categoryTitle}>Flights</Text>
           </View>
           <View style={styles.categoryDivider} />
           <ScrollView 
@@ -414,15 +409,20 @@ export default function TripCanvas() {
                 style={[styles.flightCard, index === activeDay.flights.length - 1 && {marginRight: 0}]}
                 activeOpacity={0.8}
               >
-                <Text style={styles.flightCardTraveler}>{flight.traveler}</Text>
+                <View style={styles.flightCardTopRow}>
+                  <Text style={styles.flightCardTraveler}>{flight.traveler}</Text>
+                  <View style={styles.cardDateBadge}>
+                    <Text style={styles.cardDateText}>{flight.date}</Text>
+                  </View>
+                </View>
                 <View style={styles.flightCardHeader}>
                   <Text style={styles.flightCardRoute}>{flight.route}</Text>
                 </View>
                 <Text style={styles.flightCardAirline}>{flight.airline}</Text>
                 <Text style={styles.flightCardTime}>{flight.time}</Text>
                 <Text style={styles.flightCardDetails}>{flight.details}</Text>
-                <View style={styles.cardArrowIcon}>
-                  <Ionicons name="chevron-forward" size={16} color="rgba(181,155,115,0.9)" />
+                <View style={styles.cardArrowIconTopRight}>
+                  <Ionicons name="arrow-forward" size={14} color="rgba(181,155,115,0.95)" style={{transform: [{rotate: '-45deg'}]}} />
                 </View>
               </TouchableOpacity>
             ))}
