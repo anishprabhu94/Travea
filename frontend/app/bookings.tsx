@@ -439,13 +439,13 @@ export default function TripCanvas() {
     return (
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
-          <View style={styles.categoryHeaderRow}>
+          <View style={styles.frostedPanelHeader}>
             <View style={styles.categoryHeader}>
               <Ionicons name="bed" size={18} color="#B59B73" style={{marginRight: 8}} />
               <Text style={styles.categoryTitle}>Stays</Text>
             </View>
-            <View style={styles.inlineDateBadge}>
-              <Text style={styles.inlineDateText}>{activeDay.stays[0].dates}</Text>
+            <View style={styles.topRightDateBadge}>
+              <Text style={styles.topRightDateText}>{activeDay.stays[0].dates}</Text>
             </View>
           </View>
           <View style={styles.categoryDivider} />
@@ -455,9 +455,10 @@ export default function TripCanvas() {
             style={styles.horizontalScroll}
           >
             {activeDay.stays.map((stay, index) => (
-              <View 
+              <TouchableOpacity 
                 key={stay.id} 
                 style={[styles.stayImageCard, index === activeDay.stays.length - 1 && {marginRight: 0}]}
+                activeOpacity={0.8}
               >
                 <ImageBackground
                   source={{ uri: stay.image }}
@@ -473,9 +474,12 @@ export default function TripCanvas() {
                     <Text style={styles.stayCardAddress}>{stay.address}</Text>
                     <Text style={styles.stayCardTimes}>{stay.checkin} · {stay.checkout}</Text>
                     <Text style={styles.stayCardPlatform}>{stay.platform}</Text>
+                    <View style={styles.cardArrowIcon}>
+                      <Ionicons name="chevron-forward" size={16} color="rgba(181,155,115,0.9)" />
+                    </View>
                   </View>
                 </ImageBackground>
-              </View>
+              </TouchableOpacity>
             ))}
           </ScrollView>
         </View>
