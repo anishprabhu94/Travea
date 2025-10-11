@@ -500,6 +500,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     height: 180,
     borderRadius: 28,
+    overflow: 'hidden', // Critical for iOS rounded corners
     marginTop: -40, // Overlap with hero
     marginBottom: 24,
     ...Platform.select({
@@ -520,7 +521,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.05)', // Frosted overlay
     borderWidth: 1,
     borderColor: 'rgba(203,184,140,0.25)', // Divider gold line
-    borderRadius: 28,
+    // Remove borderRadius from BlurView - let container handle it
   },
   essenceContent: {
     flex: 1,
