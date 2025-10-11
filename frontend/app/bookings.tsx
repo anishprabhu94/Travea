@@ -461,6 +461,9 @@ export default function TripCanvas() {
                 style={[styles.flightCard, index === activeDay.flights.length - 1 && {marginRight: 0}]}
                 activeOpacity={0.8}
               >
+                <View style={styles.cardArrowIconOnPane}>
+                  <Ionicons name="arrow-forward" size={12} color="rgba(181,155,115,0.95)" />
+                </View>
                 <View style={styles.flightCardTopRow}>
                   <Text style={styles.flightCardTraveler}>{flight.traveler}</Text>
                   <View style={styles.cardDateBadge}>
@@ -473,9 +476,6 @@ export default function TripCanvas() {
                 <Text style={styles.flightCardAirline}>{flight.airline}</Text>
                 <Text style={styles.flightCardTime}>{flight.time}</Text>
                 <Text style={styles.flightCardDetails}>{flight.details}</Text>
-                <View style={styles.cardArrowIconTopRight}>
-                  <Ionicons name="arrow-forward" size={14} color="rgba(181,155,115,0.95)" style={{transform: [{rotate: '-45deg'}]}} />
-                </View>
               </TouchableOpacity>
             ))}
           </ScrollView>
