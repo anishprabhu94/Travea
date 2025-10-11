@@ -697,32 +697,28 @@ const styles = StyleSheet.create({
       web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-  backButton: {
+  // Top Navigation - Frosted Circles (Landing Page Style)
+  topNavButton: {
+    // No additional styling needed - just for structure
+  },
+  topNavCircle: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    overflow: 'hidden',
-  },
-  backBlur: {
-    flex: 1,
+    backgroundColor: 'rgba(255,255,255,0.08)', // Frosted glass
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0.3)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.12)',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(10px)',
+      },
+    }),
   },
-  saveButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    overflow: 'hidden',
-  },
-  saveBlur: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0.3)',
-  },
-  saveButtonActive: {
-    backgroundColor: 'rgba(203,184,140,0.2)',
+  topNavCircleActive: {
+    backgroundColor: 'rgba(203,184,140,0.15)', // Bronze tint when active
+    borderColor: 'rgba(203,184,140,0.25)',
   },
 
   // 3. Discovery Grid
