@@ -389,7 +389,6 @@ export default function TripCanvas() {
     return (
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
-          <Text style={styles.categoryDate}>{activeDay.dates}</Text>
           <View style={styles.categoryHeader}>
             <Ionicons name="airplane" size={18} color="#B59B73" style={{marginRight: 8}} />
             <Text style={styles.categoryTitle}>Flights</Text>
@@ -405,6 +404,9 @@ export default function TripCanvas() {
                 key={flight.id} 
                 style={[styles.flightCard, index === activeDay.flights.length - 1 && {marginRight: 0}]}
               >
+                <View style={styles.cardDateBadge}>
+                  <Text style={styles.cardDateText}>{flight.date}</Text>
+                </View>
                 <Text style={styles.flightCardTraveler}>{flight.traveler}</Text>
                 <View style={styles.flightCardHeader}>
                   <Text style={styles.flightCardRoute}>{flight.route}</Text>
