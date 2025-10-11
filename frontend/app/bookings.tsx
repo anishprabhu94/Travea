@@ -834,19 +834,26 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
 
-  // Empty State - Bronze
+  // Empty State - Image Style
   emptyState: {
-    height: 160,
-    backgroundColor: 'rgba(255,255,255,0.04)',
+    minHeight: 180,
+    backgroundColor: 'rgba(30,30,30,0.85)',
     borderRadius: 24,
-    borderWidth: 1,
-    borderColor: 'rgba(181,155,115,0.2)',
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 24,
+    padding: 32,
+    marginBottom: 20,
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(20px)',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.4,
+        shadowRadius: 16,
+        elevation: 10,
       },
     }),
   },
