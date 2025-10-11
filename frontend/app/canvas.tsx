@@ -1019,9 +1019,9 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
 
-  // Trip Header - Reduced top space
+  // Trip Header - Match landing page exactly
   headerContainer: {
-    paddingTop: Platform.OS === 'web' ? 8 : 38, // Reduced top padding
+    paddingTop: 32, // Same as landing page
     paddingHorizontal: 24,
     marginBottom: 16,
   },
