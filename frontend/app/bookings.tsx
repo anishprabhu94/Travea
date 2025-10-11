@@ -1097,56 +1097,88 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Experiences Container & Items
-  experiencesContainer: {
-    gap: 16,
+  // Experience Card
+  experienceCard: {
+    width: 280,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 24,
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.15)',
+    padding: 20,
+    marginRight: 16,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.3), inset 1px 1px 0 rgba(255,255,255,0.05)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+        elevation: 8,
+      },
+    }),
   },
-  experienceItem: {
-    marginBottom: 12,
-  },
-  experienceItemTitle: {
+  experienceCardTitle: {
     fontSize: 16,
     fontWeight: '600',
     color: 'rgba(255,255,255,0.9)',
-    marginBottom: 6,
+    marginBottom: 8,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
     }),
   },
-  experienceItemDetails: {
+  experienceCardDetails: {
     fontSize: 15,
     fontWeight: '400',
-    color: 'rgba(181,155,115,0.85)',
+    color: 'rgba(181,155,115,0.9)',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
 
-  // Restaurants Container & Items
-  restaurantsContainer: {
-    gap: 16,
+  // Restaurant Card
+  restaurantCard: {
+    width: 280,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 24,
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.15)',
+    padding: 20,
+    marginRight: 16,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.3), inset 1px 1px 0 rgba(255,255,255,0.05)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+        elevation: 8,
+      },
+    }),
   },
-  restaurantItem: {
-    marginBottom: 12,
-  },
-  restaurantItemName: {
+  restaurantCardTitle: {
     fontSize: 16,
     fontWeight: '600',
     color: 'rgba(255,255,255,0.9)',
-    marginBottom: 6,
+    marginBottom: 8,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
     }),
   },
-  restaurantItemTime: {
+  restaurantCardDetails: {
     fontSize: 15,
     fontWeight: '400',
-    color: 'rgba(181,155,115,0.85)',
+    color: 'rgba(181,155,115,0.9)',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
