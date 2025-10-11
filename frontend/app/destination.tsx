@@ -532,7 +532,272 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Action Pills
+  // Action Pills - New design
+  actionPillsContainer: {
+    flexDirection: 'row',
+    paddingHorizontal: 24,
+    marginTop: -40, // Overlap with gallery
+    marginBottom: 40,
+    gap: 16,
+    zIndex: 50,
+  },
+  actionPill: {
+    flex: 1,
+    height: 48,
+    borderRadius: 24,
+    overflow: 'hidden',
+  },
+  primaryPill: {
+    backgroundColor: 'rgba(203,184,140,0.15)',
+  },
+  pillBlur: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0,0,0,0.4)',
+  },
+  pillText: {
+    fontSize: 15,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.8)',
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Rounded',
+      android: 'Neue Montreal',
+      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  primaryPillText: {
+    color: '#CBB88C',
+    fontWeight: '600',
+  },
+
+  // Essence Module 
+  essenceContainer: {
+    marginHorizontal: 24,
+    marginBottom: 40,
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  essenceBlur: {
+    backgroundColor: 'rgba(15,15,15,0.6)',
+  },
+  essenceInner: {
+    flexDirection: 'row',
+    padding: 24,
+  },
+  essenceLeft: {
+    flex: 0.6,
+    paddingRight: 20,
+  },
+  essenceTitle: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.9)',
+    marginBottom: 12,
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'Neue Montreal',
+      web: 'SF Pro Display, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  essenceText: {
+    fontSize: 16,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.75)',
+    lineHeight: 24,
+    letterSpacing: 0.2,
+    fontFamily: Platform.select({
+      ios: 'SF Pro',
+      android: 'Neue Montreal',
+      web: 'SF Pro, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  essenceRight: {
+    flex: 0.4,
+  },
+  essentialsTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.9)',
+    marginBottom: 16,
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Rounded',
+      android: 'Neue Montreal',
+      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  essentialsList: {
+    gap: 12,
+  },
+  essentialItem: {
+    gap: 4,
+  },
+  essentialLabel: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.6)',
+    letterSpacing: 0.2,
+    fontFamily: Platform.select({
+      ios: 'SF Pro',
+      android: 'Neue Montreal',
+      web: 'SF Pro, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  essentialValue: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.9)',
+    letterSpacing: 0.1,
+    fontFamily: Platform.select({
+      ios: 'SF Pro',
+      android: 'Neue Montreal',
+      web: 'SF Pro, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Discovery Row
+  discoveryContainer: {
+    marginBottom: 40,
+  },
+  sectionTitle: {
+    fontSize: 22,
+    fontWeight: '700',
+    color: 'rgba(255,255,255,0.9)',
+    marginBottom: 20,
+    marginHorizontal: 24,
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'Neue Montreal',
+      web: 'SF Pro Display, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  discoveryScroll: {
+    paddingLeft: 24,
+  },
+  discoveryCard: {
+    width: 160,
+    height: 200,
+    marginRight: 16,
+    borderRadius: 16,
+    overflow: 'hidden',
+  },
+  firstCard: {
+    marginLeft: 0,
+  },
+  discoveryImage: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  discoveryImageStyle: {
+    borderRadius: 16,
+    ...Platform.select({
+      web: {
+        filter: 'brightness(0.7) contrast(1.1)',
+      },
+    }),
+  },
+  discoveryOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%)',
+      },
+      default: {
+        backgroundColor: 'rgba(0,0,0,0.4)',
+      },
+    }),
+  },
+  discoveryContent: {
+    padding: 16,
+  },
+  discoveryTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    marginBottom: 4,
+    letterSpacing: 0.2,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Rounded',
+      android: 'Neue Montreal',
+      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  discoveryPreview: {
+    fontSize: 12,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.8)',
+    lineHeight: 16,
+    letterSpacing: 0.1,
+    fontFamily: Platform.select({
+      ios: 'SF Pro',
+      android: 'Neue Montreal',
+      web: 'SF Pro, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Insights Strip
+  insightsContainer: {
+    marginBottom: 40,
+  },
+  insightsScroll: {
+    paddingLeft: 24,
+  },
+  insightCapsule: {
+    paddingHorizontal: 18,
+    paddingVertical: 12,
+    borderRadius: 20,
+    marginRight: 12,
+    backgroundColor: 'rgba(15,15,15,0.6)',
+    minWidth: 140,
+  },
+  insightText: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.8)',
+    textAlign: 'center',
+    letterSpacing: 0.2,
+    fontFamily: Platform.select({
+      ios: 'SF Pro',
+      android: 'Neue Montreal',
+      web: 'SF Pro, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Footer CTA
+  footerContainer: {
+    paddingHorizontal: 24,
+    marginBottom: 40,
+  },
+  exploreButton: {
+    height: 52,
+    borderRadius: 26,
+    overflow: 'hidden',
+  },
+  exploreBlur: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(15,15,15,0.6)',
+    gap: 8,
+  },
+  exploreText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#CBB88C',
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Rounded',
+      android: 'Neue Montreal',
+      web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Action Pills - Legacy styles
   actionPillsContainer: {
     flexDirection: 'row',
     paddingHorizontal: 24,
