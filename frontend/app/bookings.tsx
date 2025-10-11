@@ -285,18 +285,22 @@ export default function TripCanvas() {
     return (
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
-          <Text style={styles.categoryTitle}>🛫 Flights</Text>
+          <View style={styles.categoryHeader}>
+            <Ionicons name="airplane" size={18} color="#B59B73" style={{marginRight: 8}} />
+            <Text style={styles.categoryTitle}>Flights</Text>
+          </View>
+          <View style={styles.categoryDivider} />
           {activeDay.flights.map((flight) => (
             <View key={flight.id} style={styles.flightContent}>
+              <TouchableOpacity style={styles.externalIconTopLeft}>
+                <Ionicons name="open-outline" size={14} color="#B59B73" />
+              </TouchableOpacity>
               <View style={styles.flightHeader}>
                 <Text style={styles.flightRoute}>{flight.route}</Text>
                 <Text style={styles.flightAirline}>{flight.airline}</Text>
               </View>
               <Text style={styles.flightTime}>{flight.time}</Text>
               <Text style={styles.flightDetails}>{flight.details}</Text>
-              <View style={styles.externalIconCircle}>
-                <Ionicons name="open-outline" size={16} color="#B59B73" />
-              </View>
             </View>
           ))}
         </View>
