@@ -1019,16 +1019,16 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
 
-  // Trip Header - Match landing page exactly
+  // Trip Header - Bring logo/profile down to match landing
   headerContainer: {
-    paddingTop: 32, // Same as landing page
+    paddingTop: 50, // Increased from 32 to bring logo/profile down (iOS: 50, landing content paddingTop)
     paddingHorizontal: 24,
     marginBottom: 16,
   },
   tripHeader: {
     borderRadius: 24,
     overflow: 'hidden',
-    marginTop: 16, // Increased space below logo/profile (was 12)
+    marginTop: 24, // Increased from 16 for more space before pane
   },
   tripHeaderBackground: {
     width: '100%',
