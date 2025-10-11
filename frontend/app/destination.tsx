@@ -382,17 +382,6 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  centerVignette: {
-    ...StyleSheet.absoluteFillObject,
-    ...Platform.select({
-      web: {
-        background: 'radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.4) 100%)',
-      },
-      default: {
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
-      },
-    }),
-  },
   scrollContainer: {
     flex: 1,
   },
@@ -400,34 +389,147 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
 
-  // Header
+  // Header - Minimal floating controls
   header: {
+    position: 'absolute',
+    top: 50,
+    left: 24,
+    right: 24,
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: 50,
-    paddingHorizontal: 24,
-    paddingBottom: 20,
+    zIndex: 100,
   },
   backButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(255,255,255,0.06)',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    overflow: 'hidden',
   },
-  logoContainer: {
+  backBlur: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0,0,0,0.3)',
   },
-  profileButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+  saveButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  saveBlur: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(255,255,255,0.06)',
+    backgroundColor: 'rgba(0,0,0,0.3)',
+  },
+
+  // Parallax Gallery
+  galleryContainer: {
+    height: height * 0.6,
+    position: 'relative',
+  },
+  imageContainer: {
+    width: width,
+    height: '100%',
+  },
+  parallaxWrapper: {
+    width: '110%', // Slightly wider for parallax effect
+    height: '100%',
+    marginLeft: '-5%',
+  },
+  heroImage: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  heroImageStyle: {
+    ...Platform.select({
+      web: {
+        filter: 'brightness(0.8) contrast(1.1) saturate(1.2)',
+      },
+    }),
+  },
+  imageOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%)',
+      },
+      default: {
+        backgroundColor: 'rgba(0,0,0,0.3)',
+      },
+    }),
+  },
+
+  // Destination Name Overlay
+  nameOverlay: {
+    position: 'absolute',
+    bottom: 80,
+    left: 24,
+    right: 24,
+  },
+  destinationName: {
+    fontSize: 42,
+    fontWeight: '700',
+    color: '#FFFFFF',
+    letterSpacing: -0.5,
+    marginBottom: 8,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'Neue Montreal',
+      web: 'SF Pro Display, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+    ...Platform.select({
+      web: {
+        textShadow: '0 2px 20px rgba(0,0,0,0.7)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.7,
+        shadowRadius: 10,
+      },
+    }),
+  },
+  destinationTagline: {
+    fontSize: 18,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.9)',
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'SF Pro',
+      android: 'Neue Montreal',
+      web: 'SF Pro, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Gallery Indicators
+  indicators: {
+    position: 'absolute',
+    bottom: 24,
+    left: 24,
+    flexDirection: 'row',
+    gap: 8,
+  },
+  indicator: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: 'rgba(255,255,255,0.4)',
+  },
+  activeIndicator: {
+    backgroundColor: '#CBB88C',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 12px rgba(203,184,140,0.6)',
+      },
+      default: {
+        shadowColor: '#CBB88C',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.6,
+        shadowRadius: 6,
+      },
+    }),
   },
 
   // Gallery Section
