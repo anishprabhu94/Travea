@@ -592,12 +592,21 @@ export default function TripCanvas() {
   const renderRestaurants = () => {
     if (activeDay.restaurants.length === 0) return null;
     
+    // Get unique dates for restaurants
+    const uniqueDates = [...new Set(activeDay.restaurants.map(rest => rest.date))];
+    const displayDate = uniqueDates.length === 1 ? uniqueDates[0] : `${uniqueDates[0]} – ${uniqueDates[uniqueDates.length - 1]}`;
+    
     return (
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
-          <View style={styles.categoryHeader}>
-            <Ionicons name="restaurant" size={18} color="#B59B73" style={{marginRight: 8}} />
-            <Text style={styles.categoryTitle}>Restaurants</Text>
+          <View style={styles.categoryHeaderRow}>
+            <View style={styles.categoryHeader}>
+              <Ionicons name="restaurant" size={18} color="#B59B73" style={{marginRight: 8}} />
+              <Text style={styles.categoryTitle}>Restaurants</Text>
+            </View>
+            <View style={styles.inlineDateBadge}>
+              <Text style={styles.inlineDateText}>{displayDate}</Text>
+            </View>
           </View>
           <View style={styles.categoryDivider} />
           <ScrollView 
@@ -620,9 +629,6 @@ export default function TripCanvas() {
                     style={styles.restaurantImageCardGradient}
                   />
                   <View style={styles.restaurantImageCardFrosted}>
-                    <View style={styles.cardDateBadge}>
-                      <Text style={styles.cardDateText}>{rest.date}</Text>
-                    </View>
                     <Text style={styles.restaurantCardTitle}>{rest.name}</Text>
                     <Text style={styles.restaurantCardDetails}>{rest.time} · {rest.details}</Text>
                   </View>
