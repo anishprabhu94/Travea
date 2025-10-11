@@ -123,7 +123,8 @@ const tripData = {
           title: 'Mountain Road Transfer',
           time: '11 AM',
           route: 'Amalfi → Ravello Hills',
-          duration: '30 min · Car'
+          duration: '30 min · Car',
+          image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
         }
       ],
       experiences: [
