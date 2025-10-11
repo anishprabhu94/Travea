@@ -560,25 +560,24 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(181,155,115,0.3)',
   },
 
-  // Day Cards - Frosted Pane Style
+  // Day Cards - Image Style
   dayCard: {
-    height: 180,
-    backgroundColor: 'rgba(255,255,255,0.06)',
+    height: 200,
+    backgroundColor: 'rgba(30,30,30,0.85)',
     borderRadius: 24,
-    borderWidth: 0.5,
-    borderColor: 'rgba(181,155,115,0.2)',
+    borderWidth: 0,
     overflow: 'hidden',
+    marginBottom: 24,
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(25px)',
-        boxShadow: '0 8px 36px rgba(0,0,0,0.25)',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
       },
       default: {
         shadowColor: '#000000',
         shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.25,
-        shadowRadius: 18,
-        elevation: 8,
+        shadowOpacity: 0.4,
+        shadowRadius: 16,
+        elevation: 10,
       },
     }),
   },
