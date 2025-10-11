@@ -227,8 +227,8 @@ export default function TripCanvas() {
           style={styles.heroGradient}
         />
         
-        {/* Frosted content container */}
-        <View style={styles.heroFrostedContent}>
+        {/* Frosted pane container for hero content */}
+        <View style={styles.heroFrostedPane}>
           <Text style={styles.heroTitle}>{tripData.tripName}</Text>
           <Text style={styles.heroSubtitle}>{tripData.subtitle}</Text>
           
@@ -239,13 +239,12 @@ export default function TripCanvas() {
           
           {/* City Strip */}
           <View style={styles.cityStrip}>
-            <View style={styles.cityConnectorLine} />
             {tripData.cities.map((city, index) => (
               <View 
                 key={city}
                 style={[
                   styles.cityCapsuleContainer,
-                  { left: `${(index / (tripData.cities.length - 1)) * 85}%` }
+                  { left: `${(index / (tripData.cities.length - 1)) * 80}%` }
                 ]}
               >
                 <View style={[
@@ -261,6 +260,7 @@ export default function TripCanvas() {
                 </View>
               </View>
             ))}
+            <View style={styles.cityConnectorLine} />
           </View>
           
           {/* Day Selector Tabs - Expanded & Centered */}
