@@ -2083,6 +2083,3 @@ const styles = StyleSheet.create({
 })
 
 // End of Practical Beauty design
-})
-
-// End of Practical Beauty design
