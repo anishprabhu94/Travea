@@ -400,42 +400,7 @@ export default function DestinationInfo() {
           </View>
         </View>
 
-        {/* 4. Essentials Panel */}
-        <View style={styles.essentialsPanel}>
-          <View style={styles.essentialsBlur}>
-            <View style={styles.essentialsContent}>
-              <View style={styles.essentialsColumns}>
-                {/* Left Column */}
-                <View style={styles.essentialsColumn}>
-                  {destinationData.essentials.left.map((item, index) => (
-                    <View key={index} style={styles.essentialItem}>
-                      <Ionicons name={item.icon as any} size={18} color="#CBB88C" />
-                      <View style={styles.essentialText}>
-                        <Text style={styles.essentialLabel}>{item.label}</Text>
-                        <Text style={styles.essentialValue}>{item.value}</Text>
-                      </View>
-                    </View>
-                  ))}
-                </View>
-
-                {/* Right Column */}
-                <View style={styles.essentialsColumn}>
-                  {destinationData.essentials.right.map((item, index) => (
-                    <View key={index} style={styles.essentialItem}>
-                      <Ionicons name={item.icon as any} size={18} color="#CBB88C" />
-                      <View style={styles.essentialText}>
-                        <Text style={styles.essentialLabel}>{item.label}</Text>
-                        <Text style={styles.essentialValue}>{item.value}</Text>
-                      </View>
-                    </View>
-                  ))}
-                </View>
-              </View>
-            </View>
-          </View>
-        </View>
-
-        {/* 5. Local Insights - Luxury Collector's Card */}
+        {/* 4. Local Insights - Luxury Collector's Card */}
         <View style={styles.localInsightsSection}>
           <View style={styles.insightsCollectorCard}>
             <View style={styles.insightsCardContent}>
