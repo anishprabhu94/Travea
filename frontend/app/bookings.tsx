@@ -354,7 +354,7 @@ export default function TripCanvas() {
             </View>
           )}
           
-          {/* City Strip - Centered Pills */}
+          {/* City Strip - Centered Pills with Dynamic Highlighting */}
           <View style={styles.cityStrip}>
             {tripData.cities.map((city, index) => (
               <View 
@@ -363,11 +363,11 @@ export default function TripCanvas() {
               >
                 <View style={[
                   styles.cityCapsule,
-                  index === tripData.activeCityIndex && styles.cityCapsuleActive
+                  city === activeCityCode && styles.cityCapsuleActive
                 ]}>
                   <Text style={[
                     styles.cityCapsuleText,
-                    index === tripData.activeCityIndex && styles.cityCapsuleTextActive
+                    city === activeCityCode && styles.cityCapsuleTextActive
                   ]}>
                     {city}
                   </Text>
