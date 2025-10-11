@@ -170,7 +170,6 @@ const tripData = {
     reflection: 'From Rome\'s hum to Amalfi\'s hush, your journey was a tapestry of motion and stillness. Every moment — planned or found — now lives here.',
     finalImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
   }
-}
 };
 
 export default function TripCanvas() {
@@ -406,42 +405,6 @@ export default function TripCanvas() {
     </View>
   );
 
-  const renderStayCard = (stay: any) => (
-    <View key={stay.id} style={styles.bookingCard}>
-      <View style={styles.stayContent}>
-        <ImageBackground
-          source={{ uri: stay.image }}
-          style={styles.stayThumbnail}
-          imageStyle={styles.stayThumbnailImage}
-        />
-        <View style={styles.stayDetails}>
-          <Text style={styles.stayTitle}>{stay.name}</Text>
-          <Text style={styles.staySubtext}>{stay.address}</Text>
-          <Text style={styles.staySubtext}>{stay.checkin} · {stay.checkout}</Text>
-          <Text style={styles.staySubtext}>{stay.platform}</Text>
-        </View>
-        <TouchableOpacity style={styles.circularButton}>
-          <Ionicons name="open-outline" size={18} color="#CBB88C" />
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-
-  const renderTransportCard = (transport: any) => (
-    <View key={transport.id} style={styles.bookingCard}>
-      <View style={styles.transportContent}>
-        <Ionicons name="car-outline" size={28} color="#CBB88C" style={styles.transportIcon} />
-        <View style={styles.transportDetails}>
-          <Text style={styles.transportTitle}>{transport.title}</Text>
-          <Text style={styles.transportSubtext}>{transport.details}</Text>
-        </View>
-        <TouchableOpacity style={styles.circularButton}>
-          <Ionicons name="open-outline" size={18} color="#CBB88C" />
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-
   // Trip End Summary - "The Journey in Retrospect"
   const renderTripSummary = () => (
     <View style={styles.tripSummaryContainer}>
@@ -490,44 +453,6 @@ export default function TripCanvas() {
       </View>
     </View>
   );
-
-  const renderSection = (section: string) => {
-    const data = selectedDay[section as keyof typeof selectedDay] as any[];
-    const isExpanded = expandedSections[section as keyof typeof expandedSections];
-    
-    if (!isExpanded) return null;
-
-    // Handle carousel sections differently
-    if (section === 'experiences') {
-      return renderExperiencesCarousel(data || []);
-    }
-    
-    if (section === 'restaurants') {
-      return renderRestaurantsCarousel(data || []);
-    }
-
-    // Handle regular card sections
-    if (!Array.isArray(data) || data.length === 0) {
-      return renderEmptyState(section);
-    }
-
-    return (
-      <View style={styles.sectionContent}>
-        {data.map((item: any) => {
-          switch (section) {
-            case 'flights':
-              return renderFlightCard(item);
-            case 'stays':
-              return renderStayCard(item);
-            case 'transport':
-              return renderTransportCard(item);
-            default:
-              return null;
-          }
-        })}
-      </View>
-    );
-  };
 
   return (
     <View style={styles.container}>
@@ -603,17 +528,18 @@ const styles = StyleSheet.create({
     paddingBottom: 100, // Account for bottom navigation
   },
 
-  // Hero Pane (Top)
+  // Hero Pane - Trip Identity + Status (280px)
   heroPaneContainer: {
-    height: 260,
-    marginHorizontal: 0,
+    height: 280,
+    marginBottom: 48,
   },
   heroPane: {
     flex: 1,
     justifyContent: 'flex-end',
   },
   heroPaneImage: {
-    // No additional styling needed
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
   },
   heroOverlay: {
     position: 'absolute',
@@ -622,6 +548,8 @@ const styles = StyleSheet.create({
     right: 0,
     height: '40%', // Bottom 40% fade
     backgroundColor: 'rgba(0,0,0,0.55)',
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
   },
   heroContent: {
     position: 'absolute',
@@ -631,12 +559,18 @@ const styles = StyleSheet.create({
     padding: 24,
     alignItems: 'center',
   },
+
+  // Title Block
+  titleBlock: {
+    alignItems: 'center',
+    marginBottom: 16,
+  },
   heroTitle: {
     fontSize: 28, // Playfair Display Bold 28pt
     fontWeight: '700',
     color: 'rgba(255,255,255,0.95)',
     textAlign: 'center',
-    marginBottom: 8,
+    marginBottom: 6,
     letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
@@ -645,12 +579,10 @@ const styles = StyleSheet.create({
     }),
   },
   heroSubtitle: {
-    fontSize: 13, // Inter Italic 13pt
-    fontWeight: '400',
-    fontStyle: 'italic',
-    color: 'rgba(203,184,140,0.7)', // Gold 70%
+    fontSize: 14, // Inter Medium 14pt
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.75)',
     textAlign: 'center',
-    marginBottom: 20,
     letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'Inter',
@@ -658,11 +590,90 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-  heroButtons: {
-    flexDirection: 'row',
-    gap: 12,
+
+  // Planning Status Dropdown
+  statusDropdown: {
+    height: 34,
+    width: 150,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderRadius: 17,
+    borderWidth: 1,
+    borderColor: 'rgba(203,184,140,0.3)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(20px)',
+      },
+    }),
   },
-  heroButtonOutline: {
+  statusText: {
+    fontSize: 13, // Inter Semibold 13pt
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.85)',
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Trip Path Strip
+  tripPathStrip: {
+    position: 'relative',
+    height: 40,
+    width: '85%',
+    marginBottom: 24,
+  },
+  tripPathLine: {
+    position: 'absolute',
+    top: 19,
+    left: 0,
+    right: 0,
+    height: 2,
+    backgroundColor: 'rgba(203,184,140,0.25)', // Gold gradient line
+    borderRadius: 1,
+  },
+  cityCapsule: {
+    position: 'absolute',
+    top: 0,
+    height: 28,
+    paddingHorizontal: 12,
+    borderRadius: 14,
+    backgroundColor: 'rgba(255,255,255,0.08)', // Frosted outline
+    borderWidth: 1,
+    borderColor: 'rgba(203,184,140,0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transform: [{ translateX: -20 }], // Center on line
+  },
+  cityCapsuleActive: {
+    backgroundColor: 'rgba(203,184,140,0.9)', // Filled gold
+    borderColor: 'rgba(203,184,140,0.9)',
+  },
+  cityCapsuleText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: 'rgba(203,184,140,0.8)',
+    letterSpacing: 0.5,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  cityCapsuleTextActive: {
+    color: 'rgba(10,10,10,0.9)', // Dark text on active
+  },
+
+  // Action Buttons
+  actionButtons: {
+    flexDirection: 'row',
+    gap: 16,
+  },
+  actionButtonOutline: {
     height: 42, // 42pt height
     paddingHorizontal: 20,
     borderRadius: 21, // rounded 21pt
@@ -677,7 +688,7 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  heroButtonOutlineText: {
+  actionButtonOutlineText: {
     fontSize: 14,
     fontWeight: '500',
     color: 'rgba(203,184,140,0.9)',
@@ -687,7 +698,7 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-  heroButtonFilled: {
+  actionButtonFilled: {
     height: 42,
     paddingHorizontal: 20,
     borderRadius: 21,
@@ -695,7 +706,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  heroButtonFilledText: {
+  actionButtonFilledText: {
     fontSize: 14,
     fontWeight: '600',
     color: 'rgba(10,10,10,0.9)',
@@ -706,198 +717,128 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // City / Day Switcher
-  daysSwitcher: {
-    paddingVertical: 20,
-  },
-  daysScrollContent: {
-    paddingHorizontal: 24,
-    gap: 12,
-  },
-  dayPill: {
-    height: 34, // 34pt height
-    paddingHorizontal: 16,
-    borderRadius: 18, // radius 18pt
-    borderWidth: 1,
-    borderColor: 'rgba(203,184,140,0.2)', // Frosted outline
-    backgroundColor: 'rgba(255,255,255,0.04)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(15px)',
-      },
-    }),
-  },
-  dayPillActive: {
-    backgroundColor: 'rgba(203,184,140,0.9)', // Filled gold
-    borderColor: 'rgba(203,184,140,0.9)',
-  },
-  dayPillText: {
-    fontSize: 13,
-    fontWeight: '500',
-    color: 'rgba(203,184,140,0.8)',
-    letterSpacing: 0.2,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    }),
-  },
-  dayPillTextActive: {
-    color: 'rgba(10,10,10,0.9)', // White text on active
+  // City Chapter Template
+  cityChapter: {
+    marginBottom: 48, // 48px between cities
   },
 
-  // Daily Overview
-  dailyOverview: {
-    paddingHorizontal: 24,
+  // City Hero Image Pane (220px)
+  cityHeroContainer: {
+    height: 220,
+    marginHorizontal: 24,
     marginBottom: 24,
   },
-  dailyTitle: {
-    fontSize: 22, // Playfair Display Semibold 22pt
+  cityHeroPane: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  cityHeroPaneImage: {
+    borderRadius: 22,
+  },
+  cityHeroOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: '40%', // Bottom 40% gradient overlay
+    backgroundColor: 'rgba(0,0,0,0.55)',
+    borderBottomLeftRadius: 22,
+    borderBottomRightRadius: 22,
+  },
+  cityHeroContent: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: 16,
+  },
+  cityName: {
+    fontSize: 20, // Playfair 20pt
     fontWeight: '600',
     color: 'rgba(255,255,255,0.95)',
-    marginBottom: 6,
-    letterSpacing: 0.3,
+    marginBottom: 4,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, "Times New Roman", serif',
     }),
   },
-  dailySubtitle: {
-    fontSize: 14, // Inter Italic 14pt
+  cityDates: {
+    fontSize: 13, // Inter Regular 13pt
+    fontWeight: '400',
+    color: 'rgba(203,184,140,0.75)', // Gold 75%
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  cityDescription: {
+    fontSize: 13, // Inter Italic 13pt
     fontWeight: '400',
     fontStyle: 'italic',
-    color: 'rgba(203,184,140,0.7)', // Gold 70%
-    marginBottom: 16,
-    letterSpacing: 0.3,
+    color: 'rgba(203,184,140,0.65)', // Gold 65%
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-  dailyDivider: {
-    width: 60,
-    height: 1,
-    backgroundColor: 'rgba(203,184,140,0.25)', // 1px fade line gold 25%
-  },
 
-  // Categories Container
-  categoriesContainer: {
+  // Booking Breakdown
+  bookingBreakdown: {
     paddingHorizontal: 24,
-    gap: 24, // 24pt padding between major sections
+    gap: 24, // 24px vertical spacing
   },
-  categorySection: {
+  bookingSection: {
     marginBottom: 16,
   },
-
-  // Section Header Capsule
-  sectionHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    height: 48, // 48pt height
-    paddingHorizontal: 14,
-    backgroundColor: 'rgba(255,255,255,0.04)', // Editorial minimalism
-    borderRadius: 18, // corner 18pt
-    borderWidth: 1,
-    borderColor: 'rgba(203,184,140,0.15)', // 1px solid gold 15%
-    marginBottom: 16,
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(20px)',
-        boxShadow: '0 0 1px rgba(255,255,255,0.08)', // Soft inner shadow
-      },
-      default: {
-        shadowColor: '#FFFFFF',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.08,
-        shadowRadius: 1,
-        elevation: 1,
-      },
-    }),
-  },
-  sectionTitle: {
-    fontSize: 15,
-    fontWeight: '600', // Inter Medium
-    color: 'rgba(255,255,255,0.9)', // White 90%
-    flex: 1,
-    letterSpacing: 0.3,
+  sectionLabel: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.9)',
+    marginBottom: 12,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-  statusChip: {
-    backgroundColor: 'rgba(203,184,140,0.12)', // Capsule fill
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 10,
-    marginRight: 12,
-  },
-  statusText: {
-    fontSize: 12, // Inter Medium 12pt
-    fontWeight: '500',
-    color: 'rgba(203,184,140,0.8)', // Gold text
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter', 
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    }),
-  },
-  chevronIcon: {
-    opacity: 0.8,
-  },
 
-  // Section Content
-  sectionContent: {
-    gap: 16, // 16pt spacing between cards (magazine panel spacing)
-  },
-
-  // Booking Card Base - Magazine Panel Style
-  bookingCard: {
-    minHeight: 130,
-    padding: 16, // 16pt padding
-    backgroundColor: 'rgba(255,255,255,0.07)', // Frosted glass
-    borderRadius: 24, // Corner radius 24pt
-    borderWidth: 0, // No borders - just light and hierarchy
+  // Flight Cards - Elegant Rail Composition
+  flightCard: {
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 24,
+    padding: 16,
+    marginBottom: 12,
+    borderWidth: 0.5,
+    borderColor: 'rgba(203,184,140,0.15)',
     ...Platform.select({
       web: {
         backdropFilter: 'blur(25px)',
-        boxShadow: '0 0 1px rgba(255,255,255,0.08), 0 8px 24px rgba(0,0,0,0.25)', // Inner + outer glow
+        boxShadow: '0 0 1px rgba(255,255,255,0.08), 0 12px 36px rgba(0,0,0,0.25)',
       },
       default: {
         shadowColor: '#000000',
-        shadowOffset: { width: 0, height: 8 },
+        shadowOffset: { width: 0, height: 12 },
         shadowOpacity: 0.25,
-        shadowRadius: 12,
-        elevation: 6,
+        shadowRadius: 18,
+        elevation: 8,
       },
     }),
   },
-
-  // Horizontal Carousels for Experiences and Restaurants
-  carouselContainer: {
-    paddingRight: 24, // Allow scroll past edge
-  },
-  firstCard: {
-    marginLeft: 0,
-  },
-
-  // Flight Card Styles
   flightTopRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 16,
   },
   flightRoute: {
-    fontSize: 20,
-    fontWeight: '600', // Playfair Display Semibold
+    fontSize: 20, // Playfair 20pt
+    fontWeight: '600',
     color: 'rgba(255,255,255,0.9)',
-    letterSpacing: 0.3, // Monospaced tracking
+    letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
@@ -905,34 +846,29 @@ const styles = StyleSheet.create({
     }),
   },
   flightAirline: {
-    fontSize: 13,
-    fontWeight: '500', // Inter Medium
-    color: 'rgba(203,184,140,0.8)', // Gold 80%
+    fontSize: 13, // Inter 13pt
+    fontWeight: '500',
+    color: 'rgba(203,184,140,0.75)', // Gold 75%
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-  flightDivider: {
-    height: 0.5,
-    backgroundColor: 'rgba(203,184,140,0.25)',
-    marginBottom: 12,
-  },
   flightRail: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 10,
+    marginBottom: 12,
   },
-  flightBlock: {
+  flightTimeBlock: {
     flex: 1,
   },
   flightTime: {
     fontSize: 17,
     fontWeight: '600',
     color: 'rgba(255,255,255,0.9)',
-    marginBottom: 2,
+    marginBottom: 4,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
@@ -940,25 +876,30 @@ const styles = StyleSheet.create({
     }),
   },
   flightLocation: {
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: '400',
-    color: 'rgba(255,255,255,0.65)',
+    color: 'rgba(255,255,255,0.7)',
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-  flightCenter: {
-    backgroundColor: 'rgba(203,184,140,0.12)',
+  flightDurationChip: {
+    backgroundColor: 'rgba(203,184,140,0.15)', // Gold frosted chip
     paddingHorizontal: 12,
     paddingVertical: 6,
-    borderRadius: 10,
+    borderRadius: 12,
     alignItems: 'center',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(20px)',
+      },
+    }),
   },
   flightDuration: {
     fontSize: 12,
-    fontWeight: '500', // Inter Medium
+    fontWeight: '500',
     color: 'rgba(203,184,140,0.9)',
     fontFamily: Platform.select({
       ios: 'Inter',
@@ -968,7 +909,7 @@ const styles = StyleSheet.create({
   },
   flightDetails: {
     fontSize: 11,
-    fontWeight: '400', // Inter Regular
+    fontWeight: '400',
     color: 'rgba(255,255,255,0.7)',
     marginBottom: 12,
     fontFamily: Platform.select({
@@ -977,33 +918,47 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-  flightButtons: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    gap: 8,
-  },
 
-  // Stay Card Styles
-  stayContent: {
+  // Stay Cards - Two-column split
+  stayCard: {
     flexDirection: 'row',
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 24,
+    padding: 16,
+    marginBottom: 12,
     alignItems: 'center',
-    gap: 12,
+    borderWidth: 0.5,
+    borderColor: 'rgba(203,184,140,0.15)',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+        boxShadow: '0 0 1px rgba(255,255,255,0.08), 0 12px 36px rgba(0,0,0,0.25)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 12 },
+        shadowOpacity: 0.25,
+        shadowRadius: 18,
+        elevation: 8,
+      },
+    }),
   },
-  stayThumbnail: {
-    width: 80,
-    height: 80,
-    borderRadius: 16,
+  stayImage: {
+    width: 120,
+    height: 120,
+    borderRadius: 18,
     overflow: 'hidden',
+    marginRight: 16,
   },
-  stayThumbnailImage: {
-    borderRadius: 16,
+  stayImageStyle: {
+    borderRadius: 18,
   },
-  stayDetails: {
+  stayInfo: {
     flex: 1,
   },
-  stayTitle: {
+  stayName: {
     fontSize: 17,
-    fontWeight: '600', // Playfair equivalent
+    fontWeight: '600',
     color: 'rgba(255,255,255,0.9)',
     marginBottom: 4,
     fontFamily: Platform.select({
@@ -1012,11 +967,32 @@ const styles = StyleSheet.create({
       web: 'Playfair Display, Georgia, "Times New Roman", serif',
     }),
   },
-  staySubtext: {
+  stayAddress: {
     fontSize: 13,
-    fontWeight: '400', // Inter Regular
+    fontWeight: '400',
     color: 'rgba(255,255,255,0.7)',
-    marginBottom: 2,
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  stayDetails: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.7)',
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  stayPlatform: {
+    fontSize: 12,
+    fontWeight: '400',
+    color: 'rgba(203,184,140,0.8)',
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
@@ -1024,59 +1000,34 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Transport Card Styles
-  transportContent: {
+  // Transport Cards
+  transportCard: {
     flexDirection: 'row',
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 24,
+    padding: 16,
+    marginBottom: 12,
     alignItems: 'center',
-    gap: 12,
+    borderWidth: 0.5,
+    borderColor: 'rgba(203,184,140,0.15)',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+        boxShadow: '0 0 1px rgba(255,255,255,0.08), 0 12px 36px rgba(0,0,0,0.25)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 12 },
+        shadowOpacity: 0.25,
+        shadowRadius: 18,
+        elevation: 8,
+      },
+    }),
   },
-  transportIcon: {
-    opacity: 0.8,
-  },
-  transportDetails: {
+  transportContent: {
     flex: 1,
   },
   transportTitle: {
-    fontSize: 14,
-    fontWeight: '500', // Inter Medium
-    color: 'rgba(255,255,255,0.9)',
-    marginBottom: 4,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    }),
-  },
-  transportSubtext: {
-    fontSize: 13,
-    fontWeight: '400',
-    color: 'rgba(255,255,255,0.7)',
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    }),
-  },
-
-  // Experience Card Styles
-  experienceContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-  experiencePhoto: {
-    width: 120, // 40% width
-    height: 80,
-    borderRadius: 16,
-    overflow: 'hidden',
-  },
-  experiencePhotoImage: {
-    borderRadius: 16,
-  },
-  experienceDetails: {
-    flex: 1,
-  },
-  experienceTitle: {
     fontSize: 16,
     fontWeight: '600',
     color: 'rgba(255,255,255,0.9)',
@@ -1087,54 +1038,10 @@ const styles = StyleSheet.create({
       web: 'Playfair Display, Georgia, "Times New Roman", serif',
     }),
   },
-  experienceSubtext: {
+  transportTime: {
     fontSize: 13,
     fontWeight: '400',
     color: 'rgba(255,255,255,0.7)',
-    marginBottom: 6,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    }),
-  },
-  experienceIcon: {
-    alignSelf: 'flex-start',
-  },
-
-  // Restaurant Card Styles
-  restaurantContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-  restaurantThumbnail: {
-    width: 72,
-    height: 72,
-    borderRadius: 16,
-    overflow: 'hidden',
-  },
-  restaurantThumbnailImage: {
-    borderRadius: 16,
-  },
-  restaurantDetails: {
-    flex: 1,
-  },
-  restaurantTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: 'rgba(255,255,255,0.9)',
-    marginBottom: 4,
-    fontFamily: Platform.select({
-      ios: 'Playfair Display',
-      android: 'serif',
-      web: 'Playfair Display, Georgia, "Times New Roman", serif',
-    }),
-  },
-  restaurantTime: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: 'rgba(203,184,140,0.8)',
     marginBottom: 2,
     fontFamily: Platform.select({
       ios: 'Inter',
@@ -1142,28 +1049,10 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-  restaurantSubtext: {
-    fontSize: 13,
+  transportDuration: {
+    fontSize: 12,
     fontWeight: '400',
-    color: 'rgba(255,255,255,0.7)',
-    marginBottom: 6,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    }),
-  },
-  restaurantCapsule: {
-    backgroundColor: 'rgba(203,184,140,0.12)',
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 8,
-    alignSelf: 'flex-start',
-  },
-  restaurantStatus: {
-    fontSize: 11,
-    fontWeight: '500',
-    color: 'rgba(203,184,140,0.9)',
+    color: 'rgba(203,184,140,0.8)',
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
@@ -1171,19 +1060,15 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Circular Button (shared)
-  circularButton: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: 'rgba(203,184,140,0.15)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: 'rgba(203,184,140,0.25)',
+  // Experience & Restaurant Carousels
+  experiencesCarousel: {
+    paddingRight: 24,
+  },
+  restaurantsCarousel: {
+    paddingRight: 24,
   },
 
-  // Experience Cards (Horizontal Carousel) - 150×180 px
+  // Experience Cards (150×180px)
   experienceCard: {
     width: 150,
     height: 180,
@@ -1215,8 +1100,10 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 80, // Gradient overlay
-    backgroundColor: 'rgba(0,0,0,0.35)',
+    height: 80,
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
   experienceCardContent: {
     position: 'absolute',
@@ -1236,8 +1123,8 @@ const styles = StyleSheet.create({
       web: 'Playfair Display, Georgia, "Times New Roman", serif',
     }),
   },
-  experienceCardSubtext: {
-    fontSize: 13, // Inter 13pt gold 70%
+  experienceCardDetails: {
+    fontSize: 13, // Inter 13pt
     fontWeight: '400',
     color: 'rgba(203,184,140,0.7)',
     marginBottom: 8,
@@ -1261,7 +1148,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(203,184,140,0.3)',
   },
 
-  // Restaurant Cards (Horizontal Carousel)
+  // Restaurant Cards
   restaurantCard: {
     width: 150,
     height: 180,
@@ -1294,7 +1181,9 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 90,
-    backgroundColor: 'rgba(0,0,0,0.35)',
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
   restaurantCardContent: {
     position: 'absolute',
@@ -1350,33 +1239,212 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(203,184,140,0.3)',
   },
 
-  // Empty State (Frosted placeholder 120pt height)
-  emptyState: {
-    height: 120, // 120pt height as specified
+  // External Button (shared)
+  externalButton: {
+    position: 'absolute',
+    bottom: 16,
+    right: 16,
+    width: 36, // Gold outline circle 36×36px
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: 'rgba(203,184,140,0.15)',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 20,
-    backgroundColor: 'rgba(255,255,255,0.04)',
-    borderRadius: 24,
-    marginTop: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(203,184,140,0.3)',
   },
-  emptyStateTitle: {
-    fontSize: 14, // Inter Regular 14pt white 70%
+
+  // Between-City Divider
+  cityDivider: {
+    alignItems: 'center',
+    marginVertical: 48, // 48px above next city
+  },
+  cityDividerLine: {
+    width: 60,
+    height: 1,
+    backgroundColor: 'rgba(203,184,140,0.3)', // 1px gold line opacity 30%
+    marginBottom: 12,
+  },
+  cityDividerText: {
+    fontSize: 12, // Inter Italic 12pt
     fontWeight: '400',
-    color: 'rgba(255,255,255,0.7)',
-    marginTop: 12,
-    marginBottom: 4,
+    fontStyle: 'italic',
+    color: 'rgba(203,184,140,0.6)', // Gold 60%
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-  emptyStateSubtitle: {
-    fontSize: 13, // Inter Italic 13pt gold 70%
+
+  // Trip End Summary - "The Journey in Retrospect"
+  tripSummaryContainer: {
+    marginTop: 24,
+  },
+  summaryHeaderContainer: {
+    height: 240, // 240px as specified
+    marginHorizontal: 24,
+    marginBottom: 24,
+  },
+  summaryHeroPane: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  summaryHeroPaneImage: {
+    borderRadius: 24,
+  },
+  summaryHeroOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.5)', // Soft fade overlay top → bottom
+    borderRadius: 24,
+  },
+  summaryHeroContent: {
+    alignItems: 'center',
+  },
+  summaryTitle: {
+    fontSize: 24, // Playfair Bold 24pt
+    fontWeight: '700',
+    color: 'rgba(255,255,255,0.9)',
+    textAlign: 'center',
+    marginBottom: 8,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, "Times New Roman", serif',
+    }),
+  },
+  summarySubtitle: {
+    fontSize: 14, // Inter Regular 14pt
+    fontWeight: '400',
+    color: 'rgba(203,184,140,0.7)', // Gold 70%
+    textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Trip Recap Pane
+  recapPane: {
+    marginHorizontal: 24,
+    marginBottom: 32,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 22,
+    borderWidth: 0.5,
+    borderColor: 'rgba(203,184,140,0.1)',
+    padding: 24,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.25,
+        shadowRadius: 12,
+        elevation: 6,
+      },
+    }),
+  },
+  recapStats: {
+    alignItems: 'flex-start',
+  },
+  recapStatsText: {
+    fontSize: 15, // Inter Medium 15pt
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.9)',
+    lineHeight: 24,
+    marginBottom: 16,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  recapSubline: {
+    fontSize: 13, // Inter Italic 13pt
     fontWeight: '400',
     fontStyle: 'italic',
-    color: 'rgba(203,184,140,0.7)',
+    color: 'rgba(203,184,140,0.65)', // Gold 65%
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Trip Reflection Pane
+  reflectionPane: {
+    marginHorizontal: 24,
+    marginBottom: 48,
+    alignItems: 'center',
+  },
+  reflectionText: {
+    fontSize: 15, // Playfair Italic 15pt
+    fontWeight: '400',
+    fontStyle: 'italic',
+    color: 'rgba(255,255,255,0.8)', // White 80%
+    lineHeight: 24, // 150% line height
+    textAlign: 'center',
+    marginBottom: 32,
+    paddingHorizontal: 16,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, "Times New Roman", serif',
+    }),
+  },
+  galleryButton: {
+    height: 46, // 46pt height
+    paddingHorizontal: 24,
+    borderRadius: 20, // 20pt corner radius
+    backgroundColor: 'rgba(203,184,140,0.9)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 20px rgba(203,184,140,0.3)',
+      },
+    }),
+  },
+  galleryButtonText: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: 'rgba(10,10,10,0.9)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Footer Signature
+  footerSignature: {
+    alignItems: 'center',
+    marginBottom: 80, // Large bottom margin
+  },
+  footerLogo: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.9)',
+    marginBottom: 6,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, "Times New Roman", serif',
+    }),
+  },
+  footerTagline: {
+    fontSize: 12,
+    fontWeight: '400',
+    color: 'rgba(203,184,140,0.7)', // Gold 70%
     textAlign: 'center',
     fontFamily: Platform.select({
       ios: 'Inter',
@@ -1406,7 +1474,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    paddingBottom: Platform.select({ ios: 20, default: 0 }), // Account for iOS home indicator
+    paddingBottom: Platform.select({ ios: 20, default: 0 }),
   },
   dockItem: {
     alignItems: 'center',
@@ -1439,6 +1507,6 @@ const styles = StyleSheet.create({
 
   // Spacing
   bottomSpacing: {
-    height: 40,
+    height: 60,
   },
 });
