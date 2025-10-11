@@ -58,15 +58,15 @@ export default function Index() {
       {/* Content */}
       <View style={styles.contentContainer}>
         
-        {/* Center-aligned glass pane with background image */}
-        <ImageBackground
-          source={{ uri: 'https://customer-assets.emergentagent.com/job_travea-luxury-app/artifacts/vyx1vpo5_sign%20in%20final.jpg' }}
-          style={styles.mainPane}
-          imageStyle={styles.mainPaneImageStyle}
-          resizeMode="cover"
-        >
-          <View style={styles.paneOverlay}>
-            <View style={styles.paneInner}>
+        {/* iOS-Native Background Image */}
+        <View style={styles.mainPaneContainer}>
+          <ImageBackground
+            source={{ uri: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' }}
+            style={styles.backgroundImage}
+            resizeMode="cover"
+          >
+            <View style={styles.darkOverlay} />
+            <View style={styles.contentContainer}>
             
             {/* TRĀVEA Logo and tagline */}
             <View style={styles.logoSection}>
