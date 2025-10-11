@@ -260,18 +260,10 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.1)',
     borderRadius: 28,
     minHeight: 500,
+    backgroundColor: 'rgba(25,25,25,0.7)', // Semi-transparent overlay for readability
     ...Platform.select({
       web: {
-        backgroundImage: "url('https://customer-assets.emergentagent.com/job_travea-luxury-app/artifacts/vyx1vpo5_sign%20in%20final.jpg')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
         backdropFilter: 'blur(15px)',
-        backgroundColor: 'rgba(25,25,25,0.7)',
-        backgroundBlendMode: 'overlay',
-      },
-      default: {
-        backgroundColor: 'rgba(40,40,40,0.8)',
       },
     }),
   },
