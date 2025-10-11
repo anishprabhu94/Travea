@@ -128,9 +128,10 @@ const tripData = {
     {
       id: 'day3-4',
       label: 'Day 3–4',
-      city: 'Ravello, Italy',
+      city: 'Rome, Italy',
+      cityCode: 'ROM',
       dates: 'Jun 10–11',
-      description: 'Where silence hums between lemon trees.',
+      description: 'Eternal city of ancient wonders.',
       heroImage: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
       flights: [],
       stays: [
