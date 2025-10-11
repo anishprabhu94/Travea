@@ -1183,14 +1183,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 
-  // Frosted Panel Header (with Top Right Date)
-  frostedPanelHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 12,
-  },
-  topRightDateBadge: {
+  // Card Date Badge (Matching Style for All)
+  cardDateBadge: {
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 14,
@@ -1198,7 +1192,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(181,155,115,0.4)',
   },
-  topRightDateText: {
+  cardDateText: {
     fontSize: 10,
     fontWeight: '700',
     color: '#C9A96D',
@@ -1210,32 +1204,90 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Card Arrow Icon (Elegant Frosted Circle)
-  cardArrowIcon: {
+  // Date Badge on Image Cards (Top Right)
+  cardDateBadgeOnImage: {
     position: 'absolute',
-    bottom: 16,
-    right: 16,
+    top: 12,
+    right: 12,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 14,
+    backgroundColor: 'rgba(181,155,115,0.25)',
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.5)',
+    zIndex: 10,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(15px)',
+      },
+    }),
+  },
+
+  // Arrow Icon Top Right on Image Cards (Diagonal)
+  cardArrowIconTopRightOnImage: {
+    position: 'absolute',
+    top: 12,
+    right: 70,
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: 'rgba(255,255,255,0.12)',
+    backgroundColor: 'rgba(255,255,255,0.15)',
     borderWidth: 1,
-    borderColor: 'rgba(181,155,115,0.3)',
+    borderColor: 'rgba(181,155,115,0.35)',
     alignItems: 'center',
     justifyContent: 'center',
+    zIndex: 10,
+    transform: [{rotate: '-45deg'}],
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(10px)',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+        backdropFilter: 'blur(12px)',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.25)',
       },
       default: {
         shadowColor: '#000000',
         shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.2,
+        shadowOpacity: 0.25,
         shadowRadius: 6,
-        elevation: 4,
+        elevation: 5,
       },
     }),
+  },
+
+  // Arrow Icon Top Right on Frosted Panes (Diagonal)
+  cardArrowIconTopRight: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: 'rgba(255,255,255,0.15)',
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.35)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transform: [{rotate: '-45deg'}],
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(12px)',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.25)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.25,
+        shadowRadius: 6,
+        elevation: 5,
+      },
+    }),
+  },
+
+  // Flight Card Top Row (Traveler + Date)
+  flightCardTopRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 12,
   },
 
   // Flight Card - Enhanced Frosted Glass (No Image)
