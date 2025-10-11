@@ -66,7 +66,7 @@ export default function Index() {
             resizeMode="cover"
           >
             <View style={styles.darkOverlay} />
-            <View style={styles.contentContainer}>
+            <View style={styles.formContent}>
             
             {/* TRĀVEA Logo and tagline */}
             <View style={styles.logoSection}>
