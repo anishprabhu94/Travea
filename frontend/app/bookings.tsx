@@ -155,23 +155,8 @@ const tripData = {
   ]
 };
 
-const sectionIcons = {
-  flights: 'airplane-outline',
-  stays: 'bed-outline',
-  transport: 'car-outline',
-  experiences: 'ticket-outline',
-  restaurants: 'restaurant-outline'
-};
-
-const sectionLabels = {
-  flights: 'Flights',
-  stays: 'Stays', 
-  transport: 'Transport',
-  experiences: 'Experiences',
-  restaurants: 'Restaurants'
-};
-
 export default function BookingsOverview() {
+  const [selectedDayId, setSelectedDayId] = useState(tripData.days[0].id);
   const [expandedSections, setExpandedSections] = useState({
     flights: true,
     stays: true,
@@ -179,6 +164,8 @@ export default function BookingsOverview() {
     experiences: true,
     restaurants: true
   });
+
+  const selectedDay = tripData.days.find(day => day.id === selectedDayId) || tripData.days[0];
 
   const toggleSection = (section: string) => {
     setExpandedSections(prev => ({
@@ -188,12 +175,13 @@ export default function BookingsOverview() {
   };
 
   const getStatusCount = (section: string) => {
-    const data = bookingData[section as keyof typeof bookingData];
+    const data = selectedDay[section as keyof typeof selectedDay] as any[];
     if (Array.isArray(data)) {
       const confirmed = data.filter(item => item.status === 'confirmed').length;
-      return `${confirmed} of ${data.length} Booked`;
+      const total = data.length;
+      return total === 0 ? '0 Booked' : `${confirmed} of ${total} Booked`;
     }
-    return '0 of 0 Booked';
+    return '0 Booked';
   };
 
   const renderSectionHeader = (section: string) => (
