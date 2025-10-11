@@ -273,46 +273,136 @@ export default function TripCanvas() {
     </View>
   );
 
-  const renderFlightCard = (flight: any) => (
-    <View key={flight.id} style={styles.bookingCard}>
-      {/* Top Row */}
-      <View style={styles.flightTopRow}>
-        <Text style={styles.flightRoute}>{flight.route}</Text>
-        <Text style={styles.flightAirline}>{flight.airline}</Text>
-      </View>
-      
-      {/* Divider */}
-      <View style={styles.flightDivider} />
-      
-      {/* Middle Row - Flight Rail */}
-      <View style={styles.flightRail}>
-        <View style={styles.flightBlock}>
-          <Text style={styles.flightTime}>{flight.departure.time}</Text>
-          <Text style={styles.flightLocation}>{flight.departure.location}</Text>
+  // Booking Section Renders - Editorial Style
+  const renderFlightsSection = (flights: any[]) => (
+    <View style={styles.bookingSection}>
+      <Text style={styles.sectionLabel}>✈️ Flights</Text>
+      {flights.map((flight) => (
+        <View key={flight.id} style={styles.flightCard}>
+          {/* Elegant Rail Composition */}
+          <View style={styles.flightTopRow}>
+            <Text style={styles.flightRoute}>{flight.route}</Text>
+            <Text style={styles.flightAirline}>{flight.airline}</Text>
+          </View>
+          
+          <View style={styles.flightRail}>
+            <View style={styles.flightTimeBlock}>
+              <Text style={styles.flightTime}>{flight.departure.time}</Text>
+              <Text style={styles.flightLocation}>{flight.departure.location}</Text>
+            </View>
+            
+            <View style={styles.flightDurationChip}>
+              <Text style={styles.flightDuration}>{flight.duration}</Text>
+            </View>
+            
+            <View style={styles.flightTimeBlock}>
+              <Text style={styles.flightTime}>{flight.arrival.time}</Text>
+              <Text style={styles.flightLocation}>{flight.arrival.location}</Text>
+            </View>
+          </View>
+          
+          <Text style={styles.flightDetails}>{flight.details}</Text>
+          
+          <TouchableOpacity style={styles.externalButton}>
+            <Ionicons name="open-outline" size={16} color="#CBB88C" />
+          </TouchableOpacity>
         </View>
-        
-        <View style={styles.flightCenter}>
-          <Text style={styles.flightDuration}>{flight.duration}</Text>
+      ))}
+    </View>
+  );
+
+  const renderStaysSection = (stays: any[]) => (
+    <View style={styles.bookingSection}>
+      <Text style={styles.sectionLabel}>🏨 Stays</Text>
+      {stays.map((stay) => (
+        <View key={stay.id} style={styles.stayCard}>
+          <ImageBackground
+            source={{ uri: stay.image }}
+            style={styles.stayImage}
+            imageStyle={styles.stayImageStyle}
+          />
+          <View style={styles.stayInfo}>
+            <Text style={styles.stayName}>{stay.name}</Text>
+            <Text style={styles.stayAddress}>{stay.address}</Text>
+            <Text style={styles.stayDetails}>{stay.checkin} · {stay.checkout}</Text>
+            <Text style={styles.stayPlatform}>{stay.platform}</Text>
+          </View>
+          <TouchableOpacity style={styles.externalButton}>
+            <Ionicons name="open-outline" size={16} color="#CBB88C" />
+          </TouchableOpacity>
         </View>
-        
-        <View style={styles.flightBlock}>
-          <Text style={styles.flightTime}>{flight.arrival.time}</Text>
-          <Text style={styles.flightLocation}>{flight.arrival.location}</Text>
+      ))}
+    </View>
+  );
+
+  const renderTransportSection = (transport: any[]) => (
+    <View style={styles.bookingSection}>
+      <Text style={styles.sectionLabel}>🚗 Transport</Text>
+      {transport.map((item) => (
+        <View key={item.id} style={styles.transportCard}>
+          <View style={styles.transportContent}>
+            <Text style={styles.transportTitle}>{item.title}</Text>
+            <Text style={styles.transportTime}>{item.time} · {item.details}</Text>
+            <Text style={styles.transportDuration}>{item.duration}</Text>
+          </View>
+          <TouchableOpacity style={styles.externalButton}>
+            <Ionicons name="open-outline" size={16} color="#CBB88C" />
+          </TouchableOpacity>
         </View>
-      </View>
-      
-      {/* Details */}
-      <Text style={styles.flightDetails}>{flight.details}</Text>
-      
-      {/* Bottom Buttons */}
-      <View style={styles.flightButtons}>
-        <TouchableOpacity style={styles.circularButton}>
-          <Ionicons name="open-outline" size={18} color="#CBB88C" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.circularButton}>
-          <Ionicons name="document-outline" size={18} color="#CBB88C" />
-        </TouchableOpacity>
-      </View>
+      ))}
+    </View>
+  );
+
+  const renderExperiencesSection = (experiences: any[]) => (
+    <View style={styles.bookingSection}>
+      <Text style={styles.sectionLabel}>🎟️ Experiences</Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.experiencesCarousel}>
+        {experiences.map((exp) => (
+          <View key={exp.id} style={styles.experienceCard}>
+            <ImageBackground
+              source={{ uri: exp.image }}
+              style={styles.experienceCardImage}
+              imageStyle={styles.experienceCardImageStyle}
+            >
+              <View style={styles.experienceCardOverlay} />
+              <View style={styles.experienceCardContent}>
+                <Text style={styles.experienceCardTitle}>{exp.title}</Text>
+                <Text style={styles.experienceCardDetails}>{exp.details}</Text>
+                <TouchableOpacity style={styles.experienceCardButton}>
+                  <Ionicons name="open-outline" size={14} color="#CBB88C" />
+                </TouchableOpacity>
+              </View>
+            </ImageBackground>
+          </View>
+        ))}
+      </ScrollView>
+    </View>
+  );
+
+  const renderRestaurantsSection = (restaurants: any[]) => (
+    <View style={styles.bookingSection}>
+      <Text style={styles.sectionLabel}>🍽️ Restaurants</Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.restaurantsCarousel}>
+        {restaurants.map((rest) => (
+          <View key={rest.id} style={styles.restaurantCard}>
+            <ImageBackground
+              source={{ uri: rest.image }}
+              style={styles.restaurantCardImage}
+              imageStyle={styles.restaurantCardImageStyle}
+            >
+              <View style={styles.restaurantCardOverlay} />
+              <View style={styles.restaurantCardContent}>
+                <Text style={styles.restaurantCardTitle}>{rest.name}</Text>
+                <Text style={styles.restaurantCardTime}>{rest.time}</Text>
+                <Text style={styles.restaurantCardAddress}>{rest.address}</Text>
+                <TouchableOpacity style={styles.restaurantCardButton}>
+                  <Ionicons name="open-outline" size={14} color="#CBB88C" />
+                </TouchableOpacity>
+              </View>
+            </ImageBackground>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 
