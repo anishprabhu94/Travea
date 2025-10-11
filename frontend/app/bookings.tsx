@@ -879,7 +879,7 @@ const styles = StyleSheet.create({
   cityDates: {
     fontSize: 13,
     fontWeight: '500',
-    color: 'rgba(181,155,115,0.7)',
+    color: 'rgba(181,155,115,0.95)',
     marginBottom: 4,
     fontFamily: Platform.select({
       ios: 'Inter',
