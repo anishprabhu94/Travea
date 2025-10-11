@@ -93,7 +93,7 @@ const tripData = {
         },
         {
           id: '2',
-          title: 'Cooking Class at Nonna Lucia\'s',
+          title: 'Cooking Class at Nonna',
           date: 'Jun 9',
           startTime: '3:00 PM',
           duration: '3 hrs',
