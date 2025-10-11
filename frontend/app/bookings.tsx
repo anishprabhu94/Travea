@@ -1858,43 +1858,76 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Bottom Navigation
-  bottomNav: {
+  // Bottom Dock (Matching Landing Page)
+  dockWrapper: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 20,
     left: 0,
     right: 0,
-    height: 80,
-    backgroundColor: 'rgba(20,20,20,0.95)',
-    borderTopWidth: 1,
-    borderTopColor: 'rgba(255,255,255,0.08)',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    paddingBottom: Platform.select({ ios: 20, default: 0 }),
-  },
-  navItem: {
     alignItems: 'center',
     justifyContent: 'center',
   },
-  navLabel: {
-    fontSize: 11,
-    fontWeight: '400',
-    color: 'rgba(255,255,255,0.6)',
-    marginTop: 2,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
+  dockContainer: {
+    width: '92%',
+    height: 60,
+    borderRadius: 28,
+    overflow: 'hidden',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 20,
+      },
+      android: {
+        elevation: 8,
+      },
+      web: {
+        boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+      },
     }),
   },
-  navLabelActive: {
-    fontSize: 11,
-    fontWeight: '500',
-    color: '#B59B73',
-    marginTop: 2,
+  dockContent: {
+    flex: 1,
+    backgroundColor: 'rgba(25,25,25,0.35)',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+  },
+  dockItem: {
+    flex: 1,
+    alignItems: 'center',
+    paddingVertical: 8,
+    position: 'relative',
+  },
+  dockLabel: {
+    fontSize: 14,
+    color: '#F8F8F8',
+    marginTop: 4,
     fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  dockLabelActive: {
+    fontSize: 14,
+    color: '#C9A96D',
+    marginTop: 4,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  dockLabelInactive: {
+    fontSize: 14,
+    color: 'rgba(255,255,255,0.7)',
+    marginTop: 4,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
 
