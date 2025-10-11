@@ -132,7 +132,15 @@ const tripData = {
           image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
         }
       ],
-      restaurants: []
+      restaurants: [
+        {
+          id: '3',
+          name: 'Ristorante Rossellinis',
+          time: 'Dinner 8:00 PM',
+          details: 'Michelin Star',
+          image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
+        }
+      ]
     },
     {
       id: 'day5-7',
