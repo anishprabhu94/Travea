@@ -1199,15 +1199,37 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Restaurant Card
-  restaurantCard: {
+  // Restaurant Image Card
+  restaurantImageCard: {
     width: 280,
-    backgroundColor: 'rgba(255,255,255,0.06)',
+    height: 180,
     borderRadius: 24,
+    overflow: 'hidden',
+    marginRight: 16,
+  },
+  restaurantImageCardBg: {
+    flex: 1,
+  },
+  restaurantImageCardBgStyle: {
+    borderRadius: 24,
+  },
+  restaurantImageCardGradient: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: '60%',
+  },
+  restaurantImageCardFrosted: {
+    position: 'absolute',
+    bottom: 12,
+    left: 12,
+    right: 12,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 20,
     borderWidth: 0.5,
     borderColor: 'rgba(181,155,115,0.15)',
-    padding: 20,
-    marginRight: 16,
+    padding: 16,
     ...Platform.select({
       web: {
         backdropFilter: 'blur(25px)',
