@@ -1978,7 +1978,7 @@ const styles = StyleSheet.create({
     width: 36, // Match reduced halo
     height: 36, // Match reduced halo
     borderRadius: 18, // Match reduced halo
-    borderWidth: 2.5, // Match reduced halo
+    borderWidth: 1.5, // Match reduced halo thickness
     borderColor: 'transparent',
     borderTopColor: 'currentColor', // Uses parent borderColor
     opacity: 0.25, // 25% opacity as specified
