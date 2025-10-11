@@ -621,7 +621,365 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.3)',
   },
 
-  // Parallax Gallery
+  // 3. Discovery Grid
+  discoverySection: {
+    paddingHorizontal: 24,
+    marginBottom: 28,
+  },
+  sectionHeader: {
+    marginBottom: 16,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '600', // Neue Montreal SemiBold
+    color: '#F3F1E7', // Text white
+    marginBottom: 8,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  sectionDivider: {
+    width: 40,
+    height: 1,
+    backgroundColor: 'rgba(203,184,140,0.25)', // Faint gold divider
+  },
+
+  // Discovery Grid Layout (2 cards per row)
+  discoveryGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    marginBottom: 16,
+  },
+  discoveryCard: {
+    width: 165,
+    height: 220,
+    borderRadius: 20,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(203,184,140,0.2)',
+    overflow: 'hidden',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 6px 20px rgba(0,0,0,0.25)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.25,
+        shadowRadius: 10,
+        elevation: 4,
+      },
+    }),
+  },
+  discoveryCardImage: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  discoveryCardImageStyle: {
+    borderRadius: 20,
+  },
+  discoveryCardOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 100%)',
+      },
+      default: {
+        backgroundColor: 'rgba(0,0,0,0.3)',
+      },
+    }),
+  },
+  discoveryCardContent: {
+    padding: 16,
+  },
+  discoveryCardTitle: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#F3F1E7', // White
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  discoveryCardSubtext: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: '#CBB88C', // Gold
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'SF Pro Display',
+      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Discovery Expansion Panel
+  discoveryExpansion: {
+    height: 120,
+    borderRadius: 28,
+    overflow: 'hidden',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 8px 40px rgba(0,0,0,0.35)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.35,
+        shadowRadius: 20,
+        elevation: 8,
+      },
+    }),
+  },
+  expansionBlur: {
+    flex: 1,
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    borderWidth: 1,
+    borderColor: 'rgba(203,184,140,0.25)',
+  },
+  expansionContent: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    justifyContent: 'space-around',
+  },
+  expansionItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  expansionThumbnail: {
+    width: 60,
+    height: 60,
+  },
+  expansionThumbnailStyle: {
+    borderRadius: 8,
+  },
+  expansionText: {
+    flex: 1,
+  },
+  expansionName: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#F3F1E7', // White
+    marginBottom: 2,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  expansionInfo: {
+    fontSize: 12,
+    fontWeight: '400',
+    color: '#9B958D', // Muted gray
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'SF Pro Display',
+      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // 4. Essentials Panel
+  essentialsPanel: {
+    width: '90%',
+    alignSelf: 'center',
+    borderRadius: 24,
+    marginTop: 28,
+    marginBottom: 28,
+    ...Platform.select({
+      web: {
+        boxShadow: '0 8px 40px rgba(0,0,0,0.35)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.35,
+        shadowRadius: 20,
+        elevation: 8,
+      },
+    }),
+  },
+  essentialsBlur: {
+    backgroundColor: 'rgba(255,255,255,0.04)',
+    borderWidth: 1,
+    borderColor: 'rgba(203,184,140,0.25)',
+    borderRadius: 24,
+  },
+  essentialsContent: {
+    paddingHorizontal: 20,
+    paddingVertical: 18,
+  },
+  essentialsColumns: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  essentialsColumn: {
+    flex: 1,
+    gap: 16,
+  },
+  essentialItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  essentialText: {
+    flex: 1,
+  },
+  essentialLabel: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#F3F1E7', // White
+    marginBottom: 2,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  essentialValue: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: '#9B958D', // Muted gray
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'SF Pro Display',
+      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // 5. Local Insights
+  insightsSection: {
+    paddingLeft: 20,
+    marginBottom: 28,
+  },
+  insightsScroll: {
+    paddingRight: 20,
+  },
+  insightCard: {
+    width: 280,
+    height: 140,
+    borderRadius: 22,
+    marginRight: 16,
+    overflow: 'hidden',
+  },
+  insightCardImage: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  insightCardImageStyle: {
+    borderRadius: 22,
+  },
+  insightCardOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%)',
+      },
+      default: {
+        backgroundColor: 'rgba(0,0,0,0.4)',
+      },
+    }),
+  },
+  insightCardContent: {
+    padding: 20,
+    alignItems: 'center',
+  },
+  insightQuote: {
+    fontSize: 16,
+    fontWeight: '300',
+    fontStyle: 'italic',
+    color: '#F3F1E7', // White
+    textAlign: 'center',
+    lineHeight: 22,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'SF Pro Display',
+      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  insightAttribution: {
+    fontSize: 12,
+    fontWeight: '400',
+    color: '#CBB88C', // Gold
+    marginTop: 8,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'SF Pro Display',
+      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Bottom spacing for fixed footer
+  bottomSpacing: {
+    height: 104,
+  },
+
+  // 6. Footer Action Bar (Fixed at bottom)
+  footerActionBar: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 80,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(203,184,140,0.2)',
+  },
+  footerBlur: {
+    flex: 1,
+    backgroundColor: 'rgba(20,20,20,0.6)',
+  },
+  footerContent: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    paddingHorizontal: 20,
+  },
+  addToTripsButton: {
+    width: 155,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: 'rgba(203,184,140,0.18)',
+    borderWidth: 1,
+    borderColor: '#CBB88C',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  addToTripsText: {
+    fontSize: 15,
+    fontWeight: '500', // Medium
+    color: '#CBB88C', // Gold
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'SF Pro Display',
+      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  planTripButton: {
+    width: 155,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: '#CBB88C', // Gold background
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  planTripText: {
+    fontSize: 15,
+    fontWeight: '600', // SemiBold
+    color: '#0A0A0A', // Dark background color
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Remove all old styles below
   galleryContainer: {
     height: height * 0.6,
     position: 'relative',
