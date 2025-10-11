@@ -288,50 +288,74 @@ export default function DestinationInfo() {
           </View>
         </View>
 
-        {/* 3. Discovery Grid */}
-        <View style={styles.discoverySection}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Discovery</Text>
-            <View style={styles.sectionDivider} />
+        {/* 3. Explore Section */}
+        <View style={styles.exploreSection}>
+          <View style={styles.exploreHeader}>
+            <Text style={styles.exploreTitle}>Explore the Coast</Text>
+            <View style={styles.exploreDivider} />
           </View>
 
-          <View style={styles.discoveryGrid}>
-            {destinationData.discoveryCards.map((card, index) => (
-              <TouchableOpacity key={card.id} style={styles.discoveryCard}>
-                <ImageBackground
-                  source={{ uri: card.image }}
-                  style={styles.discoveryCardImage}
-                  imageStyle={styles.discoveryCardImageStyle}
-                >
-                  <View style={styles.discoveryCardOverlay} />
-                  <View style={styles.discoveryCardContent}>
-                    <Text style={styles.discoveryCardTitle}>{card.title}</Text>
-                    <Text style={styles.discoveryCardSubtext}>{card.subtext}</Text>
-                  </View>
-                </ImageBackground>
-              </TouchableOpacity>
-            ))}
-          </View>
-
-          {/* Discovery Expansion Panel */}
-          <View style={styles.discoveryExpansion}>
-            <View style={styles.expansionBlur}>
-              <View style={styles.expansionContent}>
-                {destinationData.detailsExpansion.map((detail, index) => (
-                  <View key={index} style={styles.expansionItem}>
-                    <ImageBackground
-                      source={{ uri: detail.image }}
-                      style={styles.expansionThumbnail}
-                      imageStyle={styles.expansionThumbnailStyle}
-                    />
-                    <View style={styles.expansionText}>
-                      <Text style={styles.expansionName}>{detail.name}</Text>
-                      <Text style={styles.expansionInfo}>{detail.info}</Text>
-                    </View>
-                  </View>
-                ))}
-              </View>
+          {/* Experiences Carousel */}
+          <View style={styles.carouselContainer}>
+            <View style={styles.carouselHeader}>
+              <Text style={styles.carouselTitle}>Experiences</Text>
+              <Text style={styles.carouselSubtitle}>Walks, views, and hidden gems</Text>
             </View>
+            
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.carouselScroll}
+            >
+              {destinationData.experiences.map((item, index) => (
+                <View key={index} style={[styles.experienceCard, index === 0 && styles.firstCard]}>
+                  <ImageBackground
+                    source={{ uri: item.image }}
+                    style={styles.experienceCardImage}
+                    imageStyle={styles.experienceCardImageStyle}
+                  >
+                    <View style={styles.experienceCardOverlay} />
+                    <View style={styles.experienceCardContent}>
+                      <Text style={styles.experienceCardTitle}>{item.title}</Text>
+                      <Text style={styles.experienceCardSubtext}>{item.subtext}</Text>
+                    </View>
+                  </ImageBackground>
+                </View>
+              ))}
+            </ScrollView>
+          </View>
+
+          {/* Food & Culture Carousel */}
+          <View style={styles.carouselContainer}>
+            <View style={styles.carouselHeader}>
+              <Text style={styles.carouselTitle}>Food & Culture</Text>
+              <Text style={styles.carouselSubtitle}>Taste and traditions from the coast</Text>
+            </View>
+            
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.carouselScroll}
+            >
+              {destinationData.foodCulture.map((item, index) => (
+                <View key={index} style={[styles.experienceCard, index === 0 && styles.firstCard]}>
+                  <ImageBackground
+                    source={{ uri: item.image }}
+                    style={styles.experienceCardImage}
+                    imageStyle={styles.experienceCardImageStyle}
+                  >
+                    <View style={styles.experienceCardOverlay} />
+                    <View style={styles.experienceCardContent}>
+                      <View style={styles.foodCultureHeader}>
+                        <Text style={styles.foodCultureIcon}>{item.icon}</Text>
+                        <Text style={styles.experienceCardTitle}>{item.title}</Text>
+                      </View>
+                      <Text style={styles.experienceCardSubtext}>{item.subtext}</Text>
+                    </View>
+                  </ImageBackground>
+                </View>
+              ))}
+            </ScrollView>
           </View>
         </View>
 
