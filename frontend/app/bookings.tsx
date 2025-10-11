@@ -536,80 +536,14 @@ export default function TripCanvas() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-        {/* Hero Pane */}
-        <View style={styles.heroPaneContainer}>
-          <ImageBackground
-            source={{ uri: selectedDay.heroImage }}
-            style={styles.heroPane}
-            imageStyle={styles.heroPaneImage}
-          >
-            <View style={styles.heroOverlay} />
-            <View style={styles.heroContent}>
-              <Text style={styles.heroTitle}>{selectedDay.city}</Text>
-              <Text style={styles.heroSubtitle}>Your arrangements in order.</Text>
-              
-              <View style={styles.heroButtons}>
-                <TouchableOpacity style={styles.heroButtonOutline}>
-                  <Text style={styles.heroButtonOutlineText}>View All Cities</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.heroButtonFilled}>
-                  <Text style={styles.heroButtonFilledText}>Edit Bookings</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </ImageBackground>
-        </View>
+        {/* Hero Pane - Trip Identity + Status */}
+        {renderHeroPane()}
 
-        {/* City / Day Switcher */}
-        <View style={styles.daysSwitcher}>
-          <ScrollView 
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.daysScrollContent}
-          >
-            {tripData.days.map((day) => renderDayPill(day, selectedDayId === day.id))}
-          </ScrollView>
-        </View>
+        {/* Multi-City Continuous Chronicle */}
+        {tripData.cityChapters.map((city, index) => renderCityChapter(city, index))}
 
-        {/* Daily Overview Header */}
-        <View style={styles.dailyOverview}>
-          <Text style={styles.dailyTitle}>{selectedDay.title}</Text>
-          <Text style={styles.dailySubtitle}>{selectedDay.subtitle}</Text>
-          <View style={styles.dailyDivider} />
-        </View>
-
-        {/* Booking Categories - Editorial Layout */}
-        <View style={styles.categoriesContainer}>
-          {/* Flights */}
-          <View style={styles.categorySection}>
-            {renderSectionHeader('flights', '✈️ Flights')}
-            {renderSection('flights')}
-          </View>
-
-          {/* Stays */}
-          <View style={styles.categorySection}>
-            {renderSectionHeader('stays', '🏨 Stays')}
-            {renderSection('stays')}
-          </View>
-
-          {/* Transport */}
-          <View style={styles.categorySection}>
-            {renderSectionHeader('transport', '🚗 Transport')}
-            {renderSection('transport')}
-          </View>
-
-          {/* Experiences */}
-          <View style={styles.categorySection}>
-            {renderSectionHeader('experiences', '🎟️ Experiences')}
-            {renderSection('experiences')}
-          </View>
-
-          {/* Restaurants */}
-          <View style={styles.categorySection}>
-            {renderSectionHeader('restaurants', '🍽️ Dining')}
-            {renderSection('restaurants')}
-          </View>
-        </View>
+        {/* Trip End Summary - "The Journey in Retrospect" */}
+        {renderTripSummary()}
 
         {/* Bottom spacing */}
         <View style={styles.bottomSpacing} />
@@ -629,15 +563,6 @@ export default function TripCanvas() {
 
           <TouchableOpacity 
             style={styles.dockItem} 
-            onPress={() => router.push('/canvas')}
-            activeOpacity={0.8}
-          >
-            <Ionicons name="brush-outline" size={22} color="rgba(255,255,255,0.7)" />
-            <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity 
-            style={styles.dockItem} 
             onPress={() => router.push('/trips')}
             activeOpacity={0.8}
           >
@@ -651,6 +576,14 @@ export default function TripCanvas() {
           >
             <Ionicons name="calendar" size={22} color="#CBB88C" />
             <Text style={styles.dockLabelActive}>Bookings</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={styles.dockItem} 
+            activeOpacity={0.8}
+          >
+            <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.7)" />
+            <Text style={styles.dockLabelInactive}>Concierge</Text>
           </TouchableOpacity>
         </View>
       </View>
