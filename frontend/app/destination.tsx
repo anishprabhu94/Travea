@@ -1823,21 +1823,21 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // 6. Suggested Journeys - Editorial Finale Styles
+  // 6. Suggested Journeys - Refined Editorial Styles
   suggestedJourneysSection: {
     paddingHorizontal: 24,
-    paddingTop: 24, // Generous top padding
+    paddingTop: 24,
     marginBottom: 32,
   },
   journeysHeader: {
     alignItems: 'center',
-    marginBottom: 16, // Bottom padding as specified
+    marginBottom: 18, // Minimal breathing space
   },
   journeysTitle: {
     fontSize: 16,
     fontWeight: '600', // Semibold
-    color: '#F3F1E7', // White
-    letterSpacing: 2, // Letter-spaced
+    color: 'rgba(243,241,231,0.9)', // White 90%
+    letterSpacing: 2,
     marginBottom: 8,
     textAlign: 'center',
     fontFamily: Platform.select({
@@ -1847,9 +1847,9 @@ const styles = StyleSheet.create({
     }),
   },
   journeysSubtitle: {
-    fontSize: 13, // 13pt as specified
+    fontSize: 13,
     fontWeight: '400',
-    color: 'rgba(203,184,140,0.8)', // Gold opacity 0.8
+    color: 'rgba(203,184,140,0.7)', // Gold 70% opacity
     textAlign: 'center',
     marginBottom: 16,
     fontFamily: Platform.select({
@@ -1859,137 +1859,56 @@ const styles = StyleSheet.create({
     }),
   },
   journeysDivider: {
-    width: 60, // 60px as specified
-    height: 1, // 1pt line
-    backgroundColor: 'rgba(203,184,140,0.25)', // Gold opacity 0.25
+    width: 60,
+    height: 1,
+    backgroundColor: 'rgba(203,184,140,0.4)', // 40% opacity
   },
 
-  // Journey Cards Container
+  // Journey Cards Container - Simplified
   journeysContainer: {
-    gap: 20, // 20pt gap between cards
+    gap: 17, // 16-18pt breathing space
   },
   journeyCard: {
-    backgroundColor: 'rgba(20,20,20,0.75)', // Frosted glass with 25% transparency
+    minHeight: 250, // 240-260px height
     borderRadius: 26, // 26pt corner radius
+    padding: 20, // 20pt all around
+    backgroundColor: 'rgba(10,10,10,0.3)', // Translucent onyx opacity 0.3
     borderWidth: 1,
-    borderColor: 'rgba(203,184,140,0.25)', // Gold stroke opacity 0.25
-    overflow: 'hidden',
+    borderColor: 'rgba(203,184,140,0.15)', // Subtle gold edge glow
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(40px)', // Blur depth 40px
-        boxShadow: '0 8px 32px rgba(0,0,0,0.4)', // Soft shadow for depth
-      },
-      default: {
-        shadowColor: '#000000',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.4,
-        shadowRadius: 16,
-        elevation: 8,
-      },
-    }),
-  },
-  journeyCardContent: {
-    padding: 20, // Inner padding 20pt
-  },
-
-  // Journey Title Block
-  journeyTitleBlock: {
-    marginBottom: 20,
-  },
-  journeyTitle: {
-    fontSize: 20, // 20pt large gold serif title
-    fontWeight: '600',
-    color: '#CBB88C', // Gold color
-    marginBottom: 4,
-    fontFamily: Platform.select({
-      ios: 'Georgia', // Elegant serif
-      android: 'serif',
-      web: 'Georgia, "Times New Roman", serif',
-    }),
-  },
-  journeySubtitle: {
-    fontSize: 14, // 14pt muted subtitle
-    fontWeight: '400',
-    color: '#F3F1E7', // White
-    marginBottom: 12,
-    fontFamily: Platform.select({
-      ios: 'SF Pro Display',
-      android: 'SF Pro Display',
-      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    }),
-  },
-  journeyTitleLine: {
-    width: 40,
-    height: 1, // 1pt gold line
-    backgroundColor: 'rgba(203,184,140,0.4)', // 40% opacity as specified
-  },
-
-  // Journey Line Visualization
-  journeyVisualization: {
-    marginBottom: 20,
-  },
-  journeyPath: {
-    position: 'relative',
-    height: 40,
-    marginHorizontal: 24, // Full width minus 24pt padding
-    marginBottom: 12,
-  },
-  journeyLine: {
-    position: 'absolute',
-    top: 15,
-    left: 0,
-    right: 0,
-    height: 2, // Thin luminous line
-    backgroundColor: 'rgba(203,184,140,0.6)', // Matte gold with subtle glow
-    borderRadius: 1,
-    ...Platform.select({
-      web: {
-        boxShadow: '0 0 4px rgba(203,184,140,0.3)', // Faint glow effect
-      },
-    }),
-  },
-  journeyDot: {
-    position: 'absolute',
-    top: 0,
-    alignItems: 'center',
-    transform: [{ translateX: -4 }], // Center the dot on the line
-  },
-  journeyDotCircle: {
-    width: 8, // Softly glowing dots
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: '#CBB88C',
-    marginBottom: 4,
-    ...Platform.select({
-      web: {
-        boxShadow: '0 0 8px rgba(203,184,140,0.6)', // Subtle glow
+        backdropFilter: 'blur(30px)', // Blur 30px
+        boxShadow: '0 0 20px rgba(203,184,140,0.15)', // Gold glow
       },
       default: {
         shadowColor: '#CBB88C',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.6,
-        shadowRadius: 4,
-        elevation: 3,
+        shadowOpacity: 0.15,
+        shadowRadius: 10,
+        elevation: 6,
       },
     }),
   },
-  journeyDotLabel: {
-    fontSize: 10,
+
+  // Top Row - Title + Meta
+  journeyHeader: {
+    marginBottom: 16,
+  },
+  journeyTitle: {
+    fontSize: 20, // 20pt Playfair Display equivalent
     fontWeight: '600',
-    color: '#CBB88C', // 3-letter acronym in small caps
-    textAlign: 'center',
+    color: '#CBB88C', // Gold
+    marginBottom: 6,
     fontFamily: Platform.select({
-      ios: 'SF Pro Display',
-      android: 'SF Pro Display', 
-      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      ios: 'Playfair Display', // Serif equivalent
+      android: 'serif',
+      web: 'Playfair Display, Georgia, "Times New Roman", serif',
     }),
   },
-  journeyDescription: {
-    fontSize: 13,
+  journeyMeta: {
+    fontSize: 14, // 14pt warm gray
     fontWeight: '400',
-    color: 'rgba(203,184,140,0.9)', // Gold italic description
-    fontStyle: 'italic',
-    textAlign: 'center',
+    color: 'rgba(229,229,229,0.7)', // Warm gray 70% opacity
     fontFamily: Platform.select({
       ios: 'SF Pro Display',
       android: 'SF Pro Display',
@@ -1997,47 +1916,62 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Supporting Imagery
-  journeyImagery: {
+  // Middle - Description
+  journeyDescription: {
+    fontSize: 14, // 14pt gold italic
+    fontWeight: '400',
+    color: '#CBB88C',
+    fontStyle: 'italic',
+    marginBottom: 20,
+    textAlign: 'left', // Left aligned for readability
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'SF Pro Display',
+      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
+  // Bottom Row - Images + Arrow
+  journeyBottom: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-end',
   },
   journeyThumbnails: {
     flexDirection: 'row',
-    gap: 16, // Evenly spaced
+    gap: 12, // Evenly spaced
   },
   journeyThumbnailContainer: {
     alignItems: 'center',
   },
   journeyThumbnail: {
-    width: 60, // 60px diameter circular thumbnails
-    height: 60,
-    borderRadius: 30,
+    width: 58, // 56-60px diameter
+    height: 58,
+    borderRadius: 29,
     overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: 'rgba(203,184,140,0.3)', // Soft gold border
+    borderWidth: 0.6, // 0.6px soft gold border
+    borderColor: '#CBB88C',
     marginBottom: 6,
     ...Platform.select({
       web: {
-        boxShadow: '0 4px 12px rgba(0,0,0,0.3)', // Blur shadow for lift
+        boxShadow: '0 4px 8px rgba(0,0,0,0.25)', // Subtle drop shadow blur 8px
       },
       default: {
         shadowColor: '#000000',
         shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 6,
-        elevation: 4,
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 3,
       },
     }),
   },
   journeyThumbnailImage: {
-    borderRadius: 30,
+    borderRadius: 29,
   },
   journeyThumbnailCaption: {
-    fontSize: 10, // 10pt gray micro-caption
-    fontWeight: '500',
-    color: '#9B958D', // Gray
+    fontSize: 11, // 11pt micro-caption
+    fontWeight: '400',
+    color: 'rgba(229,229,229,0.6)', // 60% opacity
     textAlign: 'center',
     fontFamily: Platform.select({
       ios: 'SF Pro Display',
@@ -2046,22 +1980,22 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Open Trip Button
-  journeyOpenButton: {
-    // No additional styling needed - just for structure
+  // Arrow Button - Far Right
+  journeyArrowButton: {
+    // No additional styling needed
   },
-  journeyOpenCircle: {
-    width: 32, // Small frosted circle
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: 'rgba(203,184,140,0.15)', // Frosted background
+  journeyArrowCircle: {
+    width: 36, // 36px diameter frosted circle
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: 'rgba(203,184,140,0.12)',
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: 'rgba(203,184,140,0.25)',
+    borderWidth: 0.5,
+    borderColor: 'rgba(203,184,140,0.2)',
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(10px)',
+        backdropFilter: 'blur(15px)',
       },
     }),
   },
