@@ -394,32 +394,81 @@ export default function DestinationInfo() {
           </View>
         </View>
 
-        {/* 5. Local Insights */}
-        <View style={styles.insightsSection}>
-          <Text style={styles.sectionTitle}>Local Insights</Text>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.insightsScroll}
-          >
-            {destinationData.insights.map((insight, index) => (
-              <View key={index} style={styles.insightCard}>
-                <ImageBackground
-                  source={{ uri: destinationData.heroImage }}
-                  style={styles.insightCardImage}
-                  imageStyle={styles.insightCardImageStyle}
-                >
-                  <View style={styles.insightCardOverlay} />
-                  <View style={styles.insightCardContent}>
-                    <Text style={styles.insightQuote}>{insight.quote}</Text>
-                    {insight.attribution && (
-                      <Text style={styles.insightAttribution}>{insight.attribution}</Text>
-                    )}
-                  </View>
-                </ImageBackground>
+        {/* 5. Local Insights - Luxury Collector's Card */}
+        <View style={styles.localInsightsSection}>
+          <View style={styles.insightsCollectorCard}>
+            <View style={styles.insightsCardContent}>
+              {/* Title Bar */}
+              <View style={styles.insightsTitleBar}>
+                <Text style={styles.insightsTitle}>LOCAL INSIGHTS</Text>
+                <View style={styles.insightsTitleDivider} />
               </View>
-            ))}
-          </ScrollView>
+
+              {/* 2×3 Grid Layout */}
+              <View style={styles.insightsGrid}>
+                {/* Left Column */}
+                <View style={styles.insightsColumn}>
+                  <View style={styles.insightItem}>
+                    <Text style={styles.insightIcon}>🗓</Text>
+                    <View style={styles.insightText}>
+                      <Text style={styles.insightLabel}>Best Time</Text>
+                      <Text style={styles.insightDetail}>Apr–Jun, Sep–Oct</Text>
+                    </View>
+                  </View>
+                  
+                  <View style={styles.insightItem}>
+                    <Text style={styles.insightIcon}>💶</Text>
+                    <View style={styles.insightText}>
+                      <Text style={styles.insightLabel}>Currency</Text>
+                      <Text style={styles.insightDetail}>Euro (EUR)</Text>
+                    </View>
+                  </View>
+                  
+                  <View style={styles.insightItem}>
+                    <Text style={styles.insightIcon}>💬</Text>
+                    <View style={styles.insightText}>
+                      <Text style={styles.insightLabel}>Language</Text>
+                      <Text style={styles.insightDetail}>Italian · English common</Text>
+                    </View>
+                  </View>
+                </View>
+
+                {/* Right Column */}
+                <View style={styles.insightsColumn}>
+                  <View style={styles.insightItem}>
+                    <Text style={styles.insightIcon}>✈️</Text>
+                    <View style={styles.insightText}>
+                      <Text style={styles.insightLabel}>Gateway</Text>
+                      <Text style={styles.insightDetail}>Naples Intl (NAP)</Text>
+                    </View>
+                  </View>
+                  
+                  <View style={styles.insightItem}>
+                    <Text style={styles.insightIcon}>🚶</Text>
+                    <View style={styles.insightText}>
+                      <Text style={styles.insightLabel}>Getting Around</Text>
+                      <Text style={styles.insightDetail}>Ferries · Footpaths · Local buses</Text>
+                    </View>
+                  </View>
+                  
+                  <View style={styles.insightItem}>
+                    <Text style={styles.insightIcon}>🕊</Text>
+                    <View style={styles.insightText}>
+                      <Text style={styles.insightLabel}>Etiquette</Text>
+                      <Text style={styles.insightDetail}>Dress modestly in churches</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+
+              {/* Elegant One-Liner */}
+              <View style={styles.insightsFooter}>
+                <Text style={styles.insightsWhisper}>
+                  "Tipping 10% shows grace, not habit."
+                </Text>
+              </View>
+            </View>
+          </View>
         </View>
 
         {/* Bottom spacing for fixed footer */}
