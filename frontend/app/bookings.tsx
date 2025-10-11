@@ -586,7 +586,7 @@ const styles = StyleSheet.create({
     paddingBottom: 100,
   },
 
-  // Hero Panel - 340px
+  // Hero Panel - 340px with darkened background
   heroContainer: {
     height: 340,
     marginBottom: 0,
@@ -595,16 +595,24 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   heroBackgroundImage: {
-    // No border radius for full bleed
+    opacity: 0.6,
+  },
+  heroDarkOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.4)',
   },
   heroGradient: {
     position: 'absolute',
     left: 0,
     right: 0,
     bottom: 0,
-    height: '60%',
+    height: '70%',
   },
-  heroContent: {
+  heroFrostedContent: {
     position: 'absolute',
     bottom: 0,
     left: 0,
@@ -612,6 +620,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 24,
     paddingBottom: 32,
+    paddingTop: 24,
   },
   heroTitle: {
     fontSize: 28,
