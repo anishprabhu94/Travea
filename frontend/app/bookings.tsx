@@ -236,15 +236,12 @@ export default function TripCanvas() {
             <Text style={styles.statusText}>{tripData.status}</Text>
           </View>
           
-          {/* City Strip */}
+          {/* City Strip - Centered Pills */}
           <View style={styles.cityStrip}>
             {tripData.cities.map((city, index) => (
               <View 
                 key={city}
-                style={[
-                  styles.cityCapsuleContainer,
-                  { left: `${(index / (tripData.cities.length - 1)) * 80}%` }
-                ]}
+                style={styles.cityCapsuleWrapper}
               >
                 <View style={[
                   styles.cityCapsule,
@@ -257,9 +254,11 @@ export default function TripCanvas() {
                     {city}
                   </Text>
                 </View>
+                {index < tripData.cities.length - 1 && (
+                  <View style={styles.cityDot} />
+                )}
               </View>
             ))}
-            <View style={styles.cityConnectorLine} />
           </View>
           
           {/* Day Selector Tabs - Expanded & Centered */}
