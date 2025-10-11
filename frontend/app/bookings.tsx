@@ -133,6 +133,7 @@ const tripData = {
           id: '2',
           name: 'Villa San Michele',
           address: 'Via Capodimonte 14',
+          dates: 'Jun 10–11',
           checkin: 'Check-in 2 PM',
           checkout: 'Check-out 12 PM',
           platform: 'via Relais & Châteaux',
@@ -143,6 +144,7 @@ const tripData = {
         {
           id: '3',
           title: 'Mountain Road Transfer',
+          date: 'Jun 10',
           time: '11 AM',
           route: 'Amalfi → Ravello Hills',
           duration: '30 min · Car',
@@ -153,6 +155,7 @@ const tripData = {
         {
           id: '3',
           title: 'Limoncello Tasting',
+          date: 'Jun 11',
           details: '1 hr · Local estate',
           image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
         }
@@ -161,6 +164,7 @@ const tripData = {
         {
           id: '3',
           name: 'Ristorante Rossellinis',
+          date: 'Jun 11',
           time: 'Dinner 8:00 PM',
           details: 'Michelin Star',
           image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
