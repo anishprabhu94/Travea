@@ -802,22 +802,22 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 
-  // Frosted Glass Pane - Luxury Editorial Style
+  // Frosted Glass Pane - EXACT Gallery Style
   frostedPanel: {
-    backgroundColor: 'rgba(15,15,15,0.45)',
-    borderRadius: 26,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 24,
     borderWidth: 0.5,
-    borderColor: 'rgba(181,155,115,0.25)',
+    borderColor: 'rgba(181,155,115,0.15)',
     padding: 24,
     ...Platform.select({
       web: {
         backdropFilter: 'blur(25px)',
-        boxShadow: '0 8px 24px rgba(0,0,0,0.25), inset 1px 1px 0 rgba(255,255,255,0.05)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.3), inset 1px 1px 0 rgba(255,255,255,0.05)',
       },
       default: {
         shadowColor: '#000000',
         shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.25,
+        shadowOpacity: 0.3,
         shadowRadius: 12,
         elevation: 8,
       },
