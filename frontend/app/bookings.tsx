@@ -425,10 +425,22 @@ export default function TripCanvas() {
             {activeDay.experiences.map((exp, index) => (
               <View 
                 key={exp.id} 
-                style={[styles.experienceCard, index === activeDay.experiences.length - 1 && {marginRight: 0}]}
+                style={[styles.experienceImageCard, index === activeDay.experiences.length - 1 && {marginRight: 0}]}
               >
-                <Text style={styles.experienceCardTitle}>{exp.title}</Text>
-                <Text style={styles.experienceCardDetails}>{exp.details}</Text>
+                <ImageBackground
+                  source={{ uri: exp.image }}
+                  style={styles.experienceImageCardBg}
+                  imageStyle={styles.experienceImageCardBgStyle}
+                >
+                  <LinearGradient
+                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
+                    style={styles.experienceImageCardGradient}
+                  />
+                  <View style={styles.experienceImageCardFrosted}>
+                    <Text style={styles.experienceCardTitle}>{exp.title}</Text>
+                    <Text style={styles.experienceCardDetails}>{exp.details}</Text>
+                  </View>
+                </ImageBackground>
               </View>
             ))}
           </ScrollView>
