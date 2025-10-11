@@ -1038,16 +1038,37 @@ const styles = StyleSheet.create({
 
   // Category Date (Prominent & Fancy)
   categoryDate: {
-    fontSize: 13,
+    fontSize: 15,
     fontWeight: '700',
-    color: 'rgba(181,155,115,0.95)',
+    color: '#B59B73',
     textTransform: 'uppercase',
-    letterSpacing: 2,
-    marginBottom: 16,
+    letterSpacing: 3.5,
+    marginBottom: 20,
+    textAlign: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    alignSelf: 'center',
+    borderRadius: 20,
+    backgroundColor: 'rgba(181,155,115,0.12)',
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.3)',
+    overflow: 'hidden',
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
+    }),
+    ...Platform.select({
+      web: {
+        textShadow: '0 2px 8px rgba(181,155,115,0.4)',
+      },
+      default: {
+        shadowColor: '#B59B73',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.4,
+        shadowRadius: 4,
+        elevation: 3,
+      },
     }),
   },
   
