@@ -196,6 +196,7 @@ export default function Index() {
             </View>
             
           </View>
+          </ImageBackground>
         </View>
         
       </View>
