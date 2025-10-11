@@ -184,15 +184,13 @@ export default function BookingsOverview() {
     return '0 Booked';
   };
 
-  const renderSectionHeader = (section: string) => (
+  const renderSectionHeader = (section: string, label: string) => (
     <TouchableOpacity 
       style={styles.sectionHeader}
       onPress={() => toggleSection(section)}
       activeOpacity={0.8}
     >
-      <Text style={styles.sectionTitle}>
-        {sectionLabels[section as keyof typeof sectionLabels]}
-      </Text>
+      <Text style={styles.sectionTitle}>{label}</Text>
       <View style={styles.statusChip}>
         <Text style={styles.statusText}>{getStatusCount(section)}</Text>
       </View>
@@ -202,6 +200,19 @@ export default function BookingsOverview() {
         color="#CBB88C" 
         style={styles.chevronIcon}
       />
+    </TouchableOpacity>
+  );
+
+  const renderDayPill = (day: any, isActive: boolean) => (
+    <TouchableOpacity
+      key={day.id}
+      style={[styles.dayPill, isActive && styles.dayPillActive]}
+      onPress={() => setSelectedDayId(day.id)}
+      activeOpacity={0.8}
+    >
+      <Text style={[styles.dayPillText, isActive && styles.dayPillTextActive]}>
+        {day.title}
+      </Text>
     </TouchableOpacity>
   );
 
