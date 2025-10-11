@@ -445,14 +445,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    ...Platform.select({
-      web: {
-        background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.4) 100%)', // Subtle vignette edge fade
-      },
-      default: {
-        backgroundColor: 'rgba(0, 0, 0, 0.1)', // Subtle vignette for native
-      },
-    }),
+    backgroundColor: 'rgba(0, 0, 0, 0.2)', // Simple solid overlay for iOS
   },
   content: {
     flex: 1,
