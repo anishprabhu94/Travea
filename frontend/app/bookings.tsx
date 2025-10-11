@@ -885,8 +885,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 12,
     marginBottom: 6,
+    position: 'relative',
   },
   heroTitle: {
     fontSize: 32,
@@ -895,6 +895,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     letterSpacing: 2,
     lineHeight: 42,
+    flex: 1,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
@@ -915,9 +916,11 @@ const styles = StyleSheet.create({
     }),
   },
   editIconButton: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
+    position: 'absolute',
+    right: 0,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
     backgroundColor: 'rgba(255,255,255,0.08)',
     borderWidth: 1,
     borderColor: 'rgba(181,155,115,0.3)',
