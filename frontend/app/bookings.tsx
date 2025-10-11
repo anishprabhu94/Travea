@@ -350,29 +350,16 @@ export default function TripCanvas() {
             <Text style={styles.categoryTitle}>Transport</Text>
           </View>
           <View style={styles.categoryDivider} />
-          <ScrollView 
-            horizontal 
-            showsHorizontalScrollIndicator={false}
-            style={styles.horizontalScroll}
-            contentContainerStyle={styles.horizontalScrollContent}
-          >
-            {activeDay.transport.map((item, index) => (
-              <View 
-                key={item.id} 
-                style={[
-                  styles.horizontalCard,
-                  index === activeDay.transport.length - 1 && styles.horizontalCardLast
-                ]}
-              >
-                <Text style={styles.horizontalCardTitle}>{item.title}</Text>
-                <Text style={styles.horizontalCardTime}>{item.time} · {item.route}</Text>
-                <Text style={styles.horizontalCardDuration}>{item.duration}</Text>
-                <View style={styles.externalIconCircleSmall}>
-                  <Ionicons name="open-outline" size={14} color="#B59B73" />
-                </View>
+          <View style={styles.transportContainer}>
+            {activeDay.transport.map((item) => (
+              <View key={item.id} style={styles.transportItem}>
+                <Text style={styles.transportTitle}>{item.title}</Text>
+                <Text style={styles.transportRoute}>{item.route}</Text>
+                <Text style={styles.transportTime}>Leave: {item.time}</Text>
+                <Text style={styles.transportDuration}>{item.duration}</Text>
               </View>
             ))}
-          </ScrollView>
+          </View>
         </View>
       </View>
     );
