@@ -331,7 +331,7 @@ export default function DestinationInfo() {
                   </View>
                 ))}
               </View>
-            </BlurView>
+            </View>
           </View>
         </View>
 
