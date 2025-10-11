@@ -532,7 +532,7 @@ export default function DestinationInfo() {
           {/* Section Header */}
           <View style={styles.journeysHeader}>
             <Text style={styles.journeysTitle}>SUGGESTED JOURNEYS</Text>
-            <Text style={styles.journeysSubtitle}>Curated paths travelers often explore together</Text>
+            <Text style={styles.journeysSubtitle}>Curated paths from travelers in the know</Text>
             <View style={styles.journeysDivider} />
           </View>
 
