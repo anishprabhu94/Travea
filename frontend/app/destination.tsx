@@ -464,6 +464,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(20,20,20,0.8)', // Solid background for iOS
     borderRadius: 20, // Match circular button
   },
+  
+  saveBlur: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(20,20,20,0.8)', // Solid background for iOS
+    borderRadius: 20, // Match circular button
+  },
 
   // Hero Text Overlay (bottom-left aligned)
   heroTextOverlay: {
