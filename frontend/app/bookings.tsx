@@ -594,12 +594,7 @@ export default function TripCanvas() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0A0A0A', // Deep onyx with subtle gold gradient
-    ...Platform.select({
-      web: {
-        background: 'radial-gradient(ellipse at bottom right, rgba(203,184,140,0.06), transparent 50%), #0A0A0A',
-      },
-    }),
+    backgroundColor: '#0A0A0A', // Deep onyx with soft golden vignette
   },
   scrollContainer: {
     flex: 1,
