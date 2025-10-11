@@ -787,10 +787,11 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Categories Container
+  // Categories Container - More Spacing
   categoriesContainer: {
     paddingHorizontal: 24,
-    gap: 20,
+    gap: 24,
+    marginBottom: 32,
   },
 
   // Standardized Frosted Pane - Image Style (Dark Matte with Soft Shadow)
