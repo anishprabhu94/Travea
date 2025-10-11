@@ -803,27 +803,34 @@ const styles = StyleSheet.create({
     gap: 16, // 16pt spacing between cards (magazine panel spacing)
   },
 
-  // Booking Card Base
+  // Booking Card Base - Magazine Panel Style
   bookingCard: {
-    minHeight: 130, // 130-150px auto-adjust
-    padding: 14,
-    backgroundColor: 'rgba(255,255,255,0.08)',
-    borderRadius: 22, // 22pt
-    borderWidth: 1,
-    borderColor: 'rgba(203,184,140,0.18)', // Subtle gold stroke
+    minHeight: 130,
+    padding: 16, // 16pt padding
+    backgroundColor: 'rgba(255,255,255,0.07)', // Frosted glass
+    borderRadius: 24, // Corner radius 24pt
+    borderWidth: 0, // No borders - just light and hierarchy
     ...Platform.select({
       web: {
         backdropFilter: 'blur(25px)',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
+        boxShadow: '0 0 1px rgba(255,255,255,0.08), 0 8px 24px rgba(0,0,0,0.25)', // Inner + outer glow
       },
       default: {
         shadowColor: '#000000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.2,
-        shadowRadius: 8,
-        elevation: 4,
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.25,
+        shadowRadius: 12,
+        elevation: 6,
       },
     }),
+  },
+
+  // Horizontal Carousels for Experiences and Restaurants
+  carouselContainer: {
+    paddingRight: 24, // Allow scroll past edge
+  },
+  firstCard: {
+    marginLeft: 0,
   },
 
   // Flight Card Styles
