@@ -220,24 +220,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   
-  // Center-aligned glass pane with background image
+  // iOS-optimized main pane with ImageBackground
   mainPane: {
-    borderRadius: 28,
-    overflow: 'hidden',
-    width: '100%',
+    width: '90%',
     maxWidth: 400,
-    ...Platform.select({
-      web: {
-        boxShadow: '0 16px 48px rgba(0, 0, 0, 0.6)',
-      },
-      default: {
-        shadowColor: 'rgba(0, 0, 0, 0.9)',
-        shadowOffset: { width: 0, height: 16 },
-        shadowOpacity: 0.6,
-        shadowRadius: 24,
-        elevation: 22,
-      },
-    }),
+    borderRadius: 28,
+    overflow: 'hidden', // Critical for iOS
+    minHeight: 500,
+    // Remove any web-specific properties that might interfere with iOS
   },
 
   // Image style specifically for iOS compatibility
