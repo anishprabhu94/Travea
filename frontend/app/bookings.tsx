@@ -668,18 +668,18 @@ const styles = StyleSheet.create({
   // City Strip
   cityStrip: {
     position: 'relative',
-    width: '85%',
+    width: '90%',
     height: 40,
     marginBottom: 24,
   },
   cityConnectorLine: {
     position: 'absolute',
-    top: 19,
-    left: '10%',
-    right: '10%',
-    height: 2,
-    backgroundColor: 'rgba(181,155,115,0.2)',
-    zIndex: 0,
+    top: 13,
+    left: '15%',
+    right: '15%',
+    height: 1.5,
+    backgroundColor: 'rgba(181,155,115,0.3)',
+    zIndex: -1,
   },
   cityCapsuleContainer: {
     position: 'absolute',
