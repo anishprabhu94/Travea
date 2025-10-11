@@ -413,24 +413,22 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Experience Moment - Frosted Panel
+  // Experience Moment - Dark Gradient
   experienceMoment: {
-    backgroundColor: 'rgba(255,255,255,0.06)',
     borderRadius: 24,
-    borderWidth: 0.5,
-    borderColor: 'rgba(181,155,115,0.15)',
     padding: 20,
     marginBottom: 20,
     position: 'relative',
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(25px)',
-        boxShadow: '0 8px 24px rgba(0,0,0,0.3), inset 1px 1px 0 rgba(255,255,255,0.05)',
+        background: 'linear-gradient(135deg, rgba(54,65,71,0.95) 0%, rgba(74,66,62,0.95) 100%)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.35)',
       },
       default: {
+        backgroundColor: 'rgba(54,65,71,0.95)',
         shadowColor: '#000000',
         shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.3,
+        shadowOpacity: 0.35,
         shadowRadius: 12,
         elevation: 8,
       },
