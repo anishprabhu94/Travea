@@ -1954,7 +1954,7 @@ const styles = StyleSheet.create({
     width: 36, // Reduced from 42
     height: 36, // Reduced from 42
     borderRadius: 18, // Reduced from 21
-    borderWidth: 2.5, // Reduced from 3
+    borderWidth: 1.5, // Further reduced from 2.5 for sleek appearance
     borderColor: 'rgba(255,255,255,0.2)', // Base ring
     alignItems: 'center',
     justifyContent: 'center',
