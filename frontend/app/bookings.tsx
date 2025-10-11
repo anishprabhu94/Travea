@@ -500,7 +500,8 @@ export default function TripCanvas() {
                   />
                   <View style={styles.experienceImageCardFrosted}>
                     <Text style={styles.experienceCardTitle}>{exp.title}</Text>
-                    <Text style={styles.experienceCardDetails}>{exp.details}</Text>
+                    <Text style={styles.experienceCardDetails}>Start: {exp.startTime} · Duration: {exp.duration}</Text>
+                    <Text style={styles.experienceCardLocation}>{exp.location}</Text>
                   </View>
                 </ImageBackground>
               </View>
