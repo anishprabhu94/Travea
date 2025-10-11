@@ -362,7 +362,7 @@ export default function TripCanvas() {
     </View>
   );
 
-  // Flights Section
+  // Flights Section - Frosted Glass Cards (No Images)
   const renderFlights = () => {
     if (activeDay.flights.length === 0) return null;
     
@@ -383,26 +383,15 @@ export default function TripCanvas() {
             {activeDay.flights.map((flight, index) => (
               <View 
                 key={flight.id} 
-                style={[styles.flightImageCard, index === activeDay.flights.length - 1 && {marginRight: 0}]}
+                style={[styles.flightCard, index === activeDay.flights.length - 1 && {marginRight: 0}]}
               >
-                <ImageBackground
-                  source={{ uri: flight.image }}
-                  style={styles.flightImageCardBg}
-                  imageStyle={styles.flightImageCardBgStyle}
-                >
-                  <LinearGradient
-                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
-                    style={styles.flightImageCardGradient}
-                  />
-                  <View style={styles.flightImageCardFrosted}>
-                    <View style={styles.flightCardHeader}>
-                      <Text style={styles.flightCardRoute}>{flight.route}</Text>
-                      <Text style={styles.flightCardAirline}>{flight.airline}</Text>
-                    </View>
-                    <Text style={styles.flightCardTime}>{flight.time}</Text>
-                    <Text style={styles.flightCardDetails}>{flight.details}</Text>
-                  </View>
-                </ImageBackground>
+                <Text style={styles.flightCardTraveler}>{flight.traveler}</Text>
+                <View style={styles.flightCardHeader}>
+                  <Text style={styles.flightCardRoute}>{flight.route}</Text>
+                </View>
+                <Text style={styles.flightCardAirline}>{flight.airline}</Text>
+                <Text style={styles.flightCardTime}>{flight.time}</Text>
+                <Text style={styles.flightCardDetails}>{flight.details}</Text>
               </View>
             ))}
           </ScrollView>
