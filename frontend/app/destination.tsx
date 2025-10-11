@@ -465,8 +465,11 @@ export default function DestinationInfo() {
         {/* Essence Glass Poetry */}
         <EssenceModule />
 
-        {/* Discovery Section - Redesigned */}
-        <DiscoverySection />
+        {/* Simple Discovery - Working Version */}
+        <View style={styles.discoverySimple}>
+          <Text style={styles.discoveryTitleSimple}>Discovery</Text>
+          <Text style={styles.discoverySubtext}>Explore experiences, dining, and culture</Text>
+        </View>
 
         {/* Footer CTA */}
         <View style={styles.footerContainer}>
