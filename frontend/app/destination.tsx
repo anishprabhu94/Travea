@@ -1473,7 +1473,7 @@ const styles = StyleSheet.create({
   // 3. Explore Section Styles
   exploreSection: {
     paddingHorizontal: 24,
-    marginBottom: 32,
+    marginBottom: 24, // Reduced from 32 to 24 for tighter spacing
   },
   exploreHeader: {
     marginBottom: 24,
