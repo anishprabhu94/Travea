@@ -18,12 +18,7 @@ const tripData = {
   subtitle: 'June 8–15 · 2 Travelers',
   status: 'Planning',
   heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
-  cities: ['FLR', 'ROM', 'VCE'],
-  cityRanges: {
-    'FLR': [0, 1], // Day 1-2
-    'ROM': [2, 3], // Day 3-4  
-    'VCE': [4, 5], // Day 5-6, Day 7-8
-  },
+  cities: ['FLR', 'ROM', 'VCE', 'AML'],
   
   days: [
     {
