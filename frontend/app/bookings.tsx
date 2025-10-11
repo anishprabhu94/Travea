@@ -1346,7 +1346,37 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 12,
+    marginBottom: 16,
+    gap: 20,
+  },
+  
+  // Arrow Icon on Frosted Pane (Top Right, for ALL categories)
+  cardArrowIconOnPane: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: 'rgba(255,255,255,0.15)',
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.35)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transform: [{rotate: '-45deg'}],
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(12px)',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.25)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.25,
+        shadowRadius: 6,
+        elevation: 5,
+      },
+    }),
   },
 
   // Flight Card - Enhanced Frosted Glass (No Image)
