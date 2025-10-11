@@ -936,7 +936,7 @@ const styles = StyleSheet.create({
   },
   footerBlur: {
     flex: 1,
-    backgroundColor: 'rgba(20,20,20,0.6)',
+    backgroundColor: 'rgba(20,20,20,0.9)', // More solid for iOS
   },
   footerContent: {
     flex: 1,
