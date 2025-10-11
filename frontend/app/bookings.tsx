@@ -711,19 +711,25 @@ const styles = StyleSheet.create({
     color: 'rgba(10,10,10,0.9)',
   },
 
-  // Day Tabs
+  // Day Tabs - Expanded & Centered
+  dayTabsContainer: {
+    width: '100%',
+    alignItems: 'center',
+  },
   dayTabs: {
     flexDirection: 'row',
-    gap: 12,
+    gap: 10,
     backgroundColor: 'rgba(255,255,255,0.08)',
     borderRadius: 24,
     padding: 6,
+    width: '95%',
   },
   dayTab: {
     flex: 1,
-    paddingVertical: 10,
+    paddingVertical: 12,
     borderRadius: 18,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   dayTabActive: {
     backgroundColor: '#B59B73',
@@ -732,6 +738,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '500',
     color: 'rgba(255,255,255,0.7)',
+    textAlign: 'center',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
