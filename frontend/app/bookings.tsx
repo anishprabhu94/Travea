@@ -1046,25 +1046,20 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  cityHeaderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 8,
+  },
   cityName: {
     fontSize: 22,
     fontWeight: '600',
     color: 'rgba(255,255,255,0.9)',
-    marginBottom: 4,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
-    }),
-  },
-  cityDates: {
-    fontSize: 13,
-    fontWeight: '500',
-    color: 'rgba(181,155,115,0.95)',
-    marginBottom: 4,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
     }),
   },
   cityDescription: {
