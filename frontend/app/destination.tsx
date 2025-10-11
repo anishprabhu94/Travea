@@ -630,6 +630,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'rgba(0,0,0,0.3)',
   },
+  saveButtonActive: {
+    backgroundColor: 'rgba(203,184,140,0.2)',
+  },
 
   // 3. Discovery Grid
   discoverySection: {
