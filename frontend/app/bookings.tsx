@@ -176,20 +176,25 @@ export default function TripCanvas() {
   
   const activeDay = tripData.days.find(d => d.id === activeDayId) || tripData.days[0];
 
-  // Hero Panel - 340px
+  // Hero Panel - 340px with darkened background
   const renderHeroPanel = () => (
     <View style={styles.heroContainer}>
       <ImageBackground
         source={{ uri: tripData.heroImage }}
         style={styles.heroBackground}
         imageStyle={styles.heroBackgroundImage}
+        blurRadius={2}
       >
+        {/* Dark overlay to tone down brightness */}
+        <View style={styles.heroDarkOverlay} />
+        
         <LinearGradient
-          colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.6)']}
+          colors={['rgba(0,0,0,0.5)', 'rgba(0,0,0,0.7)']}
           style={styles.heroGradient}
         />
         
-        <View style={styles.heroContent}>
+        {/* Frosted content container */}
+        <View style={styles.heroFrostedContent}>
           <Text style={styles.heroTitle}>{tripData.tripName}</Text>
           <Text style={styles.heroSubtitle}>{tripData.subtitle}</Text>
           
@@ -224,26 +229,28 @@ export default function TripCanvas() {
             ))}
           </View>
           
-          {/* Day Selector Tabs */}
-          <View style={styles.dayTabs}>
-            {tripData.days.map((day) => (
-              <TouchableOpacity
-                key={day.id}
-                style={[
-                  styles.dayTab,
-                  activeDayId === day.id && styles.dayTabActive
-                ]}
-                onPress={() => setActiveDayId(day.id)}
-                activeOpacity={0.7}
-              >
-                <Text style={[
-                  styles.dayTabText,
-                  activeDayId === day.id && styles.dayTabTextActive
-                ]}>
-                  {day.label}
-                </Text>
-              </TouchableOpacity>
-            ))}
+          {/* Day Selector Tabs - Expanded & Centered */}
+          <View style={styles.dayTabsContainer}>
+            <View style={styles.dayTabs}>
+              {tripData.days.map((day) => (
+                <TouchableOpacity
+                  key={day.id}
+                  style={[
+                    styles.dayTab,
+                    activeDayId === day.id && styles.dayTabActive
+                  ]}
+                  onPress={() => setActiveDayId(day.id)}
+                  activeOpacity={0.7}
+                >
+                  <Text style={[
+                    styles.dayTabText,
+                    activeDayId === day.id && styles.dayTabTextActive
+                  ]}>
+                    {day.label}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
           </View>
         </View>
       </ImageBackground>
