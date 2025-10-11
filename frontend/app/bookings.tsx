@@ -442,74 +442,52 @@ export default function TripCanvas() {
     </View>
   );
 
-  const renderExperiencesCarousel = (experiences: any[]) => {
-    if (experiences.length === 0) return renderEmptyState('experiences');
-    
-    return (
-      <ScrollView 
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.carouselContainer}
-      >
-        {experiences.map((experience, index) => (
-          <View key={experience.id} style={[styles.experienceCard, index === 0 && styles.firstCard]}>
-            <ImageBackground
-              source={{ uri: experience.image }}
-              style={styles.experienceCardImage}
-              imageStyle={styles.experienceCardImageStyle}
-            >
-              <View style={styles.experienceCardOverlay} />
-              <View style={styles.experienceCardContent}>
-                <Text style={styles.experienceCardTitle}>{experience.title}</Text>
-                <Text style={styles.experienceCardSubtext}>{experience.details}</Text>
-                <TouchableOpacity style={styles.experienceCardButton}>
-                  <Ionicons name="open-outline" size={16} color="#CBB88C" />
-                </TouchableOpacity>
-              </View>
-            </ImageBackground>
+  // Trip End Summary - "The Journey in Retrospect"
+  const renderTripSummary = () => (
+    <View style={styles.tripSummaryContainer}>
+      {/* Visual Header */}
+      <View style={styles.summaryHeaderContainer}>
+        <ImageBackground
+          source={{ uri: tripData.summary.finalImage }}
+          style={styles.summaryHeroPane}
+          imageStyle={styles.summaryHeroPaneImage}
+        >
+          <View style={styles.summaryHeroOverlay} />
+          <View style={styles.summaryHeroContent}>
+            <Text style={styles.summaryTitle}>{tripData.summary.title}</Text>
+            <Text style={styles.summarySubtitle}>{tripData.summary.subtitle}</Text>
           </View>
-        ))}
-      </ScrollView>
-    );
-  };
+        </ImageBackground>
+      </View>
 
-  const renderRestaurantsCarousel = (restaurants: any[]) => {
-    if (restaurants.length === 0) return renderEmptyState('restaurants');
-    
-    return (
-      <ScrollView 
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.carouselContainer}
-      >
-        {restaurants.map((restaurant, index) => (
-          <View key={restaurant.id} style={[styles.restaurantCard, index === 0 && styles.firstCard]}>
-            <ImageBackground
-              source={{ uri: restaurant.image }}
-              style={styles.restaurantCardImage}
-              imageStyle={styles.restaurantCardImageStyle}
-            >
-              <View style={styles.restaurantCardOverlay} />
-              <View style={styles.restaurantCardContent}>
-                <Text style={styles.restaurantCardTitle}>{restaurant.name}</Text>
-                <Text style={styles.restaurantCardTime}>{restaurant.time}</Text>
-                <Text style={styles.restaurantCardAddress}>{restaurant.address}</Text>
-                <TouchableOpacity style={styles.restaurantCardButton}>
-                  <Ionicons name="open-outline" size={16} color="#CBB88C" />
-                </TouchableOpacity>
-              </View>
-            </ImageBackground>
-          </View>
-        ))}
-      </ScrollView>
-    );
-  };
+      {/* Trip Recap Pane */}
+      <View style={styles.recapPane}>
+        <View style={styles.recapStats}>
+          <Text style={styles.recapStatsText}>
+            🛫  Total Flights: {tripData.summary.stats.flights}{'\n'}
+            🏨  Nights Stayed: {tripData.summary.stats.nights}{'\n'}
+            🚗  Transfers: {tripData.summary.stats.transfers}{'\n'}
+            🎟  Experiences: {tripData.summary.stats.experiences}{'\n'}
+            🍽  Restaurants Visited: {tripData.summary.stats.restaurants}
+          </Text>
+          <Text style={styles.recapSubline}>All bookings confirmed · All memories saved</Text>
+        </View>
+      </View>
 
-  const renderEmptyState = (section: string) => (
-    <View style={styles.emptyState}>
-      <Ionicons name="calendar-outline" size={48} color="rgba(203,184,140,0.6)" />
-      <Text style={styles.emptyStateTitle}>No plans yet.</Text>
-      <Text style={styles.emptyStateSubtitle}>Add from Trip Canvas.</Text>
+      {/* Trip Reflection Pane */}
+      <View style={styles.reflectionPane}>
+        <Text style={styles.reflectionText}>{tripData.summary.reflection}</Text>
+        
+        <TouchableOpacity style={styles.galleryButton} onPress={openGallery}>
+          <Text style={styles.galleryButtonText}>View Trip Gallery</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Footer Signature */}
+      <View style={styles.footerSignature}>
+        <Text style={styles.footerLogo}>Trāvea</Text>
+        <Text style={styles.footerTagline}>For travelers who collect moments, not miles.</Text>
+      </View>
     </View>
   );
 
