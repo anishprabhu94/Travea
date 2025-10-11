@@ -915,19 +915,20 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // External Icon Circle
-  externalIconCircle: {
+  // External Icon Top-Left
+  externalIconTopLeft: {
     position: 'absolute',
     top: 0,
-    right: 0,
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    left: 0,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
     backgroundColor: 'rgba(181,155,115,0.15)',
     borderWidth: 1,
     borderColor: 'rgba(181,155,115,0.3)',
     alignItems: 'center',
     justifyContent: 'center',
+    zIndex: 10,
   },
   externalIconCircleSmall: {
     position: 'absolute',
