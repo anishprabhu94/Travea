@@ -253,37 +253,95 @@ export default function DestinationInfo() {
     )
   }
 
-  // Discovery Row Component
-  const DiscoveryRow = () => (
-    <View style={styles.discoveryContainer}>
-      <Text style={styles.sectionTitle}>Discovery</Text>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.discoveryScroll}
-      >
-        {destination.discovery.map((item, index) => (
-          <TouchableOpacity
-            key={item.id}
-            style={[styles.discoveryCard, index === 0 && styles.firstCard]}
-            onPress={() => setSelectedDiscovery(item)}
+  // Discovery Carousel - Memory Fragments Design
+  const DiscoveryCarousel = () => {
+    const [expandedCard, setExpandedCard] = useState(null)
+    
+    const discoveryData = [
+      {
+        id: 'experiences',
+        title: 'Experiences',
+        image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+        descriptor: 'Lemon groves, cathedral echoes,\ncliff light',
+        icon: '🏖',
+        moments: ['Terrace of Infinity views', 'Byzantine cathedral doors', 'Villa Cimbrone gardens']
+      },
+      {
+        id: 'dining',
+        title: 'Dining',
+        image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+        descriptor: 'Sea salt on lips,\nlimoncello sunsets',
+        icon: '🍋',
+        moments: ['Coastal seafood terraces', 'Limoncello tastings', 'Michelin starred views']
+      },
+      {
+        id: 'culture',
+        title: 'Culture',
+        image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+        descriptor: 'Ancient stones whisper,\nmaritime memories',
+        icon: '🎭',
+        moments: ['Maritime republic history', 'Paper-making traditions', 'Byzantine architecture']
+      },
+      {
+        id: 'nature',
+        title: 'Nature',
+        image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+        descriptor: 'Clifftop gardens bloom,\nhidden coves call',
+        icon: '🌿',
+        moments: ['Secret coastal paths', 'Vertical gardens cascade', 'Azure hidden coves']
+      }
+    ]
+
+    return (
+      <View style={styles.discoveryRibbon}>
+        <BlurView intensity={35} tint="dark" style={styles.ribbonGlass}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.memoryScroll}
+            decelerationRate="fast"
+            snapToInterval={180}
+            snapToAlignment="start"
           >
-            <ImageBackground
-              source={{ uri: item.image }}
-              style={styles.discoveryImage}
-              imageStyle={styles.discoveryImageStyle}
-            >
-              <View style={styles.discoveryOverlay} />
-              <View style={styles.discoveryContent}>
-                <Text style={styles.discoveryTitle}>{item.title}</Text>
-                <Text style={styles.discoveryPreview}>{item.preview}</Text>
-              </View>
-            </ImageBackground>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
-    </View>
-  )
+            {discoveryData.map((fragment, index) => (
+              <TouchableOpacity
+                key={fragment.id}
+                style={[styles.memoryTile, index === 0 && styles.firstTile]}
+                onPress={() => setExpandedCard(fragment)}
+                activeOpacity={0.9}
+              >
+                <ImageBackground
+                  source={{ uri: fragment.image }}
+                  style={styles.tileImage}
+                  imageStyle={styles.tileImageStyle}
+                >
+                  <View style={styles.tileOverlay} />
+                  
+                  {/* Floating Content */}
+                  <View style={styles.tileContent}>
+                    <View style={styles.tileHeader}>
+                      <Text style={styles.tileCategory}>{fragment.title}</Text>
+                      <Text style={styles.tileIcon}>{fragment.icon}</Text>
+                    </View>
+                    
+                    <Text style={styles.tilePoetry}>
+                      {fragment.descriptor}
+                    </Text>
+                  </View>
+                  
+                  {/* Subtle edge glow */}
+                  <View style={styles.tileGlow} />
+                </ImageBackground>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </BlurView>
+        
+        {/* Champagne edge accent */}
+        <View style={styles.ribbonEdge} />
+      </View>
+    )
+  }
 
   // Insights Strip Component
   const InsightsStrip = () => (
