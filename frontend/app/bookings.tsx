@@ -660,10 +660,11 @@ const styles = StyleSheet.create({
   cityConnectorLine: {
     position: 'absolute',
     top: 19,
-    left: 0,
-    right: 0,
+    left: '10%',
+    right: '10%',
     height: 2,
     backgroundColor: 'rgba(181,155,115,0.2)',
+    zIndex: 0,
   },
   cityCapsuleContainer: {
     position: 'absolute',
