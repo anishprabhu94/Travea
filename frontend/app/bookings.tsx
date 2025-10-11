@@ -740,32 +740,37 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
 
-  // Section Styles
-  section: {
-    marginHorizontal: 20,
-    marginBottom: 20, // 20px vertical rhythm
-  },
+  // Section Header Capsule
   sectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 48,
+    height: 48, // 48pt height
     paddingHorizontal: 14,
-    backgroundColor: 'rgba(255,255,255,0.05)',
-    borderRadius: 18,
+    backgroundColor: 'rgba(255,255,255,0.04)', // Editorial minimalism
+    borderRadius: 18, // corner 18pt
     borderWidth: 1,
-    borderColor: 'rgba(203,184,140,0.25)',
-    marginBottom: 14,
+    borderColor: 'rgba(203,184,140,0.15)', // 1px solid gold 15%
+    marginBottom: 16,
     ...Platform.select({
       web: {
         backdropFilter: 'blur(20px)',
+        boxShadow: '0 0 1px rgba(255,255,255,0.08)', // Soft inner shadow
+      },
+      default: {
+        shadowColor: '#FFFFFF',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.08,
+        shadowRadius: 1,
+        elevation: 1,
       },
     }),
   },
   sectionTitle: {
     fontSize: 15,
-    fontWeight: '600', // Inter Semibold
-    color: 'rgba(255,255,255,0.85)',
+    fontWeight: '600', // Inter Medium
+    color: 'rgba(255,255,255,0.9)', // White 90%
     flex: 1,
+    letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
@@ -773,16 +778,16 @@ const styles = StyleSheet.create({
     }),
   },
   statusChip: {
-    backgroundColor: 'rgba(203,184,140,0.12)',
+    backgroundColor: 'rgba(203,184,140,0.12)', // Capsule fill
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 10,
     marginRight: 12,
   },
   statusText: {
-    fontSize: 12,
-    fontWeight: '500', // Inter Medium
-    color: 'rgba(203,184,140,0.8)',
+    fontSize: 12, // Inter Medium 12pt
+    fontWeight: '500',
+    color: 'rgba(203,184,140,0.8)', // Gold text
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter', 
@@ -795,7 +800,7 @@ const styles = StyleSheet.create({
 
   // Section Content
   sectionContent: {
-    gap: 14, // 14px spacing between cards
+    gap: 16, // 16pt spacing between cards (magazine panel spacing)
   },
 
   // Booking Card Base
