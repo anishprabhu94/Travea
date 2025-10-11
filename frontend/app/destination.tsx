@@ -536,52 +536,38 @@ export default function DestinationInfo() {
             <View style={styles.journeysDivider} />
           </View>
 
-          {/* Journey Cards */}
+          {/* Journey Cards - Refined & Simplified */}
           <View style={styles.journeysContainer}>
             {destinationData.suggestedJourneys.map((journey, index) => (
               <View key={index} style={styles.journeyCard}>
-                <View style={styles.journeyCardContent}>
-                  {/* Journey Title Block */}
-                  <View style={styles.journeyTitleBlock}>
-                    <Text style={styles.journeyTitle}>{journey.title}</Text>
-                    <Text style={styles.journeySubtitle}>{journey.subtitle}</Text>
-                    <View style={styles.journeyTitleLine} />
-                  </View>
+                {/* Top Row - Title + Meta */}
+                <View style={styles.journeyHeader}>
+                  <Text style={styles.journeyTitle}>{journey.title}</Text>
+                  <Text style={styles.journeyMeta}>{journey.subtitle}</Text>
+                </View>
 
-                  {/* Journey Line Visualization */}
-                  <View style={styles.journeyVisualization}>
-                    <View style={styles.journeyPath}>
-                      <View style={styles.journeyLine} />
-                      {journey.stops.map((stop, stopIndex) => (
-                        <View key={stopIndex} style={[styles.journeyDot, { left: `${(stopIndex / (journey.stops.length - 1)) * 100}%` }]}>
-                          <View style={styles.journeyDotCircle} />
-                          <Text style={styles.journeyDotLabel}>{stop.code}</Text>
-                        </View>
-                      ))}
-                    </View>
-                    <Text style={styles.journeyDescription}>{journey.description}</Text>
-                  </View>
+                {/* Middle - Description */}
+                <Text style={styles.journeyDescription}>{journey.description}</Text>
 
-                  {/* Supporting Imagery */}
-                  <View style={styles.journeyImagery}>
-                    <View style={styles.journeyThumbnails}>
-                      {journey.images.map((image, imgIndex) => (
-                        <View key={imgIndex} style={styles.journeyThumbnailContainer}>
-                          <ImageBackground
-                            source={{ uri: image.url }}
-                            style={styles.journeyThumbnail}
-                            imageStyle={styles.journeyThumbnailImage}
-                          />
-                          <Text style={styles.journeyThumbnailCaption}>{image.caption}</Text>
-                        </View>
-                      ))}
-                    </View>
-                    <TouchableOpacity style={styles.journeyOpenButton}>
-                      <View style={styles.journeyOpenCircle}>
-                        <Ionicons name="arrow-up-outline" size={16} color="#CBB88C" style={{ transform: [{ rotate: '45deg' }] }} />
+                {/* Bottom Row - Images + Arrow */}
+                <View style={styles.journeyBottom}>
+                  <View style={styles.journeyThumbnails}>
+                    {journey.images.map((image, imgIndex) => (
+                      <View key={imgIndex} style={styles.journeyThumbnailContainer}>
+                        <ImageBackground
+                          source={{ uri: image.url }}
+                          style={styles.journeyThumbnail}
+                          imageStyle={styles.journeyThumbnailImage}
+                        />
+                        <Text style={styles.journeyThumbnailCaption}>{image.caption}</Text>
                       </View>
-                    </TouchableOpacity>
+                    ))}
                   </View>
+                  <TouchableOpacity style={styles.journeyArrowButton}>
+                    <View style={styles.journeyArrowCircle}>
+                      <Ionicons name="arrow-up-outline" size={14} color="#CBB88C" style={{ transform: [{ rotate: '45deg' }] }} />
+                    </View>
+                  </TouchableOpacity>
                 </View>
               </View>
             ))}
