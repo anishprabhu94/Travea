@@ -1,11 +1,11 @@
 import SwiftUI
 
-// MARK: - Color Extensions
+// MARK: - Color Extensions (Using Built-in Colors for Immediate Preview)
 extension Color {
-    static let onyx = Color("Onyx")
-    static let champagneGold = Color("ChampagneGold")
-    static let textPrimary = Color("TextPrimary")
-    static let textSecondary = Color("TextSecondary")
+    static let onyx = Color(red: 0.04, green: 0.04, blue: 0.04) // #0A0A0A
+    static let champagneGold = Color(red: 0.8, green: 0.72, blue: 0.55) // #CBB88C
+    static let textPrimary = Color(red: 0.95, green: 0.95, blue: 0.91) // #F3F1E7
+    static let textSecondary = Color(red: 0.61, green: 0.58, blue: 0.55) // #9B958D
 }
 
 // MARK: - Discovery Section Main View
