@@ -76,6 +76,135 @@ const destinationData = {
   ]
 }
 
+// Discovery Section - Redesigned for React Native
+const DiscoverySection = () => {
+  const discoveryData = [
+    {
+      id: 'experiences',
+      title: 'Experiences',
+      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+      chips: ['2–3 hrs', 'Clifftop', 'Tickets']
+    },
+    {
+      id: 'dining', 
+      title: 'Dining',
+      image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+      chips: ['Seafood', '€€', 'Old Town']
+    },
+    {
+      id: 'culture',
+      title: 'Culture', 
+      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+      chips: ['Basilica', 'Museo', '10–18']
+    }
+  ]
+
+  const highlights = [
+    {
+      name: 'Villa Cimbrone Gardens',
+      meta: '9–18 • Ravello',
+      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+      chips: ['€€', 'Viewpoint']
+    },
+    {
+      name: 'Amalfi Cathedral', 
+      meta: 'Basilica • 9–19',
+      image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+      chips: ['Family-friendly']
+    },
+    {
+      name: 'Lemon Grove Walk',
+      meta: '2 hrs • Terrace paths',
+      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+      chips: ['Guided']
+    }
+  ]
+
+  return (
+    <View style={styles.discoveryContainer}>
+      {/* Section Header */}
+      <View style={styles.discoveryHeader}>
+        <Text style={styles.discoveryTitle}>Discovery</Text>
+        <View style={styles.discoveryUnderline} />
+      </View>
+
+      {/* Horizontal Feature Cards */}
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.discoveryScroll}
+      >
+        {discoveryData.map((item, index) => (
+          <View key={item.id} style={[styles.discoveryCard, index === 0 && styles.firstDiscoveryCard]}>
+            <ImageBackground
+              source={{ uri: item.image }}
+              style={styles.discoveryCardImage}
+              imageStyle={styles.discoveryCardImageStyle}
+            >
+              <View style={styles.discoveryCardGradient} />
+              
+              {/* Frosted bottom band */}
+              <View style={styles.discoveryCardBand}>
+                <Text style={styles.discoveryCardTitle}>{item.title}</Text>
+                <View style={styles.discoveryChipsRow}>
+                  {item.chips.slice(0, 3).map((chip, chipIndex) => (
+                    <View key={chipIndex} style={styles.discoveryChip}>
+                      <Text style={styles.discoveryChipText}>{chip}</Text>
+                    </View>
+                  ))}
+                </View>
+              </View>
+            </ImageBackground>
+          </View>
+        ))}
+      </ScrollView>
+
+      {/* Editor's Highlights */}
+      <View style={styles.highlightsPane}>
+        {/* Header */}
+        <View style={styles.highlightsHeader}>
+          <View style={styles.highlightsLeft}>
+            <Ionicons name="star" size={14} color="#CBB88C" />
+            <Text style={styles.highlightsTitle}>Editor's Highlights</Text>
+          </View>
+          <View style={styles.highlightsRight}>
+            <Text style={styles.seeAllText}>See All</Text>
+            <Ionicons name="chevron-forward" size={11} color="#9B958D" />
+          </View>
+        </View>
+
+        {/* Divider */}
+        <View style={styles.highlightsDivider} />
+
+        {/* Highlight Rows */}
+        {highlights.map((highlight, index) => (
+          <View key={index}>
+            <View style={styles.highlightRow}>
+              <ImageBackground
+                source={{ uri: highlight.image }}
+                style={styles.highlightThumb}
+                imageStyle={styles.highlightThumbStyle}
+              />
+              <View style={styles.highlightContent}>
+                <Text style={styles.highlightName}>{highlight.name}</Text>
+                <Text style={styles.highlightMeta}>{highlight.meta}</Text>
+              </View>
+              <View style={styles.highlightChips}>
+                {highlight.chips.slice(0, 2).map((chip, chipIndex) => (
+                  <View key={chipIndex} style={styles.highlightChip}>
+                    <Text style={styles.highlightChipText}>{chip}</Text>
+                  </View>
+                ))}
+              </View>
+            </View>
+            {index < highlights.length - 1 && <View style={styles.highlightRowDivider} />}
+          </View>
+        ))}
+      </View>
+    </View>
+  )
+}
+
 export default function DestinationInfo() {
   const [isSaved, setIsSaved] = useState(false)
 
