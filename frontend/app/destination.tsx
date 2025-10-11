@@ -113,13 +113,13 @@ const destinationData = {
   ],
   suggestedJourneys: [
     {
-      title: 'The Classic Coast',
-      subtitle: 'Amalfi → Positano → Ravello',
-      description: 'Three jewels connected by winding roads and endless views',
+      title: 'The Lemon Coast Circuit',
+      subtitle: '3 days · Amalfi → Ravello → Sorrento',
+      description: 'Cliffs, calm, and citrus trails.',
       stops: [
-        { code: 'AMA', name: 'Amalfi' },
-        { code: 'POS', name: 'Positano' },
-        { code: 'RAV', name: 'Ravello' }
+        { code: 'AMF', name: 'Amalfi' },
+        { code: 'RAV', name: 'Ravello' },
+        { code: 'SOR', name: 'Sorrento' }
       ],
       images: [
         {
@@ -128,35 +128,35 @@ const destinationData = {
         },
         {
           url: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
-          caption: 'Positano'
+          caption: 'Ravello'
         },
         {
           url: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
-          caption: 'Ravello'
+          caption: 'Sorrento'
         }
       ]
     },
     {
-      title: 'Hidden Coves',
-      subtitle: 'Furore → Conca → Marina',
-      description: 'Secret beaches and forgotten fishing villages',
+      title: 'Southern Escape',
+      subtitle: '4 days · Positano → Capri → Amalfi',
+      description: 'Boats, blues, and endless breeze.',
       stops: [
-        { code: 'FUR', name: 'Furore' },
-        { code: 'CON', name: 'Conca' },
-        { code: 'MAR', name: 'Marina' }
+        { code: 'POS', name: 'Positano' },
+        { code: 'CAP', name: 'Capri' },
+        { code: 'AMF', name: 'Amalfi' }
       ],
       images: [
         {
           url: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
-          caption: 'Furore'
+          caption: 'Positano'
         },
         {
           url: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
-          caption: 'Conca'
+          caption: 'Capri'
         },
         {
           url: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
-          caption: 'Marina'
+          caption: 'Amalfi'
         }
       ]
     }
