@@ -233,6 +233,8 @@ const styles = StyleSheet.create({
   // Background Image Style
   mainPaneImageStyle: {
     borderRadius: 28,
+    width: '100%',
+    height: '100%',
   },
   
   // Overlay for proper contrast
