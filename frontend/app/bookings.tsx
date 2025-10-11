@@ -290,7 +290,7 @@ export default function TripCanvas() {
     </View>
   );
 
-  // City Header - 220px
+  // City Header - 220px with Frosted Glass Card
   const renderCityHeader = () => (
     <View style={styles.cityHeaderContainer}>
       <ImageBackground
@@ -302,7 +302,8 @@ export default function TripCanvas() {
           colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.6)']}
           style={styles.cityGradient}
         />
-        <View style={styles.cityTextContainer}>
+        {/* Frosted glass card for city info */}
+        <View style={styles.cityFrostedCard}>
           <Text style={styles.cityName}>{activeDay.city}</Text>
           <Text style={styles.cityDates}>{activeDay.dates}</Text>
           <Text style={styles.cityDescription}>{activeDay.description}</Text>
