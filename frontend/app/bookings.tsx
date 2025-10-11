@@ -991,6 +991,110 @@ const styles = StyleSheet.create({
     }),
   },
 
+  // Transport Container & Items
+  transportContainer: {
+    gap: 16,
+  },
+  transportItem: {
+    marginBottom: 12,
+  },
+  transportTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.9)',
+    marginBottom: 6,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  transportRoute: {
+    fontSize: 14,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.8)',
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  transportTime: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: 'rgba(181,155,115,0.8)',
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  transportDuration: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: 'rgba(181,155,115,0.7)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+
+  // Experiences Container & Items
+  experiencesContainer: {
+    gap: 16,
+  },
+  experienceItem: {
+    marginBottom: 12,
+  },
+  experienceItemTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.9)',
+    marginBottom: 6,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  experienceItemDetails: {
+    fontSize: 15,
+    fontWeight: '400',
+    color: 'rgba(181,155,115,0.85)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+
+  // Restaurants Container & Items
+  restaurantsContainer: {
+    gap: 16,
+  },
+  restaurantItem: {
+    marginBottom: 12,
+  },
+  restaurantItemName: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.9)',
+    marginBottom: 6,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  restaurantItemTime: {
+    fontSize: 15,
+    fontWeight: '400',
+    color: 'rgba(181,155,115,0.85)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+
   // Horizontal Scroll
   horizontalScroll: {
     marginHorizontal: -20,
