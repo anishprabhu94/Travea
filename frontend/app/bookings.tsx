@@ -737,33 +737,46 @@ export default function TripCanvas() {
         {renderRestaurants()}
       </ScrollView>
 
-      {/* Bottom Navigation */}
-      <View style={styles.bottomNav}>
-        <TouchableOpacity 
-          style={styles.navItem} 
-          onPress={() => router.push('/landing')}
-        >
-          <Ionicons name="home-outline" size={22} color="rgba(255,255,255,0.7)" />
-          <Text style={styles.navLabel}>Home</Text>
-        </TouchableOpacity>
+      {/* Bottom Dock - Matching Landing Page */}
+      <View style={styles.dockWrapper}>
+        <View style={styles.dockContainer}>
+          <View style={styles.dockContent}>
+            <TouchableOpacity 
+              style={styles.dockItem} 
+              onPress={() => router.push('/landing')}
+              activeOpacity={0.8}
+            >
+              <Ionicons name="home-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>Home</Text>
+            </TouchableOpacity>
 
-        <TouchableOpacity 
-          style={styles.navItem} 
-          onPress={() => router.push('/trips')}
-        >
-          <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.7)" />
-          <Text style={styles.navLabel}>My Trips</Text>
-        </TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.dockItem} 
+              onPress={() => router.push('/bookings')}
+              activeOpacity={0.8}
+            >
+              <Ionicons name="calendar" size={22} color="#C9A96D" />
+              <Text style={styles.dockLabelActive}>Trip Canvas</Text>
+            </TouchableOpacity>
 
-        <TouchableOpacity style={styles.navItem}>
-          <Ionicons name="calendar" size={22} color="#B59B73" />
-          <Text style={styles.navLabelActive}>Trip Canvas</Text>
-        </TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.dockItem} 
+              onPress={() => router.push('/trips')}
+              activeOpacity={0.8}
+            >
+              <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>My Trips</Text>
+            </TouchableOpacity>
 
-        <TouchableOpacity style={styles.navItem}>
-          <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.7)" />
-          <Text style={styles.navLabel}>Concierge</Text>
-        </TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.dockItem} 
+              activeOpacity={0.8}
+            >
+              <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>Concierge</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     </View>
   );
