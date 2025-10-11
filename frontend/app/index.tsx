@@ -245,16 +245,9 @@ const styles = StyleSheet.create({
   
   paneInner: {
     padding: 36,
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.1)',
     borderRadius: 28,
     minHeight: 500,
-    backgroundColor: 'rgba(25,25,25,0.7)', // Semi-transparent overlay for readability
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(15px)',
-      },
-    }),
+    // Simple iOS-optimized styling - no border or backdrop filters that can cause issues
   },
   
   // TRĀVEA logo and tagline at top
