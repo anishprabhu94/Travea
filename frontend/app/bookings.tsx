@@ -217,7 +217,6 @@ export default function TripCanvas() {
         source={{ uri: tripData.heroImage }}
         style={styles.heroBackground}
         imageStyle={styles.heroBackgroundImage}
-        blurRadius={2}
       >
         {/* Dark overlay to tone down brightness */}
         <View style={styles.heroDarkOverlay} />
