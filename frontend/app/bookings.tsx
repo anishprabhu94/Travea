@@ -54,6 +54,7 @@ const tripData = {
           id: '1',
           name: 'Hotel Onda Blu',
           address: 'Via Tragara 21',
+          dates: 'Jun 8–9',
           checkin: 'Check-in 3 PM',
           checkout: 'Check-out 11 AM',
           platform: 'via Booking.com',
