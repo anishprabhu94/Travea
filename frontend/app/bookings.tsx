@@ -815,7 +815,7 @@ const styles = StyleSheet.create({
     }),
   },
   stayPane: {
-    height: 200,
+    minHeight: 220,
   },
   categoryTitle: {
     fontSize: 17,
