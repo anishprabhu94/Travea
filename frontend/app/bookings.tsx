@@ -844,17 +844,26 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Category Title
+  // Category Header with Bronze Icon
+  categoryHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
   categoryTitle: {
     fontSize: 17,
     fontWeight: '600',
     color: 'rgba(255,255,255,0.9)',
-    marginBottom: 16,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
     }),
+  },
+  categoryDivider: {
+    height: 1,
+    backgroundColor: 'rgba(181,155,115,0.25)',
+    marginBottom: 20,
   },
 
   // Flight Content
