@@ -376,8 +376,8 @@ export default function TripCanvas() {
         <View style={styles.cityFrostedCard}>
           <View style={styles.cityHeaderRow}>
             <Text style={styles.cityName}>{activeDay.city}</Text>
-            <View style={styles.inlineDateBadge}>
-              <Text style={styles.inlineDateText}>{activeDay.dates}</Text>
+            <View style={styles.cardDateBadge}>
+              <Text style={styles.cardDateText}>{activeDay.dates.toUpperCase()}</Text>
             </View>
           </View>
           <Text style={styles.cityDescription}>{activeDay.description}</Text>
