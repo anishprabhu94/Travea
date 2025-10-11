@@ -1620,4 +1620,180 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
+
+  bottomSpacing: {
+    height: 40,
+  },
+
+  // Stay Image Card - Like Experiences
+  stayImageCard: {
+    width: 320,
+    height: 200,
+    borderRadius: 24,
+    overflow: 'hidden',
+    marginRight: 16,
+  },
+  stayImageCardBg: {
+    flex: 1,
+  },
+  stayImageCardBgStyle: {
+    borderRadius: 24,
+  },
+  stayImageCardGradient: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: '60%',
+  },
+  stayImageCardFrosted: {
+    position: 'absolute',
+    bottom: 12,
+    left: 12,
+    right: 12,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 20,
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.15)',
+    padding: 16,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.3), inset 1px 1px 0 rgba(255,255,255,0.05)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+        elevation: 8,
+      },
+    }),
+  },
+  stayCardName: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.9)',
+    marginBottom: 6,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  stayCardAddress: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.8)',
+    marginBottom: 6,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  stayCardTimes: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: 'rgba(181,155,115,0.9)',
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  stayCardPlatform: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: 'rgba(181,155,115,0.75)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+
+  // Transport Image Card
+  transportImageCard: {
+    width: 300,
+    height: 200,
+    borderRadius: 24,
+    overflow: 'hidden',
+    marginRight: 16,
+  },
+  transportImageCardBg: {
+    flex: 1,
+  },
+  transportImageCardBgStyle: {
+    borderRadius: 24,
+  },
+  transportImageCardGradient: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: '60%',
+  },
+  transportImageCardFrosted: {
+    position: 'absolute',
+    bottom: 12,
+    left: 12,
+    right: 12,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 20,
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.15)',
+    padding: 16,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.3), inset 1px 1px 0 rgba(255,255,255,0.05)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+        elevation: 8,
+      },
+    }),
+  },
+  transportCardTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.9)',
+    marginBottom: 6,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  transportCardRoute: {
+    fontSize: 14,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.85)',
+    marginBottom: 6,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  transportCardTime: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: 'rgba(181,155,115,0.9)',
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  transportCardDuration: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: 'rgba(181,155,115,0.75)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
 });
