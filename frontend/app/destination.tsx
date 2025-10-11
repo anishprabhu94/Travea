@@ -109,16 +109,14 @@ export default function DestinationInfo() {
               </TouchableOpacity>
               
               <TouchableOpacity 
-                style={styles.circularButton}
+                style={[styles.backButton, isSaved && styles.saveButtonActive]}
                 onPress={() => setIsSaved(!isSaved)}
               >
-                <View style={styles.buttonBlur}>
-                  <Ionicons 
-                    name={isSaved ? "bookmark" : "bookmark-outline"} 
-                    size={18} 
-                    color={isSaved ? "#CBB88C" : "#F3F1E7"} 
-                  />
-                </View>
+                <Ionicons 
+                  name={isSaved ? "bookmark" : "bookmark-outline"} 
+                  size={18} 
+                  color={isSaved ? "#CBB88C" : "#F3F1E7"} 
+                />
               </TouchableOpacity>
             </View>
 
