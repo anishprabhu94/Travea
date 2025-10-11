@@ -181,36 +181,96 @@ export default function TripCanvas() {
     router.push('/gallery');
   };
 
-  const renderSectionHeader = (section: string, label: string) => (
-    <TouchableOpacity 
-      style={styles.sectionHeader}
-      onPress={() => toggleSection(section)}
-      activeOpacity={0.8}
-    >
-      <Text style={styles.sectionTitle}>{label}</Text>
-      <View style={styles.statusChip}>
-        <Text style={styles.statusText}>{getStatusCount(section)}</Text>
-      </View>
-      <Ionicons 
-        name={expandedSections[section as keyof typeof expandedSections] ? 'chevron-up' : 'chevron-down'} 
-        size={22} 
-        color="#CBB88C" 
-        style={styles.chevronIcon}
-      />
-    </TouchableOpacity>
+  // Hero Pane - Trip Identity + Status
+  const renderHeroPane = () => (
+    <View style={styles.heroPaneContainer}>
+      <ImageBackground
+        source={{ uri: tripData.heroImage }}
+        style={styles.heroPane}
+        imageStyle={styles.heroPaneImage}
+      >
+        <View style={styles.heroOverlay} />
+        <View style={styles.heroContent}>
+          {/* Title Block */}
+          <View style={styles.titleBlock}>
+            <Text style={styles.heroTitle}>{tripData.tripName}</Text>
+            <Text style={styles.heroSubtitle}>{tripData.subtitle}</Text>
+          </View>
+
+          {/* Planning Status Dropdown */}
+          <View style={styles.statusDropdown}>
+            <Text style={styles.statusText}>{tripData.status}</Text>
+          </View>
+
+          {/* Trip Path Strip */}
+          <View style={styles.tripPathStrip}>
+            <View style={styles.tripPathLine} />
+            {tripData.cities.map((city, index) => (
+              <View key={city} style={[
+                styles.cityCapsule,
+                index === tripData.activeCityIndex && styles.cityCapsuleActive,
+                { left: `${(index / (tripData.cities.length - 1)) * 85}%` }
+              ]}>
+                <Text style={[
+                  styles.cityCapsuleText,
+                  index === tripData.activeCityIndex && styles.cityCapsuleTextActive
+                ]}>
+                  {city}
+                </Text>
+              </View>
+            ))}
+          </View>
+
+          {/* Action Buttons */}
+          <View style={styles.actionButtons}>
+            <TouchableOpacity style={styles.actionButtonOutline}>
+              <Text style={styles.actionButtonOutlineText}>Booking Overview</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.actionButtonFilled}>
+              <Text style={styles.actionButtonFilledText}>Trip Journey</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ImageBackground>
+    </View>
   );
 
-  const renderDayPill = (day: any, isActive: boolean) => (
-    <TouchableOpacity
-      key={day.id}
-      style={[styles.dayPill, isActive && styles.dayPillActive]}
-      onPress={() => setSelectedDayId(day.id)}
-      activeOpacity={0.8}
-    >
-      <Text style={[styles.dayPillText, isActive && styles.dayPillTextActive]}>
-        {day.title}
-      </Text>
-    </TouchableOpacity>
+  // City Chapter Template
+  const renderCityChapter = (city: any, index: number) => (
+    <View key={city.id} style={styles.cityChapter}>
+      {/* City Hero Image Pane */}
+      <View style={styles.cityHeroContainer}>
+        <ImageBackground
+          source={{ uri: city.heroImage }}
+          style={styles.cityHeroPane}
+          imageStyle={styles.cityHeroPaneImage}
+        >
+          <View style={styles.cityHeroOverlay} />
+          <View style={styles.cityHeroContent}>
+            <Text style={styles.cityName}>{city.name}</Text>
+            <Text style={styles.cityDates}>{city.dates}</Text>
+            <Text style={styles.cityDescription}>{city.description}</Text>
+          </View>
+        </ImageBackground>
+      </View>
+
+      {/* Booking Breakdown Sections */}
+      <View style={styles.bookingBreakdown}>
+        {city.flights.length > 0 && renderFlightsSection(city.flights)}
+        {city.stays.length > 0 && renderStaysSection(city.stays)}
+        {city.transport.length > 0 && renderTransportSection(city.transport)}
+        {city.experiences.length > 0 && renderExperiencesSection(city.experiences)}
+        {city.restaurants.length > 0 && renderRestaurantsSection(city.restaurants)}
+      </View>
+
+      {/* Between-City Divider */}
+      {index < tripData.cityChapters.length - 1 && (
+        <View style={styles.cityDivider}>
+          <View style={styles.cityDividerLine} />
+          <Text style={styles.cityDividerText}>Next Stop</Text>
+        </View>
+      )}
+    </View>
   );
 
   const renderFlightCard = (flight: any) => (
