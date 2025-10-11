@@ -1060,11 +1060,14 @@ const styles = StyleSheet.create({
     width: '95%',
   },
   dayTab: {
-    flex: 1,
     paddingVertical: 10,
+    paddingHorizontal: 16,
     borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.2)',
   },
   dayTabActive: {
     backgroundColor: '#B59B73',
