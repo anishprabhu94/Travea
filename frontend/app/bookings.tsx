@@ -1418,7 +1418,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   flightCardRoute: {
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: '700',
     color: 'rgba(255,255,255,0.95)',
     marginBottom: 8,
