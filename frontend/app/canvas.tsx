@@ -1206,6 +1206,11 @@ const styles = StyleSheet.create({
   statusDotCompleted: {
     backgroundColor: '#AEBEA4', // Sage green
   },
+  
+  // Trip path in header - ADD SPACING
+  tripPathInHeader: {
+    marginTop: 20, // Space from dropdown button
+  },
 
   // Trip Line - Elevated Acronym Capsules
   tripLineContainer: {
