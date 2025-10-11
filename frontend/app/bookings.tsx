@@ -295,48 +295,74 @@ export default function BookingsOverview() {
     </View>
   );
 
-  const renderExperienceCard = (experience: any) => (
-    <View key={experience.id} style={styles.bookingCard}>
-      <View style={styles.experienceContent}>
-        <ImageBackground
-          source={{ uri: experience.image }}
-          style={styles.experiencePhoto}
-          imageStyle={styles.experiencePhotoImage}
-        />
-        <View style={styles.experienceDetails}>
-          <Text style={styles.experienceTitle}>{experience.title}</Text>
-          <Text style={styles.experienceSubtext}>{experience.details}</Text>
-          <View style={styles.experienceIcon}>
-            <Ionicons name="ticket-outline" size={16} color="#CBB88C" />
+  const renderExperiencesCarousel = (experiences: any[]) => {
+    if (experiences.length === 0) return renderEmptyState('experiences');
+    
+    return (
+      <ScrollView 
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.carouselContainer}
+      >
+        {experiences.map((experience, index) => (
+          <View key={experience.id} style={[styles.experienceCard, index === 0 && styles.firstCard]}>
+            <ImageBackground
+              source={{ uri: experience.image }}
+              style={styles.experienceCardImage}
+              imageStyle={styles.experienceCardImageStyle}
+            >
+              <View style={styles.experienceCardOverlay} />
+              <View style={styles.experienceCardContent}>
+                <Text style={styles.experienceCardTitle}>{experience.title}</Text>
+                <Text style={styles.experienceCardSubtext}>{experience.details}</Text>
+                <TouchableOpacity style={styles.experienceCardButton}>
+                  <Ionicons name="open-outline" size={16} color="#CBB88C" />
+                </TouchableOpacity>
+              </View>
+            </ImageBackground>
           </View>
-        </View>
-        <TouchableOpacity style={styles.circularButton}>
-          <Ionicons name="open-outline" size={18} color="#CBB88C" />
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
+        ))}
+      </ScrollView>
+    );
+  };
 
-  const renderRestaurantCard = (restaurant: any) => (
-    <View key={restaurant.id} style={styles.bookingCard}>
-      <View style={styles.restaurantContent}>
-        <ImageBackground
-          source={{ uri: restaurant.image }}
-          style={styles.restaurantThumbnail}
-          imageStyle={styles.restaurantThumbnailImage}
-        />
-        <View style={styles.restaurantDetails}>
-          <Text style={styles.restaurantTitle}>{restaurant.name}</Text>
-          <Text style={styles.restaurantTime}>{restaurant.time}</Text>
-          <Text style={styles.restaurantSubtext}>{restaurant.address}</Text>
-          <View style={styles.restaurantCapsule}>
-            <Text style={styles.restaurantStatus}>Booked</Text>
+  const renderRestaurantsCarousel = (restaurants: any[]) => {
+    if (restaurants.length === 0) return renderEmptyState('restaurants');
+    
+    return (
+      <ScrollView 
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.carouselContainer}
+      >
+        {restaurants.map((restaurant, index) => (
+          <View key={restaurant.id} style={[styles.restaurantCard, index === 0 && styles.firstCard]}>
+            <ImageBackground
+              source={{ uri: restaurant.image }}
+              style={styles.restaurantCardImage}
+              imageStyle={styles.restaurantCardImageStyle}
+            >
+              <View style={styles.restaurantCardOverlay} />
+              <View style={styles.restaurantCardContent}>
+                <Text style={styles.restaurantCardTitle}>{restaurant.name}</Text>
+                <Text style={styles.restaurantCardTime}>{restaurant.time}</Text>
+                <Text style={styles.restaurantCardAddress}>{restaurant.address}</Text>
+                <TouchableOpacity style={styles.restaurantCardButton}>
+                  <Ionicons name="open-outline" size={16} color="#CBB88C" />
+                </TouchableOpacity>
+              </View>
+            </ImageBackground>
           </View>
-        </View>
-        <TouchableOpacity style={styles.circularButton}>
-          <Ionicons name="open-outline" size={18} color="#CBB88C" />
-        </TouchableOpacity>
-      </View>
+        ))}
+      </ScrollView>
+    );
+  };
+
+  const renderEmptyState = (section: string) => (
+    <View style={styles.emptyState}>
+      <Ionicons name="calendar-outline" size={48} color="rgba(203,184,140,0.6)" />
+      <Text style={styles.emptyStateTitle}>No plans yet.</Text>
+      <Text style={styles.emptyStateSubtitle}>Add from Trip Canvas.</Text>
     </View>
   );
 
