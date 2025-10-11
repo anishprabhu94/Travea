@@ -102,12 +102,10 @@ export default function DestinationInfo() {
             {/* Top Controls */}
             <View style={styles.topControls}>
               <TouchableOpacity 
-                style={styles.circularButton}
+                style={styles.backButton}
                 onPress={() => router.back()}
               >
-                <View style={styles.buttonBlur}>
-                  <Ionicons name="arrow-back" size={18} color="#F3F1E7" />
-                </View>
+                <Ionicons name="arrow-back" size={18} color="#F3F1E7" />
               </TouchableOpacity>
               
               <TouchableOpacity 
