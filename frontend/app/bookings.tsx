@@ -1094,49 +1094,80 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 
-  // Flight Content
-  flightContent: {
-    position: 'relative',
+  // Flight Card - Frosted Glass (No Image)
+  flightCard: {
+    width: 300,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 24,
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.15)',
+    padding: 20,
+    marginRight: 16,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.3), inset 1px 1px 0 rgba(255,255,255,0.05)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+        elevation: 8,
+      },
+    }),
   },
-  flightHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 8,
+  flightCardTraveler: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: 'rgba(181,155,115,0.8)',
+    textTransform: 'uppercase',
+    letterSpacing: 1.5,
+    marginBottom: 12,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
   },
-  flightRoute: {
-    fontSize: 20,
+  flightCardHeader: {
+    marginBottom: 10,
+  },
+  flightCardRoute: {
+    fontSize: 22,
     fontWeight: '700',
     color: 'rgba(255,255,255,0.95)',
+    marginBottom: 8,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
     }),
   },
-  flightAirline: {
-    fontSize: 12,
-    fontWeight: '500',
-    color: 'rgba(181,155,115,0.8)',
+  flightCardAirline: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: 'rgba(181,155,115,0.85)',
+    marginBottom: 10,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  flightTime: {
-    fontSize: 14,
+  flightCardTime: {
+    fontSize: 15,
     fontWeight: '500',
-    color: 'rgba(181,155,115,0.9)',
-    marginBottom: 6,
+    color: 'rgba(181,155,115,0.95)',
+    marginBottom: 8,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  flightDetails: {
+  flightCardDetails: {
     fontSize: 13,
     fontWeight: '400',
-    color: 'rgba(255,255,255,0.7)',
+    color: 'rgba(255,255,255,0.75)',
+    lineHeight: 20,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
