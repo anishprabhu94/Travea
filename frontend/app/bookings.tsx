@@ -1021,17 +1021,18 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Category Date (Elegant Top Label)
+  // Category Date (Prominent & Fancy)
   categoryDate: {
-    fontSize: 11,
-    fontWeight: '500',
-    color: 'rgba(181,155,115,0.7)',
+    fontSize: 13,
+    fontWeight: '700',
+    color: 'rgba(181,155,115,0.95)',
     textTransform: 'uppercase',
-    letterSpacing: 1,
-    marginBottom: 12,
+    letterSpacing: 2,
+    marginBottom: 16,
     fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
     }),
   },
   
