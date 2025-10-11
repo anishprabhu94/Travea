@@ -240,19 +240,17 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // ImageBackground styles for cross-platform compatibility
-  backgroundImage: {
-    flex: 1,
-    minHeight: 500,
-    justifyContent: 'center',
+  // Image style specifically for iOS compatibility
+  mainPaneImageStyle: {
+    borderRadius: 28, // Must match container
+    opacity: 0.8, // Darken image for iOS readability
   },
-  backgroundImageStyle: {
+  
+  // Overlay for proper contrast on iOS
+  paneOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.4)', // Dark overlay for iOS text readability
     borderRadius: 28,
-    ...Platform.select({
-      web: {
-        filter: 'brightness(0.7) blur(1px)', // Subtle blur and darkening for readability
-      },
-    }),
   },
   
   paneInner: {
