@@ -1314,6 +1314,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(203,184,140,0.08)',
     marginVertical: 8,
   },
+  highlightRowDivider: {
+    height: 1,
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    marginVertical: 8,
+  },
 })
 
 // End of Practical Beauty design
