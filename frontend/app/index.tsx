@@ -243,8 +243,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.6)',
   },
   
-  // Form Content Container
-  formContentContainer: {
+  // Content Container
+  formContent: {
     flex: 1,
     padding: 36,
     justifyContent: 'center',
