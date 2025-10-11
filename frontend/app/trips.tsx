@@ -406,9 +406,9 @@ export default function MyTrips() {
             <TouchableOpacity 
               style={styles.dockItem} 
               activeOpacity={0.8}
-              onPress={() => router.push('/canvas')}
+              onPress={() => router.push('/bookings')}
             >
-              <Ionicons name="brush" size={22} color="rgba(255,255,255,0.7)" />
+              <Ionicons name="calendar" size={22} color="rgba(255,255,255,0.7)" />
               <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
             </TouchableOpacity>
 
@@ -420,10 +420,9 @@ export default function MyTrips() {
             <TouchableOpacity 
               style={styles.dockItem} 
               activeOpacity={0.8}
-              onPress={() => router.push('/bookings')}
             >
-              <Ionicons name="calendar-outline" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockLabelInactive}>Bookings</Text>
+              <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>Concierge</Text>
             </TouchableOpacity>
           </View>
         </BlurView>
