@@ -377,40 +377,14 @@ export default function TripCanvas() {
             <Text style={styles.categoryTitle}>Experiences</Text>
           </View>
           <View style={styles.categoryDivider} />
-          <ScrollView 
-            horizontal 
-            showsHorizontalScrollIndicator={false}
-            style={styles.horizontalScroll}
-            contentContainerStyle={styles.horizontalScrollContent}
-          >
-            {activeDay.experiences.map((exp, index) => (
-              <View 
-                key={exp.id}
-                style={[
-                  styles.imageCard,
-                  index === activeDay.experiences.length - 1 && styles.imageCardLast
-                ]}
-              >
-                <ImageBackground
-                  source={{ uri: exp.image }}
-                  style={styles.imageCardBackground}
-                  imageStyle={styles.imageCardBackgroundImage}
-                >
-                  <LinearGradient
-                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
-                    style={styles.imageCardGradient}
-                  />
-                  <View style={styles.imageCardContent}>
-                    <Text style={styles.imageCardTitle}>{exp.title}</Text>
-                    <Text style={styles.imageCardDetails}>{exp.details}</Text>
-                    <View style={styles.externalIconCircleSmall}>
-                      <Ionicons name="open-outline" size={14} color="#B59B73" />
-                    </View>
-                  </View>
-                </ImageBackground>
+          <View style={styles.experiencesContainer}>
+            {activeDay.experiences.map((exp) => (
+              <View key={exp.id} style={styles.experienceItem}>
+                <Text style={styles.experienceItemTitle}>{exp.title}</Text>
+                <Text style={styles.experienceItemDetails}>{exp.details}</Text>
               </View>
             ))}
-          </ScrollView>
+          </View>
         </View>
       </View>
     );
