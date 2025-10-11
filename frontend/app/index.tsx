@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 28,
     overflow: 'hidden',
-    height: 650, // Fixed height to ensure full coverage
+    minHeight: 680, // Increased from 650 to accommodate all content
   },
   
   // Background Image Style
