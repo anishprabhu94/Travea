@@ -670,6 +670,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     transform: [{ translateX: -20 }],
+    zIndex: 1,
   },
   cityCapsule: {
     paddingVertical: 6,
