@@ -682,25 +682,23 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Frosted Recap Card
+  // Frosted Recap Card - Image Style
   recapCard: {
-    backgroundColor: 'rgba(255,255,255,0.06)',
-    borderRadius: 22,
-    borderWidth: 0.5,
-    borderColor: 'rgba(181,155,115,0.1)',
-    padding: 24,
-    marginBottom: 32,
+    backgroundColor: 'rgba(30,30,30,0.85)',
+    borderRadius: 24,
+    borderWidth: 0,
+    padding: 32,
+    marginBottom: 40,
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(25px)',
-        boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
       },
       default: {
         shadowColor: '#000000',
         shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.25,
-        shadowRadius: 12,
-        elevation: 6,
+        shadowOpacity: 0.4,
+        shadowRadius: 16,
+        elevation: 10,
       },
     }),
   },
