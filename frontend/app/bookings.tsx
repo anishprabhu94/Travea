@@ -575,7 +575,6 @@ export default function TripCanvas() {
     return (
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
-          <Text style={styles.categoryDate}>{activeDay.dates}</Text>
           <View style={styles.categoryHeader}>
             <Ionicons name="restaurant" size={18} color="#B59B73" style={{marginRight: 8}} />
             <Text style={styles.categoryTitle}>Restaurants</Text>
@@ -601,6 +600,9 @@ export default function TripCanvas() {
                     style={styles.restaurantImageCardGradient}
                   />
                   <View style={styles.restaurantImageCardFrosted}>
+                    <View style={styles.cardDateBadge}>
+                      <Text style={styles.cardDateText}>{rest.date}</Text>
+                    </View>
                     <Text style={styles.restaurantCardTitle}>{rest.name}</Text>
                     <Text style={styles.restaurantCardDetails}>{rest.time} · {rest.details}</Text>
                   </View>
