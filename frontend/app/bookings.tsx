@@ -470,14 +470,14 @@ export default function TripCanvas() {
                   <View style={styles.cardDateBadgeOnImage}>
                     <Text style={styles.cardDateText}>{stay.dates.toUpperCase()}</Text>
                   </View>
-                  <View style={styles.cardArrowIconTopRightOnImage}>
-                    <Ionicons name="arrow-forward" size={14} color="rgba(181,155,115,0.95)" />
-                  </View>
                   <LinearGradient
                     colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
                     style={styles.stayImageCardGradient}
                   />
                   <View style={styles.stayImageCardFrosted}>
+                    <View style={styles.cardArrowIconOnPane}>
+                      <Ionicons name="arrow-forward" size={12} color="rgba(181,155,115,0.95)" />
+                    </View>
                     <Text style={styles.stayCardName}>{stay.name}</Text>
                     <Text style={styles.stayCardAddress}>{stay.address}</Text>
                     <Text style={styles.stayCardTimes}>{stay.checkin} · {stay.checkout}</Text>
