@@ -791,6 +791,7 @@ const styles = StyleSheet.create({
     width: '90%',
     alignSelf: 'center',
     borderRadius: 24,
+    overflow: 'hidden', // Critical for iOS rounded corners
     marginTop: 28,
     marginBottom: 28,
     ...Platform.select({
@@ -810,7 +811,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.04)',
     borderWidth: 1,
     borderColor: 'rgba(203,184,140,0.25)',
-    borderRadius: 24,
+    // Remove borderRadius from BlurView - let container handle it
   },
   essentialsContent: {
     paddingHorizontal: 20,
