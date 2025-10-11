@@ -1306,9 +1306,19 @@ const styles = StyleSheet.create({
     }),
   },
   experienceCardDetails: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: '400',
     color: 'rgba(181,155,115,0.9)',
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  experienceCardLocation: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: 'rgba(181,155,115,0.75)',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
