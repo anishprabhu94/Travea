@@ -1051,14 +1051,7 @@ const styles = StyleSheet.create({
     gap: 10,
     alignItems: 'center',
   },
-  dayTabs: {
-    flexDirection: 'row',
-    gap: 10,
-    backgroundColor: 'rgba(255,255,255,0.08)',
-    borderRadius: 24,
-    padding: 6,
-    width: '95%',
-  },
+  // dayTabs style removed - now using ScrollView with dayTabsScroll and dayTabsContent
   dayTab: {
     paddingVertical: 10,
     paddingHorizontal: 16,
