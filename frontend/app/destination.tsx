@@ -672,56 +672,107 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 
-  // Essence Module 
-  essenceContainer: {
-    marginHorizontal: 24,
-    marginBottom: 40,
-    borderRadius: 20,
+  // Essence Glass Poetry - Floating Capsule
+  essenceCapsule: {
+    width: '80%',
+    alignSelf: 'center',
+    marginTop: 60,
+    marginBottom: 50,
+    borderRadius: 50,
     overflow: 'hidden',
+    ...Platform.select({
+      web: {
+        filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.4))',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.4,
+        shadowRadius: 16,
+        elevation: 16,
+      },
+    }),
   },
-  essenceBlur: {
-    backgroundColor: 'rgba(15,15,15,0.6)',
+  essenceGlass: {
+    backgroundColor: 'rgba(10,10,10,0.7)',
+    paddingVertical: 32,
+    paddingHorizontal: 28,
+    borderWidth: 1,
+    borderColor: 'rgba(203,184,140,0.3)', // Gold rim glow
   },
-  essenceInner: {
+  essenceGlow: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 50,
+    ...Platform.select({
+      web: {
+        boxShadow: 'inset 0 0 20px rgba(203,184,140,0.4)',
+      },
+      default: {
+        shadowColor: '#CBB88C',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.4,
+        shadowRadius: 10,
+      },
+    }),
+  },
+
+  // Layer 1: Poetic Tokens
+  poeticLayer: {
     flexDirection: 'row',
-    padding: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 24,
+    gap: 8,
   },
-  essenceLeft: {
-    flex: 0.6,
-    paddingRight: 20,
+  poeticPill: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+    backgroundColor: 'rgba(203,184,140,0.15)',
   },
-  essenceTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: 'rgba(255,255,255,0.9)',
-    marginBottom: 12,
-    letterSpacing: 0.3,
+  poeticText: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: '#D6C7A1', // Sand Beige
+    letterSpacing: 0.5,
     fontFamily: Platform.select({
-      ios: 'SF Pro Display',
+      ios: 'Neue Montreal',
       android: 'Neue Montreal',
-      web: 'SF Pro Display, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-  essenceText: {
+  poeticSeparator: {
     fontSize: 16,
-    fontWeight: '400',
-    color: 'rgba(255,255,255,0.75)',
-    lineHeight: 24,
-    letterSpacing: 0.2,
-    fontFamily: Platform.select({
-      ios: 'SF Pro',
-      android: 'Neue Montreal',
-      web: 'SF Pro, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    }),
+    color: 'rgba(214,199,161,0.6)',
+    fontWeight: '300',
   },
-  essenceRight: {
-    flex: 0.4,
+
+  // Layer 2: Icon Arc
+  iconArc: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 28,
+    gap: 20,
   },
-  essentialsTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: 'rgba(255,255,255,0.9)',
-    marginBottom: 16,
+  iconDisc: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: 'rgba(255,255,255,0.04)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.08)',
+  },
+  iconEmoji: {
+    fontSize: 18,
+    marginBottom: 2,
+  },
+  iconLabel: {
+    fontSize: 10,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.7)',
     letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'SF Pro Rounded',
@@ -729,32 +780,23 @@ const styles = StyleSheet.create({
       web: 'SF Pro Rounded, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
-  essentialsList: {
-    gap: 12,
+
+  // Layer 3: Sensory Line
+  sensoryLayer: {
+    alignItems: 'center',
   },
-  essentialItem: {
-    gap: 4,
-  },
-  essentialLabel: {
-    fontSize: 13,
-    fontWeight: '500',
-    color: 'rgba(255,255,255,0.6)',
-    letterSpacing: 0.2,
+  sensoryText: {
+    fontSize: 16,
+    fontWeight: '400',
+    fontStyle: 'italic',
+    color: 'rgba(255,255,255,0.8)',
+    textAlign: 'center',
+    letterSpacing: 0.3,
+    lineHeight: 22,
     fontFamily: Platform.select({
-      ios: 'SF Pro',
+      ios: 'SF Pro Display',
       android: 'Neue Montreal',
-      web: 'SF Pro, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    }),
-  },
-  essentialValue: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: 'rgba(255,255,255,0.9)',
-    letterSpacing: 0.1,
-    fontFamily: Platform.select({
-      ios: 'SF Pro',
-      android: 'Neue Montreal',
-      web: 'SF Pro, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+      web: 'SF Pro Display, Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }),
   },
 
