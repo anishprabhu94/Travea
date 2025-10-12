@@ -1023,30 +1023,29 @@ const styles = StyleSheet.create({
   essenceCapsule: {
     width: '90%',
     alignSelf: 'center',
-    height: 180,
-    borderRadius: 28,
-    overflow: 'hidden', // Critical for iOS rounded corners
-    marginTop: -40, // Overlap with hero
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 24,
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.15)',
+    padding: 24,
+    marginTop: -40,
     marginBottom: 24,
     ...Platform.select({
       web: {
-        boxShadow: '0 8px 40px rgba(0,0,0,0.35)',
+        backdropFilter: 'blur(25px)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.3), inset 1px 1px 0 rgba(255,255,255,0.05)',
       },
       default: {
         shadowColor: '#000000',
         shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.35,
-        shadowRadius: 20,
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
         elevation: 8,
       },
     }),
   },
   essenceBlur: {
     flex: 1,
-    backgroundColor: 'rgba(20,20,20,0.8)', // Solid background for iOS compatibility
-    borderWidth: 1,
-    borderColor: 'rgba(203,184,140,0.25)', // Divider gold line
-    borderRadius: 28, // iOS-friendly rounded corners
   },
   essenceContent: {
     flex: 1,
