@@ -2352,6 +2352,75 @@ const styles = StyleSheet.create({
     }),
   },
 
+  // Trip Canvas Card Styles
+  tripCanvasCard: {
+    width: 280,
+    height: 220,
+    borderRadius: 20,
+    overflow: 'hidden',
+    marginRight: 16,
+    ...Platform.select({
+      web: {
+        boxShadow: '0 4px 20px rgba(0,0,0,0.25)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.25,
+        shadowRadius: 10,
+        elevation: 6,
+      },
+    }),
+  },
+  tripCanvasCardBg: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  tripCanvasCardBgStyle: {
+    borderRadius: 20,
+  },
+  tripCanvasCardGradient: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  tripCanvasCardFrosted: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: 16,
+    backgroundColor: 'rgba(20,20,20,0.8)',
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(203,184,140,0.15)',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(15px)',
+      },
+    }),
+  },
+  tripCanvasCardTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#FFFFFF',
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+  tripCanvasCardSubtext: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: '#CBB88C',
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'SF Pro Display',
+      web: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    }),
+  },
+
 })
 
 // End of Practical Beauty design
