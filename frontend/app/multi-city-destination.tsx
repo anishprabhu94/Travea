@@ -1045,6 +1045,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 8,
+    marginBottom: 20,
   },
   essenceTag: {
     paddingHorizontal: 10,
@@ -1069,6 +1070,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 16,
+    marginBottom: 20,
   },
   travelIconContainer: {
     alignItems: 'center',
@@ -1100,6 +1102,7 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     color: '#CBB88C', // Gold accent
     textAlign: 'center',
+    marginTop: 4,
     fontFamily: Platform.select({
       ios: 'SF Pro Display',
       android: 'SF Pro Display',
