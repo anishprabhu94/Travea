@@ -363,16 +363,15 @@ export default function Landing() {
                   <View style={styles.cityTimelineRow}>
                     {destination.cityInitials.map((initial, idx) => (
                       <React.Fragment key={idx}>
-                        <View style={styles.cityInitialCircle}>
-                          <Text style={styles.cityInitialText}>{initial}</Text>
+                        <View style={styles.cityPill}>
+                          <Text style={styles.cityPillText}>{initial}</Text>
                         </View>
                         {idx < destination.cityInitials!.length - 1 && (
-                          <View style={styles.timelineDot} />
+                          <View style={styles.cityDot} />
                         )}
                       </React.Fragment>
                     ))}
                   </View>
-                  <Text style={styles.multiCityDuration}>{destination.duration}</Text>
                 </View>
               ) : (
                 <View style={styles.destinationHeader}>
