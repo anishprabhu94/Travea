@@ -624,7 +624,7 @@ export default function MultiCityDestinationInfo() {
         <View style={styles.essenceCapsule}>
           <View style={styles.essenceBlur}>
             <View style={styles.essenceContent}>
-              {/* City Selector Pills (Above Tags) */}
+              {/* City Selector Pills (Above Tags) - Smaller & Moved Up */}
               <View style={styles.citySelectorRow}>
                 {multiCityCircuit.cities.map((city, idx) => (
                   <TouchableOpacity
@@ -646,7 +646,7 @@ export default function MultiCityDestinationInfo() {
                 ))}
               </View>
 
-              {/* Row 1: Golden Tags */}
+              {/* Row 1: Golden Tags - With More Spacing */}
               <View style={styles.essenceTagsRow}>
                 {destinationData.essenceTags.map((tag, index) => (
                   <View key={index} style={styles.essenceTag}>
@@ -655,7 +655,7 @@ export default function MultiCityDestinationInfo() {
                 ))}
               </View>
 
-              {/* Row 2: Travel Icons */}
+              {/* Row 2: Travel Icons - With More Top Spacing */}
               <View style={styles.travelIconsRow}>
                 {destinationData.travelInfo.map((info, index) => (
                   <View key={index} style={styles.travelIconContainer}>
@@ -667,7 +667,7 @@ export default function MultiCityDestinationInfo() {
                 ))}
               </View>
 
-              {/* Row 3: Poetic Line */}
+              {/* Row 3: Poetic Line - With More Top Spacing */}
               <Text style={styles.poeticLine}>{destinationData.poeticLine}</Text>
             </View>
           </View>
