@@ -245,64 +245,63 @@ export default function Landing() {
     const baseCards = getCurrentCards()
     
     if (activeMode === 'vacations') {
-      // Distribute unique destinations across 3 carousels (4 cards each = 12 total, NO OVERLAP)
+      // For You Tab: Curated + Multi-City Circuits + Quick Getaways
       return [
         { 
           id: 'vacations_curated', 
           title: 'Curated for You', 
-          cards: baseCards.slice(0, 4).map((card, index) => ({
+          cards: baseCards.slice(2, 6).map((card, index) => ({
             ...card,
             id: `vacations_curated_${card.id}_${index}`,
-            isCondeNastPick: index < 2 // First 2 cards get Condé Nast badge
+            isCondeNastPick: index < 2
           }))
         },
         { 
-          id: 'vacations_trending', 
-          title: 'Trending Now', 
-          cards: baseCards.slice(4, 8).map((card, index) => ({
+          id: 'vacations_circuits', 
+          title: 'Multi-City Circuits', 
+          cards: baseCards.slice(0, 2).map((card, index) => ({
             ...card,
-            id: `vacations_trending_${card.id}_${index}`,
-            isCondeNastPick: index < 2 // First 2 cards get Condé Nast badge
+            id: `vacations_circuits_${card.id}_${index}`,
           }))
         },
         { 
-          id: 'vacations_seasonal', 
-          title: 'Seasonal Highlights', 
-          cards: baseCards.slice(8, 12).map((card, index) => ({
+          id: 'vacations_quick', 
+          title: 'Quick Getaways', 
+          cards: baseCards.slice(6, 10).map((card, index) => ({
             ...card,
-            id: `vacations_seasonal_${card.id}_${index}`,
-            isCondeNastPick: index < 2 // First 2 cards get Condé Nast badge
+            id: `vacations_quick_${card.id}_${index}`,
+            isCondeNastPick: index < 2
           }))
         }
       ]
     } else if (activeMode === 'discover') {
-      // Distribute unique destinations across 3 carousels for discover (4 cards each = 12 total, NO OVERLAP)
+      // Discover Tab: Trending Now + Slow Living + Hidden Gems
       return [
+        { 
+          id: 'discover_trending', 
+          title: 'Trending Now', 
+          cards: baseCards.slice(0, 4).map((card, index) => ({
+            ...card,
+            id: `discover_trending_${card.id}_${index}`,
+            isCondeNastPick: index < 2
+          }))
+        },
         { 
           id: 'discover_slow', 
           title: 'Slow Living', 
-          cards: baseCards.slice(0, 4).map((card, index) => ({
-            ...card,
-            id: `discover_slow_${card.id}_${index}`,
-            isCondeNastPick: index < 2 // First 2 cards get Condé Nast badge
-          }))
-        },
-        { 
-          id: 'discover_quick', 
-          title: 'Quick Getaways', 
           cards: baseCards.slice(4, 8).map((card, index) => ({
             ...card,
-            id: `discover_quick_${card.id}_${index}`,
-            isCondeNastPick: index < 2 // First 2 cards get Condé Nast badge
+            id: `discover_slow_${card.id}_${index}`,
+            isCondeNastPick: index < 2
           }))
         },
         { 
-          id: 'discover_escape', 
-          title: 'Escape Themes', 
+          id: 'discover_gems', 
+          title: 'Hidden Gems', 
           cards: baseCards.slice(8, 12).map((card, index) => ({
             ...card,
-            id: `discover_escape_${card.id}_${index}`,
-            isCondeNastPick: index < 2 // First 2 cards get Condé Nast badge
+            id: `discover_gems_${card.id}_${index}`,
+            isCondeNastPick: index < 2
           }))
         }
       ]
