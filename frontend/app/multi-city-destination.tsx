@@ -167,6 +167,268 @@ const cityDataMap = {
       ]
     }
   ]
+  },
+  'Ravello': {
+    name: 'Ravello',
+    subtitle: 'Where silence hums between lemon trees',
+    heroImage: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+    essenceTags: ['Garden Heights', 'Musical Legacy', 'Silent Beauty'],
+    travelInfo: [
+      { icon: 'calendar-outline', label: 'Apr–Jun', sublabel: 'Best Time' },
+      { icon: 'card-outline', label: 'EUR', sublabel: 'Currency' },
+      { icon: 'airplane-outline', label: 'NAP', sublabel: 'Airport' },
+      { icon: 'time-outline', label: 'CET+1', sublabel: 'Time Zone' }
+    ],
+    poeticLine: 'Gardens suspended above the world.',
+    discoveryCards: [
+      {
+        id: 'experiences',
+        title: 'Experiences',
+        subtext: 'Villa gardens · Mountain paths',
+        image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg'
+      },
+      {
+        id: 'dining',
+        title: 'Dining',
+        subtext: 'Michelin star · Terrace views',
+        image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
+      },
+      {
+        id: 'culture',
+        title: 'Culture',
+        subtext: 'Music festival · Historic villas',
+        image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
+      },
+      {
+        id: 'nature',
+        title: 'Nature',
+        subtext: 'Terraced gardens · Infinity views',
+        image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg'
+      }
+    ],
+    detailsExpansion: [
+      { name: 'Villa Rufolo', info: '9 AM–7 PM', image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
+      { name: 'Concert at Terrace', info: 'Jul–Sep', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' }
+    ],
+    essentials: {
+      left: [
+        { icon: 'calendar-outline', label: 'Best Time', value: 'Apr–Jun, Sep–Oct' },
+        { icon: 'card-outline', label: 'Currency', value: 'Euro (EUR)' },
+        { icon: 'chatbubble-outline', label: 'Language', value: 'Italian (English common)' },
+        { icon: 'shirt-outline', label: 'Etiquette', value: 'Modest dress in churches' }
+      ],
+      right: [
+        { icon: 'airplane-outline', label: 'Airport', value: 'Naples Intl (NAP)' },
+        { icon: 'time-outline', label: 'Time Zone', value: 'CET+1' },
+        { icon: 'bus-outline', label: 'Getting Around', value: 'Buses, walk' },
+        { icon: 'restaurant-outline', label: 'Tipping', value: '10% common' }
+      ]
+    },
+    insights: [
+      { quote: 'Wagner composed Parsifal in these gardens.', attribution: null },
+      { quote: 'The Terrace of Infinity offers views to eternity.', attribution: null },
+      { quote: 'Ravello hosts a summer music festival since 1953.', attribution: null }
+    ],
+    experiences: [
+      {
+        title: 'Villa Cimbrone Gardens',
+        subtext: '2 hrs · Infinity views',
+        image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg'
+      },
+      {
+        title: 'Villa Rufolo',
+        subtext: 'Musical heritage',
+        image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
+      },
+      {
+        title: 'Mountain Path Walk',
+        subtext: 'Terraced beauty',
+        image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
+      }
+    ],
+    foodCulture: [
+      {
+        icon: '⭐',
+        title: 'Ristorante Rossellinis',
+        subtext: 'Michelin star elegance',
+        image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
+      },
+      {
+        icon: '🎵',
+        title: 'Concert at Terrace',
+        subtext: 'Music under the stars',
+        image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg'
+      },
+      {
+        icon: '🌿',
+        title: 'Garden Meditation',
+        subtext: 'Quiet among ancient trees',
+        image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
+      }
+    ],
+    suggestedJourneys: [
+      {
+        title: 'Path of the Gods',
+        subtitle: 'Hiking trail · Ravello to Positano',
+        description: 'Ancient footpath with coastal panoramas.',
+        stops: [
+          { code: 'RAV', name: 'Ravello' },
+          { code: 'POS', name: 'Positano' }
+        ],
+        images: [
+          {
+            url: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+            caption: 'Trail views'
+          }
+        ]
+      },
+      {
+        title: 'Villa Circuit',
+        subtitle: '1 day · Historic gardens tour',
+        description: 'Explore Rufolo, Cimbrone, and terraces.',
+        stops: [
+          { code: 'RAV', name: 'Ravello' }
+        ],
+        images: [
+          {
+            url: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+            caption: 'Villa gardens'
+          }
+        ]
+      }
+    ]
+  },
+  'Sorrento': {
+    name: 'Sorrento',
+    subtitle: 'Island allure & Mediterranean calm',
+    heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+    essenceTags: ['Citrus Perfume', 'Bay Views', 'Capri Gateway'],
+    travelInfo: [
+      { icon: 'calendar-outline', label: 'Apr–Jun', sublabel: 'Best Time' },
+      { icon: 'card-outline', label: 'EUR', sublabel: 'Currency' },
+      { icon: 'airplane-outline', label: 'NAP', sublabel: 'Airport' },
+      { icon: 'time-outline', label: 'CET+1', sublabel: 'Time Zone' }
+    ],
+    poeticLine: 'Where citrus perfumes the twilight air.',
+    discoveryCards: [
+      {
+        id: 'experiences',
+        title: 'Experiences',
+        subtext: 'Marina walk · Boat to Capri',
+        image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
+      },
+      {
+        id: 'dining',
+        title: 'Dining',
+        subtext: 'Fresh seafood · Limoncello',
+        image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg'
+      },
+      {
+        id: 'culture',
+        title: 'Culture',
+        subtext: 'Artisan workshops · Piazzas',
+        image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
+      },
+      {
+        id: 'nature',
+        title: 'Nature',
+        subtext: 'Cliffside beaches · Bay views',
+        image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
+      }
+    ],
+    detailsExpansion: [
+      { name: 'Marina Grande', info: 'Fishing village', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
+      { name: 'Limoncello Tasting', info: '€20, 1 hr', image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' }
+    ],
+    essentials: {
+      left: [
+        { icon: 'calendar-outline', label: 'Best Time', value: 'Apr–Jun, Sep–Oct' },
+        { icon: 'card-outline', label: 'Currency', value: 'Euro (EUR)' },
+        { icon: 'chatbubble-outline', label: 'Language', value: 'Italian (English common)' },
+        { icon: 'shirt-outline', label: 'Etiquette', value: 'Modest dress in churches' }
+      ],
+      right: [
+        { icon: 'airplane-outline', label: 'Airport', value: 'Naples Intl (NAP)' },
+        { icon: 'time-outline', label: 'Time Zone', value: 'CET+1' },
+        { icon: 'bus-outline', label: 'Getting Around', value: 'Trains, ferries' },
+        { icon: 'restaurant-outline', label: 'Tipping', value: '10% common' }
+      ]
+    },
+    insights: [
+      { quote: 'Sorrento produces the finest limoncello in Italy.', attribution: null },
+      { quote: 'Cliffside streets lead to hidden beaches.', attribution: null },
+      { quote: 'The Bay of Naples sparkles at sunset.', attribution: null }
+    ],
+    experiences: [
+      {
+        title: 'Marina Grande Walk',
+        subtext: '2 hrs · Fishing village',
+        image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
+      },
+      {
+        title: 'Limoncello Tasting',
+        subtext: 'Local distillery',
+        image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg'
+      },
+      {
+        title: 'Bay of Naples Cruise',
+        subtext: 'Sunset views',
+        image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
+      }
+    ],
+    foodCulture: [
+      {
+        icon: '🐟',
+        title: "L'Antica Trattoria",
+        subtext: 'Family recipes, sea views',
+        image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg'
+      },
+      {
+        icon: '🍋',
+        title: 'Limoncello Factory',
+        subtext: 'Handcrafted since 1890',
+        image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
+      },
+      {
+        icon: '🎨',
+        title: 'Artisan Workshops',
+        subtext: 'Inlaid wood & ceramics',
+        image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
+      }
+    ],
+    suggestedJourneys: [
+      {
+        title: 'Capri Day Trip',
+        subtitle: 'Ferry from Sorrento · Full day',
+        description: 'Blue grotto, shopping, and island charm.',
+        stops: [
+          { code: 'SOR', name: 'Sorrento' },
+          { code: 'CAP', name: 'Capri' }
+        ],
+        images: [
+          {
+            url: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+            caption: 'Capri'
+          }
+        ]
+      },
+      {
+        title: 'Pompeii & Vesuvius',
+        subtitle: '1 day · Ancient history',
+        description: 'Ruins, volcano, and archaeological wonder.',
+        stops: [
+          { code: 'SOR', name: 'Sorrento' },
+          { code: 'POM', name: 'Pompeii' }
+        ],
+        images: [
+          {
+            url: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+            caption: 'Pompeii ruins'
+          }
+        ]
+      }
+    ]
+  }
 }
 
 // Discovery Section - Redesigned for React Native
