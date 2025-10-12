@@ -1081,7 +1081,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   
-  // Multi-City Circuit Styles
+  // Multi-City Circuit Styles (Matching Trip Canvas)
   multiCityContainer: {
     marginBottom: 6,
   },
@@ -1090,41 +1090,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 4,
   },
-  cityInitialCircle: {
-    width: 32,
-    height: 32,
+  cityPill: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
     borderRadius: 16,
-    backgroundColor: 'rgba(201,169,109,0.2)',
+    backgroundColor: 'rgba(201,169,109,0.15)',
     borderWidth: 1,
-    borderColor: '#C9A96D',
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderColor: 'rgba(201,169,109,0.4)',
   },
-  cityInitialText: {
+  cityPillText: {
     fontSize: 11,
     fontWeight: '700',
     color: '#C9A96D',
-    letterSpacing: 0.5,
+    letterSpacing: 1,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  timelineDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: '#C9A96D',
-    marginHorizontal: 6,
-  },
-  multiCityDuration: {
-    fontSize: 13,
-    fontWeight: '500',
-    color: 'rgba(255,255,255,0.7)',
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
+  cityDot: {
+    width: 4,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: 'rgba(201,169,109,0.6)',
+    marginHorizontal: 8,
   },
   
   destinationCity: {
