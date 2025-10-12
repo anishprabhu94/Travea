@@ -623,6 +623,28 @@ export default function MultiCityDestinationInfo() {
         <View style={styles.essenceCapsule}>
           <View style={styles.essenceBlur}>
             <View style={styles.essenceContent}>
+              {/* City Selector Pills (Above Tags) */}
+              <View style={styles.citySelectorRow}>
+                {multiCityCircuit.cities.map((city, idx) => (
+                  <TouchableOpacity
+                    key={city}
+                    style={[
+                      styles.citySelectorPillInPane,
+                      selectedCity === city && styles.citySelectorPillInPaneActive
+                    ]}
+                    onPress={() => setSelectedCity(city)}
+                    activeOpacity={0.7}
+                  >
+                    <Text style={[
+                      styles.citySelectorTextInPane,
+                      selectedCity === city && styles.citySelectorTextInPaneActive
+                    ]}>
+                      {multiCityCircuit.cityCodes[idx]}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+
               {/* Row 1: Golden Tags */}
               <View style={styles.essenceTagsRow}>
                 {destinationData.essenceTags.map((tag, index) => (
