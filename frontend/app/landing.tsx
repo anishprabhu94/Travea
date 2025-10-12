@@ -32,6 +32,10 @@ interface DestinationCard {
   transport: TransportInfo[]
   category: 'inspire' | 'weekend'
   isCondeNastPick?: boolean
+  isMultiCity?: boolean
+  cities?: string[]
+  cityInitials?: string[]
+  duration?: string
 }
 
 const destinationCards: DestinationCard[] = [
