@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import {
   View,
   Text,
@@ -7,9 +7,9 @@ import {
   ImageBackground,
   Platform,
   StyleSheet,
+  Animated,
 } from 'react-native'
 import { router } from 'expo-router'
-import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
 
 // Multi-city circuit data for Italian Coast (Amalfi → Ravello → Sorrento)
