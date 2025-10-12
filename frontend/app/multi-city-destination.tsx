@@ -756,40 +756,53 @@ export default function MultiCityDestinationInfo() {
           </View>
         </View>
 
-        {/* 4. Local Insights - Carousel */}
-        <View style={styles.carouselContainer}>
-          <View style={styles.carouselHeader}>
-            <Text style={styles.carouselTitle}>Local Insights</Text>
-            <Text style={styles.carouselSubtitle}>Wisdom from those who know the coast</Text>
+        {/* 4. Local Insights - Frosted Pane (Trip Canvas Style) */}
+        <View style={styles.localInsightsSection}>
+          <View style={styles.insightsTripCanvasPane}>
+            <View style={styles.insightsPaneContent}>
+              {/* Header */}
+              <View style={styles.insightsTitleBar}>
+                <Text style={styles.insightsTitle}>LOCAL INSIGHTS</Text>
+                <View style={styles.insightsTitleDivider} />
+              </View>
+
+              {/* 2×3 Grid Layout */}
+              <View style={styles.insightsGrid}>
+                {/* Left Column */}
+                <View style={styles.insightsColumn}>
+                  {destinationData.essentials.left.map((item, index) => (
+                    <View key={index} style={styles.insightItem}>
+                      <Ionicons name={item.icon as any} size={16} color="#CBB88C" style={styles.insightBronzeIcon} />
+                      <View style={styles.insightText}>
+                        <Text style={styles.insightLabel}>{item.label}</Text>
+                        <Text style={styles.insightDetail}>{item.value}</Text>
+                      </View>
+                    </View>
+                  ))}
+                </View>
+
+                {/* Right Column */}
+                <View style={styles.insightsColumn}>
+                  {destinationData.essentials.right.map((item, index) => (
+                    <View key={index} style={styles.insightItem}>
+                      <Ionicons name={item.icon as any} size={16} color="#CBB88C" style={styles.insightBronzeIcon} />
+                      <View style={styles.insightText}>
+                        <Text style={styles.insightLabel}>{item.label}</Text>
+                        <Text style={styles.insightDetail}>{item.value}</Text>
+                      </View>
+                    </View>
+                  ))}
+                </View>
+              </View>
+
+              {/* Elegant One-Liner */}
+              <View style={styles.insightsFooter}>
+                <Text style={styles.insightsWhisper}>
+                  "Tipping 10% shows grace, not habit."
+                </Text>
+              </View>
+            </View>
           </View>
-          
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.carouselScroll}
-          >
-            {destinationData.insights.map((item, index) => (
-              <TouchableOpacity 
-                key={index} 
-                style={[styles.tripCanvasCard, index === 0 && styles.firstCard]}
-                activeOpacity={0.8}
-              >
-                <ImageBackground
-                  source={{ uri: destinationData.heroImage }}
-                  style={styles.tripCanvasCardBg}
-                  imageStyle={styles.tripCanvasCardBgStyle}
-                >
-                  <LinearGradient
-                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
-                    style={styles.tripCanvasCardGradient}
-                  />
-                  <View style={styles.tripCanvasCardFrosted}>
-                    <Text style={styles.insightQuote}>"{item.quote}"</Text>
-                  </View>
-                </ImageBackground>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
         </View>
 
         {/* 5. Suggested Journeys - Carousel */}
