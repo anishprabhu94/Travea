@@ -2220,12 +2220,13 @@ const styles = StyleSheet.create({
 
   // Middle - Description
   journeyDescription: {
-    fontSize: 14, // 14pt gold italic
+    fontSize: 13,
     fontWeight: '400',
-    color: '#CBB88C',
+    color: 'rgba(203,184,140,0.85)',
     fontStyle: 'italic',
-    marginBottom: 20,
-    textAlign: 'left', // Left aligned for readability
+    marginTop: 4,
+    textAlign: 'left',
+    lineHeight: 18,
     fontFamily: Platform.select({
       ios: 'SF Pro Display',
       android: 'SF Pro Display',
