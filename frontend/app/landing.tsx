@@ -39,6 +39,34 @@ interface DestinationCard {
 }
 
 const destinationCards: DestinationCard[] = [
+  // 2 MULTI-CITY CIRCUITS
+  { 
+    id: 'italian-coast-circuit', 
+    city: 'Amalfi → Ravello → Sorrento', 
+    region: 'Italy', 
+    tagline: '4 days of lemon sun and stone paths', 
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', 
+    transport: [{ icon: 'car-outline', time: '4 days' }], 
+    category: 'inspire',
+    isMultiCity: true,
+    cities: ['Amalfi', 'Ravello', 'Sorrento'],
+    cityInitials: ['AMF', 'RAV', 'SOR'],
+    duration: '4 days'
+  },
+  { 
+    id: 'tuscany-circuit', 
+    city: 'Florence → Siena → San Gimignano', 
+    region: 'Italy', 
+    tagline: '5 days through Renaissance & rolling hills', 
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', 
+    transport: [{ icon: 'car-outline', time: '5 days' }], 
+    category: 'inspire',
+    isMultiCity: true,
+    cities: ['Florence', 'Siena', 'San Gimignano'],
+    cityInitials: ['FLR', 'SIE', 'SGM'],
+    duration: '5 days'
+  },
+  
   // 12 UNIQUE VACATIONS DESTINATIONS
   { id: 'amalfi', city: 'Amalfi', region: 'Italy', tagline: 'Coastal drives & lemon air', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', transport: [{ icon: 'airplane-outline', time: '8h 30m' }], category: 'inspire' },
   { id: 'kyoto', city: 'Kyoto', region: 'Japan', tagline: 'Temples & still mornings', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', transport: [{ icon: 'airplane-outline', time: '12h 15m' }], category: 'inspire' },
