@@ -2465,16 +2465,16 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Trip Canvas Frosted Panes for Local Insights and Suggested Journeys
-  // EXACT MATCH to Trip Canvas experienceImageCardFrosted style
+  // EXACT MATCH to Essence Capsule (City Overview Card) Frosted Pane
   insightsTripCanvasPane: {
-    marginHorizontal: 0,
-    marginBottom: 32,
+    width: '90%',
+    alignSelf: 'center',
     backgroundColor: 'rgba(255,255,255,0.06)',
     borderRadius: 24,
     borderWidth: 0.5,
     borderColor: 'rgba(181,155,115,0.15)',
     padding: 24,
+    marginBottom: 32,
     ...Platform.select({
       web: {
         backdropFilter: 'blur(25px)',
@@ -2492,14 +2492,16 @@ const styles = StyleSheet.create({
   insightsPaneContent: {
     // Content wrapper
   },
+  // EXACT MATCH to Essence Capsule (City Overview Card) Frosted Pane
   journeyTripCanvasCard: {
-    marginHorizontal: 24,
-    marginBottom: 24,
+    width: '90%',
+    alignSelf: 'center',
     backgroundColor: 'rgba(255,255,255,0.06)',
     borderRadius: 24,
     borderWidth: 0.5,
     borderColor: 'rgba(181,155,115,0.15)',
     padding: 24,
+    marginBottom: 24,
     ...Platform.select({
       web: {
         backdropFilter: 'blur(25px)',
