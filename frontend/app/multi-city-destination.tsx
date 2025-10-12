@@ -31,7 +31,7 @@ const cityDataMap = {
     { icon: 'airplane-outline', label: 'NAP', sublabel: 'Airport' },
     { icon: 'time-outline', label: 'CET+1', sublabel: 'Time Zone' }
   ],
-  poeticLine: 'Where time slows, and the sea hums in gold.',
+  poeticLine: 'Where time slows, and the sea hums.',
   discoveryCards: [
     {
       id: 'experiences',
