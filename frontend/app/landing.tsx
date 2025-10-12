@@ -1081,6 +1081,53 @@ const styles = StyleSheet.create({
     alignItems: 'baseline',
     marginBottom: 4,
   },
+  
+  // Multi-City Circuit Styles
+  multiCityContainer: {
+    marginBottom: 6,
+  },
+  cityTimelineRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  cityInitialCircle: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: 'rgba(201,169,109,0.2)',
+    borderWidth: 1,
+    borderColor: '#C9A96D',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cityInitialText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#C9A96D',
+    letterSpacing: 0.5,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  timelineDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#C9A96D',
+    marginHorizontal: 6,
+  },
+  multiCityDuration: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.7)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  
   destinationCity: {
     fontSize: 20,
     fontWeight: '600',
