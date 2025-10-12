@@ -972,14 +972,15 @@ const styles = StyleSheet.create({
   // City Selector Pills Inside Pane (Elegant & World-Class)
   citySelectorRow: {
     flexDirection: 'row',
-    gap: 10,
-    marginBottom: 20,
+    gap: 8,
+    marginBottom: 24,
+    marginTop: -8,
     justifyContent: 'center',
   },
   citySelectorPillInPane: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 20,
+    paddingVertical: 6,
+    paddingHorizontal: 14,
+    borderRadius: 16,
     backgroundColor: 'rgba(255,255,255,0.08)',
     borderWidth: 1,
     borderColor: 'rgba(181,155,115,0.25)',
@@ -990,10 +991,10 @@ const styles = StyleSheet.create({
     borderColor: '#C9A96D',
   },
   citySelectorTextInPane: {
-    fontSize: 13,
+    fontSize: 11,
     fontWeight: '700',
     color: 'rgba(255,255,255,0.65)',
-    letterSpacing: 1.5,
+    letterSpacing: 1.2,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
