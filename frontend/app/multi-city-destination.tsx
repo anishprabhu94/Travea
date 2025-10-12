@@ -695,21 +695,21 @@ export default function MultiCityDestinationInfo() {
               {destinationData.experiences.map((item, index) => (
                 <TouchableOpacity 
                   key={index} 
-                  style={[styles.tripCanvasCard, index === 0 && styles.firstCard]}
+                  style={[styles.experienceImageCard, index === 0 && styles.firstCard]}
                   activeOpacity={0.8}
                 >
                   <ImageBackground
                     source={{ uri: item.image }}
-                    style={styles.tripCanvasCardBg}
-                    imageStyle={styles.tripCanvasCardBgStyle}
+                    style={styles.experienceImageCardBg}
+                    imageStyle={styles.experienceImageCardBgStyle}
                   >
                     <LinearGradient
                       colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
-                      style={styles.tripCanvasCardGradient}
+                      style={styles.experienceImageCardGradient}
                     />
-                    <View style={styles.tripCanvasCardFrosted}>
-                      <Text style={styles.tripCanvasCardTitle}>{item.title}</Text>
-                      <Text style={styles.tripCanvasCardSubtext}>{item.subtext}</Text>
+                    <View style={styles.experienceImageCardFrosted}>
+                      <Text style={styles.experienceCardTitle}>{item.title}</Text>
+                      <Text style={styles.experienceCardDetails}>{item.subtext}</Text>
                     </View>
                   </ImageBackground>
                 </TouchableOpacity>
