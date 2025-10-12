@@ -312,7 +312,13 @@ export default function Landing() {
   const renderDestinationCard = (destination: DestinationCard, index: number) => (
     <View key={destination.id} style={styles.cardWrapper}>
       <TouchableOpacity 
-        onPress={() => router.push(`/destination?id=${destination.id}&city=${destination.city}&region=${destination.region}`)}
+        onPress={() => {
+          if (destination.isMultiCity) {
+            router.push(`/multi-city-destination?id=${destination.id}`)
+          } else {
+            router.push(`/destination?id=${destination.id}&city=${destination.city}&region=${destination.region}`)
+          }
+        }}
         activeOpacity={0.9}
       >
         <ImageBackground
