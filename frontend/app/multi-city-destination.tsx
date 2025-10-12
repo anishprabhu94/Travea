@@ -1380,11 +1380,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   insightQuote: {
-    fontSize: 16,
-    fontWeight: '300',
+    fontSize: 15,
+    fontWeight: '400',
     fontStyle: 'italic',
     color: '#F3F1E7', // White
-    textAlign: 'center',
+    textAlign: 'left',
     lineHeight: 22,
     fontFamily: Platform.select({
       ios: 'SF Pro Display',
