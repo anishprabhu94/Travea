@@ -2466,11 +2466,12 @@ const styles = StyleSheet.create({
   },
 
   // Trip Canvas Frosted Panes for Local Insights and Suggested Journeys
+  // EXACT MATCH to Trip Canvas experienceImageCardFrosted style
   insightsTripCanvasPane: {
-    marginHorizontal: 24,
+    marginHorizontal: 0,
     marginBottom: 32,
     backgroundColor: 'rgba(255,255,255,0.06)',
-    borderRadius: 20,
+    borderRadius: 24,
     borderWidth: 0.5,
     borderColor: 'rgba(181,155,115,0.15)',
     padding: 24,
@@ -2495,7 +2496,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
     marginBottom: 24,
     backgroundColor: 'rgba(255,255,255,0.06)',
-    borderRadius: 20,
+    borderRadius: 24,
     borderWidth: 0.5,
     borderColor: 'rgba(181,155,115,0.15)',
     padding: 24,
