@@ -12,11 +12,13 @@ import { router } from 'expo-router'
 import { BlurView } from 'expo-blur'
 import { Ionicons } from '@expo/vector-icons'
 
-// Static destination data for Amalfi Coast
-const destinationData = {
-  name: 'Amalfi Coast',
-  subtitle: 'Where azure meets ancient stone',
-  heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+// Multi-city and single city destination data
+const cityDataMap = {
+  'Amalfi': {
+    name: 'Amalfi',
+    subtitle: 'Where azure meets ancient stone',
+    heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+    code: 'AMF',
   essenceTags: ['Azure Air', 'Lemon Calm', 'Cliff Light'],
   travelInfo: [
     { icon: 'calendar-outline', label: 'Apr–Jun', sublabel: 'Best Time' },
