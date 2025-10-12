@@ -560,8 +560,11 @@ const DiscoverySection = () => {
   )
 }
 
-export default function DestinationInfo() {
+export default function MultiCityDestinationInfo() {
   const [isSaved, setIsSaved] = useState(false)
+  const [selectedCity, setSelectedCity] = useState('Amalfi')
+  
+  const destinationData = cityDataMap[selectedCity]
 
   return (
     <View style={styles.container}>
