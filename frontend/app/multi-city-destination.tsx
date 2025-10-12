@@ -756,81 +756,40 @@ export default function MultiCityDestinationInfo() {
           </View>
         </View>
 
-        {/* 4. Local Insights - Luxury Collector's Card */}
-        <View style={styles.localInsightsSection}>
-          <View style={styles.insightsCollectorCard}>
-            <View style={styles.insightsCardContent}>
-              {/* Title Bar */}
-              <View style={styles.insightsTitleBar}>
-                <Text style={styles.insightsTitle}>LOCAL INSIGHTS</Text>
-                <View style={styles.insightsTitleDivider} />
-              </View>
-
-              {/* 2×3 Grid Layout */}
-              <View style={styles.insightsGrid}>
-                {/* Left Column */}
-                <View style={styles.insightsColumn}>
-                  <View style={styles.insightItem}>
-                    <Ionicons name="calendar-outline" size={16} color="#CBB88C" style={styles.insightBronzeIcon} />
-                    <View style={styles.insightText}>
-                      <Text style={styles.insightLabel}>Best Time</Text>
-                      <Text style={styles.insightDetail}>Apr–Jun, Sep–Oct</Text>
-                    </View>
-                  </View>
-                  
-                  <View style={styles.insightItem}>
-                    <Ionicons name="card-outline" size={16} color="#CBB88C" style={styles.insightBronzeIcon} />
-                    <View style={styles.insightText}>
-                      <Text style={styles.insightLabel}>Currency</Text>
-                      <Text style={styles.insightDetail}>Euro (EUR)</Text>
-                    </View>
-                  </View>
-                  
-                  <View style={styles.insightItem}>
-                    <Ionicons name="chatbubble-outline" size={16} color="#CBB88C" style={styles.insightBronzeIcon} />
-                    <View style={styles.insightText}>
-                      <Text style={styles.insightLabel}>Language</Text>
-                      <Text style={styles.insightDetail}>Italian · English common</Text>
-                    </View>
-                  </View>
-                </View>
-
-                {/* Right Column */}
-                <View style={styles.insightsColumn}>
-                  <View style={styles.insightItem}>
-                    <Ionicons name="airplane-outline" size={16} color="#CBB88C" style={styles.insightBronzeIcon} />
-                    <View style={styles.insightText}>
-                      <Text style={styles.insightLabel}>Gateway</Text>
-                      <Text style={styles.insightDetail}>Naples Intl (NAP)</Text>
-                    </View>
-                  </View>
-                  
-                  <View style={styles.insightItem}>
-                    <Ionicons name="walk-outline" size={16} color="#CBB88C" style={styles.insightBronzeIcon} />
-                    <View style={styles.insightText}>
-                      <Text style={styles.insightLabel}>Getting Around</Text>
-                      <Text style={styles.insightDetail}>Buses, ferries, and walk</Text>
-                    </View>
-                  </View>
-                  
-                  <View style={styles.insightItem}>
-                    <Ionicons name="shirt-outline" size={16} color="#CBB88C" style={styles.insightBronzeIcon} />
-                    <View style={styles.insightText}>
-                      <Text style={styles.insightLabel}>Etiquette</Text>
-                      <Text style={styles.insightDetail}>Dress modestly in churches</Text>
-                    </View>
-                  </View>
-                </View>
-              </View>
-
-              {/* Elegant One-Liner */}
-              <View style={styles.insightsFooter}>
-                <Text style={styles.insightsWhisper}>
-                  "Tipping 10% shows grace, not habit."
-                </Text>
-              </View>
-            </View>
+        {/* 4. Local Insights - Carousel */}
+        <View style={styles.carouselContainer}>
+          <View style={styles.carouselHeader}>
+            <Text style={styles.carouselTitle}>Local Insights</Text>
+            <Text style={styles.carouselSubtitle}>Wisdom from those who know the coast</Text>
           </View>
+          
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.carouselScroll}
+          >
+            {destinationData.insights.map((item, index) => (
+              <TouchableOpacity 
+                key={index} 
+                style={[styles.tripCanvasCard, index === 0 && styles.firstCard]}
+                activeOpacity={0.8}
+              >
+                <ImageBackground
+                  source={{ uri: destinationData.heroImage }}
+                  style={styles.tripCanvasCardBg}
+                  imageStyle={styles.tripCanvasCardBgStyle}
+                >
+                  <LinearGradient
+                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
+                    style={styles.tripCanvasCardGradient}
+                  />
+                  <View style={styles.tripCanvasCardFrosted}>
+                    <Text style={styles.insightQuote}>"{item.quote}"</Text>
+                  </View>
+                </ImageBackground>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
         </View>
 
         {/* 5. Suggested Journeys - Editorial Finale */}
