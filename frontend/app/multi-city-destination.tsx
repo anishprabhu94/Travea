@@ -805,42 +805,51 @@ export default function MultiCityDestinationInfo() {
           </View>
         </View>
 
-        {/* 5. Suggested Journeys - Carousel */}
-        <View style={styles.carouselContainer}>
-          <View style={styles.carouselHeader}>
-            <Text style={styles.carouselTitle}>Suggested Journeys</Text>
-            <Text style={styles.carouselSubtitle}>Curated paths from travelers in the know</Text>
+        {/* 5. Suggested Journeys - Frosted Pane (Trip Canvas Style) */}
+        <View style={styles.suggestedJourneysSection}>
+          {/* Section Header */}
+          <View style={styles.journeysHeader}>
+            <Text style={styles.journeysTitle}>SUGGESTED JOURNEYS</Text>
+            <Text style={styles.journeysSubtitle}>Curated paths from travelers in the know</Text>
+            <View style={styles.journeysDivider} />
           </View>
-          
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.carouselScroll}
-          >
+
+          {/* Journey Cards - With Trip Canvas Frosted Panes */}
+          <View style={styles.journeysContainer}>
             {destinationData.suggestedJourneys.map((journey, index) => (
-              <TouchableOpacity 
-                key={index} 
-                style={[styles.tripCanvasCard, index === 0 && styles.firstCard]}
-                activeOpacity={0.8}
-              >
-                <ImageBackground
-                  source={{ uri: journey.images[0].url }}
-                  style={styles.tripCanvasCardBg}
-                  imageStyle={styles.tripCanvasCardBgStyle}
-                >
-                  <LinearGradient
-                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
-                    style={styles.tripCanvasCardGradient}
-                  />
-                  <View style={styles.tripCanvasCardFrosted}>
-                    <Text style={styles.tripCanvasCardTitle}>{journey.title}</Text>
-                    <Text style={styles.tripCanvasCardSubtext}>{journey.subtitle}</Text>
-                    <Text style={styles.journeyDescription}>{journey.description}</Text>
+              <View key={index} style={styles.journeyTripCanvasCard}>
+                {/* Top Row - Title + Meta */}
+                <View style={styles.journeyHeader}>
+                  <Text style={styles.journeyTitle}>{journey.title}</Text>
+                  <Text style={styles.journeyMeta}>{journey.subtitle}</Text>
+                </View>
+
+                {/* Middle - Description */}
+                <Text style={styles.journeyDescription}>{journey.description}</Text>
+
+                {/* Bottom Row - Images + Arrow */}
+                <View style={styles.journeyBottom}>
+                  <View style={styles.journeyThumbnails}>
+                    {journey.images.map((image, imgIndex) => (
+                      <View key={imgIndex} style={styles.journeyThumbnailContainer}>
+                        <ImageBackground
+                          source={{ uri: image.url }}
+                          style={styles.journeyThumbnail}
+                          imageStyle={styles.journeyThumbnailImage}
+                        />
+                        <Text style={styles.journeyThumbnailCaption}>{image.caption}</Text>
+                      </View>
+                    ))}
                   </View>
-                </ImageBackground>
-              </TouchableOpacity>
+                  <TouchableOpacity style={styles.journeyArrowButton}>
+                    <View style={styles.journeyArrowCircle}>
+                      <Ionicons name="arrow-up-outline" size={14} color="#CBB88C" style={{ transform: [{ rotate: '45deg' }] }} />
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              </View>
             ))}
-          </ScrollView>
+          </View>
         </View>
 
         {/* Bottom spacing for fixed footer */}
