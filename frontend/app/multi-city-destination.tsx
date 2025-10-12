@@ -611,28 +611,6 @@ export default function MultiCityDestinationInfo() {
               </TouchableOpacity>
             </View>
 
-            {/* City Selector Pills */}
-            <View style={styles.citySelectorContainer}>
-              {multiCityCircuit.cities.map((city, idx) => (
-                <TouchableOpacity
-                  key={city}
-                  style={[
-                    styles.citySelectorPill,
-                    selectedCity === city && styles.citySelectorPillActive
-                  ]}
-                  onPress={() => setSelectedCity(city)}
-                  activeOpacity={0.7}
-                >
-                  <Text style={[
-                    styles.citySelectorText,
-                    selectedCity === city && styles.citySelectorTextActive
-                  ]}>
-                    {multiCityCircuit.cityCodes[idx]}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
-
             {/* Hero Text Overlay - Positioned Higher */}
             <View style={styles.heroTextOverlay}>
               <Text style={styles.heroTitle}>{destinationData.name}</Text>
