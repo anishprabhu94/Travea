@@ -2394,6 +2394,122 @@ const styles = StyleSheet.create({
     }),
   },
 
+  // EXACT Trip Canvas Experience Card Styles (from bookings.tsx)
+  experienceImageCard: {
+    width: 280,
+    height: 200,
+    borderRadius: 24,
+    overflow: 'hidden',
+    marginRight: 16,
+  },
+  experienceImageCardBg: {
+    flex: 1,
+  },
+  experienceImageCardBgStyle: {
+    borderRadius: 24,
+  },
+  experienceImageCardGradient: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: '60%',
+  },
+  experienceImageCardFrosted: {
+    position: 'absolute',
+    bottom: 12,
+    left: 12,
+    right: 12,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 20,
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.15)',
+    padding: 16,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.3), inset 1px 1px 0 rgba(255,255,255,0.05)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+        elevation: 8,
+      },
+    }),
+  },
+  experienceCardTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.9)',
+    marginBottom: 8,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  experienceCardDetails: {
+    fontSize: 14,
+    fontWeight: '400',
+    color: 'rgba(181,155,115,0.9)',
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+
+  // Trip Canvas Frosted Panes for Local Insights and Suggested Journeys
+  insightsTripCanvasPane: {
+    marginHorizontal: 24,
+    marginBottom: 32,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 20,
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.15)',
+    padding: 24,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.3), inset 1px 1px 0 rgba(255,255,255,0.05)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+        elevation: 8,
+      },
+    }),
+  },
+  insightsPaneContent: {
+    // Content wrapper
+  },
+  journeyTripCanvasCard: {
+    marginHorizontal: 24,
+    marginBottom: 24,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 20,
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.15)',
+    padding: 24,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.3), inset 1px 1px 0 rgba(255,255,255,0.05)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+        elevation: 8,
+      },
+    }),
+  },
+
 })
 
 // End of Practical Beauty design
