@@ -984,38 +984,37 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // City Selector Pills (Matching Trip Canvas)
-  citySelectorContainer: {
-    position: 'absolute',
-    top: 60,
-    right: 20,
+  // City Selector Pills Inside Pane (Elegant & World-Class)
+  citySelectorRow: {
     flexDirection: 'row',
-    gap: 8,
-    zIndex: 10,
+    gap: 10,
+    marginBottom: 20,
+    justifyContent: 'center',
   },
-  citySelectorPill: {
-    paddingVertical: 8,
-    paddingHorizontal: 14,
-    borderRadius: 18,
-    backgroundColor: 'rgba(255,255,255,0.1)',
+  citySelectorPillInPane: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255,255,255,0.08)',
     borderWidth: 1,
-    borderColor: 'rgba(181,155,115,0.3)',
+    borderColor: 'rgba(181,155,115,0.25)',
   },
-  citySelectorPillActive: {
-    backgroundColor: 'rgba(201,169,109,0.25)',
+  citySelectorPillInPaneActive: {
+    backgroundColor: 'rgba(201,169,109,0.2)',
+    borderWidth: 1.5,
     borderColor: '#C9A96D',
   },
-  citySelectorText: {
-    fontSize: 12,
+  citySelectorTextInPane: {
+    fontSize: 13,
     fontWeight: '700',
-    color: 'rgba(255,255,255,0.7)',
-    letterSpacing: 1,
+    color: 'rgba(255,255,255,0.65)',
+    letterSpacing: 1.5,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  citySelectorTextActive: {
+  citySelectorTextInPaneActive: {
     color: '#C9A96D',
   },
 
