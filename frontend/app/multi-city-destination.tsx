@@ -984,7 +984,42 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // 2. Essence Capsule (90% width, overlapping hero by -40px)
+  // City Selector Pills (Matching Trip Canvas)
+  citySelectorContainer: {
+    position: 'absolute',
+    top: 60,
+    right: 20,
+    flexDirection: 'row',
+    gap: 8,
+    zIndex: 10,
+  },
+  citySelectorPill: {
+    paddingVertical: 8,
+    paddingHorizontal: 14,
+    borderRadius: 18,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.3)',
+  },
+  citySelectorPillActive: {
+    backgroundColor: 'rgba(201,169,109,0.25)',
+    borderColor: '#C9A96D',
+  },
+  citySelectorText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: 'rgba(255,255,255,0.7)',
+    letterSpacing: 1,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  citySelectorTextActive: {
+    color: '#C9A96D',
+  },
+
+  // 2. Frosted Panel (MATCHING TRIP CANVAS EXACTLY)
   essenceCapsule: {
     width: '90%',
     alignSelf: 'center',
