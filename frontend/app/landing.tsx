@@ -357,11 +357,29 @@ export default function Landing() {
         <View style={styles.luxuryInfoContainer}>
           <BlurView intensity={25} tint="light" style={styles.luxuryInfoPane}>
             <View style={styles.luxuryInfoInner}>
-              {/* Refined Destination Header: "City, Country" */}
-              <View style={styles.destinationHeader}>
-                <Text style={styles.destinationCity}>{destination.city}, </Text>
-                <Text style={styles.destinationRegion}>{destination.region}</Text>
-              </View>
+              {/* Refined Destination Header: "City, Country" or Multi-City Timeline */}
+              {destination.isMultiCity && destination.cityInitials ? (
+                <View style={styles.multiCityContainer}>
+                  <View style={styles.cityTimelineRow}>
+                    {destination.cityInitials.map((initial, idx) => (
+                      <React.Fragment key={idx}>
+                        <View style={styles.cityInitialCircle}>
+                          <Text style={styles.cityInitialText}>{initial}</Text>
+                        </View>
+                        {idx < destination.cityInitials!.length - 1 && (
+                          <View style={styles.timelineDot} />
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </View>
+                  <Text style={styles.multiCityDuration}>{destination.duration}</Text>
+                </View>
+              ) : (
+                <View style={styles.destinationHeader}>
+                  <Text style={styles.destinationCity}>{destination.city}, </Text>
+                  <Text style={styles.destinationRegion}>{destination.region}</Text>
+                </View>
+              )}
               
               {/* Editorial Tagline */}
               <Text style={styles.editorialTagline}>{destination.tagline}</Text>
