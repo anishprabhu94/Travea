@@ -730,22 +730,27 @@ export default function MultiCityDestinationInfo() {
               contentContainerStyle={styles.carouselScroll}
             >
               {destinationData.foodCulture.map((item, index) => (
-                <View key={index} style={[styles.experienceCard, index === 0 && styles.firstCard]}>
+                <TouchableOpacity 
+                  key={index} 
+                  style={[styles.tripCanvasCard, index === 0 && styles.firstCard]}
+                  activeOpacity={0.8}
+                >
                   <ImageBackground
                     source={{ uri: item.image }}
-                    style={styles.experienceCardImage}
-                    imageStyle={styles.experienceCardImageStyle}
+                    style={styles.tripCanvasCardBg}
+                    imageStyle={styles.tripCanvasCardBgStyle}
                   >
-                    <View style={styles.experienceCardOverlay} />
-                    <View style={styles.experienceCardContent}>
-                      <View style={styles.foodCultureHeader}>
-                        <Text style={styles.foodCultureIcon}>{item.icon}</Text>
-                        <Text style={styles.experienceCardTitle}>{item.title}</Text>
-                      </View>
-                      <Text style={styles.experienceCardSubtext}>{item.subtext}</Text>
+                    <LinearGradient
+                      colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
+                      style={styles.tripCanvasCardGradient}
+                    />
+                    <View style={styles.tripCanvasCardFrosted}>
+                      <Text style={styles.foodCultureIcon}>{item.icon}</Text>
+                      <Text style={styles.tripCanvasCardTitle}>{item.title}</Text>
+                      <Text style={styles.tripCanvasCardSubtext}>{item.subtext}</Text>
                     </View>
                   </ImageBackground>
-                </View>
+                </TouchableOpacity>
               ))}
             </ScrollView>
           </View>
