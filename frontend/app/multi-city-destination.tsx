@@ -978,9 +978,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   citySelectorPillInPane: {
-    paddingVertical: 6,
-    paddingHorizontal: 14,
-    borderRadius: 16,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 18,
     backgroundColor: 'rgba(255,255,255,0.08)',
     borderWidth: 1,
     borderColor: 'rgba(181,155,115,0.25)',
@@ -991,10 +991,10 @@ const styles = StyleSheet.create({
     borderColor: '#C9A96D',
   },
   citySelectorTextInPane: {
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: '700',
     color: 'rgba(255,255,255,0.65)',
-    letterSpacing: 1.2,
+    letterSpacing: 1.3,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
