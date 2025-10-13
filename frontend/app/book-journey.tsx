@@ -18,6 +18,9 @@ import { Ionicons } from '@expo/vector-icons'
 export default function BookYourJourney() {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null)
   const [blurOpacity] = useState(new Animated.Value(0))
+  const [tripStatus, setTripStatus] = useState('Planning')
+  const [showStatusDropdown, setShowStatusDropdown] = useState(false)
+  const [activeDayId, setActiveDayId] = useState('day1-2')
 
   const toggleCategory = (category: string) => {
     const isExpanding = expandedCategory !== category
@@ -28,6 +31,19 @@ export default function BookYourJourney() {
       duration: 300,
       useNativeDriver: true,
     }).start()
+  }
+
+  const statusOptions = ['Planning', 'Upcoming', 'Ongoing', 'Completed']
+  const tripData = {
+    tripName: 'Summer in Italy',
+    subtitle: 'Jun 10–16, 2025',
+    cities: ['FLR', 'ROM', 'VCE', 'AML'],
+    days: [
+      { id: 'day1-2', label: 'Day 1-2' },
+      { id: 'day3-4', label: 'Day 3-4' },
+      { id: 'day5-7', label: 'Day 5-7' },
+    ],
+    heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
   }
 
   return (
@@ -47,79 +63,119 @@ export default function BookYourJourney() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-        {/* Hero Section - Same as Trip Canvas */}
-        <View style={styles.heroSection}>
-          <View style={styles.heroPane}>
-            {/* Top Controls */}
-            <View style={styles.topControls}>
+        {/* Hero Section - EXACT COPY from Trip Canvas */}
+        <View style={styles.heroContainer}>
+          <ImageBackground
+            source={{ uri: tripData.heroImage }}
+            style={styles.heroBackground}
+            imageStyle={styles.heroBackgroundImage}
+          >
+            <LinearGradient
+              colors={['rgba(0,0,0,0.5)', 'rgba(0,0,0,0.7)']}
+              style={styles.heroGradient}
+            />
+            
+            {/* Frosted pane container for hero content */}
+            <View style={styles.heroFrostedPane}>
+              {/* Back Button */}
               <TouchableOpacity 
                 style={styles.backButton}
                 onPress={() => router.back()}
                 activeOpacity={0.8}
               >
-                <Ionicons name="arrow-back" size={20} color="#CBB88C" />
+                <Ionicons name="arrow-back" size={18} color="rgba(181,155,115,0.9)" />
               </TouchableOpacity>
-            </View>
 
-            {/* Trip Title */}
-            <Text style={styles.tripTitle}>Summer in Italy</Text>
-            
-            {/* Date Range & Traveler Count */}
-            <View style={styles.metaRow}>
-              <View style={styles.metaItem}>
-                <Ionicons name="calendar-outline" size={14} color="rgba(203,184,140,0.8)" />
-                <Text style={styles.metaText}>Jun 10–16, 2025</Text>
+              <View style={styles.heroTitleContainer}>
+                <Text style={styles.heroTitle}>{tripData.tripName}</Text>
+                <TouchableOpacity style={styles.editIconButton} activeOpacity={0.7}>
+                  <Ionicons name="create-outline" size={18} color="rgba(181,155,115,0.9)" />
+                </TouchableOpacity>
               </View>
-              <View style={styles.metaDot} />
-              <View style={styles.metaItem}>
-                <Ionicons name="people-outline" size={14} color="rgba(203,184,140,0.8)" />
-                <Text style={styles.metaText}>2 travelers</Text>
-              </View>
-            </View>
-
-            {/* Planning Dropdown */}
-            <TouchableOpacity style={styles.planningDropdown} activeOpacity={0.8}>
-              <Text style={styles.planningText}>Planning</Text>
-              <Ionicons name="chevron-down" size={14} color="rgba(203,184,140,0.8)" />
-            </TouchableOpacity>
-
-            {/* City Path Selector */}
-            <View style={styles.cityPathContainer}>
-              <ScrollView 
-                horizontal 
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.cityPathScroll}
+              <Text style={styles.heroSubtitle}>{tripData.subtitle}</Text>
+              
+              {/* Status Dropdown */}
+              <TouchableOpacity 
+                style={styles.statusCapsule}
+                onPress={() => setShowStatusDropdown(!showStatusDropdown)}
+                activeOpacity={0.7}
               >
-                {['FLR', 'ROM', 'VCE', 'AML'].map((city, index) => (
-                  <React.Fragment key={city}>
-                    <TouchableOpacity style={[styles.cityPill, index === 0 && styles.cityPillActive]} activeOpacity={0.8}>
-                      <Text style={[styles.cityPillText, index === 0 && styles.cityPillTextActive]}>{city}</Text>
+                <Text style={styles.statusText}>{tripStatus}</Text>
+                <Ionicons name="chevron-down" size={14} color="rgba(181,155,115,0.8)" style={{marginLeft: 6}} />
+              </TouchableOpacity>
+              
+              {showStatusDropdown && (
+                <View style={styles.statusDropdownMenu}>
+                  {statusOptions.map((status) => (
+                    <TouchableOpacity
+                      key={status}
+                      style={styles.statusDropdownItem}
+                      onPress={() => {
+                        setTripStatus(status)
+                        setShowStatusDropdown(false)
+                      }}
+                    >
+                      <Text style={styles.statusDropdownText}>{status}</Text>
                     </TouchableOpacity>
-                    {index < 3 && <View style={styles.cityArrow} />}
-                  </React.Fragment>
-                ))}
-              </ScrollView>
-            </View>
-
-            {/* Day Selector */}
-            <View style={styles.dayTabsContainer}>
-              <ScrollView 
-                horizontal 
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.dayTabsScroll}
-              >
-                {['Day 1-2', 'Day 3-4', 'Day 5-7'].map((day, index) => (
-                  <TouchableOpacity 
-                    key={day}
-                    style={[styles.dayTab, index === 0 && styles.dayTabActive]}
-                    activeOpacity={0.8}
+                  ))}
+                </View>
+              )}
+              
+              {/* City Strip */}
+              <View style={styles.cityStrip}>
+                {tripData.cities.map((city, index) => (
+                  <View 
+                    key={city}
+                    style={styles.cityCapsuleWrapper}
                   >
-                    <Text style={[styles.dayTabText, index === 0 && styles.dayTabTextActive]}>{day}</Text>
-                  </TouchableOpacity>
+                    <View style={[
+                      styles.cityCapsule,
+                      index === 0 && styles.cityCapsuleActive
+                    ]}>
+                      <Text style={[
+                        styles.cityCapsuleText,
+                        index === 0 && styles.cityCapsuleTextActive
+                      ]}>
+                        {city}
+                      </Text>
+                    </View>
+                    {index < tripData.cities.length - 1 && (
+                      <View style={styles.cityDot} />
+                    )}
+                  </View>
                 ))}
-              </ScrollView>
+              </View>
+              
+              {/* Day Selector Tabs */}
+              <View style={styles.dayTabsContainer}>
+                <ScrollView 
+                  horizontal 
+                  showsHorizontalScrollIndicator={false}
+                  style={styles.dayTabsScroll}
+                  contentContainerStyle={styles.dayTabsContent}
+                >
+                  {tripData.days.map((day) => (
+                    <TouchableOpacity
+                      key={day.id}
+                      style={[
+                        styles.dayTab,
+                        activeDayId === day.id && styles.dayTabActive
+                      ]}
+                      onPress={() => setActiveDayId(day.id)}
+                      activeOpacity={0.7}
+                    >
+                      <Text style={[
+                        styles.dayTabText,
+                        activeDayId === day.id && styles.dayTabTextActive
+                      ]}>
+                        {day.label}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </ScrollView>
+              </View>
             </View>
-          </View>
+          </ImageBackground>
         </View>
 
         {/* Category Sections */}
