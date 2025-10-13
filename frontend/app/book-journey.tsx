@@ -592,55 +592,213 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
 
-  // Hero Section
-  heroSection: {
-    paddingHorizontal: 24,
-    paddingTop: 48,
-    paddingBottom: 24,
+  // Hero Section - EXACT from Trip Canvas
+  heroContainer: {
+    height: 340,
+    marginBottom: 24,
   },
-  heroPane: {
-    backgroundColor: 'rgba(255,255,255,0.06)',
+  heroBackground: {
+    flex: 1,
+  },
+  heroBackgroundImage: {
+    opacity: 0.5,
+  },
+  heroGradient: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  heroFrostedPane: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+    right: 20,
+    backgroundColor: 'rgba(20,20,20,0.8)',
     borderRadius: 24,
     borderWidth: 0.5,
     borderColor: 'rgba(181,155,115,0.15)',
-    padding: 24,
+    padding: 20,
     ...Platform.select({
       web: {
         backdropFilter: 'blur(25px)',
-        boxShadow: '0 8px 24px rgba(0,0,0,0.3), inset 1px 1px 0 rgba(255,255,255,0.05)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.5)',
       },
       default: {
         shadowColor: '#000000',
         shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.3,
-        shadowRadius: 12,
-        elevation: 8,
+        shadowOpacity: 0.5,
+        shadowRadius: 16,
+        elevation: 12,
       },
     }),
   },
-  topControls: {
-    marginBottom: 16,
-  },
   backButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
     backgroundColor: 'rgba(255,255,255,0.08)',
     borderWidth: 1,
     borderColor: 'rgba(203,184,140,0.3)',
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 12,
   },
-  tripTitle: {
-    fontSize: 28,
+  heroTitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 6,
+  },
+  heroTitle: {
+    fontSize: 26,
     fontWeight: '600',
     color: '#F3F1E7',
-    marginBottom: 12,
+    textAlign: 'center',
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
     }),
+  },
+  editIconButton: {
+    marginLeft: 8,
+    padding: 4,
+  },
+  heroSubtitle: {
+    fontSize: 14,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.7)',
+    textAlign: 'center',
+    marginBottom: 16,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  statusCapsule: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.2)',
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    marginBottom: 16,
+  },
+  statusText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#CBB88C',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  statusDropdownMenu: {
+    position: 'absolute',
+    top: 100,
+    alignSelf: 'center',
+    backgroundColor: 'rgba(20,20,20,0.95)',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.3)',
+    padding: 8,
+    zIndex: 1000,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+      },
+    }),
+  },
+  statusDropdownItem: {
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 8,
+  },
+  statusDropdownText: {
+    fontSize: 14,
+    color: '#F3F1E7',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  cityStrip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+  },
+  cityCapsuleWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  cityCapsule: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.2)',
+  },
+  cityCapsuleActive: {
+    backgroundColor: 'rgba(203,184,140,0.2)',
+    borderColor: '#C9A96D',
+  },
+  cityCapsuleText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: 'rgba(255,255,255,0.6)',
+    letterSpacing: 1,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  cityCapsuleTextActive: {
+    color: '#C9A96D',
+  },
+  cityDot: {
+    width: 4,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: 'rgba(181,155,115,0.4)',
+    marginHorizontal: 6,
+  },
+  dayTabsContainer: {
+    marginTop: 4,
+  },
+  dayTabsScroll: {
+    flexGrow: 0,
+  },
+  dayTabsContent: {
+    gap: 8,
+    justifyContent: 'center',
+  },
+  dayTab: {
+    paddingVertical: 8,
+    paddingHorizontal: 14,
+    borderRadius: 14,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.2)',
+  },
+  dayTabActive: {
+    backgroundColor: '#B59B73',
+    borderColor: '#B59B73',
+  },
+  dayTabText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.6)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  dayTabTextActive: {
+    color: '#FFFFFF',
   },
   metaRow: {
     flexDirection: 'row',
