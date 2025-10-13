@@ -432,7 +432,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingBottom: 40,
+    paddingBottom: 100, // Extra space for dock
   },
 
   // 1. HERO SECTION
@@ -496,6 +496,16 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
+  heroNameRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 8,
+  },
+  heroNameLeft: {
+    flex: 1,
+    marginRight: 16,
+  },
   heroName: {
     fontSize: 28,
     fontWeight: '600',
@@ -505,6 +515,33 @@ const styles = StyleSheet.create({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  heroPriceTag: {
+    backgroundColor: 'rgba(217,203,160,0.15)',
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: 'rgba(217,203,160,0.3)',
+    alignItems: 'center',
+  },
+  heroPriceAmount: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#D9CBA0',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  heroPriceLabel: {
+    fontSize: 10,
+    color: 'rgba(255,255,255,0.7)',
+    marginTop: 2,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
     }),
   },
   heroTagline: {
