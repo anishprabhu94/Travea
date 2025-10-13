@@ -354,7 +354,7 @@ function StaysContent() {
                 key={idx} 
                 style={[styles.stayCard, idx === 0 && styles.firstCard]} 
                 activeOpacity={0.8}
-                onPress={() => router.push('/stay-info')}
+                onPress={() => router.push('/stay-info-v2')}
               >
                 <ImageBackground
                   source={{ uri: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' }}
