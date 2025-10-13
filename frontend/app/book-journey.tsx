@@ -370,15 +370,17 @@ function StaysContent() {
                     <Text style={styles.stayCardTagline}>Where terraces meet the azure sea</Text>
                     <Text style={styles.stayEstTotal}>Est. Total €420 · 2 nights</Text>
                     <Text style={styles.stayCardLocation}>Trastevere, Rome · 1.2 mi from center</Text>
-                    <View style={styles.stayCardRow}>
+                    <View style={styles.ratingAmenitiesRow}>
                       <View style={styles.ratingRow}>
-                        <Text style={styles.starIcon}>⭐</Text>
+                        <Ionicons name="star" size={12} color="#CBB88C" />
                         <Text style={styles.ratingText}>4.7</Text>
                       </View>
-                    </View>
-                    <View style={styles.amenitiesRow}>
-                      {['Pool', 'Breakfast', 'Spa', 'Wi-Fi'].map((amenity) => (
-                        <Text key={amenity} style={styles.amenityText}>{amenity}</Text>
+                      <Text style={styles.amenityDot}>·</Text>
+                      {['Pool', 'Breakfast', 'Spa', 'Wi-Fi'].map((amenity, index) => (
+                        <React.Fragment key={amenity}>
+                          <Text style={styles.amenityText}>{amenity}</Text>
+                          {index < 3 && <Text style={styles.amenityDot}>·</Text>}
+                        </React.Fragment>
                       ))}
                     </View>
                     <View style={styles.bookViaRow}>
