@@ -265,7 +265,7 @@ export default function StayInfoCompact() {
             {/* Location Tab */}
             {activeTab === 'location' && (
               <View style={styles.locationContent}>
-                {/* Dark Map Background */}
+                {/* Dark Map Background - Reduced Height */}
                 <View style={styles.mapBackground}>
                   <LinearGradient
                     colors={['rgba(217,203,160,0.12)', 'rgba(217,203,160,0.04)']}
@@ -273,15 +273,20 @@ export default function StayInfoCompact() {
                     end={{ x: 1, y: 1 }}
                     style={styles.mapGradient}
                   >
-                    <Ionicons name="location" size={64} color="#D9CBA0" />
+                    <Ionicons name="location" size={48} color="#D9CBA0" />
                     <Text style={styles.mapLocationText}>{stay.location}</Text>
                   </LinearGradient>
                 </View>
 
-                {/* Nearby Places */}
-                <View style={styles.nearbyPlacesGrid}>
+                {/* Nearby Places - Horizontal Scrollable */}
+                <Text style={styles.nearbyPlacesTitle}>Nearby Highlights</Text>
+                <ScrollView 
+                  horizontal 
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={styles.nearbyPlacesScroll}
+                >
                   {stay.nearbyPlaces.map((place, index) => (
-                    <View key={index} style={styles.nearbyPlaceCard}>
+                    <View key={index} style={[styles.nearbyPlaceCard, index === 0 && styles.firstNearbyCard]}>
                       <ImageBackground
                         source={{ uri: place.image }}
                         style={styles.nearbyPlaceBg}
@@ -298,7 +303,7 @@ export default function StayInfoCompact() {
                       </ImageBackground>
                     </View>
                   ))}
-                </View>
+                </ScrollView>
               </View>
             )}
           </View>
