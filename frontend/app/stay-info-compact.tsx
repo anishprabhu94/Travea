@@ -126,8 +126,16 @@ export default function StayInfoCompact() {
               </View>
 
               {/* Hotel Info */}
-              <Text style={styles.heroName}>{stay.name}</Text>
-              <Text style={styles.heroTagline}>{stay.tagline}</Text>
+              <View style={styles.heroNameRow}>
+                <View style={styles.heroNameLeft}>
+                  <Text style={styles.heroName}>{stay.name}</Text>
+                  <Text style={styles.heroTagline}>{stay.tagline}</Text>
+                </View>
+                <View style={styles.heroPriceTag}>
+                  <Text style={styles.heroPriceAmount}>{stay.pricePerNight}</Text>
+                  <Text style={styles.heroPriceLabel}>per night</Text>
+                </View>
+              </View>
               <Text style={styles.heroLocation}>{stay.location}</Text>
 
               {/* Rating */}
