@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import {
   View,
   Text,
@@ -8,15 +8,17 @@ import {
   Platform,
   StyleSheet,
   Dimensions,
+  Animated,
 } from 'react-native'
 import { router } from 'expo-router'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
 
-const { width } = Dimensions.get('window')
+const { width, height } = Dimensions.get('window')
 
 export default function StayInfo() {
   const [activeImageIndex, setActiveImageIndex] = useState(0)
+  const scrollY = useRef(new Animated.Value(0)).current
 
   // Placeholder hotel data
   const hotelData = {
