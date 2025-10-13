@@ -350,7 +350,12 @@ function StaysContent() {
             contentContainerStyle={styles.carouselScroll}
           >
             {Array.from({ length: Math.ceil(subcat.stays / 1.25) }).map((_, idx) => (
-              <TouchableOpacity key={idx} style={[styles.stayCard, idx === 0 && styles.firstCard]} activeOpacity={0.8}>
+              <TouchableOpacity 
+                key={idx} 
+                style={[styles.stayCard, idx === 0 && styles.firstCard]} 
+                activeOpacity={0.8}
+                onPress={() => router.push('/stay-info')}
+              >
                 <ImageBackground
                   source={{ uri: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' }}
                   style={styles.stayCardBg}
