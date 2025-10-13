@@ -1368,14 +1368,31 @@ const styles = StyleSheet.create({
   },
   transportCard: {
     width: 300,
+    height: 280,
+    borderRadius: 24,
+    overflow: 'hidden',
     marginRight: 16,
   },
+  transportCardBg: {
+    flex: 1,
+  },
+  transportCardBgStyle: {
+    borderRadius: 24,
+  },
+  transportCardGradient: {
+    ...StyleSheet.absoluteFillObject,
+  },
   transportCardFrosted: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
     backgroundColor: 'rgba(255,255,255,0.06)',
-    borderRadius: 20,
-    borderWidth: 0.5,
-    borderColor: 'rgba(181,155,115,0.15)',
-    padding: 20,
+    borderBottomLeftRadius: 24,
+    borderBottomRightRadius: 24,
+    borderTopWidth: 0.5,
+    borderTopColor: 'rgba(181,155,115,0.15)',
+    padding: 18,
     ...Platform.select({
       web: {
         backdropFilter: 'blur(25px)',
