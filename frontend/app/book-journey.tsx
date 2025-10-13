@@ -359,8 +359,14 @@ function StaysContent() {
                     style={styles.stayCardGradient}
                   />
                   <View style={styles.stayCardFrosted}>
+                    {/* Date Pill - Top Right */}
+                    <View style={styles.datePill}>
+                      <Text style={styles.datePillText}>Jun 12</Text>
+                    </View>
+
                     <Text style={styles.stayCardName}>Hotel Santa Caterina</Text>
                     <Text style={styles.stayCardTagline}>Where terraces meet the azure sea</Text>
+                    <Text style={styles.stayEstTotal}>Est. Total €420 · 2 nights</Text>
                     <Text style={styles.stayCardLocation}>Trastevere, Rome · 1.2 mi from center</Text>
                     <View style={styles.stayCardRow}>
                       <View style={styles.ratingRow}>
@@ -373,7 +379,6 @@ function StaysContent() {
                         <Text key={amenity} style={styles.amenityText}>{amenity}</Text>
                       ))}
                     </View>
-                    <Text style={styles.estimatedTotal}>Est. Total €420 · 2 nights</Text>
                     <View style={styles.bookViaRow}>
                       <Text style={styles.bookViaLabel}>Book via</Text>
                       <View style={styles.logoRow}>
