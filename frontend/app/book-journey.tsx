@@ -538,6 +538,11 @@ function RestaurantsContent() {
                     style={styles.restaurantCardGradient}
                   />
                   <View style={styles.restaurantCardFrosted}>
+                    {/* Date Pill */}
+                    <View style={styles.datePill}>
+                      <Text style={styles.datePillText}>Jun 15</Text>
+                    </View>
+
                     <Text style={styles.restaurantCardName}>Il Refettorio</Text>
                     <Text style={styles.restaurantCardCuisine}>Italian Coastal</Text>
                     <Text style={styles.restaurantCardTagline}>Sea salt on lips, limoncello sunsets</Text>
