@@ -251,6 +251,7 @@ function CategorySection({ icon, title, emoji, isExpanded, onToggle, children }:
         activeOpacity={0.8}
       >
         <View style={styles.categoryHeaderLeft}>
+          <Ionicons name={icon} size={18} color="#CBB88C" style={{marginRight: 10}} />
           <Text style={styles.categoryHeaderTitle}>{title}</Text>
           <Text style={styles.categoryHeaderEmoji}>{emoji}</Text>
         </View>
