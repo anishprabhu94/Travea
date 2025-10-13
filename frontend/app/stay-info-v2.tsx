@@ -103,7 +103,7 @@ export default function StayInfoV2() {
         contentContainerStyle={styles.scrollContent}
         scrollEventThrottle={16}
       >
-        {/* 1. THE ARRIVAL - Hero Section */}
+        {/* 1. ARRIVAL - Hero Visual & Overview */}
         <View style={styles.heroSection}>
           <ImageBackground
             source={{ uri: stayData.heroImages[activeImageIndex] }}
