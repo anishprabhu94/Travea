@@ -41,7 +41,8 @@ export default function BookYourJourney() {
     days: [
       { id: 'day1-2', label: 'Day 1-2' },
       { id: 'day3-4', label: 'Day 3-4' },
-      { id: 'day5-7', label: 'Day 5-7' },
+      { id: 'day5-6', label: 'Day 5-6' },
+      { id: 'day6-7', label: 'Day 6-7' },
     ],
     heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
   }
