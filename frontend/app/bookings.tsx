@@ -524,6 +524,7 @@ export default function TripCanvas() {
                 key={stay.id} 
                 style={[styles.stayImageCard, index === activeDay.stays.length - 1 && {marginRight: 0}]}
                 activeOpacity={0.8}
+                onPress={() => router.push('/stay-info-compact')}
               >
                 <ImageBackground
                   source={{ uri: stay.image }}
