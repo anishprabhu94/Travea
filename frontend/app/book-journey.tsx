@@ -1314,6 +1314,13 @@ const styles = StyleSheet.create({
   stayCardRow: {
     marginBottom: 8,
   },
+  ratingAmenitiesRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 6,
+    marginBottom: 10,
+  },
   ratingRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -1323,13 +1330,17 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   ratingText: {
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: '600',
     color: '#CBB88C',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
+  },
+  amenityDot: {
+    fontSize: 11,
+    color: 'rgba(255,255,255,0.4)',
   },
   amenitiesRow: {
     flexDirection: 'row',
