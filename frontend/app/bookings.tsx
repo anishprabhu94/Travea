@@ -698,8 +698,17 @@ export default function TripCanvas() {
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
           <View style={styles.categoryHeader}>
-            <Ionicons name="restaurant" size={18} color="#B59B73" style={{marginRight: 8}} />
-            <Text style={styles.categoryTitle}>Restaurants</Text>
+            <View style={styles.categoryHeaderLeft}>
+              <Ionicons name="restaurant" size={18} color="#B59B73" style={{marginRight: 8}} />
+              <Text style={styles.categoryTitle}>Restaurants</Text>
+            </View>
+            <TouchableOpacity 
+              style={styles.browseIconButton}
+              onPress={() => router.push('/book-journey')}
+              activeOpacity={0.7}
+            >
+              <Ionicons name="compass-outline" size={18} color="rgba(203,184,140,0.8)" />
+            </TouchableOpacity>
           </View>
           <View style={styles.categoryDivider} />
           <ScrollView 
