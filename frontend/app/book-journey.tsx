@@ -414,25 +414,40 @@ function TransportContent() {
             contentContainerStyle={styles.carouselScroll}
           >
             {Array.from({ length: 3 }).map((_, idx) => (
-              <View key={idx} style={[styles.transportCard, idx === 0 && styles.firstCard]}>
-                <View style={styles.transportCardFrosted}>
-                  <View style={styles.transportHeader}>
-                    <Ionicons name="train" size={20} color="#CBB88C" />
-                    <Text style={styles.transportRoute}>Rome → Venice</Text>
-                  </View>
-                  <Text style={styles.transportTime}>Depart 10 AM · Arrive 1:40 PM</Text>
-                  <Text style={styles.transportDuration}>Duration: 3h 40m</Text>
-                  <Text style={styles.transportProvider}>Trenitalia</Text>
-                  <Text style={styles.estimatedTotal}>Est. Total €40</Text>
-                  <View style={styles.bookViaRow}>
-                    <Text style={styles.bookViaLabel}>Book via</Text>
-                    <View style={styles.logoRow}>
-                      <Text style={styles.logoText}>Official</Text>
-                      <Text style={styles.logoText}>Booking.com</Text>
+              <TouchableOpacity key={idx} style={[styles.transportCard, idx === 0 && styles.firstCard]} activeOpacity={0.8}>
+                <ImageBackground
+                  source={{ uri: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' }}
+                  style={styles.transportCardBg}
+                  imageStyle={styles.transportCardBgStyle}
+                >
+                  <LinearGradient
+                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
+                    style={styles.transportCardGradient}
+                  />
+                  <View style={styles.transportCardFrosted}>
+                    {/* Date Pill */}
+                    <View style={styles.datePill}>
+                      <Text style={styles.datePillText}>Jun 13</Text>
+                    </View>
+
+                    <View style={styles.transportHeader}>
+                      <Ionicons name="train" size={20} color="#CBB88C" />
+                      <Text style={styles.transportRoute}>Rome → Venice</Text>
+                    </View>
+                    <Text style={styles.transportTime}>Depart 10 AM · Arrive 1:40 PM</Text>
+                    <Text style={styles.transportDuration}>Duration: 3h 40m</Text>
+                    <Text style={styles.transportProvider}>Trenitalia</Text>
+                    <Text style={styles.estimatedTotal}>Est. Total €40</Text>
+                    <View style={styles.bookViaRow}>
+                      <Text style={styles.bookViaLabel}>Book via</Text>
+                      <View style={styles.logoRow}>
+                        <Text style={styles.logoText}>Official</Text>
+                        <Text style={styles.logoText}>Booking.com</Text>
+                      </View>
                     </View>
                   </View>
-                </View>
-              </View>
+                </ImageBackground>
+              </TouchableOpacity>
             ))}
           </ScrollView>
         </View>
