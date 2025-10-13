@@ -483,6 +483,11 @@ function ExperiencesContent() {
                     style={styles.experienceCardGradient}
                   />
                   <View style={styles.experienceCardFrosted}>
+                    {/* Date Pill */}
+                    <View style={styles.datePill}>
+                      <Text style={styles.datePillText}>Jun 14</Text>
+                    </View>
+
                     <Text style={styles.experienceCardName}>Villa Cimbrone Gardens</Text>
                     <Text style={styles.experienceCardTagline}>Where terraces meet infinity views</Text>
                     <Text style={styles.experienceCardLocation}>Ravello · 0.4 mi from center</Text>
