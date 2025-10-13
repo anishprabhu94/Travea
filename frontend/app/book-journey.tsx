@@ -1033,7 +1033,7 @@ const styles = StyleSheet.create({
   addFlightButton: {
     backgroundColor: '#B59B73',
     borderRadius: 12,
-    paddingVertical: 14,
+    paddingVertical: 10,
     alignItems: 'center',
   },
   addFlightButtonText: {
