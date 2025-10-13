@@ -28,6 +28,7 @@ export default function StayInfoCompact() {
     location: 'Positano, Amalfi Coast',
     rating: 4.8,
     reviewCount: 342,
+    pricePerNight: '€420',
     heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
     
     essenceTags: ['Azure Air', 'Lemon Calm', 'Cliff Light'],
