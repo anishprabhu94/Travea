@@ -790,8 +790,8 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   mapBackground: {
-    height: 220,
-    borderRadius: 24,
+    height: 160,
+    borderRadius: 20,
     borderWidth: 1,
     borderColor: 'rgba(217,203,160,0.25)',
     overflow: 'hidden',
@@ -800,7 +800,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 12,
+    gap: 8,
     ...Platform.select({
       web: {
         backdropFilter: 'blur(20px)',
@@ -808,7 +808,7 @@ const styles = StyleSheet.create({
     }),
   },
   mapLocationText: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '600',
     color: '#D9CBA0',
     fontFamily: Platform.select({
@@ -816,15 +816,30 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  nearbyPlacesGrid: {
-    flexDirection: 'row',
-    gap: 12,
+  nearbyPlacesTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    marginTop: 8,
+    marginBottom: 12,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  nearbyPlacesScroll: {
+    paddingRight: 24,
   },
   nearbyPlaceCard: {
-    flex: 1,
-    height: 140,
+    width: 200,
+    height: 160,
     borderRadius: 16,
     overflow: 'hidden',
+    marginRight: 12,
+  },
+  firstNearbyCard: {
+    marginLeft: 0,
   },
   nearbyPlaceBg: {
     flex: 1,
@@ -842,10 +857,10 @@ const styles = StyleSheet.create({
     right: 12,
   },
   nearbyPlaceName: {
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: '600',
     color: '#FFFFFF',
-    marginBottom: 2,
+    marginBottom: 3,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
@@ -860,16 +875,16 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // 3. KEY AMENITIES
+  // 3. KEY AMENITIES - Reduced & Elegant
   amenitiesSection: {
     paddingLeft: 24,
-    marginBottom: 40,
+    marginBottom: 32,
   },
   sectionTitle: {
     fontSize: 20,
     fontWeight: '600',
     color: '#FFFFFF',
-    marginBottom: 20,
+    marginBottom: 16,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
@@ -880,22 +895,22 @@ const styles = StyleSheet.create({
     paddingRight: 24,
   },
   amenityCapsule: {
-    width: 160,
-    borderRadius: 20,
+    width: 140,
+    borderRadius: 18,
     borderWidth: 1,
     borderColor: 'rgba(217,203,160,0.25)',
     overflow: 'hidden',
-    marginRight: 16,
+    marginRight: 12,
   },
   firstAmenityCapsule: {
     marginLeft: 0,
   },
   amenityCapsuleGradient: {
-    padding: 20,
+    padding: 16,
     alignItems: 'center',
-    minHeight: 160,
+    minHeight: 130,
     justifyContent: 'center',
-    gap: 12,
+    gap: 8,
     ...Platform.select({
       web: {
         backdropFilter: 'blur(24px)',
@@ -903,15 +918,15 @@ const styles = StyleSheet.create({
     }),
   },
   amenityIconCircle: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
     backgroundColor: 'rgba(217,203,160,0.15)',
     alignItems: 'center',
     justifyContent: 'center',
   },
   amenityLabel: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '600',
     color: '#FFFFFF',
     textAlign: 'center',
@@ -921,7 +936,7 @@ const styles = StyleSheet.create({
     }),
   },
   amenitySubtext: {
-    fontSize: 11,
+    fontSize: 10,
     color: 'rgba(255,255,255,0.65)',
     textAlign: 'center',
     fontFamily: Platform.select({
