@@ -146,6 +146,7 @@ const tripData = {
       transport: [
         {
           id: '3',
+          type: 'car',
           title: 'Mountain Road Transfer',
           date: 'Jun 10',
           time: '11 AM',
