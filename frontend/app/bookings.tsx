@@ -593,6 +593,13 @@ export default function TripCanvas() {
                 key={item.id} 
                 style={[styles.transportImageCard, index === activeDay.transport.length - 1 && {marginRight: 0}]}
                 activeOpacity={0.8}
+                onPress={() => {
+                  // Navigate based on transport type
+                  if (item.type === 'train') {
+                    router.push('/train-info');
+                  }
+                  // Future: add other transport types (bus, rental car, etc.)
+                }}
               >
                 <ImageBackground
                   source={{ uri: item.image }}
