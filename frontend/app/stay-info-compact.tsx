@@ -148,7 +148,7 @@ export default function StayInfoCompact() {
           </ImageBackground>
         </View>
 
-        {/* Floating Book Via Strip - Sticky */}
+        {/* Floating Book Via Strip */}
         <View style={styles.floatingBookingStrip}>
           <LinearGradient
             colors={['rgba(217,203,160,0.12)', 'rgba(217,203,160,0.04)']}
