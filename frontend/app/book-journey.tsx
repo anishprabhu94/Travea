@@ -1239,10 +1239,45 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
+  stayEstTotal: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#D9CBA0',
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
   stayCardLocation: {
     fontSize: 12,
     color: 'rgba(255,255,255,0.6)',
     marginBottom: 8,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  datePill: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
+    backgroundColor: 'rgba(20,20,20,0.9)',
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.3)',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(10px)',
+      },
+    }),
+  },
+  datePillText: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#CBB88C',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
