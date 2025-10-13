@@ -20,82 +20,76 @@ export default function StayInfoV2() {
   const [activeImageIndex, setActiveImageIndex] = useState(0)
   const scrollViewRef = useRef<ScrollView>(null)
 
-  // Cinematic hotel data
+  // Editorial hotel data
   const stayData = {
     name: 'Hotel Santa Caterina',
     tagline: 'Where terraces meet the azure sea',
     location: 'Positano, Amalfi Coast',
     distance: '1.2 mi from center',
     rating: 4.8,
-    quickAmenities: ['Pool', 'Breakfast', 'Spa', 'Wi-Fi'],
+    
+    // Only experiential amenities with icons
+    coreAmenities: [
+      { icon: 'water', label: 'Infinity Pool' },
+      { icon: 'partly-sunny', label: 'Ocean View' },
+      { icon: 'fitness', label: 'Spa' },
+      { icon: 'restaurant', label: 'Breakfast' },
+    ],
+    
     estTotal: '€420',
     nights: 2,
     
-    // Essence tags (floating capsules)
-    essenceTags: ['Azure Air', 'Lemon Calm', 'Cliff Light'],
+    // Hero image
+    heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
     
-    // Hero carousel images
-    heroImages: [
-      'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
-      'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
-      'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
-      'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+    // Story section - poetic lines
+    storyLines: [
+      'A cliffside sanctuary',
+      'where lemon groves meet marble terraces.',
+      'Each morning, salt air. Each evening, golden reverie.',
     ],
+    storyBackgroundImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
     
-    // Poetic overview
-    overview: 'A cliffside sanctuary where lemon groves meet marble terraces. Each morning arrives with salt air and the soft hymn of the sea, while evenings fade into golden hour reveries.',
-    
-    // Nearby places (for location chips)
+    // Location
+    mapCoordinates: '40.6340, 14.6028',
     nearbyPlaces: [
-      { name: 'Positano Beach', distance: '0.3 mi', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
-      { name: 'Path of the Gods', distance: '2.1 mi', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
-      { name: 'Villa Rufolo', distance: '4.5 mi', image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
+      { name: 'Positano Beach', distance: '0.3 mi' },
+      { name: 'Path of the Gods', distance: '2.1 mi' },
+      { name: 'Villa Rufolo', distance: '4.5 mi' },
     ],
     
-    // Interactive amenities
-    amenities: [
-      { icon: 'water', label: 'Infinity Pool', description: 'Heated, ocean views' },
-      { icon: 'restaurant', label: 'Breakfast', description: 'Continental & Italian' },
-      { icon: 'fitness', label: 'Spa & Wellness', description: 'Massage, sauna' },
-      { icon: 'wifi', label: 'Free Wi-Fi', description: 'High-speed throughout' },
-      { icon: 'car', label: 'Valet Parking', description: 'Complimentary' },
-      { icon: 'cafe', label: 'Room Service', description: '24-hour service' },
-    ],
-    
-    // Room options
+    // Rooms
     rooms: [
       {
         name: 'Deluxe Sea View Suite',
+        poeticLine: 'Where azure meets horizon',
         price: '€420',
-        description: 'King bed, private terrace, marble bath',
         image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
       },
       {
         name: 'Superior Garden Room',
+        poeticLine: 'Lemon-scented morning air',
         price: '€320',
-        description: 'Queen bed, garden access, rain shower',
         image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
       },
       {
         name: 'Premium Ocean Suite',
+        poeticLine: 'Two terraces, endless views',
         price: '€580',
-        description: 'Two bedrooms, panoramic views, jacuzzi',
         image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
       },
     ],
     
-    // Farewell
-    farewellQuote: 'Where mornings slow and horizons shimmer.',
-    farewellImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
-    
-    // Footer info
-    footerInfo: [
-      { icon: 'flower', label: 'Season', value: 'Apr–Oct' },
-      { icon: 'card', label: 'Currency', value: 'EUR (€)' },
-      { icon: 'airplane', label: 'Airport', value: 'NAP · 40 mi' },
-      { icon: 'time', label: 'Timezone', value: 'CET+1' },
+    // Reviews
+    reviews: [
+      { quote: 'Every detail whispers elegance', author: 'S.M.', rating: 5 },
+      { quote: 'A sanctuary above the sea', author: 'A.R.', rating: 5 },
+      { quote: 'We will return, always', author: 'C.B.', rating: 5 },
     ],
-    footerCaption: 'Every journey begins with a single, perfect moment.',
+    
+    // Final quote
+    finalQuote: 'Where mornings slow and horizons shimmer.',
+    finalImage: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
   }
 
   const bookingPlatforms = ['Official Site', 'Booking.com', 'Expedia', 'Kayak']
