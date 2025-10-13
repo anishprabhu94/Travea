@@ -1,0 +1,906 @@
+import React, { useState } from 'react'
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  ImageBackground,
+  Platform,
+  StyleSheet,
+  Dimensions,
+} from 'react-native'
+import { router } from 'expo-router'
+import { LinearGradient } from 'expo-linear-gradient'
+import { Ionicons } from '@expo/vector-icons'
+
+const { width, height } = Dimensions.get('window')
+
+type TabType = 'gallery' | 'rooms' | 'location'
+
+export default function StayInfoCompact() {
+  const [activeTab, setActiveTab] = useState<TabType>('gallery')
+
+  // Compact stay data
+  const stay = {
+    name: 'Hotel Santa Caterina',
+    tagline: 'Where terraces meet the azure sea',
+    location: 'Positano, Amalfi Coast',
+    rating: 4.8,
+    reviewCount: 342,
+    heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+    
+    essenceTags: ['Azure Air', 'Lemon Calm', 'Cliff Light'],
+    
+    bookingPlatforms: ['Official Site', 'Booking.com', 'Expedia'],
+    
+    galleryImages: [
+      'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+      'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+      'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+      'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+      'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+      'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+    ],
+    
+    rooms: [
+      {
+        name: 'Deluxe Sea View Suite',
+        caption: 'Where azure meets horizon',
+        price: '€420',
+        image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+      },
+      {
+        name: 'Superior Garden Room',
+        caption: 'Lemon-scented morning air',
+        price: '€320',
+        image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+      },
+      {
+        name: 'Premium Ocean Suite',
+        caption: 'Two terraces, endless views',
+        price: '€580',
+        image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+      },
+    ],
+    
+    nearbyPlaces: [
+      { name: 'Positano Beach', distance: '0.3 mi', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
+      { name: 'Path of Gods', distance: '2.1 mi', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
+      { name: 'Villa Rufolo', distance: '4.5 mi', image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
+    ],
+    
+    amenities: [
+      { icon: 'water', label: 'Infinity Pool', subtext: 'Heated with ocean views' },
+      { icon: 'partly-sunny', label: 'Ocean View', subtext: 'Every room, every angle' },
+      { icon: 'fitness', label: 'Spa & Wellness', subtext: 'Massage, sauna, steam' },
+      { icon: 'restaurant', label: 'Breakfast', subtext: 'Continental & Italian' },
+    ],
+    
+    reviews: [
+      { quote: 'Every detail whispers elegance', author: 'Sofia M.', rating: 5 },
+      { quote: 'A sanctuary above the sea', author: 'Alessandro R.', rating: 5 },
+      { quote: 'We will return, always', author: 'Charlotte B.', rating: 5 },
+      { quote: 'Impeccable service and views', author: 'Marco V.', rating: 5 },
+    ],
+  }
+
+  return (
+    <View style={styles.container}>
+      <ScrollView 
+        style={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
+        {/* 1. HERO SECTION */}
+        <View style={styles.heroSection}>
+          <ImageBackground
+            source={{ uri: stay.heroImage }}
+            style={styles.heroImage}
+            imageStyle={styles.heroImageStyle}
+          >
+            <LinearGradient
+              colors={['rgba(0,0,0,0.2)', 'rgba(13,13,13,0.85)']}
+              style={styles.heroGradient}
+            />
+
+            {/* Back Button */}
+            <TouchableOpacity 
+              style={styles.backButton}
+              onPress={() => router.back()}
+              activeOpacity={0.8}
+            >
+              <Ionicons name="arrow-back" size={20} color="#D9CBA0" />
+            </TouchableOpacity>
+
+            {/* Hero Content */}
+            <View style={styles.heroContent}>
+              {/* Essence Tags */}
+              <View style={styles.essenceTagsRow}>
+                {stay.essenceTags.map((tag, index) => (
+                  <View key={index} style={styles.essenceTag}>
+                    <Text style={styles.essenceTagText}>{tag}</Text>
+                  </View>
+                ))}
+              </View>
+
+              {/* Hotel Info */}
+              <Text style={styles.heroName}>{stay.name}</Text>
+              <Text style={styles.heroTagline}>{stay.tagline}</Text>
+              <Text style={styles.heroLocation}>{stay.location}</Text>
+
+              {/* Rating */}
+              <View style={styles.ratingRow}>
+                <Ionicons name="star" size={16} color="#D9CBA0" />
+                <Text style={styles.ratingText}>{stay.rating}</Text>
+                <Text style={styles.reviewCount}>({stay.reviewCount} reviews)</Text>
+              </View>
+            </View>
+          </ImageBackground>
+        </View>
+
+        {/* Floating Book Via Strip - Sticky */}
+        <View style={styles.floatingBookingStrip}>
+          <LinearGradient
+            colors={['rgba(217,203,160,0.12)', 'rgba(217,203,160,0.04)']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.bookingStripGradient}
+          >
+            <Text style={styles.bookingLabel}>Book via</Text>
+            <View style={styles.bookingPillsRow}>
+              {stay.bookingPlatforms.map((platform, index) => (
+                <TouchableOpacity 
+                  key={index}
+                  style={styles.bookingPillMini}
+                  activeOpacity={0.8}
+                >
+                  <Text style={styles.bookingPillMiniText}>{platform}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </LinearGradient>
+        </View>
+
+        {/* 2. MAIN GALLERY ZONE */}
+        <View style={styles.galleryZone}>
+          {/* Tab Selectors */}
+          <View style={styles.tabSelectors}>
+            {['gallery', 'rooms', 'location'].map((tab) => (
+              <TouchableOpacity
+                key={tab}
+                style={[
+                  styles.tabPill,
+                  activeTab === tab && styles.tabPillActive
+                ]}
+                onPress={() => setActiveTab(tab as TabType)}
+                activeOpacity={0.8}
+              >
+                <Text style={[
+                  styles.tabPillText,
+                  activeTab === tab && styles.tabPillTextActive
+                ]}>
+                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+
+          {/* Tab Content */}
+          <View style={styles.tabContent}>
+            {/* Gallery Tab */}
+            {activeTab === 'gallery' && (
+              <View style={styles.galleryGrid}>
+                {stay.galleryImages.map((image, index) => (
+                  <View 
+                    key={index} 
+                    style={[
+                      styles.galleryItem,
+                      index % 3 === 0 && styles.galleryItemLarge
+                    ]}
+                  >
+                    <ImageBackground
+                      source={{ uri: image }}
+                      style={styles.galleryItemBg}
+                      imageStyle={styles.galleryItemBgStyle}
+                    >
+                      <LinearGradient
+                        colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.4)']}
+                        style={styles.galleryItemGradient}
+                      />
+                    </ImageBackground>
+                  </View>
+                ))}
+              </View>
+            )}
+
+            {/* Rooms Tab */}
+            {activeTab === 'rooms' && (
+              <ScrollView 
+                horizontal 
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.roomsCarousel}
+              >
+                {stay.rooms.map((room, index) => (
+                  <View 
+                    key={index} 
+                    style={[styles.roomCard, index === 0 && styles.firstRoomCard]}
+                  >
+                    <ImageBackground
+                      source={{ uri: room.image }}
+                      style={styles.roomCardBg}
+                      imageStyle={styles.roomCardBgStyle}
+                    >
+                      <LinearGradient
+                        colors={['rgba(0,0,0,0)', 'rgba(13,13,13,0.9)']}
+                        style={styles.roomCardGradient}
+                      />
+                      <View style={styles.roomCardInfo}>
+                        <LinearGradient
+                          colors={['rgba(217,203,160,0.12)', 'rgba(217,203,160,0.04)']}
+                          start={{ x: 0, y: 0 }}
+                          end={{ x: 1, y: 1 }}
+                          style={styles.roomCardInfoGradient}
+                        >
+                          <Text style={styles.roomCardName}>{room.name}</Text>
+                          <Text style={styles.roomCardCaption}>{room.caption}</Text>
+                          <Text style={styles.roomCardPrice}>{room.price} / night</Text>
+                        </LinearGradient>
+                      </View>
+                    </ImageBackground>
+                  </View>
+                ))}
+              </ScrollView>
+            )}
+
+            {/* Location Tab */}
+            {activeTab === 'location' && (
+              <View style={styles.locationContent}>
+                {/* Dark Map Background */}
+                <View style={styles.mapBackground}>
+                  <LinearGradient
+                    colors={['rgba(217,203,160,0.12)', 'rgba(217,203,160,0.04)']}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    style={styles.mapGradient}
+                  >
+                    <Ionicons name="location" size={64} color="#D9CBA0" />
+                    <Text style={styles.mapLocationText}>{stay.location}</Text>
+                  </LinearGradient>
+                </View>
+
+                {/* Nearby Places */}
+                <View style={styles.nearbyPlacesGrid}>
+                  {stay.nearbyPlaces.map((place, index) => (
+                    <View key={index} style={styles.nearbyPlaceCard}>
+                      <ImageBackground
+                        source={{ uri: place.image }}
+                        style={styles.nearbyPlaceBg}
+                        imageStyle={styles.nearbyPlaceBgStyle}
+                      >
+                        <LinearGradient
+                          colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.8)']}
+                          style={styles.nearbyPlaceGradient}
+                        />
+                        <View style={styles.nearbyPlaceInfo}>
+                          <Text style={styles.nearbyPlaceName}>{place.name}</Text>
+                          <Text style={styles.nearbyPlaceDistance}>{place.distance}</Text>
+                        </View>
+                      </ImageBackground>
+                    </View>
+                  ))}
+                </View>
+              </View>
+            )}
+          </View>
+        </View>
+
+        {/* 3. KEY AMENITIES */}
+        <View style={styles.amenitiesSection}>
+          <Text style={styles.sectionTitle}>Highlights of the Stay</Text>
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.amenitiesRow}
+          >
+            {stay.amenities.map((amenity, index) => (
+              <View 
+                key={index} 
+                style={[styles.amenityCapsule, index === 0 && styles.firstAmenityCapsule]}
+              >
+                <LinearGradient
+                  colors={['rgba(217,203,160,0.12)', 'rgba(217,203,160,0.04)']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={styles.amenityCapsuleGradient}
+                >
+                  <View style={styles.amenityIconCircle}>
+                    <Ionicons name={amenity.icon as any} size={28} color="#D9CBA0" />
+                  </View>
+                  <Text style={styles.amenityLabel}>{amenity.label}</Text>
+                  <Text style={styles.amenitySubtext}>{amenity.subtext}</Text>
+                </LinearGradient>
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+
+        {/* 4. REVIEWS */}
+        <View style={styles.reviewsSection}>
+          <View style={styles.reviewsHeader}>
+            <Text style={styles.sectionTitle}>What Guests Loved</Text>
+            <TouchableOpacity activeOpacity={0.8}>
+              <Text style={styles.seeAllLink}>See all reviews →</Text>
+            </TouchableOpacity>
+          </View>
+
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.reviewsCarousel}
+          >
+            {stay.reviews.map((review, index) => (
+              <View 
+                key={index} 
+                style={[styles.reviewCard, index === 0 && styles.firstReviewCard]}
+              >
+                <LinearGradient
+                  colors={['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.02)']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={styles.reviewCardGradient}
+                >
+                  <View style={styles.reviewStars}>
+                    {Array.from({ length: review.rating }).map((_, i) => (
+                      <Ionicons key={i} name="star" size={12} color="#D9CBA0" />
+                    ))}
+                  </View>
+                  <Text style={styles.reviewQuote}>"{review.quote}"</Text>
+                  <Text style={styles.reviewAuthor}>— {review.author}</Text>
+                </LinearGradient>
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+      </ScrollView>
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#0D0D0D',
+  },
+  scrollContainer: {
+    flex: 1,
+  },
+  scrollContent: {
+    paddingBottom: 40,
+  },
+
+  // 1. HERO SECTION
+  heroSection: {
+    width: '100%',
+  },
+  heroImage: {
+    height: 420,
+    width: '100%',
+  },
+  heroImageStyle: {
+    opacity: 0.85,
+  },
+  heroGradient: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  backButton: {
+    position: 'absolute',
+    top: 48,
+    left: 24,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(13,13,13,0.6)',
+    borderWidth: 1,
+    borderColor: 'rgba(217,203,160,0.3)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(12px)',
+      },
+    }),
+  },
+  heroContent: {
+    position: 'absolute',
+    bottom: 24,
+    left: 24,
+    right: 24,
+  },
+  essenceTagsRow: {
+    flexDirection: 'row',
+    gap: 8,
+    marginBottom: 16,
+  },
+  essenceTag: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    backgroundColor: 'rgba(217,203,160,0.15)',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(217,203,160,0.3)',
+  },
+  essenceTagText: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#D9CBA0',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  heroName: {
+    fontSize: 28,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    marginBottom: 6,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  heroTagline: {
+    fontSize: 15,
+    fontStyle: 'italic',
+    color: '#D9CBA0',
+    marginBottom: 8,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  heroLocation: {
+    fontSize: 13,
+    color: 'rgba(255,255,255,0.75)',
+    marginBottom: 12,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  ratingRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  ratingText: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#D9CBA0',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  reviewCount: {
+    fontSize: 13,
+    color: 'rgba(255,255,255,0.6)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+
+  // Floating Booking Strip
+  floatingBookingStrip: {
+    marginHorizontal: 24,
+    marginTop: -24,
+    marginBottom: 24,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(217,203,160,0.25)',
+    overflow: 'hidden',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.5,
+        shadowRadius: 10,
+        elevation: 8,
+      },
+    }),
+  },
+  bookingStripGradient: {
+    padding: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(24px)',
+      },
+    }),
+  },
+  bookingLabel: {
+    fontSize: 13,
+    color: 'rgba(255,255,255,0.7)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  bookingPillsRow: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  bookingPillMini: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    backgroundColor: 'rgba(217,203,160,0.15)',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(217,203,160,0.3)',
+  },
+  bookingPillMiniText: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#D9CBA0',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+
+  // 2. GALLERY ZONE
+  galleryZone: {
+    paddingHorizontal: 24,
+    marginBottom: 40,
+  },
+  tabSelectors: {
+    flexDirection: 'row',
+    gap: 12,
+    marginBottom: 24,
+  },
+  tabPill: {
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(217,203,160,0.2)',
+  },
+  tabPillActive: {
+    backgroundColor: 'rgba(217,203,160,0.2)',
+    borderColor: '#D9CBA0',
+  },
+  tabPillText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.6)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  tabPillTextActive: {
+    color: '#D9CBA0',
+  },
+  tabContent: {
+    minHeight: 400,
+  },
+
+  // Gallery Grid
+  galleryGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+  },
+  galleryItem: {
+    width: (width - 60) / 2,
+    height: 160,
+    borderRadius: 16,
+    overflow: 'hidden',
+  },
+  galleryItemLarge: {
+    width: width - 48,
+    height: 200,
+  },
+  galleryItemBg: {
+    flex: 1,
+  },
+  galleryItemBgStyle: {
+    borderRadius: 16,
+  },
+  galleryItemGradient: {
+    ...StyleSheet.absoluteFillObject,
+  },
+
+  // Rooms Carousel
+  roomsCarousel: {
+    paddingRight: 24,
+  },
+  roomCard: {
+    width: 300,
+    height: 360,
+    borderRadius: 24,
+    overflow: 'hidden',
+    marginRight: 16,
+  },
+  firstRoomCard: {
+    marginLeft: 0,
+  },
+  roomCardBg: {
+    flex: 1,
+  },
+  roomCardBgStyle: {
+    borderRadius: 24,
+  },
+  roomCardGradient: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  roomCardInfo: {
+    position: 'absolute',
+    bottom: 16,
+    left: 16,
+    right: 16,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(217,203,160,0.25)',
+    overflow: 'hidden',
+  },
+  roomCardInfoGradient: {
+    padding: 20,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(24px)',
+      },
+    }),
+  },
+  roomCardName: {
+    fontSize: 17,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    marginBottom: 6,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  roomCardCaption: {
+    fontSize: 13,
+    fontStyle: 'italic',
+    color: 'rgba(255,255,255,0.8)',
+    marginBottom: 10,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  roomCardPrice: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#D9CBA0',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+
+  // Location Content
+  locationContent: {
+    gap: 20,
+  },
+  mapBackground: {
+    height: 220,
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: 'rgba(217,203,160,0.25)',
+    overflow: 'hidden',
+  },
+  mapGradient: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(20px)',
+      },
+    }),
+  },
+  mapLocationText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#D9CBA0',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  nearbyPlacesGrid: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  nearbyPlaceCard: {
+    flex: 1,
+    height: 140,
+    borderRadius: 16,
+    overflow: 'hidden',
+  },
+  nearbyPlaceBg: {
+    flex: 1,
+  },
+  nearbyPlaceBgStyle: {
+    borderRadius: 16,
+  },
+  nearbyPlaceGradient: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  nearbyPlaceInfo: {
+    position: 'absolute',
+    bottom: 12,
+    left: 12,
+    right: 12,
+  },
+  nearbyPlaceName: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    marginBottom: 2,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  nearbyPlaceDistance: {
+    fontSize: 11,
+    color: '#D9CBA0',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+
+  // 3. KEY AMENITIES
+  amenitiesSection: {
+    paddingLeft: 24,
+    marginBottom: 40,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    marginBottom: 20,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  amenitiesRow: {
+    paddingRight: 24,
+  },
+  amenityCapsule: {
+    width: 160,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(217,203,160,0.25)',
+    overflow: 'hidden',
+    marginRight: 16,
+  },
+  firstAmenityCapsule: {
+    marginLeft: 0,
+  },
+  amenityCapsuleGradient: {
+    padding: 20,
+    alignItems: 'center',
+    minHeight: 160,
+    justifyContent: 'center',
+    gap: 12,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(24px)',
+      },
+    }),
+  },
+  amenityIconCircle: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    backgroundColor: 'rgba(217,203,160,0.15)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  amenityLabel: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  amenitySubtext: {
+    fontSize: 11,
+    color: 'rgba(255,255,255,0.65)',
+    textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+
+  // 4. REVIEWS
+  reviewsSection: {
+    paddingHorizontal: 24,
+    marginBottom: 20,
+  },
+  reviewsHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  seeAllLink: {
+    fontSize: 13,
+    color: '#D9CBA0',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  reviewsCarousel: {
+    paddingRight: 24,
+  },
+  reviewCard: {
+    width: 260,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(217,203,160,0.2)',
+    overflow: 'hidden',
+    marginRight: 16,
+  },
+  firstReviewCard: {
+    marginLeft: 0,
+  },
+  reviewCardGradient: {
+    padding: 20,
+    minHeight: 130,
+    justifyContent: 'space-between',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(20px)',
+      },
+    }),
+  },
+  reviewStars: {
+    flexDirection: 'row',
+    gap: 4,
+    marginBottom: 12,
+  },
+  reviewQuote: {
+    fontSize: 14,
+    lineHeight: 20,
+    color: 'rgba(255,255,255,0.9)',
+    fontStyle: 'italic',
+    marginBottom: 12,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  reviewAuthor: {
+    fontSize: 12,
+    color: '#D9CBA0',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+})
