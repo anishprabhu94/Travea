@@ -586,12 +586,12 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Floating Booking Strip
+  // Floating Booking Strip - Better Spacing
   floatingBookingStrip: {
     marginHorizontal: 24,
-    marginTop: -24,
-    marginBottom: 24,
-    borderRadius: 20,
+    marginTop: 16,
+    marginBottom: 32,
+    borderRadius: 16,
     borderWidth: 1,
     borderColor: 'rgba(217,203,160,0.25)',
     overflow: 'hidden',
@@ -609,7 +609,7 @@ const styles = StyleSheet.create({
     }),
   },
   bookingStripGradient: {
-    padding: 16,
+    padding: 12,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
