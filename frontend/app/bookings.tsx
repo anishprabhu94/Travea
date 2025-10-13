@@ -64,6 +64,7 @@ const tripData = {
       transport: [
         {
           id: '1',
+          type: 'car',
           title: 'Private Transfer',
           date: 'Jun 8',
           time: '10 AM',
@@ -73,11 +74,12 @@ const tripData = {
         },
         {
           id: '2',
-          title: 'Ferry to Capri',
+          type: 'train',
+          title: 'Frecciarossa 1000',
           date: 'Jun 9',
-          time: '2 PM',
-          route: 'Amalfi Pier → Capri Port',
-          duration: '1h 15 min · Boat',
+          time: '2:15 PM',
+          route: 'Florence → Rome',
+          duration: '1h 36 min · Train',
           image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg'
         }
       ],
