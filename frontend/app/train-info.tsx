@@ -126,6 +126,12 @@ export default function TrainInfo() {
 
             {/* Hero Content */}
             <View style={styles.heroContent}>
+              {/* Transport Type Badge */}
+              <View style={styles.transportTypeBadge}>
+                <Ionicons name="train-outline" size={14} color="#D9CBA0" />
+                <Text style={styles.transportTypeText}>Train</Text>
+              </View>
+
               {/* Route Info */}
               <View style={styles.heroRouteRow}>
                 <View style={styles.heroRouteLeft}>
