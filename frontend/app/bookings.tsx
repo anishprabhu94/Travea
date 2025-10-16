@@ -897,6 +897,7 @@ export default function TripCanvas() {
             <TouchableOpacity 
               style={styles.dockItem} 
               activeOpacity={0.8}
+              onPress={() => router.push('/concierge')}
             >
               <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.7)" />
               <Text style={styles.dockLabelInactive}>Concierge</Text>
