@@ -42,7 +42,7 @@ export default function Concierge() {
   const handleSend = () => {
     if (message.trim()) {
       // Add user message
-      const userMsg: Message = {
+      const userMsg = {
         id: Date.now().toString(),
         text: message,
         sender: 'user',
@@ -53,7 +53,7 @@ export default function Concierge() {
       
       // Simulate AI response (placeholder)
       setTimeout(() => {
-        const aiMsg: Message = {
+        const aiMsg = {
           id: (Date.now() + 1).toString(),
           text: 'I understand. Let me help you with that. This feature will be available soon.',
           sender: 'ai',
