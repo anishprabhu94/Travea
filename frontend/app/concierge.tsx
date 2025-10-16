@@ -473,35 +473,28 @@ const styles = StyleSheet.create({
     paddingBottom: 180,
   },
 
-  // Greeting Pane
+  // Greeting Bubble
   greetingContainer: {
     paddingHorizontal: 20,
     marginBottom: 24,
+    alignItems: 'center',
   },
   greetingCard: {
     borderRadius: 24,
     overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: 'rgba(217,203,160,0.2)',
+    borderWidth: 0,
+    maxWidth: 320,
   },
   greetingGradient: {
-    padding: 28,
+    padding: 24,
+    alignItems: 'center',
   },
   greetingText: {
-    fontSize: 17,
+    fontSize: 18,
     lineHeight: 26,
     color: '#F5F5F5',
     fontWeight: '400',
-    marginBottom: 16,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
-  },
-  greetingSignature: {
-    fontSize: 12,
-    color: '#D9CBA0',
-    fontStyle: 'italic',
+    textAlign: 'center',
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
