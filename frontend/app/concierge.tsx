@@ -387,7 +387,6 @@ const styles = StyleSheet.create({
   },
   headerAction: {
     width: 40,
-    height: 40,
   },
 
   // Messages Container
@@ -398,14 +397,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 24,
     paddingBottom: 120,
-    gap: 20,
   },
 
   // Messages
   messageWrapper: {
     flexDirection: 'row',
     gap: 12,
-    marginBottom: 16,
+    marginBottom: 20,
   },
   userMessageWrapper: {
     justifyContent: 'flex-end',
@@ -431,13 +429,13 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 1,
   },
-  aiBubble: {
-    borderColor: 'rgba(217,203,160,0.15)',
-    borderTopLeftRadius: 4,
-  },
   userBubble: {
     borderColor: 'rgba(217,203,160,0.3)',
     borderTopRightRadius: 4,
+  },
+  aiBubble: {
+    borderColor: 'rgba(217,203,160,0.15)',
+    borderTopLeftRadius: 4,
   },
   messageText: {
     fontSize: 15,
@@ -447,18 +445,18 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  aiMessageText: {
-    color: 'rgba(255,255,255,0.9)',
-  },
   userMessageText: {
     color: '#FFFFFF',
+  },
+  aiMessageText: {
+    color: 'rgba(255,255,255,0.9)',
   },
 
   // Loading
   loadingContainer: {
     flexDirection: 'row',
     gap: 12,
-    marginBottom: 16,
+    marginBottom: 20,
   },
   loadingBubble: {
     maxWidth: '75%',
@@ -471,17 +469,15 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 4,
   },
   loadingText: {
-    fontSize: 15,
-    color: 'rgba(255,255,255,0.9)',
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
+    fontSize: 20,
+    color: '#D9CBA0',
+    letterSpacing: 4,
   },
 
   // Cards Section
   cardsSection: {
-    marginTop: 12,
+    marginTop: 16,
+    marginBottom: 8,
     marginLeft: 48,
   },
   cardsScroll: {
@@ -489,10 +485,10 @@ const styles = StyleSheet.create({
   },
   card: {
     width: 280,
-    height: 160,
-    marginRight: 16,
-    borderRadius: 16,
+    height: 200,
+    borderRadius: 20,
     overflow: 'hidden',
+    marginRight: 16,
     borderWidth: 1,
     borderColor: 'rgba(217,203,160,0.2)',
   },
@@ -501,26 +497,24 @@ const styles = StyleSheet.create({
   },
   cardBg: {
     flex: 1,
-    justifyContent: 'flex-end',
   },
   cardBgStyle: {
-    borderRadius: 16,
+    borderRadius: 20,
   },
   cardGradient: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    ...StyleSheet.absoluteFillObject,
   },
   cardContent: {
-    padding: 20,
-    gap: 4,
+    position: 'absolute',
+    bottom: 16,
+    left: 16,
+    right: 16,
   },
   cardName: {
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: '600',
     color: '#FFFFFF',
+    marginBottom: 4,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
@@ -528,6 +522,16 @@ const styles = StyleSheet.create({
     }),
   },
   cardTagline: {
+    fontSize: 14,
+    fontStyle: 'italic',
+    color: '#D9CBA0',
+    marginBottom: 6,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  cardSubtitle: {
     fontSize: 13,
     color: 'rgba(255,255,255,0.8)',
     fontFamily: Platform.select({
@@ -535,27 +539,20 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  cardSubtitle: {
-    fontSize: 12,
-    color: 'rgba(255,255,255,0.6)',
-    marginTop: 2,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
-  },
   cardDurationPill: {
     backgroundColor: 'rgba(217,203,160,0.2)',
-    paddingHorizontal: 8,
+    paddingHorizontal: 10,
     paddingVertical: 4,
-    borderRadius: 12,
+    borderRadius: 8,
     alignSelf: 'flex-start',
     marginTop: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(217,203,160,0.3)',
   },
   cardDuration: {
     fontSize: 11,
-    color: '#D9CBA0',
     fontWeight: '600',
+    color: '#D9CBA0',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
@@ -588,7 +585,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
     minHeight: 48,
-    justifyContent: 'center',
+    maxHeight: 120,
   },
   input: {
     fontSize: 15,
@@ -597,7 +594,6 @@ const styles = StyleSheet.create({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
-    maxHeight: 100,
   },
   sendButton: {
     width: 48,
@@ -606,7 +602,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   sendButtonActive: {
-    // Additional styles for active state if needed
+    borderWidth: 1,
+    borderColor: 'rgba(217,203,160,0.3)',
   },
   sendButtonGradient: {
     flex: 1,
