@@ -182,26 +182,10 @@ export default function ConciergeV2() {
           style={styles.header}
         >
           <View style={styles.headerContent}>
-            <TouchableOpacity 
-              style={styles.backButton}
-              onPress={() => router.back()}
-              activeOpacity={0.8}
-            >
-              <Ionicons name="chevron-back" size={18} color="#D9CBA0" />
-              <Text style={styles.backText}>Back</Text>
-            </TouchableOpacity>
-            
-            <View style={styles.headerCenter}>
-              <View style={styles.titleRow}>
-                <View style={styles.breathingDot} />
-                <Text style={styles.headerTitle}>Trāvea Concierge</Text>
-              </View>
-              <Text style={styles.headerSubtitle}>Your AI Travel Assistant for curated journeys</Text>
+            <View style={styles.logoContainer}>
+              <View style={styles.logoPulse} />
+              <Text style={styles.logoText}>TRĀVEA</Text>
             </View>
-            
-            <TouchableOpacity style={styles.menuButton}>
-              <Ionicons name="ellipsis-horizontal" size={20} color="#D9CBA0" />
-            </TouchableOpacity>
           </View>
         </LinearGradient>
 
