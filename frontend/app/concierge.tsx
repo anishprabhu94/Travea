@@ -222,7 +222,7 @@ export default function Concierge() {
           {isLoading && (
             <View style={styles.loadingContainer}>
               <View style={styles.aiAvatar}>
-                <Ionicons name="sparkles" size={14} color="#D9CBA0" />
+                <Ionicons name="sparkles" size={16} color="#D9CBA0" />
               </View>
               <View style={styles.loadingBubble}>
                 <LinearGradient
