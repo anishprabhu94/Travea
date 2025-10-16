@@ -2309,7 +2309,7 @@ const styles = StyleSheet.create({
   transportTypeIcon: {
     position: 'absolute',
     top: 16,
-    left: 16,
+    right: 16,
     width: 36,
     height: 36,
     borderRadius: 18,
