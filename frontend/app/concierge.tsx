@@ -96,7 +96,7 @@ export default function Concierge() {
           </View>
         </View>
 
-        {/* Static Welcome Message */}
+        {/* Static AI Message */}
         <View style={styles.messagesList}>
           <View style={styles.messageWrapper}>
             <View style={styles.aiAvatar}>
@@ -110,13 +110,11 @@ export default function Concierge() {
                 end={{ x: 1, y: 1 }}
                 style={[styles.messageBubble, styles.aiBubble]}
               >
-                <Text style={[styles.messageText, styles.aiMessageText]}>
-                  Good evening. I am your Trāvea concierge. How may I assist with your journey today?
+                <Text style={styles.aiMessageText}>
+                  Good evening. I'm your Trāvea concierge. How may I assist with your journey today?
                 </Text>
               </LinearGradient>
-              <Text style={[styles.messageTime, styles.aiMessageTime]}>
-                8:42 PM
-              </Text>
+              <Text style={styles.aiMessageTime}>8:42 PM</Text>
             </View>
           </View>
         </View>
