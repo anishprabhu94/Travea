@@ -465,29 +465,28 @@ const styles = StyleSheet.create({
   // Greeting Bubble
   greetingContainer: {
     paddingHorizontal: 20,
-    marginBottom: 24,
-    alignItems: 'center',
+    marginBottom: 20,
+    alignItems: 'flex-start',
   },
   greetingCard: {
-    borderRadius: 24,
+    borderRadius: 20,
     overflow: 'hidden',
     borderWidth: 0,
-    maxWidth: 320,
+    maxWidth: 280,
   },
   greetingGradient: {
-    padding: 24,
-    alignItems: 'center',
+    padding: 18,
+    alignItems: 'flex-start',
   },
   greetingText: {
-    fontSize: 18,
-    lineHeight: 26,
+    fontSize: 16,
+    lineHeight: 23,
     color: '#F5F5F5',
     fontWeight: '400',
-    textAlign: 'center',
+    textAlign: 'left',
     fontFamily: Platform.select({
-      ios: 'Playfair Display',
-      android: 'serif',
-      web: 'Playfair Display, Georgia, serif',
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
     }),
   },
 
