@@ -469,7 +469,7 @@ const styles = StyleSheet.create({
 
   // Header
   header: {
-    paddingTop: 60,
+    paddingTop: 70,
     paddingBottom: 20,
     paddingHorizontal: 20,
     borderBottomWidth: 0,
