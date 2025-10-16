@@ -64,13 +64,13 @@ const tripData = {
       transport: [
         {
           id: '1',
-          type: 'car',
-          title: 'Private Transfer',
-          date: 'Jun 8',
-          time: '10 AM',
-          route: 'Piazza Duomo → Villa Cimbrone',
-          duration: '45 min · Car',
-          image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
+          type: 'rental-car',
+          title: 'Alfa Romeo Giulia',
+          date: 'Jun 8-11',
+          time: '10:00 AM',
+          route: 'Florence → Tuscany',
+          duration: '3 days · Rental',
+          image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
         },
         {
           id: '2',
@@ -81,6 +81,16 @@ const tripData = {
           route: 'Florence → Rome',
           duration: '1h 36 min · Train',
           image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg'
+        },
+        {
+          id: '3',
+          type: 'bus',
+          title: 'FlixBus Premium',
+          date: 'Jun 9',
+          time: '9:00 AM',
+          route: 'Rome → Naples',
+          duration: '2h 30 min · Bus',
+          image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
         }
       ],
       experiences: [
