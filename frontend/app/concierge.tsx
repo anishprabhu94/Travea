@@ -40,7 +40,7 @@ export default function ConciergeV2() {
   console.log('Concierge - Backend URL:', backendUrl)
 
   const handleChipPress = async (chipText: string) => {
-    setMessage(chipText)
+    // Don't set message in input field
     setShowGreeting(false)
     
     // Auto-send the chip text
@@ -56,6 +56,9 @@ export default function ConciergeV2() {
     setIsLoading(true)
 
     try {
+      console.log('Backend URL:', backendUrl)
+      console.log('Sending chip message:', chipText)
+      
       const response = await fetch(`${backendUrl}/api/concierge/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -66,8 +69,11 @@ export default function ConciergeV2() {
         })
       })
 
+      console.log('Response status:', response.status)
+
       if (response.ok) {
         const data = await response.json()
+        console.log('Response data:', data)
         const aiMessage = {
           id: (Date.now() + 1).toString(),
           text: data.message,
@@ -77,7 +83,9 @@ export default function ConciergeV2() {
         }
         setMessages(prev => [...prev, aiMessage])
       } else {
-        throw new Error('API error')
+        const errorText = await response.text()
+        console.error('API error response:', errorText)
+        throw new Error(`API error: ${response.status}`)
       }
     } catch (error) {
       console.error('Concierge error:', error)
@@ -91,7 +99,6 @@ export default function ConciergeV2() {
       setMessages(prev => [...prev, errorMessage])
     } finally {
       setIsLoading(false)
-      setMessage('')
     }
   }
 
