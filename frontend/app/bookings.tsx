@@ -777,9 +777,6 @@ export default function TripCanvas() {
                     style={styles.restaurantImageCardGradient}
                   />
                   <View style={styles.restaurantImageCardFrosted}>
-                    <View style={styles.cardArrowIconOnPane}>
-                      <Ionicons name="arrow-forward" size={12} color="rgba(181,155,115,0.95)" />
-                    </View>
                     <Text style={styles.restaurantCardTitle}>{rest.name}</Text>
                     <Text style={styles.restaurantCardDetails}>{rest.time} · {rest.details}</Text>
                   </View>
