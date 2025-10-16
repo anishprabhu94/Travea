@@ -178,37 +178,26 @@ export default function ConciergeV2() {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <View style={styles.container}>
-        {/* Hero Background */}
-        <ImageBackground
-          source={{ uri: 'https://customer-assets.emergentagent.com/job_glass-voyage/artifacts/vmebbjwa_image.png' }}
-          style={styles.heroBackground}
-          imageStyle={styles.heroBackgroundImage}
-          blurRadius={15}
-        >
-          <LinearGradient
-            colors={['rgba(0,0,0,0)', 'rgba(13,13,13,0.4)']}
-            style={styles.heroGradient}
-          />
-        </ImageBackground>
-
-        {/* Vignette Overlay */}
-        <LinearGradient
-          colors={['rgba(13,13,13,0)', 'rgba(13,13,13,0.6)', 'rgba(13,13,13,0.95)']}
-          locations={[0, 0.3, 1]}
-          style={styles.vignetteOverlay}
-        />
-
-        {/* Header Bar */}
-        <LinearGradient
-          colors={['rgba(13,13,13,0.98)', 'rgba(26,26,26,0.95)']}
-          style={styles.header}
-        >
-          <View style={styles.headerContent}>
-            <View style={styles.logoContainer}>
-              <TraveaWordmark size="medium" />
-            </View>
-          </View>
-        </LinearGradient>
+        {/* Header Bar with Background */}
+        <View style={styles.header}>
+          <ImageBackground
+            source={{ uri: 'https://customer-assets.emergentagent.com/job_glass-voyage/artifacts/vmebbjwa_image.png' }}
+            style={styles.headerBackground}
+            imageStyle={styles.headerBackgroundImage}
+            blurRadius={8}
+          >
+            <LinearGradient
+              colors={['rgba(13,13,13,0.75)', 'rgba(26,26,26,0.85)']}
+              style={styles.headerGradient}
+            >
+              <View style={styles.headerContent}>
+                <View style={styles.logoContainer}>
+                  <TraveaWordmark size="medium" />
+                </View>
+              </View>
+            </LinearGradient>
+          </ImageBackground>
+        </View>
 
         {/* Main Content */}
         <ScrollView 
