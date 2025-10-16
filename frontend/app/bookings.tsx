@@ -760,6 +760,7 @@ export default function TripCanvas() {
                 key={rest.id} 
                 style={[styles.restaurantImageCard, index === activeDay.restaurants.length - 1 && {marginRight: 0}]}
                 activeOpacity={0.8}
+                onPress={() => router.push('/restaurant-info')}
               >
                 <ImageBackground
                   source={{ uri: rest.image }}
