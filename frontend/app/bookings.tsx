@@ -640,6 +640,20 @@ export default function TripCanvas() {
                     style={styles.transportImageCardGradient}
                   />
                   <View style={styles.transportImageCardFrosted}>
+                    {/* Transport Type Icon */}
+                    <View style={styles.transportTypeIcon}>
+                      <Ionicons 
+                        name={
+                          item.type === 'train' ? 'train-outline' :
+                          item.type === 'bus' ? 'bus-outline' :
+                          item.type === 'rental-car' ? 'car-sport-outline' :
+                          item.type === 'ferry' ? 'boat-outline' :
+                          'navigate-outline'
+                        } 
+                        size={20} 
+                        color="rgba(181,155,115,0.95)" 
+                      />
+                    </View>
                     <View style={styles.cardArrowIconOnPane}>
                       <Ionicons name="arrow-forward" size={12} color="rgba(181,155,115,0.95)" />
                     </View>
