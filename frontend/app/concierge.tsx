@@ -184,7 +184,7 @@ export default function ConciergeV2() {
             source={{ uri: 'https://customer-assets.emergentagent.com/job_glass-voyage/artifacts/vmebbjwa_image.png' }}
             style={styles.headerBackground}
             imageStyle={styles.headerBackgroundImage}
-            blurRadius={8}
+            blurRadius={4}
           >
             <LinearGradient
               colors={['rgba(13,13,13,0.75)', 'rgba(26,26,26,0.85)']}
