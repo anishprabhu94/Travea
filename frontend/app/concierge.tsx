@@ -448,10 +448,10 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 400,
-    opacity: 0.4,
+    zIndex: 1,
   },
   heroBackgroundImage: {
-    opacity: 0.6,
+    opacity: 0.7,
   },
   heroGradient: {
     ...StyleSheet.absoluteFillObject,
@@ -459,6 +459,7 @@ const styles = StyleSheet.create({
   vignetteOverlay: {
     ...StyleSheet.absoluteFillObject,
     pointerEvents: 'none',
+    zIndex: 2,
   },
 
   // Header
@@ -467,6 +468,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     paddingHorizontal: 20,
     borderBottomWidth: 0,
+    zIndex: 10,
   },
   headerContent: {
     alignItems: 'center',
