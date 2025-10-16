@@ -413,7 +413,7 @@ export default function ConciergeV2() {
                 style={styles.dockItem} 
                 activeOpacity={0.8}
               >
-                <Ionicons name="chatbubble-ellipses" size={22} color="#D9CBA0" />
+                <Ionicons name="chatbubble-ellipses" size={22} color="#C9A96D" />
                 <Text style={styles.dockLabelActive}>Concierge</Text>
               </TouchableOpacity>
             </View>
