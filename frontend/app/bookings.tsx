@@ -562,9 +562,6 @@ export default function TripCanvas() {
                     style={styles.stayImageCardGradient}
                   />
                   <View style={styles.stayImageCardFrosted}>
-                    <View style={styles.cardArrowIconOnPane}>
-                      <Ionicons name="arrow-forward" size={12} color="rgba(181,155,115,0.95)" />
-                    </View>
                     <Text style={styles.stayCardName}>{stay.name}</Text>
                     <Text style={styles.stayCardAddress}>{stay.address}</Text>
                     <Text style={styles.stayCardTimes}>{stay.checkin} · {stay.checkout}</Text>
