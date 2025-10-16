@@ -542,8 +542,8 @@ const styles = StyleSheet.create({
     maxWidth: '80%',
   },
   aiMessageBlur: {
-    borderRadius: 24,
-    borderTopLeftRadius: 8,
+    borderRadius: 20,
+    borderTopLeftRadius: 6,
     overflow: 'hidden',
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.1)',
