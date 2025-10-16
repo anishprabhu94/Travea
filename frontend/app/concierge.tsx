@@ -687,6 +687,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 15,
     color: '#FFFFFF',
+    outlineStyle: 'none',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
