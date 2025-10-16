@@ -334,7 +334,7 @@ export default function Concierge() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0D0D0D',
+    backgroundColor: '#0A0A0A',
   },
 
   // Header
