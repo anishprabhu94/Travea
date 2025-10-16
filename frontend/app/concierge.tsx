@@ -447,6 +447,26 @@ const styles = StyleSheet.create({
     backgroundColor: '#0D0D0D',
   },
 
+  // Hero Background
+  heroBackground: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 400,
+    opacity: 0.4,
+  },
+  heroBackgroundImage: {
+    opacity: 0.6,
+  },
+  heroGradient: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  vignetteOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    pointerEvents: 'none',
+  },
+
   // Header
   header: {
     paddingTop: 48,
