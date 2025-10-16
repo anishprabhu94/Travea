@@ -130,68 +130,112 @@ export default function Concierge() {
           contentContainerStyle={styles.messagesContent}
           showsVerticalScrollIndicator={false}
         >
-        {/* Welcome Header */}
-        <View style={styles.welcomeSection}>
-          <LinearGradient
-            colors={['rgba(217,203,160,0.15)', 'rgba(217,203,160,0.05)']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={styles.welcomeCard}
-          >
-            <Ionicons name="chatbubble-ellipses-outline" size={32} color="#D9CBA0" />
-            <Text style={styles.welcomeTitle}>Your Personal Concierge</Text>
-            <Text style={styles.welcomeText}>
-              Ask me anything about your journey — reservations, recommendations, or adjustments.
-            </Text>
-          </LinearGradient>
-        </View>
-
-        {/* Suggested Prompts */}
-        <View style={styles.promptsSection}>
-          <Text style={styles.promptsTitle}>Try asking me:</Text>
-          <View style={styles.promptsGrid}>
-            {suggestedPrompts.map((prompt, index) => (
-              <TouchableOpacity
-                key={index}
-                style={styles.promptCard}
-                activeOpacity={0.8}
+          {messages.map((msg, index) => (
+            <View key={msg.id}>
+              <View 
+                style={[
+                  styles.messageWrapper,
+                  msg.sender === 'user' ? styles.userMessageWrapper : styles.aiMessageWrapper
+                ]}
               >
+                {msg.sender === 'ai' && (
+                  <View style={styles.aiAvatar}>
+                    <Ionicons name="sparkles" size={14} color="#D9CBA0" />
+                  </View>
+                )}
+                
+                <View style={styles.messageBubbleContainer}>
+                  <LinearGradient
+                    colors={
+                      msg.sender === 'user'
+                        ? ['rgba(217,203,160,0.25)', 'rgba(217,203,160,0.15)']
+                        : ['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.03)']
+                    }
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    style={[
+                      styles.messageBubble,
+                      msg.sender === 'user' ? styles.userBubble : styles.aiBubble
+                    ]}
+                  >
+                    <Text style={[
+                      styles.messageText,
+                      msg.sender === 'user' ? styles.userMessageText : styles.aiMessageText
+                    ]}>
+                      {msg.text}
+                    </Text>
+                  </LinearGradient>
+                </View>
+              </View>
+
+              {/* Card Carousel below AI messages */}
+              {msg.sender === 'ai' && msg.cards && msg.cards.length > 0 && (
+                <View style={styles.cardsSection}>
+                  <ScrollView 
+                    horizontal 
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={styles.cardsScroll}
+                  >
+                    {msg.cards.map((card, cardIndex) => (
+                      <TouchableOpacity
+                        key={card.id}
+                        style={[styles.card, cardIndex === 0 && styles.firstCard]}
+                        activeOpacity={0.9}
+                        onPress={() => {
+                          if (msg.cardType === 'city') {
+                            router.push('/destination')
+                          } else if (msg.cardType === 'circuit') {
+                            router.push('/multi-city-destination')
+                          }
+                        }}
+                      >
+                        <ImageBackground
+                          source={{ uri: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' }}
+                          style={styles.cardBg}
+                          imageStyle={styles.cardBgStyle}
+                        >
+                          <LinearGradient
+                            colors={['rgba(0,0,0,0.1)', 'rgba(13,13,13,0.85)']}
+                            style={styles.cardGradient}
+                          />
+                          <View style={styles.cardContent}>
+                            <Text style={styles.cardName}>{card.name}</Text>
+                            <Text style={styles.cardTagline}>{card.tagline}</Text>
+                            {card.subtitle && (
+                              <Text style={styles.cardSubtitle}>{card.subtitle}</Text>
+                            )}
+                            {card.duration && (
+                              <View style={styles.cardDurationPill}>
+                                <Text style={styles.cardDuration}>{card.duration}</Text>
+                              </View>
+                            )}
+                          </View>
+                        </ImageBackground>
+                      </TouchableOpacity>
+                    ))}
+                  </ScrollView>
+                </View>
+              )}
+            </View>
+          ))}
+
+          {isLoading && (
+            <View style={styles.loadingContainer}>
+              <View style={styles.aiAvatar}>
+                <Ionicons name="sparkles" size={14} color="#D9CBA0" />
+              </View>
+              <View style={styles.loadingBubble}>
                 <LinearGradient
-                  colors={['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.02)']}
+                  colors={['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.03)']}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
-                  style={styles.promptCardGradient}
+                  style={styles.loadingBubbleGradient}
                 >
-                  <Ionicons name={prompt.icon as any} size={20} color="#D9CBA0" />
-                  <Text style={styles.promptText}>{prompt.text}</Text>
+                  <Text style={styles.loadingText}>•••</Text>
                 </LinearGradient>
-              </TouchableOpacity>
-            ))}
-          </View>
-        </View>
-
-        {/* Static AI Message */}
-        <View style={styles.messagesList}>
-          <View style={styles.messageWrapper}>
-            <View style={styles.aiAvatar}>
-              <Ionicons name="sparkles" size={14} color="#D9CBA0" />
+              </View>
             </View>
-            
-            <View style={styles.messageBubbleContainer}>
-              <LinearGradient
-                colors={['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.03)']}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={[styles.messageBubble, styles.aiBubble]}
-              >
-                <Text style={styles.aiMessageText}>
-                  Good evening. I'm your Trāvea concierge. How may I assist with your journey today?
-                </Text>
-              </LinearGradient>
-              <Text style={styles.aiMessageTime}>8:42 PM</Text>
-            </View>
-          </View>
-        </View>
+          )}
       </ScrollView>
 
       {/* Static Input Area */}
