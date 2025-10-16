@@ -9,6 +9,7 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   ImageBackground,
+  Dimensions,
 } from 'react-native'
 import { router } from 'expo-router'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -16,21 +17,28 @@ import { Ionicons } from '@expo/vector-icons'
 import { BlurView } from 'expo-blur'
 import Constants from 'expo-constants'
 
-export default function Concierge() {
+const { width } = Dimensions.get('window')
+
+const SUGGESTION_CHIPS = [
+  { id: '1', icon: 'sparkles', text: 'Inspire me for next summer' },
+  { id: '2', icon: 'sunny', text: 'Show me weekend getaways' },
+  { id: '3', icon: 'restaurant', text: 'Find iconic restaurants' },
+  { id: '4', icon: 'map', text: 'Help me plan my Italy trip' },
+]
+
+export default function ConciergeV2() {
   const [message, setMessage] = useState('')
-  const [messages, setMessages] = useState([
-    {
-      id: '1',
-      text: "Good evening. I'm your Travea concierge. How may I assist with your journey today?",
-      sender: 'ai',
-      cards: [],
-      cardType: null
-    }
-  ])
+  const [messages, setMessages] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+  const [showGreeting, setShowGreeting] = useState(true)
   const scrollRef = useRef(null)
 
   const backendUrl = Constants.expoConfig?.extra?.EXPO_PUBLIC_BACKEND_URL || 'http://localhost:8001'
+
+  const handleChipPress = (chipText: string) => {
+    setMessage(chipText)
+    setShowGreeting(false)
+  }
 
   const handleSend = async () => {
     if (message.trim() && !isLoading) {
@@ -45,6 +53,7 @@ export default function Concierge() {
       setMessages(prev => [...prev, userMessage])
       setMessage('')
       setIsLoading(true)
+      setShowGreeting(false)
 
       try {
         const response = await fetch(`${backendUrl}/api/concierge/chat`, {
@@ -98,7 +107,13 @@ export default function Concierge() {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <View style={styles.container}>
-        {/* Header */}
+        {/* Background Atmosphere */}
+        <LinearGradient
+          colors={['#0D0D0D', '#1A1A1A', '#0D0D0D']}
+          style={StyleSheet.absoluteFillObject}
+        />
+
+        {/* Header Bar */}
         <LinearGradient
           colors={['rgba(13,13,13,0.98)', 'rgba(26,26,26,0.95)']}
           style={styles.header}
@@ -109,28 +124,83 @@ export default function Concierge() {
               onPress={() => router.back()}
               activeOpacity={0.8}
             >
-              <Ionicons name="arrow-back" size={20} color="#D9CBA0" />
+              <Ionicons name="chevron-back" size={18} color="#D9CBA0" />
+              <Text style={styles.backText}>Back</Text>
             </TouchableOpacity>
             
             <View style={styles.headerCenter}>
-              <View style={styles.aiIndicator}>
-                <View style={styles.aiIndicatorDot} />
+              <View style={styles.titleRow}>
+                <View style={styles.breathingDot} />
                 <Text style={styles.headerTitle}>Trāvea Concierge</Text>
               </View>
+              <Text style={styles.headerSubtitle}>Your AI Travel Assistant for curated journeys</Text>
             </View>
             
-            <View style={styles.headerAction} />
+            <TouchableOpacity style={styles.menuButton}>
+              <Ionicons name="ellipsis-horizontal" size={20} color="#D9CBA0" />
+            </TouchableOpacity>
           </View>
         </LinearGradient>
 
-        {/* Messages Area */}
+        {/* Main Content */}
         <ScrollView 
           ref={scrollRef}
-          style={styles.messagesContainer}
-          contentContainerStyle={styles.messagesContent}
+          style={styles.mainContent}
+          contentContainerStyle={styles.contentContainer}
           showsVerticalScrollIndicator={false}
         >
-          {messages.map((msg, index) => (
+          {/* Hero Greeting Pane */}
+          {showGreeting && (
+            <View style={styles.greetingContainer}>
+              <BlurView intensity={30} tint="dark" style={styles.greetingCard}>
+                <LinearGradient
+                  colors={['rgba(217,203,160,0.12)', 'rgba(217,203,160,0.06)']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={styles.greetingGradient}
+                >
+                  <Text style={styles.greetingText}>
+                    Good evening. I'm your Trāvea Concierge.{'\n'}
+                    How may I assist with your journey today?
+                  </Text>
+                  <Text style={styles.greetingSignature}>— Aurelia, Trāvea Concierge</Text>
+                </LinearGradient>
+              </BlurView>
+            </View>
+          )}
+
+          {/* Smart Suggestion Chips */}
+          {showGreeting && (
+            <ScrollView 
+              horizontal 
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.chipsContainer}
+            >
+              {SUGGESTION_CHIPS.map((chip, index) => (
+                <TouchableOpacity
+                  key={chip.id}
+                  style={[styles.chip, index === 0 && styles.firstChip]}
+                  onPress={() => handleChipPress(chip.text)}
+                  activeOpacity={0.7}
+                >
+                  <BlurView intensity={20} tint="dark" style={styles.chipBlur}>
+                    <LinearGradient
+                      colors={['rgba(217,203,160,0.15)', 'rgba(217,203,160,0.08)']}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 1 }}
+                      style={styles.chipGradient}
+                    >
+                      <Ionicons name={chip.icon} size={14} color="#D9CBA0" />
+                      <Text style={styles.chipText}>{chip.text}</Text>
+                    </LinearGradient>
+                  </BlurView>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          )}
+
+          {/* Chat Conversation Zone */}
+          {messages.map((msg) => (
             <View key={msg.id}>
               <View 
                 style={[
@@ -138,37 +208,27 @@ export default function Concierge() {
                   msg.sender === 'user' ? styles.userMessageWrapper : styles.aiMessageWrapper
                 ]}
               >
-                {msg.sender === 'ai' && (
-                  <View style={styles.aiAvatar}>
-                    <Ionicons name="sparkles" size={16} color="#D9CBA0" />
-                  </View>
-                )}
-                
                 <View style={styles.messageBubbleContainer}>
-                  <LinearGradient
-                    colors={
-                      msg.sender === 'user'
-                        ? ['rgba(217,203,160,0.25)', 'rgba(217,203,160,0.15)']
-                        : ['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.03)']
-                    }
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 1 }}
-                    style={[
-                      styles.messageBubble,
-                      msg.sender === 'user' ? styles.userBubble : styles.aiBubble
-                    ]}
-                  >
-                    <Text style={[
-                      styles.messageText,
-                      msg.sender === 'user' ? styles.userMessageText : styles.aiMessageText
-                    ]}>
-                      {msg.text}
-                    </Text>
-                  </LinearGradient>
+                  {msg.sender === 'ai' ? (
+                    <BlurView intensity={20} tint="dark" style={styles.aiMessageBlur}>
+                      <LinearGradient
+                        colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.04)']}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 1 }}
+                        style={styles.aiBubble}
+                      >
+                        <Text style={styles.aiMessageText}>{msg.text}</Text>
+                      </LinearGradient>
+                    </BlurView>
+                  ) : (
+                    <View style={styles.userBubble}>
+                      <Text style={styles.userMessageText}>{msg.text}</Text>
+                    </View>
+                  )}
                 </View>
               </View>
 
-              {/* Card Carousel below AI messages */}
+              {/* Card Carousel */}
               {msg.sender === 'ai' && msg.cards && msg.cards.length > 0 && (
                 <View style={styles.cardsSection}>
                   <ScrollView 
@@ -198,18 +258,10 @@ export default function Concierge() {
                             colors={['rgba(0,0,0,0.1)', 'rgba(13,13,13,0.85)']}
                             style={styles.cardGradient}
                           />
-                          <View style={styles.cardContent}>
+                          <BlurView intensity={15} tint="dark" style={styles.cardInfo}>
                             <Text style={styles.cardName}>{card.name}</Text>
                             <Text style={styles.cardTagline}>{card.tagline}</Text>
-                            {card.subtitle && (
-                              <Text style={styles.cardSubtitle}>{card.subtitle}</Text>
-                            )}
-                            {card.duration && (
-                              <View style={styles.cardDurationPill}>
-                                <Text style={styles.cardDuration}>{card.duration}</Text>
-                              </View>
-                            )}
-                          </View>
+                          </BlurView>
                         </ImageBackground>
                       </TouchableOpacity>
                     ))}
@@ -219,71 +271,63 @@ export default function Concierge() {
             </View>
           ))}
 
+          {/* Loading State */}
           {isLoading && (
             <View style={styles.loadingContainer}>
-              <View style={styles.aiAvatar}>
-                <Ionicons name="sparkles" size={16} color="#D9CBA0" />
-              </View>
-              <View style={styles.loadingBubble}>
+              <BlurView intensity={20} tint="dark" style={styles.loadingBlur}>
                 <LinearGradient
-                  colors={['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.03)']}
+                  colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.04)']}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
-                  style={styles.loadingBubbleGradient}
+                  style={styles.loadingBubble}
                 >
                   <Text style={styles.loadingText}>•••</Text>
                 </LinearGradient>
-              </View>
+              </BlurView>
             </View>
           )}
-      </ScrollView>
+        </ScrollView>
 
-        {/* Input Area */}
+        {/* Context Strip */}
+        <View style={styles.contextStrip}>
+          <Text style={styles.contextText}>No active trip — ask me to create one</Text>
+        </View>
+
+        {/* Input Bar */}
         <View style={styles.inputContainer}>
-          <LinearGradient
-            colors={['rgba(13,13,13,0.98)', 'rgba(26,26,26,0.95)']}
-            style={styles.inputGradient}
-          >
+          <BlurView intensity={30} tint="dark" style={styles.inputBlur}>
             <View style={styles.inputRow}>
-              <View style={styles.inputWrapper}>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Ask about destinations, experiences, or plans..."
-                  placeholderTextColor="rgba(255,255,255,0.38)"
-                  value={message}
-                  onChangeText={setMessage}
-                  onSubmitEditing={handleSend}
-                  editable={!isLoading}
-                  multiline
-                  maxLength={500}
+              <View style={styles.inputIconLeft}>
+                <Ionicons 
+                  name={message.length > 0 ? 'airplane' : 'map-outline'} 
+                  size={20} 
+                  color="#D9CBA0" 
                 />
               </View>
-              
+              <TextInput
+                style={styles.input}
+                placeholder="Ask about destinations, experiences, or plans..."
+                placeholderTextColor="rgba(255,255,255,0.35)"
+                value={message}
+                onChangeText={setMessage}
+                onSubmitEditing={handleSend}
+                editable={!isLoading}
+                multiline={false}
+              />
               <TouchableOpacity
-                style={[styles.sendButton, (message.trim() && !isLoading) && styles.sendButtonActive]}
+                style={styles.sendButton}
                 onPress={handleSend}
-                activeOpacity={0.8}
+                activeOpacity={0.7}
                 disabled={!message.trim() || isLoading}
               >
-                <LinearGradient
-                  colors={
-                    (message.trim() && !isLoading)
-                      ? ['rgba(217,203,160,0.3)', 'rgba(217,203,160,0.2)']
-                      : ['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.04)']
-                  }
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  style={styles.sendButtonGradient}
-                >
-                  <Ionicons 
-                    name="arrow-up" 
-                    size={22} 
-                    color={(message.trim() && !isLoading) ? '#D9CBA0' : 'rgba(217,203,160,0.4)'} 
-                  />
-                </LinearGradient>
+                <Ionicons 
+                  name="paper-plane" 
+                  size={20} 
+                  color={message.trim() ? '#D9CBA0' : 'rgba(217,203,160,0.3)'} 
+                />
               </TouchableOpacity>
             </View>
-          </LinearGradient>
+          </BlurView>
         </View>
 
         {/* Bottom Dock */}
@@ -335,230 +379,260 @@ export default function Concierge() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0A0A0A',
+    backgroundColor: '#0D0D0D',
   },
 
   // Header
   header: {
-    paddingTop: 52,
-    paddingBottom: 18,
-    paddingHorizontal: 24,
+    paddingTop: 54,
+    paddingBottom: 20,
+    paddingHorizontal: 20,
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(217,203,160,0.12)',
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.15,
-        shadowRadius: 8,
-      },
-      android: {
-        elevation: 4,
-      },
-    }),
+    borderBottomColor: 'rgba(217,203,160,0.1)',
   },
   headerContent: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'space-between',
   },
   backButton: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
-    backgroundColor: 'rgba(217,203,160,0.08)',
-    borderWidth: 1,
-    borderColor: 'rgba(217,203,160,0.18)',
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    ...Platform.select({
-      ios: {
-        shadowColor: 'rgba(217,203,160,0.3)',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 4,
-      },
+    gap: 4,
+    paddingVertical: 6,
+  },
+  backText: {
+    fontSize: 14,
+    color: '#D9CBA0',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
     }),
   },
   headerCenter: {
     flex: 1,
     alignItems: 'center',
+    paddingHorizontal: 20,
   },
-  aiIndicator: {
+  titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 10,
   },
-  aiIndicatorDot: {
-    width: 9,
-    height: 9,
-    borderRadius: 4.5,
+  breathingDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
     backgroundColor: '#D9CBA0',
     ...Platform.select({
       ios: {
         shadowColor: '#D9CBA0',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.6,
-        shadowRadius: 6,
+        shadowOpacity: 0.8,
+        shadowRadius: 8,
       },
     }),
   },
   headerTitle: {
-    fontSize: 19,
+    fontSize: 20,
     fontWeight: '600',
     color: '#FFFFFF',
-    letterSpacing: 0.3,
+    letterSpacing: 1,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
     }),
   },
-  headerAction: {
-    width: 42,
-  },
-
-  // Messages Container
-  messagesContainer: {
-    flex: 1,
-  },
-  messagesContent: {
-    paddingHorizontal: 20,
-    paddingTop: 28,
-    paddingBottom: 140,
-  },
-
-  // Messages
-  messageWrapper: {
-    flexDirection: 'row',
-    gap: 14,
-    marginBottom: 24,
-  },
-  userMessageWrapper: {
-    justifyContent: 'flex-end',
-  },
-  aiMessageWrapper: {
-    justifyContent: 'flex-start',
-  },
-  aiAvatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(217,203,160,0.12)',
-    borderWidth: 1.5,
-    borderColor: 'rgba(217,203,160,0.28)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    ...Platform.select({
-      ios: {
-        shadowColor: 'rgba(217,203,160,0.4)',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 6,
-      },
-      android: {
-        elevation: 3,
-      },
-    }),
-  },
-  messageBubbleContainer: {
-    maxWidth: '72%',
-  },
-  messageBubble: {
-    paddingVertical: 14,
-    paddingHorizontal: 18,
-    borderRadius: 22,
-    borderWidth: 1,
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 8,
-      },
-      android: {
-        elevation: 2,
-      },
-    }),
-  },
-  userBubble: {
-    borderColor: 'rgba(217,203,160,0.35)',
-    borderTopRightRadius: 6,
-  },
-  aiBubble: {
-    borderColor: 'rgba(217,203,160,0.18)',
-    borderTopLeftRadius: 6,
-  },
-  messageText: {
-    fontSize: 15.5,
-    lineHeight: 23,
-    letterSpacing: 0.2,
+  headerSubtitle: {
+    fontSize: 13,
+    color: '#B9AE8B',
+    marginTop: 4,
+    fontWeight: '500',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  userMessageText: {
-    color: '#FFFFFF',
+  menuButton: {
+    padding: 6,
+  },
+
+  // Main Content
+  mainContent: {
+    flex: 1,
+  },
+  contentContainer: {
+    paddingTop: 24,
+    paddingBottom: 180,
+  },
+
+  // Greeting Pane
+  greetingContainer: {
+    paddingHorizontal: 20,
+    marginBottom: 24,
+  },
+  greetingCard: {
+    borderRadius: 24,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(217,203,160,0.2)',
+  },
+  greetingGradient: {
+    padding: 28,
+  },
+  greetingText: {
+    fontSize: 17,
+    lineHeight: 26,
+    color: '#F5F5F5',
+    fontWeight: '400',
+    marginBottom: 16,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  greetingSignature: {
+    fontSize: 12,
+    color: '#D9CBA0',
+    fontStyle: 'italic',
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+
+  // Suggestion Chips
+  chipsContainer: {
+    paddingHorizontal: 20,
+    paddingBottom: 28,
+    gap: 12,
+  },
+  chip: {
+    marginRight: 12,
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  firstChip: {
+    marginLeft: 0,
+  },
+  chipBlur: {
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(217,203,160,0.25)',
+    overflow: 'hidden',
+  },
+  chipGradient: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    gap: 8,
+  },
+  chipText: {
+    fontSize: 14,
+    color: '#F5F5F5',
     fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+
+  // Messages
+  messageWrapper: {
+    paddingHorizontal: 20,
+    marginBottom: 20,
+  },
+  userMessageWrapper: {
+    alignItems: 'flex-end',
+  },
+  aiMessageWrapper: {
+    alignItems: 'flex-start',
+  },
+  messageBubbleContainer: {
+    maxWidth: '80%',
+  },
+  aiMessageBlur: {
+    borderRadius: 24,
+    borderTopLeftRadius: 8,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
+  },
+  aiBubble: {
+    paddingVertical: 16,
+    paddingHorizontal: 20,
   },
   aiMessageText: {
+    fontSize: 15.5,
+    lineHeight: 23,
     color: 'rgba(255,255,255,0.92)',
-    fontWeight: '400',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  userBubble: {
+    backgroundColor: 'rgba(255,255,255,0.12)',
+    borderRadius: 24,
+    borderTopRightRadius: 8,
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.15)',
+  },
+  userMessageText: {
+    fontSize: 15.5,
+    lineHeight: 23,
+    color: '#FFFFFF',
+    fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
   },
 
   // Loading
   loadingContainer: {
-    flexDirection: 'row',
-    gap: 14,
-    marginBottom: 24,
+    paddingHorizontal: 20,
+    marginBottom: 20,
+    alignItems: 'flex-start',
+  },
+  loadingBlur: {
+    borderRadius: 24,
+    borderTopLeftRadius: 8,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
   },
   loadingBubble: {
-    maxWidth: '72%',
-  },
-  loadingBubbleGradient: {
-    paddingVertical: 14,
-    paddingHorizontal: 18,
-    borderRadius: 22,
-    borderWidth: 1,
-    borderColor: 'rgba(217,203,160,0.18)',
-    borderTopLeftRadius: 6,
+    paddingVertical: 16,
+    paddingHorizontal: 20,
   },
   loadingText: {
-    fontSize: 22,
+    fontSize: 24,
     color: '#D9CBA0',
     letterSpacing: 6,
-    opacity: 0.7,
   },
 
-  // Cards Section
+  // Cards
   cardsSection: {
-    marginTop: 18,
-    marginBottom: 12,
-    marginLeft: 54,
+    marginTop: 16,
+    marginBottom: 16,
   },
   cardsScroll: {
-    paddingRight: 24,
+    paddingHorizontal: 20,
   },
   card: {
-    width: 300,
-    height: 220,
-    borderRadius: 24,
+    width: 280,
+    height: 200,
+    borderRadius: 20,
     overflow: 'hidden',
-    marginRight: 18,
-    borderWidth: 1.5,
+    marginRight: 16,
+    borderWidth: 1,
     borderColor: 'rgba(217,203,160,0.25)',
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 6 },
-        shadowOpacity: 0.25,
-        shadowRadius: 12,
-      },
-      android: {
-        elevation: 6,
-      },
-    }),
   },
   firstCard: {
     marginLeft: 0,
@@ -567,137 +641,98 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   cardBgStyle: {
-    borderRadius: 24,
+    borderRadius: 20,
   },
   cardGradient: {
     ...StyleSheet.absoluteFillObject,
   },
-  cardContent: {
+  cardInfo: {
     position: 'absolute',
-    bottom: 20,
-    left: 20,
-    right: 20,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: 16,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    overflow: 'hidden',
   },
   cardName: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: '600',
     color: '#FFFFFF',
-    marginBottom: 6,
-    letterSpacing: 0.3,
+    marginBottom: 4,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
     }),
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.3,
-        shadowRadius: 3,
-      },
-    }),
   },
   cardTagline: {
-    fontSize: 14.5,
+    fontSize: 13,
     fontStyle: 'italic',
     color: '#D9CBA0',
-    marginBottom: 8,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
-  },
-  cardSubtitle: {
-    fontSize: 13,
-    color: 'rgba(255,255,255,0.85)',
-    lineHeight: 19,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
-  },
-  cardDurationPill: {
-    backgroundColor: 'rgba(217,203,160,0.22)',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 10,
-    alignSelf: 'flex-start',
-    marginTop: 10,
-    borderWidth: 1,
-    borderColor: 'rgba(217,203,160,0.35)',
-  },
-  cardDuration: {
-    fontSize: 11.5,
-    fontWeight: '600',
-    color: '#D9CBA0',
-    letterSpacing: 0.5,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
 
-  // Input Area
-  inputContainer: {
+  // Context Strip
+  contextStrip: {
     position: 'absolute',
-    bottom: 74,
+    bottom: 142,
     left: 0,
     right: 0,
-    borderTopWidth: 1,
-    borderTopColor: 'rgba(217,203,160,0.12)',
+    paddingHorizontal: 20,
+    paddingVertical: 8,
   },
-  inputGradient: {
-    paddingHorizontal: 18,
-    paddingVertical: 18,
+  contextText: {
+    fontSize: 12,
+    color: '#8E8E8E',
+    textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+
+  // Input Bar
+  inputContainer: {
+    position: 'absolute',
+    bottom: 86,
+    left: 0,
+    right: 0,
+    paddingHorizontal: 16,
+  },
+  inputBlur: {
+    borderRadius: 28,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(217,203,160,0.2)',
   },
   inputRow: {
     flexDirection: 'row',
-    gap: 14,
-    alignItems: 'flex-end',
-  },
-  inputWrapper: {
-    flex: 1,
-    backgroundColor: 'rgba(217,203,160,0.09)',
-    borderRadius: 22,
-    borderWidth: 1.5,
-    borderColor: 'rgba(217,203,160,0.22)',
-    paddingHorizontal: 18,
+    alignItems: 'center',
+    paddingHorizontal: 20,
     paddingVertical: 14,
-    minHeight: 52,
-    maxHeight: 130,
+    gap: 12,
+  },
+  inputIconLeft: {
+    width: 24,
+    alignItems: 'center',
   },
   input: {
-    fontSize: 15.5,
+    flex: 1,
+    fontSize: 15,
     color: '#FFFFFF',
-    lineHeight: 21,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
   sendButton: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
-    overflow: 'hidden',
-  },
-  sendButtonActive: {
-    borderWidth: 1.5,
-    borderColor: 'rgba(217,203,160,0.4)',
-    ...Platform.select({
-      ios: {
-        shadowColor: 'rgba(217,203,160,0.5)',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.4,
-        shadowRadius: 8,
-      },
-    }),
-  },
-  sendButtonGradient: {
-    flex: 1,
+    width: 28,
     alignItems: 'center',
-    justifyContent: 'center',
   },
 
   // Bottom Dock
@@ -707,27 +742,12 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     alignItems: 'center',
-    zIndex: 100,
   },
   dockContainer: {
     width: '92%',
     height: 60,
     borderRadius: 28,
     overflow: 'hidden',
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 20,
-      },
-      android: {
-        elevation: 8,
-      },
-      web: {
-        boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
-      },
-    }),
   },
   dockContent: {
     flex: 1,
@@ -747,7 +767,6 @@ const styles = StyleSheet.create({
     marginTop: 4,
     fontFamily: Platform.select({
       ios: 'Inter',
-      android: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
@@ -758,7 +777,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontFamily: Platform.select({
       ios: 'Inter',
-      android: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
