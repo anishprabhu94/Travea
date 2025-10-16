@@ -622,6 +622,8 @@ export default function TripCanvas() {
                     router.push('/bus-info');
                   } else if (item.type === 'rental-car') {
                     router.push('/car-rental-info');
+                  } else if (item.type === 'ferry') {
+                    router.push('/ferry-info');
                   }
                 }}
               >
