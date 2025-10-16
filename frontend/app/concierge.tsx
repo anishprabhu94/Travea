@@ -532,21 +532,32 @@ const styles = StyleSheet.create({
 
   // Cards Section
   cardsSection: {
-    marginTop: 16,
-    marginBottom: 8,
-    marginLeft: 48,
+    marginTop: 18,
+    marginBottom: 12,
+    marginLeft: 54,
   },
   cardsScroll: {
     paddingRight: 24,
   },
   card: {
-    width: 280,
-    height: 200,
-    borderRadius: 20,
+    width: 300,
+    height: 220,
+    borderRadius: 24,
     overflow: 'hidden',
-    marginRight: 16,
-    borderWidth: 1,
-    borderColor: 'rgba(217,203,160,0.2)',
+    marginRight: 18,
+    borderWidth: 1.5,
+    borderColor: 'rgba(217,203,160,0.25)',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.25,
+        shadowRadius: 12,
+      },
+      android: {
+        elevation: 6,
+      },
+    }),
   },
   firstCard: {
     marginLeft: 0,
@@ -555,33 +566,42 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   cardBgStyle: {
-    borderRadius: 20,
+    borderRadius: 24,
   },
   cardGradient: {
     ...StyleSheet.absoluteFillObject,
   },
   cardContent: {
     position: 'absolute',
-    bottom: 16,
-    left: 16,
-    right: 16,
+    bottom: 20,
+    left: 20,
+    right: 20,
   },
   cardName: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: '600',
     color: '#FFFFFF',
-    marginBottom: 4,
+    marginBottom: 6,
+    letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
     }),
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+      },
+    }),
   },
   cardTagline: {
-    fontSize: 14,
+    fontSize: 14.5,
     fontStyle: 'italic',
     color: '#D9CBA0',
-    marginBottom: 6,
+    marginBottom: 8,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
@@ -589,26 +609,28 @@ const styles = StyleSheet.create({
   },
   cardSubtitle: {
     fontSize: 13,
-    color: 'rgba(255,255,255,0.8)',
+    color: 'rgba(255,255,255,0.85)',
+    lineHeight: 19,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
   cardDurationPill: {
-    backgroundColor: 'rgba(217,203,160,0.2)',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 8,
+    backgroundColor: 'rgba(217,203,160,0.22)',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 10,
     alignSelf: 'flex-start',
-    marginTop: 8,
+    marginTop: 10,
     borderWidth: 1,
-    borderColor: 'rgba(217,203,160,0.3)',
+    borderColor: 'rgba(217,203,160,0.35)',
   },
   cardDuration: {
-    fontSize: 11,
+    fontSize: 11.5,
     fontWeight: '600',
     color: '#D9CBA0',
+    letterSpacing: 0.5,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
