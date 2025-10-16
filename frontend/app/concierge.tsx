@@ -506,22 +506,24 @@ const styles = StyleSheet.create({
   // Greeting Bubble
   greetingContainer: {
     paddingHorizontal: 20,
-    marginBottom: 20,
+    marginTop: 32,
+    marginBottom: 24,
     alignItems: 'flex-start',
   },
   greetingCard: {
-    borderRadius: 20,
+    borderRadius: 18,
     overflow: 'hidden',
     borderWidth: 0,
-    maxWidth: 280,
+    maxWidth: 260,
   },
   greetingGradient: {
-    padding: 18,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
     alignItems: 'flex-start',
   },
   greetingText: {
-    fontSize: 16,
-    lineHeight: 23,
+    fontSize: 15,
+    lineHeight: 21,
     color: '#F5F5F5',
     fontWeight: '400',
     textAlign: 'left',
