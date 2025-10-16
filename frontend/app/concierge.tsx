@@ -140,7 +140,7 @@ export default function Concierge() {
               >
                 {msg.sender === 'ai' && (
                   <View style={styles.aiAvatar}>
-                    <Ionicons name="sparkles" size={14} color="#D9CBA0" />
+                    <Ionicons name="sparkles" size={16} color="#D9CBA0" />
                   </View>
                 )}
                 
