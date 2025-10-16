@@ -437,6 +437,7 @@ const styles = StyleSheet.create({
   headerContent: {
     alignItems: 'center',
     justifyContent: 'center',
+    minHeight: 30,
   },
   logoContainer: {
     ...Platform.select({
