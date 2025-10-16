@@ -91,6 +91,16 @@ const tripData = {
           route: 'Rome → Naples',
           duration: '2h 30 min · Bus',
           image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
+        },
+        {
+          id: '4',
+          type: 'ferry',
+          title: 'Capri Express',
+          date: 'Jun 9',
+          time: '10:30 AM',
+          route: 'Amalfi → Capri',
+          duration: '1h 15m · Ferry',
+          image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg'
         }
       ],
       experiences: [
