@@ -96,52 +96,29 @@ export default function Concierge() {
             </View>
           </View>
 
-          {/* Messages */}
+          {/* Static Welcome Message */}
           <View style={styles.messagesList}>
-            {messages.map((msg) => (
-              <View 
-                key={msg.id} 
-                style={[
-                  styles.messageWrapper,
-                  msg.sender === 'user' ? styles.userMessageWrapper : styles.aiMessageWrapper
-                ]}
-              >
-                {msg.sender === 'ai' && (
-                  <View style={styles.aiAvatar}>
-                    <Ionicons name="sparkles" size={14} color="#D9CBA0" />
-                  </View>
-                )}
-                
-                <View style={styles.messageBubbleContainer}>
-                  <LinearGradient
-                    colors={
-                      msg.sender === 'user'
-                        ? ['rgba(217,203,160,0.25)', 'rgba(217,203,160,0.15)']
-                        : ['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.03)']
-                    }
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 1 }}
-                    style={[
-                      styles.messageBubble,
-                      msg.sender === 'user' ? styles.userBubble : styles.aiBubble
-                    ]}
-                  >
-                    <Text style={[
-                      styles.messageText,
-                      msg.sender === 'user' ? styles.userMessageText : styles.aiMessageText
-                    ]}>
-                      {msg.text}
-                    </Text>
-                  </LinearGradient>
-                  <Text style={[
-                    styles.messageTime,
-                    msg.sender === 'user' ? styles.userMessageTime : styles.aiMessageTime
-                  ]}>
-                    {msg.timestamp}
-                  </Text>
-                </View>
+            <View style={styles.messageWrapper}>
+              <View style={styles.aiAvatar}>
+                <Ionicons name="sparkles" size={14} color="#D9CBA0" />
               </View>
-            ))}
+              
+              <View style={styles.messageBubbleContainer}>
+                <LinearGradient
+                  colors={['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.03)']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={[styles.messageBubble, styles.aiBubble]}
+                >
+                  <Text style={[styles.messageText, styles.aiMessageText]}>
+                    Good evening. I'm your Trāvea concierge. How may I assist with your journey today?
+                  </Text>
+                </LinearGradient>
+                <Text style={[styles.messageTime, styles.aiMessageTime]}>
+                  8:42 PM
+                </Text>
+              </View>
+            </View>
           </View>
         </ScrollView>
 
