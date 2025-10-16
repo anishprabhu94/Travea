@@ -35,9 +35,60 @@ export default function ConciergeV2() {
 
   const backendUrl = Constants.expoConfig?.extra?.EXPO_PUBLIC_BACKEND_URL || 'http://localhost:8001'
 
-  const handleChipPress = (chipText: string) => {
+  const handleChipPress = async (chipText: string) => {
     setMessage(chipText)
     setShowGreeting(false)
+    
+    // Auto-send the chip text
+    const userMessage = {
+      id: Date.now().toString(),
+      text: chipText,
+      sender: 'user',
+      cards: [],
+      cardType: null
+    }
+    
+    setMessages([userMessage])
+    setIsLoading(true)
+
+    try {
+      const response = await fetch(`${backendUrl}/api/concierge/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: chipText,
+          user_has_trip: false,
+          session_id: 'demo-session'
+        })
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        const aiMessage = {
+          id: (Date.now() + 1).toString(),
+          text: data.message,
+          sender: 'ai',
+          cards: data.cards || [],
+          cardType: data.card_type
+        }
+        setMessages(prev => [...prev, aiMessage])
+      } else {
+        throw new Error('API error')
+      }
+    } catch (error) {
+      console.error('Concierge error:', error)
+      const errorMessage = {
+        id: (Date.now() + 1).toString(),
+        text: 'I apologize — let me reconnect. Please try again in a moment.',
+        sender: 'ai',
+        cards: [],
+        cardType: null
+      }
+      setMessages(prev => [...prev, errorMessage])
+    } finally {
+      setIsLoading(false)
+      setMessage('')
+    }
   }
 
   const handleSend = async () => {
