@@ -72,32 +72,29 @@ export default function Concierge() {
             </LinearGradient>
           </View>
 
-          {/* Suggested Prompts - Only show if no messages yet */}
-          {messages.length === 1 && (
-            <View style={styles.promptsSection}>
-              <Text style={styles.promptsTitle}>Try asking me:</Text>
-              <View style={styles.promptsGrid}>
-                {suggestedPrompts.map((prompt, index) => (
-                  <TouchableOpacity
-                    key={index}
-                    style={styles.promptCard}
-                    onPress={() => handlePromptPress(prompt.text)}
-                    activeOpacity={0.8}
+          {/* Suggested Prompts */}
+          <View style={styles.promptsSection}>
+            <Text style={styles.promptsTitle}>Try asking me:</Text>
+            <View style={styles.promptsGrid}>
+              {suggestedPrompts.map((prompt, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={styles.promptCard}
+                  activeOpacity={0.8}
+                >
+                  <LinearGradient
+                    colors={['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.02)']}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    style={styles.promptCardGradient}
                   >
-                    <LinearGradient
-                      colors={['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.02)']}
-                      start={{ x: 0, y: 0 }}
-                      end={{ x: 1, y: 1 }}
-                      style={styles.promptCardGradient}
-                    >
-                      <Ionicons name={prompt.icon as any} size={20} color="#D9CBA0" />
-                      <Text style={styles.promptText}>{prompt.text}</Text>
-                    </LinearGradient>
-                  </TouchableOpacity>
-                ))}
-              </View>
+                    <Ionicons name={prompt.icon as any} size={20} color="#D9CBA0" />
+                    <Text style={styles.promptText}>{prompt.text}</Text>
+                  </LinearGradient>
+                </TouchableOpacity>
+              ))}
             </View>
-          )}
+          </View>
 
           {/* Messages */}
           <View style={styles.messagesList}>
