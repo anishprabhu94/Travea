@@ -98,40 +98,38 @@ export default function Concierge() {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <View style={styles.container}>
-      {/* Header */}
-      <LinearGradient
-        colors={['rgba(13,13,13,0.98)', 'rgba(26,26,26,0.95)']}
-        style={styles.header}
-      >
-        <View style={styles.headerContent}>
-          <TouchableOpacity 
-            style={styles.backButton}
-            onPress={() => router.back()}
-            activeOpacity={0.8}
-          >
-            <Ionicons name="arrow-back" size={20} color="#D9CBA0" />
-          </TouchableOpacity>
-          
-          <View style={styles.headerCenter}>
-            <View style={styles.aiIndicator}>
-              <View style={styles.aiIndicatorDot} />
-              <Text style={styles.headerTitle}>Trāvea Concierge</Text>
+        {/* Header */}
+        <LinearGradient
+          colors={['rgba(13,13,13,0.98)', 'rgba(26,26,26,0.95)']}
+          style={styles.header}
+        >
+          <View style={styles.headerContent}>
+            <TouchableOpacity 
+              style={styles.backButton}
+              onPress={() => router.back()}
+              activeOpacity={0.8}
+            >
+              <Ionicons name="arrow-back" size={20} color="#D9CBA0" />
+            </TouchableOpacity>
+            
+            <View style={styles.headerCenter}>
+              <View style={styles.aiIndicator}>
+                <View style={styles.aiIndicatorDot} />
+                <Text style={styles.headerTitle}>Trāvea Concierge</Text>
+              </View>
             </View>
-            <Text style={styles.headerSubtitle}>AI Travel Assistant</Text>
+            
+            <View style={styles.headerAction} />
           </View>
-          
-          <TouchableOpacity style={styles.headerAction} activeOpacity={0.8}>
-            <Ionicons name="ellipsis-horizontal" size={20} color="#D9CBA0" />
-          </TouchableOpacity>
-        </View>
-      </LinearGradient>
+        </LinearGradient>
 
-      {/* Messages Area */}
-      <ScrollView 
-        style={styles.messagesContainer}
-        contentContainerStyle={styles.messagesContent}
-        showsVerticalScrollIndicator={false}
-      >
+        {/* Messages Area */}
+        <ScrollView 
+          ref={scrollRef}
+          style={styles.messagesContainer}
+          contentContainerStyle={styles.messagesContent}
+          showsVerticalScrollIndicator={false}
+        >
         {/* Welcome Header */}
         <View style={styles.welcomeSection}>
           <LinearGradient
