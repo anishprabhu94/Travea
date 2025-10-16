@@ -676,25 +676,6 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Context Strip
-  contextStrip: {
-    position: 'absolute',
-    bottom: 142,
-    left: 0,
-    right: 0,
-    paddingHorizontal: 20,
-    paddingVertical: 8,
-  },
-  contextText: {
-    fontSize: 12,
-    color: '#8E8E8E',
-    textAlign: 'center',
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
-  },
-
   // Input Bar
   inputContainer: {
     position: 'absolute',
