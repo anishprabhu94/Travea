@@ -242,13 +242,6 @@ def parse_ai_response(response: str, user_query: str) -> tuple:
         intent = "general_info"
     
     return intent, cards, card_type
-    # Default to showing city cards
-    else:
-        card_type = "city"
-        cards = CITY_CARDS[:3]
-        intent = "general_info"
-    
-    return intent, cards[:4], card_type
 
 def clean_response(response: str) -> str:
     """
