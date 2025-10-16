@@ -180,7 +180,7 @@ export default function ConciergeV2() {
       <View style={styles.container}>
         {/* Hero Background */}
         <ImageBackground
-          source={{ uri: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80' }}
+          source={{ uri: 'https://customer-assets.emergentagent.com/job_glass-voyage/artifacts/vmebbjwa_image.png' }}
           style={styles.heroBackground}
           imageStyle={styles.heroBackgroundImage}
           blurRadius={15}
