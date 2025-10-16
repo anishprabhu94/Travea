@@ -159,10 +159,11 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Input field height reduction"
+    - "AI Concierge API endpoint with emergentintegrations"
+    - "AI Concierge page with editorial luxury design and backend integration"
   stuck_tasks: []
   test_all: false
-  test_priority: "sequential"
+  test_priority: "high_first"
 
   - task: "Unify material design between login pane and onboarding bubbles"
     implemented: true
