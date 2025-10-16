@@ -23,7 +23,7 @@ type Message = {
 
 export default function Concierge() {
   const [message, setMessage] = useState('')
-  const [messages, setMessages] = useState<Message[]>([
+  const [messages, setMessages] = useState([
     {
       id: '1',
       text: 'Good evening. I'm your Trāvea concierge. How may I assist with your journey today?',
