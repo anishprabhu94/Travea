@@ -726,6 +726,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     alignItems: 'center',
+    zIndex: 100,
   },
   dockContainer: {
     width: '92%',
@@ -746,7 +747,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   dockLabelInactive: {
-    fontSize: 11,
+    fontSize: 14,
     color: 'rgba(255,255,255,0.7)',
     marginTop: 4,
     fontFamily: Platform.select({
@@ -755,8 +756,8 @@ const styles = StyleSheet.create({
     }),
   },
   dockLabelActive: {
-    fontSize: 11,
-    color: '#D9CBA0',
+    fontSize: 14,
+    color: '#C9A96D',
     marginTop: 4,
     fontWeight: '600',
     fontFamily: Platform.select({
