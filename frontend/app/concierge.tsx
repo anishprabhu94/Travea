@@ -339,11 +339,22 @@ const styles = StyleSheet.create({
 
   // Header
   header: {
-    paddingTop: 48,
-    paddingBottom: 16,
+    paddingTop: 52,
+    paddingBottom: 18,
     paddingHorizontal: 24,
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(217,203,160,0.15)',
+    borderBottomColor: 'rgba(217,203,160,0.12)',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.15,
+        shadowRadius: 8,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   headerContent: {
     flexDirection: 'row',
@@ -351,14 +362,22 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   backButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(217,203,160,0.1)',
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    backgroundColor: 'rgba(217,203,160,0.08)',
     borderWidth: 1,
-    borderColor: 'rgba(217,203,160,0.2)',
+    borderColor: 'rgba(217,203,160,0.18)',
     alignItems: 'center',
     justifyContent: 'center',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(217,203,160,0.3)',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+      },
+    }),
   },
   headerCenter: {
     flex: 1,
@@ -367,18 +386,27 @@ const styles = StyleSheet.create({
   aiIndicator: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: 10,
   },
   aiIndicatorDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
+    width: 9,
+    height: 9,
+    borderRadius: 4.5,
     backgroundColor: '#D9CBA0',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#D9CBA0',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.6,
+        shadowRadius: 6,
+      },
+    }),
   },
   headerTitle: {
-    fontSize: 18,
+    fontSize: 19,
     fontWeight: '600',
     color: '#FFFFFF',
+    letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
@@ -386,7 +414,7 @@ const styles = StyleSheet.create({
     }),
   },
   headerAction: {
-    width: 40,
+    width: 42,
   },
 
   // Messages Container
