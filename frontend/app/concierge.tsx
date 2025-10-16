@@ -368,7 +368,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
-    marginBottom: 4,
   },
   aiIndicatorDot: {
     width: 8,
@@ -386,23 +385,9 @@ const styles = StyleSheet.create({
       web: 'Playfair Display, Georgia, serif',
     }),
   },
-  headerSubtitle: {
-    fontSize: 12,
-    color: 'rgba(217,203,160,0.8)',
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
-  },
   headerAction: {
     width: 40,
     height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(217,203,160,0.1)',
-    borderWidth: 1,
-    borderColor: 'rgba(217,203,160,0.2)',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 
   // Messages Container
@@ -413,89 +398,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 24,
     paddingBottom: 120,
-  },
-
-  // Welcome Section
-  welcomeSection: {
-    marginBottom: 32,
-  },
-  welcomeCard: {
-    padding: 24,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: 'rgba(217,203,160,0.2)',
-    alignItems: 'center',
-    gap: 12,
-  },
-  welcomeTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#FFFFFF',
-    textAlign: 'center',
-    fontFamily: Platform.select({
-      ios: 'Playfair Display',
-      android: 'serif',
-      web: 'Playfair Display, Georgia, serif',
-    }),
-  },
-  welcomeText: {
-    fontSize: 14,
-    color: 'rgba(255,255,255,0.7)',
-    textAlign: 'center',
-    lineHeight: 20,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
-  },
-
-  // Suggested Prompts
-  promptsSection: {
-    marginBottom: 32,
-  },
-  promptsTitle: {
-    fontSize: 13,
-    fontWeight: '600',
-    color: 'rgba(255,255,255,0.6)',
-    marginBottom: 16,
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
-  },
-  promptsGrid: {
-    gap: 12,
-  },
-  promptCard: {
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: 'rgba(217,203,160,0.2)',
-    overflow: 'hidden',
-  },
-  promptCardGradient: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 16,
-    gap: 12,
-  },
-  promptText: {
-    fontSize: 14,
-    color: '#FFFFFF',
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
+    gap: 20,
   },
 
   // Messages
-  messagesList: {
-    gap: 20,
-  },
   messageWrapper: {
     flexDirection: 'row',
     gap: 12,
+    marginBottom: 16,
+  },
+  userMessageWrapper: {
+    justifyContent: 'flex-end',
+  },
+  aiMessageWrapper: {
+    justifyContent: 'flex-start',
   },
   aiAvatar: {
     width: 36,
@@ -519,6 +435,10 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(217,203,160,0.15)',
     borderTopLeftRadius: 4,
   },
+  userBubble: {
+    borderColor: 'rgba(217,203,160,0.3)',
+    borderTopRightRadius: 4,
+  },
   messageText: {
     fontSize: 15,
     lineHeight: 22,
@@ -530,17 +450,116 @@ const styles = StyleSheet.create({
   aiMessageText: {
     color: 'rgba(255,255,255,0.9)',
   },
-  messageTime: {
-    fontSize: 11,
-    marginTop: 6,
+  userMessageText: {
+    color: '#FFFFFF',
+  },
+
+  // Loading
+  loadingContainer: {
+    flexDirection: 'row',
+    gap: 12,
+    marginBottom: 16,
+  },
+  loadingBubble: {
+    maxWidth: '75%',
+  },
+  loadingBubbleGradient: {
+    padding: 16,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(217,203,160,0.15)',
+    borderTopLeftRadius: 4,
+  },
+  loadingText: {
+    fontSize: 15,
+    color: 'rgba(255,255,255,0.9)',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  aiMessageTime: {
-    color: 'rgba(255,255,255,0.4)',
-    textAlign: 'left',
+
+  // Cards Section
+  cardsSection: {
+    marginTop: 12,
+    marginLeft: 48,
+  },
+  cardsScroll: {
+    paddingRight: 24,
+  },
+  card: {
+    width: 280,
+    height: 160,
+    marginRight: 16,
+    borderRadius: 16,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(217,203,160,0.2)',
+  },
+  firstCard: {
+    marginLeft: 0,
+  },
+  cardBg: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  cardBgStyle: {
+    borderRadius: 16,
+  },
+  cardGradient: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  cardContent: {
+    padding: 20,
+    gap: 4,
+  },
+  cardName: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  cardTagline: {
+    fontSize: 13,
+    color: 'rgba(255,255,255,0.8)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  cardSubtitle: {
+    fontSize: 12,
+    color: 'rgba(255,255,255,0.6)',
+    marginTop: 2,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  cardDurationPill: {
+    backgroundColor: 'rgba(217,203,160,0.2)',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 12,
+    alignSelf: 'flex-start',
+    marginTop: 8,
+  },
+  cardDuration: {
+    fontSize: 11,
+    color: '#D9CBA0',
+    fontWeight: '600',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
   },
 
   // Input Area
@@ -571,19 +590,23 @@ const styles = StyleSheet.create({
     minHeight: 48,
     justifyContent: 'center',
   },
-  inputPlaceholder: {
+  input: {
     fontSize: 15,
-    color: 'rgba(255,255,255,0.4)',
+    color: '#FFFFFF',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
+    maxHeight: 100,
   },
   sendButton: {
     width: 48,
     height: 48,
     borderRadius: 24,
     overflow: 'hidden',
+  },
+  sendButtonActive: {
+    // Additional styles for active state if needed
   },
   sendButtonGradient: {
     flex: 1,
