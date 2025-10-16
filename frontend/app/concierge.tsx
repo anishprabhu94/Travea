@@ -1,37 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   View,
   Text,
   ScrollView,
   TouchableOpacity,
-  TextInput,
   Platform,
   StyleSheet,
-  KeyboardAvoidingView,
 } from 'react-native'
 import { router } from 'expo-router'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
 import { BlurView } from 'expo-blur'
 
-type Message = {
-  id: string
-  text: string
-  sender: 'user' | 'ai'
-  timestamp: string
-}
-
 export default function Concierge() {
-  const [message, setMessage] = useState('')
-  const [messages, setMessages] = useState([
-    {
-      id: '1',
-      text: 'Good evening. I'm your Trāvea concierge. How may I assist with your journey today?',
-      sender: 'ai',
-      timestamp: '8:42 PM'
-    }
-  ])
-
   const suggestedPrompts = [
     { icon: 'restaurant-outline', text: 'Find a Michelin-starred restaurant' },
     { icon: 'car-outline', text: 'Book a private transfer' },
@@ -39,42 +20,8 @@ export default function Concierge() {
     { icon: 'sunny-outline', text: 'Check tomorrow's weather' },
   ]
 
-  const handleSend = () => {
-    if (message.trim()) {
-      // Add user message
-      const userMsg = {
-        id: Date.now().toString(),
-        text: message,
-        sender: 'user',
-        timestamp: new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
-      }
-      setMessages([...messages, userMsg])
-      setMessage('')
-      
-      // Simulate AI response (placeholder)
-      setTimeout(() => {
-        const aiMsg = {
-          id: (Date.now() + 1).toString(),
-          text: 'I understand. Let me help you with that. This feature will be available soon.',
-          sender: 'ai',
-          timestamp: new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
-        }
-        setMessages(prev => [...prev, aiMsg])
-      }, 1000)
-    }
-  }
-
-  const handlePromptPress = (promptText: string) => {
-    setMessage(promptText)
-  }
-
   return (
-    <KeyboardAvoidingView 
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={0}
-    >
-      <View style={styles.container}>
+    <View style={styles.container}>
         {/* Header */}
         <LinearGradient
           colors={['rgba(13,13,13,0.98)', 'rgba(26,26,26,0.95)']}
