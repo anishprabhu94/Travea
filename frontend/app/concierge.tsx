@@ -422,78 +422,46 @@ const styles = StyleSheet.create({
 
   // Header
   header: {
-    paddingTop: 54,
+    paddingTop: 52,
     paddingBottom: 20,
     paddingHorizontal: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(217,203,160,0.1)',
+    borderBottomWidth: 0,
   },
   headerContent: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-  },
-  backButton: {
-    flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
-    paddingVertical: 6,
+    justifyContent: 'center',
   },
-  backText: {
-    fontSize: 14,
-    color: '#D9CBA0',
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
-  },
-  headerCenter: {
-    flex: 1,
+  logoContainer: {
+    position: 'relative',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    justifyContent: 'center',
   },
-  titleRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-  },
-  breathingDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
+  logoPulse: {
+    position: 'absolute',
+    width: 120,
+    height: 40,
+    borderRadius: 20,
     backgroundColor: '#D9CBA0',
+    opacity: 0.15,
     ...Platform.select({
       ios: {
         shadowColor: '#D9CBA0',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.8,
-        shadowRadius: 8,
+        shadowOpacity: 0.6,
+        shadowRadius: 20,
       },
     }),
   },
-  headerTitle: {
-    fontSize: 20,
+  logoText: {
+    fontSize: 22,
     fontWeight: '600',
-    color: '#FFFFFF',
-    letterSpacing: 1,
+    color: '#D9CBA0',
+    letterSpacing: 3,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
     }),
-  },
-  headerSubtitle: {
-    fontSize: 13,
-    color: '#B9AE8B',
-    marginTop: 4,
-    fontWeight: '500',
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
-  },
-  menuButton: {
-    padding: 6,
   },
 
   // Main Content
