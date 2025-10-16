@@ -196,21 +196,17 @@ export default function ConciergeV2() {
           contentContainerStyle={styles.contentContainer}
           showsVerticalScrollIndicator={false}
         >
-          {/* Hero Greeting Pane */}
+          {/* Hero Greeting Bubble */}
           {showGreeting && (
             <View style={styles.greetingContainer}>
               <BlurView intensity={30} tint="dark" style={styles.greetingCard}>
                 <LinearGradient
-                  colors={['rgba(217,203,160,0.12)', 'rgba(217,203,160,0.06)']}
+                  colors={['rgba(255,255,255,0.05)', 'rgba(255,255,255,0.02)']}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
                   style={styles.greetingGradient}
                 >
-                  <Text style={styles.greetingText}>
-                    Good evening. I'm your Trāvea Concierge.{'\n'}
-                    How may I assist with your journey today?
-                  </Text>
-                  <Text style={styles.greetingSignature}>— Aurelia, Trāvea Concierge</Text>
+                  <Text style={styles.greetingText}>Hello, how may I assist you?</Text>
                 </LinearGradient>
               </BlurView>
             </View>
