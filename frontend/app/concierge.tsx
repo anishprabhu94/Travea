@@ -107,6 +107,9 @@ export default function ConciergeV2() {
       setShowGreeting(false)
 
       try {
+        console.log('Backend URL:', backendUrl)
+        console.log('Sending message:', userMessage.text)
+        
         const response = await fetch(`${backendUrl}/api/concierge/chat`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -117,8 +120,11 @@ export default function ConciergeV2() {
           })
         })
 
+        console.log('Response status:', response.status)
+        
         if (response.ok) {
           const data = await response.json()
+          console.log('Response data:', data)
           const aiMessage = {
             id: (Date.now() + 1).toString(),
             text: data.message,
@@ -128,10 +134,13 @@ export default function ConciergeV2() {
           }
           setMessages(prev => [...prev, aiMessage])
         } else {
-          throw new Error('API error')
+          const errorText = await response.text()
+          console.error('API error response:', errorText)
+          throw new Error(`API error: ${response.status}`)
         }
       } catch (error) {
-        console.error('Concierge error:', error)
+        console.error('Concierge error details:', error)
+        console.error('Error message:', error.message)
         const errorMessage = {
           id: (Date.now() + 1).toString(),
           text: 'I apologize — let me reconnect. Please try again in a moment.',
