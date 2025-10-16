@@ -33,7 +33,10 @@ export default function ConciergeV2() {
   const [showGreeting, setShowGreeting] = useState(true)
   const scrollRef = useRef(null)
 
-  const backendUrl = Constants.expoConfig?.extra?.EXPO_PUBLIC_BACKEND_URL || 'http://localhost:8001'
+  // Use environment variable directly
+  const backendUrl = process.env.EXPO_PUBLIC_BACKEND_URL || Constants.expoConfig?.extra?.EXPO_PUBLIC_BACKEND_URL || 'https://glass-voyage.preview.emergentagent.com'
+  
+  console.log('Concierge - Backend URL:', backendUrl)
 
   const handleChipPress = async (chipText: string) => {
     setMessage(chipText)
