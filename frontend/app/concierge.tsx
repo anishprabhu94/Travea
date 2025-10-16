@@ -286,46 +286,47 @@ export default function Concierge() {
           </LinearGradient>
         </View>
 
-      {/* Bottom Dock */}
-      <View style={styles.bottomDock}>
-        <BlurView intensity={20} tint="light" style={styles.dockContainer}>
-          <View style={styles.dockContent}>
-            <TouchableOpacity 
-              style={styles.dockItem} 
-              activeOpacity={0.8}
-              onPress={() => router.push('/landing')}
-            >
-              <Ionicons name="home" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockLabelInactive}>Home</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.dockItem} 
-              activeOpacity={0.8}
-              onPress={() => router.push('/bookings')}
-            >
-              <Ionicons name="calendar" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.dockItem} 
-              activeOpacity={0.8}
-              onPress={() => router.push('/trips')}
-            >
-              <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockLabelInactive}>My Trips</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.dockItem} 
-              activeOpacity={0.8}
-            >
-              <Ionicons name="chatbubble-ellipses" size={22} color="#D9CBA0" />
-              <Text style={styles.dockLabelActive}>Concierge</Text>
-            </TouchableOpacity>
-          </View>
-        </BlurView>
+        {/* Bottom Dock */}
+        <View style={styles.bottomDock}>
+          <BlurView intensity={20} tint="light" style={styles.dockContainer}>
+            <View style={styles.dockContent}>
+              <TouchableOpacity 
+                style={styles.dockItem} 
+                activeOpacity={0.8}
+                onPress={() => router.push('/landing')}
+              >
+                <Ionicons name="home" size={22} color="rgba(255,255,255,0.7)" />
+                <Text style={styles.dockLabelInactive}>Home</Text>
+              </TouchableOpacity>
+              
+              <TouchableOpacity 
+                style={styles.dockItem} 
+                activeOpacity={0.8}
+                onPress={() => router.push('/bookings')}
+              >
+                <Ionicons name="calendar" size={22} color="rgba(255,255,255,0.7)" />
+                <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
+              </TouchableOpacity>
+              
+              <TouchableOpacity 
+                style={styles.dockItem} 
+                activeOpacity={0.8}
+                onPress={() => router.push('/trips')}
+              >
+                <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.7)" />
+                <Text style={styles.dockLabelInactive}>My Trips</Text>
+              </TouchableOpacity>
+              
+              <TouchableOpacity 
+                style={styles.dockItem} 
+                activeOpacity={0.8}
+              >
+                <Ionicons name="chatbubble-ellipses" size={22} color="#D9CBA0" />
+                <Text style={styles.dockLabelActive}>Concierge</Text>
+              </TouchableOpacity>
+            </View>
+          </BlurView>
+        </View>
       </View>
     </KeyboardAvoidingView>
   )
