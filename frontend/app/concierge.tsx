@@ -248,8 +248,8 @@ export default function Concierge() {
               <View style={styles.inputWrapper}>
                 <TextInput
                   style={styles.input}
-                  placeholder="Ask your concierge..."
-                  placeholderTextColor="rgba(255,255,255,0.4)"
+                  placeholder="Ask about destinations, experiences, or plans..."
+                  placeholderTextColor="rgba(255,255,255,0.38)"
                   value={message}
                   onChangeText={setMessage}
                   onSubmitEditing={handleSend}
