@@ -178,6 +178,26 @@ export default function ConciergeV2() {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <View style={styles.container}>
+        {/* Hero Background */}
+        <ImageBackground
+          source={{ uri: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80' }}
+          style={styles.heroBackground}
+          imageStyle={styles.heroBackgroundImage}
+          blurRadius={15}
+        >
+          <LinearGradient
+            colors={['rgba(0,0,0,0)', 'rgba(13,13,13,0.4)']}
+            style={styles.heroGradient}
+          />
+        </ImageBackground>
+
+        {/* Vignette Overlay */}
+        <LinearGradient
+          colors={['rgba(13,13,13,0)', 'rgba(13,13,13,0.6)', 'rgba(13,13,13,0.95)']}
+          locations={[0, 0.3, 1]}
+          style={styles.vignetteOverlay}
+        />
+
         {/* Background Atmosphere */}
         <LinearGradient
           colors={['#0D0D0D', '#1A1A1A', '#0D0D0D']}
