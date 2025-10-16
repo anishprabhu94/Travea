@@ -640,7 +640,7 @@ export default function TripCanvas() {
                     style={styles.transportImageCardGradient}
                   />
                   <View style={styles.transportImageCardFrosted}>
-                    {/* Transport Type Icon */}
+                    {/* Transport Type Icon - Top Right */}
                     <View style={styles.transportTypeIcon}>
                       <Ionicons 
                         name={
@@ -654,13 +654,10 @@ export default function TripCanvas() {
                         color="rgba(181,155,115,0.95)" 
                       />
                     </View>
-                    <View style={styles.cardArrowIconOnPane}>
-                      <Ionicons name="arrow-forward" size={12} color="rgba(181,155,115,0.95)" />
-                    </View>
                     <Text style={styles.transportCardTitle}>{item.title}</Text>
                     <Text style={styles.transportCardRoute}>{item.route}</Text>
                     <Text style={styles.transportCardTime}>Leave: {item.time}</Text>
-                    <Text style={styles.transportCardDuration}>{item.duration}</Text>
+                    <Text style={styles.transportCardDuration}>{item.duration.split('·')[0].trim()}</Text>
                   </View>
                 </ImageBackground>
               </TouchableOpacity>
