@@ -198,12 +198,6 @@ export default function ConciergeV2() {
           style={styles.vignetteOverlay}
         />
 
-        {/* Background Atmosphere */}
-        <LinearGradient
-          colors={['#0D0D0D', '#1A1A1A', '#0D0D0D']}
-          style={StyleSheet.absoluteFillObject}
-        />
-
         {/* Header Bar */}
         <LinearGradient
           colors={['rgba(13,13,13,0.98)', 'rgba(26,26,26,0.95)']}
