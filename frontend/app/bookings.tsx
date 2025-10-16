@@ -608,8 +608,11 @@ export default function TripCanvas() {
                   // Navigate based on transport type
                   if (item.type === 'train') {
                     router.push('/train-info');
+                  } else if (item.type === 'bus') {
+                    router.push('/bus-info');
+                  } else if (item.type === 'rental-car') {
+                    router.push('/car-rental-info');
                   }
-                  // Future: add other transport types (bus, rental car, etc.)
                 }}
               >
                 <ImageBackground
