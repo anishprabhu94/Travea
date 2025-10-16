@@ -17,200 +17,185 @@ export default function Concierge() {
     { icon: 'restaurant-outline', text: 'Find a Michelin-starred restaurant' },
     { icon: 'car-outline', text: 'Book a private transfer' },
     { icon: 'time-outline', text: 'Adjust my itinerary' },
-    { icon: 'sunny-outline', text: 'Check tomorrow's weather' },
+    { icon: 'sunny-outline', text: 'Check tomorrow\'s weather' },
   ]
 
   return (
     <View style={styles.container}>
-        {/* Header */}
-        <LinearGradient
-          colors={['rgba(13,13,13,0.98)', 'rgba(26,26,26,0.95)']}
-          style={styles.header}
-        >
-          <View style={styles.headerContent}>
-            <TouchableOpacity 
-              style={styles.backButton}
-              onPress={() => router.back()}
-              activeOpacity={0.8}
-            >
-              <Ionicons name="arrow-back" size={20} color="#D9CBA0" />
-            </TouchableOpacity>
-            
-            <View style={styles.headerCenter}>
-              <View style={styles.aiIndicator}>
-                <View style={styles.aiIndicatorDot} />
-                <Text style={styles.headerTitle}>Trāvea Concierge</Text>
-              </View>
-              <Text style={styles.headerSubtitle}>AI Travel Assistant</Text>
-            </View>
-            
-            <TouchableOpacity style={styles.headerAction} activeOpacity={0.8}>
-              <Ionicons name="ellipsis-horizontal" size={20} color="#D9CBA0" />
-            </TouchableOpacity>
-          </View>
-        </LinearGradient>
-
-        {/* Messages Area */}
-        <ScrollView 
-          style={styles.messagesContainer}
-          contentContainerStyle={styles.messagesContent}
-          showsVerticalScrollIndicator={false}
-        >
-          {/* Welcome Header */}
-          <View style={styles.welcomeSection}>
-            <LinearGradient
-              colors={['rgba(217,203,160,0.15)', 'rgba(217,203,160,0.05)']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.welcomeCard}
-            >
-              <Ionicons name="chatbubble-ellipses-outline" size={32} color="#D9CBA0" />
-              <Text style={styles.welcomeTitle}>Your Personal Concierge</Text>
-              <Text style={styles.welcomeText}>
-                Ask me anything about your journey — reservations, recommendations, or adjustments.
-              </Text>
-            </LinearGradient>
-          </View>
-
-          {/* Suggested Prompts */}
-          <View style={styles.promptsSection}>
-            <Text style={styles.promptsTitle}>Try asking me:</Text>
-            <View style={styles.promptsGrid}>
-              {suggestedPrompts.map((prompt, index) => (
-                <TouchableOpacity
-                  key={index}
-                  style={styles.promptCard}
-                  activeOpacity={0.8}
-                >
-                  <LinearGradient
-                    colors={['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.02)']}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 1 }}
-                    style={styles.promptCardGradient}
-                  >
-                    <Ionicons name={prompt.icon as any} size={20} color="#D9CBA0" />
-                    <Text style={styles.promptText}>{prompt.text}</Text>
-                  </LinearGradient>
-                </TouchableOpacity>
-              ))}
-            </View>
-          </View>
-
-          {/* Static Welcome Message */}
-          <View style={styles.messagesList}>
-            <View style={styles.messageWrapper}>
-              <View style={styles.aiAvatar}>
-                <Ionicons name="sparkles" size={14} color="#D9CBA0" />
-              </View>
-              
-              <View style={styles.messageBubbleContainer}>
-                <LinearGradient
-                  colors={['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.03)']}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  style={[styles.messageBubble, styles.aiBubble]}
-                >
-                  <Text style={[styles.messageText, styles.aiMessageText]}>
-                    Good evening. I'm your Trāvea concierge. How may I assist with your journey today?
-                  </Text>
-                </LinearGradient>
-                <Text style={[styles.messageTime, styles.aiMessageTime]}>
-                  8:42 PM
-                </Text>
-              </View>
-            </View>
-          </View>
-        </ScrollView>
-
-        {/* Input Area */}
-        <View style={styles.inputContainer}>
-          <LinearGradient
-            colors={['rgba(13,13,13,0.98)', 'rgba(26,26,26,0.95)']}
-            style={styles.inputGradient}
+      {/* Header */}
+      <LinearGradient
+        colors={['rgba(13,13,13,0.98)', 'rgba(26,26,26,0.95)']}
+        style={styles.header}
+      >
+        <View style={styles.headerContent}>
+          <TouchableOpacity 
+            style={styles.backButton}
+            onPress={() => router.back()}
+            activeOpacity={0.8}
           >
-            <View style={styles.inputRow}>
-              <View style={styles.inputWrapper}>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Ask your concierge..."
-                  placeholderTextColor="rgba(255,255,255,0.4)"
-                  value={message}
-                  onChangeText={setMessage}
-                  multiline
-                  maxLength={500}
-                />
-              </View>
-              
-              <TouchableOpacity
-                style={[styles.sendButton, message.trim() && styles.sendButtonActive]}
-                onPress={handleSend}
-                activeOpacity={0.8}
-                disabled={!message.trim()}
-              >
-                <LinearGradient
-                  colors={
-                    message.trim()
-                      ? ['rgba(217,203,160,0.3)', 'rgba(217,203,160,0.2)']
-                      : ['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.04)']
-                  }
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  style={styles.sendButtonGradient}
-                >
-                  <Ionicons 
-                    name="arrow-up" 
-                    size={22} 
-                    color={message.trim() ? '#D9CBA0' : 'rgba(217,203,160,0.4)'} 
-                  />
-                </LinearGradient>
-              </TouchableOpacity>
+            <Ionicons name="arrow-back" size={20} color="#D9CBA0" />
+          </TouchableOpacity>
+          
+          <View style={styles.headerCenter}>
+            <View style={styles.aiIndicator}>
+              <View style={styles.aiIndicatorDot} />
+              <Text style={styles.headerTitle}>Trāvea Concierge</Text>
             </View>
+            <Text style={styles.headerSubtitle}>AI Travel Assistant</Text>
+          </View>
+          
+          <TouchableOpacity style={styles.headerAction} activeOpacity={0.8}>
+            <Ionicons name="ellipsis-horizontal" size={20} color="#D9CBA0" />
+          </TouchableOpacity>
+        </View>
+      </LinearGradient>
+
+      {/* Messages Area */}
+      <ScrollView 
+        style={styles.messagesContainer}
+        contentContainerStyle={styles.messagesContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* Welcome Header */}
+        <View style={styles.welcomeSection}>
+          <LinearGradient
+            colors={['rgba(217,203,160,0.15)', 'rgba(217,203,160,0.05)']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.welcomeCard}
+          >
+            <Ionicons name="chatbubble-ellipses-outline" size={32} color="#D9CBA0" />
+            <Text style={styles.welcomeTitle}>Your Personal Concierge</Text>
+            <Text style={styles.welcomeText}>
+              Ask me anything about your journey — reservations, recommendations, or adjustments.
+            </Text>
           </LinearGradient>
         </View>
 
-        {/* Bottom Dock */}
-        <View style={styles.bottomDock}>
-          <BlurView intensity={20} tint="light" style={styles.dockContainer}>
-            <View style={styles.dockContent}>
-              <TouchableOpacity 
-                style={styles.dockItem} 
-                activeOpacity={0.8}
-                onPress={() => router.push('/landing')}
-              >
-                <Ionicons name="home" size={22} color="rgba(255,255,255,0.7)" />
-                <Text style={styles.dockLabelInactive}>Home</Text>
-              </TouchableOpacity>
-              
-              <TouchableOpacity 
-                style={styles.dockItem} 
-                activeOpacity={0.8}
-                onPress={() => router.push('/bookings')}
-              >
-                <Ionicons name="calendar" size={22} color="rgba(255,255,255,0.7)" />
-                <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
-              </TouchableOpacity>
-              
-              <TouchableOpacity 
-                style={styles.dockItem} 
-                activeOpacity={0.8}
-                onPress={() => router.push('/trips')}
-              >
-                <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.7)" />
-                <Text style={styles.dockLabelInactive}>My Trips</Text>
-              </TouchableOpacity>
-              
-              <TouchableOpacity 
-                style={styles.dockItem} 
+        {/* Suggested Prompts */}
+        <View style={styles.promptsSection}>
+          <Text style={styles.promptsTitle}>Try asking me:</Text>
+          <View style={styles.promptsGrid}>
+            {suggestedPrompts.map((prompt, index) => (
+              <TouchableOpacity
+                key={index}
+                style={styles.promptCard}
                 activeOpacity={0.8}
               >
-                <Ionicons name="chatbubble-ellipses" size={22} color="#D9CBA0" />
-                <Text style={styles.dockLabelActive}>Concierge</Text>
+                <LinearGradient
+                  colors={['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.02)']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={styles.promptCardGradient}
+                >
+                  <Ionicons name={prompt.icon as any} size={20} color="#D9CBA0" />
+                  <Text style={styles.promptText}>{prompt.text}</Text>
+                </LinearGradient>
               </TouchableOpacity>
-            </View>
-          </BlurView>
+            ))}
+          </View>
         </View>
+
+        {/* Static Welcome Message */}
+        <View style={styles.messagesList}>
+          <View style={styles.messageWrapper}>
+            <View style={styles.aiAvatar}>
+              <Ionicons name="sparkles" size={14} color="#D9CBA0" />
+            </View>
+            
+            <View style={styles.messageBubbleContainer}>
+              <LinearGradient
+                colors={['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.03)']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={[styles.messageBubble, styles.aiBubble]}
+              >
+                <Text style={[styles.messageText, styles.aiMessageText]}>
+                  Good evening. I am your Trāvea concierge. How may I assist with your journey today?
+                </Text>
+              </LinearGradient>
+              <Text style={[styles.messageTime, styles.aiMessageTime]}>
+                8:42 PM
+              </Text>
+            </View>
+          </View>
+        </View>
+      </ScrollView>
+
+      {/* Static Input Area */}
+      <View style={styles.inputContainer}>
+        <LinearGradient
+          colors={['rgba(13,13,13,0.98)', 'rgba(26,26,26,0.95)']}
+          style={styles.inputGradient}
+        >
+          <View style={styles.inputRow}>
+            <View style={styles.inputWrapper}>
+              <Text style={styles.inputPlaceholder}>Ask your concierge...</Text>
+            </View>
+            
+            <TouchableOpacity
+              style={styles.sendButton}
+              activeOpacity={0.8}
+            >
+              <LinearGradient
+                colors={['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.04)']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.sendButtonGradient}
+              >
+                <Ionicons 
+                  name="arrow-up" 
+                  size={22} 
+                  color="rgba(217,203,160,0.4)" 
+                />
+              </LinearGradient>
+            </TouchableOpacity>
+          </View>
+        </LinearGradient>
       </View>
-    </KeyboardAvoidingView>
+
+      {/* Bottom Dock */}
+      <View style={styles.bottomDock}>
+        <BlurView intensity={20} tint="light" style={styles.dockContainer}>
+          <View style={styles.dockContent}>
+            <TouchableOpacity 
+              style={styles.dockItem} 
+              activeOpacity={0.8}
+              onPress={() => router.push('/landing')}
+            >
+              <Ionicons name="home" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>Home</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.dockItem} 
+              activeOpacity={0.8}
+              onPress={() => router.push('/bookings')}
+            >
+              <Ionicons name="calendar" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.dockItem} 
+              activeOpacity={0.8}
+              onPress={() => router.push('/trips')}
+            >
+              <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>My Trips</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.dockItem} 
+              activeOpacity={0.8}
+            >
+              <Ionicons name="chatbubble-ellipses" size={22} color="#D9CBA0" />
+              <Text style={styles.dockLabelActive}>Concierge</Text>
+            </TouchableOpacity>
+          </View>
+        </BlurView>
+      </View>
+    </View>
   )
 }
 
@@ -380,12 +365,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 12,
   },
-  userMessageWrapper: {
-    justifyContent: 'flex-end',
-  },
-  aiMessageWrapper: {
-    justifyContent: 'flex-start',
-  },
   aiAvatar: {
     width: 36,
     height: 36,
@@ -404,10 +383,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 1,
   },
-  userBubble: {
-    borderColor: 'rgba(217,203,160,0.3)',
-    borderTopRightRadius: 4,
-  },
   aiBubble: {
     borderColor: 'rgba(217,203,160,0.15)',
     borderTopLeftRadius: 4,
@@ -420,9 +395,6 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  userMessageText: {
-    color: '#FFFFFF',
-  },
   aiMessageText: {
     color: 'rgba(255,255,255,0.9)',
   },
@@ -433,10 +405,6 @@ const styles = StyleSheet.create({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
-  },
-  userMessageTime: {
-    color: 'rgba(217,203,160,0.6)',
-    textAlign: 'right',
   },
   aiMessageTime: {
     color: 'rgba(255,255,255,0.4)',
@@ -469,11 +437,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
     minHeight: 48,
-    maxHeight: 120,
+    justifyContent: 'center',
   },
-  input: {
+  inputPlaceholder: {
     fontSize: 15,
-    color: '#FFFFFF',
+    color: 'rgba(255,255,255,0.4)',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
@@ -484,10 +452,6 @@ const styles = StyleSheet.create({
     height: 48,
     borderRadius: 24,
     overflow: 'hidden',
-  },
-  sendButtonActive: {
-    borderWidth: 1,
-    borderColor: 'rgba(217,203,160,0.3)',
   },
   sendButtonGradient: {
     flex: 1,
