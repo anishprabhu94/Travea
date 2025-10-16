@@ -509,23 +509,25 @@ const styles = StyleSheet.create({
   // Loading
   loadingContainer: {
     flexDirection: 'row',
-    gap: 12,
-    marginBottom: 20,
+    gap: 14,
+    marginBottom: 24,
   },
   loadingBubble: {
-    maxWidth: '75%',
+    maxWidth: '72%',
   },
   loadingBubbleGradient: {
-    padding: 16,
-    borderRadius: 20,
+    paddingVertical: 14,
+    paddingHorizontal: 18,
+    borderRadius: 22,
     borderWidth: 1,
-    borderColor: 'rgba(217,203,160,0.15)',
-    borderTopLeftRadius: 4,
+    borderColor: 'rgba(217,203,160,0.18)',
+    borderTopLeftRadius: 6,
   },
   loadingText: {
-    fontSize: 20,
+    fontSize: 22,
     color: '#D9CBA0',
-    letterSpacing: 4,
+    letterSpacing: 6,
+    opacity: 0.7,
   },
 
   // Cards Section
