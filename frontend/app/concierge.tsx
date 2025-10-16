@@ -184,8 +184,7 @@ export default function ConciergeV2() {
         >
           <View style={styles.headerContent}>
             <View style={styles.logoContainer}>
-              <View style={styles.logoPulse} />
-              <Text style={styles.logoText}>TRĀVEA</Text>
+              <TraveaWordmark size="medium" />
             </View>
           </View>
         </LinearGradient>
