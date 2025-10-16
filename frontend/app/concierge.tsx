@@ -331,25 +331,20 @@ export default function ConciergeV2() {
           )}
         </ScrollView>
 
-        {/* Context Strip */}
-        <View style={styles.contextStrip}>
-          <Text style={styles.contextText}>No active trip — ask me to create one</Text>
-        </View>
-
         {/* Input Bar */}
         <View style={styles.inputContainer}>
           <BlurView intensity={30} tint="dark" style={styles.inputBlur}>
             <View style={styles.inputRow}>
               <View style={styles.inputIconLeft}>
                 <Ionicons 
-                  name={message.length > 0 ? 'airplane' : 'map-outline'} 
+                  name="airplane-outline" 
                   size={20} 
                   color="#D9CBA0" 
                 />
               </View>
               <TextInput
                 style={styles.input}
-                placeholder="Ask about destinations, experiences, or plans..."
+                placeholder="Ask about destinations, experiences, or travel plans..."
                 placeholderTextColor="rgba(255,255,255,0.35)"
                 value={message}
                 onChangeText={setMessage}
