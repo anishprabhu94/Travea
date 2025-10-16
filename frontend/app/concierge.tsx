@@ -422,16 +422,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   messagesContent: {
-    paddingHorizontal: 24,
-    paddingTop: 24,
-    paddingBottom: 120,
+    paddingHorizontal: 20,
+    paddingTop: 28,
+    paddingBottom: 140,
   },
 
   // Messages
   messageWrapper: {
     flexDirection: 'row',
-    gap: 12,
-    marginBottom: 20,
+    gap: 14,
+    marginBottom: 24,
   },
   userMessageWrapper: {
     justifyContent: 'flex-end',
@@ -440,34 +440,58 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   aiAvatar: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: 'rgba(217,203,160,0.15)',
-    borderWidth: 1,
-    borderColor: 'rgba(217,203,160,0.25)',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(217,203,160,0.12)',
+    borderWidth: 1.5,
+    borderColor: 'rgba(217,203,160,0.28)',
     alignItems: 'center',
     justifyContent: 'center',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(217,203,160,0.4)',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 6,
+      },
+      android: {
+        elevation: 3,
+      },
+    }),
   },
   messageBubbleContainer: {
-    maxWidth: '75%',
+    maxWidth: '72%',
   },
   messageBubble: {
-    padding: 16,
-    borderRadius: 20,
+    paddingVertical: 14,
+    paddingHorizontal: 18,
+    borderRadius: 22,
     borderWidth: 1,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 8,
+      },
+      android: {
+        elevation: 2,
+      },
+    }),
   },
   userBubble: {
-    borderColor: 'rgba(217,203,160,0.3)',
-    borderTopRightRadius: 4,
+    borderColor: 'rgba(217,203,160,0.35)',
+    borderTopRightRadius: 6,
   },
   aiBubble: {
-    borderColor: 'rgba(217,203,160,0.15)',
-    borderTopLeftRadius: 4,
+    borderColor: 'rgba(217,203,160,0.18)',
+    borderTopLeftRadius: 6,
   },
   messageText: {
-    fontSize: 15,
-    lineHeight: 22,
+    fontSize: 15.5,
+    lineHeight: 23,
+    letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
@@ -475,9 +499,11 @@ const styles = StyleSheet.create({
   },
   userMessageText: {
     color: '#FFFFFF',
+    fontWeight: '500',
   },
   aiMessageText: {
-    color: 'rgba(255,255,255,0.9)',
+    color: 'rgba(255,255,255,0.92)',
+    fontWeight: '400',
   },
 
   // Loading
