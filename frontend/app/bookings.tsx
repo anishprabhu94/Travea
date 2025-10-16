@@ -493,9 +493,6 @@ export default function TripCanvas() {
                 style={[styles.flightCard, index === activeDay.flights.length - 1 && {marginRight: 0}]}
                 activeOpacity={0.8}
               >
-                <View style={styles.cardArrowIconOnPane}>
-                  <Ionicons name="arrow-forward" size={12} color="rgba(181,155,115,0.95)" />
-                </View>
                 <View style={styles.flightCardTopRow}>
                   <Text style={styles.flightCardTraveler}>{flight.traveler}</Text>
                   <View style={styles.cardDateBadge}>
