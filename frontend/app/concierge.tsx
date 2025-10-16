@@ -238,37 +238,53 @@ export default function Concierge() {
           )}
       </ScrollView>
 
-      {/* Static Input Area */}
-      <View style={styles.inputContainer}>
-        <LinearGradient
-          colors={['rgba(13,13,13,0.98)', 'rgba(26,26,26,0.95)']}
-          style={styles.inputGradient}
-        >
-          <View style={styles.inputRow}>
-            <View style={styles.inputWrapper}>
-              <Text style={styles.inputPlaceholder}>Ask your concierge...</Text>
-            </View>
-            
-            <TouchableOpacity
-              style={styles.sendButton}
-              activeOpacity={0.8}
-            >
-              <LinearGradient
-                colors={['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.04)']}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={styles.sendButtonGradient}
-              >
-                <Ionicons 
-                  name="arrow-up" 
-                  size={22} 
-                  color="rgba(217,203,160,0.4)" 
+        {/* Input Area */}
+        <View style={styles.inputContainer}>
+          <LinearGradient
+            colors={['rgba(13,13,13,0.98)', 'rgba(26,26,26,0.95)']}
+            style={styles.inputGradient}
+          >
+            <View style={styles.inputRow}>
+              <View style={styles.inputWrapper}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Ask your concierge..."
+                  placeholderTextColor="rgba(255,255,255,0.4)"
+                  value={message}
+                  onChangeText={setMessage}
+                  onSubmitEditing={handleSend}
+                  editable={!isLoading}
+                  multiline
+                  maxLength={500}
                 />
-              </LinearGradient>
-            </TouchableOpacity>
-          </View>
-        </LinearGradient>
-      </View>
+              </View>
+              
+              <TouchableOpacity
+                style={[styles.sendButton, (message.trim() && !isLoading) && styles.sendButtonActive]}
+                onPress={handleSend}
+                activeOpacity={0.8}
+                disabled={!message.trim() || isLoading}
+              >
+                <LinearGradient
+                  colors={
+                    (message.trim() && !isLoading)
+                      ? ['rgba(217,203,160,0.3)', 'rgba(217,203,160,0.2)']
+                      : ['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.04)']
+                  }
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={styles.sendButtonGradient}
+                >
+                  <Ionicons 
+                    name="arrow-up" 
+                    size={22} 
+                    color={(message.trim() && !isLoading) ? '#D9CBA0' : 'rgba(217,203,160,0.4)'} 
+                  />
+                </LinearGradient>
+              </TouchableOpacity>
+            </View>
+          </LinearGradient>
+        </View>
 
       {/* Bottom Dock */}
       <View style={styles.bottomDock}>
