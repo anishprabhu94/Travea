@@ -469,15 +469,15 @@ const styles = StyleSheet.create({
 
   // Header
   header: {
-    paddingTop: 48,
-    paddingBottom: 16,
+    paddingTop: 60,
+    paddingBottom: 20,
     paddingHorizontal: 20,
     borderBottomWidth: 0,
   },
   headerContent: {
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: 32,
+    minHeight: 36,
   },
   logoContainer: {
     ...Platform.select({
