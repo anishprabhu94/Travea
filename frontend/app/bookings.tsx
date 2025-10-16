@@ -715,9 +715,6 @@ export default function TripCanvas() {
                     style={styles.experienceImageCardGradient}
                   />
                   <View style={styles.experienceImageCardFrosted}>
-                    <View style={styles.cardArrowIconOnPane}>
-                      <Ionicons name="arrow-forward" size={12} color="rgba(181,155,115,0.95)" />
-                    </View>
                     <Text style={styles.experienceCardTitle}>{exp.title}</Text>
                     <Text style={styles.experienceCardDetails}>Start: {exp.startTime} · Duration: {exp.duration}</Text>
                     <Text style={styles.experienceCardLocation}>{exp.location}</Text>
