@@ -168,6 +168,38 @@ def parse_ai_response(response: str, user_query: str) -> tuple:
     # Determine card type and cards to show
     card_type = "city"
     cards = []
+    intent = "general_info"
+    
+    # Check if user is confirming interest in circuits (yes after being offered)
+    if any(word in query_lower for word in ["yes", "yeah", "sure", "ok", "please", "show me"]) and "circuit" not in query_lower:
+        # Check context - if they were offered multi-city, show circuits
+        if any(word in response_lower for word in ["multi-city", "circuit", "route"]):
+            card_type = "circuit"
+            # Find relevant circuits based on previous city
+            if any(city in response_lower for city in ["rome", "florence", "italy"]):
+                cards = [c for c in CIRCUIT_CARDS if c["id"] in ["italy-trio", "amalfi-circuit"]]
+            elif "japan" in response_lower or "kyoto" in response_lower:
+                cards = [c for c in CIRCUIT_CARDS if c["id"] == "japan-journey"]
+            elif "portugal" in response_lower or "lisbon" in response_lower:
+                cards = [c for c in CIRCUIT_CARDS if c["id"] == "portugal-path"]
+            else:
+                cards = CIRCUIT_CARDS[:3]
+            intent = "circuit_interest"
+            return intent, cards, card_type
+    
+    # Check for city inquiry keywords (weather, best time, pack, etc.)
+    city_inquiry_keywords = ["best time", "weather", "pack", "climate", "season", "temperature", "what to wear", "when to visit"]
+    if any(keyword in query_lower for keyword in city_inquiry_keywords):
+        card_type = "city"
+        intent = "city_inquiry"
+        # Find the specific city mentioned
+        for city_card in CITY_CARDS:
+            if city_card["name"].lower() in query_lower:
+                cards = [city_card]  # Show ONLY this one city card
+                break
+        if not cards:
+            cards = [CITY_CARDS[0]]  # Fallback to first city
+        return intent, cards, card_type
     
     # Check for circuit/multi-city keywords
     if any(word in query_lower for word in ["multi-city", "circuit", "route", "trip ideas", "itinerary", "journey"]):
@@ -204,6 +236,12 @@ def parse_ai_response(response: str, user_query: str) -> tuple:
         cards = CITY_CARDS[:4]
         intent = "inspiration"
     
+    # Default fallback
+    else:
+        cards = CITY_CARDS[:3]
+        intent = "general_info"
+    
+    return intent, cards, card_type
     # Default to showing city cards
     else:
         card_type = "city"
