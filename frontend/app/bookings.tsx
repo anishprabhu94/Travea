@@ -703,6 +703,7 @@ export default function TripCanvas() {
                 key={exp.id} 
                 style={[styles.experienceImageCard, index === activeDay.experiences.length - 1 && {marginRight: 0}]}
                 activeOpacity={0.8}
+                onPress={() => router.push('/experience-info')}
               >
                 <ImageBackground
                   source={{ uri: exp.image }}
