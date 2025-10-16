@@ -549,12 +549,12 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.1)',
   },
   aiBubble: {
-    paddingVertical: 16,
-    paddingHorizontal: 20,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
   },
   aiMessageText: {
-    fontSize: 15.5,
-    lineHeight: 23,
+    fontSize: 15,
+    lineHeight: 21,
     color: 'rgba(255,255,255,0.92)',
     fontFamily: Platform.select({
       ios: 'Inter',
@@ -563,16 +563,16 @@ const styles = StyleSheet.create({
   },
   userBubble: {
     backgroundColor: 'rgba(255,255,255,0.12)',
-    borderRadius: 24,
-    borderTopRightRadius: 8,
-    paddingVertical: 16,
-    paddingHorizontal: 20,
+    borderRadius: 20,
+    borderTopRightRadius: 6,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.15)',
   },
   userMessageText: {
-    fontSize: 15.5,
-    lineHeight: 23,
+    fontSize: 15,
+    lineHeight: 21,
     color: '#FFFFFF',
     fontWeight: '500',
     fontFamily: Platform.select({
