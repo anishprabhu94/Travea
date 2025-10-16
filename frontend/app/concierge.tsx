@@ -21,7 +21,7 @@ export default function Concierge() {
   const [messages, setMessages] = useState([
     {
       id: '1',
-      text: 'Good evening. I'm your Trāvea concierge. How may I assist with your journey today?',
+      text: 'Good evening. I'm your Trāvea concierge — here to help you discover, plan, and perfect your journey.',
       sender: 'ai',
       cards: [],
       cardType: null
