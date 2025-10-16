@@ -1,27 +1,103 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import {
   View,
   Text,
   ScrollView,
   TouchableOpacity,
+  TextInput,
   Platform,
   StyleSheet,
+  KeyboardAvoidingView,
+  ImageBackground,
 } from 'react-native'
 import { router } from 'expo-router'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
 import { BlurView } from 'expo-blur'
+import Constants from 'expo-constants'
 
 export default function Concierge() {
-  const suggestedPrompts = [
-    { icon: 'restaurant-outline', text: 'Find a Michelin-starred restaurant' },
-    { icon: 'car-outline', text: 'Book a private transfer' },
-    { icon: 'time-outline', text: 'Adjust my itinerary' },
-    { icon: 'sunny-outline', text: 'Check tomorrow\'s weather' },
-  ]
+  const [message, setMessage] = useState('')
+  const [messages, setMessages] = useState([
+    {
+      id: '1',
+      text: 'Good evening. I'm your Trāvea concierge. How may I assist with your journey today?',
+      sender: 'ai',
+      cards: [],
+      cardType: null
+    }
+  ])
+  const [isLoading, setIsLoading] = useState(false)
+  const scrollRef = useRef(null)
+
+  const backendUrl = Constants.expoConfig?.extra?.EXPO_PUBLIC_BACKEND_URL || 'http://localhost:8001'
+
+  const handleSend = async () => {
+    if (message.trim() && !isLoading) {
+      const userMessage = {
+        id: Date.now().toString(),
+        text: message.trim(),
+        sender: 'user',
+        cards: [],
+        cardType: null
+      }
+      
+      setMessages(prev => [...prev, userMessage])
+      setMessage('')
+      setIsLoading(true)
+
+      try {
+        const response = await fetch(`${backendUrl}/api/concierge/chat`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: userMessage.text,
+            user_has_trip: false,
+            session_id: 'demo-session'
+          })
+        })
+
+        if (response.ok) {
+          const data = await response.json()
+          const aiMessage = {
+            id: (Date.now() + 1).toString(),
+            text: data.message,
+            sender: 'ai',
+            cards: data.cards || [],
+            cardType: data.card_type
+          }
+          setMessages(prev => [...prev, aiMessage])
+        } else {
+          throw new Error('API error')
+        }
+      } catch (error) {
+        console.error('Concierge error:', error)
+        const errorMessage = {
+          id: (Date.now() + 1).toString(),
+          text: 'I apologize — let me reconnect. Please try again in a moment.',
+          sender: 'ai',
+          cards: [],
+          cardType: null
+        }
+        setMessages(prev => [...prev, errorMessage])
+      } finally {
+        setIsLoading(false)
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollToEnd({ animated: true })
+    }
+  }, [messages])
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView 
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <View style={styles.container}>
       {/* Header */}
       <LinearGradient
         colors={['rgba(13,13,13,0.98)', 'rgba(26,26,26,0.95)']}
