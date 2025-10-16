@@ -21,9 +21,9 @@ const { width } = Dimensions.get('window')
 
 const SUGGESTION_CHIPS = [
   { id: '1', icon: 'sparkles', text: 'Inspire me for next summer' },
-  { id: '2', icon: 'sunny', text: 'Show me weekend getaways' },
-  { id: '3', icon: 'restaurant', text: 'Find iconic restaurants' },
-  { id: '4', icon: 'map', text: 'Help me plan my Italy trip' },
+  { id: '2', icon: 'map-outline', text: 'Suggest new destinations' },
+  { id: '3', icon: 'briefcase-outline', text: 'Help with an existing trip' },
+  { id: '4', icon: 'bag-outline', text: 'Show packing tips' },
 ]
 
 export default function ConciergeV2() {
