@@ -422,8 +422,8 @@ const styles = StyleSheet.create({
 
   // Header
   header: {
-    paddingTop: 52,
-    paddingBottom: 20,
+    paddingTop: 44,
+    paddingBottom: 16,
     paddingHorizontal: 20,
     borderBottomWidth: 0,
   },
@@ -432,35 +432,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logoContainer: {
-    position: 'relative',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logoPulse: {
-    position: 'absolute',
-    width: 120,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#D9CBA0',
-    opacity: 0.15,
     ...Platform.select({
-      ios: {
-        shadowColor: '#D9CBA0',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.6,
-        shadowRadius: 20,
+      web: {
+        filter: 'drop-shadow(0 0 6px rgba(201,169,109,0.4))',
       },
-    }),
-  },
-  logoText: {
-    fontSize: 22,
-    fontWeight: '600',
-    color: '#D9CBA0',
-    letterSpacing: 3,
-    fontFamily: Platform.select({
-      ios: 'Playfair Display',
-      android: 'serif',
-      web: 'Playfair Display, Georgia, serif',
+      default: {
+        shadowColor: '#C9A96D',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.4,
+        shadowRadius: 6,
+        elevation: 3,
+      },
     }),
   },
 
