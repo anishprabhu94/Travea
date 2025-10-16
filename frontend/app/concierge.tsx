@@ -327,7 +327,7 @@ export default function Concierge() {
           </View>
         </BlurView>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   )
 }
 
