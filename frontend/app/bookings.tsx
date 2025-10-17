@@ -16,6 +16,8 @@ import { useTripCanvas } from '../contexts/TripCanvasContext';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
+import DraggableFlatList, { ScaleDecorator, RenderItemParams } from 'react-native-draggable-flatlist';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 // "Frosted Editorial System v3" - Luxury Travel Chronicle
 const tripData = {
