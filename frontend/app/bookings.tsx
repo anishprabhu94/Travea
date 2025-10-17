@@ -3766,6 +3766,22 @@ const styles = StyleSheet.create({
     padding: 14,
     marginBottom: 12,
   },
+  cityCardActive: {
+    backgroundColor: 'rgba(201,180,124,0.12)',
+    borderColor: 'rgba(201,180,124,0.35)',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 4px 12px rgba(201,180,124,0.3)',
+      },
+      default: {
+        shadowColor: 'rgba(201,180,124,0.6)',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        elevation: 8,
+      },
+    }),
+  },
   cityCardHeader: {
     flexDirection: 'row',
     alignItems: 'center',
