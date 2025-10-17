@@ -1438,12 +1438,32 @@ export default function TripCanvas() {
 
                 <View style={styles.luxurySection}>
                   <Text style={styles.luxurySectionLabel}>CITIES & DATES</Text>
+                  
+                  {/* Trip Change Message */}
+                  {tripChangeMessage && (
+                    <View style={styles.tripChangeMessageContainer}>
+                      <Text style={styles.tripChangeMessage}>{tripChangeMessage}</Text>
+                    </View>
+                  )}
+                  
+                  {/* Coverage Bar */}
                   <View style={styles.coverageBar}>
                     <Text style={styles.coverageText}>Coverage: {coverage} / {tripDuration} days</Text>
-                    {remaining > 0 && (
-                      <Text style={styles.coverageHint}>Assign remaining {remaining} days</Text>
-                    )}
                   </View>
+                  
+                  {/* Assign All Button */}
+                  {coverage < tripDuration && editableCities.length > 0 && tripDuration > 0 && (
+                    <TouchableOpacity 
+                      style={styles.assignAllButton}
+                      onPress={handleAssignAll}
+                      activeOpacity={0.7}
+                    >
+                      <Text style={styles.assignAllButtonText}>
+                        {hasUsedAssignAll ? 'Re-assign Evenly' : 'Assign All'}
+                      </Text>
+                    </TouchableOpacity>
+                  )}
+                  
                   <View style={styles.luxuryCityList}>
                     {editableCities.map((cityCode, index) => {
                       const cityData = AVAILABLE_CITIES.find(c => c.code === cityCode);
