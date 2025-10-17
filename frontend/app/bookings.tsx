@@ -341,13 +341,14 @@ export default function TripCanvas() {
   const [showStatusDropdown, setShowStatusDropdown] = useState(false);
   const [showEditPane, setShowEditPane] = useState(false);
   
-  // Editable trip state
+  // Editable trip state - using dynamic state that updates UI
   const [editableTripName, setEditableTripName] = useState(tripData.tripName);
   const [editableDates, setEditableDates] = useState('June 8–15');
   const [editableTravelers, setEditableTravelers] = useState('2');
-  const [editableCities, setEditableCities] = useState(tripData.cities);
+  const [editableCities, setEditableCities] = useState([...tripData.cities]);
   const [citySearchQuery, setCitySearchQuery] = useState('');
   const [draggedCityIndex, setDraggedCityIndex] = useState<number | null>(null);
+  const [showDatePicker, setShowDatePicker] = useState(false);
   
   const activeDay = tripData.days.find(d => d.id === activeDayId) || tripData.days[0];
   const activeCityCode = activeDay.cityCode;
