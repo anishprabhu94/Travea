@@ -348,7 +348,7 @@ export default function TripCanvas() {
           <View style={styles.heroSubtitleRow}>
             <Text style={styles.heroSubtitle}>{tripData.subtitle}</Text>
             <TouchableOpacity style={styles.editIconButton} activeOpacity={0.7}>
-              <Ionicons name="create-outline" size={16} color="rgba(181,155,115,0.9)" />
+              <Ionicons name="create-outline" size={14} color="rgba(181,155,115,0.9)" />
             </TouchableOpacity>
           </View>
           
