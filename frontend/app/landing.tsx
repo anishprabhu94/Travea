@@ -597,6 +597,7 @@ export default function Landing() {
                   <View style={styles.searchBarContent}>
                     <Ionicons name="search-outline" size={18} color="rgba(255,255,255,0.75)" style={styles.searchIcon} />
                     <Text style={styles.searchPlaceholder}>By city or country</Text>
+                    <Ionicons name="arrow-forward" size={18} color="rgba(201,169,109,0.8)" style={styles.searchArrow} />
                   </View>
                 </BlurView>
                 
@@ -610,7 +611,12 @@ export default function Landing() {
                     contentContainerStyle={styles.trendingContent}
                   >
                     {['Lisbon', 'Kyoto', 'Marrakech', 'Reykjavík', 'Venice', 'Santorini'].map((destination, index) => (
-                      <TouchableOpacity key={index} activeOpacity={0.7} style={styles.trendingPillWrapper}>
+                      <TouchableOpacity 
+                        key={index} 
+                        activeOpacity={0.7} 
+                        style={styles.trendingPillWrapper}
+                        onPress={() => router.push(`/destination?city=${destination}`)}
+                      >
                         <BlurView intensity={20} tint="light" style={styles.trendingPill}>
                           <View style={styles.trendingPillInner}>
                             <Text style={styles.trendingPillText}>{destination}</Text>
