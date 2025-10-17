@@ -1379,10 +1379,14 @@ const styles = StyleSheet.create({
     marginRight: 12,
     opacity: 0.85, // Reduced opacity for elegance
   },
+  searchArrow: {
+    marginLeft: 'auto',
+  },
   searchPlaceholder: {
     fontSize: 16,
     color: 'rgba(255,255,255,0.65)', // Lighter for elegance
     letterSpacing: 0.5, // Elegant spacing
+    flex: 1,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
