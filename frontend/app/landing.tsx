@@ -47,12 +47,14 @@ const destinationCards: DestinationCard[] = [
     region: 'Italy', 
     tagline: 'Stroll through lemon groves & ancient stone paths', 
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', 
-    transport: [{ icon: 'car-outline', time: '4 days' }], 
+    transport: [{ icon: 'calendar-outline', time: '4 days' }], 
     category: 'inspire',
     isMultiCity: true,
     cities: ['Amalfi', 'Ravello', 'Sorrento'],
     cityInitials: ['AMF', 'RAV', 'SOR'],
-    duration: '4 days'
+    duration: '4 days',
+    circuitTitle: 'Lemon Coast Trail',
+    isCondeNastPick: true
   },
   { 
     id: 'tuscany-circuit', 
@@ -60,12 +62,13 @@ const destinationCards: DestinationCard[] = [
     region: 'Italy', 
     tagline: 'Journey through Renaissance art & Tuscan vineyards', 
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', 
-    transport: [{ icon: 'car-outline', time: '5 days' }], 
+    transport: [{ icon: 'calendar-outline', time: '5 days' }], 
     category: 'inspire',
     isMultiCity: true,
     cities: ['Florence', 'Siena', 'San Gimignano'],
     cityInitials: ['FLR', 'SIE', 'SGM'],
-    duration: '5 days'
+    duration: '5 days',
+    circuitTitle: 'Tuscan Renaissance Loop'
   },
   
   // 12 UNIQUE VACATIONS DESTINATIONS
