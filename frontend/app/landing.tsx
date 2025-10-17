@@ -1114,24 +1114,38 @@ const styles = StyleSheet.create({
   multiCityContainer: {
     marginBottom: 6,
   },
+  circuitTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    marginBottom: 8,
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  cityPillsScroll: {
+    marginBottom: 4,
+  },
   cityTimelineRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 4,
   },
   cityPill: {
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 16,
-    backgroundColor: 'rgba(201,169,109,0.15)',
+    backgroundColor: 'rgba(201,169,109,0.25)',
     borderWidth: 1,
-    borderColor: 'rgba(201,169,109,0.4)',
+    borderColor: 'rgba(201,169,109,0.5)',
   },
   cityPillText: {
     fontSize: 11,
     fontWeight: '700',
     color: '#C9A96D',
-    letterSpacing: 1,
+    letterSpacing: 0.5,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
