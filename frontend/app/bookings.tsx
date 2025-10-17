@@ -1001,33 +1001,32 @@ export default function TripCanvas() {
       <Modal
         visible={showEditPane}
         transparent={true}
-        animationType="fade"
+        animationType="slide"
         onRequestClose={() => setShowEditPane(false)}
       >
         <View style={styles.luxuryEditOverlay}>
-          <BlurView intensity={50} tint="dark" style={styles.luxuryEditBlur}>
+          <TouchableOpacity 
+            style={styles.luxuryEditBlurFallback} 
+            onPress={() => setShowEditPane(false)}
+            activeOpacity={1}
+          />
+          
+          <View style={styles.luxuryEditPane}>
             <TouchableOpacity 
-              style={StyleSheet.absoluteFill} 
+              style={styles.luxuryCloseButton}
               onPress={() => setShowEditPane(false)}
-              activeOpacity={1}
-            />
-            
-            <View style={styles.luxuryEditPane}>
-              <TouchableOpacity 
-                style={styles.luxuryCloseButton}
-                onPress={() => setShowEditPane(false)}
-                activeOpacity={0.7}
-              >
-                <Ionicons name="close" size={18} color="rgba(214,193,152,0.9)" />
-              </TouchableOpacity>
+              activeOpacity={0.7}
+            >
+              <Ionicons name="close" size={18} color="rgba(214,193,152,0.9)" />
+            </TouchableOpacity>
 
-              <ScrollView 
-                style={styles.luxuryEditScroll}
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={styles.luxuryEditScrollContent}
-              >
-                <Text style={styles.luxuryEditTitle}>Edit Trip</Text>
-                <View style={styles.luxuryDivider} />
+            <ScrollView 
+              style={styles.luxuryEditScroll}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={styles.luxuryEditScrollContent}
+            >
+              <Text style={styles.luxuryEditTitle}>Edit Trip</Text>
+              <View style={styles.luxuryDivider} />
 
                 <View style={styles.luxurySection}>
                   <Text style={styles.luxurySectionLabel}>TRIP TITLE</Text>
