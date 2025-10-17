@@ -401,10 +401,10 @@ export default function Landing() {
                 </View>
               )}
               
-              {/* Editorial Tagline */}
+              {/* Editorial Tagline or Days */}
               <Text style={styles.editorialTagline}>{destination.tagline}</Text>
               
-              {/* Transport Info Row - Inline */}
+              {/* Transport Info Row with Conde Nast Tag */}
               <View style={styles.luxuryTransportRow}>
                 {destination.transport.map((transport, transportIndex) => (
                   <React.Fragment key={transportIndex}>
@@ -422,6 +422,13 @@ export default function Landing() {
                     )}
                   </React.Fragment>
                 ))}
+                
+                {/* Conde Nast Tag */}
+                {destination.isCondeNastPick && (
+                  <View style={styles.condeNastTag}>
+                    <Text style={styles.condeNastText}>Condé Nast</Text>
+                  </View>
+                )}
               </View>
               
               {/* Editorial Badge - Condé Nast (conditional) */}
