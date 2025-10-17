@@ -640,6 +640,7 @@ const styles = StyleSheet.create({
     paddingBottom: 120, // Space for bottom dock
   },
   carouselSection: {
+    marginTop: 8,
     marginBottom: 32,
   },
   carouselHeader: {
