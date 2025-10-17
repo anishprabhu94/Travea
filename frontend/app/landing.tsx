@@ -597,7 +597,7 @@ export default function Landing() {
                   <View style={styles.searchBarContent}>
                     <Ionicons name="search-outline" size={18} color="rgba(255,255,255,0.75)" style={styles.searchIcon} />
                     <Text style={styles.searchPlaceholder}>By city or country</Text>
-                    <Ionicons name="arrow-forward" size={18} color="rgba(201,169,109,0.8)" style={styles.searchArrow} />
+                    <Ionicons name="arrow-forward-circle-outline" size={20} color="rgba(201,169,109,0.9)" style={styles.searchArrow} />
                   </View>
                 </BlurView>
                 
