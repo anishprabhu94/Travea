@@ -1343,11 +1343,14 @@ export default function TripCanvas() {
                       <Text style={styles.dateLabel}>End Month</Text>
                       <TouchableOpacity 
                         style={styles.selectWrapper}
-                        onPress={() => setShowMonthPicker(
-                          showMonthPicker.type === 'end' && showMonthPicker.cityIndex === undefined
-                            ? {type: null}
-                            : {type: 'end'}
-                        )}
+                        onPress={() => {
+                          setShowDayPicker({type: null, cityIndex: undefined});
+                          setShowMonthPicker(
+                            showMonthPicker.type === 'end' && showMonthPicker.cityIndex === undefined
+                              ? {type: null}
+                              : {type: 'end'}
+                          );
+                        }}
                         activeOpacity={0.7}
                       >
                         <Text style={styles.selectText}>{tripEndMonth}</Text>
