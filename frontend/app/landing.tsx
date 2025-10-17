@@ -1427,33 +1427,21 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   trendingPillInner: {
-    backgroundColor: 'rgba(255,255,255,0.06)', // Much lighter and more elegant frosted appearance
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.1)', // Slightly more visible border
-    paddingHorizontal: 20,
     paddingVertical: 8,
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(30px)', // Increased blur for elegant frosted effect
-        boxShadow: '0 3px 12px rgba(0,0,0,0.2), inset 0 1px 4px rgba(255,255,255,0.08)', // Lighter, more elegant shadows
-      },
-      default: {
-        shadowColor: 'rgba(0,0,0,0.3)',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 6,
-        elevation: 3,
-      },
-    }),
+    paddingHorizontal: 14,
+    backgroundColor: 'rgba(201,169,109,0.25)',
+    borderWidth: 1,
+    borderColor: 'rgba(201,169,109,0.5)',
   },
   trendingPillText: {
-    fontSize: 15,
-    color: 'rgba(255,255,255,0.9)', // White 90% opacity
-    fontWeight: '600', // Semi-bold
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#C9A96D',
+    letterSpacing: 0.3,
     fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Neue Montreal',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
   bottomDock: {
