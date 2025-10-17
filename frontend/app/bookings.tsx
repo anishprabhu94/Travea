@@ -997,11 +997,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginLeft: 8,
   },
+  heroSubtitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+  },
   heroSubtitle: {
     fontSize: 15,
     fontWeight: '600',
     color: 'rgba(255,255,255,0.85)',
-    marginBottom: 16,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
