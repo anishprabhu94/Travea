@@ -1487,11 +1487,10 @@ export default function TripCanvas() {
                 </TouchableOpacity>
               </ScrollView>
             </View>
-          </BlurView>
-        </View>
-      </Modal>
-    );
-  };
+          </View>
+        </Modal>
+      );
+    };
 
   return (
     <View style={styles.container}>
