@@ -3442,7 +3442,7 @@ const styles = StyleSheet.create({
   luxuryEditPane: {
     width: '88%',
     maxWidth: 480,
-    height: '62%',
+    height: '58%',
     backgroundColor: '#0C0C0C',
     borderRadius: 20,
     borderWidth: 0.5,
