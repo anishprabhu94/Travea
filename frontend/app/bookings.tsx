@@ -2142,6 +2142,20 @@ const styles = StyleSheet.create({
     color: 'rgba(255,255,255,0.95)',
     fontWeight: '600',
   },
+  dayTabUnassigned: {
+    backgroundColor: 'rgba(120,120,120,0.08)',
+    borderColor: 'rgba(150,150,150,0.15)',
+  },
+  dayTabTextUnassigned: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: 'rgba(180,180,180,0.65)',
+    textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
 
   // City Header - 220px
   cityHeaderContainer: {
