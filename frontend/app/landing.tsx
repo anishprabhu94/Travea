@@ -368,20 +368,31 @@ export default function Landing() {
           <BlurView intensity={25} tint="light" style={styles.luxuryInfoPane}>
             <View style={styles.luxuryInfoInner}>
               {/* Refined Destination Header: "City, Country" or Multi-City Timeline */}
-              {destination.isMultiCity && destination.cityInitials ? (
+              {destination.isMultiCity && destination.cities ? (
                 <View style={styles.multiCityContainer}>
-                  <View style={styles.cityTimelineRow}>
-                    {destination.cityInitials.map((initial, idx) => (
-                      <React.Fragment key={idx}>
-                        <View style={styles.cityPill}>
-                          <Text style={styles.cityPillText}>{initial}</Text>
-                        </View>
-                        {idx < destination.cityInitials!.length - 1 && (
-                          <View style={styles.cityDot} />
-                        )}
-                      </React.Fragment>
-                    ))}
-                  </View>
+                  {/* Circuit Title */}
+                  {destination.circuitTitle && (
+                    <Text style={styles.circuitTitle}>{destination.circuitTitle}</Text>
+                  )}
+                  {/* City Pills with Full Names - Scrollable */}
+                  <ScrollView 
+                    horizontal 
+                    showsHorizontalScrollIndicator={false}
+                    style={styles.cityPillsScroll}
+                  >
+                    <View style={styles.cityTimelineRow}>
+                      {destination.cities.map((city, idx) => (
+                        <React.Fragment key={idx}>
+                          <View style={styles.cityPill}>
+                            <Text style={styles.cityPillText}>{city}</Text>
+                          </View>
+                          {idx < destination.cities!.length - 1 && (
+                            <View style={styles.cityDot} />
+                          )}
+                        </React.Fragment>
+                      ))}
+                    </View>
+                  </ScrollView>
                 </View>
               ) : (
                 <View style={styles.destinationHeader}>
