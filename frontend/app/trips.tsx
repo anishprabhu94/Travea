@@ -14,6 +14,7 @@ import { useRouter } from 'expo-router'
 import { BlurView } from 'expo-blur'
 import { Ionicons } from '@expo/vector-icons'
 import TraveaWordmark from '../components/TraveaWordmark'
+import { useBookmarks } from '../contexts/BookmarkContext'
 
 const { width, height } = Dimensions.get('window')
 
