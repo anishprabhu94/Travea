@@ -3289,8 +3289,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   luxuryEditScrollContent: {
-    padding: 24,
-    paddingTop: 28,
+    padding: 20,
+    paddingTop: 24,
   },
   luxuryEditSubtitle: {
     fontSize: 10,
@@ -3298,17 +3298,17 @@ const styles = StyleSheet.create({
     color: 'rgba(214,193,152,0.7)',
     textTransform: 'uppercase',
     letterSpacing: 2.5,
-    marginBottom: 8,
+    marginBottom: 6,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
   luxuryEditTitle: {
-    fontSize: 26,
+    fontSize: 24,
     fontWeight: '600',
     color: 'rgba(245,240,230,0.95)',
-    marginBottom: 24,
+    marginBottom: 18,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
@@ -3318,18 +3318,18 @@ const styles = StyleSheet.create({
   luxuryDivider: {
     height: 0.5,
     backgroundColor: 'rgba(214,193,152,0.2)',
-    marginVertical: 28,
+    marginVertical: 20,
   },
   luxurySection: {
-    marginBottom: 4,
+    marginBottom: 2,
   },
   luxurySectionLabel: {
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: '600',
     color: 'rgba(214,193,152,0.8)',
     textTransform: 'uppercase',
     letterSpacing: 2,
-    marginBottom: 16,
+    marginBottom: 10,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
