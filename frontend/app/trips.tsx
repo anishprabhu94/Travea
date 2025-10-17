@@ -458,14 +458,14 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 20,
-    marginBottom: 24,
+    paddingTop: 48,
+    paddingBottom: 16,
+    marginBottom: 20,
   },
   logoContainer: {
-    alignItems: 'center',
     ...Platform.select({
       web: {
         filter: 'drop-shadow(0 0 6px rgba(201,169,109,0.4))',
