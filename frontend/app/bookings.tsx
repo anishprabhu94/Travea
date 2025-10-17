@@ -2964,6 +2964,203 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
+  // Date Select Styles
+  dateRow: {
+    flexDirection: 'row',
+    gap: 8,
+    marginBottom: 16,
+  },
+  dateSelect: {
+    flex: 2,
+  },
+  dateSelectSmall: {
+    flex: 1,
+  },
+  dateLabel: {
+    fontSize: 11,
+    fontWeight: '500',
+    color: 'rgba(214,193,152,0.75)',
+    marginBottom: 6,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  selectWrapper: {
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: 'rgba(214,193,152,0.15)',
+    paddingHorizontal: 12,
+    paddingVertical: 12,
+    minHeight: 44,
+    justifyContent: 'center',
+  },
+  selectText: {
+    fontSize: 14,
+    color: 'rgba(245,240,230,0.9)',
+    fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  // Travelers Stepper
+  travelersStepper: {
+    marginTop: 8,
+  },
+  stepperControls: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
+  },
+  stepperButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    borderWidth: 0.5,
+    borderColor: 'rgba(214,193,152,0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  stepperValue: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: 'rgba(245,240,230,0.95)',
+    minWidth: 40,
+    textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  // Error & Summary
+  errorHint: {
+    fontSize: 12,
+    color: 'rgba(255,120,120,0.85)',
+    fontStyle: 'italic',
+    marginTop: 8,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  tripSummary: {
+    fontSize: 12,
+    color: 'rgba(214,193,152,0.7)',
+    marginTop: 8,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  // Coverage Bar
+  coverageBar: {
+    marginBottom: 16,
+    padding: 12,
+    backgroundColor: 'rgba(255,255,255,0.03)',
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: 'rgba(214,193,152,0.12)',
+  },
+  coverageText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: 'rgba(214,193,152,0.85)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  coverageHint: {
+    fontSize: 11,
+    color: 'rgba(214,193,152,0.6)',
+    marginTop: 4,
+    fontStyle: 'italic',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  // City Card Styles
+  cityCard: {
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    borderRadius: 12,
+    borderWidth: 0.5,
+    borderColor: 'rgba(214,193,152,0.15)',
+    padding: 14,
+    marginBottom: 12,
+  },
+  cityCardHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  cityCardName: {
+    flex: 1,
+    fontSize: 16,
+    fontWeight: '400',
+    color: 'rgba(245,240,230,0.9)',
+    marginLeft: 12,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  cityDateRow: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  cityDateGroup: {
+    flex: 1,
+  },
+  cityDateLabel: {
+    fontSize: 10,
+    fontWeight: '600',
+    color: 'rgba(214,193,152,0.7)',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+    marginBottom: 6,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  cityDateFields: {
+    flexDirection: 'row',
+    gap: 6,
+  },
+  cityDateField: {
+    flex: 1,
+    backgroundColor: 'rgba(255,255,255,0.04)',
+    borderRadius: 8,
+    borderWidth: 0.5,
+    borderColor: 'rgba(214,193,152,0.15)',
+    paddingVertical: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 40,
+  },
+  cityDateFieldText: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: 'rgba(245,240,230,0.85)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  cityNights: {
+    fontSize: 11,
+    color: 'rgba(214,193,152,0.65)',
+    marginTop: 8,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
   // Floating Calendar Styles
   floatingCalendar: {
     marginTop: 12,
