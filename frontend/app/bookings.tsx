@@ -2612,229 +2612,242 @@ const styles = StyleSheet.create({
   },
 
   // Edit Pane Styles
-  editPaneOverlay: {
+  // Luxury Edit Pane Styles - Apple × Aman Resort Aesthetic
+  luxuryEditOverlay: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  editPaneBlur: {
+  luxuryEditBlur: {
     flex: 1,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  editPaneContainer: {
-    width: '90%',
-    maxWidth: 500,
-    maxHeight: '85%',
-    backgroundColor: 'rgba(20,20,20,0.98)',
-    borderRadius: 32,
-    borderWidth: 1,
-    borderColor: 'rgba(181,155,115,0.3)',
+  luxuryEditPane: {
+    width: '88%',
+    maxWidth: 480,
+    maxHeight: '80%',
+    backgroundColor: '#0C0C0C',
+    borderRadius: 20,
+    borderWidth: 0.5,
+    borderColor: 'rgba(214,193,152,0.25)',
     overflow: 'hidden',
     ...Platform.select({
       web: {
-        boxShadow: '0 20px 60px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1)',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.4), inset 0 0.5px 0 rgba(214,193,152,0.15)',
       },
       default: {
         shadowColor: '#000000',
-        shadowOffset: { width: 0, height: 20 },
-        shadowOpacity: 0.7,
-        shadowRadius: 30,
-        elevation: 20,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.4,
+        shadowRadius: 16,
+        elevation: 16,
       },
     }),
   },
-  editPaneScroll: {
+  luxuryCloseButton: {
+    position: 'absolute',
+    top: 24,
+    right: 24,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: 'rgba(245,240,230,0.08)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10,
+  },
+  luxuryEditScroll: {
     flex: 1,
   },
-  editPaneScrollContent: {
-    padding: 28,
+  luxuryEditScrollContent: {
+    padding: 32,
+    paddingTop: 40,
   },
-  editPaneHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 32,
-  },
-  editPaneTitle: {
-    fontSize: 26,
+  luxuryEditTitle: {
+    fontSize: 28,
     fontWeight: '600',
-    color: '#F8F8F8',
+    color: 'rgba(245,240,230,0.95)',
+    marginBottom: 32,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
     }),
   },
-  editPaneCloseButton: {
-    width: 36,
-    height: 36,
-    alignItems: 'center',
-    justifyContent: 'center',
+  luxuryDivider: {
+    height: 0.5,
+    backgroundColor: 'rgba(214,193,152,0.2)',
+    marginVertical: 28,
   },
-  editSection: {
-    marginBottom: 28,
+  luxurySection: {
+    marginBottom: 4,
   },
-  editSectionTitle: {
-    fontSize: 15,
+  luxurySectionLabel: {
+    fontSize: 11,
     fontWeight: '600',
-    color: 'rgba(181,155,115,0.95)',
+    color: 'rgba(214,193,152,0.8)',
     textTransform: 'uppercase',
-    letterSpacing: 1.5,
-    marginBottom: 14,
+    letterSpacing: 2,
+    marginBottom: 16,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  editInput: {
-    backgroundColor: 'rgba(255,255,255,0.06)',
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: 'rgba(181,155,115,0.25)',
-    paddingHorizontal: 18,
-    paddingVertical: 14,
-    fontSize: 16,
-    color: '#F8F8F8',
-    fontWeight: '600',
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
-  },
-  editRow: {
-    flexDirection: 'row',
-    gap: 16,
-  },
-  editRowItem: {
-    flex: 1,
-  },
-  editLabel: {
-    fontSize: 13,
+  luxuryFieldLabel: {
+    fontSize: 12,
     fontWeight: '500',
-    color: 'rgba(255,255,255,0.7)',
+    color: 'rgba(245,240,230,0.6)',
     marginBottom: 8,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  editInputSmall: {
-    backgroundColor: 'rgba(255,255,255,0.06)',
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: 'rgba(181,155,115,0.25)',
+  luxuryInputLarge: {
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    borderRadius: 12,
+    borderWidth: 0.5,
+    borderColor: 'rgba(214,193,152,0.15)',
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    fontSize: 17,
+    color: 'rgba(245,240,230,0.95)',
+    fontWeight: '400',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  luxuryInput: {
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: 'rgba(214,193,152,0.15)',
     paddingHorizontal: 14,
     paddingVertical: 12,
     fontSize: 15,
-    color: '#F8F8F8',
-    fontWeight: '700',
+    color: 'rgba(245,240,230,0.95)',
+    fontWeight: '400',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  citiesEditContainer: {
-    gap: 12,
+  luxuryRow: {
+    flexDirection: 'row',
+    gap: 14,
   },
-  cityEditPill: {
-    backgroundColor: 'rgba(255,255,255,0.08)',
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: 'rgba(181,155,115,0.3)',
-    paddingHorizontal: 16,
+  luxuryRowItem: {
+    flex: 1,
+  },
+  luxuryCityList: {
+    gap: 10,
+  },
+  luxuryCityPill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    borderRadius: 12,
+    borderWidth: 0.5,
+    borderColor: 'rgba(214,193,152,0.15)',
+    paddingHorizontal: 14,
     paddingVertical: 14,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
   },
-  cityEditPillLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  luxuryReorderHandle: {
+    flexDirection: 'column',
+    gap: 3,
+    marginRight: 12,
   },
-  cityEditPillText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#F8F8F8',
+  luxuryDot: {
+    width: 3,
+    height: 3,
+    borderRadius: 1.5,
+    backgroundColor: 'rgba(255,255,255,0.3)',
+  },
+  luxuryCityName: {
+    flex: 1,
+    fontSize: 15,
+    fontWeight: '400',
+    color: 'rgba(245,240,230,0.9)',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  addCityContainer: {
-    marginTop: 20,
-  },
-  addCityLabel: {
-    fontSize: 13,
-    fontWeight: '500',
-    color: 'rgba(255,255,255,0.7)',
-    marginBottom: 8,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
-  },
-  citySearchResults: {
-    marginTop: 12,
-    backgroundColor: 'rgba(255,255,255,0.04)',
+  luxuryDeleteButton: {
+    width: 28,
+    height: 28,
     borderRadius: 14,
-    borderWidth: 1,
-    borderColor: 'rgba(181,155,115,0.2)',
+    borderWidth: 0.5,
+    borderColor: 'rgba(255,255,255,0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  luxuryAddCitySection: {
+    marginTop: 16,
+  },
+  luxuryCityResults: {
+    marginTop: 12,
+    backgroundColor: 'rgba(255,255,255,0.03)',
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: 'rgba(214,193,152,0.12)',
     overflow: 'hidden',
   },
-  citySearchResult: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(181,155,115,0.1)',
+  luxuryCityResult: {
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    borderBottomWidth: 0.5,
+    borderBottomColor: 'rgba(214,193,152,0.08)',
   },
-  citySearchResultText: {
-    fontSize: 15,
-    fontWeight: '500',
-    color: 'rgba(255,255,255,0.9)',
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
-  },
-  cityNotAvailableText: {
+  luxuryCityResultText: {
     fontSize: 14,
-    fontStyle: 'italic',
-    color: 'rgba(255,100,100,0.8)',
+    fontWeight: '400',
+    color: 'rgba(245,240,230,0.85)',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  editPaneSaveButton: {
-    backgroundColor: '#B59B73',
-    borderRadius: 18,
-    paddingVertical: 16,
-    paddingHorizontal: 32,
-    alignItems: 'center',
-    marginTop: 20,
+  luxuryNotAvailableText: {
+    fontSize: 13,
+    fontStyle: 'italic',
+    color: 'rgba(214,193,152,0.6)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  luxurySaveButton: {
+    borderRadius: 14,
+    marginTop: 36,
+    overflow: 'hidden',
     ...Platform.select({
       web: {
-        boxShadow: '0 6px 20px rgba(181,155,115,0.4)',
+        boxShadow: '0 3px 12px rgba(201,180,124,0.3), inset 0 0.5px 0 rgba(255,255,255,0.1)',
       },
       default: {
-        shadowColor: '#B59B73',
-        shadowOffset: { width: 0, height: 6 },
-        shadowOpacity: 0.4,
-        shadowRadius: 10,
+        shadowColor: 'rgba(201,180,124,0.6)',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
         elevation: 8,
       },
     }),
   },
-  editPaneSaveButtonText: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#FFFFFF',
-    letterSpacing: 0.5,
+  luxurySaveGradient: {
+    paddingVertical: 16,
+    paddingHorizontal: 32,
+    alignItems: 'center',
+  },
+  luxurySaveText: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.95)',
+    letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
