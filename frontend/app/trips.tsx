@@ -480,15 +480,10 @@ const styles = StyleSheet.create({
   },
   // Removed unused styles: backButton, logoText, pageTitleSection, pageTitle, profileButton, profileIcon
   stickyTabsContainer: {
-    position: 'sticky',
-    top: 0,
-    zIndex: 100,
-    marginBottom: 32,
-    ...Platform.select({
-      web: {
-        position: 'sticky',
-      },
-    }),
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    backgroundColor: '#0D0D0D',
+    zIndex: 1000,
   },
   stickyTabsBlur: {
     paddingVertical: 12,
