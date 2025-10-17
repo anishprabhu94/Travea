@@ -1776,11 +1776,15 @@ const styles = StyleSheet.create({
       web: 'Playfair Display, Georgia, serif',
     }),
   },
+  experienceCardDetailsRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
   experienceCardDetails: {
     fontSize: 14,
     fontWeight: '400',
     color: 'rgba(181,155,115,0.9)',
-    marginBottom: 4,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
