@@ -1772,7 +1772,7 @@ export default function TripCanvas() {
                   </LinearGradient>
                 </TouchableOpacity>
               </ScrollView>
-            </View>
+            </KeyboardAvoidingView>
           </View>
         </Modal>
       );
