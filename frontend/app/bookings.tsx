@@ -12,6 +12,7 @@ import {
   Animated,
   KeyboardAvoidingView,
 } from 'react-native';
+import { useTripCanvas } from '../contexts/TripCanvasContext';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
