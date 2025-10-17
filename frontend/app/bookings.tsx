@@ -4064,9 +4064,29 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
+  // Save Blocked Message
+  saveBlockedMessage: {
+    padding: 12,
+    backgroundColor: 'rgba(255,160,80,0.08)',
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: 'rgba(255,160,80,0.25)',
+    marginTop: 24,
+    alignItems: 'center',
+  },
+  saveBlockedText: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: 'rgba(255,180,100,0.9)',
+    textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
   luxurySaveButton: {
     borderRadius: 14,
-    marginTop: 36,
+    marginTop: 16,
     overflow: 'hidden',
     ...Platform.select({
       web: {
