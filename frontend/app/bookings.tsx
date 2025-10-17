@@ -351,49 +351,28 @@ export default function TripCanvas() {
   const [citySearchQuery, setCitySearchQuery] = useState('');
   const [showMonthPicker, setShowMonthPicker] = useState<{type: 'start' | 'end' | null, cityIndex?: number}>({type: null});
   const [showDayPicker, setShowDayPicker] = useState<{type: 'start' | 'end' | null, cityIndex?: number}>({type: null});
-  const [cityDates, setCityDates] = useState<{[key: string]: {startMonth: string, startDay: number, endMonth: string, endDay: number}}>({
-    'FLR': {startMonth: 'June', startDay: 8, endMonth: 'June', endDay: 9},
-    'ROM': {startMonth: 'June', startDay: 10, endMonth: 'June', endDay: 11},
-    'VCE': {startMonth: 'June', startDay: 12, endMonth: 'June', endDay: 13},
-    'AML': {startMonth: 'June', startDay: 14, endMonth: 'June', endDay: 15},
-  });
-  const [tripDateChangeHint, setTripDateChangeHint] = useState('');
+  const [cityDates, setCityDates] = useState<{[key: string]: {startMonth: string, startDay: number, endMonth: string, endDay: number}}>({});
+  const [tripChangeMessage, setTripChangeMessage] = useState('');
+  const [hasUsedAssignAll, setHasUsedAssignAll] = useState(false);
   
-  // Bind first city start to trip start and last city end to trip end
+  // Track previous trip dates to detect changes
+  const prevTripDates = React.useRef({ startMonth: tripStartMonth, startDay: tripStartDay, endMonth: tripEndMonth, endDay: tripEndDay });
+  
+  // When trip dates change, clear all city dates
   React.useEffect(() => {
-    if (editableCities.length === 0) return;
-    
-    const firstCity = editableCities[0];
-    const lastCity = editableCities[editableCities.length - 1];
-    
-    setCityDates(prev => {
-      const updated = {...prev};
+    const prev = prevTripDates.current;
+    if (prev.startMonth !== tripStartMonth || prev.startDay !== tripStartDay || 
+        prev.endMonth !== tripEndMonth || prev.endDay !== tripEndDay) {
       
-      // Bind first city start to trip start
-      if (updated[firstCity]) {
-        if (updated[firstCity].startMonth !== tripStartMonth || updated[firstCity].startDay !== tripStartDay) {
-          updated[firstCity] = {...updated[firstCity], startMonth: tripStartMonth, startDay: tripStartDay};
-          setTripDateChangeHint('First city start adjusted to match trip start');
-          setTimeout(() => setTripDateChangeHint(''), 3000);
-        }
-      } else {
-        updated[firstCity] = {startMonth: tripStartMonth, startDay: tripStartDay, endMonth: '', endDay: 0};
-      }
+      // Clear all city dates
+      setCityDates({});
+      setTripChangeMessage('Trip updated. City dates cleared.');
+      setTimeout(() => setTripChangeMessage(''), 4000);
       
-      // Bind last city end to trip end
-      if (updated[lastCity]) {
-        if (updated[lastCity].endMonth !== tripEndMonth || updated[lastCity].endDay !== tripEndDay) {
-          updated[lastCity] = {...updated[lastCity], endMonth: tripEndMonth, endDay: tripEndDay};
-          setTripDateChangeHint('Last city end adjusted to match trip end');
-          setTimeout(() => setTripDateChangeHint(''), 3000);
-        }
-      } else {
-        updated[lastCity] = {startMonth: '', startDay: 0, endMonth: tripEndMonth, endDay: tripEndDay};
-      }
-      
-      return updated;
-    });
-  }, [tripStartMonth, tripStartDay, tripEndMonth, tripEndDay, editableCities]);
+      // Update ref
+      prevTripDates.current = { startMonth: tripStartMonth, startDay: tripStartDay, endMonth: tripEndMonth, endDay: tripEndDay };
+    }
+  }, [tripStartMonth, tripStartDay, tripEndMonth, tripEndDay]);
   
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const monthDays = {
