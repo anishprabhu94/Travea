@@ -449,13 +449,16 @@ export default function TripCanvas() {
           colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.6)']}
           style={styles.cityGradient}
         />
+        
+        {/* Date badge on card image (top right) */}
+        <View style={styles.cardDateBadgeOnImage}>
+          <Text style={styles.cardDateText}>{activeDay.dates.toUpperCase()}</Text>
+        </View>
+        
         {/* Frosted glass card for city info */}
         <View style={styles.cityFrostedCard}>
           <View style={styles.cityHeaderRow}>
             <Text style={styles.cityName}>{activeDay.city}</Text>
-            <View style={styles.cardDateBadge}>
-              <Text style={styles.cardDateText}>{activeDay.dates.toUpperCase()}</Text>
-            </View>
           </View>
           <Text style={styles.cityDescription}>{activeDay.description}</Text>
         </View>
