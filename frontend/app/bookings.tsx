@@ -3426,18 +3426,18 @@ const styles = StyleSheet.create({
     }),
   },
   // Travelers Stepper
-  travelersStepper: {
-    marginTop: 8,
+  travelersSection: {
+    marginTop: 18,
   },
   stepperControls: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 16,
+    gap: 12,
   },
   stepperButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     backgroundColor: 'rgba(255,255,255,0.05)',
     borderWidth: 0.5,
     borderColor: 'rgba(214,193,152,0.2)',
@@ -3445,10 +3445,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   stepperValue: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: '600',
     color: 'rgba(245,240,230,0.95)',
-    minWidth: 40,
+    minWidth: 30,
     textAlign: 'center',
     fontFamily: Platform.select({
       ios: 'Inter',
@@ -3460,16 +3460,62 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: 'rgba(255,120,120,0.85)',
     fontStyle: 'italic',
-    marginTop: 8,
+    marginTop: 12,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
   tripSummary: {
-    fontSize: 12,
-    color: 'rgba(214,193,152,0.7)',
-    marginTop: 8,
+    fontSize: 15,
+    fontWeight: '500',
+    color: 'rgba(214,193,152,0.85)',
+    marginTop: 16,
+    lineHeight: 22,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  // Picker Dropdown Styles
+  pickerDropdown: {
+    position: 'absolute',
+    top: '100%',
+    left: 0,
+    right: 0,
+    marginTop: 4,
+    backgroundColor: 'rgba(20,20,20,0.98)',
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: 'rgba(214,193,152,0.25)',
+    maxHeight: 200,
+    zIndex: 1000,
+    ...Platform.select({
+      web: {
+        boxShadow: '0 6px 20px rgba(0,0,0,0.5)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.5,
+        shadowRadius: 10,
+        elevation: 10,
+      },
+    }),
+  },
+  pickerScroll: {
+    maxHeight: 200,
+  },
+  pickerOption: {
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    borderBottomWidth: 0.5,
+    borderBottomColor: 'rgba(214,193,152,0.1)',
+  },
+  pickerOptionText: {
+    fontSize: 14,
+    fontWeight: '400',
+    color: 'rgba(245,240,230,0.9)',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
