@@ -1756,10 +1756,16 @@ export default function TripCanvas() {
                             <Text style={styles.cityNights}>{cityData?.name || cityCode} — {nights} {nights === 1 ? 'night' : 'nights'}.</Text>
                           )}
                         </View>
-                      );
-                    })}
-                  </View>
-                  <View style={styles.luxuryAddCitySection}>
+                      </ScaleDecorator>
+                    );
+                  }}
+                  keyExtractor={(item) => item}
+                  onDragEnd={({ data }) => handleCityReorder(data)}
+                  scrollEnabled={false}
+                />
+              </GestureHandlerRootView>
+              
+              <View style={styles.luxuryAddCitySection}>
                     <TextInput
                       style={styles.luxuryInput}
                       value={citySearchQuery}
