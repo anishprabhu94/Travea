@@ -349,6 +349,13 @@ export default function TripCanvas() {
   const [citySearchQuery, setCitySearchQuery] = useState('');
   const [draggedCityIndex, setDraggedCityIndex] = useState<number | null>(null);
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showCityDatePicker, setShowCityDatePicker] = useState<number | null>(null);
+  const [cityDates, setCityDates] = useState<{[key: string]: {start: string, end: string}}>({
+    'FLR': {start: 'Jun 8', end: 'Jun 9'},
+    'ROM': {start: 'Jun 10', end: 'Jun 11'},
+    'VCE': {start: 'Jun 12', end: 'Jun 13'},
+    'AML': {start: 'Jun 14', end: 'Jun 15'},
+  });
   
   const activeDay = tripData.days.find(d => d.id === activeDayId) || tripData.days[0];
   const activeCityCode = activeDay.cityCode;
