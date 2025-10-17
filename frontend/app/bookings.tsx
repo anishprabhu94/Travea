@@ -1469,9 +1469,7 @@ export default function TripCanvas() {
                       const cityData = AVAILABLE_CITIES.find(c => c.code === cityCode);
                       const cityDate = cityDates[cityCode] || {startMonth: '', startDay: 0, endMonth: '', endDay: 0};
                       const hasValidDates = cityDate.startMonth && cityDate.startDay && cityDate.endMonth && cityDate.endDay;
-                      const errors = hasValidDates ? getCityValidationErrors(cityCode, index) : [];
-                      const isFirstCity = index === 0;
-                      const isLastCity = index === editableCities.length - 1;
+                      const validationMessage = hasValidDates ? getCityValidationMessage(cityCode, index) : '';
                       
                       let nights = 0;
                       if (hasValidDates) {
@@ -1502,6 +1500,10 @@ export default function TripCanvas() {
                               onPress={() => {
                                 const newCities = editableCities.filter((_, i) => i !== index);
                                 setEditableCities(newCities);
+                                // Clear this city's dates
+                                const newDates = {...cityDates};
+                                delete newDates[cityCode];
+                                setCityDates(newDates);
                               }}
                               activeOpacity={0.6}
                             >
@@ -1514,25 +1516,29 @@ export default function TripCanvas() {
                               <Text style={styles.cityDateLabel}>Start</Text>
                               <View style={styles.cityDateFields}>
                                 <TouchableOpacity 
-                                  style={[styles.cityDateField, isFirstCity && styles.cityDateFieldLocked]}
-                                  onPress={() => !isFirstCity && setShowMonthPicker(
+                                  style={styles.cityDateField}
+                                  onPress={() => setShowMonthPicker(
                                     showMonthPicker.type === 'start' && showMonthPicker.cityIndex === index 
                                       ? {type: null} 
                                       : {type: 'start', cityIndex: index}
                                   )}
-                                  activeOpacity={isFirstCity ? 1 : 0.7}
-                                  disabled={isFirstCity}
+                                  activeOpacity={0.7}
                                 >
-                                  {isFirstCity && <Ionicons name="lock-closed" size={10} color="rgba(214,193,152,0.5)" style={{position: 'absolute', left: 4, top: 4}} />}
-                                  <Text style={[styles.cityDateFieldText, isFirstCity && styles.cityDateFieldTextLocked]}>
+                                  <Text style={styles.cityDateFieldText}>
                                     {cityDate.startMonth?.substring(0,3) || '―'}
                                   </Text>
                                 </TouchableOpacity>
                                 
-                                {showMonthPicker.type === 'start' && showMonthPicker.cityIndex === index && !isFirstCity && (
+                                {showMonthPicker.type === 'start' && showMonthPicker.cityIndex === index && (
                                   <View style={[styles.pickerDropdown, {zIndex: 1000 + index}]}>
                                     <ScrollView style={styles.pickerScroll} showsVerticalScrollIndicator={false}>
-                                      {months.map(month => (
+                                      {months.filter(month => {
+                                        // Only show months within trip range
+                                        const monthIdx = months.indexOf(month);
+                                        const startIdx = months.indexOf(tripStartMonth);
+                                        const endIdx = months.indexOf(tripEndMonth);
+                                        return monthIdx >= startIdx && monthIdx <= endIdx;
+                                      }).map(month => (
                                         <TouchableOpacity
                                           key={month}
                                           style={styles.pickerOption}
@@ -1553,27 +1559,26 @@ export default function TripCanvas() {
                                 )}
                                 
                                 <TouchableOpacity 
-                                  style={[styles.cityDateField, isFirstCity && styles.cityDateFieldLocked]}
-                                  onPress={() => !isFirstCity && setShowDayPicker(
+                                  style={styles.cityDateField}
+                                  onPress={() => setShowDayPicker(
                                     showDayPicker.type === 'start' && showDayPicker.cityIndex === index 
                                       ? {type: null} 
                                       : {type: 'start', cityIndex: index}
                                   )}
-                                  activeOpacity={isFirstCity ? 1 : 0.7}
-                                  disabled={isFirstCity}
+                                  activeOpacity={0.7}
                                 >
-                                  <Text style={[styles.cityDateFieldText, isFirstCity && styles.cityDateFieldTextLocked]}>
+                                  <Text style={styles.cityDateFieldText}>
                                     {cityDate.startDay || '―'}
                                   </Text>
                                 </TouchableOpacity>
                                 
-                                {showDayPicker.type === 'start' && showDayPicker.cityIndex === index && cityDate.startMonth && !isFirstCity && (
+                                {showDayPicker.type === 'start' && showDayPicker.cityIndex === index && cityDate.startMonth && (
                                   <View style={[styles.pickerDropdown, {zIndex: 1000 + index}]}>
                                     <ScrollView style={styles.pickerScroll} showsVerticalScrollIndicator={false}>
                                       {Array.from({length: monthDays[cityDate.startMonth]}, (_, i) => i + 1).map(day => {
                                         const dayNum = dateToTripDay(cityDate.startMonth, day);
-                                        const { usedDays } = getAvailableDays(index, true);
-                                        const isDisabled = usedDays.has(dayNum);
+                                        const { usedDays } = getUnassignedDays(index);
+                                        const isDisabled = usedDays.has(dayNum) || !isDateInTripRange(cityDate.startMonth, day);
                                         
                                         return (
                                           <TouchableOpacity
