@@ -411,20 +411,34 @@ export default function MyTrips() {
           )}
         </View>
 
-        {/* Tab Content */}
+        {/* Content */}
         {activeTab === 'saved' && renderSavedContent()}
         
+        {activeTab === 'planning' && (
+          <View style={styles.emptyState}>
+            <Text style={styles.emptyStateText}>No trips in planning</Text>
+            <Text style={styles.emptyStateSubtext}>Start planning your next journey from saved destinations</Text>
+          </View>
+        )}
+        
         {activeTab === 'ongoing' && (
-          <View style={styles.placeholderContent}>
-            <Text style={styles.placeholderText}>Ongoing Trips</Text>
-            <Text style={styles.placeholderSubtext}>Your active trips will appear here</Text>
+          <View style={styles.emptyState}>
+            <Text style={styles.emptyStateText}>No active trips</Text>
+            <Text style={styles.emptyStateSubtext}>Your current journey will appear here</Text>
           </View>
         )}
         
         {activeTab === 'upcoming' && (
-          <View style={styles.placeholderContent}>
-            <Text style={styles.placeholderText}>Upcoming Trips</Text>
-            <Text style={styles.placeholderSubtext}>Your planned adventures will show here</Text>
+          <View style={styles.emptyState}>
+            <Text style={styles.emptyStateText}>No upcoming trips</Text>
+            <Text style={styles.emptyStateSubtext}>Finalize your plans to see them here</Text>
+          </View>
+        )}
+        
+        {activeTab === 'completed' && (
+          <View style={styles.emptyState}>
+            <Text style={styles.emptyStateText}>No completed trips yet</Text>
+            <Text style={styles.emptyStateSubtext}>Your travel history will be saved here</Text>
           </View>
         )}
       </Animated.View>
