@@ -337,25 +337,36 @@ const AVAILABLE_CITIES = [
 ];
 
 export default function TripCanvas() {
+  // Use persisted state from context
+  const {
+    editableTripName,
+    setEditableTripName,
+    tripStartMonth,
+    setTripStartMonth,
+    tripStartDay,
+    setTripStartDay,
+    tripEndMonth,
+    setTripEndMonth,
+    tripEndDay,
+    setTripEndDay,
+    editableTravelers,
+    setEditableTravelers,
+    editableCities,
+    setEditableCities,
+    cityDates,
+    setCityDates,
+    hasUsedAssignAll,
+    setHasUsedAssignAll,
+  } = useTripCanvas();
+  
   const [activeDayId, setActiveDayId] = useState('day1-2');
   const [tripStatus, setTripStatus] = useState('Planning');
   const [showStatusDropdown, setShowStatusDropdown] = useState(false);
   const [showEditPane, setShowEditPane] = useState(false);
-  
-  // Editable trip state with new date system
-  const [editableTripName, setEditableTripName] = useState(tripData.tripName);
-  const [tripStartMonth, setTripStartMonth] = useState('June');
-  const [tripStartDay, setTripStartDay] = useState(8);
-  const [tripEndMonth, setTripEndMonth] = useState('June');
-  const [tripEndDay, setTripEndDay] = useState(15);
-  const [editableTravelers, setEditableTravelers] = useState(2);
-  const [editableCities, setEditableCities] = useState([...tripData.cities]);
   const [citySearchQuery, setCitySearchQuery] = useState('');
   const [showMonthPicker, setShowMonthPicker] = useState<{type: 'start' | 'end' | null, cityIndex?: number}>({type: null});
   const [showDayPicker, setShowDayPicker] = useState<{type: 'start' | 'end' | null, cityIndex?: number}>({type: null});
-  const [cityDates, setCityDates] = useState<{[key: string]: {startMonth: string, startDay: number, endMonth: string, endDay: number}}>({});
   const [tripChangeMessage, setTripChangeMessage] = useState('');
-  const [hasUsedAssignAll, setHasUsedAssignAll] = useState(false);
   
   // Track previous trip dates to detect changes
   const prevTripDates = React.useRef({ startMonth: tripStartMonth, startDay: tripStartDay, endMonth: tripEndMonth, endDay: tripEndDay });
