@@ -389,6 +389,7 @@ export default function MyTrips() {
                       style={styles.dropdownItem}
                       onPress={() => {
                         setSelectedFilter(option)
+                        setActiveTab(option) // Set activeTab to the selected filter
                         setDropdownOpen(false)
                       }}
                       activeOpacity={0.7}
