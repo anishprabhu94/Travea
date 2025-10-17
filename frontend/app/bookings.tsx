@@ -1580,7 +1580,7 @@ export default function TripCanvas() {
                                 </TouchableOpacity>
                                 
                                 {showMonthPicker.type === 'start' && showMonthPicker.cityIndex === index && (
-                                  <View style={[styles.pickerDropdown, {zIndex: 1000 + index}]}>
+                                  <View style={[styles.pickerDropdown, {zIndex: 5000 + index}]}>
                                     <ScrollView style={styles.pickerScroll} showsVerticalScrollIndicator={false}>
                                       {months.filter(month => {
                                         // Only show months within trip range
@@ -1623,7 +1623,7 @@ export default function TripCanvas() {
                                 </TouchableOpacity>
                                 
                                 {showDayPicker.type === 'start' && showDayPicker.cityIndex === index && cityDate.startMonth && (
-                                  <View style={[styles.pickerDropdown, {zIndex: 1000 + index}]}>
+                                  <View style={[styles.pickerDropdown, {zIndex: 5000 + index}]}>
                                     <ScrollView style={styles.pickerScroll} showsVerticalScrollIndicator={false}>
                                       {Array.from({length: monthDays[cityDate.startMonth]}, (_, i) => i + 1).map(day => {
                                         const dayNum = dateToTripDay(cityDate.startMonth, day);
@@ -1674,7 +1674,7 @@ export default function TripCanvas() {
                                 </TouchableOpacity>
                                 
                                 {showMonthPicker.type === 'end' && showMonthPicker.cityIndex === index && (
-                                  <View style={[styles.pickerDropdown, {zIndex: 1000 + index}]}>
+                                  <View style={[styles.pickerDropdown, {zIndex: 5000 + index}]}>
                                     <ScrollView style={styles.pickerScroll} showsVerticalScrollIndicator={false}>
                                       {months.filter(month => {
                                         // Only show months within trip range and >= start month
@@ -1718,7 +1718,7 @@ export default function TripCanvas() {
                                 </TouchableOpacity>
                                 
                                 {showDayPicker.type === 'end' && showDayPicker.cityIndex === index && cityDate.endMonth && (
-                                  <View style={[styles.pickerDropdown, {zIndex: 1000 + index}]}>
+                                  <View style={[styles.pickerDropdown, {zIndex: 5000 + index}]}>
                                     <ScrollView style={styles.pickerScroll} showsVerticalScrollIndicator={false}>
                                       {Array.from({length: monthDays[cityDate.endMonth]}, (_, i) => i + 1).map(day => {
                                         const dayNum = dateToTripDay(cityDate.endMonth, day);
