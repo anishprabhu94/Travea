@@ -1000,6 +1000,12 @@ export default function TripCanvas() {
     );
   };
 
+  return (
+    <View style={styles.container}>
+      <ScrollView 
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
       >
         {renderHeroPanel()}
         {renderCityHeader()}
