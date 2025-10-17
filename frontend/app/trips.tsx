@@ -365,10 +365,11 @@ export default function MyTrips() {
               onPress={() => setDropdownOpen(!dropdownOpen)}
               activeOpacity={0.8}
             >
+              {activeTab !== 'saved' && <View style={styles.tabChipGlow} />}
               <BlurView intensity={20} tint="light" style={styles.tabChipBlur}>
-                <View style={styles.tabChipContent}>
+                <View style={[styles.tabChipContent, activeTab !== 'saved' && styles.tabChipContentActive]}>
                   <Ionicons name="funnel-outline" size={16} color="rgba(255,255,255,0.9)" />
-                  <Text style={styles.tabChipLabel}>
+                  <Text style={[styles.tabChipLabel, activeTab !== 'saved' && styles.tabChipLabelActive]}>
                     {selectedFilter.charAt(0).toUpperCase() + selectedFilter.slice(1)}
                   </Text>
                   <Ionicons name={dropdownOpen ? "chevron-up" : "chevron-down"} size={14} color="rgba(255,255,255,0.7)" />
