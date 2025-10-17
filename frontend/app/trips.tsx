@@ -538,6 +538,7 @@ const styles = StyleSheet.create({
   stickyTabsContainer: {
     paddingHorizontal: 20,
     paddingVertical: 16,
+    paddingBottom: 24,
     backgroundColor: '#0D0D0D',
     zIndex: 1000,
   },
