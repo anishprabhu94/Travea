@@ -694,12 +694,15 @@ export default function TripCanvas() {
                     <Text style={styles.transportCardTitle}>{item.title}</Text>
                     <Text style={styles.transportCardRoute}>{item.route}</Text>
                     {item.type === 'rental-car' ? (
-                      <View style={styles.transportCardTimeRow}>
-                        <Text style={styles.transportCardTime}>Pick-up: {item.time}</Text>
-                        <Text style={styles.transportCardTimeSeparator}> · </Text>
-                        <Ionicons name="calendar-outline" size={13} color="rgba(181,155,115,0.9)" style={{marginRight: 4}} />
-                        <Text style={styles.transportCardTime}>{item.duration.split('·')[0].trim()}</Text>
-                      </View>
+                      <>
+                        <View style={styles.transportCardTimeRow}>
+                          <Text style={styles.transportCardTime}>Pick-up: {item.time}</Text>
+                        </View>
+                        <View style={styles.transportCardDurationRow}>
+                          <Ionicons name="calendar-outline" size={14} color="rgba(181,155,115,0.9)" />
+                          <Text style={styles.transportCardDuration}>{item.duration.split('·')[0].trim()}</Text>
+                        </View>
+                      </>
                     ) : (
                       <>
                         <Text style={styles.transportCardTime}>Pick-up: {item.time}</Text>
