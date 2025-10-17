@@ -1209,7 +1209,11 @@ export default function TripCanvas() {
             activeOpacity={1}
           />
           
-          <View style={styles.luxuryEditPane}>
+          <KeyboardAvoidingView 
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={styles.luxuryEditPane}
+            keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
+          >
             <TouchableOpacity 
               style={styles.luxuryCloseButton}
               onPress={() => setShowEditPane(false)}
@@ -1222,6 +1226,7 @@ export default function TripCanvas() {
               style={styles.luxuryEditScroll}
               showsVerticalScrollIndicator={false}
               contentContainerStyle={styles.luxuryEditScrollContent}
+              keyboardShouldPersistTaps="handled"
             >
               <View style={styles.luxuryEditTitleContainer}>
                 <Text style={styles.luxuryEditTitle}>Edit Trip</Text>
