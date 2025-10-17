@@ -999,19 +999,6 @@ export default function TripCanvas() {
       </Modal>
     );
   };
-    const tripDuration = getTripDuration();
-    const coverage = getCoverage();
-    const remaining = tripDuration - coverage;
-    const isEndBeforeStart = months.indexOf(tripEndMonth) < months.indexOf(tripStartMonth) || 
-      (tripEndMonth === tripStartMonth && tripEndDay < tripStartDay);
-    
-    return (
-      <Modal
-        visible={showEditPane}
-        transparent={true}
-        animationType="fade"
-        onRequestClose={() => setShowEditPane(false)}
-      >
         <View style={styles.luxuryEditOverlay}>
           <BlurView intensity={50} tint="dark" style={styles.luxuryEditBlur}>
             <TouchableOpacity 
