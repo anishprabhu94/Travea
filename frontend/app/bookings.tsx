@@ -341,21 +341,78 @@ export default function TripCanvas() {
   const [showStatusDropdown, setShowStatusDropdown] = useState(false);
   const [showEditPane, setShowEditPane] = useState(false);
   
-  // Editable trip state - using dynamic state that updates UI
+  // Editable trip state with new date system
   const [editableTripName, setEditableTripName] = useState(tripData.tripName);
-  const [editableDates, setEditableDates] = useState('June 8–15');
-  const [editableTravelers, setEditableTravelers] = useState('2');
+  const [tripStartMonth, setTripStartMonth] = useState('June');
+  const [tripStartDay, setTripStartDay] = useState(8);
+  const [tripEndMonth, setTripEndMonth] = useState('June');
+  const [tripEndDay, setTripEndDay] = useState(15);
+  const [editableTravelers, setEditableTravelers] = useState(2);
   const [editableCities, setEditableCities] = useState([...tripData.cities]);
   const [citySearchQuery, setCitySearchQuery] = useState('');
-  const [draggedCityIndex, setDraggedCityIndex] = useState<number | null>(null);
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [showCityDatePicker, setShowCityDatePicker] = useState<number | null>(null);
-  const [cityDates, setCityDates] = useState<{[key: string]: {start: string, end: string}}>({
-    'FLR': {start: 'Jun 8', end: 'Jun 9'},
-    'ROM': {start: 'Jun 10', end: 'Jun 11'},
-    'VCE': {start: 'Jun 12', end: 'Jun 13'},
-    'AML': {start: 'Jun 14', end: 'Jun 15'},
+  const [cityDates, setCityDates] = useState<{[key: string]: {startMonth: string, startDay: number, endMonth: string, endDay: number}}>({
+    'FLR': {startMonth: 'June', startDay: 8, endMonth: 'June', endDay: 9},
+    'ROM': {startMonth: 'June', startDay: 10, endMonth: 'June', endDay: 11},
+    'VCE': {startMonth: 'June', startDay: 12, endMonth: 'June', endDay: 13},
+    'AML': {startMonth: 'June', startDay: 14, endMonth: 'June', endDay: 15},
   });
+  
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const monthDays = {
+    'January': 31, 'February': 28, 'March': 31, 'April': 30, 'May': 31, 'June': 30,
+    'July': 31, 'August': 31, 'September': 30, 'October': 31, 'November': 30, 'December': 31
+  };
+  
+  // Calculate trip duration in days
+  const getTripDuration = () => {
+    const startIdx = months.indexOf(tripStartMonth);
+    const endIdx = months.indexOf(tripEndMonth);
+    if (endIdx < startIdx || (endIdx === startIdx && tripEndDay < tripStartDay)) return 0;
+    
+    let days = 0;
+    if (startIdx === endIdx) {
+      days = tripEndDay - tripStartDay + 1;
+    } else {
+      days = monthDays[tripStartMonth] - tripStartDay + 1;
+      for (let i = startIdx + 1; i < endIdx; i++) {
+        days += monthDays[months[i]];
+      }
+      days += tripEndDay;
+    }
+    return days;
+  };
+  
+  // Calculate coverage (days assigned to cities)
+  const getCoverage = () => {
+    let assigned = 0;
+    editableCities.forEach(cityCode => {
+      const city = cityDates[cityCode];
+      if (city && city.startMonth && city.startDay && city.endMonth && city.endDay) {
+        const startIdx = months.indexOf(city.startMonth);
+        const endIdx = months.indexOf(city.endMonth);
+        if (startIdx === endIdx) {
+          assigned += city.endDay - city.startDay + 1;
+        } else {
+          assigned += monthDays[city.startMonth] - city.startDay + 1;
+          for (let i = startIdx + 1; i < endIdx; i++) {
+            assigned += monthDays[months[i]];
+          }
+          assigned += city.endDay;
+        }
+      }
+    });
+    return assigned;
+  };
+  
+  // Check if save should be enabled
+  const canSave = () => {
+    const duration = getTripDuration();
+    const coverage = getCoverage();
+    return duration > 0 && coverage === duration && editableCities.every(city => {
+      const dates = cityDates[city];
+      return dates && dates.startMonth && dates.startDay && dates.endMonth && dates.endDay;
+    });
+  };
   
   const activeDay = tripData.days.find(d => d.id === activeDayId) || tripData.days[0];
   const activeCityCode = activeDay.cityCode;
