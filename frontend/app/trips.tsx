@@ -478,78 +478,7 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  backButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 8,
-  },
-  logoText: {
-    fontSize: 24,
-    fontWeight: '400',
-    color: '#F8F8F8',
-    letterSpacing: 4.8,
-    textTransform: 'uppercase',
-    fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Neue Montreal',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-    ...Platform.select({
-      web: {
-        textShadow: '0 0 20px rgba(201,169,109,0.25)',
-      },
-    }),
-  },
-  pageTitleSection: {
-    paddingHorizontal: 20,
-    marginBottom: 8,
-  },
-  pageTitleSection: {
-    paddingHorizontal: 20,
-    marginBottom: 20, // Increased spacing from pills
-  },
-  pageTitle: {
-    fontSize: 22, // Reduced font size as requested
-    fontWeight: '600', // Semi-bold
-    color: '#F8F8F8',
-    letterSpacing: 0.5,
-    fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Neue Montreal',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  profileButton: {
-    flex: 1,
-    alignItems: 'flex-end',
-  },
-  profileIcon: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    overflow: 'hidden',
-    backgroundColor: 'rgba(255,255,255,0.12)', // Enhanced frosted glass circle for visibility
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.15)', // Subtle border for definition
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(24px)',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.2)', // Soft shadow for depth
-      },
-      default: {
-        shadowColor: 'rgba(0,0,0,0.8)',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 6,
-        elevation: 3,
-      },
-    }),
-  },
+  // Removed unused styles: backButton, logoText, pageTitleSection, pageTitle, profileButton, profileIcon
   stickyTabsContainer: {
     position: 'sticky',
     top: 0,
