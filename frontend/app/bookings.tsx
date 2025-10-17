@@ -442,7 +442,7 @@ export default function TripCanvas() {
         {/* Frosted pane container for hero content */}
         <View style={styles.heroFrostedPane}>
           <View style={styles.heroTitleContainer}>
-            <Text style={styles.heroTitle}>{tripData.tripName}</Text>
+            <Text style={styles.heroTitle}>{editableTripName}</Text>
           </View>
           <View style={styles.heroSubtitleRow}>
             <Text style={styles.heroSubtitle}>
@@ -458,6 +458,58 @@ export default function TripCanvas() {
               <Ionicons name="create-outline" size={14} color="rgba(181,155,115,0.9)" />
             </TouchableOpacity>
           </View>
+          
+          {/* Day Selector Pills */}
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            style={styles.dayStripScroll}
+            contentContainerStyle={styles.dayStripContent}
+          >
+            {editableCities.map((cityCode, idx) => {
+              const cityDate = cityDates[cityCode];
+              if (!cityDate || !cityDate.startMonth || !cityDate.endMonth) return null;
+              
+              // Calculate day numbers for this city
+              let dayStart = 1;
+              for (let i = 0; i < idx; i++) {
+                const prevCity = cityDates[editableCities[i]];
+                if (prevCity && prevCity.startMonth && prevCity.endMonth) {
+                  const startIdx = months.indexOf(prevCity.startMonth);
+                  const endIdx = months.indexOf(prevCity.endMonth);
+                  if (startIdx === endIdx) {
+                    dayStart += prevCity.endDay - prevCity.startDay + 1;
+                  } else {
+                    dayStart += monthDays[prevCity.startMonth] - prevCity.startDay + 1;
+                    for (let j = startIdx + 1; j < endIdx; j++) {
+                      dayStart += monthDays[months[j]];
+                    }
+                    dayStart += prevCity.endDay;
+                  }
+                }
+              }
+              
+              const startIdx = months.indexOf(cityDate.startMonth);
+              const endIdx = months.indexOf(cityDate.endMonth);
+              let cityDuration = 0;
+              if (startIdx === endIdx) {
+                cityDuration = cityDate.endDay - cityDate.startDay + 1;
+              } else {
+                cityDuration = monthDays[cityDate.startMonth] - cityDate.startDay + 1;
+                for (let j = startIdx + 1; j < endIdx; j++) {
+                  cityDuration += monthDays[months[j]];
+                }
+                cityDuration += cityDate.endDay;
+              }
+              const dayEnd = dayStart + cityDuration - 1;
+              
+              return (
+                <View key={cityCode} style={styles.dayPill}>
+                  <Text style={styles.dayPillText}>Day {dayStart}–{dayEnd}</Text>
+                </View>
+              );
+            })}
+          </ScrollView>
           
           {/* Status Dropdown */}
           <TouchableOpacity 
