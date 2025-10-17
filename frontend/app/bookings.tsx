@@ -2563,6 +2563,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 4,
   },
+  transportCardDurationRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
   transportCardTimeSeparator: {
     fontSize: 14,
     fontWeight: '500',
