@@ -984,10 +984,309 @@ export default function TripCanvas() {
 
   // Check if all cities have valid dates
   const areCityDatesValid = () => {
-    return editableCities.every(city => cityDates[city] && cityDates[city].start && cityDates[city].end);
+    return editableCities.every(city => cityDates[city] && cityDates[city].startMonth && cityDates[city].startDay && cityDates[city].endMonth && cityDates[city].endDay);
   };
 
-  // Luxury Edit Pane - Apple × Aman Resort Aesthetic with Calendar
+  // Luxury Edit Pane with Select-Based Date System
+  const renderEditPane = () => {
+    const tripDuration = getTripDuration();
+    const coverage = getCoverage();
+    const remaining = tripDuration - coverage;
+    const isEndBeforeStart = months.indexOf(tripEndMonth) < months.indexOf(tripStartMonth) || 
+      (tripEndMonth === tripStartMonth && tripEndDay < tripStartDay);
+    
+    return (
+      <Modal
+        visible={showEditPane}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={() => setShowEditPane(false)}
+      >
+        <View style={styles.luxuryEditOverlay}>
+          <BlurView intensity={50} tint="dark" style={styles.luxuryEditBlur}>
+            <TouchableOpacity 
+              style={StyleSheet.absoluteFill} 
+              onPress={() => setShowEditPane(false)}
+              activeOpacity={1}
+            />
+            
+            <View style={styles.luxuryEditPane}>
+              {/* Close Button */}
+              <TouchableOpacity 
+                style={styles.luxuryCloseButton}
+                onPress={() => setShowEditPane(false)}
+                activeOpacity={0.7}
+              >
+                <Ionicons name="close" size={18} color="rgba(214,193,152,0.9)" />
+              </TouchableOpacity>
+
+              <ScrollView 
+                style={styles.luxuryEditScroll}
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={styles.luxuryEditScrollContent}
+              >
+                {/* Subtitle */}
+                <Text style={styles.luxuryEditSubtitle}>CUSTOMIZE YOUR JOURNEY</Text>
+                
+                {/* Title */}
+                <Text style={styles.luxuryEditTitle}>Edit Trip</Text>
+                
+                {/* Divider */}
+                <View style={styles.luxuryDivider} />
+
+                {/* Trip Name */}
+                <View style={styles.luxurySection}>
+                  <TextInput
+                    style={styles.luxuryInputLarge}
+                    value={editableTripName}
+                    onChangeText={setEditableTripName}
+                    placeholder="Trip Name"
+                    placeholderTextColor="rgba(255,255,255,0.35)"
+                  />
+                </View>
+
+                {/* Divider */}
+                <View style={styles.luxuryDivider} />
+
+                {/* Trip Dates & Travelers */}
+                <View style={styles.luxurySection}>
+                  <Text style={styles.luxurySectionLabel}>TRIP DATES & TRAVELERS</Text>
+                  
+                  {/* Date Row */}
+                  <View style={styles.dateRow}>
+                    <View style={styles.dateSelect}>
+                      <Text style={styles.dateLabel}>Start Month</Text>
+                      <View style={styles.selectWrapper}>
+                        <Text style={styles.selectText}>{tripStartMonth}</Text>
+                      </View>
+                    </View>
+                    <View style={styles.dateSelectSmall}>
+                      <Text style={styles.dateLabel}>Day</Text>
+                      <View style={styles.selectWrapper}>
+                        <Text style={styles.selectText}>{tripStartDay}</Text>
+                      </View>
+                    </View>
+                    <View style={styles.dateSelect}>
+                      <Text style={styles.dateLabel}>End Month</Text>
+                      <View style={styles.selectWrapper}>
+                        <Text style={styles.selectText}>{tripEndMonth}</Text>
+                      </View>
+                    </View>
+                    <View style={styles.dateSelectSmall}>
+                      <Text style={styles.dateLabel}>Day</Text>
+                      <View style={styles.selectWrapper}>
+                        <Text style={styles.selectText}>{tripEndDay}</Text>
+                      </View>
+                    </View>
+                  </View>
+
+                  {/* Travelers Stepper */}
+                  <View style={styles.travelersStepper}>
+                    <Text style={styles.dateLabel}>Travelers</Text>
+                    <View style={styles.stepperControls}>
+                      <TouchableOpacity 
+                        style={styles.stepperButton}
+                        onPress={() => setEditableTravelers(Math.max(1, editableTravelers - 1))}
+                        activeOpacity={0.7}
+                      >
+                        <Ionicons name="remove" size={18} color="rgba(214,193,152,0.9)" />
+                      </TouchableOpacity>
+                      <Text style={styles.stepperValue}>{editableTravelers}</Text>
+                      <TouchableOpacity 
+                        style={styles.stepperButton}
+                        onPress={() => setEditableTravelers(editableTravelers + 1)}
+                        activeOpacity={0.7}
+                      >
+                        <Ionicons name="add" size={18} color="rgba(214,193,152,0.9)" />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+
+                  {/* Error/Summary */}
+                  {isEndBeforeStart ? (
+                    <Text style={styles.errorHint}>End must be after Start.</Text>
+                  ) : tripDuration > 0 ? (
+                    <Text style={styles.tripSummary}>
+                      Trip: {tripStartMonth.substring(0,3)} {tripStartDay} – {tripEndMonth.substring(0,3)} {tripEndDay} ({tripDuration} days)
+                    </Text>
+                  ) : null}
+                </View>
+
+                {/* Divider */}
+                <View style={styles.luxuryDivider} />
+
+                {/* Cities & Dates */}
+                <View style={styles.luxurySection}>
+                  <Text style={styles.luxurySectionLabel}>CITIES & DATES</Text>
+                  
+                  {/* Coverage Progress */}
+                  <View style={styles.coverageBar}>
+                    <Text style={styles.coverageText}>Coverage: {coverage} / {tripDuration} days assigned</Text>
+                    {remaining > 0 && (
+                      <Text style={styles.coverageHint}>Assign remaining {remaining} days</Text>
+                    )}
+                  </View>
+
+                  {/* City Cards */}
+                  <View style={styles.luxuryCityList}>
+                    {editableCities.map((cityCode, index) => {
+                      const cityData = AVAILABLE_CITIES.find(c => c.code === cityCode);
+                      const cityDate = cityDates[cityCode] || {startMonth: '', startDay: 0, endMonth: '', endDay: 0};
+                      const hasValidDates = cityDate.startMonth && cityDate.startDay && cityDate.endMonth && cityDate.endDay;
+                      
+                      // Calculate nights
+                      let nights = 0;
+                      if (hasValidDates) {
+                        const startIdx = months.indexOf(cityDate.startMonth);
+                        const endIdx = months.indexOf(cityDate.endMonth);
+                        if (startIdx === endIdx) {
+                          nights = cityDate.endDay - cityDate.startDay;
+                        } else {
+                          nights = monthDays[cityDate.startMonth] - cityDate.startDay;
+                          for (let i = startIdx + 1; i < endIdx; i++) {
+                            nights += monthDays[months[i]];
+                          }
+                          nights += cityDate.endDay;
+                        }
+                      }
+                      
+                      return (
+                        <View key={`${cityCode}-${index}`} style={styles.cityCard}>
+                          <View style={styles.cityCardHeader}>
+                            {/* Reorder Handle */}
+                            <View style={styles.luxuryReorderHandle}>
+                              <View style={styles.luxuryDot} />
+                              <View style={styles.luxuryDot} />
+                              <View style={styles.luxuryDot} />
+                            </View>
+                            
+                            <Text style={styles.cityCardName}>{cityData?.name || cityCode}</Text>
+                            
+                            {/* Delete Button */}
+                            <TouchableOpacity
+                              style={styles.luxuryDeleteButton}
+                              onPress={() => {
+                                const newCities = editableCities.filter((_, i) => i !== index);
+                                setEditableCities(newCities);
+                              }}
+                              activeOpacity={0.6}
+                            >
+                              <Ionicons name="close" size={14} color="rgba(255,255,255,0.5)" />
+                            </TouchableOpacity>
+                          </View>
+
+                          {/* City Date Selects */}
+                          <View style={styles.cityDateRow}>
+                            <View style={styles.cityDateGroup}>
+                              <Text style={styles.cityDateLabel}>Start</Text>
+                              <View style={styles.cityDateFields}>
+                                <View style={styles.cityDateField}>
+                                  <Text style={styles.cityDateFieldText}>{cityDate.startMonth?.substring(0,3) || 'Mon'}</Text>
+                                </View>
+                                <View style={styles.cityDateField}>
+                                  <Text style={styles.cityDateFieldText}>{cityDate.startDay || 'D'}</Text>
+                                </View>
+                              </View>
+                            </View>
+                            
+                            <View style={styles.cityDateGroup}>
+                              <Text style={styles.cityDateLabel}>End</Text>
+                              <View style={styles.cityDateFields}>
+                                <View style={styles.cityDateField}>
+                                  <Text style={styles.cityDateFieldText}>{cityDate.endMonth?.substring(0,3) || 'Mon'}</Text>
+                                </View>
+                                <View style={styles.cityDateField}>
+                                  <Text style={styles.cityDateFieldText}>{cityDate.endDay || 'D'}</Text>
+                                </View>
+                              </View>
+                            </View>
+                          </View>
+
+                          {/* Subcaption */}
+                          {hasValidDates && (
+                            <Text style={styles.cityNights}>{nights} {nights === 1 ? 'night' : 'nights'}</Text>
+                          )}
+                        </View>
+                      );
+                    })}
+                  </View>
+
+                  {/* Add City */}
+                  <View style={styles.luxuryAddCitySection}>
+                    <TextInput
+                      style={styles.luxuryInput}
+                      value={citySearchQuery}
+                      onChangeText={setCitySearchQuery}
+                      placeholder="Search to add a city..."
+                      placeholderTextColor="rgba(255,255,255,0.35)"
+                    />
+                    
+                    {citySearchQuery.length > 0 && (
+                      <View style={styles.luxuryCityResults}>
+                        {filteredCities.length > 0 ? (
+                          filteredCities.map((city) => (
+                            <TouchableOpacity
+                              key={city.code}
+                              style={styles.luxuryCityResult}
+                              onPress={() => {
+                                if (!editableCities.includes(city.code)) {
+                                  setEditableCities([...editableCities, city.code]);
+                                }
+                                setCitySearchQuery('');
+                              }}
+                              activeOpacity={0.7}
+                            >
+                              <Text style={styles.luxuryCityResultText}>
+                                {city.name}, {city.region}
+                              </Text>
+                            </TouchableOpacity>
+                          ))
+                        ) : (
+                          <View style={styles.luxuryCityResult}>
+                            <Text style={styles.luxuryNotAvailableText}>
+                              This city is not available
+                            </Text>
+                          </View>
+                        )}
+                      </View>
+                    )}
+                  </View>
+                </View>
+
+                {/* Save Button */}
+                <TouchableOpacity 
+                  style={[
+                    styles.luxurySaveButton,
+                    !canSave() && styles.luxurySaveButtonDisabled
+                  ]}
+                  onPress={() => canSave() && setShowEditPane(false)}
+                  activeOpacity={canSave() ? 0.8 : 1}
+                  disabled={!canSave()}
+                >
+                  <LinearGradient
+                    colors={canSave() ? 
+                      ['rgba(201,180,124,0.2)', 'rgba(184,156,115,0.25)'] : 
+                      ['rgba(100,100,100,0.15)', 'rgba(80,80,80,0.2)']
+                    }
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 0 }}
+                    style={styles.luxurySaveGradient}
+                  >
+                    <Text style={[
+                      styles.luxurySaveText,
+                      !canSave() && styles.luxurySaveTextDisabled
+                    ]}>
+                      {canSave() ? 'Save Changes' : `Assign all ${tripDuration} days`}
+                    </Text>
+                  </LinearGradient>
+                </TouchableOpacity>
+              </ScrollView>
+            </View>
+          </BlurView>
+        </View>
+      </Modal>
+    );
+  };
   const renderEditPane = () => (
     <Modal
       visible={showEditPane}
