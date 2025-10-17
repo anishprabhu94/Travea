@@ -2552,10 +2552,255 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
+  transportCardTimeRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  transportCardTimeSeparator: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: 'rgba(181,155,115,0.6)',
+    marginHorizontal: 4,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
   transportCardDuration: {
     fontSize: 13,
     fontWeight: '400',
     color: 'rgba(181,155,115,0.75)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+
+  // Edit Pane Styles
+  editPaneOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  editPaneBlur: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  editPaneContainer: {
+    width: '90%',
+    maxWidth: 500,
+    maxHeight: '85%',
+    backgroundColor: 'rgba(20,20,20,0.98)',
+    borderRadius: 32,
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.3)',
+    overflow: 'hidden',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 20px 60px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 20 },
+        shadowOpacity: 0.7,
+        shadowRadius: 30,
+        elevation: 20,
+      },
+    }),
+  },
+  editPaneScroll: {
+    flex: 1,
+  },
+  editPaneScrollContent: {
+    padding: 28,
+  },
+  editPaneHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 32,
+  },
+  editPaneTitle: {
+    fontSize: 26,
+    fontWeight: '600',
+    color: '#F8F8F8',
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  editPaneCloseButton: {
+    width: 36,
+    height: 36,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  editSection: {
+    marginBottom: 28,
+  },
+  editSectionTitle: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: 'rgba(181,155,115,0.95)',
+    textTransform: 'uppercase',
+    letterSpacing: 1.5,
+    marginBottom: 14,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  editInput: {
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.25)',
+    paddingHorizontal: 18,
+    paddingVertical: 14,
+    fontSize: 16,
+    color: '#F8F8F8',
+    fontWeight: '600',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  editRow: {
+    flexDirection: 'row',
+    gap: 16,
+  },
+  editRowItem: {
+    flex: 1,
+  },
+  editLabel: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.7)',
+    marginBottom: 8,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  editInputSmall: {
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.25)',
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    fontSize: 15,
+    color: '#F8F8F8',
+    fontWeight: '700',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  citiesEditContainer: {
+    gap: 12,
+  },
+  cityEditPill: {
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.3)',
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  cityEditPillLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  cityEditPillText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#F8F8F8',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  addCityContainer: {
+    marginTop: 20,
+  },
+  addCityLabel: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.7)',
+    marginBottom: 8,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  citySearchResults: {
+    marginTop: 12,
+    backgroundColor: 'rgba(255,255,255,0.04)',
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.2)',
+    overflow: 'hidden',
+  },
+  citySearchResult: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(181,155,115,0.1)',
+  },
+  citySearchResultText: {
+    fontSize: 15,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.9)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  cityNotAvailableText: {
+    fontSize: 14,
+    fontStyle: 'italic',
+    color: 'rgba(255,100,100,0.8)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  editPaneSaveButton: {
+    backgroundColor: '#B59B73',
+    borderRadius: 18,
+    paddingVertical: 16,
+    paddingHorizontal: 32,
+    alignItems: 'center',
+    marginTop: 20,
+    ...Platform.select({
+      web: {
+        boxShadow: '0 6px 20px rgba(181,155,115,0.4)',
+      },
+      default: {
+        shadowColor: '#B59B73',
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.4,
+        shadowRadius: 10,
+        elevation: 8,
+      },
+    }),
+  },
+  editPaneSaveButtonText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#FFFFFF',
+    letterSpacing: 0.5,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
