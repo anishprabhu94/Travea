@@ -3777,6 +3777,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(214,193,152,0.15)',
     padding: 14,
     marginBottom: 12,
+    overflow: 'visible',
   },
   cityCardActive: {
     backgroundColor: 'rgba(201,180,124,0.12)',
