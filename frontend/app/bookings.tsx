@@ -655,7 +655,7 @@ export default function TripCanvas() {
                     </View>
                     <Text style={styles.transportCardTitle}>{item.title}</Text>
                     <Text style={styles.transportCardRoute}>{item.route}</Text>
-                    <Text style={styles.transportCardTime}>Leave: {item.time}</Text>
+                    <Text style={styles.transportCardTime}>Pick-up: {item.time}</Text>
                     <Text style={styles.transportCardDuration}>{item.duration.split('·')[0].trim()}</Text>
                   </View>
                 </ImageBackground>
