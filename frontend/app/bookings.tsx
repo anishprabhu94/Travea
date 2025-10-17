@@ -444,6 +444,66 @@ export default function TripCanvas() {
     return '';
   };
   
+  // Helper: Convert trip day number to month/day
+  const tripDayToDate = (dayNum: number) => {
+    const tripStartIdx = months.indexOf(tripStartMonth);
+    let currentMonth = tripStartMonth;
+    let currentDay = tripStartDay + dayNum - 1;
+    
+    // Adjust for month overflow
+    let monthIdx = tripStartIdx;
+    while (currentDay > monthDays[currentMonth]) {
+      currentDay -= monthDays[currentMonth];
+      monthIdx++;
+      currentMonth = months[monthIdx];
+    }
+    
+    return { month: currentMonth, day: currentDay };
+  };
+  
+  // Assign All Logic (deterministic auto-distribution)
+  const handleAssignAll = () => {
+    const totalDays = getTripDuration();
+    const cityCount = editableCities.length;
+    
+    if (cityCount === 0 || totalDays === 0) return;
+    
+    // Check if more cities than days
+    if (cityCount > totalDays) {
+      setTripChangeMessage("Not enough days for all cities. Assign manually or remove some cities.");
+      setTimeout(() => setTripChangeMessage(''), 5000);
+      return;
+    }
+    
+    const base = Math.floor(totalDays / cityCount);
+    const remainder = totalDays - (base * cityCount);
+    
+    const newCityDates: {[key: string]: {startMonth: string, startDay: number, endMonth: string, endDay: number}} = {};
+    let currentDayNum = 1;
+    
+    editableCities.forEach((cityCode, index) => {
+      // First 'remainder' cities get base + 1 days
+      const daysForThisCity = index < remainder ? base + 1 : base;
+      
+      const startDate = tripDayToDate(currentDayNum);
+      const endDate = tripDayToDate(currentDayNum + daysForThisCity - 1);
+      
+      newCityDates[cityCode] = {
+        startMonth: startDate.month,
+        startDay: startDate.day,
+        endMonth: endDate.month,
+        endDay: endDate.day
+      };
+      
+      currentDayNum += daysForThisCity;
+    });
+    
+    setCityDates(newCityDates);
+    setHasUsedAssignAll(true);
+    setTripChangeMessage("Days assigned evenly by list order.");
+    setTimeout(() => setTripChangeMessage(''), 4000);
+  };
+  
   // Helper: Get available days for a city (considering other cities)
   const getAvailableDays = (cityIndex: number, isStartDate: boolean) => {
     const tripDuration = getTripDuration();
