@@ -1481,6 +1481,7 @@ export default function TripCanvas() {
                                   activeOpacity={isFirstCity ? 1 : 0.7}
                                   disabled={isFirstCity}
                                 >
+                                  {isFirstCity && <Ionicons name="lock-closed" size={10} color="rgba(214,193,152,0.5)" style={{position: 'absolute', left: 4, top: 4}} />}
                                   <Text style={[styles.cityDateFieldText, isFirstCity && styles.cityDateFieldTextLocked]}>
                                     {cityDate.startMonth?.substring(0,3) || '―'}
                                   </Text>
