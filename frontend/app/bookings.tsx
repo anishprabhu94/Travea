@@ -921,7 +921,12 @@ export default function TripCanvas() {
     </View>
   );
 
-  // Luxury Edit Pane - Apple × Aman Resort Aesthetic
+  // Check if all cities have valid dates
+  const areCityDatesValid = () => {
+    return editableCities.every(city => cityDates[city] && cityDates[city].start && cityDates[city].end);
+  };
+
+  // Luxury Edit Pane - Apple × Aman Resort Aesthetic with Calendar
   const renderEditPane = () => (
     <Modal
       visible={showEditPane}
@@ -952,6 +957,9 @@ export default function TripCanvas() {
               showsVerticalScrollIndicator={false}
               contentContainerStyle={styles.luxuryEditScrollContent}
             >
+              {/* Subtitle */}
+              <Text style={styles.luxuryEditSubtitle}>CUSTOMIZE YOUR JOURNEY</Text>
+              
               {/* Title */}
               <Text style={styles.luxuryEditTitle}>Edit Trip</Text>
               
@@ -977,14 +985,40 @@ export default function TripCanvas() {
                 <Text style={styles.luxurySectionLabel}>DATES & TRAVELERS</Text>
                 <View style={styles.luxuryRow}>
                   <View style={styles.luxuryRowItem}>
-                    <Text style={styles.luxuryFieldLabel}>Dates</Text>
-                    <TextInput
+                    <Text style={styles.luxuryFieldLabel}>Trip Dates</Text>
+                    <TouchableOpacity
                       style={styles.luxuryInput}
-                      value={editableDates}
-                      onChangeText={setEditableDates}
-                      placeholder="June 8–15"
-                      placeholderTextColor="rgba(255,255,255,0.35)"
-                    />
+                      onPress={() => setShowDatePicker(!showDatePicker)}
+                      activeOpacity={0.7}
+                    >
+                      <Text style={styles.luxuryInputText}>{editableDates}</Text>
+                    </TouchableOpacity>
+                    
+                    {/* Floating Calendar */}
+                    {showDatePicker && (
+                      <View style={styles.floatingCalendar}>
+                        <Text style={styles.calendarMonth}>June 2025</Text>
+                        <View style={styles.calendarGrid}>
+                          {[8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25].map((day) => (
+                            <TouchableOpacity 
+                              key={day}
+                              style={[
+                                styles.calendarDay,
+                                day >= 8 && day <= 15 && styles.calendarDaySelected
+                              ]}
+                              activeOpacity={0.7}
+                            >
+                              <Text style={[
+                                styles.calendarDayText,
+                                day >= 8 && day <= 15 && styles.calendarDayTextSelected
+                              ]}>
+                                {day}
+                              </Text>
+                            </TouchableOpacity>
+                          ))}
+                        </View>
+                      </View>
+                    )}
                   </View>
                   <View style={styles.luxuryRowItem}>
                     <Text style={styles.luxuryFieldLabel}>Travelers</Text>
@@ -1003,36 +1037,83 @@ export default function TripCanvas() {
               {/* Divider */}
               <View style={styles.luxuryDivider} />
 
-              {/* Cities Section */}
+              {/* Cities Section with Per-City Dates */}
               <View style={styles.luxurySection}>
-                <Text style={styles.luxurySectionLabel}>CITIES</Text>
+                <Text style={styles.luxurySectionLabel}>CITIES & DATES</Text>
                 
-                {/* City Pills */}
+                {/* City Pills with Date Assignment */}
                 <View style={styles.luxuryCityList}>
                   {editableCities.map((cityCode, index) => {
                     const cityData = AVAILABLE_CITIES.find(c => c.code === cityCode);
+                    const hasValidDates = cityDates[cityCode] && cityDates[cityCode].start && cityDates[cityCode].end;
+                    
                     return (
-                      <View key={`${cityCode}-${index}`} style={styles.luxuryCityPill}>
-                        {/* Reorder Handle */}
-                        <View style={styles.luxuryReorderHandle}>
-                          <View style={styles.luxuryDot} />
-                          <View style={styles.luxuryDot} />
-                          <View style={styles.luxuryDot} />
+                      <View key={`${cityCode}-${index}`} style={styles.luxuryCityRow}>
+                        <View style={[
+                          styles.luxuryCityPill,
+                          hasValidDates && styles.luxuryCityPillValid
+                        ]}>
+                          {/* Reorder Handle */}
+                          <View style={styles.luxuryReorderHandle}>
+                            <View style={styles.luxuryDot} />
+                            <View style={styles.luxuryDot} />
+                            <View style={styles.luxuryDot} />
+                          </View>
+                          
+                          <Text style={styles.luxuryCityName}>{cityData?.name || cityCode}</Text>
+                          
+                          {/* City Date Field */}
+                          <TouchableOpacity
+                            style={[
+                              styles.cityDateField,
+                              hasValidDates && styles.cityDateFieldValid
+                            ]}
+                            onPress={() => setShowCityDatePicker(showCityDatePicker === index ? null : index)}
+                            activeOpacity={0.7}
+                          >
+                            <Text style={styles.cityDateText}>
+                              {cityDates[cityCode] ? `${cityDates[cityCode].start} – ${cityDates[cityCode].end}` : 'Set dates'}
+                            </Text>
+                          </TouchableOpacity>
+                          
+                          {/* Delete Button */}
+                          <TouchableOpacity
+                            style={styles.luxuryDeleteButton}
+                            onPress={() => {
+                              const newCities = editableCities.filter((_, i) => i !== index);
+                              setEditableCities(newCities);
+                            }}
+                            activeOpacity={0.6}
+                          >
+                            <Ionicons name="close" size={14} color="rgba(255,255,255,0.5)" />
+                          </TouchableOpacity>
                         </View>
                         
-                        <Text style={styles.luxuryCityName}>{cityData?.name || cityCode}</Text>
-                        
-                        {/* Delete Button */}
-                        <TouchableOpacity
-                          style={styles.luxuryDeleteButton}
-                          onPress={() => {
-                            const newCities = editableCities.filter((_, i) => i !== index);
-                            setEditableCities(newCities);
-                          }}
-                          activeOpacity={0.6}
-                        >
-                          <Ionicons name="close" size={16} color="rgba(255,255,255,0.5)" />
-                        </TouchableOpacity>
+                        {/* Inline City Date Picker */}
+                        {showCityDatePicker === index && (
+                          <View style={styles.inlineCityDatePicker}>
+                            <Text style={styles.cityPickerLabel}>Assign dates for {cityData?.name}</Text>
+                            <View style={styles.cityDateGrid}>
+                              {[8,9,10,11,12,13,14,15].map((day) => (
+                                <TouchableOpacity 
+                                  key={day}
+                                  style={styles.cityDateDay}
+                                  activeOpacity={0.7}
+                                  onPress={() => {
+                                    // Simple assignment for now
+                                    setCityDates(prev => ({
+                                      ...prev,
+                                      [cityCode]: {start: `Jun ${day}`, end: `Jun ${day+1}`}
+                                    }));
+                                    setShowCityDatePicker(null);
+                                  }}
+                                >
+                                  <Text style={styles.cityDateDayText}>{day}</Text>
+                                </TouchableOpacity>
+                              ))}
+                            </View>
+                          </View>
+                        )}
                       </View>
                     );
                   })}
@@ -1082,17 +1163,29 @@ export default function TripCanvas() {
 
               {/* Save Button */}
               <TouchableOpacity 
-                style={styles.luxurySaveButton}
-                onPress={() => setShowEditPane(false)}
-                activeOpacity={0.8}
+                style={[
+                  styles.luxurySaveButton,
+                  !areCityDatesValid() && styles.luxurySaveButtonDisabled
+                ]}
+                onPress={() => areCityDatesValid() && setShowEditPane(false)}
+                activeOpacity={areCityDatesValid() ? 0.8 : 1}
+                disabled={!areCityDatesValid()}
               >
                 <LinearGradient
-                  colors={['rgba(201,180,124,0.2)', 'rgba(184,156,115,0.25)']}
+                  colors={areCityDatesValid() ? 
+                    ['rgba(201,180,124,0.2)', 'rgba(184,156,115,0.25)'] : 
+                    ['rgba(100,100,100,0.15)', 'rgba(80,80,80,0.2)']
+                  }
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 0 }}
                   style={styles.luxurySaveGradient}
                 >
-                  <Text style={styles.luxurySaveText}>Save Changes</Text>
+                  <Text style={[
+                    styles.luxurySaveText,
+                    !areCityDatesValid() && styles.luxurySaveTextDisabled
+                  ]}>
+                    {areCityDatesValid() ? 'Save Changes' : 'Assign dates to all cities'}
+                  </Text>
                 </LinearGradient>
               </TouchableOpacity>
             </ScrollView>
