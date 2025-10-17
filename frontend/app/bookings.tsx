@@ -991,13 +991,14 @@ export default function TripCanvas() {
 
   // Luxury Edit Pane with Select-Based Date System
   const renderEditPane = () => {
-    const tripDuration = getTripDuration();
-    const coverage = getCoverage();
-    const remaining = tripDuration - coverage;
-    const isEndBeforeStart = months.indexOf(tripEndMonth) < months.indexOf(tripStartMonth) || 
-      (tripEndMonth === tripStartMonth && tripEndDay < tripStartDay);
-    
     return (
+      <Modal visible={showEditPane} transparent={true} onRequestClose={() => setShowEditPane(false)}>
+        <View style={styles.luxuryEditOverlay}>
+          <TouchableOpacity onPress={() => setShowEditPane(false)}><Text>Close</Text></TouchableOpacity>
+        </View>
+      </Modal>
+    );
+  };
       <Modal
         visible={showEditPane}
         transparent={true}
