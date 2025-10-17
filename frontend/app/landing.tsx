@@ -36,6 +36,7 @@ interface DestinationCard {
   cities?: string[]
   cityInitials?: string[]
   duration?: string
+  circuitTitle?: string
 }
 
 const destinationCards: DestinationCard[] = [
