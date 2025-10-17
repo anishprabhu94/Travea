@@ -1360,9 +1360,9 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 14,
-    backgroundColor: 'rgba(15,15,15,0.85)',
+    backgroundColor: 'rgba(25,25,25,0.8)',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.12)',
+    borderColor: 'rgba(255,255,255,0.15)',
     zIndex: 10,
     ...Platform.select({
       web: {
