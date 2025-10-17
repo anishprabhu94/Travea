@@ -3408,6 +3408,10 @@ const styles = StyleSheet.create({
     padding: 18,
     paddingTop: 20,
   },
+  luxuryEditTitleContainer: {
+    alignItems: 'center',
+    marginTop: 8,
+  },
   luxuryEditTitle: {
     fontSize: 24,
     fontWeight: '600',
