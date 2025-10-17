@@ -273,10 +273,11 @@ export default function MyTrips() {
     
     if (Object.keys(groupedDestinations).length === 0) {
       console.log('renderSavedContent: No destinations found, showing empty state')
+      const emptyMessage = getEmptyStateMessage()
       return (
         <View style={styles.emptyState}>
-          <Text style={styles.emptyStateText}>No saved destinations yet</Text>
-          <Text style={styles.emptyStateSubtext}>Bookmark places on the discover page to see them here</Text>
+          <Text style={styles.emptyStateText}>{emptyMessage.title}</Text>
+          <Text style={styles.emptyStateSubtext}>{emptyMessage.subtitle}</Text>
         </View>
       )
     }
