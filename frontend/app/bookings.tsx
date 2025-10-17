@@ -7,10 +7,14 @@ import {
   TouchableOpacity,
   ImageBackground,
   Platform,
+  Modal,
+  TextInput,
+  Animated,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
+import { BlurView } from 'expo-blur';
 
 // "Frosted Editorial System v3" - Luxury Travel Chronicle
 const tripData = {
