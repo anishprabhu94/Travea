@@ -212,13 +212,10 @@ export default function MyTrips() {
                 </View>
               )}
 
-              {/* Canvas Button - Left Aligned & Shorter */}
-              <View style={styles.canvasButtonContainer}>
-                <TouchableOpacity style={styles.canvasButton} activeOpacity={0.8}>
-                  <View style={styles.canvasIconContainer}>
-                    <Ionicons name="add" size={10} color="rgba(255,255,255,0.9)" />
-                  </View>
-                  <Text style={styles.canvasButtonText}>Canvas</Text>
+              {/* Plan Trip Button */}
+              <View style={styles.planTripButtonContainer}>
+                <TouchableOpacity style={styles.planTripButton} activeOpacity={0.8}>
+                  <Text style={styles.planTripButtonText}>Plan Trip</Text>
                 </TouchableOpacity>
               </View>
             </View>
