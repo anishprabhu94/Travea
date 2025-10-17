@@ -491,9 +491,8 @@ const styles = StyleSheet.create({
   },
   tabChips: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 10,
+    gap: 12,
+    flexWrap: 'wrap',
   },
   tabChip: {
     position: 'relative',
