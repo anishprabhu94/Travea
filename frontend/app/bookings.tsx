@@ -1352,7 +1352,7 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Date Badge on Image Cards (Darker for visibility)
+  // Date Badge on Image Cards (Dark frosted glass with light bronze text)
   cardDateBadgeOnImage: {
     position: 'absolute',
     top: 12,
@@ -1360,9 +1360,9 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 14,
-    backgroundColor: 'rgba(181,155,115,0.35)',
+    backgroundColor: 'rgba(15,15,15,0.85)',
     borderWidth: 1,
-    borderColor: 'rgba(181,155,115,0.5)',
+    borderColor: 'rgba(255,255,255,0.12)',
     zIndex: 10,
     ...Platform.select({
       web: {
