@@ -2005,7 +2005,7 @@ const styles = StyleSheet.create({
   cityStripContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 4,
+    paddingHorizontal: 20,
     gap: 8,
   },
   cityStrip: {
