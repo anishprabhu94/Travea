@@ -357,6 +357,43 @@ export default function TripCanvas() {
     'VCE': {startMonth: 'June', startDay: 12, endMonth: 'June', endDay: 13},
     'AML': {startMonth: 'June', startDay: 14, endMonth: 'June', endDay: 15},
   });
+  const [tripDateChangeHint, setTripDateChangeHint] = useState('');
+  
+  // Bind first city start to trip start and last city end to trip end
+  React.useEffect(() => {
+    if (editableCities.length === 0) return;
+    
+    const firstCity = editableCities[0];
+    const lastCity = editableCities[editableCities.length - 1];
+    
+    setCityDates(prev => {
+      const updated = {...prev};
+      
+      // Bind first city start to trip start
+      if (updated[firstCity]) {
+        if (updated[firstCity].startMonth !== tripStartMonth || updated[firstCity].startDay !== tripStartDay) {
+          updated[firstCity] = {...updated[firstCity], startMonth: tripStartMonth, startDay: tripStartDay};
+          setTripDateChangeHint('First city start adjusted to match trip start');
+          setTimeout(() => setTripDateChangeHint(''), 3000);
+        }
+      } else {
+        updated[firstCity] = {startMonth: tripStartMonth, startDay: tripStartDay, endMonth: '', endDay: 0};
+      }
+      
+      // Bind last city end to trip end
+      if (updated[lastCity]) {
+        if (updated[lastCity].endMonth !== tripEndMonth || updated[lastCity].endDay !== tripEndDay) {
+          updated[lastCity] = {...updated[lastCity], endMonth: tripEndMonth, endDay: tripEndDay};
+          setTripDateChangeHint('Last city end adjusted to match trip end');
+          setTimeout(() => setTripDateChangeHint(''), 3000);
+        }
+      } else {
+        updated[lastCity] = {startMonth: '', startDay: 0, endMonth: tripEndMonth, endDay: tripEndDay};
+      }
+      
+      return updated;
+    });
+  }, [tripStartMonth, tripStartDay, tripEndMonth, tripEndDay, editableCities]);
   
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const monthDays = {
