@@ -1331,14 +1331,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 
-  // Card Date Badge (Matching Style for All)
+  // Card Date Badge (Darker shade for visibility)
   cardDateBadge: {
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 14,
-    backgroundColor: 'rgba(181,155,115,0.2)',
+    backgroundColor: 'rgba(181,155,115,0.35)',
     borderWidth: 1,
-    borderColor: 'rgba(181,155,115,0.4)',
+    borderColor: 'rgba(181,155,115,0.5)',
   },
   cardDateText: {
     fontSize: 10,
