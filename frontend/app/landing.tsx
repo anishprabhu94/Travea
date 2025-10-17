@@ -1429,14 +1429,14 @@ const styles = StyleSheet.create({
   trendingPillInner: {
     paddingVertical: 8,
     paddingHorizontal: 14,
-    backgroundColor: 'rgba(201,169,109,0.35)',
+    backgroundColor: 'rgba(60,60,60,0.6)',
     borderWidth: 1,
-    borderColor: 'rgba(201,169,109,0.6)',
+    borderColor: 'rgba(80,80,80,0.8)',
   },
   trendingPillText: {
     fontSize: 13,
     fontWeight: '600',
-    color: '#C9A96D',
+    color: 'rgba(255,255,255,0.85)',
     letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'Inter',
