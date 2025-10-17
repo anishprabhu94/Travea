@@ -1107,22 +1107,22 @@ const styles = StyleSheet.create({
   
   // Multi-City Circuit Styles (Matching Trip Canvas)
   multiCityContainer: {
-    marginBottom: 6,
+    marginBottom: 4,
   },
   circuitTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#FFFFFF',
-    marginBottom: 8,
-    letterSpacing: 0.3,
+    fontSize: 18,
+    fontWeight: '500',
+    color: '#F8F8F8',
+    marginBottom: 10,
+    letterSpacing: 0.2,
     fontFamily: Platform.select({
-      ios: 'Playfair Display',
-      android: 'serif',
-      web: 'Playfair Display, Georgia, serif',
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
   cityPillsScroll: {
-    marginBottom: 4,
+    marginBottom: 6,
   },
   cityTimelineRow: {
     flexDirection: 'row',
