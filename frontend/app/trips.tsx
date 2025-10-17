@@ -70,6 +70,8 @@ export default function MyTrips() {
   console.log('MyTrips: Hook returned bookmarkedItems:', bookmarkedItems)
   
   const [activeTab, setActiveTab] = useState('saved') // Default to Saved
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [selectedFilter, setSelectedFilter] = useState('planning') // Default dropdown value
   
   // Animation refs
   const fadeAnim = useRef(new Animated.Value(0)).current
