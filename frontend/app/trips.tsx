@@ -887,6 +887,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingVertical: 8,
     paddingHorizontal: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(201,169,109,0.3)',
     ...Platform.select({
       web: {
         boxShadow: 'inset 0 1px 3px rgba(255,255,255,0.1)',
