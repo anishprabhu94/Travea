@@ -350,6 +350,8 @@ export default function TripCanvas() {
   const [editableTravelers, setEditableTravelers] = useState(2);
   const [editableCities, setEditableCities] = useState([...tripData.cities]);
   const [citySearchQuery, setCitySearchQuery] = useState('');
+  const [showMonthPicker, setShowMonthPicker] = useState<{type: 'start' | 'end' | null, cityIndex?: number}>({type: null});
+  const [showDayPicker, setShowDayPicker] = useState<{type: 'start' | 'end' | null, cityIndex?: number}>({type: null});
   const [cityDates, setCityDates] = useState<{[key: string]: {startMonth: string, startDay: number, endMonth: string, endDay: number}}>({
     'FLR': {startMonth: 'June', startDay: 8, endMonth: 'June', endDay: 9},
     'ROM': {startMonth: 'June', startDay: 10, endMonth: 'June', endDay: 11},
