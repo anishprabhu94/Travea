@@ -3774,6 +3774,25 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
+  cityUnassignedText: {
+    fontSize: 11,
+    color: 'rgba(180,180,180,0.6)',
+    marginTop: 8,
+    fontStyle: 'italic',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  cityValidationMessage: {
+    fontSize: 11,
+    color: 'rgba(255,160,80,0.85)',
+    marginTop: 8,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
   cityErrorContainer: {
     marginTop: 8,
     gap: 4,
