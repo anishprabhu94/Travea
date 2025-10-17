@@ -909,7 +909,7 @@ export default function TripCanvas() {
     </View>
   );
 
-  // Elegant Edit Pane
+  // Luxury Edit Pane - Apple × Aman Resort Aesthetic
   const renderEditPane = () => (
     <Modal
       visible={showEditPane}
@@ -917,115 +917,132 @@ export default function TripCanvas() {
       animationType="fade"
       onRequestClose={() => setShowEditPane(false)}
     >
-      <View style={styles.editPaneOverlay}>
-        <BlurView intensity={40} tint="dark" style={styles.editPaneBlur}>
+      <View style={styles.luxuryEditOverlay}>
+        <BlurView intensity={50} tint="dark" style={styles.luxuryEditBlur}>
           <TouchableOpacity 
             style={StyleSheet.absoluteFill} 
             onPress={() => setShowEditPane(false)}
             activeOpacity={1}
           />
           
-          <View style={styles.editPaneContainer}>
-            <ScrollView 
-              style={styles.editPaneScroll}
-              showsVerticalScrollIndicator={false}
-              contentContainerStyle={styles.editPaneScrollContent}
+          <View style={styles.luxuryEditPane}>
+            {/* Close Button - Top Right */}
+            <TouchableOpacity 
+              style={styles.luxuryCloseButton}
+              onPress={() => setShowEditPane(false)}
+              activeOpacity={0.7}
             >
-              {/* Header */}
-              <View style={styles.editPaneHeader}>
-                <Text style={styles.editPaneTitle}>Edit Trip</Text>
-                <TouchableOpacity 
-                  style={styles.editPaneCloseButton}
-                  onPress={() => setShowEditPane(false)}
-                  activeOpacity={0.7}
-                >
-                  <Ionicons name="close-circle" size={28} color="rgba(181,155,115,0.9)" />
-                </TouchableOpacity>
-              </View>
+              <Ionicons name="close" size={18} color="rgba(214,193,152,0.9)" />
+            </TouchableOpacity>
 
-              {/* Trip Name */}
-              <View style={styles.editSection}>
-                <Text style={styles.editSectionTitle}>Trip Name</Text>
+            <ScrollView 
+              style={styles.luxuryEditScroll}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={styles.luxuryEditScrollContent}
+            >
+              {/* Title */}
+              <Text style={styles.luxuryEditTitle}>Edit Trip</Text>
+              
+              {/* Divider */}
+              <View style={styles.luxuryDivider} />
+
+              {/* Trip Name Section */}
+              <View style={styles.luxurySection}>
                 <TextInput
-                  style={styles.editInput}
+                  style={styles.luxuryInputLarge}
                   value={editableTripName}
                   onChangeText={setEditableTripName}
-                  placeholder="Enter trip name"
-                  placeholderTextColor="rgba(255,255,255,0.4)"
+                  placeholder="Trip Name"
+                  placeholderTextColor="rgba(255,255,255,0.35)"
                 />
               </View>
 
-              {/* Dates & Travelers */}
-              <View style={styles.editSection}>
-                <Text style={styles.editSectionTitle}>Dates & Travelers</Text>
-                <View style={styles.editRow}>
-                  <View style={styles.editRowItem}>
-                    <Text style={styles.editLabel}>Dates</Text>
+              {/* Divider */}
+              <View style={styles.luxuryDivider} />
+
+              {/* Dates & Travelers Section */}
+              <View style={styles.luxurySection}>
+                <Text style={styles.luxurySectionLabel}>DATES & TRAVELERS</Text>
+                <View style={styles.luxuryRow}>
+                  <View style={styles.luxuryRowItem}>
+                    <Text style={styles.luxuryFieldLabel}>Dates</Text>
                     <TextInput
-                      style={styles.editInputSmall}
+                      style={styles.luxuryInput}
                       value={editableDates}
                       onChangeText={setEditableDates}
                       placeholder="June 8–15"
-                      placeholderTextColor="rgba(255,255,255,0.4)"
+                      placeholderTextColor="rgba(255,255,255,0.35)"
                     />
                   </View>
-                  <View style={styles.editRowItem}>
-                    <Text style={styles.editLabel}>Travelers</Text>
+                  <View style={styles.luxuryRowItem}>
+                    <Text style={styles.luxuryFieldLabel}>Travelers</Text>
                     <TextInput
-                      style={styles.editInputSmall}
+                      style={styles.luxuryInput}
                       value={editableTravelers}
                       onChangeText={setEditableTravelers}
                       placeholder="2"
-                      placeholderTextColor="rgba(255,255,255,0.4)"
+                      placeholderTextColor="rgba(255,255,255,0.35)"
                       keyboardType="number-pad"
                     />
                   </View>
                 </View>
               </View>
 
-              {/* Cities */}
-              <View style={styles.editSection}>
-                <Text style={styles.editSectionTitle}>Cities</Text>
-                <View style={styles.citiesEditContainer}>
+              {/* Divider */}
+              <View style={styles.luxuryDivider} />
+
+              {/* Cities Section */}
+              <View style={styles.luxurySection}>
+                <Text style={styles.luxurySectionLabel}>CITIES</Text>
+                
+                {/* City Pills */}
+                <View style={styles.luxuryCityList}>
                   {editableCities.map((cityCode, index) => {
                     const cityData = AVAILABLE_CITIES.find(c => c.code === cityCode);
                     return (
-                      <View key={`${cityCode}-${index}`} style={styles.cityEditPill}>
-                        <View style={styles.cityEditPillLeft}>
-                          <Ionicons name="reorder-two" size={18} color="rgba(181,155,115,0.7)" style={{marginRight: 8}} />
-                          <Text style={styles.cityEditPillText}>{cityData?.name || cityCode}</Text>
+                      <View key={`${cityCode}-${index}`} style={styles.luxuryCityPill}>
+                        {/* Reorder Handle */}
+                        <View style={styles.luxuryReorderHandle}>
+                          <View style={styles.luxuryDot} />
+                          <View style={styles.luxuryDot} />
+                          <View style={styles.luxuryDot} />
                         </View>
+                        
+                        <Text style={styles.luxuryCityName}>{cityData?.name || cityCode}</Text>
+                        
+                        {/* Delete Button */}
                         <TouchableOpacity
+                          style={styles.luxuryDeleteButton}
                           onPress={() => {
                             const newCities = editableCities.filter((_, i) => i !== index);
                             setEditableCities(newCities);
                           }}
-                          activeOpacity={0.7}
+                          activeOpacity={0.6}
                         >
-                          <Ionicons name="close-circle" size={20} color="rgba(255,100,100,0.8)" />
+                          <Ionicons name="close" size={16} color="rgba(255,255,255,0.5)" />
                         </TouchableOpacity>
                       </View>
                     );
                   })}
                 </View>
 
-                {/* Add City Search */}
-                <View style={styles.addCityContainer}>
-                  <Text style={styles.addCityLabel}>Add City</Text>
+                {/* Add City */}
+                <View style={styles.luxuryAddCitySection}>
                   <TextInput
-                    style={styles.editInput}
+                    style={styles.luxuryInput}
                     value={citySearchQuery}
                     onChangeText={setCitySearchQuery}
-                    placeholder="Search for a city..."
-                    placeholderTextColor="rgba(255,255,255,0.4)"
+                    placeholder="Search to add a city..."
+                    placeholderTextColor="rgba(255,255,255,0.35)"
                   />
+                  
                   {citySearchQuery.length > 0 && (
-                    <View style={styles.citySearchResults}>
+                    <View style={styles.luxuryCityResults}>
                       {filteredCities.length > 0 ? (
                         filteredCities.map((city) => (
                           <TouchableOpacity
                             key={city.code}
-                            style={styles.citySearchResult}
+                            style={styles.luxuryCityResult}
                             onPress={() => {
                               if (!editableCities.includes(city.code)) {
                                 setEditableCities([...editableCities, city.code]);
@@ -1034,16 +1051,15 @@ export default function TripCanvas() {
                             }}
                             activeOpacity={0.7}
                           >
-                            <Text style={styles.citySearchResultText}>
+                            <Text style={styles.luxuryCityResultText}>
                               {city.name}, {city.region}
                             </Text>
-                            <Ionicons name="add-circle" size={20} color="rgba(181,155,115,0.9)" />
                           </TouchableOpacity>
                         ))
                       ) : (
-                        <View style={styles.citySearchResult}>
-                          <Text style={styles.cityNotAvailableText}>
-                            This city is currently not available on this app
+                        <View style={styles.luxuryCityResult}>
+                          <Text style={styles.luxuryNotAvailableText}>
+                            This city is not available
                           </Text>
                         </View>
                       )}
@@ -1054,11 +1070,18 @@ export default function TripCanvas() {
 
               {/* Save Button */}
               <TouchableOpacity 
-                style={styles.editPaneSaveButton}
+                style={styles.luxurySaveButton}
                 onPress={() => setShowEditPane(false)}
                 activeOpacity={0.8}
               >
-                <Text style={styles.editPaneSaveButtonText}>Save Changes</Text>
+                <LinearGradient
+                  colors={['rgba(201,180,124,0.2)', 'rgba(184,156,115,0.25)']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
+                  style={styles.luxurySaveGradient}
+                >
+                  <Text style={styles.luxurySaveText}>Save Changes</Text>
+                </LinearGradient>
               </TouchableOpacity>
             </ScrollView>
           </View>
