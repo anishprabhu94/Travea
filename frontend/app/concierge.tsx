@@ -35,7 +35,7 @@ export default function ConciergeV2() {
   const scrollRef = useRef(null)
 
   // Use environment variable directly
-  const backendUrl = process.env.EXPO_PUBLIC_BACKEND_URL || Constants.expoConfig?.extra?.EXPO_PUBLIC_BACKEND_URL || 'https://glass-voyage.preview.emergentagent.com'
+  const backendUrl = process.env.EXPO_PUBLIC_BACKEND_URL || Constants.expoConfig?.extra?.EXPO_PUBLIC_BACKEND_URL || 'https://journey-planner-147.preview.emergentagent.com'
   
   console.log('Concierge - Backend URL:', backendUrl)
 
