@@ -3633,9 +3633,27 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
+  // Trip Change Message
+  tripChangeMessageContainer: {
+    padding: 12,
+    backgroundColor: 'rgba(201,169,109,0.08)',
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: 'rgba(201,169,109,0.25)',
+    marginBottom: 16,
+  },
+  tripChangeMessage: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: 'rgba(201,169,109,0.9)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
   // Coverage Bar
   coverageBar: {
-    marginBottom: 16,
+    marginBottom: 12,
     padding: 12,
     backgroundColor: 'rgba(255,255,255,0.03)',
     borderRadius: 10,
@@ -3651,11 +3669,21 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  coverageHint: {
-    fontSize: 11,
-    color: 'rgba(214,193,152,0.6)',
-    marginTop: 4,
-    fontStyle: 'italic',
+  // Assign All Button
+  assignAllButton: {
+    backgroundColor: 'rgba(201,180,124,0.15)',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(201,180,124,0.35)',
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    marginBottom: 16,
+    alignItems: 'center',
+  },
+  assignAllButtonText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: 'rgba(214,193,152,0.95)',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
