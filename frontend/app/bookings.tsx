@@ -2095,6 +2095,19 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
+  dayPillUnassigned: {
+    backgroundColor: 'rgba(120,120,120,0.08)',
+    borderColor: 'rgba(150,150,150,0.15)',
+  },
+  dayPillTextUnassigned: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: 'rgba(180,180,180,0.65)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
 
   // Day Tabs Container & Scrollable Tabs
   dayTabsContainer: {
