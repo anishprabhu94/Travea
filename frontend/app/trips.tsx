@@ -296,66 +296,16 @@ export default function MyTrips() {
             }
           ]}
         >
-          {/* Back Button & TRĀVEA Logo */}
+          {/* Centered Logo */}
           <View style={styles.logoContainer}>
-            <TouchableOpacity 
-              style={styles.backButton} 
-              onPress={() => router.back()}
-              activeOpacity={0.8}
-            >
-              <Ionicons name="chevron-back" size={24} color="rgba(255,255,255,0.85)" />
-            </TouchableOpacity>
-            <Text style={styles.logoText}>TRĀVEA</Text>
+            <TraveaWordmark size="medium" />
           </View>
-          
-          {/* Profile Icon */}
-          <TouchableOpacity style={styles.profileButton} activeOpacity={0.8}>
-            <View style={styles.profileIcon}>
-              <Ionicons name="person-outline" size={20} color="rgba(255,255,255,0.85)" />
-            </View>
-          </TouchableOpacity>
         </Animated.View>
 
-        {/* Page Title - Separate and Left Aligned */}
-        <View style={styles.pageTitleSection}>
-          <Text style={styles.pageTitle}>MY TRIPS</Text>
-        </View>
-
-        {/* Sticky Tab Pills */}
+        {/* Sticky Tab Pills - Removed Page Title */}
         <View style={styles.stickyTabsContainer}>
           <View style={styles.tabChips}>
-            <TouchableOpacity
-              style={styles.tabChip}
-              onPress={() => handleTabSwitch('ongoing')}
-              activeOpacity={0.8}
-            >
-              {activeTab === 'ongoing' && <View style={styles.tabChipGlow} />}
-              <BlurView intensity={20} tint="light" style={styles.tabChipBlur}>
-                <View style={[styles.tabChipContent, activeTab === 'ongoing' && styles.tabChipContentActive]}>
-                  <Ionicons name="play-circle-outline" size={16} color="rgba(255,255,255,0.9)" />
-                  <Text style={[styles.tabChipLabel, activeTab === 'ongoing' && styles.tabChipLabelActive]}>
-                    Ongoing
-                  </Text>
-                </View>
-              </BlurView>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.tabChip}
-              onPress={() => handleTabSwitch('upcoming')}
-              activeOpacity={0.8}
-            >
-              {activeTab === 'upcoming' && <View style={styles.tabChipGlow} />}
-              <BlurView intensity={20} tint="light" style={styles.tabChipBlur}>
-                <View style={[styles.tabChipContent, activeTab === 'upcoming' && styles.tabChipContentActive]}>
-                  <Ionicons name="calendar-outline" size={16} color="rgba(255,255,255,0.9)" />
-                  <Text style={[styles.tabChipLabel, activeTab === 'upcoming' && styles.tabChipLabelActive]}>
-                    Upcoming
-                  </Text>
-                </View>
-              </BlurView>
-            </TouchableOpacity>
-
+            {/* Saved Pill - First */}
             <TouchableOpacity
               style={styles.tabChip}
               onPress={() => handleTabSwitch('saved')}
@@ -371,7 +321,55 @@ export default function MyTrips() {
                 </View>
               </BlurView>
             </TouchableOpacity>
+
+            {/* Dropdown Pill */}
+            <TouchableOpacity
+              style={styles.tabChip}
+              onPress={() => setDropdownOpen(!dropdownOpen)}
+              activeOpacity={0.8}
+            >
+              <BlurView intensity={20} tint="light" style={styles.tabChipBlur}>
+                <View style={styles.tabChipContent}>
+                  <Ionicons name="funnel-outline" size={16} color="rgba(255,255,255,0.9)" />
+                  <Text style={styles.tabChipLabel}>
+                    {selectedFilter.charAt(0).toUpperCase() + selectedFilter.slice(1)}
+                  </Text>
+                  <Ionicons name={dropdownOpen ? "chevron-up" : "chevron-down"} size={14} color="rgba(255,255,255,0.7)" />
+                </View>
+              </BlurView>
+            </TouchableOpacity>
           </View>
+          
+          {/* Dropdown Menu */}
+          {dropdownOpen && (
+            <View style={styles.dropdownMenu}>
+              <BlurView intensity={30} tint="light" style={styles.dropdownBlur}>
+                <View style={styles.dropdownContent}>
+                  {['planning', 'upcoming', 'ongoing', 'completed'].map((option) => (
+                    <TouchableOpacity
+                      key={option}
+                      style={styles.dropdownItem}
+                      onPress={() => {
+                        setSelectedFilter(option)
+                        setDropdownOpen(false)
+                      }}
+                      activeOpacity={0.7}
+                    >
+                      <Text style={[
+                        styles.dropdownItemText,
+                        selectedFilter === option && styles.dropdownItemTextActive
+                      ]}>
+                        {option.charAt(0).toUpperCase() + option.slice(1)}
+                      </Text>
+                      {selectedFilter === option && (
+                        <Ionicons name="checkmark" size={16} color="#C9A96D" />
+                      )}
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              </BlurView>
+            </View>
+          )}
         </View>
 
         {/* Tab Content */}
