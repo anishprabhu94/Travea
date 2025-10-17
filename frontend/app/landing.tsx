@@ -1116,8 +1116,8 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   circuitTitle: {
-    fontSize: 18,
-    fontWeight: '500',
+    fontSize: 20,
+    fontWeight: '600',
     color: '#F8F8F8',
     marginBottom: 10,
     letterSpacing: 0.2,
