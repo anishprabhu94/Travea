@@ -220,7 +220,7 @@ const tripData = {
           route: 'NAP → FCO',
           airline: 'ITA AZ 5678',
           time: '16:00 – 17:10 · 1h 10m Nonstop',
-          details: 'T1 Gate B8 · 1 Checked · Seat 14G',
+          details: 'T1 Gate B8',
         }
       ],
       stays: [
