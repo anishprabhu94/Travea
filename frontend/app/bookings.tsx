@@ -944,7 +944,7 @@ const styles = StyleSheet.create({
   },
   heroFrostedPane: {
     position: 'absolute',
-    bottom: 24,
+    bottom: 32,
     left: '5%',
     right: '5%',
     backgroundColor: 'rgba(255,255,255,0.06)',
@@ -969,15 +969,15 @@ const styles = StyleSheet.create({
   heroTitleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     marginBottom: 6,
   },
   heroTitle: {
     fontSize: 32,
     fontWeight: '600',
     color: 'rgba(255,255,255,0.98)',
+    textAlign: 'center',
     letterSpacing: 0.5,
-    flex: 1,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
@@ -985,15 +985,15 @@ const styles = StyleSheet.create({
     }),
   },
   editIconButton: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
     backgroundColor: 'rgba(217,203,160,0.3)',
     borderWidth: 1,
     borderColor: 'rgba(217,203,160,0.5)',
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: 12,
+    marginLeft: 8,
   },
   heroSubtitle: {
     fontSize: 15,
