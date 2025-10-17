@@ -1001,13 +1001,6 @@ export default function TripCanvas() {
   };
 
  
-            <TouchableOpacity 
-              style={StyleSheet.absoluteFill} 
-              onPress={() => setShowEditPane(false)}
-              activeOpacity={1}
-            />
-            
-            <View style={styles.luxuryEditPane}>
               {/* Close Button */}
               <TouchableOpacity 
                 style={styles.luxuryCloseButton}
