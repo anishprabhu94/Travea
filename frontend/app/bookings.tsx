@@ -4085,6 +4085,9 @@ const styles = StyleSheet.create({
   luxuryCityList: {
     gap: 10,
   },
+  draggableListContainer: {
+    flex: 1,
+  },
   luxuryCityPill: {
     flexDirection: 'row',
     alignItems: 'center',
