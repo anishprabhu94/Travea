@@ -637,44 +637,6 @@ export default function TripCanvas() {
             </TouchableOpacity>
           </View>
           
-          {/* Day Selector Pills - Option A Logic */}
-          <ScrollView 
-            horizontal 
-            showsHorizontalScrollIndicator={false}
-            style={styles.dayStripScroll}
-            contentContainerStyle={styles.dayStripContent}
-          >
-            {(() => {
-              const tripDuration = getTripDuration();
-              const coverage = getCoverage();
-              
-              // If no coverage or incomplete, show "Unassigned Day 1-N"
-              if (coverage === 0 || coverage < tripDuration) {
-                return (
-                  <View style={[styles.dayPill, styles.dayPillUnassigned]}>
-                    <Text style={styles.dayPillTextUnassigned}>Unassigned Day 1–{tripDuration}</Text>
-                  </View>
-                );
-              }
-              
-              // Otherwise, show city-named segments
-              return editableCities.map((cityCode, idx) => {
-                const cityDate = cityDates[cityCode];
-                if (!cityDate || !cityDate.startMonth || !cityDate.endMonth) return null;
-                
-                // Calculate day numbers for this city
-                const startDay = dateToTripDay(cityDate.startMonth, cityDate.startDay);
-                const endDay = dateToTripDay(cityDate.endMonth, cityDate.endDay);
-                
-                return (
-                  <View key={cityCode} style={styles.dayPill}>
-                    <Text style={styles.dayPillText}>{cityCode} Day {startDay}–{endDay}</Text>
-                  </View>
-                );
-              });
-            })()}
-          </ScrollView>
-          
           {/* Status Dropdown */}
           <TouchableOpacity 
             style={styles.statusCapsule}
