@@ -1755,6 +1755,15 @@ export default function TripCanvas() {
                   </View>
                 </View>
 
+                {/* Save Button with Inline Feedback */}
+                {!canSave() && (
+                  <View style={styles.saveBlockedMessage}>
+                    <Text style={styles.saveBlockedText}>
+                      {getCoverage() < getTripDuration() ? 'Assign all days before saving.' : 'Fix city date errors to continue.'}
+                    </Text>
+                  </View>
+                )}
+                
                 <TouchableOpacity 
                   style={[styles.luxurySaveButton, !canSave() && styles.luxurySaveButtonDisabled]}
                   onPress={() => canSave() && setShowEditPane(false)}
@@ -1768,7 +1777,7 @@ export default function TripCanvas() {
                     style={styles.luxurySaveGradient}
                   >
                     <Text style={[styles.luxurySaveText, !canSave() && styles.luxurySaveTextDisabled]}>
-                      {canSave() ? 'Save Changes' : `Assign all ${tripDuration} days`}
+                      Save Changes
                     </Text>
                   </LinearGradient>
                 </TouchableOpacity>
