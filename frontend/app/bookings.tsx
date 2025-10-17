@@ -379,8 +379,12 @@ export default function TripCanvas() {
             <Text style={styles.heroTitle}>{tripData.tripName}</Text>
           </View>
           <View style={styles.heroSubtitleRow}>
-            <Text style={styles.heroSubtitle}>{tripData.subtitle}</Text>
-            <TouchableOpacity style={styles.editIconButton} activeOpacity={0.7}>
+            <Text style={styles.heroSubtitle}><Text style={{fontWeight: '700'}}>{editableDates}</Text> · <Text style={{fontWeight: '700'}}>{editableTravelers} Travelers</Text></Text>
+            <TouchableOpacity 
+              style={styles.editIconButton} 
+              activeOpacity={0.7}
+              onPress={() => setShowEditPane(true)}
+            >
               <Ionicons name="create-outline" size={14} color="rgba(181,155,115,0.9)" />
             </TouchableOpacity>
           </View>
