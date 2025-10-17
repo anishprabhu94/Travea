@@ -3767,6 +3767,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     minHeight: 40,
   },
+  cityDateFieldLocked: {
+    backgroundColor: 'rgba(255,255,255,0.02)',
+    opacity: 0.5,
+  },
   cityDateFieldText: {
     fontSize: 13,
     fontWeight: '500',
@@ -3776,6 +3780,9 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
+  cityDateFieldTextLocked: {
+    color: 'rgba(245,240,230,0.5)',
+  },
   cityNights: {
     fontSize: 11,
     color: 'rgba(214,193,152,0.65)',
@@ -3784,6 +3791,25 @@ const styles = StyleSheet.create({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
+  },
+  cityErrorContainer: {
+    marginTop: 8,
+    gap: 4,
+  },
+  cityError: {
+    fontSize: 11,
+    color: 'rgba(255,100,100,0.9)',
+    fontStyle: 'italic',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  pickerOptionDisabled: {
+    opacity: 0.3,
+  },
+  pickerOptionTextDisabled: {
+    color: 'rgba(245,240,230,0.3)',
   },
   // Floating Calendar Styles
   floatingCalendar: {
