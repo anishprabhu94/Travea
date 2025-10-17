@@ -1077,6 +1077,9 @@ export default function TripCanvas() {
         {renderRestaurants()}
       </ScrollView>
 
+      {/* Edit Pane Modal */}
+      {renderEditPane()}
+
       {/* Bottom Dock - Matching Landing Page */}
       <View style={styles.dockWrapper}>
         <View style={styles.dockContainer}>
