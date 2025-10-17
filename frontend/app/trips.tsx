@@ -94,6 +94,44 @@ export default function MyTrips() {
     ]).start()
   }, [])
 
+  const getEmptyStateMessage = () => {
+    if (activeTab === 'saved') {
+      return {
+        title: 'No saved destinations yet',
+        subtitle: 'Bookmark places on the discover page to see them here'
+      }
+    }
+    
+    // For dropdown filters
+    switch (selectedFilter) {
+      case 'planning':
+        return {
+          title: 'No trips in planning',
+          subtitle: 'Start planning your next journey from saved destinations'
+        }
+      case 'upcoming':
+        return {
+          title: 'No upcoming trips',
+          subtitle: 'Finalize your plans to see them here'
+        }
+      case 'ongoing':
+        return {
+          title: 'No active trips',
+          subtitle: 'Your current journey will appear here'
+        }
+      case 'completed':
+        return {
+          title: 'No completed trips yet',
+          subtitle: 'Your travel history will be saved here'
+        }
+      default:
+        return {
+          title: 'No trips found',
+          subtitle: 'Start exploring to create your first trip'
+        }
+    }
+  }
+
   const handleTabSwitch = (tab: string) => {
     if (tab === activeTab) return
     setActiveTab(tab)
