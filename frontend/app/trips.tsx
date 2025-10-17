@@ -941,9 +941,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#F8F8F8',
     fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Neue Montreal',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
     }),
   },
   emptyState: {
