@@ -2862,6 +2862,182 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
+  luxuryInputText: {
+    fontSize: 15,
+    color: 'rgba(245,240,230,0.95)',
+    fontWeight: '400',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  // Floating Calendar Styles
+  floatingCalendar: {
+    marginTop: 12,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderRadius: 12,
+    borderWidth: 0.5,
+    borderColor: 'rgba(214,193,152,0.2)',
+    padding: 16,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(20px)',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 16,
+        elevation: 8,
+      },
+    }),
+  },
+  calendarMonth: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: 'rgba(245,240,230,0.9)',
+    marginBottom: 14,
+    textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  calendarGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 6,
+  },
+  calendarDay: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.03)',
+  },
+  calendarDaySelected: {
+    backgroundColor: 'rgba(201,180,124,0.25)',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 8px rgba(201,180,124,0.4)',
+      },
+    }),
+  },
+  calendarDayText: {
+    fontSize: 14,
+    fontWeight: '400',
+    color: 'rgba(245,240,230,0.7)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  calendarDayTextSelected: {
+    color: 'rgba(201,180,124,0.95)',
+    fontWeight: '600',
+  },
+  // Per-City Date Styles
+  luxuryCityRow: {
+    marginBottom: 12,
+  },
+  luxuryCityPill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    borderRadius: 12,
+    borderWidth: 0.5,
+    borderColor: 'rgba(214,193,152,0.15)',
+    paddingHorizontal: 14,
+    paddingVertical: 14,
+  },
+  luxuryCityPillValid: {
+    borderColor: 'rgba(201,180,124,0.35)',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 8px rgba(201,180,124,0.2)',
+      },
+    }),
+  },
+  cityDateField: {
+    flex: 1,
+    marginHorizontal: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 8,
+    backgroundColor: 'rgba(255,255,255,0.03)',
+    borderWidth: 0.5,
+    borderColor: 'rgba(150,150,150,0.2)',
+  },
+  cityDateFieldValid: {
+    backgroundColor: 'rgba(201,180,124,0.1)',
+    borderColor: 'rgba(201,180,124,0.3)',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 6px rgba(201,180,124,0.15)',
+      },
+    }),
+  },
+  cityDateText: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: 'rgba(245,240,230,0.75)',
+    textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  inlineCityDatePicker: {
+    marginTop: 8,
+    padding: 12,
+    backgroundColor: 'rgba(255,255,255,0.04)',
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: 'rgba(214,193,152,0.12)',
+  },
+  cityPickerLabel: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: 'rgba(214,193,152,0.8)',
+    marginBottom: 10,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  cityDateGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 6,
+  },
+  cityDateDay: {
+    width: 34,
+    height: 34,
+    borderRadius: 17,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    borderWidth: 0.5,
+    borderColor: 'rgba(214,193,152,0.15)',
+  },
+  cityDateDayText: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: 'rgba(245,240,230,0.75)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  luxurySaveButtonDisabled: {
+    opacity: 0.5,
+  },
+  luxurySaveTextDisabled: {
+    color: 'rgba(255,255,255,0.5)',
+  },
   luxuryRow: {
     flexDirection: 'row',
     gap: 14,
