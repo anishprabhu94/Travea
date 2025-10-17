@@ -444,7 +444,11 @@ export default function TripCanvas() {
             <Text style={styles.heroTitle}>{tripData.tripName}</Text>
           </View>
           <View style={styles.heroSubtitleRow}>
-            <Text style={styles.heroSubtitle}><Text style={{fontWeight: '700'}}>{editableDates}</Text> · <Text style={{fontWeight: '700'}}>{editableTravelers} Travelers</Text></Text>
+            <Text style={styles.heroSubtitle}>
+              <Text style={{fontWeight: '700'}}>{tripStartMonth.substring(0,3)} {tripStartDay}–{tripEndMonth.substring(0,3)} {tripEndDay}</Text>
+              {' · '}
+              <Text style={{fontWeight: '700'}}>{editableTravelers} Travelers</Text>
+            </Text>
             <TouchableOpacity 
               style={styles.editIconButton} 
               activeOpacity={0.7}
