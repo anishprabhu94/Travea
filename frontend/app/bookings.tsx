@@ -364,6 +364,111 @@ export default function TripCanvas() {
     'July': 31, 'August': 31, 'September': 30, 'October': 31, 'November': 30, 'December': 31
   };
   
+  // Helper: Convert date to day number from trip start
+  const dateToTripDay = (month: string, day: number) => {
+    const tripStartIdx = months.indexOf(tripStartMonth);
+    const dateIdx = months.indexOf(month);
+    
+    let dayNum = 0;
+    if (tripStartIdx === dateIdx) {
+      dayNum = day - tripStartDay + 1;
+    } else {
+      dayNum = monthDays[tripStartMonth] - tripStartDay + 1;
+      for (let i = tripStartIdx + 1; i < dateIdx; i++) {
+        dayNum += monthDays[months[i]];
+      }
+      dayNum += day;
+    }
+    return dayNum;
+  };
+  
+  // Helper: Check if date is within trip bounds
+  const isDateInTripRange = (month: string, day: number) => {
+    const dayNum = dateToTripDay(month, day);
+    const tripDuration = getTripDuration();
+    return dayNum >= 1 && dayNum <= tripDuration;
+  };
+  
+  // Helper: Get validation errors for a city
+  const getCityValidationErrors = (cityCode: string, cityIndex: number) => {
+    const errors: string[] = [];
+    const city = cityDates[cityCode];
+    
+    if (!city || !city.startMonth || !city.startDay || !city.endMonth || !city.endDay) {
+      return errors; // Don't validate incomplete dates
+    }
+    
+    // Check if dates are within trip bounds
+    if (!isDateInTripRange(city.startMonth, city.startDay)) {
+      errors.push("Start date is outside trip range");
+    }
+    if (!isDateInTripRange(city.endMonth, city.endDay)) {
+      errors.push("End date is outside trip range");
+    }
+    
+    // Check if end is after start
+    const startDay = dateToTripDay(city.startMonth, city.startDay);
+    const endDay = dateToTripDay(city.endMonth, city.endDay);
+    if (endDay < startDay) {
+      errors.push("End date must be after start date");
+    }
+    
+    // Check if first city starts on trip start
+    if (cityIndex === 0) {
+      if (city.startMonth !== tripStartMonth || city.startDay !== tripStartDay) {
+        errors.push("First city must start on trip start date");
+      }
+    }
+    
+    // Check if last city ends on trip end
+    if (cityIndex === editableCities.length - 1) {
+      if (city.endMonth !== tripEndMonth || city.endDay !== tripEndDay) {
+        errors.push("Last city must end on trip end date");
+      }
+    }
+    
+    // Check for overlaps with other cities
+    editableCities.forEach((otherCode, otherIndex) => {
+      if (otherIndex === cityIndex || otherCode === cityCode) return;
+      
+      const other = cityDates[otherCode];
+      if (!other || !other.startMonth || !other.endMonth) return;
+      
+      const otherStart = dateToTripDay(other.startMonth, other.startDay);
+      const otherEnd = dateToTripDay(other.endMonth, other.endDay);
+      
+      // Check if ranges overlap
+      if (!(endDay < otherStart || startDay > otherEnd)) {
+        errors.push("Dates overlap with another city");
+      }
+    });
+    
+    return errors;
+  };
+  
+  // Helper: Get available days for a city (considering other cities)
+  const getAvailableDays = (cityIndex: number, isStartDate: boolean) => {
+    const tripDuration = getTripDuration();
+    const usedDays = new Set<number>();
+    
+    // Mark days used by other cities
+    editableCities.forEach((otherCode, otherIndex) => {
+      if (otherIndex === cityIndex) return;
+      
+      const other = cityDates[otherCode];
+      if (!other || !other.startMonth || !other.endMonth) return;
+      
+      const otherStart = dateToTripDay(other.startMonth, other.startDay);
+      const otherEnd = dateToTripDay(other.endMonth, other.endDay);
+      
+      for (let d = otherStart; d <= otherEnd; d++) {
+        usedDays.add(d);
+      }
+    });
+    
+    return { usedDays, tripDuration };
+  };
+  
   // Calculate trip duration in days
   const getTripDuration = () => {
     const startIdx = months.indexOf(tripStartMonth);
