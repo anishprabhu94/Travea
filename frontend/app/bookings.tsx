@@ -903,6 +903,164 @@ export default function TripCanvas() {
     </View>
   );
 
+  // Elegant Edit Pane
+  const renderEditPane = () => (
+    <Modal
+      visible={showEditPane}
+      transparent={true}
+      animationType="fade"
+      onRequestClose={() => setShowEditPane(false)}
+    >
+      <View style={styles.editPaneOverlay}>
+        <BlurView intensity={40} tint="dark" style={styles.editPaneBlur}>
+          <TouchableOpacity 
+            style={StyleSheet.absoluteFill} 
+            onPress={() => setShowEditPane(false)}
+            activeOpacity={1}
+          />
+          
+          <View style={styles.editPaneContainer}>
+            <ScrollView 
+              style={styles.editPaneScroll}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={styles.editPaneScrollContent}
+            >
+              {/* Header */}
+              <View style={styles.editPaneHeader}>
+                <Text style={styles.editPaneTitle}>Edit Trip</Text>
+                <TouchableOpacity 
+                  style={styles.editPaneCloseButton}
+                  onPress={() => setShowEditPane(false)}
+                  activeOpacity={0.7}
+                >
+                  <Ionicons name="close-circle" size={28} color="rgba(181,155,115,0.9)" />
+                </TouchableOpacity>
+              </View>
+
+              {/* Trip Name */}
+              <View style={styles.editSection}>
+                <Text style={styles.editSectionTitle}>Trip Name</Text>
+                <TextInput
+                  style={styles.editInput}
+                  value={editableTripName}
+                  onChangeText={setEditableTripName}
+                  placeholder="Enter trip name"
+                  placeholderTextColor="rgba(255,255,255,0.4)"
+                />
+              </View>
+
+              {/* Dates & Travelers */}
+              <View style={styles.editSection}>
+                <Text style={styles.editSectionTitle}>Dates & Travelers</Text>
+                <View style={styles.editRow}>
+                  <View style={styles.editRowItem}>
+                    <Text style={styles.editLabel}>Dates</Text>
+                    <TextInput
+                      style={styles.editInputSmall}
+                      value={editableDates}
+                      onChangeText={setEditableDates}
+                      placeholder="June 8–15"
+                      placeholderTextColor="rgba(255,255,255,0.4)"
+                    />
+                  </View>
+                  <View style={styles.editRowItem}>
+                    <Text style={styles.editLabel}>Travelers</Text>
+                    <TextInput
+                      style={styles.editInputSmall}
+                      value={editableTravelers}
+                      onChangeText={setEditableTravelers}
+                      placeholder="2"
+                      placeholderTextColor="rgba(255,255,255,0.4)"
+                      keyboardType="number-pad"
+                    />
+                  </View>
+                </View>
+              </View>
+
+              {/* Cities */}
+              <View style={styles.editSection}>
+                <Text style={styles.editSectionTitle}>Cities</Text>
+                <View style={styles.citiesEditContainer}>
+                  {editableCities.map((cityCode, index) => {
+                    const cityData = AVAILABLE_CITIES.find(c => c.code === cityCode);
+                    return (
+                      <View key={`${cityCode}-${index}`} style={styles.cityEditPill}>
+                        <View style={styles.cityEditPillLeft}>
+                          <Ionicons name="reorder-two" size={18} color="rgba(181,155,115,0.7)" style={{marginRight: 8}} />
+                          <Text style={styles.cityEditPillText}>{cityData?.name || cityCode}</Text>
+                        </View>
+                        <TouchableOpacity
+                          onPress={() => {
+                            const newCities = editableCities.filter((_, i) => i !== index);
+                            setEditableCities(newCities);
+                          }}
+                          activeOpacity={0.7}
+                        >
+                          <Ionicons name="close-circle" size={20} color="rgba(255,100,100,0.8)" />
+                        </TouchableOpacity>
+                      </View>
+                    );
+                  })}
+                </View>
+
+                {/* Add City Search */}
+                <View style={styles.addCityContainer}>
+                  <Text style={styles.addCityLabel}>Add City</Text>
+                  <TextInput
+                    style={styles.editInput}
+                    value={citySearchQuery}
+                    onChangeText={setCitySearchQuery}
+                    placeholder="Search for a city..."
+                    placeholderTextColor="rgba(255,255,255,0.4)"
+                  />
+                  {citySearchQuery.length > 0 && (
+                    <View style={styles.citySearchResults}>
+                      {filteredCities.length > 0 ? (
+                        filteredCities.map((city) => (
+                          <TouchableOpacity
+                            key={city.code}
+                            style={styles.citySearchResult}
+                            onPress={() => {
+                              if (!editableCities.includes(city.code)) {
+                                setEditableCities([...editableCities, city.code]);
+                              }
+                              setCitySearchQuery('');
+                            }}
+                            activeOpacity={0.7}
+                          >
+                            <Text style={styles.citySearchResultText}>
+                              {city.name}, {city.region}
+                            </Text>
+                            <Ionicons name="add-circle" size={20} color="rgba(181,155,115,0.9)" />
+                          </TouchableOpacity>
+                        ))
+                      ) : (
+                        <View style={styles.citySearchResult}>
+                          <Text style={styles.cityNotAvailableText}>
+                            This city is currently not available on this app
+                          </Text>
+                        </View>
+                      )}
+                    </View>
+                  )}
+                </View>
+              </View>
+
+              {/* Save Button */}
+              <TouchableOpacity 
+                style={styles.editPaneSaveButton}
+                onPress={() => setShowEditPane(false)}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.editPaneSaveButtonText}>Save Changes</Text>
+              </TouchableOpacity>
+            </ScrollView>
+          </View>
+        </BlurView>
+      </View>
+    </Modal>
+  );
+
   return (
     <View style={styles.container}>
       <ScrollView 
