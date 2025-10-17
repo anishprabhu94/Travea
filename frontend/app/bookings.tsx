@@ -637,56 +637,42 @@ export default function TripCanvas() {
             </TouchableOpacity>
           </View>
           
-          {/* Day Selector Pills */}
+          {/* Day Selector Pills - Option A Logic */}
           <ScrollView 
             horizontal 
             showsHorizontalScrollIndicator={false}
             style={styles.dayStripScroll}
             contentContainerStyle={styles.dayStripContent}
           >
-            {editableCities.map((cityCode, idx) => {
-              const cityDate = cityDates[cityCode];
-              if (!cityDate || !cityDate.startMonth || !cityDate.endMonth) return null;
+            {(() => {
+              const tripDuration = getTripDuration();
+              const coverage = getCoverage();
               
-              // Calculate day numbers for this city
-              let dayStart = 1;
-              for (let i = 0; i < idx; i++) {
-                const prevCity = cityDates[editableCities[i]];
-                if (prevCity && prevCity.startMonth && prevCity.endMonth) {
-                  const startIdx = months.indexOf(prevCity.startMonth);
-                  const endIdx = months.indexOf(prevCity.endMonth);
-                  if (startIdx === endIdx) {
-                    dayStart += prevCity.endDay - prevCity.startDay + 1;
-                  } else {
-                    dayStart += monthDays[prevCity.startMonth] - prevCity.startDay + 1;
-                    for (let j = startIdx + 1; j < endIdx; j++) {
-                      dayStart += monthDays[months[j]];
-                    }
-                    dayStart += prevCity.endDay;
-                  }
-                }
+              // If no coverage or incomplete, show "Unassigned Day 1-N"
+              if (coverage === 0 || coverage < tripDuration) {
+                return (
+                  <View style={[styles.dayPill, styles.dayPillUnassigned]}>
+                    <Text style={styles.dayPillTextUnassigned}>Unassigned Day 1–{tripDuration}</Text>
+                  </View>
+                );
               }
               
-              const startIdx = months.indexOf(cityDate.startMonth);
-              const endIdx = months.indexOf(cityDate.endMonth);
-              let cityDuration = 0;
-              if (startIdx === endIdx) {
-                cityDuration = cityDate.endDay - cityDate.startDay + 1;
-              } else {
-                cityDuration = monthDays[cityDate.startMonth] - cityDate.startDay + 1;
-                for (let j = startIdx + 1; j < endIdx; j++) {
-                  cityDuration += monthDays[months[j]];
-                }
-                cityDuration += cityDate.endDay;
-              }
-              const dayEnd = dayStart + cityDuration - 1;
-              
-              return (
-                <View key={cityCode} style={styles.dayPill}>
-                  <Text style={styles.dayPillText}>Day {dayStart}–{dayEnd}</Text>
-                </View>
-              );
-            })}
+              // Otherwise, show city-named segments
+              return editableCities.map((cityCode, idx) => {
+                const cityDate = cityDates[cityCode];
+                if (!cityDate || !cityDate.startMonth || !cityDate.endMonth) return null;
+                
+                // Calculate day numbers for this city
+                const startDay = dateToTripDay(cityDate.startMonth, cityDate.startDay);
+                const endDay = dateToTripDay(cityDate.endMonth, cityDate.endDay);
+                
+                return (
+                  <View key={cityCode} style={styles.dayPill}>
+                    <Text style={styles.dayPillText}>{cityCode} Day {startDay}–{endDay}</Text>
+                  </View>
+                );
+              });
+            })()}
           </ScrollView>
           
           {/* Status Dropdown */}
