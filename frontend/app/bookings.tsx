@@ -1493,7 +1493,7 @@ const styles = StyleSheet.create({
   },
   flightCardTraveler: {
     fontSize: 11,
-    fontWeight: '600',
+    fontWeight: '700',
     color: 'rgba(181,155,115,0.8)',
     textTransform: 'uppercase',
     letterSpacing: 1.5,
