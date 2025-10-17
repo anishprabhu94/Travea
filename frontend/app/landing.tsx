@@ -1429,9 +1429,9 @@ const styles = StyleSheet.create({
   trendingPillInner: {
     paddingVertical: 8,
     paddingHorizontal: 14,
-    backgroundColor: 'rgba(201,169,109,0.25)',
+    backgroundColor: 'rgba(201,169,109,0.35)',
     borderWidth: 1,
-    borderColor: 'rgba(201,169,109,0.5)',
+    borderColor: 'rgba(201,169,109,0.6)',
   },
   trendingPillText: {
     fontSize: 13,
