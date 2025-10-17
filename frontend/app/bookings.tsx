@@ -420,6 +420,16 @@ export default function TripCanvas() {
     return dayNum >= 1 && dayNum <= tripDuration;
   };
   
+  // Handle city reorder - Clear all city dates
+  const handleCityReorder = (newOrder: string[]) => {
+    setEditableCities(newOrder);
+    // Clear all city dates when reordered
+    setCityDates({});
+    setHasUsedAssignAll(false);
+    setTripChangeMessage("City order changed. All dates cleared.");
+    setTimeout(() => setTripChangeMessage(''), 4000);
+  };
+  
   // Helper: Get inline validation message for a city (Option A Logic)
   const getCityValidationMessage = (cityCode: string, cityIndex: number) => {
     const city = cityDates[cityCode];
