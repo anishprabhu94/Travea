@@ -694,7 +694,7 @@ export default function TripCanvas() {
             ))}
           </ScrollView>
           
-          {/* Day Selector Tabs - Scrollable & Elegant */}
+          {/* Day Selector Tabs - Source of Truth - Aligned with City Pills */}
           <View style={styles.dayTabsContainer}>
             <ScrollView 
               horizontal 
@@ -702,24 +702,44 @@ export default function TripCanvas() {
               style={styles.dayTabsScroll}
               contentContainerStyle={styles.dayTabsContent}
             >
-              {tripData.days.map((day) => (
-                <TouchableOpacity
-                  key={day.id}
-                  style={[
-                    styles.dayTab,
-                    activeDayId === day.id && styles.dayTabActive
-                  ]}
-                  onPress={() => setActiveDayId(day.id)}
-                  activeOpacity={0.7}
-                >
-                  <Text style={[
-                    styles.dayTabText,
-                    activeDayId === day.id && styles.dayTabTextActive
-                  ]}>
-                    {day.label}
-                  </Text>
-                </TouchableOpacity>
-              ))}
+              {(() => {
+                const tripDuration = getTripDuration();
+                const coverage = getCoverage();
+                
+                // If no coverage or incomplete, show "Unassigned Day 1-N"
+                if (coverage === 0 || coverage < tripDuration) {
+                  return (
+                    <View style={[styles.dayTab, styles.dayTabUnassigned]}>
+                      <Text style={styles.dayTabTextUnassigned}>Unassigned Day 1–{tripDuration}</Text>
+                    </View>
+                  );
+                }
+                
+                // Otherwise, show day segments without city codes
+                return editableCities.map((cityCode, idx) => {
+                  const cityDate = cityDates[cityCode];
+                  if (!cityDate || !cityDate.startMonth || !cityDate.endMonth) return null;
+                  
+                  // Calculate day numbers for this city
+                  const startDay = dateToTripDay(cityDate.startMonth, cityDate.startDay);
+                  const endDay = dateToTripDay(cityDate.endMonth, cityDate.endDay);
+                  
+                  return (
+                    <TouchableOpacity
+                      key={cityCode}
+                      style={styles.dayTab}
+                      onPress={() => {
+                        // Find the day that matches this city
+                        const matchingDay = tripData.days.find(d => d.cityCode === cityCode);
+                        if (matchingDay) setActiveDayId(matchingDay.id);
+                      }}
+                      activeOpacity={0.7}
+                    >
+                      <Text style={styles.dayTabText}>Day {startDay}–{endDay}</Text>
+                    </TouchableOpacity>
+                  );
+                });
+              })()}
             </ScrollView>
           </View>
         </View>
