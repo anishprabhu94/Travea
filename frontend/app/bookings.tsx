@@ -373,6 +373,12 @@ export default function TripCanvas() {
   // Track previous trip dates to detect changes
   const prevTripDates = React.useRef({ startMonth: tripStartMonth, startDay: tripStartDay, endMonth: tripEndMonth, endDay: tripEndDay });
   
+  // Helper: Convert trip day number to readable date format (e.g., "Jun 8")
+  const formatTripDay = (dayNum: number) => {
+    const date = tripDayToDate(dayNum);
+    return `${date.month.substring(0, 3)} ${date.day}`;
+  };
+  
   // When trip dates change, clear all city dates
   React.useEffect(() => {
     const prev = prevTripDates.current;
