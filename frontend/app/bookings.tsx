@@ -737,23 +737,25 @@ export default function TripCanvas() {
                 const tripDuration = getTripDuration();
                 const coverage = getCoverage();
                 
-                // If no coverage or incomplete, show "Unassigned Day 1-N"
+                // If no coverage or incomplete, show "Unassigned"
                 if (coverage === 0 || coverage < tripDuration) {
+                  const startFormatted = `${tripStartMonth.substring(0, 3)} ${tripStartDay}`;
+                  const endFormatted = `${tripEndMonth.substring(0, 3)} ${tripEndDay}`;
                   return (
                     <View style={[styles.dayTab, styles.dayTabUnassigned]}>
-                      <Text style={styles.dayTabTextUnassigned}>Unassigned Day 1–{tripDuration}</Text>
+                      <Text style={styles.dayTabTextUnassigned}>Unassigned · {startFormatted}–{endFormatted}</Text>
                     </View>
                   );
                 }
                 
-                // Otherwise, show day segments without city codes
+                // Otherwise, show month-day ranges for each city
                 return editableCities.map((cityCode, idx) => {
                   const cityDate = cityDates[cityCode];
                   if (!cityDate || !cityDate.startMonth || !cityDate.endMonth) return null;
                   
-                  // Calculate day numbers for this city
-                  const startDay = dateToTripDay(cityDate.startMonth, cityDate.startDay);
-                  const endDay = dateToTripDay(cityDate.endMonth, cityDate.endDay);
+                  // Format as "Jun 8–Jun 10"
+                  const startFormatted = `${cityDate.startMonth.substring(0, 3)} ${cityDate.startDay}`;
+                  const endFormatted = `${cityDate.endMonth.substring(0, 3)} ${cityDate.endDay}`;
                   
                   return (
                     <TouchableOpacity
@@ -766,7 +768,7 @@ export default function TripCanvas() {
                       }}
                       activeOpacity={0.7}
                     >
-                      <Text style={styles.dayTabText}>Day {startDay}–{endDay}</Text>
+                      <Text style={styles.dayTabText}>{startFormatted}–{endFormatted}</Text>
                     </TouchableOpacity>
                   );
                 });
