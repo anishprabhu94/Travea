@@ -1000,7 +1000,7 @@ export default function TripCanvas() {
     );
   };
 
-          <BlurView intensity={50} tint="dark" style={styles.luxuryEditBlur}>
+ 
             <TouchableOpacity 
               style={StyleSheet.absoluteFill} 
               onPress={() => setShowEditPane(false)}
