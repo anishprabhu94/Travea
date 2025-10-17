@@ -1823,19 +1823,28 @@ const styles = StyleSheet.create({
   },
 
   // Day Selector Pills
+  dayStripScroll: {
+    marginTop: 12,
+    marginBottom: 4,
+  },
+  dayStripContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 0,
+  },
   dayPill: {
-    paddingVertical: 4,
-    paddingHorizontal: 10,
-    borderRadius: 12,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 14,
     backgroundColor: 'rgba(255,255,255,0.06)',
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderColor: 'rgba(181,155,115,0.15)',
     marginRight: 8,
   },
   dayPillText: {
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: '500',
-    color: 'rgba(181,155,115,0.7)',
+    color: 'rgba(181,155,115,0.85)',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
