@@ -419,7 +419,7 @@ export default function TripCanvas() {
           
           {/* City Strip - Centered Pills with Dynamic Highlighting */}
           <View style={styles.cityStrip}>
-            {tripData.cities.map((city, index) => (
+            {editableCities.map((city, index) => (
               <View 
                 key={city}
                 style={styles.cityCapsuleWrapper}
@@ -435,7 +435,7 @@ export default function TripCanvas() {
                     {city}
                   </Text>
                 </View>
-                {index < tripData.cities.length - 1 && (
+                {index < editableCities.length - 1 && (
                   <View style={styles.cityDot} />
                 )}
               </View>
