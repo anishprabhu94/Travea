@@ -1352,7 +1352,7 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Date Badge on Image Cards (Top Right)
+  // Date Badge on Image Cards (Darker for visibility)
   cardDateBadgeOnImage: {
     position: 'absolute',
     top: 12,
@@ -1360,7 +1360,7 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 14,
-    backgroundColor: 'rgba(181,155,115,0.25)',
+    backgroundColor: 'rgba(181,155,115,0.35)',
     borderWidth: 1,
     borderColor: 'rgba(181,155,115,0.5)',
     zIndex: 10,
