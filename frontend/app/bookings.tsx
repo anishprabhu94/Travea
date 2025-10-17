@@ -504,8 +504,8 @@ export default function TripCanvas() {
     setTimeout(() => setTripChangeMessage(''), 4000);
   };
   
-  // Helper: Get available days for a city (considering other cities)
-  const getAvailableDays = (cityIndex: number, isStartDate: boolean) => {
+  // Helper: Get available days for a city (for picker dropdowns)
+  const getUnassignedDays = (cityIndex: number) => {
     const tripDuration = getTripDuration();
     const usedDays = new Set<number>();
     
