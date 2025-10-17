@@ -2182,13 +2182,14 @@ const styles = StyleSheet.create({
   // dayTabs style removed - now using ScrollView with dayTabsScroll and dayTabsContent
   dayTab: {
     paddingVertical: 10,
-    paddingHorizontal: 16,
+    paddingHorizontal: 20,
     borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(255,255,255,0.08)',
     borderWidth: 1,
     borderColor: 'rgba(181,155,115,0.2)',
+    minWidth: 120,
   },
   dayTabActive: {
     backgroundColor: '#B59B73',
@@ -2211,6 +2212,7 @@ const styles = StyleSheet.create({
   dayTabUnassigned: {
     backgroundColor: 'rgba(120,120,120,0.08)',
     borderColor: 'rgba(150,150,150,0.15)',
+    minWidth: 160,
   },
   dayTabTextUnassigned: {
     fontSize: 13,
