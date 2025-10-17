@@ -1390,6 +1390,9 @@ export default function TripCanvas() {
                       const cityData = AVAILABLE_CITIES.find(c => c.code === cityCode);
                       const cityDate = cityDates[cityCode] || {startMonth: '', startDay: 0, endMonth: '', endDay: 0};
                       const hasValidDates = cityDate.startMonth && cityDate.startDay && cityDate.endMonth && cityDate.endDay;
+                      const errors = hasValidDates ? getCityValidationErrors(cityCode, index) : [];
+                      const isFirstCity = index === 0;
+                      const isLastCity = index === editableCities.length - 1;
                       
                       let nights = 0;
                       if (hasValidDates) {
@@ -1428,6 +1431,202 @@ export default function TripCanvas() {
                           </View>
 
                           <View style={styles.cityDateRow}>
+                            <View style={styles.cityDateGroup}>
+                              <Text style={styles.cityDateLabel}>Start</Text>
+                              <View style={styles.cityDateFields}>
+                                <TouchableOpacity 
+                                  style={[styles.cityDateField, isFirstCity && styles.cityDateFieldLocked]}
+                                  onPress={() => !isFirstCity && setShowMonthPicker(
+                                    showMonthPicker.type === 'start' && showMonthPicker.cityIndex === index 
+                                      ? {type: null} 
+                                      : {type: 'start', cityIndex: index}
+                                  )}
+                                  activeOpacity={isFirstCity ? 1 : 0.7}
+                                  disabled={isFirstCity}
+                                >
+                                  <Text style={[styles.cityDateFieldText, isFirstCity && styles.cityDateFieldTextLocked]}>
+                                    {cityDate.startMonth?.substring(0,3) || '―'}
+                                  </Text>
+                                </TouchableOpacity>
+                                
+                                {showMonthPicker.type === 'start' && showMonthPicker.cityIndex === index && !isFirstCity && (
+                                  <View style={[styles.pickerDropdown, {zIndex: 1000 + index}]}>
+                                    <ScrollView style={styles.pickerScroll} showsVerticalScrollIndicator={false}>
+                                      {months.map(month => (
+                                        <TouchableOpacity
+                                          key={month}
+                                          style={styles.pickerOption}
+                                          onPress={() => {
+                                            setCityDates(prev => ({
+                                              ...prev,
+                                              [cityCode]: {...(prev[cityCode] || {}), startMonth: month, startDay: prev[cityCode]?.startDay || 1}
+                                            }));
+                                            setShowMonthPicker({type: null});
+                                          }}
+                                          activeOpacity={0.7}
+                                        >
+                                          <Text style={styles.pickerOptionText}>{month}</Text>
+                                        </TouchableOpacity>
+                                      ))}
+                                    </ScrollView>
+                                  </View>
+                                )}
+                                
+                                <TouchableOpacity 
+                                  style={[styles.cityDateField, isFirstCity && styles.cityDateFieldLocked]}
+                                  onPress={() => !isFirstCity && setShowDayPicker(
+                                    showDayPicker.type === 'start' && showDayPicker.cityIndex === index 
+                                      ? {type: null} 
+                                      : {type: 'start', cityIndex: index}
+                                  )}
+                                  activeOpacity={isFirstCity ? 1 : 0.7}
+                                  disabled={isFirstCity}
+                                >
+                                  <Text style={[styles.cityDateFieldText, isFirstCity && styles.cityDateFieldTextLocked]}>
+                                    {cityDate.startDay || '―'}
+                                  </Text>
+                                </TouchableOpacity>
+                                
+                                {showDayPicker.type === 'start' && showDayPicker.cityIndex === index && cityDate.startMonth && !isFirstCity && (
+                                  <View style={[styles.pickerDropdown, {zIndex: 1000 + index}]}>
+                                    <ScrollView style={styles.pickerScroll} showsVerticalScrollIndicator={false}>
+                                      {Array.from({length: monthDays[cityDate.startMonth]}, (_, i) => i + 1).map(day => {
+                                        const dayNum = dateToTripDay(cityDate.startMonth, day);
+                                        const { usedDays } = getAvailableDays(index, true);
+                                        const isDisabled = usedDays.has(dayNum);
+                                        
+                                        return (
+                                          <TouchableOpacity
+                                            key={day}
+                                            style={[styles.pickerOption, isDisabled && styles.pickerOptionDisabled]}
+                                            onPress={() => {
+                                              if (!isDisabled) {
+                                                setCityDates(prev => ({
+                                                  ...prev,
+                                                  [cityCode]: {...(prev[cityCode] || {}), startDay: day}
+                                                }));
+                                                setShowDayPicker({type: null});
+                                              }
+                                            }}
+                                            activeOpacity={isDisabled ? 1 : 0.7}
+                                            disabled={isDisabled}
+                                          >
+                                            <Text style={[styles.pickerOptionText, isDisabled && styles.pickerOptionTextDisabled]}>{day}</Text>
+                                          </TouchableOpacity>
+                                        );
+                                      })}
+                                    </ScrollView>
+                                  </View>
+                                )}
+                              </View>
+                            </View>
+                            
+                            <View style={styles.cityDateGroup}>
+                              <Text style={styles.cityDateLabel}>End</Text>
+                              <View style={styles.cityDateFields}>
+                                <TouchableOpacity 
+                                  style={[styles.cityDateField, isLastCity && styles.cityDateFieldLocked]}
+                                  onPress={() => !isLastCity && setShowMonthPicker(
+                                    showMonthPicker.type === 'end' && showMonthPicker.cityIndex === index 
+                                      ? {type: null} 
+                                      : {type: 'end', cityIndex: index}
+                                  )}
+                                  activeOpacity={isLastCity ? 1 : 0.7}
+                                  disabled={isLastCity}
+                                >
+                                  <Text style={[styles.cityDateFieldText, isLastCity && styles.cityDateFieldTextLocked]}>
+                                    {cityDate.endMonth?.substring(0,3) || '―'}
+                                  </Text>
+                                </TouchableOpacity>
+                                
+                                {showMonthPicker.type === 'end' && showMonthPicker.cityIndex === index && !isLastCity && (
+                                  <View style={[styles.pickerDropdown, {zIndex: 1000 + index}]}>
+                                    <ScrollView style={styles.pickerScroll} showsVerticalScrollIndicator={false}>
+                                      {months.map(month => (
+                                        <TouchableOpacity
+                                          key={month}
+                                          style={styles.pickerOption}
+                                          onPress={() => {
+                                            setCityDates(prev => ({
+                                              ...prev,
+                                              [cityCode]: {...(prev[cityCode] || {}), endMonth: month, endDay: prev[cityCode]?.endDay || 1}
+                                            }));
+                                            setShowMonthPicker({type: null});
+                                          }}
+                                          activeOpacity={0.7}
+                                        >
+                                          <Text style={styles.pickerOptionText}>{month}</Text>
+                                        </TouchableOpacity>
+                                      ))}
+                                    </ScrollView>
+                                  </View>
+                                )}
+                                
+                                <TouchableOpacity 
+                                  style={[styles.cityDateField, isLastCity && styles.cityDateFieldLocked]}
+                                  onPress={() => !isLastCity && setShowDayPicker(
+                                    showDayPicker.type === 'end' && showDayPicker.cityIndex === index 
+                                      ? {type: null} 
+                                      : {type: 'end', cityIndex: index}
+                                  )}
+                                  activeOpacity={isLastCity ? 1 : 0.7}
+                                  disabled={isLastCity}
+                                >
+                                  <Text style={[styles.cityDateFieldText, isLastCity && styles.cityDateFieldTextLocked]}>
+                                    {cityDate.endDay || '―'}
+                                  </Text>
+                                </TouchableOpacity>
+                                
+                                {showDayPicker.type === 'end' && showDayPicker.cityIndex === index && cityDate.endMonth && !isLastCity && (
+                                  <View style={[styles.pickerDropdown, {zIndex: 1000 + index}]}>
+                                    <ScrollView style={styles.pickerScroll} showsVerticalScrollIndicator={false}>
+                                      {Array.from({length: monthDays[cityDate.endMonth]}, (_, i) => i + 1).map(day => {
+                                        const dayNum = dateToTripDay(cityDate.endMonth, day);
+                                        const { usedDays } = getAvailableDays(index, false);
+                                        const isDisabled = usedDays.has(dayNum);
+                                        
+                                        return (
+                                          <TouchableOpacity
+                                            key={day}
+                                            style={[styles.pickerOption, isDisabled && styles.pickerOptionDisabled]}
+                                            onPress={() => {
+                                              if (!isDisabled) {
+                                                setCityDates(prev => ({
+                                                  ...prev,
+                                                  [cityCode]: {...(prev[cityCode] || {}), endDay: day}
+                                                }));
+                                                setShowDayPicker({type: null});
+                                              }
+                                            }}
+                                            activeOpacity={isDisabled ? 1 : 0.7}
+                                            disabled={isDisabled}
+                                          >
+                                            <Text style={[styles.pickerOptionText, isDisabled && styles.pickerOptionTextDisabled]}>{day}</Text>
+                                          </TouchableOpacity>
+                                        );
+                                      })}
+                                    </ScrollView>
+                                  </View>
+                                )}
+                              </View>
+                            </View>
+                          </View>
+
+                          {hasValidDates && (
+                            <Text style={styles.cityNights}>{nights} {nights === 1 ? 'night' : 'nights'}</Text>
+                          )}
+                          
+                          {errors.length > 0 && (
+                            <View style={styles.cityErrorContainer}>
+                              {errors.map((error, idx) => (
+                                <Text key={idx} style={styles.cityError}>{error}</Text>
+                              ))}
+                            </View>
+                          )}
+                        </View>
+                      );
+                    })}
+                  </View>
                             <View style={styles.cityDateGroup}>
                               <Text style={styles.cityDateLabel}>Start</Text>
                               <View style={styles.cityDateFields}>
