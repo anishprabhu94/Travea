@@ -756,7 +756,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   cardInfoInner: {
-    backgroundColor: 'rgba(40,40,40,0.35)',
+    backgroundColor: 'rgba(40,40,40,0.4)',
     padding: 16,
     position: 'relative',
   },
