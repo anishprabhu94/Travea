@@ -568,14 +568,29 @@ export default function TripCanvas() {
     return assigned;
   };
   
-  // Check if save should be enabled
+  // Check if save should be enabled (Option A: strict - full coverage, no errors)
   const canSave = () => {
     const duration = getTripDuration();
     const coverage = getCoverage();
-    return duration > 0 && coverage === duration && editableCities.every(city => {
+    
+    // Must have full coverage
+    if (duration === 0 || coverage !== duration) return false;
+    
+    // All cities must have valid dates
+    if (!editableCities.every(city => {
       const dates = cityDates[city];
       return dates && dates.startMonth && dates.startDay && dates.endMonth && dates.endDay;
-    });
+    })) {
+      return false;
+    }
+    
+    // No validation errors allowed
+    for (let i = 0; i < editableCities.length; i++) {
+      const message = getCityValidationMessage(editableCities[i], i);
+      if (message) return false;
+    }
+    
+    return true;
   };
   
   const activeDay = tripData.days.find(d => d.id === activeDayId) || tripData.days[0];
