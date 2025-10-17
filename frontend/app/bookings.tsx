@@ -2949,26 +2949,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   luxuryEditScrollContent: {
-    padding: 20,
-    paddingTop: 24,
-  },
-  luxuryEditSubtitle: {
-    fontSize: 10,
-    fontWeight: '700',
-    color: 'rgba(214,193,152,0.7)',
-    textTransform: 'uppercase',
-    letterSpacing: 2.5,
-    marginBottom: 6,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
+    padding: 18,
+    paddingTop: 20,
   },
   luxuryEditTitle: {
     fontSize: 24,
     fontWeight: '600',
     color: 'rgba(245,240,230,0.95)',
-    marginBottom: 18,
+    marginBottom: 16,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
@@ -2978,7 +2966,7 @@ const styles = StyleSheet.create({
   luxuryDivider: {
     height: 0.5,
     backgroundColor: 'rgba(214,193,152,0.2)',
-    marginVertical: 20,
+    marginVertical: 16,
   },
   luxurySection: {
     marginBottom: 2,
