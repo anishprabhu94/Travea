@@ -852,6 +852,31 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
+  planTripButtonContainer: {
+    marginTop: 12,
+    alignItems: 'flex-start',
+  },
+  planTripButton: {
+    backgroundColor: 'rgba(201,169,109,0.25)',
+    borderRadius: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    ...Platform.select({
+      web: {
+        boxShadow: 'inset 0 1px 3px rgba(255,255,255,0.1)',
+      },
+    }),
+  },
+  planTripButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#F8F8F8',
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
   emptyState: {
     flex: 1,
     justifyContent: 'center',
