@@ -294,7 +294,7 @@ export default function MyTrips() {
             }
           ]}
         >
-          {/* Centered Logo */}
+          {/* Left Aligned Logo */}
           <View style={styles.logoContainer}>
             <TraveaWordmark size="medium" />
           </View>
