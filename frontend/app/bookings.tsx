@@ -1222,7 +1222,9 @@ export default function TripCanvas() {
               showsVerticalScrollIndicator={false}
               contentContainerStyle={styles.luxuryEditScrollContent}
             >
-              <Text style={styles.luxuryEditTitle}>Edit Trip</Text>
+              <View style={styles.luxuryEditTitleContainer}>
+                <Text style={styles.luxuryEditTitle}>Edit Trip</Text>
+              </View>
               <View style={styles.luxuryDivider} />
 
                 <View style={styles.luxurySection}>
@@ -1239,7 +1241,7 @@ export default function TripCanvas() {
                 <View style={styles.luxuryDivider} />
                 
                 <View style={styles.luxurySection}>
-                  <Text style={styles.luxurySectionLabel}>TRIP DATES</Text>
+                  <Text style={styles.luxurySectionLabel}>START AND END</Text>
                   <View style={styles.dateRow}>
                     <View style={styles.dateSelect}>
                       <Text style={styles.dateLabel}>Start Month</Text>
