@@ -321,15 +321,44 @@ const tripData = {
   }
 };
 
+// Available cities (from landing page)
+const AVAILABLE_CITIES = [
+  { code: 'FLR', name: 'Florence', region: 'Italy' },
+  { code: 'ROM', name: 'Rome', region: 'Italy' },
+  { code: 'VCE', name: 'Venice', region: 'Italy' },
+  { code: 'AML', name: 'Amalfi', region: 'Italy' },
+  { code: 'BCN', name: 'Barcelona', region: 'Spain' },
+  { code: 'LIS', name: 'Lisbon', region: 'Portugal' },
+  { code: 'PRG', name: 'Prague', region: 'Czech Republic' },
+  { code: 'VIE', name: 'Vienna', region: 'Austria' },
+  { code: 'KYO', name: 'Kyoto', region: 'Japan' },
+  { code: 'REY', name: 'Reykjavík', region: 'Iceland' },
+];
+
 export default function TripCanvas() {
   const [activeDayId, setActiveDayId] = useState('day1-2');
   const [tripStatus, setTripStatus] = useState('Planning');
   const [showStatusDropdown, setShowStatusDropdown] = useState(false);
+  const [showEditPane, setShowEditPane] = useState(false);
+  
+  // Editable trip state
+  const [editableTripName, setEditableTripName] = useState(tripData.tripName);
+  const [editableDates, setEditableDates] = useState('June 8–15');
+  const [editableTravelers, setEditableTravelers] = useState('2');
+  const [editableCities, setEditableCities] = useState(tripData.cities);
+  const [citySearchQuery, setCitySearchQuery] = useState('');
+  const [draggedCityIndex, setDraggedCityIndex] = useState<number | null>(null);
   
   const activeDay = tripData.days.find(d => d.id === activeDayId) || tripData.days[0];
   const activeCityCode = activeDay.cityCode;
   
   const statusOptions = ['Planning', 'Upcoming', 'Ongoing', 'Completed'];
+  
+  // Filter available cities based on search
+  const filteredCities = AVAILABLE_CITIES.filter(city => 
+    city.name.toLowerCase().includes(citySearchQuery.toLowerCase()) ||
+    city.region.toLowerCase().includes(citySearchQuery.toLowerCase())
+  );
 
   // Hero Panel - 340px with clean background
   const renderHeroPanel = () => (
