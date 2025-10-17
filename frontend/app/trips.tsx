@@ -457,20 +457,17 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
     paddingVertical: 20,
-    marginBottom: 16,
+    marginBottom: 24,
   },
   logoContainer: {
-    flex: 1,
-    flexDirection: 'row',
     alignItems: 'center',
-    // Reduced bronze glow for logo to match landing page
     ...Platform.select({
       web: {
-        filter: 'drop-shadow(0 0 6px rgba(201,169,109,0.4))', // Same as landing page
+        filter: 'drop-shadow(0 0 6px rgba(201,169,109,0.4))',
       },
       default: {
         shadowColor: '#C9A96D',
