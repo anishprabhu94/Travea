@@ -1490,54 +1490,70 @@ export default function TripCanvas() {
                     </TouchableOpacity>
                   )}
                   
-                  <View style={styles.luxuryCityList}>
-                    {editableCities.map((cityCode, index) => {
-                      const cityData = AVAILABLE_CITIES.find(c => c.code === cityCode);
-                      const cityDate = cityDates[cityCode] || {startMonth: '', startDay: 0, endMonth: '', endDay: 0};
-                      const hasValidDates = cityDate.startMonth && cityDate.startDay && cityDate.endMonth && cityDate.endDay;
-                      const validationMessage = hasValidDates ? getCityValidationMessage(cityCode, index) : '';
-                      
-                      let nights = 0;
-                      if (hasValidDates) {
-                        const startIdx = months.indexOf(cityDate.startMonth);
-                        const endIdx = months.indexOf(cityDate.endMonth);
-                        if (startIdx === endIdx) {
-                          nights = cityDate.endDay - cityDate.startDay;
-                        } else {
-                          nights = monthDays[cityDate.startMonth] - cityDate.startDay;
-                          for (let i = startIdx + 1; i < endIdx; i++) {
-                            nights += monthDays[months[i]];
+                  {/* City Cards - Draggable */}
+                  <GestureHandlerRootView style={styles.luxuryCityList}>
+                    <DraggableFlatList
+                      data={editableCities}
+                      renderItem={({ item: cityCode, drag, isActive, getIndex }) => {
+                        const index = getIndex() ?? 0;
+                        const cityData = AVAILABLE_CITIES.find(c => c.code === cityCode);
+                        const cityDate = cityDates[cityCode] || {startMonth: '', startDay: 0, endMonth: '', endDay: 0};
+                        const hasValidDates = cityDate.startMonth && cityDate.startDay && cityDate.endMonth && cityDate.endDay;
+                        const validationMessage = hasValidDates ? getCityValidationMessage(cityCode, index) : '';
+                        
+                        let nights = 0;
+                        if (hasValidDates) {
+                          const startIdx = months.indexOf(cityDate.startMonth);
+                          const endIdx = months.indexOf(cityDate.endMonth);
+                          if (startIdx === endIdx) {
+                            nights = cityDate.endDay - cityDate.startDay;
+                          } else {
+                            nights = monthDays[cityDate.startMonth] - cityDate.startDay;
+                            for (let i = startIdx + 1; i < endIdx; i++) {
+                              nights += monthDays[months[i]];
+                            }
+                            nights += cityDate.endDay;
                           }
-                          nights += cityDate.endDay;
                         }
-                      }
-                      
-                      return (
-                        <View key={`${cityCode}-${index}`} style={styles.cityCard}>
-                          <View style={styles.cityCardHeader}>
-                            <View style={styles.luxuryReorderHandle}>
-                              <View style={styles.luxuryDot} />
-                              <View style={styles.luxuryDot} />
-                              <View style={styles.luxuryDot} />
-                            </View>
-                            <Text style={styles.cityCardName}>{cityData?.name || cityCode}</Text>
-                            <TouchableOpacity
-                              style={styles.luxuryDeleteButton}
-                              onPress={() => {
-                                const newCities = editableCities.filter((_, i) => i !== index);
-                                setEditableCities(newCities);
-                                // Clear this city's dates
-                                const newDates = {...cityDates};
-                                delete newDates[cityCode];
-                                setCityDates(newDates);
-                              }}
-                              activeOpacity={0.6}
+                        
+                        return (
+                          <ScaleDecorator>
+                            <View 
+                              key={`${cityCode}-${index}`} 
+                              style={[
+                                styles.cityCard,
+                                isActive && styles.cityCardActive
+                              ]}
                             >
-                              <Ionicons name="close" size={14} color="rgba(255,255,255,0.5)" />
-                            </TouchableOpacity>
-                          </View>
+                              <View style={styles.cityCardHeader}>
+                                <TouchableOpacity 
+                                  onLongPress={drag}
+                                  disabled={isActive}
+                                  style={styles.luxuryReorderHandle}
+                                  activeOpacity={0.7}
+                                >
+                                  <View style={styles.luxuryDot} />
+                                  <View style={styles.luxuryDot} />
+                                  <View style={styles.luxuryDot} />
+                                </TouchableOpacity>
+                                <Text style={styles.cityCardName}>{cityData?.name || cityCode}</Text>
+                                <TouchableOpacity
+                                  style={styles.luxuryDeleteButton}
+                                  onPress={() => {
+                                    const newCities = editableCities.filter((_, i) => i !== index);
+                                    setEditableCities(newCities);
+                                    // Clear this city's dates
+                                    const newDates = {...cityDates};
+                                    delete newDates[cityCode];
+                                    setCityDates(newDates);
+                                  }}
+                                  activeOpacity={0.6}
+                                >
+                                  <Ionicons name="close" size={14} color="rgba(255,255,255,0.5)" />
+                                </TouchableOpacity>
+                              </View>
 
-                          <View style={styles.cityDateRow}>
+                              <View style={styles.cityDateRow}>
                             <View style={styles.cityDateGroup}>
                               <Text style={styles.cityDateLabel}>Start</Text>
                               <View style={styles.cityDateFields}>
