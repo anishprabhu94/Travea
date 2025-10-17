@@ -1769,7 +1769,9 @@ export default function TripCanvas() {
                   }}
                   keyExtractor={(item) => item}
                   onDragEnd={({ data }) => handleCityReorder(data)}
-                  scrollEnabled={false}
+                  scrollEnabled={true}
+                  nestedScrollEnabled={true}
+                  containerStyle={styles.draggableListContainer}
                 />
               </GestureHandlerRootView>
               
