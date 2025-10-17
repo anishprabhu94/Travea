@@ -1421,7 +1421,16 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // City Strip - Centered with Dots
+  // City Strip - Horizontal Scroll
+  cityStripScroll: {
+    marginBottom: 24,
+  },
+  cityStripContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 4,
+    gap: 8,
+  },
   cityStrip: {
     flexDirection: 'row',
     alignItems: 'center',
