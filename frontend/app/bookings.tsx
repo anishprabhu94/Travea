@@ -424,8 +424,13 @@ export default function TripCanvas() {
             </View>
           )}
           
-          {/* City Strip - Centered Pills with Dynamic Highlighting */}
-          <View style={styles.cityStrip}>
+          {/* City Strip - Horizontal Scrollable Pills */}
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            style={styles.cityStripScroll}
+            contentContainerStyle={styles.cityStripContent}
+          >
             {editableCities.map((city, index) => (
               <View 
                 key={city}
@@ -447,7 +452,7 @@ export default function TripCanvas() {
                 )}
               </View>
             ))}
-          </View>
+          </ScrollView>
           
           {/* Day Selector Tabs - Scrollable & Elegant */}
           <View style={styles.dayTabsContainer}>
