@@ -556,12 +556,13 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     overflow: 'hidden',
     alignSelf: 'flex-start',
-    width: 130,
+    maxWidth: 140,
   },
   dropdownBlur: {
     borderRadius: 16,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.12)',
+    width: 140,
   },
   dropdownContent: {
     paddingVertical: 8,
