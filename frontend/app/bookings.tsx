@@ -344,11 +344,13 @@ export default function TripCanvas() {
         <View style={styles.heroFrostedPane}>
           <View style={styles.heroTitleContainer}>
             <Text style={styles.heroTitle}>{tripData.tripName}</Text>
+          </View>
+          <View style={styles.heroSubtitleRow}>
+            <Text style={styles.heroSubtitle}>{tripData.subtitle}</Text>
             <TouchableOpacity style={styles.editIconButton} activeOpacity={0.7}>
-              <Ionicons name="create-outline" size={18} color="rgba(181,155,115,0.9)" />
+              <Ionicons name="create-outline" size={16} color="rgba(181,155,115,0.9)" />
             </TouchableOpacity>
           </View>
-          <Text style={styles.heroSubtitle}>{tripData.subtitle}</Text>
           
           {/* Status Dropdown */}
           <TouchableOpacity 
