@@ -999,7 +999,7 @@ export default function TripCanvas() {
       </Modal>
     );
   };
-        <View style={styles.luxuryEditOverlay}>
+
           <BlurView intensity={50} tint="dark" style={styles.luxuryEditBlur}>
             <TouchableOpacity 
               style={StyleSheet.absoluteFill} 
