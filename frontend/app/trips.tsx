@@ -950,6 +950,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 40,
+    paddingBottom: 100,
   },
   emptyStateText: {
     fontSize: 20,
