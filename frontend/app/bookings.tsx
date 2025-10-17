@@ -1822,6 +1822,26 @@ const styles = StyleSheet.create({
     color: 'rgba(10,10,10,0.9)',
   },
 
+  // Day Selector Pills
+  dayPill: {
+    paddingVertical: 4,
+    paddingHorizontal: 10,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.15)',
+    marginRight: 8,
+  },
+  dayPillText: {
+    fontSize: 11,
+    fontWeight: '500',
+    color: 'rgba(181,155,115,0.7)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+
   // Day Tabs Container & Scrollable Tabs
   dayTabsContainer: {
     marginTop: 16,
