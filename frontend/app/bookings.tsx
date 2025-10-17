@@ -718,8 +718,11 @@ export default function TripCanvas() {
                   />
                   <View style={styles.experienceImageCardFrosted}>
                     <Text style={styles.experienceCardTitle}>{exp.title}</Text>
-                    <Text style={styles.experienceCardDetails}>Start: {exp.startTime} · Duration: {exp.duration}</Text>
-                    <Text style={styles.experienceCardLocation}>{exp.location}</Text>
+                    <View style={styles.experienceCardDetailsRow}>
+                      <Ionicons name="time-outline" size={14} color="rgba(181,155,115,0.9)" />
+                      <Text style={styles.experienceCardDetails}>{exp.duration}</Text>
+                      <Text style={styles.experienceCardLocation}>· 0.4 Mi from center</Text>
+                    </View>
                   </View>
                 </ImageBackground>
               </TouchableOpacity>
