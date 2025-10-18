@@ -1992,69 +1992,6 @@ export default function TripCanvas() {
     </View>
   );
 }
-    <View style={styles.container}>
-      <ScrollView 
-        style={styles.scrollView}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.scrollContent}
-      >
-        {renderHeroPanel()}
-        {renderCityHeader()}
-        {renderFlights()}
-        {renderStays()}
-        {renderTransport()}
-        {renderExperiences()}
-        {renderRestaurants()}
-      </ScrollView>
-
-      {/* Edit Pane Modal */}
-      {renderEditPane()}
-
-      {/* Bottom Dock - Matching Landing Page */}
-      <View style={styles.dockWrapper}>
-        <View style={styles.dockContainer}>
-          <View style={styles.dockContent}>
-            <TouchableOpacity 
-              style={styles.dockItem} 
-              onPress={() => router.push('/landing')}
-              activeOpacity={0.8}
-            >
-              <Ionicons name="home-outline" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockLabelInactive}>Home</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity 
-              style={styles.dockItem} 
-              onPress={() => router.push('/bookings')}
-              activeOpacity={0.8}
-            >
-              <Ionicons name="calendar" size={22} color="#C9A96D" />
-              <Text style={styles.dockLabelActive}>Trip Canvas</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity 
-              style={styles.dockItem} 
-              onPress={() => router.push('/trips')}
-              activeOpacity={0.8}
-            >
-              <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockLabelInactive}>My Trips</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity 
-              style={styles.dockItem} 
-              activeOpacity={0.8}
-              onPress={() => router.push('/concierge')}
-            >
-              <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockLabelInactive}>Concierge</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-    </View>
-  );
-}
 
 const styles = StyleSheet.create({
   container: {
