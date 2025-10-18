@@ -207,10 +207,13 @@ export const TripsProvider = ({ children }: { children: ReactNode }) => {
         }
       }));
     } else if (cityCode) {
-      // For single city, create one entry
+      // For single city, extract full name from title (e.g., "Positano Trip" -> "Positano")
+      const cityName = title.replace(' Trip', '').trim();
+      const code = cityName.substring(0, 3).toUpperCase();
+      
       citiesArray = [{
-        code: cityCode,
-        name: getCityName(cityCode),
+        code: code,
+        name: cityName,
         startMonth,
         startDay,
         endMonth,
