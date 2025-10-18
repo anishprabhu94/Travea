@@ -209,6 +209,7 @@ export default function MyTrips() {
       isMultiCity: true,
       cities: ['Amalfi', 'Ravello', 'Sorrento'],
       cityInitials: ['AMF', 'RAV', 'SOR'],
+      circuitTitle: 'Lemon Coast Trail',
       isCondeNastPick: true
     },
     { 
@@ -222,7 +223,8 @@ export default function MyTrips() {
       sourceTab: 'Inspire',
       isMultiCity: true,
       cities: ['Florence', 'Siena', 'San Gimignano'],
-      cityInitials: ['FLR', 'SIE', 'SGM']
+      cityInitials: ['FLR', 'SIE', 'SGM'],
+      circuitTitle: 'Tuscan Renaissance Loop'
     }
   ]
 
