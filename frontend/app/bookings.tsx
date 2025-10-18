@@ -448,6 +448,20 @@ export default function TripCanvas() {
       setTripEndDay(currentTrip.endDay);
       setEditableTravelers(currentTrip.travelers);
       setEditableCities(currentTrip.cities.map(c => c.code));
+      
+      // Load existing city dates if they exist
+      const existingCityDates: { [key: string]: any } = {};
+      currentTrip.cities.forEach(city => {
+        if (city.startMonth && city.endMonth) {
+          existingCityDates[city.code] = {
+            startMonth: city.startMonth,
+            startDay: city.startDay,
+            endMonth: city.endMonth,
+            endDay: city.endDay,
+          };
+        }
+      });
+      setCityDates(existingCityDates);
     }
   }, [showEditPane, currentTrip]);
   
