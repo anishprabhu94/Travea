@@ -488,6 +488,46 @@ export default function TripCanvas() {
     }
   };
   
+  // Handle save changes - Update trip with edited data
+  const handleSaveChanges = () => {
+    if (!currentTrip || !canSave()) return;
+    
+    // Update cities with assigned dates from cityDates state
+    const updatedCities = editableCities.map(cityCode => {
+      const existingCity = currentTrip.cities.find(c => c.code === cityCode);
+      const cityDate = cityDates[cityCode];
+      
+      return {
+        code: cityCode,
+        name: existingCity?.name || cityCode,
+        ...(cityDate && cityDate.startMonth && cityDate.endMonth ? {
+          startMonth: cityDate.startMonth,
+          startDay: cityDate.startDay,
+          endMonth: cityDate.endMonth,
+          endDay: cityDate.endDay,
+        } : {}),
+      };
+    });
+    
+    // Create updated trip object
+    const updatedTrip = {
+      ...currentTrip,
+      title: editableTripName,
+      startMonth: tripStartMonth,
+      startDay: tripStartDay,
+      endMonth: tripEndMonth,
+      endDay: tripEndDay,
+      travelers: editableTravelers,
+      cities: updatedCities,
+    };
+    
+    // Update in context
+    updateTrip(currentTrip.id, updatedTrip);
+    
+    // Close edit pane
+    setShowEditPane(false);
+  };
+  
   // Handle delete trip
   const handleDeleteTrip = () => {
     if (currentTrip) {
