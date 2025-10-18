@@ -34,6 +34,8 @@ export interface Trip {
   progress: number; // 0-100
   createdAt: Date;
   updatedAt: Date;
+  isMultiCity?: boolean;
+  circuitTitle?: string;
 }
 
 interface TripsContextType {
