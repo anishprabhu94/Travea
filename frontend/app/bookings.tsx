@@ -482,23 +482,28 @@ export default function TripCanvas() {
   }, [tripStartMonth, tripStartDay, tripEndMonth, tripEndDay]);
   
   // Helper: Get status pill colors
-  const getStatusColor = (status: string) => {
+  const getStatusGradientColors = (status: string) => {
     switch (status) {
-      case 'Planning': return 'rgba(201,166,91,0.3)';
-      case 'Upcoming': return 'rgba(100,180,255,0.3)';
-      case 'Ongoing': return 'rgba(120,200,100,0.3)';
-      case 'Completed': return 'rgba(150,150,150,0.3)';
-      default: return 'rgba(201,166,91,0.3)';
+      case 'Planning': 
+        return ['rgba(217,189,120,0.25)', 'rgba(217,189,120,0.05)'];
+      case 'Upcoming': 
+        return ['rgba(236,230,195,0.35)', 'rgba(255,255,255,0.1)'];
+      case 'Ongoing': 
+        return ['rgba(168,215,198,0.25)', 'rgba(90,144,127,0.1)'];
+      case 'Completed': 
+        return ['rgba(160,160,160,0.2)', 'rgba(100,100,100,0.05)'];
+      default: 
+        return ['rgba(217,189,120,0.25)', 'rgba(217,189,120,0.05)'];
     }
   };
   
   const getStatusTextColor = (status: string) => {
     switch (status) {
-      case 'Planning': return '#C9A65B';
-      case 'Upcoming': return '#64B4FF';
-      case 'Ongoing': return '#78C864';
-      case 'Completed': return '#999999';
-      default: return '#C9A65B';
+      case 'Planning': return '#F5DFA2';
+      case 'Upcoming': return '#FFFBEA';
+      case 'Ongoing': return '#E9F4ED';
+      case 'Completed': return '#DCDCDC';
+      default: return '#F5DFA2';
     }
   };
   
