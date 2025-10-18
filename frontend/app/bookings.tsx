@@ -511,16 +511,40 @@ export default function TripCanvas() {
       const existingCity = currentTrip.cities.find(c => c.code === cityCode);
       const cityDate = cityDates[cityCode];
       
-      return {
-        code: cityCode,
-        name: existingCity?.name || cityCode,
-        ...(cityDate && cityDate.startMonth && cityDate.endMonth ? {
-          startMonth: cityDate.startMonth,
-          startDay: cityDate.startDay,
-          endMonth: cityDate.endMonth,
-          endDay: cityDate.endDay,
-        } : {}),
-      };
+      // Preserve all city data, just update dates if assigned
+      if (existingCity) {
+        return {
+          ...existingCity,
+          ...(cityDate && cityDate.startMonth && cityDate.endMonth ? {
+            startMonth: cityDate.startMonth,
+            startDay: cityDate.startDay,
+            endMonth: cityDate.endMonth,
+            endDay: cityDate.endDay,
+          } : {
+            startMonth: existingCity.startMonth || '',
+            startDay: existingCity.startDay || 0,
+            endMonth: existingCity.endMonth || '',
+            endDay: existingCity.endDay || 0,
+          }),
+        };
+      } else {
+        // New city being added - extract name from AVAILABLE_CITIES or use code
+        const cityInfo = AVAILABLE_CITIES.find(c => c.code === cityCode);
+        return {
+          code: cityCode,
+          name: cityInfo?.name || cityCode,
+          startMonth: cityDate?.startMonth || '',
+          startDay: cityDate?.startDay || 0,
+          endMonth: cityDate?.endMonth || '',
+          endDay: cityDate?.endDay || 0,
+          status: 'Pending' as const,
+          bookings: {
+            flights: 'Pending' as const,
+            stays: 'Pending' as const,
+            transport: 'Pending' as const
+          }
+        };
+      }
     });
     
     // Create updated trip object
