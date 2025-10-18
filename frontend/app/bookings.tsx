@@ -901,17 +901,26 @@ export default function TripCanvas() {
                 key={city.code}
                 style={styles.cityCapsuleWrapper}
               >
-                <View style={[
-                  styles.cityCapsule,
-                  city.code === activeCityCode && styles.cityCapsuleActive
-                ]}>
-                  <Text style={[
-                    styles.cityCapsuleText,
-                    city.code === activeCityCode && styles.cityCapsuleTextActive
+                <TouchableOpacity
+                  onPress={() => {
+                    // Find matching day for this city and set it as active
+                    const matchingDay = tripData.days.find(d => d.cityCode === city.code);
+                    if (matchingDay) setActiveDayId(matchingDay.id);
+                  }}
+                  activeOpacity={0.7}
+                >
+                  <View style={[
+                    styles.cityCapsule,
+                    city.code === activeCityCode && styles.cityCapsuleActive
                   ]}>
-                    {city.code}
-                  </Text>
-                </View>
+                    <Text style={[
+                      styles.cityCapsuleText,
+                      city.code === activeCityCode && styles.cityCapsuleTextActive
+                    ]}>
+                      {city.name || city.code}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
                 {index < currentTrip.cities.length - 1 && (
                   <View style={styles.cityDot} />
                 )}
