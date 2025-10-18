@@ -954,21 +954,17 @@ export default function TripCanvas() {
             ))}
           </ScrollView>
           
-          {/* Quick Status Row - Flight, Stay, Transport Icons with Color-coded States */}
+          {/* Quick Status Row - Flight, Stay, Transport Icons with Outlined Style */}
           <View style={styles.quickStatusContainer}>
             {/* Flight Status */}
             <View style={styles.quickStatusItem}>
-              <View style={[styles.quickStatusIcon, { 
-                backgroundColor: activeDay.mockBookingStatus?.flights === 'Booked' ? 'rgba(201,166,91,0.25)' : 
-                                activeDay.mockBookingStatus?.flights === 'Pending' ? 'rgba(184,92,92,0.25)' : 
-                                'rgba(120,120,120,0.25)'
-              }]}>
+              <View style={styles.quickStatusIcon}>
                 <Ionicons 
-                  name="airplane" 
-                  size={16} 
+                  name="airplane-outline" 
+                  size={18} 
                   color={activeDay.mockBookingStatus?.flights === 'Booked' ? '#C9A65B' : 
-                        activeDay.mockBookingStatus?.flights === 'Pending' ? '#B85C5C' : 
-                        '#888888'} 
+                        activeDay.mockBookingStatus?.flights === 'Pending' ? 'rgba(201,166,91,0.5)' : 
+                        'rgba(255,255,255,0.3)'} 
                 />
               </View>
               <Text style={styles.quickStatusLabel}>Flight</Text>
@@ -976,17 +972,13 @@ export default function TripCanvas() {
             
             {/* Stay Status */}
             <View style={styles.quickStatusItem}>
-              <View style={[styles.quickStatusIcon, { 
-                backgroundColor: activeDay.mockBookingStatus?.stays === 'Booked' ? 'rgba(201,166,91,0.25)' : 
-                                activeDay.mockBookingStatus?.stays === 'Pending' ? 'rgba(184,92,92,0.25)' : 
-                                'rgba(120,120,120,0.25)'
-              }]}>
+              <View style={styles.quickStatusIcon}>
                 <Ionicons 
-                  name="bed" 
-                  size={16} 
+                  name="bed-outline" 
+                  size={18} 
                   color={activeDay.mockBookingStatus?.stays === 'Booked' ? '#C9A65B' : 
-                        activeDay.mockBookingStatus?.stays === 'Pending' ? '#B85C5C' : 
-                        '#888888'} 
+                        activeDay.mockBookingStatus?.stays === 'Pending' ? 'rgba(201,166,91,0.5)' : 
+                        'rgba(255,255,255,0.3)'} 
                 />
               </View>
               <Text style={styles.quickStatusLabel}>Stay</Text>
@@ -994,18 +986,14 @@ export default function TripCanvas() {
             
             {/* Transport Status */}
             <View style={styles.quickStatusItem}>
-              <View style={[styles.quickStatusIcon, { 
-                backgroundColor: activeDay.mockBookingStatus?.transport === 'Booked' ? 'rgba(201,166,91,0.25)' : 
-                                activeDay.mockBookingStatus?.transport === 'Pending' ? 'rgba(184,92,92,0.25)' : 
-                                activeDay.mockBookingStatus?.transport === 'N/A' ? 'rgba(120,120,120,0.25)' :
-                                'rgba(120,120,120,0.25)'
-              }]}>
+              <View style={styles.quickStatusIcon}>
                 <Ionicons 
-                  name="car" 
-                  size={16} 
+                  name="car-outline" 
+                  size={18} 
                   color={activeDay.mockBookingStatus?.transport === 'Booked' ? '#C9A65B' : 
-                        activeDay.mockBookingStatus?.transport === 'Pending' ? '#B85C5C' : 
-                        '#888888'} 
+                        activeDay.mockBookingStatus?.transport === 'Pending' ? 'rgba(201,166,91,0.5)' : 
+                        activeDay.mockBookingStatus?.transport === 'N/A' ? 'rgba(255,255,255,0.3)' :
+                        'rgba(255,255,255,0.3)'} 
                 />
               </View>
               <Text style={styles.quickStatusLabel}>Transport</Text>
