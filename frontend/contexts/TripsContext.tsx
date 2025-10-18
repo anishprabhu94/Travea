@@ -90,7 +90,9 @@ export const TripsProvider = ({ children }: { children: ReactNode }) => {
 
   const saveTrips = async () => {
     try {
+      console.log('Saving trips to AsyncStorage:', trips.length, 'trips');
       await AsyncStorage.setItem('@travea_trips', JSON.stringify(trips));
+      console.log('Trips saved successfully');
     } catch (error) {
       console.error('Error saving trips:', error);
     }
