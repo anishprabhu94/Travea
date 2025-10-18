@@ -855,46 +855,31 @@ export default function TripCanvas() {
               style={styles.dayTabsScroll}
               contentContainerStyle={styles.dayTabsContent}
             >
-              {(() => {
-                const tripDuration = getTripDuration();
-                const coverage = getCoverage();
-                
-                // If no coverage or incomplete, show "Unassigned"
-                if (coverage === 0 || coverage < tripDuration) {
-                  const startFormatted = `${tripStartMonth.substring(0, 3)} ${tripStartDay}`;
-                  const endFormatted = `${tripEndMonth.substring(0, 3)} ${tripEndDay}`;
-                  return (
-                    <View style={[styles.dayTab, styles.dayTabUnassigned]}>
-                      <Text style={styles.dayTabTextUnassigned}>Unassigned · {startFormatted}–{endFormatted}</Text>
-                    </View>
-                  );
+              {currentTrip.cities.map((city, idx) => {
+                // Check if city has dates assigned
+                if (!city.startMonth || !city.endMonth) {
+                  return null;
                 }
                 
-                // Otherwise, show month-day ranges for each city
-                return editableCities.map((cityCode, idx) => {
-                  const cityDate = cityDates[cityCode];
-                  if (!cityDate || !cityDate.startMonth || !cityDate.endMonth) return null;
-                  
-                  // Format as "Jun 8–Jun 10"
-                  const startFormatted = `${cityDate.startMonth.substring(0, 3)} ${cityDate.startDay}`;
-                  const endFormatted = `${cityDate.endMonth.substring(0, 3)} ${cityDate.endDay}`;
-                  
-                  return (
-                    <TouchableOpacity
-                      key={cityCode}
-                      style={styles.dayTab}
-                      onPress={() => {
-                        // Find the day that matches this city
-                        const matchingDay = tripData.days.find(d => d.cityCode === cityCode);
-                        if (matchingDay) setActiveDayId(matchingDay.id);
-                      }}
-                      activeOpacity={0.7}
-                    >
-                      <Text style={styles.dayTabText}>{startFormatted}–{endFormatted}</Text>
-                    </TouchableOpacity>
-                  );
-                });
-              })()}
+                // Format as "Jun 8–Jun 10"
+                const startFormatted = `${city.startMonth.substring(0, 3)} ${city.startDay}`;
+                const endFormatted = `${city.endMonth.substring(0, 3)} ${city.endDay}`;
+                
+                return (
+                  <TouchableOpacity
+                    key={city.code}
+                    style={styles.dayTab}
+                    onPress={() => {
+                      // Find the day that matches this city
+                      const matchingDay = tripData.days.find(d => d.cityCode === city.code);
+                      if (matchingDay) setActiveDayId(matchingDay.id);
+                    }}
+                    activeOpacity={0.7}
+                  >
+                    <Text style={styles.dayTabText}>{startFormatted}–{endFormatted}</Text>
+                  </TouchableOpacity>
+                );
+              })}
             </ScrollView>
           </View>
         </View>
