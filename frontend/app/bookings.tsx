@@ -1933,45 +1933,65 @@ export default function TripCanvas() {
             </KeyboardAvoidingView>
           </View>
         </Modal>
-        
-        {/* Delete Confirmation Modal */}
-        <Modal
-          visible={showDeleteModal}
-          transparent
-          animationType="fade"
-          onRequestClose={() => setShowDeleteModal(false)}
-        >
-          <View style={styles.deleteModalOverlay}>
-            <View style={styles.deleteModalContent}>
-              <Text style={styles.deleteModalTitle}>Delete this trip?</Text>
-              <Text style={styles.deleteModalBody}>
-                This will permanently remove all trip details, including cities, dates, and bookings. This action cannot be undone.
-              </Text>
-              
-              <View style={styles.deleteModalButtons}>
-                <TouchableOpacity
-                  style={styles.deleteModalCancelButton}
-                  onPress={() => setShowDeleteModal(false)}
-                  activeOpacity={0.7}
-                >
-                  <Text style={styles.deleteModalCancelText}>Cancel</Text>
-                </TouchableOpacity>
-                
-                <TouchableOpacity
-                  style={styles.deleteModalConfirmButton}
-                  onPress={handleDeleteTrip}
-                  activeOpacity={0.8}
-                >
-                  <Text style={styles.deleteModalConfirmText}>Delete Trip</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-        </Modal>
       );
     };
 
   return (
+    <View style={styles.container}>
+      <ScrollView 
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
+        {renderHeroPanel()}
+        {renderCityHeader()}
+        {renderFlights()}
+        {renderStays()}
+        {renderTransport()}
+        {renderExperiences()}
+        {renderRestaurants()}
+      </ScrollView>
+
+      {/* Edit Pane Modal */}
+      {renderEditPane()}
+      
+      {/* Delete Confirmation Modal */}
+      <Modal
+        visible={showDeleteModal}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setShowDeleteModal(false)}
+      >
+        <View style={styles.deleteModalOverlay}>
+          <View style={styles.deleteModalContent}>
+            <Text style={styles.deleteModalTitle}>Delete this trip?</Text>
+            <Text style={styles.deleteModalBody}>
+              This will permanently remove all trip details, including cities, dates, and bookings. This action cannot be undone.
+            </Text>
+            
+            <View style={styles.deleteModalButtons}>
+              <TouchableOpacity
+                style={styles.deleteModalCancelButton}
+                onPress={() => setShowDeleteModal(false)}
+                activeOpacity={0.7}
+              >
+                <Text style={styles.deleteModalCancelText}>Cancel</Text>
+              </TouchableOpacity>
+              
+              <TouchableOpacity
+                style={styles.deleteModalConfirmButton}
+                onPress={handleDeleteTrip}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.deleteModalConfirmText}>Delete Trip</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+    </View>
+  );
+}
     <View style={styles.container}>
       <ScrollView 
         style={styles.scrollView}
