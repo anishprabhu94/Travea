@@ -387,6 +387,31 @@ export default function TripCanvas() {
   const [tripChangeMessage, setTripChangeMessage] = useState('');
   const [hasUsedAssignAll, setHasUsedAssignAll] = useState(false);
   
+  const prevTripDates = React.useRef({ startMonth: tripStartMonth, startDay: tripStartDay, endMonth: tripEndMonth, endDay: tripEndDay });
+  
+  // Calculate progress based on mock booking status (Phase A)
+  const calculateMockProgress = () => {
+    if (!tripData.days || tripData.days.length === 0) return 0;
+    
+    // Count cities that are fully booked (all sections = "Booked")
+    const bookedCities = tripData.days.filter(day => {
+      const { flights, stays, transport } = day.mockBookingStatus || {};
+      
+      // A city is considered booked when:
+      // - Flights: Booked (if applicable)
+      // - Stays: Booked (always required)
+      // - Transport: Booked or N/A
+      
+      const flightsReady = flights === 'Booked' || flights === 'N/A';
+      const staysReady = stays === 'Booked';
+      const transportReady = transport === 'Booked' || transport === 'N/A';
+      
+      return flightsReady && staysReady && transportReady;
+    }).length;
+    
+    return Math.round((bookedCities / tripData.days.length) * 100);
+  };
+  
   // Track previous trip dates to detect changes
   const prevTripDates = React.useRef({ startMonth: tripStartMonth, startDay: tripStartDay, endMonth: tripEndMonth, endDay: tripEndDay });
   
