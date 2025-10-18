@@ -1439,7 +1439,7 @@ export default function TripCanvas() {
                   imageStyle={styles.restaurantImageCardBgStyle}
                 >
                   <View style={styles.cardDateBadgeOnImage}>
-                    <Text style={styles.cardDateText}>{rest.date.toUpperCase()}</Text>
+                    <Text style={styles.cardDateText}>{activeCityDateRange}</Text>
                   </View>
                   <LinearGradient
                     colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
