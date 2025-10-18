@@ -1934,7 +1934,7 @@ export default function TripCanvas() {
           </View>
         </Modal>
       );
-    };
+  };
 
   return (
     <View style={styles.container}>
