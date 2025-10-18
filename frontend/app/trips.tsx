@@ -30,6 +30,9 @@ interface SavedDestination {
   sourceCarousel: string
   sourceTab: string
   isCondeNastPick?: boolean
+  isMultiCity?: boolean
+  cities?: string[]
+  cityInitials?: string[]
 }
 
 // ALL 24 UNIQUE DESTINATIONS - MECE (Mutually Exclusive, Collectively Exhaustive)
