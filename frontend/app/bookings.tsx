@@ -1040,8 +1040,15 @@ export default function TripCanvas() {
               {calculateMockProgress() > 0 && (
                 <View style={[
                   styles.progressCapsule,
-                  currentTrip.status === 'Completed' && styles.progressCapsuleCompleted,
-                  { left: `${Math.max(0, Math.min(calculateMockProgress() - 8, 92))}%` }
+                  { 
+                    left: `${Math.max(0, Math.min(calculateMockProgress() - 8, 92))}%`,
+                    backgroundColor: 
+                      currentTrip.status === 'Planning' ? 'rgba(227,196,123,0.2)' :
+                      currentTrip.status === 'Upcoming' ? 'rgba(255,250,235,0.15)' :
+                      currentTrip.status === 'Ongoing' ? 'rgba(180,230,215,0.2)' :
+                      currentTrip.status === 'Completed' ? 'rgba(255,255,255,0.08)' :
+                      'rgba(227,196,123,0.2)' // default to Planning
+                  }
                 ]}>
                   <Text style={[
                     styles.progressCapsuleText,
