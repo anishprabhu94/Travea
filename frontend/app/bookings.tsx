@@ -3986,6 +3986,12 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
+  charCounter: {
+    fontSize: 11,
+    color: 'rgba(181,155,115,0.6)',
+    textAlign: 'right',
+    marginTop: 4,
+  },
   luxuryFieldLabel: {
     fontSize: 12,
     fontWeight: '500',
