@@ -290,6 +290,12 @@ const tripData = {
       dates: 'Jun 14–16',
       description: 'Coastal paradise & azure waters.',
       heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+      // Mock booking status for Phase A
+      mockBookingStatus: {
+        flights: 'Pending',
+        stays: 'Pending',
+        transport: 'Pending'
+      },
       flights: [],
       stays: [
         {
