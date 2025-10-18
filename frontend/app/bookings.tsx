@@ -780,13 +780,13 @@ export default function TripCanvas() {
         {/* Frosted pane container for hero content */}
         <View style={styles.heroFrostedPane}>
           <View style={styles.heroTitleContainer}>
-            <Text style={styles.heroTitle}>{editableTripName}</Text>
+            <Text style={styles.heroTitle}>{currentTrip.circuitTitle || currentTrip.title}</Text>
           </View>
           <View style={styles.heroSubtitleRow}>
             <Text style={styles.heroSubtitle}>
-              <Text style={{fontWeight: '700'}}>{tripStartMonth.substring(0,3)} {tripStartDay}–{tripEndMonth.substring(0,3)} {tripEndDay}</Text>
+              <Text style={{fontWeight: '700'}}>{currentTrip.startMonth.substring(0,3)} {currentTrip.startDay}–{currentTrip.endMonth.substring(0,3)} {currentTrip.endDay}</Text>
               {' · '}
-              <Text style={{fontWeight: '700'}}>{editableTravelers} Travelers</Text>
+              <Text style={{fontWeight: '700'}}>{currentTrip.travelers} Travelers</Text>
             </Text>
             <TouchableOpacity 
               style={styles.editIconButton} 
