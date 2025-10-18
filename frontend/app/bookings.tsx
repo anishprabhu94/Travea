@@ -1246,13 +1246,19 @@ export default function TripCanvas() {
             style={styles.luxuryEditPane}
             keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
           >
-            <TouchableOpacity 
-              style={styles.luxuryCloseButton}
-              onPress={() => setShowEditPane(false)}
-              activeOpacity={0.7}
-            >
-              <Ionicons name="close" size={18} color="rgba(214,193,152,0.9)" />
-            </TouchableOpacity>
+            {/* Sticky Header with Title and Close Button */}
+            <View style={styles.luxuryEditHeader}>
+              <View style={styles.luxuryEditTitleContainer}>
+                <Text style={styles.luxuryEditTitle}>Edit Trip</Text>
+              </View>
+              <TouchableOpacity 
+                style={styles.luxuryCloseButton}
+                onPress={() => setShowEditPane(false)}
+                activeOpacity={0.7}
+              >
+                <Ionicons name="close" size={18} color="rgba(214,193,152,0.9)" />
+              </TouchableOpacity>
+            </View>
 
             <ScrollView 
               style={styles.luxuryEditScroll}
@@ -1260,9 +1266,6 @@ export default function TripCanvas() {
               contentContainerStyle={styles.luxuryEditScrollContent}
               keyboardShouldPersistTaps="handled"
             >
-              <View style={styles.luxuryEditTitleContainer}>
-                <Text style={styles.luxuryEditTitle}>Edit Trip</Text>
-              </View>
               <View style={styles.luxuryDivider} />
 
                 <View style={styles.luxurySection}>
