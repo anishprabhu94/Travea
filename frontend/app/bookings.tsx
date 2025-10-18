@@ -164,6 +164,12 @@ const tripData = {
       dates: 'Jun 10–11',
       description: 'Eternal city of ancient wonders.',
       heroImage: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+      // Mock booking status for Phase A
+      mockBookingStatus: {
+        flights: 'Pending',
+        stays: 'Booked',
+        transport: 'Booked'
+      },
       flights: [],
       stays: [
         {
