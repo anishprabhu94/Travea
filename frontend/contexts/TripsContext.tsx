@@ -40,7 +40,7 @@ export interface Trip {
 
 interface TripsContextType {
   trips: Trip[];
-  createTrip: (title: string, startMonth: string, startDay: number, endMonth: string, endDay: number, travelers: number, cityCode?: string) => string;
+  createTrip: (title: string, startMonth: string, startDay: number, endMonth: string, endDay: number, travelers: number, cityCode?: string, isMultiCity?: boolean, circuitTitle?: string, allCities?: string[]) => string;
   updateTrip: (id: string, updates: Partial<Trip>) => void;
   deleteTrip: (id: string) => void;
   getTripById: (id: string) => Trip | undefined;
