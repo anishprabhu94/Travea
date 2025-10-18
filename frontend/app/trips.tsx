@@ -192,6 +192,84 @@ export default function MyTrips() {
     return groups
   }
 
+  const renderTripCard = (trip: any) => {
+    const cityCodes = trip.cities.length > 1 
+      ? trip.cities.map((c: any) => c.code).join(', ')
+      : trip.cities[0]?.name || '';
+    
+    const dateRange = `${trip.startMonth.substring(0, 3)} ${trip.startDay} – ${trip.endMonth.substring(0, 3)} ${trip.endDay}`;
+    
+    const getStatusColor = () => {
+      switch (trip.status) {
+        case 'Planning': return 'rgba(201,166,91,0.3)';
+        case 'Upcoming': return 'rgba(100,180,255,0.3)';
+        case 'Ongoing': return 'rgba(120,200,100,0.3)';
+        case 'Completed': return 'rgba(150,150,150,0.3)';
+        default: return 'rgba(201,166,91,0.3)';
+      }
+    };
+    
+    const getStatusTextColor = () => {
+      switch (trip.status) {
+        case 'Planning': return '#C9A65B';
+        case 'Upcoming': return '#64B4FF';
+        case 'Ongoing': return '#78C864';
+        case 'Completed': return '#999999';
+        default: return '#C9A65B';
+      }
+    };
+    
+    return (
+      <TouchableOpacity
+        key={trip.id}
+        style={styles.tripCard}
+        onPress={() => router.push(`/bookings?tripId=${trip.id}`)}
+        activeOpacity={0.7}
+      >
+        <View style={styles.tripCardHeader}>
+          <Text style={styles.tripTitle}>{trip.title}</Text>
+          <View style={[styles.statusPill, { backgroundColor: getStatusColor() }]}>
+            <Text style={[styles.statusText, { color: getStatusTextColor() }]}>
+              {trip.status}
+            </Text>
+          </View>
+        </View>
+
+        <View style={styles.tripCardDetails}>
+          <View style={styles.detailRow}>
+            <Ionicons name="calendar-outline" size={14} color="rgba(214,193,152,0.7)" />
+            <Text style={styles.detailText}>{dateRange}</Text>
+          </View>
+          
+          <View style={styles.detailRow}>
+            <Ionicons name="people-outline" size={14} color="rgba(214,193,152,0.7)" />
+            <Text style={styles.detailText}>{trip.travelers} {trip.travelers === 1 ? 'Traveler' : 'Travelers'}</Text>
+          </View>
+          
+          {cityCodes && (
+            <View style={styles.detailRow}>
+              <Ionicons name="location-outline" size={14} color="rgba(214,193,152,0.7)" />
+              <Text style={styles.detailText}>{cityCodes}</Text>
+            </View>
+          )}
+        </View>
+
+        {/* Progress Bar */}
+        <View style={styles.progressContainer}>
+          <View style={styles.progressBarBg}>
+            <LinearGradient
+              colors={['#C9A65B', '#B89550']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={[styles.progressBarFill, { width: `${trip.progress}%` }]}
+            />
+          </View>
+          <Text style={styles.progressText}>{trip.progress}% Complete</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
   const renderSavedCard = (destination: SavedDestination, index: number, isOnlyCard: boolean) => {
     console.log('renderSavedCard: Called for destination:', destination.id)
     return (
