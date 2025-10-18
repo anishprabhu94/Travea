@@ -37,6 +37,12 @@ const tripData = {
       dates: 'Jun 8–9',
       description: 'Renaissance art meets Tuscan charm.',
       heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+      // Mock booking status for Phase A
+      mockBookingStatus: {
+        flights: 'Booked',
+        stays: 'Booked',
+        transport: 'Booked'
+      },
       flights: [
         {
           id: '1',
