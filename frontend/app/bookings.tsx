@@ -2480,6 +2480,7 @@ const styles = StyleSheet.create({
   // Day Tabs Container & Scrollable Tabs
   dayTabsContainer: {
     marginTop: 16,
+    marginLeft: '5%', // Match frosted pane left position
   },
   dayTabsScroll: {
     flexGrow: 0,
