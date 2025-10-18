@@ -5,24 +5,21 @@ Subsequently, the scope expanded to a comprehensive intelligent trip management 
 </analysis>
 
 <product_requirements>
-The Trāvea app aims to be a minimalist luxury AI travel planner with Apple-glass/VisionOS aesthetics. The core problem is providing an elegant platform for travel planning, emphasizing a seamless, visual, and gesture-driven user experience. Key features include , , , , various , and an AI .
-
-Recent development focused on a comprehensive redesign of the  (), specifically implementing an Edit Trip modal. This modal required an Apple hardware precision meets Aman resort serenity aesthetic and a new Reset and Assign date system. This system mandates that changing trip start/end dates clears all city dates, allowing manual or auto-distribution (Assign All) with strict validation (within trip range, no overlaps, contiguous blocks). It also includes city management (add, remove, reorder with date reset on reorder), dynamic hero day selector pills, and specific inline feedback.
-
-Further requirements detailed an intelligent, self-updating trip management system across  and . This system defines four non-manual trip statuses (Planning, Upcoming, Ongoing, Completed), with  filtering by status and  defaulting to the most recent  trip. It requires a graceful Delete Trip flow for  trips only, with a confirmation modal, specific button styling, and system-wide synchronization. Each city also has section-level (Flights, Stays, Transport) and overall statuses (Booked, Pending, In Progress) with defined rules and visual pills (Gold, Graphite gray, Amber, Muted Ivory).
+The Trāvea app aims to be a minimalist luxury AI travel planner with Apple-glass/VisionOS aesthetics, emphasizing a seamless, visual, and gesture-driven user experience. Key features include , , , , various , and an AI .
+Recent development focused on a comprehensive redesign of the  (), implementing an Edit Trip modal with an Apple hardware precision meets Aman resort serenity aesthetic. This included a Reset and Assign date system (clearing all city dates on trip date change, manual/auto-distribution with validation), city management (add, remove, reorder), dynamic hero day selector pills, and inline feedback.
+Further requirements detailed an intelligent, self-updating trip management system across  and , defining four non-manual trip statuses (Planning, Upcoming, Ongoing, Completed). This system included a graceful Delete Trip flow for  trips only, with confirmation modal and system-wide synchronization. Each city has section-level (Flights, Stays, Transport) and overall statuses (Booked, Pending, In Progress) with defined rules and visual pills (Gold, Graphite gray, Amber, Muted Ivory).
+Recent design updates requested a Quick Status row (Flight, Stay, Transport icons with color-coded booking states), city pills to navigate to city pages, larger centered date pills on destination cards, refined icon and status pill visual styles (gradients, glows, outlines), and a redesigned progress bar.
 </product_requirements>
 
 <key_technical_concepts>
-- **Expo Router**: File-based routing.
+- **Expo Router**: File-based routing for navigation.
 - **React Native**: Core UI development, cross-platform.
-- **FastAPI**: Backend for AI concierge.
-- **Emergent LLM Key**: AI capabilities via .
-- **UI/UX Principles**: Frosted glass, 8pt grid, responsive, gesture-driven, luxury aesthetic.
-- **State Management**: ,  for , .
-- **KeyboardAvoidingView**: Input field visibility during keyboard presence.
-- ****: Frosted glass effect.
-- **, **: Gestures and animations.
-- ****: For drag-and-drop UI.
+- **React Context (, )**: Global and local state management.
+- ****: Persistent data storage for trips.
+- ****: UI for gradient effects.
+- **UI/UX Principles**: Frosted glass, 8pt grid, responsive design.
+- ****: Manages keyboard interactions.
+- ****: Frosted glass UI effect.
 </key_technical_concepts>
 
 <code_architecture>
@@ -30,55 +27,46 @@ The application follows a full-stack architecture with an Expo frontend, a FastA
 
 
 
-- ****
-  - **Summary**: The Trip Canvas page. It underwent extensive rewrites for date management (Reset and Assign logic), UI/UX refinements, KeyboardAvoidingView implementation, and integrating dynamic trip loading, status pills, a progress bar, and a delete trip flow. It now uses  for local state persistence and  for global trip data.
-  - **Changes Made**: Old complex date logic removed; , ,  functions updated for Option A; hero day selector pills updated to show Unassigned Day 1-N or Mon X-X; Assign All button added; lock/first/last city logic removed; save button feedback updated; new styles added;  implemented for city search input;  integrated for city reordering; dropdown closing logic fixed; edit modal height adjusted and made sticky; status pill and progress bar added to hero; delete trip button and modal implemented. Latest fix addresses conditional rendering before hook calls.
-
-- ****
-  - **Summary**: The My Trips page. It was reverted to its original structure and then enhanced to include a Planning section that dynamically displays trip cards. It also handles the Plan Trip action from saved destinations.
-  - **Changes Made**: Initially a full rewrite was attempted, then reverted. It now includes  context,  logic to create new trips in  status, and rendering of saved multi-city destinations with correct titles and city displays. It also had a fix for the Plan Trip button routing conflict. Styles for multi-city cards were aligned with the landing page.
-
-- ****
-  - **Summary**: Main entry point for destination discovery.
-  - **Changes Made**: Referenced for multi-city destination data structure to ensure consistency when rendering saved cards in . No direct modifications within this trajectory.
-
-- ****
-  - **Summary**: Manages bookmarked destinations.
-  - **Changes Made**: Read to understand how bookmarked items are stored and filtered, especially when fixing multi-city destination display issues in .
-
-- ****
-  - **Summary**: *Newly created* to manage the local state of the Trip Canvas page, ensuring trip details persist across navigation.
-  - **Changes Made**: Created to store and provide , , , , , ,  via .
-
-- ****
-  - **Summary**: *Newly created* to manage the global state of all user trips (Planning, Upcoming, Ongoing, Completed).
-  - **Changes Made**: Created to store and provide , , , ,  via . Updated  to handle multi-city  and all cities from the source destination.
-
-- ****
-  - **Summary**: Lists frontend dependencies.
-  - **Changes Made**:  added.
+-   ****
+    -   **Summary**: The Trip Canvas page, responsible for displaying and editing trip details, cities, dates, and bookings. It's the central hub for interactive trip planning.
+    -   **Changes Made**: Overhauled date management, implemented Reset and Assign logic, dynamic trip loading, status pills, progress bar. Fixed React hooks order () for conditional rendering. Refined UI/UX for hero section, city pills (clickable, full names, alignment), section status pills, and added a bottom dock. Updated styles for frosted pane position, font sizes, icon treatments (gradients, glows), and status pill gradients. Implemented save handler for city date persistence, dynamic date calculation for section cards, and fixed abbreviated city names in edit pane.
+-   ****
+    -   **Summary**: The My Trips page, which lists all user trips (Planning, Upcoming, etc.). It's the entry point for opening or creating new trips from saved destinations.
+    -   **Changes Made**: Enhanced to use  for displaying dynamic trip cards. Modified  calls to ensure full city names are passed for new trips, preventing abbreviation issues.
+-   ****
+    -   **Summary**: Manages local state specific to the  screen, ensuring temporary edits and UI states persist while on the page.
+    -   **Changes Made**: Created to hold state variables like , , , and  for the Trip Canvas.
+-   ****
+    -   **Summary**: Manages the global state of all trips across the entire application, handling creation, updates, and deletion of trips.
+    -   **Changes Made**: Created to manage the  array. Integrated  for persistent storage, loading trips on app start and saving on changes. Updated  to correctly handle  and store full city names, and added extensive logging for debugging persistence issues.
+-   ****
+    -   **Summary**: Defines frontend project dependencies.
+    -   **Changes Made**: Added  and  for new features.
 </code_architecture>
 
 <pending_tasks>
-- Fully implement and verify the dynamic calculation and display of trip statuses (Planning, Upcoming, Ongoing, Completed).
-- Integrate booking logic and section statuses (Flights, Stays, Transport: Booked, Pending, N/A) for each city.
-- Ensure all city-level statuses (Booked, Pending, In Progress) are correctly calculated and displayed.
-- Verify full synchronization of trip edits and deletions across My Trips and Trip Canvas, with appropriate toast messages.
-- Test the default Trip Canvas routing (most recent Planning, then Upcoming, then empty state).
+- Refine the Progress Bar as per detailed design (form, depth, track, fill, capsule).
+- Ensure consistent trip retention across all navigation and new city additions.
+- Double-check full city name display in edit pane for all scenarios.
+- Implement soft fade-in animation for numeric progress updates.
+- QA all updates across single-city, multi-city trips, new city additions/deletions.
 </pending_tasks>
 
 <current_work>
-Immediately before this summary request, the AI engineer was implementing the comprehensive intelligent, self-updating trip management system as detailed in Chat Message 534. This involved significant changes to both  and , alongside the creation of new React contexts (, ) for state management.
+Immediately before this summary request, the AI engineer was addressing a comprehensive list of user-reported issues and intricate design refinements from Chat Message 596, following a recent bulk update that caused regressions and required git reverts. The current phase involves fixing each item systematically and carefully to avoid further issues.
 
-The engineer had successfully:
-1.  Dynamically loaded trips into .
-2.  Replaced the status dropdown in the  hero section with a read-only status pill and added a progress bar.
-3.  Implemented helper functions for status-based color rendering.
-4.  Integrated the Delete Trip button and its confirmation modal into the  pane, including associated styling.
+The engineer has just completed:
+1.  **Fix 1: City Names in Edit Pane (CRITICAL)**: Modified  to correctly retrieve and display full city names for all cities in the edit pane by checking both  and .
+2.  **Fix 2: Multi-City Trip Title (CRITICAL)**: Updated  to ensure  is correctly loaded into  and persisted upon saving changes, allowing multi-city trip titles to be editable.
+3.  **Fix 3: Delete Button Visibility**: Verified that the delete button in the edit pane (visible only for  trips) had sufficient  in its  container () in  to prevent it from being hidden.
+4.  **Fix 4: Stay Dates Calculation**: Introduced  in  to calculate stay durations (city duration minus one day) and updated  to use this new function for displaying accurate stay dates on cards.
+5.  **Fix 5: Flight Dates Display**: Modified  in  to display only the city's start date for flights, as flights typically occur on a single day.
+6.  **Fix 6: Darker City Date Pill Background**: Was in the process of applying styling updates to  in  to achieve a darker frosted pane and bronze text effect, which was the very last edit before this summary.
 
-However, the implementation of this large feature was interrupted by a user-reported error (Chat Message 591): Error when I click on plan trip on any of the saved cards. The user's screenshot indicated a Rendered more hooks than during the previous render error. The AI engineer identified this as a React rule violation where a conditional empty state rendering was placed before all hook declarations in . The fix involved restructuring  to move this conditional rendering after all , , and other hook calls. The application was successfully building after this fix, and the engineer was in the process of restarting Expo to confirm the changes and continue with the remaining system implementation.
+The next immediate step is to restart Expo to apply the latest style changes for the city date pill.
 </current_work>
 
 <optional_next_step>
-Verify the fix for the Rendered more hooks error by clicking Plan Trip, then proceed with implementing the remaining booking and city status logic for the intelligent trip management system in .
+Restart Expo, then proceed with the progress bar redesign and capsule styling.
 </optional_next_step>
+
