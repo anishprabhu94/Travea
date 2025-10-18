@@ -2397,7 +2397,8 @@ const styles = StyleSheet.create({
     flexGrow: 0,
   },
   dayTabsContent: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 0,
+    paddingLeft: 24, // Left-align with progress bar
     gap: 10,
     alignItems: 'center',
   },
