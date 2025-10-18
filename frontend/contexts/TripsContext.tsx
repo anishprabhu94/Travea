@@ -70,9 +70,12 @@ export const TripsProvider = ({ children }: { children: ReactNode }) => {
 
   const loadTrips = async () => {
     try {
+      console.log('Loading trips from AsyncStorage...');
       const storedTrips = await AsyncStorage.getItem('@travea_trips');
+      console.log('Stored trips raw:', storedTrips);
       if (storedTrips) {
         const parsedTrips = JSON.parse(storedTrips);
+        console.log('Parsed trips:', parsedTrips.length, 'trips found');
         // Convert date strings back to Date objects
         const tripsWithDates = parsedTrips.map((trip: any) => ({
           ...trip,
@@ -80,6 +83,9 @@ export const TripsProvider = ({ children }: { children: ReactNode }) => {
           updatedAt: new Date(trip.updatedAt)
         }));
         setTrips(tripsWithDates);
+        console.log('Trips loaded successfully:', tripsWithDates.length);
+      } else {
+        console.log('No stored trips found');
       }
     } catch (error) {
       console.error('Error loading trips:', error);
