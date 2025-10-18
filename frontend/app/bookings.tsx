@@ -719,32 +719,25 @@ export default function TripCanvas() {
             </TouchableOpacity>
           </View>
           
-          {/* Status Dropdown */}
-          <TouchableOpacity 
-            style={styles.statusCapsule}
-            onPress={() => setShowStatusDropdown(!showStatusDropdown)}
-            activeOpacity={0.7}
-          >
-            <Text style={styles.statusText}>{tripStatus}</Text>
-            <Ionicons name="chevron-down" size={14} color="rgba(181,155,115,0.8)" style={{marginLeft: 6}} />
-          </TouchableOpacity>
+          {/* Status Pill - Read-only */}
+          <View style={[styles.statusPill, { backgroundColor: getStatusColor(currentTrip.status) }]}>
+            <Text style={[styles.statusPillText, { color: getStatusTextColor(currentTrip.status) }]}>
+              {currentTrip.status}
+            </Text>
+          </View>
           
-          {showStatusDropdown && (
-            <View style={styles.statusDropdownMenu}>
-              {statusOptions.map((status) => (
-                <TouchableOpacity
-                  key={status}
-                  style={styles.statusDropdownItem}
-                  onPress={() => {
-                    setTripStatus(status);
-                    setShowStatusDropdown(false);
-                  }}
-                >
-                  <Text style={styles.statusDropdownText}>{status}</Text>
-                </TouchableOpacity>
-              ))}
+          {/* Progress Bar */}
+          <View style={styles.heroProgressContainer}>
+            <View style={styles.heroProgressBar}>
+              <LinearGradient
+                colors={['#C9A65B', '#B89550']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={[styles.heroProgressFill, { width: `${currentTrip.progress}%` }]}
+              />
             </View>
-          )}
+            <Text style={styles.heroProgressText}>{currentTrip.progress}% Complete</Text>
+          </View>
           
           {/* City Strip - Horizontal Scrollable Pills */}
           <ScrollView 
