@@ -814,10 +814,10 @@ export default function TripCanvas() {
                 colors={['#C9A65B', '#B89550']}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
-                style={[styles.heroProgressFill, { width: `${currentTrip.progress}%` }]}
+                style={[styles.heroProgressFill, { width: `${calculateMockProgress()}%` }]}
               />
             </View>
-            <Text style={styles.heroProgressText}>{currentTrip.progress}% Complete</Text>
+            <Text style={styles.heroProgressText}>{calculateMockProgress()}% Complete</Text>
           </View>
           
           {/* City Strip - Horizontal Scrollable Pills */}
