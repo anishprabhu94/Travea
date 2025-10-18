@@ -1243,7 +1243,7 @@ export default function TripCanvas() {
                 <View style={styles.flightCardTopRow}>
                   <Text style={styles.flightCardTraveler}>{flight.traveler}</Text>
                   <View style={styles.cardDateBadge}>
-                    <Text style={styles.cardDateText}>{activeCityDateRange}</Text>
+                    <Text style={styles.cardDateText}>{activeCityFirstDate}</Text>
                   </View>
                 </View>
                 <View style={styles.flightCardHeader}>
