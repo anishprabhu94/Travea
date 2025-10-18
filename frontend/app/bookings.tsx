@@ -4351,4 +4351,188 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
+  // Empty State Styles
+  emptyStateContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 40,
+  },
+  emptyStateTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+    color: 'rgba(245,240,230,0.9)',
+    marginTop: 20,
+    marginBottom: 8,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  emptyStateText: {
+    fontSize: 15,
+    color: 'rgba(214,193,152,0.7)',
+    textAlign: 'center',
+    lineHeight: 22,
+    marginBottom: 32,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  emptyStateButton: {
+    backgroundColor: 'rgba(201,180,124,0.2)',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(201,180,124,0.4)',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+  },
+  emptyStateButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#C9A65B',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  // Status Pill Styles (Read-only)
+  statusPill: {
+    paddingHorizontal: 12,
+    paddingVertical: 5,
+    borderRadius: 14,
+    alignSelf: 'flex-start',
+    marginBottom: 12,
+  },
+  statusPillText: {
+    fontSize: 12,
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  // Hero Progress Bar
+  heroProgressContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    marginBottom: 16,
+  },
+  heroProgressBar: {
+    flex: 1,
+    height: 6,
+    backgroundColor: 'rgba(214,193,152,0.15)',
+    borderRadius: 3,
+    overflow: 'hidden',
+  },
+  heroProgressFill: {
+    height: '100%',
+    borderRadius: 3,
+  },
+  heroProgressText: {
+    fontSize: 11,
+    color: 'rgba(214,193,152,0.8)',
+    fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  // Delete Button Styles
+  deleteButton: {
+    marginTop: 24,
+    paddingVertical: 12,
+    alignItems: 'center',
+  },
+  deleteButtonText: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#B85C5C',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  // Delete Modal Styles
+  deleteModalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  deleteModalContent: {
+    backgroundColor: '#1A1A1A',
+    borderRadius: 16,
+    borderWidth: 0.5,
+    borderColor: 'rgba(214,193,152,0.2)',
+    padding: 24,
+    width: '100%',
+    maxWidth: 400,
+  },
+  deleteModalTitle: {
+    fontSize: 22,
+    fontWeight: '600',
+    color: 'rgba(245,240,230,0.95)',
+    marginBottom: 12,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  deleteModalBody: {
+    fontSize: 14,
+    color: 'rgba(214,193,152,0.8)',
+    lineHeight: 21,
+    marginBottom: 24,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  deleteModalButtons: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  deleteModalCancelButton: {
+    flex: 1,
+    paddingVertical: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  deleteModalCancelText: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: 'rgba(245,240,230,0.7)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  deleteModalConfirmButton: {
+    flex: 1,
+    backgroundColor: 'rgba(184,92,92,0.2)',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(184,92,92,0.4)',
+    paddingVertical: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  deleteModalConfirmText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#B85C5C',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
 });
+
