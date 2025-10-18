@@ -518,10 +518,16 @@ export default function MyTrips() {
         {activeTab === 'saved' && renderSavedContent()}
         
         {activeTab === 'planning' && (
-          <View style={styles.emptyState}>
-            <Text style={styles.emptyStateText}>No trips in planning</Text>
-            <Text style={styles.emptyStateSubtext}>Start planning your next journey from saved destinations</Text>
-          </View>
+          planningTrips.length > 0 ? (
+            <ScrollView style={styles.tripsList} contentContainerStyle={styles.tripsListContent}>
+              {planningTrips.map(trip => renderTripCard(trip))}
+            </ScrollView>
+          ) : (
+            <View style={styles.emptyState}>
+              <Text style={styles.emptyStateText}>No trips in planning</Text>
+              <Text style={styles.emptyStateSubtext}>Start planning your next journey from saved destinations</Text>
+            </View>
+          )
         )}
         
         {activeTab === 'ongoing' && (
