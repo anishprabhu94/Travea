@@ -808,10 +808,38 @@ export default function TripCanvas() {
     return true;
   };
   
+  // Generate dynamic tripData.days based on currentTrip.cities
+  const generateDynamicDays = () => {
+    return currentTrip.cities.map((city, index) => ({
+      id: `day-${index}`,
+      label: `Day ${index + 1}`,
+      city: city.name || city.code,
+      cityCode: city.code,
+      dates: city.startMonth && city.endMonth 
+        ? `${city.startMonth.substring(0, 3)} ${city.startDay}–${city.endMonth.substring(0, 3)} ${city.endDay}`
+        : 'Unassigned',
+      description: `Discover ${city.name || city.code}`,
+      heroImage: tripData.heroImage,
+      mockBookingStatus: {
+        flights: city.bookings?.flights || 'Pending',
+        stays: city.bookings?.stays || 'Pending',
+        transport: city.bookings?.transport || 'Pending'
+      },
+      flights: tripData.days[index]?.flights || [],
+      stays: tripData.days[index]?.stays || [],
+      transport: tripData.days[index]?.transport || [],
+      experiences: tripData.days[index]?.experiences || [],
+      dining: tripData.days[index]?.dining || []
+    }));
+  };
+  
+  const dynamicDays = generateDynamicDays();
+  const activeDay = dynamicDays.find(d => d.id === activeDayId) || dynamicDays[0];
+  const activeCityCode = activeDay.cityCode;
+  
   // Get dynamic date range for active city from currentTrip
   const getActiveCityDateRange = () => {
-    const activeDay = tripData.days.find(d => d.id === activeDayId) || tripData.days[0];
-    const matchingCity = currentTrip.cities.find(c => c.code === activeDay.cityCode);
+    const matchingCity = currentTrip.cities.find(c => c.code === activeCityCode);
     
     if (matchingCity && matchingCity.startMonth && matchingCity.endMonth) {
       // City has assigned dates
@@ -819,13 +847,11 @@ export default function TripCanvas() {
       const end = `${matchingCity.endMonth.substring(0, 3)} ${matchingCity.endDay}`;
       return `${start}–${end}`;
     } else {
-      // Fallback to trip dates or "Unassigned"
+      // Fallback to "Unassigned"
       return 'Unassigned';
     }
   };
   
-  const activeDay = tripData.days.find(d => d.id === activeDayId) || tripData.days[0];
-  const activeCityCode = activeDay.cityCode;
   const activeCityDateRange = getActiveCityDateRange();
   
   const statusOptions = ['Planning', 'Upcoming', 'Ongoing', 'Completed'];
