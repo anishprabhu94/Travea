@@ -4947,23 +4947,97 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  // Hero Progress Bar
+  // Hero Progress Bar - Redesigned
   heroProgressContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
-    marginBottom: 20, // Increased from 16 for better spacing
+    marginBottom: 20,
+    position: 'relative',
   },
   heroProgressBar: {
     flex: 1,
-    height: 6,
-    backgroundColor: 'rgba(214,193,152,0.15)',
-    borderRadius: 3,
-    overflow: 'hidden',
+    height: 8, // Increased from 6px to 8px for better visual weight
+    backgroundColor: 'transparent',
+    borderRadius: 4, // Soft rounded ends - pill of light
+    overflow: 'visible', // Changed to visible to show capsule
+    position: 'relative',
+    // Frosted glass track with gradient
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.25)',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+      },
+      android: {
+        elevation: 2,
+      },
+    }),
   },
   heroProgressFill: {
     height: '100%',
-    borderRadius: 3,
+    borderRadius: 4,
+    position: 'relative',
+    // Faint glow effect
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(255,220,160,0.3)',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 1,
+        shadowRadius: 4,
+      },
+      android: {
+        elevation: 3,
+      },
+    }),
+  },
+  progressLeadingEdge: {
+    position: 'absolute',
+    right: -0.5,
+    top: 0,
+    bottom: 0,
+    width: 1,
+    backgroundColor: 'rgba(255,255,255,0.4)',
+    borderRadius: 1,
+  },
+  progressCapsule: {
+    position: 'absolute',
+    height: 20,
+    minWidth: 40,
+    paddingHorizontal: 8,
+    borderRadius: 10,
+    backgroundColor: 'rgba(227,196,123,0.2)', // Planning default
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: -6, // Center vertically relative to bar
+    // Inner glow
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(255,255,255,0.15)',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 1,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 2,
+      },
+    }),
+  },
+  progressCapsuleCompleted: {
+    backgroundColor: 'rgba(255,255,255,0.08)',
+  },
+  progressCapsuleText: {
+    fontSize: 10,
+    fontWeight: '600',
+    color: '#E3C47B', // Gold-tinted
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  progressCapsuleTextCompleted: {
+    color: 'rgba(255,255,255,0.9)', // Matte white embossed
+    fontWeight: '700',
   },
   heroProgressText: {
     fontSize: 11,
