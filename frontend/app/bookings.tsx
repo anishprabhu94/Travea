@@ -848,7 +848,7 @@ export default function TripCanvas() {
             ))}
           </ScrollView>
           
-          {/* Day Selector Tabs - Source of Truth - Aligned with City Pills */}
+          {/* Day Selector Tabs - One pill per city */}
           <View style={styles.dayTabsContainer}>
             <ScrollView 
               horizontal 
@@ -856,25 +856,12 @@ export default function TripCanvas() {
               style={styles.dayTabsScroll}
               contentContainerStyle={styles.dayTabsContent}
             >
-              {(() => {
-                // Check if any city has dates assigned
-                const hasAssignedDates = currentTrip.cities.some(city => city.startMonth && city.endMonth);
+              {currentTrip.cities.map((city, idx) => {
+                // Check if city has dates assigned
+                const hasAssignedDates = city.startMonth && city.endMonth;
                 
-                if (!hasAssignedDates) {
-                  // Show trip date range as fallback
-                  const startFormatted = `${currentTrip.startMonth.substring(0, 3)} ${currentTrip.startDay}`;
-                  const endFormatted = `${currentTrip.endMonth.substring(0, 3)} ${currentTrip.endDay}`;
-                  return (
-                    <View style={styles.dayTab}>
-                      <Text style={styles.dayTabText}>{startFormatted}–{endFormatted}</Text>
-                    </View>
-                  );
-                }
-                
-                // Show individual city dates
-                return currentTrip.cities.map((city, idx) => {
-                  if (!city.startMonth || !city.endMonth) return null;
-                  
+                if (hasAssignedDates) {
+                  // Show city-specific dates
                   const startFormatted = `${city.startMonth.substring(0, 3)} ${city.startDay}`;
                   const endFormatted = `${city.endMonth.substring(0, 3)} ${city.endDay}`;
                   
@@ -892,8 +879,18 @@ export default function TripCanvas() {
                       <Text style={styles.dayTabText}>{startFormatted}–{endFormatted}</Text>
                     </TouchableOpacity>
                   );
-                });
-              })()}
+                } else {
+                  // Show "Unassigned" for cities without dates
+                  return (
+                    <View
+                      key={city.code}
+                      style={[styles.dayTab, styles.dayTabUnassigned]}
+                    >
+                      <Text style={styles.dayTabTextUnassigned}>Unassigned · {city.name || city.code}</Text>
+                    </View>
+                  );
+                }
+              })}
             </ScrollView>
           </View>
         </View>
