@@ -2002,7 +2002,7 @@ export default function TripCanvas() {
                                   <View style={styles.luxuryDot} />
                                   <View style={styles.luxuryDot} />
                                 </TouchableOpacity>
-                                <Text style={styles.cityCardName}>{cityData?.name || cityCode}</Text>
+                                <Text style={styles.cityCardName}>{cityName}</Text>
                                 <TouchableOpacity
                                   style={styles.luxuryDeleteButton}
                                   onPress={() => {
