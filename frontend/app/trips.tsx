@@ -1008,6 +1008,54 @@ const styles = StyleSheet.create({
     alignItems: 'baseline',
     marginBottom: 4,
   },
+  // Multi-City Styles
+  multiCityContainer: {
+    marginBottom: 4,
+  },
+  circuitTitle: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#F8F8F8',
+    marginBottom: 10,
+    letterSpacing: 0.2,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  cityPillsScroll: {
+    marginBottom: 6,
+  },
+  cityTimelineRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  cityPill: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 16,
+    backgroundColor: 'rgba(201,169,109,0.25)',
+    borderWidth: 1,
+    borderColor: 'rgba(201,169,109,0.5)',
+  },
+  cityPillText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#C9A96D',
+    letterSpacing: 0.5,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  cityDot: {
+    width: 4,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: 'rgba(201,169,109,0.6)',
+    marginHorizontal: 8,
+  },
   destinationCity: {
     fontSize: 20,
     fontWeight: '600', // Semi-bold
