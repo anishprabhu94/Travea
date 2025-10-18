@@ -1017,14 +1017,33 @@ export default function TripCanvas() {
           {/* Progress Bar */}
           <View style={styles.heroProgressContainer}>
             <View style={styles.heroProgressBar}>
+              {/* Progress Fill with Gradient */}
               <LinearGradient
-                colors={['#C9A65B', '#B89550']}
+                colors={['#E3C47B', '#FFF5CC']}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
                 style={[styles.heroProgressFill, { width: `${calculateMockProgress()}%` }]}
-              />
+              >
+                {/* Leading Edge Highlight */}
+                <View style={styles.progressLeadingEdge} />
+              </LinearGradient>
+              
+              {/* Progress Capsule */}
+              {calculateMockProgress() > 0 && (
+                <View style={[
+                  styles.progressCapsule,
+                  currentTrip.status === 'Completed' && styles.progressCapsuleCompleted,
+                  { left: `${Math.max(0, Math.min(calculateMockProgress() - 8, 92))}%` }
+                ]}>
+                  <Text style={[
+                    styles.progressCapsuleText,
+                    currentTrip.status === 'Completed' && styles.progressCapsuleTextCompleted
+                  ]}>
+                    {calculateMockProgress()}%
+                  </Text>
+                </View>
+              )}
             </View>
-            <Text style={styles.heroProgressText}>{calculateMockProgress()}% Complete</Text>
           </View>
           
           {/* City Strip - Horizontal Scrollable Pills */}
