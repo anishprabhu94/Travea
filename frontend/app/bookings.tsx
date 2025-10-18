@@ -1944,14 +1944,25 @@ export default function TripCanvas() {
                       data={editableCities}
                       renderItem={({ item: cityCode, drag, isActive, getIndex }) => {
                         const index = getIndex() ?? 0;
-                        // Check AVAILABLE_CITIES first, then currentTrip.cities for full name
-                        let cityData = AVAILABLE_CITIES.find(c => c.code === cityCode);
-                        if (!cityData && currentTrip) {
+                        // Get full city name - prioritize currentTrip.cities, fallback to AVAILABLE_CITIES
+                        let cityName = cityCode; // fallback to code if nothing else works
+                        
+                        // First check currentTrip.cities (most accurate source)
+                        if (currentTrip) {
                           const tripCity = currentTrip.cities.find(c => c.code === cityCode);
-                          if (tripCity) {
-                            cityData = { code: tripCity.code, name: tripCity.name };
+                          if (tripCity && tripCity.name) {
+                            cityName = tripCity.name;
                           }
                         }
+                        
+                        // Fallback to AVAILABLE_CITIES if not found in trip
+                        if (cityName === cityCode) {
+                          const availableCity = AVAILABLE_CITIES.find(c => c.code === cityCode);
+                          if (availableCity && availableCity.name) {
+                            cityName = availableCity.name;
+                          }
+                        }
+                        
                         const cityDate = cityDates[cityCode] || {startMonth: '', startDay: 0, endMonth: '', endDay: 0};
                         const hasValidDates = cityDate.startMonth && cityDate.startDay && cityDate.endMonth && cityDate.endDay;
                         const validationMessage = hasValidDates ? getCityValidationMessage(cityCode, index) : '';
