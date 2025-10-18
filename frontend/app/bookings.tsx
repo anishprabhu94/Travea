@@ -937,12 +937,17 @@ export default function TripCanvas() {
             </TouchableOpacity>
           </View>
           
-          {/* Status Pill - Read-only */}
-          <View style={[styles.statusPill, { backgroundColor: getStatusColor(currentTrip.status) }]}>
+          {/* Status Pill - Read-only with Gradient */}
+          <LinearGradient
+            colors={getStatusGradientColors(currentTrip.status)}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.statusPill}
+          >
             <Text style={[styles.statusPillText, { color: getStatusTextColor(currentTrip.status) }]}>
               {currentTrip.status}
             </Text>
-          </View>
+          </LinearGradient>
           
           {/* Progress Bar */}
           <View style={styles.heroProgressContainer}>
