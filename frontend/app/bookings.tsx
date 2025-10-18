@@ -340,36 +340,86 @@ const AVAILABLE_CITIES = [
 ];
 
 export default function TripCanvas() {
-  // Use persisted state from context
-  const {
-    editableTripName,
-    setEditableTripName,
-    tripStartMonth,
-    setTripStartMonth,
-    tripStartDay,
-    setTripStartDay,
-    tripEndMonth,
-    setTripEndMonth,
-    tripEndDay,
-    setTripEndDay,
-    editableTravelers,
-    setEditableTravelers,
-    editableCities,
-    setEditableCities,
-    cityDates,
-    setCityDates,
-    hasUsedAssignAll,
-    setHasUsedAssignAll,
-  } = useTripCanvas();
+  const params = useLocalSearchParams();
+  const { trips, getTripById, getFilteredTrips, deleteTrip, updateTrip } = useTrips();
   
+  // Determine which trip to show
+  const getTripToDisplay = () => {
+    // If tripId in URL, use that
+    if (params.tripId && typeof params.tripId === 'string') {
+      const trip = getTripById(params.tripId);
+      if (trip) return trip;
+    }
+    
+    // Otherwise, show most recent Planning trip
+    const planningTrips = getFilteredTrips('Planning');
+    if (planningTrips.length > 0) {
+      return planningTrips[0]; // Most recent
+    }
+    
+    // Fallback to most recent Upcoming trip
+    const upcomingTrips = getFilteredTrips('Upcoming');
+    if (upcomingTrips.length > 0) {
+      return upcomingTrips[0];
+    }
+    
+    return null;
+  };
+  
+  const currentTrip = getTripToDisplay();
+  
+  // State management
   const [activeDayId, setActiveDayId] = useState('day1-2');
-  const [tripStatus, setTripStatus] = useState('Planning');
-  const [showStatusDropdown, setShowStatusDropdown] = useState(false);
   const [showEditPane, setShowEditPane] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  
+  // Edit pane state
+  const [editableTripName, setEditableTripName] = useState('');
+  const [tripStartMonth, setTripStartMonth] = useState('');
+  const [tripStartDay, setTripStartDay] = useState(0);
+  const [tripEndMonth, setTripEndMonth] = useState('');
+  const [tripEndDay, setTripEndDay] = useState(0);
+  const [editableTravelers, setEditableTravelers] = useState(2);
+  const [editableCities, setEditableCities] = useState<string[]>([]);
+  const [cityDates, setCityDates] = useState<{[key: string]: {startMonth: string, startDay: number, endMonth: string, endDay: number}}>({});
   const [citySearchQuery, setCitySearchQuery] = useState('');
   const [showMonthPicker, setShowMonthPicker] = useState<{type: 'start' | 'end' | null, cityIndex?: number}>({type: null});
   const [showDayPicker, setShowDayPicker] = useState<{type: 'start' | 'end' | null, cityIndex?: number}>({type: null});
   const [tripChangeMessage, setTripChangeMessage] = useState('');
+  const [hasUsedAssignAll, setHasUsedAssignAll] = useState(false);
+  
+  // Load trip data into edit state when opening edit pane
+  useEffect(() => {
+    if (currentTrip && showEditPane) {
+      setEditableTripName(currentTrip.title);
+      setTripStartMonth(currentTrip.startMonth);
+      setTripStartDay(currentTrip.startDay);
+      setTripEndMonth(currentTrip.endMonth);
+      setTripEndDay(currentTrip.endDay);
+      setEditableTravelers(currentTrip.travelers);
+      setEditableCities(currentTrip.cities.map(c => c.code));
+    }
+  }, [showEditPane, currentTrip]);
+  
+  // If no trip exists, show empty state
+  if (!currentTrip) {
+    return (
+      <View style={styles.container}>
+        <View style={styles.emptyStateContainer}>
+          <Ionicons name="airplane-outline" size={64} color="rgba(214,193,152,0.3)" />
+          <Text style={styles.emptyStateTitle}>No active trips</Text>
+          <Text style={styles.emptyStateText}>Start a new journey from My Trips</Text>
+          <TouchableOpacity 
+            style={styles.emptyStateButton}
+            onPress={() => router.push('/trips')}
+            activeOpacity={0.8}
+          >
+            <Text style={styles.emptyStateButtonText}>Go to My Trips</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
   
   // Track previous trip dates to detect changes
   const prevTripDates = React.useRef({ startMonth: tripStartMonth, startDay: tripStartDay, endMonth: tripEndMonth, endDay: tripEndDay });
