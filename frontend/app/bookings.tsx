@@ -412,9 +412,6 @@ export default function TripCanvas() {
     return Math.round((bookedCities / tripData.days.length) * 100);
   };
   
-  // Track previous trip dates to detect changes
-  const prevTripDates = React.useRef({ startMonth: tripStartMonth, startDay: tripStartDay, endMonth: tripEndMonth, endDay: tripEndDay });
-  
   // Determine which trip to show
   const getTripToDisplay = () => {
     // If tripId in URL, use that
