@@ -3948,6 +3948,7 @@ const styles = StyleSheet.create({
   luxuryEditScrollContent: {
     padding: 18,
     paddingTop: 12,
+    paddingBottom: 120, // Increased to ensure delete button is visible
   },
   luxuryEditTitleContainer: {
     alignItems: 'center',
