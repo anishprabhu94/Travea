@@ -927,8 +927,39 @@ export default function TripCanvas() {
     }
   };
   
+  // Get stay date range (city start to city end - 1 day for nights)
+  const getActiveCityStayDates = () => {
+    const matchingCity = currentTrip.cities.find(c => c.code === activeCityCode);
+    
+    if (matchingCity && matchingCity.startMonth && matchingCity.endMonth) {
+      const start = `${matchingCity.startMonth.toUpperCase()} ${matchingCity.startDay}`;
+      // Calculate end date - 1 day for nights
+      let endDay = matchingCity.endDay - 1;
+      let endMonth = matchingCity.endMonth;
+      
+      // If endDay becomes 0, move to previous month's last day
+      if (endDay === 0) {
+        const monthIndex = months.indexOf(matchingCity.endMonth);
+        if (monthIndex > 0) {
+          endMonth = months[monthIndex - 1];
+          endDay = daysInMonth[endMonth];
+        } else {
+          // Edge case: January, go to December
+          endMonth = 'December';
+          endDay = 31;
+        }
+      }
+      
+      const end = `${endMonth.toUpperCase()} ${endDay}`;
+      return `${start} - ${end}`;
+    } else {
+      return 'UNASSIGNED';
+    }
+  };
+  
   const activeCityDateRange = getActiveCityDateRange();
   const activeCityFirstDate = getActiveCityFirstDate();
+  const activeCityStayDates = getActiveCityStayDates();
   
   const statusOptions = ['Planning', 'Upcoming', 'Ongoing', 'Completed'];
   
