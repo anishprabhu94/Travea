@@ -380,11 +380,39 @@ export default function MyTrips() {
                 </View>
               )}
               
-              {/* Destination Header: "City, Country" */}
-              <View style={styles.destinationHeader}>
-                <Text style={styles.destinationCity}>{destination.city}, </Text>
-                <Text style={styles.destinationRegion}>{destination.region}</Text>
-              </View>
+              {/* Destination Header: "City, Country" or Multi-City Timeline */}
+              {destination.isMultiCity && destination.cities ? (
+                <View style={styles.multiCityContainer}>
+                  {/* Circuit Title */}
+                  {destination.circuitTitle && (
+                    <Text style={styles.circuitTitle}>{destination.circuitTitle}</Text>
+                  )}
+                  {/* City Pills with Full Names - Scrollable */}
+                  <ScrollView 
+                    horizontal 
+                    showsHorizontalScrollIndicator={false}
+                    style={styles.cityPillsScroll}
+                  >
+                    <View style={styles.cityTimelineRow}>
+                      {destination.cities.map((city, idx) => (
+                        <React.Fragment key={idx}>
+                          <View style={styles.cityPill}>
+                            <Text style={styles.cityPillText}>{city}</Text>
+                          </View>
+                          {idx < destination.cities!.length - 1 && (
+                            <View style={styles.cityDot} />
+                          )}
+                        </React.Fragment>
+                      ))}
+                    </View>
+                  </ScrollView>
+                </View>
+              ) : (
+                <View style={styles.destinationHeader}>
+                  <Text style={styles.destinationCity}>{destination.city}, </Text>
+                  <Text style={styles.destinationRegion}>{destination.region}</Text>
+                </View>
+              )}
               
               {/* Tagline */}
               <Text style={styles.destinationTagline}>{destination.tagline}</Text>
