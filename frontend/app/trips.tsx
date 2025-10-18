@@ -65,20 +65,39 @@ const mockSavedDestinations: SavedDestination[] = [
 
 export default function MyTrips() {
   const router = useRouter()
-  
-  console.log('MyTrips: Component rendering')
-  
   const { bookmarkedItems, removeBookmark } = useBookmarks()
+  const { trips, getFilteredTrips, createTrip } = useTrips()
   
-  console.log('MyTrips: Hook returned bookmarkedItems:', bookmarkedItems)
-  
-  const [activeTab, setActiveTab] = useState('saved') // Default to Saved
+  const [activeTab, setActiveTab] = useState('saved')
   const [dropdownOpen, setDropdownOpen] = useState(false)
-  const [selectedFilter, setSelectedFilter] = useState('planning') // Default dropdown value
+  const [selectedFilter, setSelectedFilter] = useState('planning')
+  
+  // Get Planning trips
+  const planningTrips = getFilteredTrips('Planning')
   
   // Animation refs
   const fadeAnim = useRef(new Animated.Value(0)).current
   const headerAnim = useRef(new Animated.Value(0)).current
+
+  // Handle Plan Trip button click
+  const handlePlanTrip = (destination: SavedDestination) => {
+    // Create trip with destination
+    const tripId = createTrip(
+      `${destination.city} Trip`,
+      'June',
+      15,
+      'June',
+      22,
+      2,
+      destination.id.toUpperCase().substring(0, 3)
+    )
+    
+    // Remove from bookmarks
+    removeBookmark(destination.id)
+    
+    // Navigate to Trip Canvas
+    router.push(`/bookings?tripId=${tripId}`)
+  }
 
   useEffect(() => {
     // Page load animations
