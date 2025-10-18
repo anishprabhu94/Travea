@@ -754,8 +754,25 @@ export default function TripCanvas() {
     return true;
   };
   
+  // Get dynamic date range for active city from currentTrip
+  const getActiveCityDateRange = () => {
+    const activeDay = tripData.days.find(d => d.id === activeDayId) || tripData.days[0];
+    const matchingCity = currentTrip.cities.find(c => c.code === activeDay.cityCode);
+    
+    if (matchingCity && matchingCity.startMonth && matchingCity.endMonth) {
+      // City has assigned dates
+      const start = `${matchingCity.startMonth.substring(0, 3)} ${matchingCity.startDay}`;
+      const end = `${matchingCity.endMonth.substring(0, 3)} ${matchingCity.endDay}`;
+      return `${start}–${end}`;
+    } else {
+      // Fallback to trip dates or "Unassigned"
+      return 'Unassigned';
+    }
+  };
+  
   const activeDay = tripData.days.find(d => d.id === activeDayId) || tripData.days[0];
   const activeCityCode = activeDay.cityCode;
+  const activeCityDateRange = getActiveCityDateRange();
   
   const statusOptions = ['Planning', 'Upcoming', 'Ongoing', 'Completed'];
   
