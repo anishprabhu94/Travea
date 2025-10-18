@@ -33,6 +33,7 @@ interface SavedDestination {
   isMultiCity?: boolean
   cities?: string[]
   cityInitials?: string[]
+  circuitTitle?: string
 }
 
 // ALL 24 UNIQUE DESTINATIONS - MECE (Mutually Exclusive, Collectively Exhaustive)
