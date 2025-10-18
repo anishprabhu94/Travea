@@ -2650,6 +2650,43 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
+  
+  // Large Centered Date Pill - Premium Editorial Style
+  cityDatePillContainer: {
+    marginTop: 20,
+    alignItems: 'center',
+  },
+  cityDatePill: {
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 24,
+    backgroundColor: 'rgba(201,166,91,0.15)',
+    borderWidth: 1,
+    borderColor: 'rgba(201,166,91,0.3)',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(10px)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.15,
+        shadowRadius: 8,
+        elevation: 3,
+      },
+    }),
+  },
+  cityDatePillText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#C9A65B',
+    letterSpacing: 1,
+    textTransform: 'uppercase',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
 
   // Category Section (Full Width)
   categorySection: {
