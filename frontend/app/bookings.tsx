@@ -588,6 +588,8 @@ export default function TripCanvas() {
     const updatedTrip = {
       ...currentTrip,
       title: editableTripName,
+      // If trip has circuitTitle (multi-city), update that too
+      ...(currentTrip.circuitTitle ? { circuitTitle: editableTripName } : {}),
       startMonth: tripStartMonth,
       startDay: tripStartDay,
       endMonth: tripEndMonth,
