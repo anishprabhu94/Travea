@@ -2285,7 +2285,7 @@ const styles = StyleSheet.create({
   },
   heroFrostedPane: {
     position: 'absolute',
-    bottom: 40, // Moved down from 60
+    bottom: 30, // Moved down from 40 to clear iPhone notch better
     left: '5%',
     right: '5%',
     backgroundColor: 'rgba(255,255,255,0.06)',
