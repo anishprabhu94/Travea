@@ -2055,7 +2055,7 @@ export default function TripCanvas() {
                 
                 <TouchableOpacity 
                   style={[styles.luxurySaveButton, !canSave() && styles.luxurySaveButtonDisabled]}
-                  onPress={() => canSave() && setShowEditPane(false)}
+                  onPress={handleSaveChanges}
                   activeOpacity={canSave() ? 0.8 : 1}
                   disabled={!canSave()}
                 >
