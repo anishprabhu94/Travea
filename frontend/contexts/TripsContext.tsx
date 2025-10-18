@@ -195,6 +195,8 @@ export const TripsProvider = ({ children }: { children: ReactNode }) => {
     circuitTitle?: string,
     allCities?: string[]
   ): string => {
+    console.log('Creating trip:', title, 'Current trips count:', trips.length);
+    
     // Create cities array based on whether it's multi-city or not
     let citiesArray: CityInTrip[] = [];
     
