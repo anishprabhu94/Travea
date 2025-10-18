@@ -2519,10 +2519,10 @@ const styles = StyleSheet.create({
     }),
   },
   quickStatusLabel: {
-    fontSize: 10,
+    fontSize: 11,
     fontWeight: '500',
     color: 'rgba(255,255,255,0.7)',
-    letterSpacing: 1.5,
+    letterSpacing: 1.2,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
