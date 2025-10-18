@@ -355,7 +355,10 @@ export default function MyTrips() {
                 <TouchableOpacity 
                   style={styles.planTripButton} 
                   activeOpacity={0.8}
-                  onPress={() => handlePlanTrip(destination)}
+                  onPress={(e) => {
+                    if (e && e.stopPropagation) e.stopPropagation();
+                    handlePlanTrip(destination);
+                  }}
                 >
                   <Text style={styles.planTripButtonText}>Plan Trip</Text>
                 </TouchableOpacity>
