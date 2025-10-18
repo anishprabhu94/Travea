@@ -2194,7 +2194,8 @@ const styles = StyleSheet.create({
   cityStripContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: 0, // Changed from 20 to left-align
+    paddingLeft: 24, // Add left padding only
     gap: 8,
   },
   cityStrip: {
