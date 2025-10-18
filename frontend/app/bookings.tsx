@@ -1910,7 +1910,14 @@ export default function TripCanvas() {
                       data={editableCities}
                       renderItem={({ item: cityCode, drag, isActive, getIndex }) => {
                         const index = getIndex() ?? 0;
-                        const cityData = AVAILABLE_CITIES.find(c => c.code === cityCode);
+                        // Check AVAILABLE_CITIES first, then currentTrip.cities for full name
+                        let cityData = AVAILABLE_CITIES.find(c => c.code === cityCode);
+                        if (!cityData && currentTrip) {
+                          const tripCity = currentTrip.cities.find(c => c.code === cityCode);
+                          if (tripCity) {
+                            cityData = { code: tripCity.code, name: tripCity.name };
+                          }
+                        }
                         const cityDate = cityDates[cityCode] || {startMonth: '', startDay: 0, endMonth: '', endDay: 0};
                         const hasValidDates = cityDate.startMonth && cityDate.startDay && cityDate.endMonth && cityDate.endDay;
                         const validationMessage = hasValidDates ? getCityValidationMessage(cityCode, index) : '';
