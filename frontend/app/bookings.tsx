@@ -2168,15 +2168,15 @@ const styles = StyleSheet.create({
   },
   heroFrostedPane: {
     position: 'absolute',
-    bottom: 80, // Increased from 40 to move pane up and clear notch
+    bottom: 60, // Adjusted from 80 to give more space
     left: '5%',
     right: '5%',
     backgroundColor: 'rgba(255,255,255,0.06)',
     borderRadius: 24,
     borderWidth: 0.5,
     borderColor: 'rgba(181,155,115,0.15)',
-    paddingTop: 16, // Reduced from 18
-    paddingBottom: 18, // Reduced from 22
+    paddingTop: 20, // Increased for better spacing
+    paddingBottom: 24, // Increased for better spacing
     paddingHorizontal: 24,
     ...Platform.select({
       web: {
@@ -2196,7 +2196,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 4, // Reduced from 6
+    marginBottom: 8, // Increased from 4 for better spacing
   },
   heroTitle: {
     fontSize: 24, // Reduced from 32 to fit in one line
