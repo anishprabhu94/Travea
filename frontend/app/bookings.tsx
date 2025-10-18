@@ -930,7 +930,7 @@ export default function TripCanvas() {
         
         {/* Date badge on card image (top right) */}
         <View style={styles.cardDateBadgeOnImage}>
-          <Text style={styles.cardDateText}>{activeDay.dates.toUpperCase()}</Text>
+          <Text style={styles.cardDateText}>{activeCityDateRange.toUpperCase()}</Text>
         </View>
         
         {/* Frosted glass card for city info */}
