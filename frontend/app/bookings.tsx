@@ -867,17 +867,29 @@ export default function TripCanvas() {
     const matchingCity = currentTrip.cities.find(c => c.code === activeCityCode);
     
     if (matchingCity && matchingCity.startMonth && matchingCity.endMonth) {
-      // City has assigned dates
-      const start = `${matchingCity.startMonth.substring(0, 3)} ${matchingCity.startDay}`;
-      const end = `${matchingCity.endMonth.substring(0, 3)} ${matchingCity.endDay}`;
-      return `${start}–${end}`;
+      // City has assigned dates - Format as "MONTH X - MONTH Y"
+      const start = `${matchingCity.startMonth.toUpperCase()} ${matchingCity.startDay}`;
+      const end = `${matchingCity.endMonth.toUpperCase()} ${matchingCity.endDay}`;
+      return `${start} - ${end}`;
     } else {
       // Fallback to "Unassigned"
-      return 'Unassigned';
+      return 'UNASSIGNED';
+    }
+  };
+  
+  // Get first date only for experiences/restaurants
+  const getActiveCityFirstDate = () => {
+    const matchingCity = currentTrip.cities.find(c => c.code === activeCityCode);
+    
+    if (matchingCity && matchingCity.startMonth) {
+      return `${matchingCity.startMonth.toUpperCase()} ${matchingCity.startDay}`;
+    } else {
+      return 'UNASSIGNED';
     }
   };
   
   const activeCityDateRange = getActiveCityDateRange();
+  const activeCityFirstDate = getActiveCityFirstDate();
   
   const statusOptions = ['Planning', 'Upcoming', 'Ongoing', 'Completed'];
   
