@@ -140,11 +140,14 @@ export const TripsProvider = ({ children }: { children: ReactNode }) => {
     endMonth: string, 
     endDay: number, 
     travelers: number,
-    cityCode?: string
+    cityCode?: string,
+    isMultiCity?: boolean,
+    circuitTitle?: string,
+    allCities?: string[]
   ): string => {
     const newTrip: Trip = {
       id: Date.now().toString(),
-      title,
+      title: circuitTitle || title,
       startMonth,
       startDay,
       endMonth,
@@ -167,7 +170,9 @@ export const TripsProvider = ({ children }: { children: ReactNode }) => {
       status: 'Planning',
       progress: 0,
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
+      isMultiCity: isMultiCity || false,
+      circuitTitle: circuitTitle
     };
 
     setTrips(prev => [newTrip, ...prev]);
