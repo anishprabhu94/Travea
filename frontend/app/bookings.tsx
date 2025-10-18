@@ -424,6 +424,38 @@ export default function TripCanvas() {
   // Track previous trip dates to detect changes
   const prevTripDates = React.useRef({ startMonth: tripStartMonth, startDay: tripStartDay, endMonth: tripEndMonth, endDay: tripEndDay });
   
+  // Helper: Get status pill colors
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'Planning': return 'rgba(201,166,91,0.3)';
+      case 'Upcoming': return 'rgba(100,180,255,0.3)';
+      case 'Ongoing': return 'rgba(120,200,100,0.3)';
+      case 'Completed': return 'rgba(150,150,150,0.3)';
+      default: return 'rgba(201,166,91,0.3)';
+    }
+  };
+  
+  const getStatusTextColor = (status: string) => {
+    switch (status) {
+      case 'Planning': return '#C9A65B';
+      case 'Upcoming': return '#64B4FF';
+      case 'Ongoing': return '#78C864';
+      case 'Completed': return '#999999';
+      default: return '#C9A65B';
+    }
+  };
+  
+  // Handle delete trip
+  const handleDeleteTrip = () => {
+    if (currentTrip) {
+      deleteTrip(currentTrip.id);
+      setShowDeleteModal(false);
+      setShowEditPane(false);
+      router.push('/trips');
+      // TODO: Show toast message "Trip deleted successfully"
+    }
+  };
+  
   // Helper: Convert trip day number to readable date format (e.g., "Jun 8")
   const formatTripDay = (dayNum: number) => {
     const date = tripDayToDate(dayNum);
