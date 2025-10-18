@@ -249,8 +249,10 @@ export default function MyTrips() {
   }
 
   const renderTripCard = (trip: any) => {
-    const cityCodes = trip.cities.length > 1 
-      ? trip.cities.map((c: any) => c.code).join(', ')
+    // For multi-city trips, show all city names
+    // For single-city, show just the city name
+    const cityCodes = trip.isMultiCity && trip.cities && trip.cities.length > 1
+      ? trip.cities.map((c: any) => c.name).join(' → ')
       : trip.cities[0]?.name || '';
     
     const dateRange = `${trip.startMonth.substring(0, 3)} ${trip.startDay} – ${trip.endMonth.substring(0, 3)} ${trip.endDay}`;
@@ -283,7 +285,7 @@ export default function MyTrips() {
         activeOpacity={0.7}
       >
         <View style={styles.tripCardHeader}>
-          <Text style={styles.tripTitle}>{trip.title}</Text>
+          <Text style={styles.tripTitle}>{trip.circuitTitle || trip.title}</Text>
           <View style={[styles.statusPill, { backgroundColor: getStatusColor() }]}>
             <Text style={[styles.statusText, { color: getStatusTextColor() }]}>
               {trip.status}
