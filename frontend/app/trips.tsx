@@ -81,15 +81,28 @@ export default function MyTrips() {
 
   // Handle Plan Trip button click
   const handlePlanTrip = (destination: SavedDestination) => {
+    // Determine the city code based on whether it's multi-city or not
+    let cityCode: string;
+    
+    if (destination.isMultiCity && destination.cityInitials && destination.cityInitials.length > 0) {
+      // For multi-city, use the first city's initials
+      cityCode = destination.cityInitials[0];
+    } else {
+      // For single city, derive from destination.id
+      cityCode = destination.id.toUpperCase().substring(0, 3);
+    }
+    
     // Create trip with destination
     const tripId = createTrip(
-      `${destination.city} Trip`,
+      destination.isMultiCity 
+        ? (destination.city || 'Multi-City Trip')
+        : `${destination.city} Trip`,
       'June',
       15,
       'June',
       22,
       2,
-      destination.id.toUpperCase().substring(0, 3)
+      cityCode
     )
     
     // Remove from bookmarks
