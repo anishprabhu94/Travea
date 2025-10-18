@@ -507,6 +507,37 @@ export default function TripCanvas() {
     }
   };
   
+  // Helper functions for booking status icon colors
+  const getBookingIconColor = (bookingStatus: string) => {
+    switch (bookingStatus) {
+      case 'Booked': return '#FFFBEA'; // Ivory white
+      case 'Pending': return 'rgba(227,181,122,0.6)'; // Muted amber at 60%
+      case 'N/A': return 'rgba(255,255,255,0.25)'; // Desaturated white
+      default: return 'rgba(255,255,255,0.3)';
+    }
+  };
+  
+  const getBookingLabelOpacity = (bookingStatus: string) => {
+    switch (bookingStatus) {
+      case 'Booked': return 0.9;
+      case 'Pending': return 0.6;
+      case 'N/A': return 0.4;
+      default: return 0.7;
+    }
+  };
+  
+  const getBookingIconGlow = (bookingStatus: string) => {
+    if (bookingStatus === 'Booked') {
+      return {
+        shadowColor: '#FFDC96',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+      };
+    }
+    return {};
+  };
+  
   // Handle save changes - Update trip with edited data
   const handleSaveChanges = () => {
     if (!currentTrip || !canSave()) return;
