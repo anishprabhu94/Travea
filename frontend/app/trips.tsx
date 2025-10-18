@@ -163,18 +163,52 @@ export default function MyTrips() {
     removeBookmark(destinationId)
   }
 
-  // Get actual saved destinations from bookmarked items
+  // Get actual saved destinations from bookmarked items (including multi-city)
   const getSavedDestinations = (): SavedDestination[] => {
     console.log('=== CONTEXT-BASED FILTERING ===')
     console.log('bookmarkedItems from context:', bookmarkedItems)
-    console.log('mockSavedDestinations IDs:', mockSavedDestinations.map(d => d.id))
     
-    const filtered = mockSavedDestinations.filter(dest => bookmarkedItems.includes(dest.id))
+    // Combine single-city and multi-city destinations
+    const allDestinations = [...mockSavedDestinations, ...multiCityDestinations]
+    console.log('All destination IDs:', allDestinations.map(d => d.id))
+    
+    const filtered = allDestinations.filter(dest => bookmarkedItems.includes(dest.id))
     console.log('Filtered destinations:', filtered)
     
     // If no bookmarks, return empty array (not all destinations)
     return filtered
   }
+  
+  // Multi-city destinations data
+  const multiCityDestinations: SavedDestination[] = [
+    { 
+      id: 'italian-coast-circuit', 
+      city: 'Amalfi → Ravello → Sorrento', 
+      region: 'Italy', 
+      tagline: 'Lemon groves & stone paths', 
+      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', 
+      transport: [{ icon: 'calendar-outline', time: '4 days' }], 
+      sourceCarousel: 'Multi-City Circuits',
+      sourceTab: 'Inspire',
+      isMultiCity: true,
+      cities: ['Amalfi', 'Ravello', 'Sorrento'],
+      cityInitials: ['AMF', 'RAV', 'SOR'],
+      isCondeNastPick: true
+    },
+    { 
+      id: 'tuscany-circuit', 
+      city: 'Florence → Siena → San Gimignano', 
+      region: 'Italy', 
+      tagline: 'Renaissance art & vineyards', 
+      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', 
+      transport: [{ icon: 'calendar-outline', time: '5 days' }], 
+      sourceCarousel: 'Multi-City Circuits',
+      sourceTab: 'Inspire',
+      isMultiCity: true,
+      cities: ['Florence', 'Siena', 'San Gimignano'],
+      cityInitials: ['FLR', 'SIE', 'SGM']
+    }
+  ]
 
   // Group saved destinations by their source carousel
   const getGroupedDestinations = () => {
