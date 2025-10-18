@@ -223,6 +223,12 @@ const tripData = {
       dates: 'Jun 12–13',
       description: 'Floating city of romance & canals.',
       heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+      // Mock booking status for Phase A
+      mockBookingStatus: {
+        flights: 'Pending',
+        stays: 'Pending',
+        transport: 'N/A'
+      },
       flights: [
         {
           id: '2',
