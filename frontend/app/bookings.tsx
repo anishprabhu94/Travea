@@ -2253,7 +2253,7 @@ export default function TripCanvas() {
                           ) : validationMessage ? (
                             <Text style={styles.cityValidationMessage}>{validationMessage}</Text>
                           ) : (
-                            <Text style={styles.cityNights}>{cityData?.name || cityCode} — {nights} {nights === 1 ? 'night' : 'nights'}.</Text>
+                            <Text style={styles.cityNights}>{cityName} — {nights} {nights === 1 ? 'night' : 'nights'}.</Text>
                           )}
                         </View>
                       </ScaleDecorator>
