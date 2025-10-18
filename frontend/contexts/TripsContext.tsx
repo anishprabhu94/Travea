@@ -54,6 +54,47 @@ const TripsContext = createContext<TripsContextType | undefined>(undefined);
 
 export const TripsProvider = ({ children }: { children: ReactNode }) => {
   const [trips, setTrips] = useState<Trip[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Load trips from AsyncStorage on mount
+  useEffect(() => {
+    loadTrips();
+  }, []);
+
+  // Save trips to AsyncStorage whenever they change
+  useEffect(() => {
+    if (isLoaded) {
+      saveTrips();
+    }
+  }, [trips, isLoaded]);
+
+  const loadTrips = async () => {
+    try {
+      const storedTrips = await AsyncStorage.getItem('@travea_trips');
+      if (storedTrips) {
+        const parsedTrips = JSON.parse(storedTrips);
+        // Convert date strings back to Date objects
+        const tripsWithDates = parsedTrips.map((trip: any) => ({
+          ...trip,
+          createdAt: new Date(trip.createdAt),
+          updatedAt: new Date(trip.updatedAt)
+        }));
+        setTrips(tripsWithDates);
+      }
+    } catch (error) {
+      console.error('Error loading trips:', error);
+    } finally {
+      setIsLoaded(true);
+    }
+  };
+
+  const saveTrips = async () => {
+    try {
+      await AsyncStorage.setItem('@travea_trips', JSON.stringify(trips));
+    } catch (error) {
+      console.error('Error saving trips:', error);
+    }
+  };
 
   // Calculate trip status based on dates and bookings
   const calculateTripStatus = (trip: Trip): TripStatus => {
