@@ -441,7 +441,8 @@ export default function TripCanvas() {
   // Load trip data into edit state when opening edit pane
   useEffect(() => {
     if (currentTrip && showEditPane) {
-      setEditableTripName(currentTrip.title);
+      // Use circuitTitle for multi-city trips, otherwise use regular title
+      setEditableTripName(currentTrip.circuitTitle || currentTrip.title);
       setTripStartMonth(currentTrip.startMonth);
       setTripStartDay(currentTrip.startDay);
       setTripEndMonth(currentTrip.endMonth);
