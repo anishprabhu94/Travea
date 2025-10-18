@@ -1197,4 +1197,97 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
+  // Trip Card Styles
+  tripsList: {
+    flex: 1,
+  },
+  tripsListContent: {
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    paddingBottom: 100,
+  },
+  tripCard: {
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    borderRadius: 16,
+    borderWidth: 0.5,
+    borderColor: 'rgba(214,193,152,0.15)',
+    padding: 18,
+    marginBottom: 16,
+  },
+  tripCardHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 14,
+  },
+  tripTitle: {
+    flex: 1,
+    fontSize: 20,
+    fontWeight: '600',
+    color: 'rgba(245,240,230,0.95)',
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+    marginRight: 12,
+  },
+  statusPill: {
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 12,
+  },
+  statusText: {
+    fontSize: 11,
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  tripCardDetails: {
+    gap: 8,
+    marginBottom: 14,
+  },
+  detailRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  detailText: {
+    fontSize: 13,
+    color: 'rgba(214,193,152,0.8)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  progressContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    marginTop: 4,
+  },
+  progressBarBg: {
+    flex: 1,
+    height: 6,
+    backgroundColor: 'rgba(214,193,152,0.15)',
+    borderRadius: 3,
+    overflow: 'hidden',
+  },
+  progressBarFill: {
+    height: '100%',
+    borderRadius: 3,
+  },
+  progressText: {
+    fontSize: 11,
+    color: 'rgba(214,193,152,0.7)',
+    fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
 })
