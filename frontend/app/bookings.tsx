@@ -1577,10 +1577,12 @@ export default function TripCanvas() {
                   <TextInput
                     style={styles.luxuryInputLarge}
                     value={editableTripName}
-                    onChangeText={setEditableTripName}
+                    onChangeText={(text) => setEditableTripName(text.substring(0, 18))}
                     placeholder="Enter trip name"
                     placeholderTextColor="rgba(255,255,255,0.35)"
+                    maxLength={18}
                   />
+                  <Text style={styles.charCounter}>{editableTripName.length}/18</Text>
                 </View>
 
                 <View style={styles.luxuryDivider} />
