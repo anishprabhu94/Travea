@@ -824,23 +824,23 @@ export default function TripCanvas() {
             style={styles.cityStripScroll}
             contentContainerStyle={styles.cityStripContent}
           >
-            {editableCities.map((city, index) => (
+            {currentTrip.cities.map((city, index) => (
               <View 
-                key={city}
+                key={city.code}
                 style={styles.cityCapsuleWrapper}
               >
                 <View style={[
                   styles.cityCapsule,
-                  city === activeCityCode && styles.cityCapsuleActive
+                  city.code === activeCityCode && styles.cityCapsuleActive
                 ]}>
                   <Text style={[
                     styles.cityCapsuleText,
-                    city === activeCityCode && styles.cityCapsuleTextActive
+                    city.code === activeCityCode && styles.cityCapsuleTextActive
                   ]}>
-                    {city}
+                    {city.code}
                   </Text>
                 </View>
-                {index < editableCities.length - 1 && (
+                {index < currentTrip.cities.length - 1 && (
                   <View style={styles.cityDot} />
                 )}
               </View>
