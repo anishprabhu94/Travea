@@ -4536,7 +4536,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
-    marginBottom: 16,
+    marginBottom: 20, // Increased from 16 for better spacing
   },
   heroProgressBar: {
     flex: 1,
