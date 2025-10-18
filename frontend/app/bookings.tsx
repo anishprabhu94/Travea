@@ -989,6 +989,9 @@ export default function TripCanvas() {
   const renderStays = () => {
     if (activeDay.stays.length === 0) return null;
     
+    // Get mock status from activeDay
+    const sectionStatus = activeDay.mockBookingStatus?.stays || 'Pending';
+    
     return (
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
@@ -996,6 +999,20 @@ export default function TripCanvas() {
             <View style={styles.categoryHeaderLeft}>
               <Ionicons name="bed" size={18} color="#B59B73" style={{marginRight: 8}} />
               <Text style={styles.categoryTitle}>Stays</Text>
+              {/* Status Pill */}
+              <View style={[styles.sectionStatusPill, {
+                backgroundColor: sectionStatus === 'Booked' ? 'rgba(201,166,91,0.25)' : 
+                                sectionStatus === 'Pending' ? 'rgba(150,150,150,0.25)' : 
+                                'rgba(255,255,255,0.1)'
+              }]}>
+                <Text style={[styles.sectionStatusText, {
+                  color: sectionStatus === 'Booked' ? '#C9A65B' : 
+                        sectionStatus === 'Pending' ? '#999999' : 
+                        'rgba(255,255,255,0.6)'
+                }]}>
+                  {sectionStatus}
+                </Text>
+              </View>
             </View>
             <TouchableOpacity 
               style={styles.browseIconButton}
