@@ -1017,6 +1017,14 @@ export default function TripCanvas() {
           {/* Progress Bar */}
           <View style={styles.heroProgressContainer}>
             <View style={styles.heroProgressBar}>
+              {/* Track Background with Gradient */}
+              <LinearGradient
+                colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.02)']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={styles.progressTrack}
+              />
+              
               {/* Progress Fill with Gradient */}
               <LinearGradient
                 colors={['#E3C47B', '#FFF5CC']}
