@@ -274,7 +274,11 @@ export default function MyTrips() {
 
               {/* Plan Trip Button */}
               <View style={styles.planTripButtonContainer}>
-                <TouchableOpacity style={styles.planTripButton} activeOpacity={0.8}>
+                <TouchableOpacity 
+                  style={styles.planTripButton} 
+                  activeOpacity={0.8}
+                  onPress={() => handlePlanTrip(destination)}
+                >
                   <Text style={styles.planTripButtonText}>Plan Trip</Text>
                 </TouchableOpacity>
               </View>
