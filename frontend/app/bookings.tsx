@@ -524,22 +524,6 @@ export default function TripCanvas() {
     return `${date.month.substring(0, 3)} ${date.day}`;
   };
   
-  // When trip dates change, clear all city dates
-  React.useEffect(() => {
-    const prev = prevTripDates.current;
-    if (prev.startMonth !== tripStartMonth || prev.startDay !== tripStartDay || 
-        prev.endMonth !== tripEndMonth || prev.endDay !== tripEndDay) {
-      
-      // Clear all city dates
-      setCityDates({});
-      setTripChangeMessage('Trip updated. City dates cleared.');
-      setTimeout(() => setTripChangeMessage(''), 4000);
-      
-      // Update ref
-      prevTripDates.current = { startMonth: tripStartMonth, startDay: tripStartDay, endMonth: tripEndMonth, endDay: tripEndDay };
-    }
-  }, [tripStartMonth, tripStartDay, tripEndMonth, tripEndDay]);
-  
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const monthDays = {
     'January': 31, 'February': 28, 'March': 31, 'April': 30, 'May': 31, 'June': 30,
