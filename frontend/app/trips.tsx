@@ -274,10 +274,6 @@ export default function MyTrips() {
     console.log('renderSavedCard: Called for destination:', destination.id)
     return (
     <View key={destination.id} style={[styles.savedCardWrapper, isOnlyCard && styles.singleCardWrapper]}>
-      <TouchableOpacity 
-        onPress={() => router.push(`/destination?id=${destination.id}&city=${destination.city}&region=${destination.region}`)}
-        activeOpacity={0.9}
-      >
         <ImageBackground
           source={{ uri: destination.image }}
           style={styles.savedCard}
@@ -288,6 +284,13 @@ export default function MyTrips() {
         
         {/* Refined vignette with depth */}
         <View style={styles.cardVignette} />
+        
+        {/* Clickable area for destination details */}
+        <TouchableOpacity 
+          style={styles.cardClickableArea}
+          onPress={() => router.push(`/destination?id=${destination.id}&city=${destination.city}&region=${destination.region}`)}
+          activeOpacity={0.9}
+        />
         
         {/* Bookmark Icon */}
         <TouchableOpacity
