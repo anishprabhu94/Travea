@@ -2442,6 +2442,41 @@ const styles = StyleSheet.create({
     color: 'rgba(10,10,10,0.9)',
   },
 
+  // Quick Status Row - Premium Editorial Style
+  quickStatusContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 32,
+    marginTop: 20,
+    marginLeft: '5%',
+    marginRight: '5%',
+  },
+  quickStatusItem: {
+    alignItems: 'center',
+    gap: 8,
+  },
+  quickStatusIcon: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 0.5,
+    borderColor: 'rgba(255,255,255,0.1)',
+  },
+  quickStatusLabel: {
+    fontSize: 11,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.7)',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+
   // Day Selector Pills
   dayStripScroll: {
     marginTop: 12,
