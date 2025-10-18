@@ -1918,8 +1918,54 @@ export default function TripCanvas() {
                     </Text>
                   </LinearGradient>
                 </TouchableOpacity>
+                
+                {/* Delete Trip Button - Only for Planning Status */}
+                {currentTrip.status === 'Planning' && (
+                  <TouchableOpacity
+                    style={styles.deleteButton}
+                    onPress={() => setShowDeleteModal(true)}
+                    activeOpacity={0.7}
+                  >
+                    <Text style={styles.deleteButtonText}>Delete Trip</Text>
+                  </TouchableOpacity>
+                )}
               </ScrollView>
             </KeyboardAvoidingView>
+          </View>
+        </Modal>
+        
+        {/* Delete Confirmation Modal */}
+        <Modal
+          visible={showDeleteModal}
+          transparent
+          animationType="fade"
+          onRequestClose={() => setShowDeleteModal(false)}
+        >
+          <View style={styles.deleteModalOverlay}>
+            <View style={styles.deleteModalContent}>
+              <Text style={styles.deleteModalTitle}>Delete this trip?</Text>
+              <Text style={styles.deleteModalBody}>
+                This will permanently remove all trip details, including cities, dates, and bookings. This action cannot be undone.
+              </Text>
+              
+              <View style={styles.deleteModalButtons}>
+                <TouchableOpacity
+                  style={styles.deleteModalCancelButton}
+                  onPress={() => setShowDeleteModal(false)}
+                  activeOpacity={0.7}
+                >
+                  <Text style={styles.deleteModalCancelText}>Cancel</Text>
+                </TouchableOpacity>
+                
+                <TouchableOpacity
+                  style={styles.deleteModalConfirmButton}
+                  onPress={handleDeleteTrip}
+                  activeOpacity={0.8}
+                >
+                  <Text style={styles.deleteModalConfirmText}>Delete Trip</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
         </Modal>
       );
