@@ -85,70 +85,7 @@ export const TripsProvider = ({ children }: { children: ReactNode }) => {
         setTrips(tripsWithDates);
         console.log('Trips loaded successfully:', tripsWithDates.length);
       } else {
-        console.log('No stored trips found - initializing with test data');
-        // Initialize with test trips for development
-        const testTrips: Trip[] = [
-          {
-            id: 'test-trip-1',
-            title: 'Italian Renaissance',
-            circuitTitle: 'Italian Renaissance Circuit',
-            isMultiCity: true,
-            startMonth: 'June',
-            startDay: 15,
-            endMonth: 'June',
-            endDay: 25,
-            travelers: 2,
-            status: 'Planning',
-            progress: 33,
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            cities: [
-              {
-                code: 'FLR',
-                name: 'Florence',
-                startMonth: 'June',
-                startDay: 15,
-                endMonth: 'June',
-                endDay: 19,
-                status: 'Booked',
-                bookings: {
-                  flights: 'Booked',
-                  stays: 'Booked',
-                  transport: 'Booked'
-                }
-              },
-              {
-                code: 'ROM',
-                name: 'Rome',
-                startMonth: 'June',
-                startDay: 19,
-                endMonth: 'June',
-                endDay: 22,
-                status: 'Pending',
-                bookings: {
-                  flights: 'Pending',
-                  stays: 'Pending',
-                  transport: 'Pending'
-                }
-              },
-              {
-                code: 'VCE',
-                name: 'Venice',
-                startMonth: 'June',
-                startDay: 22,
-                endMonth: 'June',
-                endDay: 25,
-                status: 'Pending',
-                bookings: {
-                  flights: 'Pending',
-                  stays: 'Pending',
-                  transport: 'Pending'
-                }
-              }
-            ]
-          }
-        ];
-        setTrips(testTrips);
+        console.log('No stored trips found');
       }
     } catch (error) {
       console.error('Error loading trips:', error);
