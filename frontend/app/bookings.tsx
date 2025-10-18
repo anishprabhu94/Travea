@@ -939,6 +939,7 @@ export default function TripCanvas() {
               {currentTrip.cities.map((city, idx) => {
                 // Check if city has dates assigned
                 const hasAssignedDates = city.startMonth && city.endMonth;
+                const isActive = city.code === activeCityCode;
                 
                 if (hasAssignedDates) {
                   // Show city-specific dates
@@ -948,7 +949,7 @@ export default function TripCanvas() {
                   return (
                     <TouchableOpacity
                       key={city.code}
-                      style={styles.dayTab}
+                      style={[styles.dayTab, isActive && styles.dayTabActive]}
                       onPress={() => {
                         // Find the day that matches this city
                         const matchingDay = tripData.days.find(d => d.cityCode === city.code);
@@ -956,18 +957,24 @@ export default function TripCanvas() {
                       }}
                       activeOpacity={0.7}
                     >
-                      <Text style={styles.dayTabText}>{startFormatted}–{endFormatted}</Text>
+                      <Text style={[styles.dayTabText, isActive && styles.dayTabTextActive]}>{startFormatted}–{endFormatted}</Text>
                     </TouchableOpacity>
                   );
                 } else {
                   // Show "Unassigned" for cities without dates
                   return (
-                    <View
+                    <TouchableOpacity
                       key={city.code}
-                      style={[styles.dayTab, styles.dayTabUnassigned]}
+                      style={[styles.dayTab, styles.dayTabUnassigned, isActive && styles.dayTabActive]}
+                      onPress={() => {
+                        // Find the day that matches this city
+                        const matchingDay = tripData.days.find(d => d.cityCode === city.code);
+                        if (matchingDay) setActiveDayId(matchingDay.id);
+                      }}
+                      activeOpacity={0.7}
                     >
-                      <Text style={styles.dayTabTextUnassigned}>Unassigned · {city.name || city.code}</Text>
-                    </View>
+                      <Text style={[styles.dayTabTextUnassigned, isActive && styles.dayTabTextActive]}>Unassigned · {city.name || city.code}</Text>
+                    </TouchableOpacity>
                   );
                 }
               })}
