@@ -829,7 +829,8 @@ export default function TripCanvas() {
       stays: tripData.days[index]?.stays || [],
       transport: tripData.days[index]?.transport || [],
       experiences: tripData.days[index]?.experiences || [],
-      dining: tripData.days[index]?.dining || []
+      dining: tripData.days[index]?.dining || [],
+      restaurants: tripData.days[index]?.restaurants || []
     }));
   };
   
