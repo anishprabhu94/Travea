@@ -1316,7 +1316,7 @@ export default function TripCanvas() {
                   imageStyle={styles.stayImageCardBgStyle}
                 >
                   <View style={styles.cardDateBadgeOnImage}>
-                    <Text style={styles.cardDateText}>{activeCityFirstDate}</Text>
+                    <Text style={styles.cardDateText}>{activeCityStayDates}</Text>
                   </View>
                   <LinearGradient
                     colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
