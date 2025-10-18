@@ -1032,49 +1032,93 @@ export default function TripCanvas() {
             ))}
           </ScrollView>
           
-          {/* Quick Status Row - Flight, Stay, Transport Icons with Outlined Style */}
+          {/* Quick Status Row - Flight, Stay, Transport Icons with Gradient Effects */}
           <View style={styles.quickStatusContainer}>
             {/* Flight Status */}
             <View style={styles.quickStatusItem}>
-              <View style={styles.quickStatusIcon}>
+              <View style={[
+                styles.quickStatusIcon,
+                activeDay.mockBookingStatus?.flights === 'Booked' && getBookingIconGlow('Booked')
+              ]}>
+                {activeDay.mockBookingStatus?.flights === 'Booked' && (
+                  <LinearGradient
+                    colors={['rgba(255,251,234,0.15)', 'rgba(201,166,91,0.15)']}
+                    style={styles.quickStatusIconGradient}
+                  />
+                )}
                 <Ionicons 
                   name="airplane-outline" 
                   size={18} 
-                  color={activeDay.mockBookingStatus?.flights === 'Booked' ? '#C9A65B' : 
-                        activeDay.mockBookingStatus?.flights === 'Pending' ? 'rgba(201,166,91,0.5)' : 
-                        'rgba(255,255,255,0.3)'} 
+                  color={getBookingIconColor(activeDay.mockBookingStatus?.flights || 'Pending')} 
                 />
+                {activeDay.mockBookingStatus?.flights === 'Pending' && (
+                  <View style={styles.pendingDot} />
+                )}
               </View>
-              <Text style={styles.quickStatusLabel}>Flight</Text>
+              <Text style={[
+                styles.quickStatusLabel,
+                { opacity: getBookingLabelOpacity(activeDay.mockBookingStatus?.flights || 'Pending') }
+              ]}>
+                Flight
+              </Text>
             </View>
             
             {/* Stay Status */}
             <View style={styles.quickStatusItem}>
-              <View style={styles.quickStatusIcon}>
+              <View style={[
+                styles.quickStatusIcon,
+                activeDay.mockBookingStatus?.stays === 'Booked' && getBookingIconGlow('Booked')
+              ]}>
+                {activeDay.mockBookingStatus?.stays === 'Booked' && (
+                  <LinearGradient
+                    colors={['rgba(255,251,234,0.15)', 'rgba(201,166,91,0.15)']}
+                    style={styles.quickStatusIconGradient}
+                  />
+                )}
                 <Ionicons 
                   name="bed-outline" 
                   size={18} 
-                  color={activeDay.mockBookingStatus?.stays === 'Booked' ? '#C9A65B' : 
-                        activeDay.mockBookingStatus?.stays === 'Pending' ? 'rgba(201,166,91,0.5)' : 
-                        'rgba(255,255,255,0.3)'} 
+                  color={getBookingIconColor(activeDay.mockBookingStatus?.stays || 'Pending')} 
                 />
+                {activeDay.mockBookingStatus?.stays === 'Pending' && (
+                  <View style={styles.pendingDot} />
+                )}
               </View>
-              <Text style={styles.quickStatusLabel}>Stay</Text>
+              <Text style={[
+                styles.quickStatusLabel,
+                { opacity: getBookingLabelOpacity(activeDay.mockBookingStatus?.stays || 'Pending') }
+              ]}>
+                Stay
+              </Text>
             </View>
             
             {/* Transport Status */}
             <View style={styles.quickStatusItem}>
-              <View style={styles.quickStatusIcon}>
+              <View style={[
+                styles.quickStatusIcon,
+                activeDay.mockBookingStatus?.transport === 'Booked' && getBookingIconGlow('Booked')
+              ]}>
+                {activeDay.mockBookingStatus?.transport === 'Booked' && (
+                  <LinearGradient
+                    colors={['rgba(255,251,234,0.15)', 'rgba(201,166,91,0.15)']}
+                    style={styles.quickStatusIconGradient}
+                  />
+                )}
                 <Ionicons 
                   name="car-outline" 
                   size={18} 
-                  color={activeDay.mockBookingStatus?.transport === 'Booked' ? '#C9A65B' : 
-                        activeDay.mockBookingStatus?.transport === 'Pending' ? 'rgba(201,166,91,0.5)' : 
-                        activeDay.mockBookingStatus?.transport === 'N/A' ? 'rgba(255,255,255,0.3)' :
-                        'rgba(255,255,255,0.3)'} 
+                  color={getBookingIconColor(activeDay.mockBookingStatus?.transport || 'N/A')} 
                 />
+                {activeDay.mockBookingStatus?.transport === 'Pending' && (
+                  <View style={styles.pendingDot} />
+                )}
               </View>
-              <Text style={styles.quickStatusLabel}>Transport</Text>
+              <Text style={[
+                styles.quickStatusLabel,
+                { opacity: getBookingLabelOpacity(activeDay.mockBookingStatus?.transport || 'N/A') }
+              ]}>
+                Transport
+              </Text>
             </View>
           </View>
         </View>
