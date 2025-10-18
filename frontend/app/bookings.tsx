@@ -2416,7 +2416,7 @@ const styles = StyleSheet.create({
   // City Strip - Horizontal Scroll
   cityStripScroll: {
     marginBottom: 24,
-    marginLeft: '5%', // Match frosted pane left position
+    marginLeft: '3%', // Moved left from 5% for better alignment
   },
   cityStripContent: {
     flexDirection: 'row',
