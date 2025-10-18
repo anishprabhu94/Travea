@@ -856,31 +856,44 @@ export default function TripCanvas() {
               style={styles.dayTabsScroll}
               contentContainerStyle={styles.dayTabsContent}
             >
-              {currentTrip.cities.map((city, idx) => {
-                // Check if city has dates assigned
-                if (!city.startMonth || !city.endMonth) {
-                  return null;
+              {(() => {
+                // Check if any city has dates assigned
+                const hasAssignedDates = currentTrip.cities.some(city => city.startMonth && city.endMonth);
+                
+                if (!hasAssignedDates) {
+                  // Show trip date range as fallback
+                  const startFormatted = `${currentTrip.startMonth.substring(0, 3)} ${currentTrip.startDay}`;
+                  const endFormatted = `${currentTrip.endMonth.substring(0, 3)} ${currentTrip.endDay}`;
+                  return (
+                    <View style={styles.dayTab}>
+                      <Text style={styles.dayTabText}>{startFormatted}–{endFormatted}</Text>
+                    </View>
+                  );
                 }
                 
-                // Format as "Jun 8–Jun 10"
-                const startFormatted = `${city.startMonth.substring(0, 3)} ${city.startDay}`;
-                const endFormatted = `${city.endMonth.substring(0, 3)} ${city.endDay}`;
-                
-                return (
-                  <TouchableOpacity
-                    key={city.code}
-                    style={styles.dayTab}
-                    onPress={() => {
-                      // Find the day that matches this city
-                      const matchingDay = tripData.days.find(d => d.cityCode === city.code);
-                      if (matchingDay) setActiveDayId(matchingDay.id);
-                    }}
-                    activeOpacity={0.7}
-                  >
-                    <Text style={styles.dayTabText}>{startFormatted}–{endFormatted}</Text>
-                  </TouchableOpacity>
-                );
-              })}
+                // Show individual city dates
+                return currentTrip.cities.map((city, idx) => {
+                  if (!city.startMonth || !city.endMonth) return null;
+                  
+                  const startFormatted = `${city.startMonth.substring(0, 3)} ${city.startDay}`;
+                  const endFormatted = `${city.endMonth.substring(0, 3)} ${city.endDay}`;
+                  
+                  return (
+                    <TouchableOpacity
+                      key={city.code}
+                      style={styles.dayTab}
+                      onPress={() => {
+                        // Find the day that matches this city
+                        const matchingDay = tripData.days.find(d => d.cityCode === city.code);
+                        if (matchingDay) setActiveDayId(matchingDay.id);
+                      }}
+                      activeOpacity={0.7}
+                    >
+                      <Text style={styles.dayTabText}>{startFormatted}–{endFormatted}</Text>
+                    </TouchableOpacity>
+                  );
+                });
+              })()}
             </ScrollView>
           </View>
         </View>
