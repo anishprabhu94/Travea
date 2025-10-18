@@ -4519,7 +4519,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     borderRadius: 14,
     alignSelf: 'flex-start',
-    marginBottom: 12,
+    marginBottom: 16, // Increased from 12 for better spacing
   },
   statusPillText: {
     fontSize: 12,
