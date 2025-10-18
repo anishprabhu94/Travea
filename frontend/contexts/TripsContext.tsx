@@ -145,6 +145,43 @@ export const TripsProvider = ({ children }: { children: ReactNode }) => {
     circuitTitle?: string,
     allCities?: string[]
   ): string => {
+    // Create cities array based on whether it's multi-city or not
+    let citiesArray: CityInTrip[] = [];
+    
+    if (isMultiCity && allCities && allCities.length > 0) {
+      // For multi-city, create an entry for each city
+      citiesArray = allCities.map(cityName => ({
+        code: cityName.substring(0, 3).toUpperCase(),
+        name: cityName,
+        startMonth: '',
+        startDay: 0,
+        endMonth: '',
+        endDay: 0,
+        status: 'Pending' as CityStatus,
+        bookings: {
+          flights: 'Pending' as SectionStatus,
+          stays: 'Pending' as SectionStatus,
+          transport: 'Pending' as SectionStatus
+        }
+      }));
+    } else if (cityCode) {
+      // For single city, create one entry
+      citiesArray = [{
+        code: cityCode,
+        name: getCityName(cityCode),
+        startMonth,
+        startDay,
+        endMonth,
+        endDay,
+        status: 'Pending' as CityStatus,
+        bookings: {
+          flights: 'Pending' as SectionStatus,
+          stays: 'Pending' as SectionStatus,
+          transport: 'N/A' as SectionStatus
+        }
+      }];
+    }
+    
     const newTrip: Trip = {
       id: Date.now().toString(),
       title: circuitTitle || title,
@@ -153,20 +190,7 @@ export const TripsProvider = ({ children }: { children: ReactNode }) => {
       endMonth,
       endDay,
       travelers,
-      cities: cityCode ? [{
-        code: cityCode,
-        name: getCityName(cityCode),
-        startMonth,
-        startDay,
-        endMonth,
-        endDay,
-        status: 'Pending',
-        bookings: {
-          flights: 'Pending',
-          stays: 'Pending',
-          transport: 'N/A'
-        }
-      }] : [],
+      cities: citiesArray,
       status: 'Planning',
       progress: 0,
       createdAt: new Date(),
