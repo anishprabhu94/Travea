@@ -343,6 +343,29 @@ export default function TripCanvas() {
   const params = useLocalSearchParams();
   const { trips, getTripById, getFilteredTrips, deleteTrip, updateTrip } = useTrips();
   
+  // State management - ALL hooks must be called before any conditional returns
+  const [activeDayId, setActiveDayId] = useState('day1-2');
+  const [showEditPane, setShowEditPane] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  
+  // Edit pane state
+  const [editableTripName, setEditableTripName] = useState('');
+  const [tripStartMonth, setTripStartMonth] = useState('');
+  const [tripStartDay, setTripStartDay] = useState(0);
+  const [tripEndMonth, setTripEndMonth] = useState('');
+  const [tripEndDay, setTripEndDay] = useState(0);
+  const [editableTravelers, setEditableTravelers] = useState(2);
+  const [editableCities, setEditableCities] = useState<string[]>([]);
+  const [cityDates, setCityDates] = useState<{[key: string]: {startMonth: string, startDay: number, endMonth: string, endDay: number}}>({});
+  const [citySearchQuery, setCitySearchQuery] = useState('');
+  const [showMonthPicker, setShowMonthPicker] = useState<{type: 'start' | 'end' | null, cityIndex?: number}>({type: null});
+  const [showDayPicker, setShowDayPicker] = useState<{type: 'start' | 'end' | null, cityIndex?: number}>({type: null});
+  const [tripChangeMessage, setTripChangeMessage] = useState('');
+  const [hasUsedAssignAll, setHasUsedAssignAll] = useState(false);
+  
+  // Track previous trip dates to detect changes
+  const prevTripDates = React.useRef({ startMonth: tripStartMonth, startDay: tripStartDay, endMonth: tripEndMonth, endDay: tripEndDay });
+  
   // Determine which trip to show
   const getTripToDisplay = () => {
     // If tripId in URL, use that
@@ -368,26 +391,6 @@ export default function TripCanvas() {
   
   const currentTrip = getTripToDisplay();
   
-  // State management
-  const [activeDayId, setActiveDayId] = useState('day1-2');
-  const [showEditPane, setShowEditPane] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  
-  // Edit pane state
-  const [editableTripName, setEditableTripName] = useState('');
-  const [tripStartMonth, setTripStartMonth] = useState('');
-  const [tripStartDay, setTripStartDay] = useState(0);
-  const [tripEndMonth, setTripEndMonth] = useState('');
-  const [tripEndDay, setTripEndDay] = useState(0);
-  const [editableTravelers, setEditableTravelers] = useState(2);
-  const [editableCities, setEditableCities] = useState<string[]>([]);
-  const [cityDates, setCityDates] = useState<{[key: string]: {startMonth: string, startDay: number, endMonth: string, endDay: number}}>({});
-  const [citySearchQuery, setCitySearchQuery] = useState('');
-  const [showMonthPicker, setShowMonthPicker] = useState<{type: 'start' | 'end' | null, cityIndex?: number}>({type: null});
-  const [showDayPicker, setShowDayPicker] = useState<{type: 'start' | 'end' | null, cityIndex?: number}>({type: null});
-  const [tripChangeMessage, setTripChangeMessage] = useState('');
-  const [hasUsedAssignAll, setHasUsedAssignAll] = useState(false);
-  
   // Load trip data into edit state when opening edit pane
   useEffect(() => {
     if (currentTrip && showEditPane) {
@@ -400,29 +403,6 @@ export default function TripCanvas() {
       setEditableCities(currentTrip.cities.map(c => c.code));
     }
   }, [showEditPane, currentTrip]);
-  
-  // If no trip exists, show empty state
-  if (!currentTrip) {
-    return (
-      <View style={styles.container}>
-        <View style={styles.emptyStateContainer}>
-          <Ionicons name="airplane-outline" size={64} color="rgba(214,193,152,0.3)" />
-          <Text style={styles.emptyStateTitle}>No active trips</Text>
-          <Text style={styles.emptyStateText}>Start a new journey from My Trips</Text>
-          <TouchableOpacity 
-            style={styles.emptyStateButton}
-            onPress={() => router.push('/trips')}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.emptyStateButtonText}>Go to My Trips</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
-  }
-  
-  // Track previous trip dates to detect changes
-  const prevTripDates = React.useRef({ startMonth: tripStartMonth, startDay: tripStartDay, endMonth: tripEndMonth, endDay: tripEndDay });
   
   // Helper: Get status pill colors
   const getStatusColor = (status: string) => {
@@ -455,6 +435,26 @@ export default function TripCanvas() {
       // TODO: Show toast message "Trip deleted successfully"
     }
   };
+  
+  // If no trip exists, show empty state - AFTER all hooks
+  if (!currentTrip) {
+    return (
+      <View style={styles.container}>
+        <View style={styles.emptyStateContainer}>
+          <Ionicons name="airplane-outline" size={64} color="rgba(214,193,152,0.3)" />
+          <Text style={styles.emptyStateTitle}>No active trips</Text>
+          <Text style={styles.emptyStateText}>Start a new journey from My Trips</Text>
+          <TouchableOpacity 
+            style={styles.emptyStateButton}
+            onPress={() => router.push('/trips')}
+            activeOpacity={0.8}
+          >
+            <Text style={styles.emptyStateButtonText}>Go to My Trips</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
   
   // Helper: Convert trip day number to readable date format (e.g., "Jun 8")
   const formatTripDay = (dayNum: number) => {
