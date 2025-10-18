@@ -928,57 +928,62 @@ export default function TripCanvas() {
             ))}
           </ScrollView>
           
-          {/* Day Selector Tabs - One pill per city */}
-          <View style={styles.dayTabsContainer}>
-            <ScrollView 
-              horizontal 
-              showsHorizontalScrollIndicator={false}
-              style={styles.dayTabsScroll}
-              contentContainerStyle={styles.dayTabsContent}
-            >
-              {currentTrip.cities.map((city, idx) => {
-                // Check if city has dates assigned
-                const hasAssignedDates = city.startMonth && city.endMonth;
-                const isActive = city.code === activeCityCode;
-                
-                if (hasAssignedDates) {
-                  // Show city-specific dates
-                  const startFormatted = `${city.startMonth.substring(0, 3)} ${city.startDay}`;
-                  const endFormatted = `${city.endMonth.substring(0, 3)} ${city.endDay}`;
-                  
-                  return (
-                    <TouchableOpacity
-                      key={city.code}
-                      style={[styles.dayTab, isActive && styles.dayTabActive]}
-                      onPress={() => {
-                        // Find the day that matches this city
-                        const matchingDay = tripData.days.find(d => d.cityCode === city.code);
-                        if (matchingDay) setActiveDayId(matchingDay.id);
-                      }}
-                      activeOpacity={0.7}
-                    >
-                      <Text style={[styles.dayTabText, isActive && styles.dayTabTextActive]}>{startFormatted}–{endFormatted}</Text>
-                    </TouchableOpacity>
-                  );
-                } else {
-                  // Show "Unassigned" for cities without dates
-                  return (
-                    <TouchableOpacity
-                      key={city.code}
-                      style={[styles.dayTab, styles.dayTabUnassigned, isActive && styles.dayTabActive]}
-                      onPress={() => {
-                        // Find the day that matches this city
-                        const matchingDay = tripData.days.find(d => d.cityCode === city.code);
-                        if (matchingDay) setActiveDayId(matchingDay.id);
-                      }}
-                      activeOpacity={0.7}
-                    >
-                      <Text style={[styles.dayTabTextUnassigned, isActive && styles.dayTabTextActive]}>Unassigned · {city.name || city.code}</Text>
-                    </TouchableOpacity>
-                  );
-                }
-              })}
-            </ScrollView>
+          {/* Quick Status Row - Flight, Stay, Transport Icons with Color-coded States */}
+          <View style={styles.quickStatusContainer}>
+            {/* Flight Status */}
+            <View style={styles.quickStatusItem}>
+              <View style={[styles.quickStatusIcon, { 
+                backgroundColor: activeDay.mockBookingStatus?.flights === 'Booked' ? 'rgba(201,166,91,0.25)' : 
+                                activeDay.mockBookingStatus?.flights === 'Pending' ? 'rgba(184,92,92,0.25)' : 
+                                'rgba(120,120,120,0.25)'
+              }]}>
+                <Ionicons 
+                  name="airplane" 
+                  size={16} 
+                  color={activeDay.mockBookingStatus?.flights === 'Booked' ? '#C9A65B' : 
+                        activeDay.mockBookingStatus?.flights === 'Pending' ? '#B85C5C' : 
+                        '#888888'} 
+                />
+              </View>
+              <Text style={styles.quickStatusLabel}>Flight</Text>
+            </View>
+            
+            {/* Stay Status */}
+            <View style={styles.quickStatusItem}>
+              <View style={[styles.quickStatusIcon, { 
+                backgroundColor: activeDay.mockBookingStatus?.stays === 'Booked' ? 'rgba(201,166,91,0.25)' : 
+                                activeDay.mockBookingStatus?.stays === 'Pending' ? 'rgba(184,92,92,0.25)' : 
+                                'rgba(120,120,120,0.25)'
+              }]}>
+                <Ionicons 
+                  name="bed" 
+                  size={16} 
+                  color={activeDay.mockBookingStatus?.stays === 'Booked' ? '#C9A65B' : 
+                        activeDay.mockBookingStatus?.stays === 'Pending' ? '#B85C5C' : 
+                        '#888888'} 
+                />
+              </View>
+              <Text style={styles.quickStatusLabel}>Stay</Text>
+            </View>
+            
+            {/* Transport Status */}
+            <View style={styles.quickStatusItem}>
+              <View style={[styles.quickStatusIcon, { 
+                backgroundColor: activeDay.mockBookingStatus?.transport === 'Booked' ? 'rgba(201,166,91,0.25)' : 
+                                activeDay.mockBookingStatus?.transport === 'Pending' ? 'rgba(184,92,92,0.25)' : 
+                                activeDay.mockBookingStatus?.transport === 'N/A' ? 'rgba(120,120,120,0.25)' :
+                                'rgba(120,120,120,0.25)'
+              }]}>
+                <Ionicons 
+                  name="car" 
+                  size={16} 
+                  color={activeDay.mockBookingStatus?.transport === 'Booked' ? '#C9A65B' : 
+                        activeDay.mockBookingStatus?.transport === 'Pending' ? '#B85C5C' : 
+                        '#888888'} 
+                />
+              </View>
+              <Text style={styles.quickStatusLabel}>Transport</Text>
+            </View>
           </View>
         </View>
       </ImageBackground>
