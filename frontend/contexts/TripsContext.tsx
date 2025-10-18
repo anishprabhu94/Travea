@@ -254,7 +254,11 @@ export const TripsProvider = ({ children }: { children: ReactNode }) => {
       circuitTitle: circuitTitle
     };
 
-    setTrips(prev => [newTrip, ...prev]);
+    setTrips(prev => {
+      const newTrips = [newTrip, ...prev];
+      console.log('Trip added. New trips count:', newTrips.length);
+      return newTrips;
+    });
     return newTrip.id;
   };
 
