@@ -3476,9 +3476,20 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  luxuryEditHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 20,
+    paddingHorizontal: 24,
+    borderBottomWidth: 0.5,
+    borderBottomColor: 'rgba(214,193,152,0.15)',
+    backgroundColor: '#0C0C0C',
+    zIndex: 100,
+  },
   luxuryCloseButton: {
     position: 'absolute',
-    top: 24,
+    top: 18,
     right: 24,
     width: 32,
     height: 32,
@@ -3486,18 +3497,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(245,240,230,0.08)',
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 10,
+    zIndex: 101,
   },
   luxuryEditScroll: {
     flex: 1,
   },
   luxuryEditScrollContent: {
     padding: 18,
-    paddingTop: 20,
+    paddingTop: 12,
   },
   luxuryEditTitleContainer: {
     alignItems: 'center',
-    marginTop: 8,
   },
   luxuryEditTitle: {
     fontSize: 24,
