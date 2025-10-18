@@ -450,6 +450,22 @@ export default function TripCanvas() {
     }
   }, [showEditPane, currentTrip]);
   
+  // When trip dates change, clear all city dates
+  React.useEffect(() => {
+    const prev = prevTripDates.current;
+    if (prev.startMonth !== tripStartMonth || prev.startDay !== tripStartDay || 
+        prev.endMonth !== tripEndMonth || prev.endDay !== tripEndDay) {
+      
+      // Clear all city dates
+      setCityDates({});
+      setTripChangeMessage('Trip updated. City dates cleared.');
+      setTimeout(() => setTripChangeMessage(''), 4000);
+      
+      // Update ref
+      prevTripDates.current = { startMonth: tripStartMonth, startDay: tripStartDay, endMonth: tripEndMonth, endDay: tripEndDay };
+    }
+  }, [tripStartMonth, tripStartDay, tripEndMonth, tripEndDay]);
+  
   // Helper: Get status pill colors
   const getStatusColor = (status: string) => {
     switch (status) {
