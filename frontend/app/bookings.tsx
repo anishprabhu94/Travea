@@ -2468,35 +2468,48 @@ const styles = StyleSheet.create({
     color: 'rgba(10,10,10,0.9)',
   },
 
-  // Quick Status Row - Premium Editorial Style
+  // Quick Status Row - Refined Outlined Icons (Whisper of Light Through Fog)
   quickStatusContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 32,
-    marginTop: 20,
+    gap: 40,
+    marginTop: 18,
     marginLeft: '5%',
     marginRight: '5%',
   },
   quickStatusItem: {
     alignItems: 'center',
-    gap: 8,
+    gap: 10,
   },
   quickStatusIcon: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.1)',
+    backgroundColor: 'transparent',
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(5px)',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.15)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.15,
+        shadowRadius: 4,
+        elevation: 2,
+      },
+    }),
   },
   quickStatusLabel: {
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: '500',
     color: 'rgba(255,255,255,0.7)',
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
+    letterSpacing: 1.5,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
