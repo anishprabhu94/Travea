@@ -930,7 +930,7 @@ export default function TripCanvas() {
                 <TouchableOpacity
                   onPress={() => {
                     // Find matching day for this city and set it as active
-                    const matchingDay = tripData.days.find(d => d.cityCode === city.code);
+                    const matchingDay = dynamicDays.find(d => d.cityCode === city.code);
                     if (matchingDay) setActiveDayId(matchingDay.id);
                   }}
                   activeOpacity={0.7}
