@@ -1070,6 +1070,9 @@ export default function TripCanvas() {
     const uniqueDates = [...new Set(activeDay.transport.map(item => item.date))];
     const displayDate = uniqueDates.length === 1 ? uniqueDates[0] : `${uniqueDates[0]} – ${uniqueDates[uniqueDates.length - 1]}`;
     
+    // Get mock status from activeDay
+    const sectionStatus = activeDay.mockBookingStatus?.transport || 'Pending';
+    
     return (
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
@@ -1077,6 +1080,22 @@ export default function TripCanvas() {
             <View style={styles.categoryHeaderLeft}>
               <Ionicons name="car" size={18} color="#B59B73" style={{marginRight: 8}} />
               <Text style={styles.categoryTitle}>Transport</Text>
+              {/* Status Pill */}
+              <View style={[styles.sectionStatusPill, {
+                backgroundColor: sectionStatus === 'Booked' ? 'rgba(201,166,91,0.25)' : 
+                                sectionStatus === 'Pending' ? 'rgba(150,150,150,0.25)' : 
+                                sectionStatus === 'N/A' ? 'rgba(255,255,255,0.1)' :
+                                'rgba(255,255,255,0.1)'
+              }]}>
+                <Text style={[styles.sectionStatusText, {
+                  color: sectionStatus === 'Booked' ? '#C9A65B' : 
+                        sectionStatus === 'Pending' ? '#999999' :
+                        sectionStatus === 'N/A' ? 'rgba(255,255,255,0.6)' : 
+                        'rgba(255,255,255,0.6)'
+                }]}>
+                  {sectionStatus}
+                </Text>
+              </View>
             </View>
             <TouchableOpacity 
               style={styles.browseIconButton}
