@@ -2561,6 +2561,23 @@ const styles = StyleSheet.create({
       web: 'Playfair Display, Georgia, serif',
     }),
   },
+  // Section Status Pills
+  sectionStatusPill: {
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 12,
+    marginLeft: 12,
+  },
+  sectionStatusText: {
+    fontSize: 10,
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
   categoryDivider: {
     height: 1,
     backgroundColor: 'rgba(181,155,115,0.25)',
