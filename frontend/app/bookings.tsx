@@ -2059,15 +2059,15 @@ const styles = StyleSheet.create({
   },
   heroFrostedPane: {
     position: 'absolute',
-    bottom: 40,
+    bottom: 80, // Increased from 40 to move pane up and clear notch
     left: '5%',
     right: '5%',
     backgroundColor: 'rgba(255,255,255,0.06)',
     borderRadius: 24,
     borderWidth: 0.5,
     borderColor: 'rgba(181,155,115,0.15)',
-    paddingTop: 18,
-    paddingBottom: 22,
+    paddingTop: 16, // Reduced from 18
+    paddingBottom: 18, // Reduced from 22
     paddingHorizontal: 24,
     ...Platform.select({
       web: {
@@ -2087,14 +2087,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 6,
+    marginBottom: 4, // Reduced from 6
   },
   heroTitle: {
-    fontSize: 32,
+    fontSize: 24, // Reduced from 32 to fit in one line
     fontWeight: '600',
     color: 'rgba(255,255,255,0.98)',
     textAlign: 'center',
-    letterSpacing: 0.5,
+    letterSpacing: 0.3, // Reduced from 0.5
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
