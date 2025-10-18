@@ -1003,17 +1003,19 @@ export default function TripCanvas() {
           style={styles.cityGradient}
         />
         
-        {/* Date badge on card image (top right) */}
-        <View style={styles.cardDateBadgeOnImage}>
-          <Text style={styles.cardDateText}>{activeCityDateRange.toUpperCase()}</Text>
-        </View>
-        
         {/* Frosted glass card for city info */}
         <View style={styles.cityFrostedCard}>
           <View style={styles.cityHeaderRow}>
             <Text style={styles.cityName}>{activeDay.city}</Text>
           </View>
           <Text style={styles.cityDescription}>{activeDay.description}</Text>
+          
+          {/* Large centered date pill - Premium editorial style */}
+          <View style={styles.cityDatePillContainer}>
+            <View style={styles.cityDatePill}>
+              <Text style={styles.cityDatePillText}>{activeCityDateRange}</Text>
+            </View>
+          </View>
         </View>
       </ImageBackground>
     </View>
