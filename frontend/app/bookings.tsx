@@ -2430,7 +2430,7 @@ const styles = StyleSheet.create({
     borderColor: '#B59B73',
   },
   cityCapsuleText: {
-    fontSize: 12,
+    fontSize: 14, // Increased from 12 for better visibility
     fontWeight: '600',
     color: 'rgba(181,155,115,0.8)',
     fontFamily: Platform.select({
