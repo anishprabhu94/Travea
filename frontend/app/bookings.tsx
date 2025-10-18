@@ -4965,20 +4965,27 @@ const styles = StyleSheet.create({
   heroProgressBar: {
     flex: 1,
     height: 8, // Increased from 6px to 8px for better visual weight
-    backgroundColor: 'transparent',
     borderRadius: 4, // Soft rounded ends - pill of light
     overflow: 'visible', // Changed to visible to show capsule
     position: 'relative',
-    // Frosted glass track with gradient
+  },
+  progressTrack: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderRadius: 4,
+    // Inner shadow for depth
     ...Platform.select({
       ios: {
         shadowColor: 'rgba(0,0,0,0.25)',
         shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.3,
-        shadowRadius: 2,
+        shadowOpacity: 0.4,
+        shadowRadius: 1,
       },
       android: {
-        elevation: 2,
+        elevation: 1,
       },
     }),
   },
@@ -4986,6 +4993,7 @@ const styles = StyleSheet.create({
     height: '100%',
     borderRadius: 4,
     position: 'relative',
+    zIndex: 1,
     // Faint glow effect
     ...Platform.select({
       ios: {
@@ -5018,6 +5026,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     top: -6, // Center vertically relative to bar
+    zIndex: 2,
     // Inner glow
     ...Platform.select({
       ios: {
