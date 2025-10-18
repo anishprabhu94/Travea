@@ -370,7 +370,6 @@ export default function MyTrips() {
           </BlurView>
         </View>
       </ImageBackground>
-      </TouchableOpacity>
     </View>
     )
   }
