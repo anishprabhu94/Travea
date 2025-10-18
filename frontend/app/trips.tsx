@@ -106,7 +106,10 @@ export default function MyTrips() {
       'June',
       22,
       2,
-      cityCode
+      cityCode,
+      destination.isMultiCity,
+      destination.circuitTitle,
+      destination.cities
     )
     
     // Remove from bookmarks
