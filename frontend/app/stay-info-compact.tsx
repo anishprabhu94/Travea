@@ -411,52 +411,66 @@ export default function StayInfoCompact() {
         </View>
       )}
 
-      {/* Bottom Dock - Booking Buttons Only (Light & Sleek) */}
+      {/* Bottom Dock - Navigation Bar Style (Frosted Glass Capsule) */}
       <View style={styles.bottomDock}>
-        <BlurView intensity={18} tint="light" style={styles.dockContainer}>
+        <BlurView intensity={22} tint="light" style={styles.dockContainer}>
           <View style={styles.dockContent}>
+            {/* Mark as Booked */}
             <TouchableOpacity
-              style={[styles.bookingDockButton, styles.bookingDockButtonBooked]}
+              style={styles.dockAction}
               onPress={handleMarkBooked}
-              activeOpacity={0.8}
+              activeOpacity={0.7}
               disabled={bookingStatus === 'booked'}
             >
               <LinearGradient
                 colors={bookingStatus === 'booked' 
-                  ? ['rgba(156,142,106,0.5)', 'rgba(156,142,106,0.4)'] 
-                  : ['rgba(214,193,152,0.4)', 'rgba(214,193,152,0.3)']}
-                style={styles.bookingDockButtonGradient}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
+                  ? ['rgba(217,189,120,0.25)', 'rgba(217,189,120,0.15)']
+                  : ['rgba(217,189,120,0.15)', 'rgba(217,189,120,0.08)']}
+                style={styles.dockActionGradient}
               >
                 {bookingStatus === 'booked' && (
-                  <Ionicons name="checkmark-circle" size={16} color="rgba(214,193,152,0.9)" style={{marginRight: 6}} />
+                  <Ionicons 
+                    name="checkmark-circle-outline" 
+                    size={16} 
+                    color="#D9BD78" 
+                    style={{marginRight: 6}} 
+                  />
                 )}
-                <Text style={[styles.bookingDockButtonText, bookingStatus === 'booked' && styles.bookingDockButtonTextDisabled]}>
-                  {bookingStatus === 'booked' ? 'Booked' : 'Mark as Booked'}
+                <Text style={[styles.dockActionText, bookingStatus === 'booked' && styles.dockActionTextActive]}>
+                  {bookingStatus === 'booked' ? 'Booked ✓' : 'Mark as Booked'}
                 </Text>
               </LinearGradient>
             </TouchableOpacity>
             
+            {/* Divider */}
+            <LinearGradient
+              colors={['rgba(217,189,120,0.3)', 'rgba(217,189,120,0.15)', 'rgba(217,189,120,0.3)']}
+              style={styles.dockDivider}
+            />
+            
+            {/* Mark as Canceled */}
             <TouchableOpacity
-              style={[styles.bookingDockButton, styles.bookingDockButtonCancel]}
+              style={styles.dockAction}
               onPress={handleMarkCanceled}
-              activeOpacity={0.8}
+              activeOpacity={0.7}
               disabled={bookingStatus === 'canceled'}
             >
               <LinearGradient
-                colors={bookingStatus === 'canceled' 
-                  ? ['rgba(108,85,80,0.4)', 'rgba(108,85,80,0.3)'] 
-                  : ['rgba(126,85,80,0.5)', 'rgba(108,85,80,0.4)']}
-                style={styles.bookingDockButtonGradient}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
+                colors={bookingStatus === 'canceled'
+                  ? ['rgba(107,79,76,0.25)', 'rgba(107,79,76,0.15)']
+                  : ['rgba(107,79,76,0.15)', 'rgba(107,79,76,0.08)']}
+                style={styles.dockActionGradient}
               >
                 {bookingStatus === 'canceled' && (
-                  <Ionicons name="close-circle" size={16} color="rgba(255,255,255,0.7)" style={{marginRight: 6}} />
+                  <Ionicons 
+                    name="close-circle-outline" 
+                    size={16} 
+                    color="rgba(245,244,239,0.8)" 
+                    style={{marginRight: 6}} 
+                  />
                 )}
-                <Text style={[styles.bookingDockButtonText, styles.bookingDockButtonTextCancel]}>
-                  {bookingStatus === 'canceled' ? 'Canceled' : 'Mark as Canceled'}
+                <Text style={[styles.dockActionText, bookingStatus === 'canceled' && styles.dockActionTextCanceled]}>
+                  {bookingStatus === 'canceled' ? 'Canceled ✕' : 'Mark as Canceled'}
                 </Text>
               </LinearGradient>
             </TouchableOpacity>
