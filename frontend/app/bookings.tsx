@@ -1105,9 +1105,14 @@ export default function TripCanvas() {
             contentContainerStyle={styles.cityStripContent}
           >
             {currentTrip.cities.map((city, index) => (
-              <View 
+              <Animated.View 
                 key={city.code}
-                style={styles.cityCapsuleWrapper}
+                style={[
+                  styles.cityCapsuleWrapper,
+                  city.code === activeCityCode && {
+                    transform: [{ translateX: shakeAnimation }]
+                  }
+                ]}
               >
                 <TouchableOpacity
                   onPress={() => {
