@@ -9,7 +9,7 @@ import {
   StyleSheet,
   Dimensions,
 } from 'react-native'
-import { router } from 'expo-router'
+import { router, useLocalSearchParams } from 'expo-router'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
 import { BlurView } from 'expo-blur'
