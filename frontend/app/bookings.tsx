@@ -1137,7 +1137,7 @@ export default function TripCanvas() {
                 {index < currentTrip.cities.length - 1 && (
                   <View style={styles.cityDot} />
                 )}
-              </View>
+              </Animated.View>
             ))}
           </ScrollView>
           
