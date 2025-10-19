@@ -1088,23 +1088,51 @@ const styles = StyleSheet.create({
   },
   dockContent: {
     flex: 1,
-    backgroundColor: 'rgba(25,25,25,0.35)',
+    backgroundColor: 'rgba(0,0,0,0.4)',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 16,
-  },
-  dockItem: {
-    flex: 1,
-    alignItems: 'center',
+    paddingHorizontal: 12,
     paddingVertical: 8,
+    gap: 10,
   },
-  dockLabelInactive: {
-    fontSize: 11,
-    color: 'rgba(255,255,255,0.7)',
-    marginTop: 4,
+  
+  // Booking Dock Buttons (Sleek & Thin)
+  bookingDockButton: {
+    flex: 1,
+    height: 42,
+    borderRadius: 14,
+    overflow: 'hidden',
+    borderWidth: 0.5,
+  },
+  bookingDockButtonBooked: {
+    borderColor: 'rgba(214,193,152,0.3)',
+  },
+  bookingDockButtonCancel: {
+    borderColor: 'rgba(126,85,80,0.3)',
+  },
+  bookingDockButtonGradient: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 14,
+  },
+  bookingDockButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: 'rgba(214,193,152,0.95)',
     fontFamily: Platform.select({
       ios: 'Inter',
-      android: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  bookingDockButtonTextDisabled: {
+    color: 'rgba(214,193,152,0.6)',
+  },
+  bookingDockButtonTextCancel: {
+    color: 'rgba(255,255,255,0.85)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
