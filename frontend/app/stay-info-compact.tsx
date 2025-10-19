@@ -42,13 +42,17 @@ export default function StayInfoCompact() {
   }
 
   // Compact stay data
+  const pricePerNight = 420 // Base price in euros
+  const totalPrice = pricePerNight * nights
+  
   const stay = {
     name: 'Hotel Santa Caterina',
     tagline: 'Where terraces meet the azure sea',
     location: 'Positano, Amalfi Coast',
     rating: 4.8,
     reviewCount: 342,
-    pricePerNight: '€420',
+    pricePerNight: `€${pricePerNight}`,
+    totalPrice: `€${totalPrice}`,
     heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
     
     essenceTags: ['Azure Air', 'Lemon Calm', 'Cliff Light'],
