@@ -32,14 +32,14 @@ export default function StayInfoCompact() {
   const [toastMessage, setToastMessage] = useState('')
 
   const handleMarkBooked = () => {
-    setBookingStatus('booked')
+    markAsBooked(stayId, nights, `Jun 10–${10 + nights}`)
     setToastMessage(`Stay booked · ${nights} ${nights === 1 ? 'night' : 'nights'}`)
     setShowToast(true)
     setTimeout(() => setShowToast(false), 3000)
   }
 
   const handleMarkCanceled = () => {
-    setBookingStatus('canceled')
+    markAsCanceled(stayId)
     setToastMessage('Booking canceled')
     setShowToast(true)
     setTimeout(() => setShowToast(false), 3000)
