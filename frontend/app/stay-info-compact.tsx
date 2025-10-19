@@ -10,6 +10,7 @@ import {
   Dimensions,
 } from 'react-native'
 import { router, useLocalSearchParams } from 'expo-router'
+import { useStayBooking } from '../contexts/StayBookingContext'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
 import { BlurView } from 'expo-blur'
