@@ -376,6 +376,39 @@ export default function TripCanvas() {
   // Shake animation for city pill when dates not assigned
   const shakeAnimation = useRef(new Animated.Value(0)).current;
   
+  const triggerShake = () => {
+    Animated.sequence([
+      Animated.timing(shakeAnimation, { toValue: 10, duration: 50, useNativeDriver: true }),
+      Animated.timing(shakeAnimation, { toValue: -10, duration: 50, useNativeDriver: true }),
+      Animated.timing(shakeAnimation, { toValue: 10, duration: 50, useNativeDriver: true }),
+      Animated.timing(shakeAnimation, { toValue: -10, duration: 50, useNativeDriver: true }),
+      Animated.timing(shakeAnimation, { toValue: 0, duration: 50, useNativeDriver: true }),
+    ]).start();
+  };
+  
+  const handleBrowseStays = () => {
+    const city = currentTrip.cities.find(c => c.code === activeCityCode);
+    
+    // Check if city has dates assigned
+    if (!city || !city.startMonth || !city.endMonth) {
+      triggerShake();
+      return;
+    }
+    
+    // Navigate with city dates
+    router.push({
+      pathname: '/stay-browsing',
+      params: {
+        city: city.name || activeCityCode,
+        cityCode: activeCityCode,
+        startMonth: city.startMonth,
+        startDay: city.startDay.toString(),
+        endMonth: city.endMonth,
+        endDay: city.endDay.toString(),
+      }
+    });
+  };
+  
   // Edit pane state
   const [editableTripName, setEditableTripName] = useState('');
   const [tripStartMonth, setTripStartMonth] = useState('');
