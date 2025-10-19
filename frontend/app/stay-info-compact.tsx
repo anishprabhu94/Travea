@@ -1071,84 +1071,71 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // BOTTOM DOCK - Identical to Landing Page
   bottomDock: {
     position: 'absolute',
-    bottom: 12,
-    left: 0,
-    right: 0,
-    alignItems: 'center',
+    bottom: 8,
+    left: 16,
+    right: 16,
     zIndex: 100,
   },
   dockContainer: {
-    width: '92%',
-    height: 60,
-    borderRadius: 28,
+    borderRadius: 32,
     overflow: 'hidden',
     ...Platform.select({
       ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 20,
+        shadowColor: 'rgba(217,189,120,0.15)',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 1,
+        shadowRadius: 16,
       },
       android: {
-        elevation: 8,
-      },
-      web: {
-        boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+        elevation: 12,
       },
     }),
   },
   dockContent: {
-    flex: 1,
-    backgroundColor: 'rgba(25,25,25,0.30)',
     flexDirection: 'row',
+    backgroundColor: 'rgba(27,27,27,0.55)',
+    paddingVertical: 10,
+    paddingHorizontal: 12,
     alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 6,
-    gap: 8,
-  },
-  
-  // Booking Dock Buttons (Thinner & More Elegant)
-  bookingDockButton: {
-    flex: 1,
-    height: 38,
-    borderRadius: 12,
-    overflow: 'hidden',
     borderWidth: 0.5,
+    borderColor: 'rgba(217,189,120,0.1)',
   },
-  bookingDockButtonBooked: {
-    borderColor: 'rgba(214,193,152,0.3)',
-  },
-  bookingDockButtonCancel: {
-    borderColor: 'rgba(126,85,80,0.3)',
-  },
-  bookingDockButtonGradient: {
+  dockAction: {
     flex: 1,
+    borderRadius: 24,
+    overflow: 'hidden',
+  },
+  dockActionGradient: {
+    paddingVertical: 12,
+    paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 12,
   },
-  bookingDockButtonText: {
-    fontSize: 13,
+  dockActionText: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: 'rgba(245,244,239,0.7)',
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  dockActionTextActive: {
+    color: '#D9BD78',
     fontWeight: '600',
-    color: 'rgba(214,193,152,0.95)',
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
   },
-  bookingDockButtonTextDisabled: {
-    color: 'rgba(214,193,152,0.6)',
+  dockActionTextCanceled: {
+    color: 'rgba(245,244,239,0.8)',
+    fontWeight: '600',
   },
-  bookingDockButtonTextCancel: {
-    color: 'rgba(255,255,255,0.85)',
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
+  dockDivider: {
+    width: 1,
+    height: 24,
+    marginHorizontal: 8,
   },
   
   // Toast Notification
