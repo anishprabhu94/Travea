@@ -22,9 +22,12 @@ type TabType = 'gallery' | 'rooms' | 'location'
 export default function StayInfoCompact() {
   const params = useLocalSearchParams()
   const nights = parseInt(params.nights as string || '3')
+  const stayId = params.stayId as string || 'default-stay'
+  
+  const { getBookingStatus, markAsBooked, markAsCanceled } = useStayBooking()
+  const bookingStatus = getBookingStatus(stayId)
   
   const [activeTab, setActiveTab] = useState<TabType>('gallery')
-  const [bookingStatus, setBookingStatus] = useState<'none' | 'booked' | 'canceled'>('none')
   const [showToast, setShowToast] = useState(false)
   const [toastMessage, setToastMessage] = useState('')
 
