@@ -351,6 +351,28 @@ export default function StayBrowsing() {
           <View style={styles.stayGrid}>
             {filteredStays.map((stay) => {
               const totalPrice = stay.pricePerNight * totalNights;
+              
+              // Calculate date display based on mode
+              let displayDates = '';
+              if (toggleMode === 'single') {
+                // Show full range
+                displayDates = `${cityStartMonth} ${cityStartDay}–${cityEndDay}`;
+              } else {
+                // Show selected dates range
+                if (selectedDates.length > 0) {
+                  const firstDate = selectedDates[0];
+                  const lastDate = selectedDates[selectedDates.length - 1];
+                  displayDates = `${cityStartMonth} ${firstDate}–${lastDate}`;
+                } else {
+                  displayDates = `${cityStartMonth} ${cityStartDay}`;
+                }
+              }
+              
+              // Calculate nights for display
+              const displayNights = toggleMode === 'multiple' && selectedDates.length > 0 
+                ? selectedDates.length 
+                : totalNights;
+              
               return (
                 <TouchableOpacity
                   key={stay.id}
@@ -358,7 +380,7 @@ export default function StayBrowsing() {
                   activeOpacity={0.8}
                   onPress={() => router.push({
                     pathname: '/stay-info-compact',
-                    params: { nights: totalNights.toString() }
+                    params: { nights: displayNights.toString() }
                   })}
                 >
                   <ImageBackground
@@ -370,34 +392,36 @@ export default function StayBrowsing() {
                       colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
                       style={styles.stayCardGradient}
                     />
+                    
+                    {/* Frosted Pane with Content */}
                     <View style={styles.stayCardFrosted}>
-                      {/* Date Pill */}
-                      <View style={styles.datePill}>
-                        <Text style={styles.datePillText}>{cityStartMonth} {cityStartDay}</Text>
+                      {/* Date Pill - Top Right */}
+                      <View style={styles.datePillTopRight}>
+                        <Text style={styles.datePillText}>{displayDates}</Text>
                       </View>
                       
-                      {/* Save Heart */}
+                      {/* Save Heart - Top Right on Frosted Pane */}
                       <TouchableOpacity
-                        style={styles.saveButton}
+                        style={styles.saveHeartFrosted}
                         onPress={() => handleSaveStay(stay.id)}
                         activeOpacity={0.7}
                       >
                         <Ionicons
                           name={savedStays.has(stay.id) ? 'heart' : 'heart-outline'}
                           size={20}
-                          color={savedStays.has(stay.id) ? '#CBB88C' : 'rgba(255,255,255,0.8)'}
+                          color={savedStays.has(stay.id) ? '#D9BD78' : 'rgba(255,255,255,0.8)'}
                         />
                       </TouchableOpacity>
                       
                       <Text style={styles.stayCardName}>{stay.name}</Text>
                       <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
-                      <Text style={styles.stayEstTotal}>Est. Total €{totalPrice} · {totalNights} {totalNights === 1 ? 'night' : 'nights'}</Text>
+                      <Text style={styles.stayEstTotal}>Est. Total <Text style={styles.priceHighlight}>€{totalPrice}</Text> · {displayNights} {displayNights === 1 ? 'night' : 'nights'}</Text>
                       <Text style={styles.stayCardLocation}>{stay.location}</Text>
                       
                       {/* Rating & Amenities */}
                       <View style={styles.ratingAmenitiesRow}>
                         <View style={styles.ratingRow}>
-                          <Ionicons name="star" size={12} color="#CBB88C" />
+                          <Ionicons name="star" size={12} color="#D9BD78" />
                           <Text style={styles.ratingText}>{stay.rating}</Text>
                         </View>
                         <Text style={styles.amenityDot}>·</Text>
@@ -409,12 +433,23 @@ export default function StayBrowsing() {
                         ))}
                       </View>
                       
-                      {/* Book Via */}
-                      <View style={styles.bookViaRow}>
+                      {/* Book Via Row */}
+                      <View style={styles.bookViaSection}>
                         <Text style={styles.bookViaLabel}>Book via</Text>
-                        <View style={styles.logoRow}>
+                        <View style={styles.bookingButtonsRow}>
                           {stay.platforms.map(platform => (
-                            <Text key={platform} style={styles.logoText}>{platform}</Text>
+                            <TouchableOpacity 
+                              key={platform} 
+                              style={styles.bookingPlatformButton}
+                              activeOpacity={0.7}
+                            >
+                              <LinearGradient
+                                colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.03)']}
+                                style={styles.bookingPlatformGradient}
+                              >
+                                <Text style={styles.bookingPlatformText}>{platform}</Text>
+                              </LinearGradient>
+                            </TouchableOpacity>
                           ))}
                         </View>
                       </View>
