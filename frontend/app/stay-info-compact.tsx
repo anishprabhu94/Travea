@@ -19,6 +19,9 @@ const { width, height } = Dimensions.get('window')
 type TabType = 'gallery' | 'rooms' | 'location'
 
 export default function StayInfoCompact() {
+  const params = useLocalSearchParams()
+  const nights = parseInt(params.nights as string || '3')
+  
   const [activeTab, setActiveTab] = useState<TabType>('gallery')
   const [bookingStatus, setBookingStatus] = useState<'none' | 'booked' | 'canceled'>('none')
   const [showToast, setShowToast] = useState(false)
