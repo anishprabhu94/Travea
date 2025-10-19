@@ -1088,19 +1088,19 @@ const styles = StyleSheet.create({
   },
   dockContent: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.4)',
+    backgroundColor: 'rgba(25,25,25,0.30)',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    gap: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    gap: 8,
   },
   
-  // Booking Dock Buttons (Sleek & Thin)
+  // Booking Dock Buttons (Thinner & More Elegant)
   bookingDockButton: {
     flex: 1,
-    height: 42,
-    borderRadius: 14,
+    height: 38,
+    borderRadius: 12,
     overflow: 'hidden',
     borderWidth: 0.5,
   },
@@ -1115,10 +1115,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 14,
+    borderRadius: 12,
   },
   bookingDockButtonText: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '600',
     color: 'rgba(214,193,152,0.95)',
     fontFamily: Platform.select({
