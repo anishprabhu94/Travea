@@ -467,43 +467,54 @@ export default function StayInfoCompact() {
         </View>
       )}
 
-      {/* Bottom Dock - Identical to Landing Page */}
+      {/* Bottom Dock - Booking Buttons Only */}
       <View style={styles.bottomDock}>
-        <BlurView intensity={20} tint="light" style={styles.dockContainer}>
+        <BlurView intensity={28} tint="dark" style={styles.dockContainer}>
           <View style={styles.dockContent}>
-            <TouchableOpacity 
-              style={styles.dockItem} 
+            <TouchableOpacity
+              style={[styles.bookingDockButton, styles.bookingDockButtonBooked]}
+              onPress={handleMarkBooked}
               activeOpacity={0.8}
-              onPress={() => router.push('/landing')}
+              disabled={bookingStatus === 'booked'}
             >
-              <Ionicons name="home" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockLabelInactive}>Home</Text>
+              <LinearGradient
+                colors={bookingStatus === 'booked' 
+                  ? ['rgba(156,142,106,0.5)', 'rgba(156,142,106,0.4)'] 
+                  : ['rgba(214,193,152,0.4)', 'rgba(214,193,152,0.3)']}
+                style={styles.bookingDockButtonGradient}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+              >
+                {bookingStatus === 'booked' && (
+                  <Ionicons name="checkmark-circle" size={18} color="rgba(214,193,152,0.9)" style={{marginRight: 6}} />
+                )}
+                <Text style={[styles.bookingDockButtonText, bookingStatus === 'booked' && styles.bookingDockButtonTextDisabled]}>
+                  {bookingStatus === 'booked' ? 'Booked' : 'Mark as Booked'}
+                </Text>
+              </LinearGradient>
             </TouchableOpacity>
             
-            <TouchableOpacity 
-              style={styles.dockItem} 
+            <TouchableOpacity
+              style={[styles.bookingDockButton, styles.bookingDockButtonCancel]}
+              onPress={handleMarkCanceled}
               activeOpacity={0.8}
-              onPress={() => router.push('/bookings')}
+              disabled={bookingStatus === 'canceled'}
             >
-              <Ionicons name="calendar" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.dockItem} 
-              activeOpacity={0.8}
-              onPress={() => router.push('/trips')}
-            >
-              <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockLabelInactive}>My Trips</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.dockItem} 
-              activeOpacity={0.8}
-            >
-              <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockLabelInactive}>Concierge</Text>
+              <LinearGradient
+                colors={bookingStatus === 'canceled' 
+                  ? ['rgba(108,85,80,0.4)', 'rgba(108,85,80,0.3)'] 
+                  : ['rgba(126,85,80,0.5)', 'rgba(108,85,80,0.4)']}
+                style={styles.bookingDockButtonGradient}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+              >
+                {bookingStatus === 'canceled' && (
+                  <Ionicons name="close-circle" size={18} color="rgba(255,255,255,0.7)" style={{marginRight: 6}} />
+                )}
+                <Text style={[styles.bookingDockButtonText, styles.bookingDockButtonTextCancel]}>
+                  {bookingStatus === 'canceled' ? 'Canceled' : 'Mark as Canceled'}
+                </Text>
+              </LinearGradient>
             </TouchableOpacity>
           </View>
         </BlurView>
