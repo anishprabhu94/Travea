@@ -373,6 +373,9 @@ export default function TripCanvas() {
   const [showEditPane, setShowEditPane] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   
+  // Shake animation for city pill when dates not assigned
+  const shakeAnimation = useRef(new Animated.Value(0)).current;
+  
   // Edit pane state
   const [editableTripName, setEditableTripName] = useState('');
   const [tripStartMonth, setTripStartMonth] = useState('');
