@@ -20,6 +20,23 @@ type TabType = 'gallery' | 'rooms' | 'location'
 
 export default function StayInfoCompact() {
   const [activeTab, setActiveTab] = useState<TabType>('gallery')
+  const [bookingStatus, setBookingStatus] = useState<'none' | 'booked' | 'canceled'>('none')
+  const [showToast, setShowToast] = useState(false)
+  const [toastMessage, setToastMessage] = useState('')
+
+  const handleMarkBooked = () => {
+    setBookingStatus('booked')
+    setToastMessage('Stay booked for Jun 10–13 · 3 nights')
+    setShowToast(true)
+    setTimeout(() => setShowToast(false), 3000)
+  }
+
+  const handleMarkCanceled = () => {
+    setBookingStatus('canceled')
+    setToastMessage('Booking canceled')
+    setShowToast(true)
+    setTimeout(() => setShowToast(false), 3000)
+  }
 
   // Compact stay data
   const stay = {
