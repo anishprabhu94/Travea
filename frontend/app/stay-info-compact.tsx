@@ -156,8 +156,8 @@ export default function StayInfoCompact() {
                   <Text style={styles.heroTagline}>{stay.tagline}</Text>
                 </View>
                 <View style={styles.heroPriceTag}>
-                  <Text style={styles.heroPriceAmount}>{stay.pricePerNight}</Text>
-                  <Text style={styles.heroPriceLabel}>per night</Text>
+                  <Text style={styles.heroPriceAmount}>{stay.totalPrice}</Text>
+                  <Text style={styles.heroPriceLabel}>total · {nights} {nights === 1 ? 'night' : 'nights'}</Text>
                 </View>
               </View>
               <Text style={styles.heroLocation}>{stay.location}</Text>
