@@ -29,7 +29,7 @@ export default function StayInfoCompact() {
 
   const handleMarkBooked = () => {
     setBookingStatus('booked')
-    setToastMessage('Stay booked for Jun 10–13 · 3 nights')
+    setToastMessage(`Stay booked · ${nights} ${nights === 1 ? 'night' : 'nights'}`)
     setShowToast(true)
     setTimeout(() => setShowToast(false), 3000)
   }
