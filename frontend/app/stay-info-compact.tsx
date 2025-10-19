@@ -1137,89 +1137,10 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Booking Footer Dock
-  bookingFooter: {
-    position: 'absolute',
-    bottom: 90,
-    left: 20,
-    right: 20,
-    zIndex: 999,
-  },
-  bookingFooterBlur: {
-    borderRadius: 24,
-    overflow: 'hidden',
-    ...Platform.select({
-      ios: {
-        shadowColor: 'rgba(231,201,122,0.3)',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.5,
-        shadowRadius: 16,
-      },
-      android: {
-        elevation: 12,
-      },
-    }),
-  },
-  bookingFooterGradient: {
-    flexDirection: 'row',
-    padding: 12,
-    gap: 12,
-  },
-  bookingButton: {
-    flex: 1,
-    height: 52,
-    borderRadius: 16,
-    overflow: 'hidden',
-    ...Platform.select({
-      ios: {
-        shadowColor: 'rgba(0,0,0,0.3)',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.4,
-        shadowRadius: 8,
-      },
-      android: {
-        elevation: 6,
-      },
-    }),
-  },
-  bookingButtonGradient: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 16,
-  },
-  bookingButtonBooked: {
-    borderWidth: 1,
-    borderColor: 'rgba(231,201,122,0.4)',
-  },
-  bookingButtonCancel: {
-    borderWidth: 1,
-    borderColor: 'rgba(126,85,80,0.3)',
-  },
-  bookingButtonTextBooked: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: '#F6F4EF',
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
-  },
-  bookingButtonTextCancel: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: 'rgba(255,255,255,0.9)',
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
-  },
-  
   // Toast Notification
   toast: {
     position: 'absolute',
-    bottom: 160,
+    bottom: 110,
     left: '50%',
     transform: [{ translateX: -150 }],
     width: 300,
