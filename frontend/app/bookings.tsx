@@ -1325,7 +1325,13 @@ export default function TripCanvas() {
             </View>
             <TouchableOpacity 
               style={styles.browseIconButton}
-              onPress={() => router.push('/book-journey')}
+              onPress={() => router.push({
+                pathname: '/stay-browsing',
+                params: { 
+                  city: activeDay.city || 'Florence', 
+                  cityCode: activeDay.cityCode || 'FLR' 
+                }
+              })}
               activeOpacity={0.7}
             >
               <Ionicons name="compass-outline" size={18} color="rgba(203,184,140,0.8)" />
