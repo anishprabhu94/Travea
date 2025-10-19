@@ -725,78 +725,99 @@ const styles = StyleSheet.create({
     gap: 18,
   },
   
-  // Stay Card - Matching book-journey.tsx
+  // Stay Card - World-Class Cinematic Design
   stayCard: {
-    borderRadius: 16,
+    borderRadius: 24,
     overflow: 'hidden',
+    marginBottom: 4,
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(0,0,0,0.5)',
-        shadowOffset: { width: 0, height: 6 },
-        shadowOpacity: 0.5,
-        shadowRadius: 12,
+        shadowColor: 'rgba(217,189,120,0.08)',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 1,
+        shadowRadius: 20,
       },
       android: {
-        elevation: 8,
+        elevation: 10,
       },
     }),
   },
   stayCardBg: {
-    height: 360,
+    width: '100%',
+    aspectRatio: 4/3,
+    minHeight: Math.min(width * 0.65, 380),
   },
   stayCardBgStyle: {
-    borderRadius: 16,
+    borderRadius: 24,
   },
   stayCardGradient: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    height: '55%',
+    height: '50%',
   },
   stayCardFrosted: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    padding: 18,
+    backgroundColor: 'rgba(20,20,20,0.55)',
+    padding: 20,
+    borderBottomLeftRadius: 24,
+    borderBottomRightRadius: 24,
+    borderTopWidth: 0.5,
+    borderTopColor: 'rgba(200,180,126,0.08)',
   },
-  datePill: {
+  datePillTopRight: {
     position: 'absolute',
-    top: 16,
-    right: 16,
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    borderRadius: 10,
+    top: -300,
+    right: 12,
+    backgroundColor: 'rgba(30,30,30,0.65)',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 16,
     borderWidth: 0.5,
-    borderColor: 'rgba(214,193,152,0.3)',
+    borderColor: 'rgba(217,189,120,0.2)',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.4)',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 1,
+        shadowRadius: 8,
+      },
+    }),
   },
   datePillText: {
-    fontSize: 11,
-    color: 'rgba(214,193,152,0.9)',
+    fontSize: 12,
+    color: '#F7F7F7',
     fontWeight: '600',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  saveButton: {
+  saveHeartFrosted: {
     position: 'absolute',
     top: 16,
-    left: 16,
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    right: 16,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(20,20,20,0.5)',
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 0.5,
+    borderColor: 'rgba(217,189,120,0.15)',
   },
   stayCardName: {
     fontSize: 20,
-    fontWeight: '600',
-    color: '#F6F4EF',
+    fontWeight: '700',
+    color: '#F5F5F5',
     marginBottom: 4,
+    letterSpacing: -0.2,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
@@ -806,8 +827,8 @@ const styles = StyleSheet.create({
   stayCardTagline: {
     fontSize: 13,
     fontStyle: 'italic',
-    color: 'rgba(203,184,140,0.85)',
-    marginBottom: 6,
+    color: '#D8C389',
+    marginBottom: 8,
     fontFamily: Platform.select({
       ios: 'Georgia',
       android: 'serif',
@@ -816,18 +837,23 @@ const styles = StyleSheet.create({
   },
   stayEstTotal: {
     fontSize: 15,
-    fontWeight: '600',
-    color: '#CBB88C',
+    fontWeight: '500',
+    color: '#EAE8E0',
     marginBottom: 6,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
+  priceHighlight: {
+    color: '#E7C97A',
+    fontWeight: '600',
+  },
   stayCardLocation: {
     fontSize: 12,
-    color: 'rgba(255,255,255,0.6)',
-    marginBottom: 8,
+    color: 'rgba(213,210,202,0.7)',
+    marginBottom: 10,
+    lineHeight: 16,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
@@ -836,7 +862,7 @@ const styles = StyleSheet.create({
   ratingAmenitiesRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 12,
     flexWrap: 'wrap',
   },
   ratingRow: {
@@ -845,7 +871,7 @@ const styles = StyleSheet.create({
     gap: 3,
   },
   ratingText: {
-    fontSize: 12,
+    fontSize: 13,
     color: '#F6F4EF',
     fontWeight: '600',
     fontFamily: Platform.select({
@@ -854,38 +880,49 @@ const styles = StyleSheet.create({
     }),
   },
   amenityDot: {
-    fontSize: 12,
-    color: 'rgba(255,255,255,0.4)',
-    marginHorizontal: 5,
+    fontSize: 13,
+    color: 'rgba(255,255,255,0.35)',
+    marginHorizontal: 6,
   },
   amenityText: {
-    fontSize: 11,
-    color: 'rgba(255,255,255,0.55)',
+    fontSize: 12,
+    color: '#DDD6C5',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  bookViaRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  bookViaSection: {
+    marginTop: 4,
   },
   bookViaLabel: {
-    fontSize: 10,
+    fontSize: 11,
     color: 'rgba(255,255,255,0.5)',
+    marginBottom: 8,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  logoRow: {
+  bookingButtonsRow: {
     flexDirection: 'row',
     gap: 8,
   },
-  logoText: {
-    fontSize: 10,
-    color: 'rgba(203,184,140,0.8)',
+  bookingPlatformButton: {
+    borderRadius: 18,
+    overflow: 'hidden',
+    borderWidth: 0.5,
+    borderColor: 'rgba(217,189,120,0.15)',
+  },
+  bookingPlatformGradient: {
+    paddingVertical: 8,
+    paddingHorizontal: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  bookingPlatformText: {
+    fontSize: 11,
+    color: '#F7F7F7',
     fontWeight: '500',
     fontFamily: Platform.select({
       ios: 'Inter',
