@@ -411,9 +411,9 @@ export default function StayInfoCompact() {
         </View>
       )}
 
-      {/* Bottom Dock - Booking Buttons Only */}
+      {/* Bottom Dock - Booking Buttons Only (Light & Sleek) */}
       <View style={styles.bottomDock}>
-        <BlurView intensity={28} tint="dark" style={styles.dockContainer}>
+        <BlurView intensity={18} tint="light" style={styles.dockContainer}>
           <View style={styles.dockContent}>
             <TouchableOpacity
               style={[styles.bookingDockButton, styles.bookingDockButtonBooked]}
@@ -430,7 +430,7 @@ export default function StayInfoCompact() {
                 end={{ x: 1, y: 1 }}
               >
                 {bookingStatus === 'booked' && (
-                  <Ionicons name="checkmark-circle" size={18} color="rgba(214,193,152,0.9)" style={{marginRight: 6}} />
+                  <Ionicons name="checkmark-circle" size={16} color="rgba(214,193,152,0.9)" style={{marginRight: 6}} />
                 )}
                 <Text style={[styles.bookingDockButtonText, bookingStatus === 'booked' && styles.bookingDockButtonTextDisabled]}>
                   {bookingStatus === 'booked' ? 'Booked' : 'Mark as Booked'}
@@ -453,7 +453,7 @@ export default function StayInfoCompact() {
                 end={{ x: 1, y: 1 }}
               >
                 {bookingStatus === 'canceled' && (
-                  <Ionicons name="close-circle" size={18} color="rgba(255,255,255,0.7)" style={{marginRight: 6}} />
+                  <Ionicons name="close-circle" size={16} color="rgba(255,255,255,0.7)" style={{marginRight: 6}} />
                 )}
                 <Text style={[styles.bookingDockButtonText, styles.bookingDockButtonTextCancel]}>
                   {bookingStatus === 'canceled' ? 'Canceled' : 'Mark as Canceled'}
