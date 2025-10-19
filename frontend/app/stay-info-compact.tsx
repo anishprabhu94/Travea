@@ -402,62 +402,6 @@ export default function StayInfoCompact() {
         </View>
       </ScrollView>
 
-      {/* Booking Footer Dock */}
-      <View style={styles.bookingFooter}>
-        <BlurView intensity={32} tint="dark" style={styles.bookingFooterBlur}>
-          <LinearGradient
-            colors={['rgba(0,0,0,0.7)', 'rgba(0,0,0,0.6)']}
-            style={styles.bookingFooterGradient}
-          >
-            <TouchableOpacity
-              style={[styles.bookingButton, styles.bookingButtonBooked]}
-              onPress={handleMarkBooked}
-              activeOpacity={0.8}
-              disabled={bookingStatus === 'booked'}
-            >
-              <LinearGradient
-                colors={bookingStatus === 'booked' 
-                  ? ['rgba(156,142,106,0.6)', 'rgba(156,142,106,0.5)'] 
-                  : ['rgba(231,201,122,0.9)', 'rgba(220,202,162,0.8)']}
-                style={styles.bookingButtonGradient}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-              >
-                {bookingStatus === 'booked' && (
-                  <Ionicons name="checkmark-circle" size={20} color="#F6F4EF" style={{marginRight: 8}} />
-                )}
-                <Text style={styles.bookingButtonTextBooked}>
-                  {bookingStatus === 'booked' ? 'Booked' : 'Mark as Booked'}
-                </Text>
-              </LinearGradient>
-            </TouchableOpacity>
-            
-            <TouchableOpacity
-              style={[styles.bookingButton, styles.bookingButtonCancel]}
-              onPress={handleMarkCanceled}
-              activeOpacity={0.8}
-              disabled={bookingStatus === 'canceled'}
-            >
-              <LinearGradient
-                colors={bookingStatus === 'canceled' 
-                  ? ['rgba(108,85,80,0.5)', 'rgba(108,85,80,0.4)'] 
-                  : ['rgba(126,85,80,0.7)', 'rgba(108,85,80,0.6)']}
-                style={styles.bookingButtonGradient}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-              >
-                {bookingStatus === 'canceled' && (
-                  <Ionicons name="close-circle" size={20} color="rgba(255,255,255,0.9)" style={{marginRight: 8}} />
-                )}
-                <Text style={styles.bookingButtonTextCancel}>
-                  {bookingStatus === 'canceled' ? 'Canceled' : 'Mark as Canceled'}
-                </Text>
-              </LinearGradient>
-            </TouchableOpacity>
-          </LinearGradient>
-        </BlurView>
-      </View>
-
       {/* Toast Notification */}
       {showToast && (
         <View style={styles.toast}>
