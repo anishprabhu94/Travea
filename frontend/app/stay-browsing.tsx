@@ -515,7 +515,7 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Toggle (Single Pill)
+  // Toggle (Single Pill) - Larger
   toggleOuterContainer: {
     width: '100%',
     alignItems: 'center',
@@ -523,15 +523,15 @@ const styles = StyleSheet.create({
   toggleContainer: {
     flexDirection: 'row',
     backgroundColor: 'rgba(255,255,255,0.05)',
-    borderRadius: 16,
-    padding: 2,
+    borderRadius: 20,
+    padding: 3,
     borderWidth: 0.5,
     borderColor: 'rgba(214,193,152,0.2)',
   },
   toggleSide: {
-    paddingVertical: 7,
-    paddingHorizontal: 18,
-    borderRadius: 14,
+    paddingVertical: 10,
+    paddingHorizontal: 24,
+    borderRadius: 17,
     position: 'relative',
     overflow: 'hidden',
   },
@@ -541,10 +541,10 @@ const styles = StyleSheet.create({
   },
   toggleActiveGradient: {
     ...StyleSheet.absoluteFillObject,
-    borderRadius: 14,
+    borderRadius: 17,
   },
   toggleText: {
-    fontSize: 11,
+    fontSize: 13,
     color: 'rgba(214,193,152,0.5)',
     fontWeight: '500',
     fontFamily: Platform.select({
