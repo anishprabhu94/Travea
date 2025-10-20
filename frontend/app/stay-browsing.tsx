@@ -692,10 +692,6 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  dateChipTextActive: {
-    color: 'rgba(214,193,152,0.95)',
-    fontWeight: '600',
-  },
   
   // Filter Arrow
   filterArrow: {
