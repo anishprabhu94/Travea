@@ -43,7 +43,8 @@ export default function StayBrowsing() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState<'all' | 'boutique' | 'luxury' | 'affordable' | 'featured'>('all');
   const contentOpacity = useState(new Animated.Value(0))[0];
-  const filterSlideAnim = useState(new Animated.Value(-width * 0.6))[0];
+  const filterSlideAnim = useState(new Animated.Value(0))[0];
+  const filterOpacityAnim = useState(new Animated.Value(0))[0];
   
   // Mock trip data
   const tripData = {
