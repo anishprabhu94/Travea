@@ -1095,7 +1095,7 @@ const styles = StyleSheet.create({
   filterArrowContainer: {
     position: 'absolute',
     left: 0,
-    top: 380, // Just below hero
+    top: 384, // Between hero (360px) and filter title
     zIndex: 100,
   },
   filterArrow: {
