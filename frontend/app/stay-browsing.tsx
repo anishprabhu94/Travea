@@ -745,7 +745,7 @@ const styles = StyleSheet.create({
   // EXACT STAY CARD STYLES FROM BOOK-JOURNEY
   stayCard: {
     width: '100%',
-    height: 400,
+    height: 360,
     borderRadius: 24,
     overflow: 'hidden',
   },
