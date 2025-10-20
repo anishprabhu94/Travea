@@ -339,7 +339,7 @@ export default function StayBrowsing() {
                 >
                   {stayMode === 'multi' && (
                     <LinearGradient
-                      colors={['#D9BD78', '#CBAF6B']}
+                      colors={['#C6B27E', '#B8A473']}
                       style={styles.toggleSwitchGradient}
                     />
                   )}
