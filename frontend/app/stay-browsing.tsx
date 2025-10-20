@@ -770,102 +770,123 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   
-  // Filter Tab - Left Edge
-  filterTab: {
+  // Filter Arrow - Left Side (Scroll Locked)
+  filterArrowContainer: {
     position: 'absolute',
-    left: 16,
-    top: '50%',
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    overflow: 'hidden',
+    left: 0,
+    top: 380, // Just below hero
+    zIndex: 100,
+  },
+  filterArrow: {
+    width: 32,
+    height: 48,
+    backgroundColor: 'rgba(15,15,15,0.8)',
+    borderTopRightRadius: 24,
+    borderBottomRightRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRightWidth: 1,
+    borderTopWidth: 0.5,
+    borderBottomWidth: 0.5,
+    borderColor: 'rgba(212,190,132,0.3)',
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(217,189,120,0.3)',
-        shadowOffset: { width: 0, height: 4 },
+        shadowColor: 'rgba(212,190,132,0.2)',
+        shadowOffset: { width: 2, height: 0 },
         shadowOpacity: 1,
-        shadowRadius: 12,
+        shadowRadius: 8,
       },
       android: {
-        elevation: 6,
+        elevation: 4,
+      },
+      web: {
+        boxShadow: '2px 0 8px rgba(212,190,132,0.2)',
       },
     }),
   },
-  filterTabGradient: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 0.5,
-    borderColor: 'rgba(181,155,115,0.3)',
-  },
   
-  // Filter Slide-In Pane
-  filterPane: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    bottom: 0,
-    width: width * 0.6,
-    zIndex: 1000,
+  // Filter Pane - Inline Below Hero
+  filterPaneInline: {
+    width: '80%',
+    alignSelf: 'center',
+    marginTop: 16,
+    marginBottom: 24,
+    borderRadius: 24,
+    overflow: 'hidden',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.3)',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 1,
+        shadowRadius: 16,
+      },
+      android: {
+        elevation: 10,
+      },
+      web: {
+        boxShadow: '0 8px 16px rgba(0,0,0,0.2)',
+      },
+    }),
   },
-  filterPaneGradient: {
-    flex: 1,
-    paddingTop: 80,
-    paddingHorizontal: 20,
+  filterPaneGlass: {
+    padding: 24,
+    borderWidth: 1,
+    borderColor: 'rgba(255,240,210,0.25)',
+    borderRadius: 24,
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(25px)',
+        backdropFilter: 'blur(30px)',
       },
     }),
   },
   filterPaneTitle: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: '600',
-    color: '#F5F4EF',
-    marginBottom: 24,
+    color: '#F6F1E7',
+    marginBottom: 20,
     fontFamily: Platform.select({
-      ios: 'Playfair Display',
-      android: 'serif',
-      web: 'Playfair Display, Georgia, serif',
+      ios: 'Inter',
+      android: 'sans-serif',
+      web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  filterCategories: {
-    gap: 12,
+  filterOptions: {
+    gap: 14,
   },
-  filterPill: {
+  filterOptionPill: {
     paddingVertical: 14,
     paddingHorizontal: 20,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: 'rgba(181,155,115,0.2)',
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    borderColor: 'rgba(207,201,184,0.3)',
+    backgroundColor: 'rgba(255,255,255,0.05)',
     position: 'relative',
     overflow: 'hidden',
   },
-  filterPillActive: {
-    borderColor: 'rgba(217,189,120,0.4)',
+  filterOptionPillActive: {
+    borderColor: 'rgba(212,190,132,0.5)',
   },
-  filterPillGradient: {
+  filterOptionGradient: {
     ...StyleSheet.absoluteFillObject,
     borderRadius: 20,
   },
-  filterPillText: {
+  filterOptionText: {
     fontSize: 15,
-    color: 'rgba(245,244,239,0.6)',
+    color: '#CFC9B8',
     fontWeight: '500',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  filterPillTextActive: {
-    color: '#F5F4EF',
+  filterOptionTextActive: {
+    color: '#FFFFFF',
     fontWeight: '600',
   },
-  filterBackdrop: {
+  filterBlurBackdrop: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    zIndex: 999,
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    zIndex: 90,
   },
   
   // Booking Status Labels
