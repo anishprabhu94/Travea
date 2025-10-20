@@ -503,47 +503,49 @@ export default function StayBrowsing() {
                     colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
                     style={styles.stayCardGradient}
                   />
-                  <View style={styles.stayCardFrosted}>
-                    {/* Date Pill - Top Right */}
-                    <View style={styles.datePill}>
-                      <Text style={styles.datePillText}>{cityStartMonth} {cityStartDay}</Text>
+                  
+                  {/* Date Pill - Top Right */}
+                  <View style={styles.datePill}>
+                    <Text style={styles.datePillText}>{cityStartMonth} {cityStartDay}</Text>
+                  </View>
+                  
+                  {/* Booking Status Label - Top Left of Image */}
+                  {bookedStays.has(stay.id) && (
+                    <View style={styles.bookedLabel}>
+                      <LinearGradient
+                        colors={['rgba(217,189,120,0.25)', 'rgba(217,189,120,0.05)']}
+                        style={styles.bookedLabelGradient}
+                      >
+                        <Text style={styles.bookedLabelText}>BOOKED</Text>
+                      </LinearGradient>
                     </View>
-                    
-                    {/* Booking Status Label - Top Left of Image */}
-                    {bookedStays.has(stay.id) && (
-                      <View style={styles.bookedLabel}>
-                        <LinearGradient
-                          colors={['rgba(217,189,120,0.25)', 'rgba(217,189,120,0.05)']}
-                          style={styles.bookedLabelGradient}
-                        >
-                          <Text style={styles.bookedLabelText}>BOOKED</Text>
-                        </LinearGradient>
-                      </View>
-                    )}
-                    
-                    {canceledStays.has(stay.id) && (
-                      <View style={styles.canceledLabel}>
-                        <LinearGradient
-                          colors={['rgba(160,160,160,0.2)', 'rgba(100,100,100,0.05)']}
-                          style={styles.canceledLabelGradient}
-                        >
-                          <Text style={styles.canceledLabelText}>CANCELED</Text>
-                        </LinearGradient>
-                      </View>
-                    )}
-                    
-                    {/* Save Heart - Top Right of Image (outside frosted pane) */}
-                    <TouchableOpacity
-                      style={styles.saveHeartTopRight}
-                      onPress={() => handleSaveStay(stay.id)}
-                      activeOpacity={0.7}
-                    >
-                      <Ionicons
-                        name={savedStays.has(stay.id) ? 'heart' : 'heart-outline'}
-                        size={22}
-                        color={savedStays.has(stay.id) ? '#CBB88C' : 'rgba(255,255,255,0.7)'}
-                      />
-                    </TouchableOpacity>
+                  )}
+                  
+                  {canceledStays.has(stay.id) && (
+                    <View style={styles.canceledLabel}>
+                      <LinearGradient
+                        colors={['rgba(160,160,160,0.2)', 'rgba(100,100,100,0.05)']}
+                        style={styles.canceledLabelGradient}
+                      >
+                        <Text style={styles.canceledLabelText}>CANCELED</Text>
+                      </LinearGradient>
+                    </View>
+                  )}
+                  
+                  {/* Save Heart - Top Right of Image */}
+                  <TouchableOpacity
+                    style={styles.saveHeartTopRight}
+                    onPress={() => handleSaveStay(stay.id)}
+                    activeOpacity={0.7}
+                  >
+                    <Ionicons
+                      name={savedStays.has(stay.id) ? 'heart' : 'heart-outline'}
+                      size={22}
+                      color={savedStays.has(stay.id) ? '#CBB88C' : 'rgba(255,255,255,0.7)'}
+                    />
+                  </TouchableOpacity>
+                  
+                  <View style={styles.stayCardFrosted}>
 
                     <Text style={styles.stayCardName}>{stay.name}</Text>
                     <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
