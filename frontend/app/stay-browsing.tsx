@@ -797,19 +797,18 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Stay Selection Toggle Dock
-  staySelectionDock: {
+  // Toggle Switch (Single Stay / Multi-Stay)
+  toggleSwitchContainer: {
     flexDirection: 'row',
-    backgroundColor: 'rgba(34,34,34,0.4)',
+    backgroundColor: 'rgba(34,34,34,0.5)',
     borderRadius: 24,
     padding: 4,
     width: '100%',
     marginTop: 14,
-    gap: 8,
   },
-  toggleBtn: {
+  toggleSwitchOption: {
     flex: 1,
-    paddingVertical: 14,
+    paddingVertical: 12,
     paddingHorizontal: 16,
     borderRadius: 20,
     alignItems: 'center',
@@ -817,15 +816,15 @@ const styles = StyleSheet.create({
     position: 'relative',
     overflow: 'hidden',
   },
-  toggleBtnActive: {
+  toggleSwitchOptionActive: {
     // Gradient overlay
   },
-  toggleGradient: {
+  toggleSwitchGradient: {
     ...StyleSheet.absoluteFillObject,
     borderRadius: 20,
   },
-  toggleBtnText: {
-    fontSize: 13,
+  toggleSwitchText: {
+    fontSize: 14,
     color: 'rgba(245,244,239,0.6)',
     fontWeight: '600',
     fontFamily: Platform.select({
@@ -833,7 +832,7 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  toggleBtnTextActive: {
+  toggleSwitchTextActive: {
     color: '#FFFFFF',
   },
   
