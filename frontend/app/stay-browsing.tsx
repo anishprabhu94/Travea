@@ -428,6 +428,62 @@ export default function StayBrowsing() {
           })}
         </View>
       </Animated.ScrollView>
+      
+      {/* Bottom Dock - Exact from Landing Page */}
+      <Animated.View 
+        style={[
+          styles.bottomDock,
+          {
+            opacity: dockAnim,
+            transform: [{
+              translateY: dockAnim.interpolate({
+                inputRange: [0, 1],
+                outputRange: [100, 0]
+              })
+            }]
+          }
+        ]}
+      >
+        <BlurView intensity={20} tint="light" style={styles.dockContainer}>
+          <View style={styles.dockContent}>
+            <TouchableOpacity 
+              style={styles.dockItem} 
+              activeOpacity={0.8}
+              onPress={() => router.push('/landing')}
+            >
+              <Ionicons name="home" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>Home</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.dockItem} 
+              activeOpacity={0.8}
+              onPress={() => router.push('/bookings')}
+            >
+              <Ionicons name="calendar" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.dockItem} 
+              activeOpacity={0.8}
+              onPress={() => router.push('/trips')}
+            >
+              <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>My Trips</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.dockItem} 
+              activeOpacity={0.8}
+              onPress={() => router.push('/concierge')}
+            >
+              <Ionicons name="chatbubble-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Text style={styles.dockLabelInactive}>Concierge</Text>
+            </TouchableOpacity>
+          </View>
+        </BlurView>
+      </Animated.View>
     </View>
   );
 }
