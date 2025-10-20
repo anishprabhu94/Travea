@@ -26,6 +26,29 @@ export default function StayBrowsing() {
   const cityEndMonth = params.endMonth as string || 'Jun';
   const cityEndDay = params.endDay as string || '13';
   
+  // State
+  const [savedStays, setSavedStays] = useState<Set<string>>(new Set());
+  const [bookedStays, setBookedStays] = useState<Set<string>>(new Set());
+  const [canceledStays, setCanceledStays] = useState<Set<string>>(new Set());
+  const [stayMode, setStayMode] = useState<'single' | 'multi'>('single');
+  const [selectedDateRange, setSelectedDateRange] = useState<{start: number | null, end: number | null}>({start: null, end: null});
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [activeFilter, setActiveFilter] = useState<'all' | 'boutique' | 'luxury' | 'affordable' | 'featured'>('all');
+  const contentOpacity = useState(new Animated.Value(0))[0];
+  const filterSlideAnim = useState(new Animated.Value(0))[0];
+  const filterOpacityAnim = useState(new Animated.Value(0))[0];
+  const dockAnim = useState(new Animated.Value(0))[0];
+  
+  // Calculate nights based on mode
+  const calculateNights = () => {
+    if (stayMode === 'multi' && selectedDateRange.start && selectedDateRange.end) {
+      return selectedDateRange.end - selectedDateRange.start;
+    }
+    const start = parseInt(cityStartDay);
+    const end = parseInt(cityEndDay);
+    return end - start;
+  };
+  
   const totalNights = calculateNights();
   
   // Generate date range for city
