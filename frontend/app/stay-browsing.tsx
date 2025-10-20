@@ -418,51 +418,6 @@ export default function StayBrowsing() {
           })}
         </View>
       </Animated.ScrollView>
-      
-      {/* Filter Slide-In Pane */}
-      <Animated.View 
-        style={[
-          styles.filterPane,
-          { transform: [{ translateX: filterSlideAnim }] }
-        ]}
-      >
-        <LinearGradient
-          colors={['rgba(15,15,15,0.95)', 'rgba(15,15,15,0.98)']}
-          style={styles.filterPaneGradient}
-        >
-          <Text style={styles.filterPaneTitle}>Filters</Text>
-          
-          <View style={styles.filterCategories}>
-            {['all', 'boutique', 'luxury', 'affordable', 'featured'].map(filter => (
-              <TouchableOpacity
-                key={filter}
-                style={[styles.filterPill, activeFilter === filter && styles.filterPillActive]}
-                onPress={() => setActiveFilter(filter as any)}
-                activeOpacity={0.7}
-              >
-                {activeFilter === filter && (
-                  <LinearGradient
-                    colors={['rgba(217,189,120,0.3)', 'rgba(217,189,120,0.2)']}
-                    style={styles.filterPillGradient}
-                  />
-                )}
-                <Text style={[styles.filterPillText, activeFilter === filter && styles.filterPillTextActive]}>
-                  {filter.charAt(0).toUpperCase() + filter.slice(1)}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        </LinearGradient>
-      </Animated.View>
-      
-      {/* Filter Pane Backdrop */}
-      {filterOpen && (
-        <TouchableOpacity
-          style={styles.filterBackdrop}
-          activeOpacity={1}
-          onPress={toggleFilterPane}
-        />
-      )}
     </View>
   );
 }
