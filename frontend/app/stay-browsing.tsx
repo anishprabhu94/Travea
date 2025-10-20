@@ -104,6 +104,16 @@ export default function StayBrowsing() {
     heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
   };
   
+  // Calculate nights based on mode
+  const calculateNights = () => {
+    if (stayMode === 'multi' && selectedDateRange.start && selectedDateRange.end) {
+      return selectedDateRange.end - selectedDateRange.start;
+    }
+    const start = parseInt(cityStartDay);
+    const end = parseInt(cityEndDay);
+    return end - start;
+  };
+  
   // Mock stay data
   const mockStays = [
     {
