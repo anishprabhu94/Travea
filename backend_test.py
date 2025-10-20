@@ -10,7 +10,7 @@ import os
 from typing import Dict, Any
 
 # Get backend URL from environment
-BACKEND_URL = os.getenv('EXPO_PUBLIC_BACKEND_URL', 'https://journey-hub-46.preview.emergentagent.com')
+BACKEND_URL = os.getenv('EXPO_PUBLIC_BACKEND_URL', 'https://voyager-canvas.preview.emergentagent.com')
 API_BASE = f"{BACKEND_URL}/api"
 
 class ConciergeAPITester:
