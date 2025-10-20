@@ -455,6 +455,13 @@ export default function StayBrowsing() {
           />
         )}
         
+        {/* Filter Title Above Cards */}
+        <View style={styles.filterTitleContainer}>
+          <Text style={styles.filterTitleText}>
+            {activeFilter === 'all' ? 'For You' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}
+          </Text>
+        </View>
+        
         {/* Stay Cards Section - EXACT FROM BOOK-JOURNEY */}
         <View style={styles.stayCardsSection}>
           {mockStays.map((stay, idx) => {
