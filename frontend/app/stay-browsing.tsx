@@ -28,12 +28,70 @@ export default function StayBrowsing() {
   
   // Calculate nights
   const calculateNights = () => {
+    if (stayMode === 'multi' && selectedDateRange.start && selectedDateRange.end) {
+      return selectedDateRange.end - selectedDateRange.start;
+    }
     const start = parseInt(cityStartDay);
     const end = parseInt(cityEndDay);
     return end - start;
   };
   
   const totalNights = calculateNights();
+  
+  // Generate date range for city
+  const generateDateRange = () => {
+    const dates = [];
+    const start = parseInt(cityStartDay);
+    const end = parseInt(cityEndDay);
+    for (let i = start; i <= end; i++) {
+      dates.push(i);
+    }
+    return dates;
+  };
+  
+  const cityDates = generateDateRange();
+  
+  // Handle date selection for Multi-Stay
+  const handleDateSelection = (date: number) => {
+    if (stayMode !== 'multi') return;
+    
+    // Check if date is booked
+    const isBooked = Array.from(bookedStays).some(stayId => {
+      // In real implementation, check if this date is covered by a booked stay
+      return false;
+    });
+    
+    if (isBooked) return;
+    
+    if (!selectedDateRange.start) {
+      // First tap - set start
+      setSelectedDateRange({ start: date, end: null });
+    } else if (!selectedDateRange.end) {
+      // Second tap - set end
+      if (date <= selectedDateRange.start) {
+        // If end is before or equal to start, treat as new start
+        setSelectedDateRange({ start: date, end: null });
+      } else {
+        setSelectedDateRange({ start: selectedDateRange.start, end: date });
+      }
+    } else {
+      // Already have range - start new selection
+      setSelectedDateRange({ start: date, end: null });
+    }
+  };
+  
+  // Check if date is in selected range
+  const isDateInRange = (date: number) => {
+    if (!selectedDateRange.start) return false;
+    if (!selectedDateRange.end) return date === selectedDateRange.start;
+    return date >= selectedDateRange.start && date <= selectedDateRange.end;
+  };
+  
+  // Check if date is booked (placeholder logic)
+  const isDateBooked = (date: number) => {
+    // In real implementation, check against bookedStays data
+    return false;
+  };
   
   // State
   const [savedStays, setSavedStays] = useState<Set<string>>(new Set());
