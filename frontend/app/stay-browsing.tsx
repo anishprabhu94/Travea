@@ -752,16 +752,31 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 40,
   },
+  // Filter Title - Muted Bronze Pill
+  filterTitleContainer: {
+    paddingHorizontal: 20,
+    marginBottom: 16,
+  },
+  filterTitlePill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 16,
+    borderWidth: 0.5,
+    borderColor: 'rgba(156,142,106,0.4)',
+    gap: 8,
+  },
   filterTitleText: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '600',
-    color: 'rgba(214,193,152,0.95)',
+    color: '#FFFFFF',
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
     }),
-    marginBottom: 16,
   },
   stayGrid: {
     gap: 18,
