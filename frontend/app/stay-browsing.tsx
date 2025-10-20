@@ -669,13 +669,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   
-  // Frosted Bottom Pane - Santa Caterina Style (35% height)
+  // Frosted Bottom Pane - Santa Caterina Style (40% height)
   cardFrostedPane: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    height: '35%',
+    height: '40%',
     backgroundColor: 'rgba(15,15,15,0.55)',
     paddingHorizontal: 20,
     paddingTop: 12,
