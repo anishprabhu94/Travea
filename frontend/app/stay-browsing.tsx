@@ -705,7 +705,6 @@ const styles = StyleSheet.create({
   heroDateChipTextActive: {
     color: 'rgba(214,193,152,0.95)',
     fontWeight: '600',
-  },
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
