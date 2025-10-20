@@ -1406,10 +1406,11 @@ const styles = StyleSheet.create({
   },
   canceledLabel: {
     position: 'absolute',
-    top: -290,
+    top: 12,
     left: 12,
     borderRadius: 12,
     overflow: 'hidden',
+    zIndex: 10,
   },
   canceledLabelGradient: {
     paddingVertical: 6,
