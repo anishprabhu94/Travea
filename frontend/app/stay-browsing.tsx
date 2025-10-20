@@ -183,17 +183,6 @@ export default function StayBrowsing() {
       </ImageBackground>
       
       <Animated.View style={[styles.contentWrapper, { opacity: contentOpacity }]}>
-        {/* Header with Back Button */}
-        <View style={styles.header}>
-          <TouchableOpacity
-            style={styles.backButton}
-            onPress={() => router.back()}
-            activeOpacity={0.7}
-          >
-            <Ionicons name="arrow-back" size={24} color="rgba(241,239,234,0.9)" />
-          </TouchableOpacity>
-        </View>
-        
         {/* Hero Section - EXACT Trip Canvas Structure */}
         <View style={styles.heroContainer}>
           <ImageBackground
