@@ -432,32 +432,46 @@ const styles = StyleSheet.create({
     paddingBottom: 100,
   },
   
-  // Hero Module - Trip Canvas Style (Modular Container)
+  // Hero Module - Modular Container (92% width, centered)
   heroModule: {
-    marginHorizontal: 16,
+    width: '92%',
+    alignSelf: 'center',
     marginBottom: 24,
     borderRadius: 28,
     overflow: 'hidden',
     backgroundColor: 'rgba(15,15,15,0.6)',
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(0,0,0,0.08)',
+        shadowColor: 'rgba(217,189,120,0.08)',
         shadowOffset: { width: 0, height: 8 },
         shadowOpacity: 1,
-        shadowRadius: 24,
+        shadowRadius: 25,
       },
       android: {
-        elevation: 8,
+        elevation: 10,
       },
     }),
   },
   heroImageBackground: {
     width: '100%',
-    height: 280,
+    height: height * 0.4,
   },
   heroImageStyle: {
-    opacity: 0.7,
+    opacity: 0.75,
     borderRadius: 28,
+  },
+  backButton: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(245,244,239,0.2)',
   },
   heroFrostedContainer: {
     position: 'absolute',
@@ -466,8 +480,8 @@ const styles = StyleSheet.create({
     right: 0,
     backgroundColor: 'rgba(15,15,15,0.6)',
     paddingHorizontal: 20,
-    paddingTop: 20,
-    paddingBottom: 24,
+    paddingTop: 18,
+    paddingBottom: 20,
     borderBottomLeftRadius: 28,
     borderBottomRightRadius: 28,
     alignItems: 'center',
@@ -479,21 +493,8 @@ const styles = StyleSheet.create({
     right: 0,
     height: 2,
   },
-  backButton: {
-    position: 'absolute',
-    top: -220,
-    left: 20,
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: 'rgba(232,217,166,0.3)',
-  },
   heroTitle: {
-    fontSize: 22,
+    fontSize: 23,
     fontWeight: '600',
     color: '#F5F4EF',
     fontFamily: Platform.select({
@@ -505,7 +506,7 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   heroSubtext: {
-    fontSize: 14,
+    fontSize: 13,
     color: '#E8D9A6',
     fontFamily: Platform.select({
       ios: 'Inter',
@@ -515,43 +516,45 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   cityPillContainer: {
-    marginBottom: 16,
+    marginBottom: 14,
   },
   cityPill: {
-    paddingVertical: 8,
-    paddingHorizontal: 20,
-    borderRadius: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 18,
+    borderRadius: 18,
     borderWidth: 1,
     borderColor: 'rgba(217,189,120,0.3)',
   },
   cityPillText: {
-    fontSize: 12,
+    fontSize: 13,
     fontWeight: '600',
-    color: 'rgba(217,189,120,0.95)',
+    color: '#FFFFFF',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
   
-  // Toggle - Trip Canvas Style
-  toggleContainer: {
+  // Toggle Dock - Smoky Black Glass Background
+  toggleDock: {
     flexDirection: 'row',
-    backgroundColor: 'rgba(34,34,34,0.4)',
+    backgroundColor: 'rgba(25,25,25,0.55)',
     borderRadius: 24,
-    padding: 4,
+    padding: 6,
     width: '100%',
-    marginBottom: 16,
   },
   toggleButton: {
     flex: 1,
-    paddingVertical: 16,
-    paddingHorizontal: 32,
+    paddingVertical: 14,
+    paddingHorizontal: 20,
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
     overflow: 'hidden',
+  },
+  toggleSpacer: {
+    width: 12,
   },
   toggleButtonActive: {
     // Active state handled by gradient
@@ -561,9 +564,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   toggleText: {
-    fontSize: 13,
-    color: 'rgba(246,244,239,0.6)',
-    fontWeight: '500',
+    fontSize: 14,
+    color: 'rgba(245,244,239,0.6)',
+    fontWeight: '600',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
@@ -575,6 +578,9 @@ const styles = StyleSheet.create({
   },
   
   // Date Chips
+  dateChipsScroll: {
+    marginTop: 14,
+  },
   dateChipsContainer: {
     paddingHorizontal: 8,
     gap: 10,
