@@ -268,6 +268,29 @@ export default function StayBrowsing() {
                       <Text style={styles.datePillText}>{cityStartMonth} {cityStartDay}</Text>
                     </View>
                     
+                    {/* Booking Status Label - Top Left of Image */}
+                    {bookedStays.has(stay.id) && (
+                      <View style={styles.bookedLabel}>
+                        <LinearGradient
+                          colors={['rgba(217,189,120,0.25)', 'rgba(217,189,120,0.05)']}
+                          style={styles.bookedLabelGradient}
+                        >
+                          <Text style={styles.bookedLabelText}>BOOKED</Text>
+                        </LinearGradient>
+                      </View>
+                    )}
+                    
+                    {canceledStays.has(stay.id) && (
+                      <View style={styles.canceledLabel}>
+                        <LinearGradient
+                          colors={['rgba(160,160,160,0.2)', 'rgba(100,100,100,0.05)']}
+                          style={styles.canceledLabelGradient}
+                        >
+                          <Text style={styles.canceledLabelText}>CANCELED</Text>
+                        </LinearGradient>
+                      </View>
+                    )}
+                    
                     {/* Save Heart */}
                     <TouchableOpacity
                       style={styles.saveHeart}
