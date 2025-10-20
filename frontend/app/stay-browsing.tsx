@@ -39,13 +39,14 @@ export default function StayBrowsing() {
   const [savedStays, setSavedStays] = useState<Set<string>>(new Set());
   const [bookedStays, setBookedStays] = useState<Set<string>>(new Set());
   const [canceledStays, setCanceledStays] = useState<Set<string>>(new Set());
-  const [stayMode, setStayMode] = useState<'entire-city' | 'select-dates'>('entire-city');
-  const [selectedDates, setSelectedDates] = useState<string[]>([]);
+  const [stayMode, setStayMode] = useState<'single' | 'multi'>('single');
+  const [selectedDateRange, setSelectedDateRange] = useState<{start: number | null, end: number | null}>({start: null, end: null});
   const [filterOpen, setFilterOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState<'all' | 'boutique' | 'luxury' | 'affordable' | 'featured'>('all');
   const contentOpacity = useState(new Animated.Value(0))[0];
   const filterSlideAnim = useState(new Animated.Value(0))[0];
   const filterOpacityAnim = useState(new Animated.Value(0))[0];
+  const dockAnim = useState(new Animated.Value(0))[0];
   
   // Mock trip data
   const tripData = {
