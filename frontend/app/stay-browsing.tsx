@@ -1241,20 +1241,20 @@ const styles = StyleSheet.create({
   // Cinematic Filter Pane - New Design
   cinematicBackdrop: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.35)',
+    backgroundColor: 'rgba(0,0,0,0.45)',
     zIndex: 999,
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(26px)',
+        backdropFilter: 'blur(36px)',
       },
     }),
   },
   filterPaneFloating: {
     position: 'absolute',
-    top: '20%',
-    left: '10%',
-    right: '10%',
-    maxHeight: '65%',
+    top: '25%',
+    left: '15%',
+    right: '15%',
+    maxHeight: '55%',
     borderRadius: 18,
     overflow: 'hidden',
     zIndex: 1000,
@@ -1274,11 +1274,11 @@ const styles = StyleSheet.create({
     }),
   },
   filterPaneGlassNew: {
-    padding: 24,
+    padding: 20,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.12)',
+    borderColor: 'rgba(255,255,255,0.15)',
     borderRadius: 18,
-    minHeight: 300,
+    minHeight: 280,
   },
   filterPaneTopGradient: {
     position: 'absolute',
