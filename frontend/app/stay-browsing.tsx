@@ -858,6 +858,7 @@ const styles = StyleSheet.create({
     right: 0,
     backgroundColor: 'rgba(20,20,20,0.55)',
     padding: 20,
+    minHeight: 220,
     borderBottomLeftRadius: 24,
     borderBottomRightRadius: 24,
     borderTopWidth: 0.5,
