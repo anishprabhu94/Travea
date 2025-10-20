@@ -186,17 +186,17 @@ export default function StayBrowsing() {
               style={styles.heroGradient}
             />
             
+            {/* Back Button - Top Left (White Arrow) */}
+            <TouchableOpacity
+              style={styles.backButtonTopLeft}
+              onPress={() => router.back()}
+              activeOpacity={0.7}
+            >
+              <Ionicons name="arrow-back" size={24} color="#FFFFFF" />
+            </TouchableOpacity>
+            
             {/* Frosted pane container for hero content */}
             <View style={styles.heroFrostedPane}>
-              {/* Back Button - Top Left */}
-              <TouchableOpacity
-                style={styles.backButton}
-                onPress={() => router.back()}
-                activeOpacity={0.7}
-              >
-                <Ionicons name="arrow-back" size={20} color="rgba(181,155,115,0.9)" />
-              </TouchableOpacity>
-              
               <View style={styles.heroTitleContainer}>
                 <Text style={styles.heroTitle}>{tripData.title}</Text>
               </View>
@@ -220,37 +220,37 @@ export default function StayBrowsing() {
                 </LinearGradient>
               </View>
               
-              {/* Stay Selection Toggle */}
-              <View style={styles.staySelectionDock}>
+              {/* Stay Mode Toggle Switch */}
+              <View style={styles.toggleSwitchContainer}>
                 <TouchableOpacity
-                  style={[styles.toggleBtn, stayMode === 'entire-city' && styles.toggleBtnActive]}
-                  onPress={() => setStayMode('entire-city')}
+                  style={[styles.toggleSwitchOption, stayMode === 'single' && styles.toggleSwitchOptionActive]}
+                  onPress={() => setStayMode('single')}
                   activeOpacity={0.7}
                 >
-                  {stayMode === 'entire-city' && (
+                  {stayMode === 'single' && (
                     <LinearGradient
                       colors={['#D9BD78', '#CBAF6B']}
-                      style={styles.toggleGradient}
+                      style={styles.toggleSwitchGradient}
                     />
                   )}
-                  <Text style={[styles.toggleBtnText, stayMode === 'entire-city' && styles.toggleBtnTextActive]}>
-                    One Stay for Entire City
+                  <Text style={[styles.toggleSwitchText, stayMode === 'single' && styles.toggleSwitchTextActive]}>
+                    Single Stay
                   </Text>
                 </TouchableOpacity>
                 
                 <TouchableOpacity
-                  style={[styles.toggleBtn, stayMode === 'select-dates' && styles.toggleBtnActive]}
-                  onPress={() => setStayMode('select-dates')}
+                  style={[styles.toggleSwitchOption, stayMode === 'multi' && styles.toggleSwitchOptionActive]}
+                  onPress={() => setStayMode('multi')}
                   activeOpacity={0.7}
                 >
-                  {stayMode === 'select-dates' && (
+                  {stayMode === 'multi' && (
                     <LinearGradient
                       colors={['#D9BD78', '#CBAF6B']}
-                      style={styles.toggleGradient}
+                      style={styles.toggleSwitchGradient}
                     />
                   )}
-                  <Text style={[styles.toggleBtnText, stayMode === 'select-dates' && styles.toggleBtnTextActive]}>
-                    Select Dates
+                  <Text style={[styles.toggleSwitchText, stayMode === 'multi' && styles.toggleSwitchTextActive]}>
+                    Multi-Stay
                   </Text>
                 </TouchableOpacity>
               </View>
