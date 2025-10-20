@@ -106,11 +106,19 @@ export default function StayBrowsing() {
   
   // Entry animation
   useEffect(() => {
-    Animated.timing(contentOpacity, {
-      toValue: 1,
-      duration: 400,
-      useNativeDriver: true,
-    }).start();
+    Animated.parallel([
+      Animated.timing(contentOpacity, {
+        toValue: 1,
+        duration: 400,
+        useNativeDriver: true,
+      }),
+      Animated.timing(dockAnim, {
+        toValue: 1,
+        duration: 600,
+        delay: 200,
+        useNativeDriver: true,
+      }),
+    ]).start();
   }, []);
   
   // Toggle filter pane
