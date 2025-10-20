@@ -113,13 +113,36 @@ export default function StayBrowsing() {
   
   // Toggle filter pane
   const toggleFilterPane = () => {
-    const toValue = filterOpen ? -width * 0.6 : 0;
-    Animated.timing(filterSlideAnim, {
-      toValue,
-      duration: 300,
-      useNativeDriver: true,
-    }).start();
-    setFilterOpen(!filterOpen);
+    if (filterOpen) {
+      // Close animation
+      Animated.parallel([
+        Animated.timing(filterSlideAnim, {
+          toValue: 0,
+          duration: 250,
+          useNativeDriver: true,
+        }),
+        Animated.timing(filterOpacityAnim, {
+          toValue: 0,
+          duration: 250,
+          useNativeDriver: true,
+        }),
+      ]).start(() => setFilterOpen(false));
+    } else {
+      // Open animation
+      setFilterOpen(true);
+      Animated.parallel([
+        Animated.timing(filterSlideAnim, {
+          toValue: 1,
+          duration: 300,
+          useNativeDriver: true,
+        }),
+        Animated.timing(filterOpacityAnim, {
+          toValue: 1,
+          duration: 300,
+          useNativeDriver: true,
+        }),
+      ]).start();
+    }
   };
   
   const handleSaveStay = (stayId: string) => {
