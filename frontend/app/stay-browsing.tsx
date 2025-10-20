@@ -194,97 +194,116 @@ export default function StayBrowsing() {
           </TouchableOpacity>
         </View>
         
-        {/* Hero Section - EXACT Trip Canvas Style */}
-        <View style={styles.heroSection}>
-          <Text style={styles.heroTitle}>{tripData.title}</Text>
-          <View style={styles.heroMetaRow}>
-            <Text style={styles.heroMeta}>
-              <Text style={{fontWeight: '700'}}>{tripData.dates}</Text>
-              {' · '}
-              <Text style={{fontWeight: '700'}}>{tripData.travelers} Travelers</Text>
-            </Text>
-          </View>
+        {/* Hero Section - EXACT Trip Canvas Structure */}
+        <View style={styles.heroContainer}>
+          <ImageBackground
+            source={{ uri: tripData.cityImage }}
+            style={styles.heroBackground}
+            imageStyle={styles.heroBackgroundImage}
+          >
+            <View style={styles.heroBackgroundOverlay} />
+          </ImageBackground>
           
-          {/* City Pill */}
-          <View style={styles.cityPillContainer}>
-            <LinearGradient
-              colors={['rgba(214,193,152,0.25)', 'rgba(214,193,152,0.15)']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.cityPill}
+          <View style={styles.heroFrostedPane}>
+            {/* Back Button */}
+            <TouchableOpacity
+              style={styles.backButtonHero}
+              onPress={() => router.back()}
+              activeOpacity={0.7}
             >
-              <Text style={styles.cityPillText}>{cityName}</Text>
-            </LinearGradient>
-          </View>
-          
-          {/* Single Toggle Container */}
-          <View style={styles.toggleOuterContainer}>
-            <View style={styles.toggleContainer}>
+              <Ionicons name="arrow-back" size={20} color="rgba(214,193,152,0.9)" />
+            </TouchableOpacity>
+            
+            {/* Trip Title */}
+            <Text style={styles.heroTripTitle}>{tripData.title}</Text>
+            
+            {/* Dates & Travelers */}
+            <View style={styles.heroMetaRow}>
+              <Text style={styles.heroMeta}>
+                {tripData.dates} · {tripData.travelers} Travelers
+              </Text>
+            </View>
+            
+            {/* City Pill */}
+            <View style={styles.heroCityPillContainer}>
+              <LinearGradient
+                colors={['rgba(214,193,152,0.25)', 'rgba(214,193,152,0.15)']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.heroCityPill}
+              >
+                <Text style={styles.heroCityPillText}>{cityName}</Text>
+              </LinearGradient>
+            </View>
+            
+            {/* Toggle */}
+            <View style={styles.heroToggleContainer}>
               <TouchableOpacity
-                style={[styles.toggleSide, toggleMode === 'single' && styles.toggleSideActive]}
+                style={[styles.heroToggleSide, toggleMode === 'single' && styles.heroToggleSideActive]}
                 onPress={() => setToggleMode('single')}
                 activeOpacity={0.7}
               >
                 {toggleMode === 'single' && (
                   <LinearGradient
                     colors={['rgba(214,193,152,0.3)', 'rgba(214,193,152,0.2)']}
-                    style={styles.toggleActiveGradient}
+                    style={styles.heroToggleGradient}
                   />
                 )}
-                <Text style={[styles.toggleText, toggleMode === 'single' && styles.toggleTextActive]}>
+                <Text style={[styles.heroToggleText, toggleMode === 'single' && styles.heroToggleTextActive]}>
                   Single Stay
                 </Text>
               </TouchableOpacity>
               
               <TouchableOpacity
-                style={[styles.toggleSide, toggleMode === 'multiple' && styles.toggleSideActive]}
+                style={[styles.heroToggleSide, toggleMode === 'multiple' && styles.heroToggleSideActive]}
                 onPress={() => setToggleMode('multiple')}
                 activeOpacity={0.7}
               >
                 {toggleMode === 'multiple' && (
                   <LinearGradient
                     colors={['rgba(214,193,152,0.3)', 'rgba(214,193,152,0.2)']}
-                    style={styles.toggleActiveGradient}
+                    style={styles.heroToggleGradient}
                   />
                 )}
-                <Text style={[styles.toggleText, toggleMode === 'multiple' && styles.toggleTextActive]}>
+                <Text style={[styles.heroToggleText, toggleMode === 'multiple' && styles.heroToggleTextActive]}>
                   Multiple Stays
                 </Text>
               </TouchableOpacity>
             </View>
+            
+            {/* Date Chips - Center Aligned */}
+            {toggleMode === 'multiple' && (
+              <View style={styles.heroDateChipsContainer}>
+                <ScrollView 
+                  horizontal 
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={styles.heroDateChipsContent}
+                >
+                  {dateChips.map(date => {
+                    const isSelected = selectedDates.includes(date);
+                    return (
+                      <TouchableOpacity
+                        key={date}
+                        style={[styles.heroDateChip, isSelected && styles.heroDateChipActive]}
+                        onPress={() => handleDateToggle(date)}
+                        activeOpacity={0.7}
+                      >
+                        {isSelected && (
+                          <LinearGradient
+                            colors={['rgba(214,193,152,0.4)', 'rgba(214,193,152,0.3)']}
+                            style={styles.heroDateChipGradient}
+                          />
+                        )}
+                        <Text style={[styles.heroDateChipText, isSelected && styles.heroDateChipTextActive]}>
+                          {date}
+                        </Text>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </ScrollView>
+              </View>
+            )}
           </View>
-          
-          {/* Date Selector for Multiple Stays */}
-          {toggleMode === 'multiple' && (
-            <ScrollView 
-              horizontal 
-              showsHorizontalScrollIndicator={false}
-              style={styles.dateChipsScroll}
-              contentContainerStyle={styles.dateChipsContent}
-            >
-              {dateChips.map(date => {
-                const isSelected = selectedDates.includes(date);
-                return (
-                  <TouchableOpacity
-                    key={date}
-                    style={[styles.dateChip, isSelected && styles.dateChipActive]}
-                    onPress={() => handleDateToggle(date)}
-                    activeOpacity={0.7}
-                  >
-                    {isSelected && (
-                      <LinearGradient
-                        colors={['rgba(214,193,152,0.4)', 'rgba(214,193,152,0.3)']}
-                        style={styles.dateChipGradient}
-                      />
-                    )}
-                    <Text style={[styles.dateChipText, isSelected && styles.dateChipTextActive]}>
-                      {date}
-                    </Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </ScrollView>
-          )}
         </View>
         
         {/* Filter Arrow (Always Visible) */}
