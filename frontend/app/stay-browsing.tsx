@@ -110,6 +110,17 @@ export default function StayBrowsing() {
     }).start();
   }, []);
   
+  // Toggle filter pane
+  const toggleFilterPane = () => {
+    const toValue = filterOpen ? -width * 0.6 : 0;
+    Animated.timing(filterSlideAnim, {
+      toValue,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+    setFilterOpen(!filterOpen);
+  };
+  
   const handleSaveStay = (stayId: string) => {
     setSavedStays(prev => {
       const newSet = new Set(prev);
