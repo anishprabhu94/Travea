@@ -736,9 +736,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cityPill: {
-    paddingVertical: 8,
-    paddingHorizontal: 20,
-    borderRadius: 20,
+    paddingVertical: 6,
+    paddingHorizontal: 16,
+    borderRadius: 16,
     borderWidth: 1,
     borderColor: 'rgba(181,155,115,0.3)',
   },
