@@ -100,43 +100,6 @@ export default function StayBrowsing() {
     return date >= selectedDateRange.start && date <= selectedDateRange.end;
   };
   
-  // Check if date is booked (placeholder logic)
-  const isDateBooked = (date: number) => {
-    // In real implementation, check against bookedStays data
-    return false;
-  };
-  
-  // State
-  const [savedStays, setSavedStays] = useState<Set<string>>(new Set());
-  const [bookedStays, setBookedStays] = useState<Set<string>>(new Set());
-  const [canceledStays, setCanceledStays] = useState<Set<string>>(new Set());
-  const [stayMode, setStayMode] = useState<'single' | 'multi'>('single');
-  const [selectedDateRange, setSelectedDateRange] = useState<{start: number | null, end: number | null}>({start: null, end: null});
-  const [filterOpen, setFilterOpen] = useState(false);
-  const [activeFilter, setActiveFilter] = useState<'all' | 'boutique' | 'luxury' | 'affordable' | 'featured'>('all');
-  const contentOpacity = useState(new Animated.Value(0))[0];
-  const filterSlideAnim = useState(new Animated.Value(0))[0];
-  const filterOpacityAnim = useState(new Animated.Value(0))[0];
-  const dockAnim = useState(new Animated.Value(0))[0];
-  
-  // Mock trip data
-  const tripData = {
-    title: 'Italian Renaissance Circuit',
-    dates: `${cityStartMonth} ${cityStartDay}–${cityEndMonth} ${cityEndDay}`,
-    travelers: 2,
-    heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
-  };
-  
-  // Calculate nights based on mode
-  const calculateNights = () => {
-    if (stayMode === 'multi' && selectedDateRange.start && selectedDateRange.end) {
-      return selectedDateRange.end - selectedDateRange.start;
-    }
-    const start = parseInt(cityStartDay);
-    const end = parseInt(cityEndDay);
-    return end - start;
-  };
-  
   // Mock stay data
   const mockStays = [
     {
