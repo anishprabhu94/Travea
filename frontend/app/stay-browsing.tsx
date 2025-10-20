@@ -783,14 +783,14 @@ const styles = StyleSheet.create({
     bottom: 12,
     left: 12,
     right: 12,
-    minHeight: 180,
+    minHeight: 190,
     backgroundColor: 'rgba(255,255,255,0.06)',
     borderRadius: 20,
     borderWidth: 0.5,
     borderColor: 'rgba(181,155,115,0.15)',
-    padding: 18,
-    paddingTop: 16,
-    paddingBottom: 18,
+    padding: 20,
+    paddingTop: 18,
+    paddingBottom: 20,
     ...Platform.select({
       web: {
         backdropFilter: 'blur(25px)',
