@@ -896,6 +896,11 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
+  bookViaDivider: {
+    height: 1,
+    backgroundColor: 'rgba(246,244,239,0.15)',
+    marginVertical: 10,
+  },
   bookViaRow: {
     flexDirection: 'row',
     alignItems: 'center',
