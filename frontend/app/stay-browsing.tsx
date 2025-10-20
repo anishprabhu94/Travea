@@ -295,12 +295,12 @@ export default function StayBrowsing() {
                 <Text style={styles.heroTitle}>{tripData.title}</Text>
               </View>
               <View style={styles.heroSubtitleRow}>
-                <Ionicons name="calendar-outline" size={14} color="#E8D9A6" style={{marginRight: 6}} />
-                <Text style={styles.heroSubtext}>
+                <Ionicons name="calendar-outline" size={14} color="#FFFFFF" style={{marginRight: 6}} />
+                <Text style={[styles.heroSubtext, {color: '#FFFFFF'}]}>
                   <Text style={{fontWeight: '700'}}>{cityStartMonth.slice(0, 3)} {cityStartDay}–{cityEndMonth.slice(0, 3)} {cityEndDay}</Text>
                 </Text>
-                <Ionicons name="people-outline" size={14} color="#E8D9A6" style={{marginLeft: 12, marginRight: 6}} />
-                <Text style={styles.heroSubtext}>
+                <Ionicons name="people-outline" size={14} color="#FFFFFF" style={{marginLeft: 12, marginRight: 6}} />
+                <Text style={[styles.heroSubtext, {color: '#FFFFFF'}]}>
                   <Text style={{fontWeight: '700'}}>{tripData.travelers}</Text>
                 </Text>
               </View>
