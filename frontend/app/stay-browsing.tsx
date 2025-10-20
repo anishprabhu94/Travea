@@ -185,7 +185,56 @@ export default function StayBrowsing() {
                   <Text style={styles.cityPillText}>{cityName}</Text>
                 </LinearGradient>
               </View>
+              
+              {/* Stay Selection Toggle */}
+              <View style={styles.staySelectionDock}>
+                <TouchableOpacity
+                  style={[styles.toggleBtn, stayMode === 'entire-city' && styles.toggleBtnActive]}
+                  onPress={() => setStayMode('entire-city')}
+                  activeOpacity={0.7}
+                >
+                  {stayMode === 'entire-city' && (
+                    <LinearGradient
+                      colors={['#D9BD78', '#CBAF6B']}
+                      style={styles.toggleGradient}
+                    />
+                  )}
+                  <Text style={[styles.toggleBtnText, stayMode === 'entire-city' && styles.toggleBtnTextActive]}>
+                    One Stay for Entire City
+                  </Text>
+                </TouchableOpacity>
+                
+                <TouchableOpacity
+                  style={[styles.toggleBtn, stayMode === 'select-dates' && styles.toggleBtnActive]}
+                  onPress={() => setStayMode('select-dates')}
+                  activeOpacity={0.7}
+                >
+                  {stayMode === 'select-dates' && (
+                    <LinearGradient
+                      colors={['#D9BD78', '#CBAF6B']}
+                      style={styles.toggleGradient}
+                    />
+                  )}
+                  <Text style={[styles.toggleBtnText, stayMode === 'select-dates' && styles.toggleBtnTextActive]}>
+                    Select Dates
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
+            
+            {/* Filter Tab - Left Edge */}
+            <TouchableOpacity
+              style={styles.filterTab}
+              onPress={toggleFilterPane}
+              activeOpacity={0.7}
+            >
+              <LinearGradient
+                colors={['rgba(217,189,120,0.3)', 'rgba(217,189,120,0.2)']}
+                style={styles.filterTabGradient}
+              >
+                <Ionicons name="options-outline" size={16} color="#F5F4EF" />
+              </LinearGradient>
+            </TouchableOpacity>
           </ImageBackground>
         </View>
         
