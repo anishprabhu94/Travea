@@ -756,12 +756,13 @@ const styles = StyleSheet.create({
   stayCardsSection: {
     paddingHorizontal: 16,
     gap: 20,
+    alignItems: 'center',
   },
   
   // EXACT STAY CARD STYLES FROM BOOK-JOURNEY
   stayCard: {
-    width: '100%',
-    height: 360,
+    width: '92%',
+    height: 340,
     borderRadius: 24,
     overflow: 'hidden',
   },
