@@ -291,9 +291,9 @@ export default function StayBrowsing() {
                       </View>
                     )}
                     
-                    {/* Save Heart */}
+                    {/* Save Heart - Top Right of Image (outside frosted pane) */}
                     <TouchableOpacity
-                      style={styles.saveHeart}
+                      style={styles.saveHeartTopRight}
                       onPress={() => handleSaveStay(stay.id)}
                       activeOpacity={0.7}
                     >
