@@ -779,7 +779,8 @@ const styles = StyleSheet.create({
     }),
   },
   stayGrid: {
-    gap: 18,
+    paddingHorizontal: 20,
+    gap: 28,
   },
   
   // Stay Card - World-Class Cinematic Design
