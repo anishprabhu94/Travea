@@ -535,6 +535,7 @@ export default function StayBrowsing() {
                         </React.Fragment>
                       ))}
                     </View>
+                    <View style={styles.bookViaDivider} />
                     <View style={styles.bookViaRow}>
                       <Text style={styles.bookViaLabel}>Book via</Text>
                       <View style={styles.logoRow}>
