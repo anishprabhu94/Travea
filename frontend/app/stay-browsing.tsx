@@ -518,14 +518,52 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(241,239,234,0.2)',
   },
   
-  // Hero Section - EXACT Trip Canvas Match
-  heroSection: {
+  // Hero Section - EXACT Trip Canvas Structure
+  heroContainer: {
+    position: 'relative',
+    height: height * 0.45,
+    marginBottom: 20,
+  },
+  heroBackground: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+  },
+  heroBackgroundImage: {
+    borderRadius: 0,
+  },
+  heroBackgroundOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+  },
+  heroFrostedPane: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(20,20,20,0.75)',
     paddingHorizontal: 20,
-    paddingTop: 8,
-    paddingBottom: 20,
+    paddingVertical: 24,
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    borderTopWidth: 0.5,
+    borderTopColor: 'rgba(214,193,152,0.2)',
     alignItems: 'center',
   },
-  heroTitle: {
+  backButtonHero: {
+    position: 'absolute',
+    top: -height * 0.35,
+    left: 20,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(214,193,152,0.3)',
+  },
+  heroTripTitle: {
     fontSize: 26,
     fontWeight: '600',
     color: 'rgba(245,240,230,0.95)',
@@ -535,11 +573,11 @@ const styles = StyleSheet.create({
       web: 'Playfair Display, Georgia, serif',
     }),
     textAlign: 'center',
-    marginBottom: 6,
+    marginBottom: 8,
   },
   heroMetaRow: {
     flexDirection: 'row',
-    marginBottom: 14,
+    marginBottom: 16,
   },
   heroMeta: {
     fontSize: 13,
@@ -549,17 +587,17 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  cityPillContainer: {
-    marginBottom: 14,
+  heroCityPillContainer: {
+    marginBottom: 16,
   },
-  cityPill: {
-    paddingVertical: 7,
-    paddingHorizontal: 18,
-    borderRadius: 14,
+  heroCityPill: {
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    borderRadius: 16,
     borderWidth: 0.5,
-    borderColor: 'rgba(214,193,152,0.25)',
+    borderColor: 'rgba(214,193,152,0.3)',
   },
-  cityPillText: {
+  heroCityPillText: {
     fontSize: 12,
     fontWeight: '600',
     color: 'rgba(214,193,152,0.95)',
@@ -569,68 +607,85 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Toggle (Single Pill) - Larger
-  toggleOuterContainer: {
-    width: '100%',
-    alignItems: 'center',
-  },
-  toggleContainer: {
+  // Hero Toggle
+  heroToggleContainer: {
     flexDirection: 'row',
-    backgroundColor: 'rgba(255,255,255,0.05)',
-    borderRadius: 20,
-    padding: 3,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderRadius: 22,
+    padding: 4,
     borderWidth: 0.5,
-    borderColor: 'rgba(214,193,152,0.2)',
+    borderColor: 'rgba(214,193,152,0.25)',
+    marginBottom: 16,
   },
-  toggleSide: {
-    paddingVertical: 10,
-    paddingHorizontal: 24,
-    borderRadius: 17,
+  heroToggleSide: {
+    paddingVertical: 12,
+    paddingHorizontal: 28,
+    borderRadius: 18,
     position: 'relative',
     overflow: 'hidden',
   },
-  toggleSideActive: {
+  heroToggleSideActive: {
     borderWidth: 0.5,
-    borderColor: 'rgba(214,193,152,0.35)',
+    borderColor: 'rgba(214,193,152,0.4)',
   },
-  toggleActiveGradient: {
+  heroToggleGradient: {
     ...StyleSheet.absoluteFillObject,
-    borderRadius: 17,
+    borderRadius: 18,
   },
-  toggleText: {
+  heroToggleText: {
     fontSize: 13,
-    color: 'rgba(214,193,152,0.5)',
+    color: 'rgba(214,193,152,0.6)',
     fontWeight: '500',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  toggleTextActive: {
+  heroToggleTextActive: {
     color: 'rgba(214,193,152,0.95)',
     fontWeight: '600',
   },
   
-  // Date Chips for Multiple Stays
-  dateChipsScroll: {
+  // Hero Date Chips
+  heroDateChipsContainer: {
     width: '100%',
-    marginTop: 12,
+    alignItems: 'center',
   },
-  dateChipsContent: {
-    paddingHorizontal: 4,
-    gap: 8,
+  heroDateChipsContent: {
+    paddingHorizontal: 8,
+    gap: 10,
   },
-  dateChip: {
-    width: 38,
-    height: 38,
-    borderRadius: 19,
+  heroDateChip: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 0.5,
-    borderColor: 'rgba(214,193,152,0.2)',
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    borderColor: 'rgba(214,193,152,0.25)',
+    backgroundColor: 'rgba(255,255,255,0.05)',
     position: 'relative',
     overflow: 'hidden',
+  },
+  heroDateChipActive: {
+    borderColor: 'rgba(214,193,152,0.6)',
+  },
+  heroDateChipGradient: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 20,
+  },
+  heroDateChipText: {
+    fontSize: 13,
+    color: 'rgba(214,193,152,0.7)',
+    fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  heroDateChipTextActive: {
+    color: 'rgba(214,193,152,0.95)',
+    fontWeight: '600',
   },
   dateChipActive: {
     borderColor: 'rgba(214,193,152,0.5)',
