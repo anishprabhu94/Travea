@@ -669,17 +669,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   
-  // Frosted Bottom Pane - Santa Caterina Style
+  // Frosted Bottom Pane - Santa Caterina Style (35% height)
   cardFrostedPane: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    height: '50%',
+    height: '35%',
     backgroundColor: 'rgba(15,15,15,0.55)',
-    paddingHorizontal: 16,
+    paddingHorizontal: 20,
     paddingTop: 12,
-    paddingBottom: 14,
+    paddingBottom: 12,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
   },
@@ -688,7 +688,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 2,
+    height: 1.5,
   },
   hotelName: {
     fontSize: 18,
@@ -710,11 +710,11 @@ const styles = StyleSheet.create({
       android: 'serif',
       web: 'Georgia, serif',
     }),
-    marginBottom: 6,
+    marginBottom: 4,
   },
   priceLine: {
     fontSize: 14,
-    marginBottom: 4,
+    marginBottom: 3,
   },
   priceLabel: {
     color: '#F6F4EF',
@@ -734,12 +734,12 @@ const styles = StyleSheet.create({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
-    marginBottom: 6,
+    marginBottom: 4,
   },
   ratingRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 6,
     flexWrap: 'wrap',
   },
   ratingText: {
@@ -756,7 +756,7 @@ const styles = StyleSheet.create({
   amenityDivider: {
     fontSize: 12,
     color: 'rgba(246,244,239,0.4)',
-    marginHorizontal: 6,
+    marginHorizontal: 5,
   },
   amenityText: {
     fontSize: 12,
@@ -769,7 +769,7 @@ const styles = StyleSheet.create({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
-    marginBottom: 6,
+    marginBottom: 5,
     marginTop: 2,
   },
   bookingPillsRow: {
@@ -778,19 +778,20 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   bookingPill: {
-    borderRadius: 12,
+    borderRadius: 20,
     overflow: 'hidden',
   },
   bookingPillGradient: {
     paddingVertical: 6,
     paddingHorizontal: 12,
-    borderRadius: 12,
+    borderRadius: 20,
     borderWidth: 0.5,
-    borderColor: 'rgba(217,189,120,0.3)',
+    borderColor: 'rgba(34,34,34,0.4)',
+    backgroundColor: 'rgba(34,34,34,0.4)',
   },
   bookingPillText: {
-    fontSize: 11,
-    color: '#E8C474',
+    fontSize: 12,
+    color: '#FFFFFF',
     fontWeight: '500',
   },
 });
