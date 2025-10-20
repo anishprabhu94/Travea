@@ -1229,13 +1229,153 @@ const styles = StyleSheet.create({
     }),
   },
   filterOptionTextActive: {
-    color: '#FFFFFF',
+    color: '#F5F4EF',
     fontWeight: '600',
   },
   filterBlurBackdrop: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(0,0,0,0.2)',
     zIndex: 90,
+  },
+  
+  // Cinematic Filter Pane - New Design
+  cinematicBackdrop: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.35)',
+    zIndex: 999,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(26px)',
+      },
+    }),
+  },
+  filterPaneFloating: {
+    position: 'absolute',
+    top: '20%',
+    left: '10%',
+    right: '10%',
+    maxHeight: '65%',
+    borderRadius: 18,
+    overflow: 'hidden',
+    zIndex: 1000,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.45)',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 1,
+        shadowRadius: 24,
+      },
+      android: {
+        elevation: 16,
+      },
+      web: {
+        boxShadow: '0px 8px 24px rgba(0,0,0,0.45)',
+      },
+    }),
+  },
+  filterPaneGlassNew: {
+    padding: 24,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.12)',
+    borderRadius: 18,
+    minHeight: 300,
+  },
+  filterPaneTopGradient: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 100,
+    borderTopLeftRadius: 18,
+    borderTopRightRadius: 18,
+  },
+  filterCloseButton: {
+    position: 'absolute',
+    top: 16,
+    right: 16,
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    zIndex: 10,
+  },
+  filterPaneTitleNew: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#F6F1E7',
+    marginBottom: 12,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  filterGoldDivider: {
+    height: 1,
+    backgroundColor: 'rgba(212,190,132,0.3)',
+    marginBottom: 20,
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 8px rgba(212,190,132,0.2)',
+      },
+    }),
+  },
+  filterOptionsNew: {
+    gap: 12,
+  },
+  filterOptionPillNew: {
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderRadius: 22,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
+    backgroundColor: 'transparent',
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  filterOptionPillActiveNew: {
+    borderColor: 'rgba(212,190,132,0.3)',
+    ...Platform.select({
+      web: {
+        boxShadow: '0px 2px 8px rgba(212,190,132,0.25)',
+      },
+    }),
+  },
+  filterOptionGradientNew: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 22,
+  },
+  filterOptionTextNew: {
+    fontSize: 15,
+    color: 'rgba(246,244,239,0.7)',
+    fontWeight: '500',
+    textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  filterOptionTextActiveNew: {
+    color: '#F6F1E7',
+    fontWeight: '600',
+  },
+  filterResetButton: {
+    marginTop: 20,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    alignSelf: 'flex-end',
+  },
+  filterResetText: {
+    fontSize: 14,
+    color: 'rgba(212,190,132,0.9)',
+    fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
   },
   
   // Booking Status Labels
