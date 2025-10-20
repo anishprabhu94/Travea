@@ -687,17 +687,6 @@ const styles = StyleSheet.create({
     color: 'rgba(214,193,152,0.95)',
     fontWeight: '600',
   },
-  dateChipActive: {
-    borderColor: 'rgba(214,193,152,0.5)',
-  },
-  dateChipGradient: {
-    ...StyleSheet.absoluteFillObject,
-    borderRadius: 19,
-  },
-  dateChipText: {
-    fontSize: 13,
-    color: 'rgba(214,193,152,0.6)',
-    fontWeight: '500',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
