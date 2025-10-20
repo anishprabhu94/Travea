@@ -108,6 +108,12 @@ export default function StayBrowsing() {
     return date >= selectedDateRange.start && date <= selectedDateRange.end;
   };
   
+  // Check if date is booked (placeholder logic)
+  const isDateBooked = (date: number) => {
+    // In real implementation, check against bookedStays data
+    return false;
+  };
+  
   // Mock stay data
   const mockStays = [
     {
