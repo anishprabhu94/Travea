@@ -36,7 +36,14 @@ export default function StayBrowsing() {
   
   // State
   const [savedStays, setSavedStays] = useState<Set<string>>(new Set());
+  const [bookedStays, setBookedStays] = useState<Set<string>>(new Set());
+  const [canceledStays, setCanceledStays] = useState<Set<string>>(new Set());
+  const [stayMode, setStayMode] = useState<'entire-city' | 'select-dates'>('entire-city');
+  const [selectedDates, setSelectedDates] = useState<string[]>([]);
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [activeFilter, setActiveFilter] = useState<'all' | 'boutique' | 'luxury' | 'affordable' | 'featured'>('all');
   const contentOpacity = useState(new Animated.Value(0))[0];
+  const filterSlideAnim = useState(new Animated.Value(-width * 0.6))[0];
   
   // Mock trip data
   const tripData = {
