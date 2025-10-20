@@ -692,4 +692,228 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
+  
+  // Stay Selection Toggle Dock
+  staySelectionDock: {
+    flexDirection: 'row',
+    backgroundColor: 'rgba(34,34,34,0.4)',
+    borderRadius: 24,
+    padding: 4,
+    width: '100%',
+    marginTop: 14,
+    gap: 8,
+  },
+  toggleBtn: {
+    flex: 1,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  toggleBtnActive: {
+    // Gradient overlay
+  },
+  toggleGradient: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 20,
+  },
+  toggleBtnText: {
+    fontSize: 13,
+    color: 'rgba(245,244,239,0.6)',
+    fontWeight: '600',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  toggleBtnTextActive: {
+    color: '#FFFFFF',
+  },
+  
+  // Filter Tab - Left Edge
+  filterTab: {
+    position: 'absolute',
+    left: 16,
+    top: '50%',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    overflow: 'hidden',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(217,189,120,0.3)',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 1,
+        shadowRadius: 12,
+      },
+      android: {
+        elevation: 6,
+      },
+    }),
+  },
+  filterTabGradient: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.3)',
+  },
+  
+  // Filter Slide-In Pane
+  filterPane: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    bottom: 0,
+    width: width * 0.6,
+    zIndex: 1000,
+  },
+  filterPaneGradient: {
+    flex: 1,
+    paddingTop: 80,
+    paddingHorizontal: 20,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+      },
+    }),
+  },
+  filterPaneTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+    color: '#F5F4EF',
+    marginBottom: 24,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  filterCategories: {
+    gap: 12,
+  },
+  filterPill: {
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.2)',
+    backgroundColor: 'rgba(255,255,255,0.03)',
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  filterPillActive: {
+    borderColor: 'rgba(217,189,120,0.4)',
+  },
+  filterPillGradient: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 20,
+  },
+  filterPillText: {
+    fontSize: 15,
+    color: 'rgba(245,244,239,0.6)',
+    fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  filterPillTextActive: {
+    color: '#F5F4EF',
+    fontWeight: '600',
+  },
+  filterBackdrop: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    zIndex: 999,
+  },
+  
+  // Booking Status Labels
+  bookedLabel: {
+    position: 'absolute',
+    top: -290,
+    left: 12,
+    borderRadius: 12,
+    overflow: 'hidden',
+  },
+  bookedLabelGradient: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderWidth: 0.5,
+    borderColor: 'rgba(217,189,120,0.3)',
+  },
+  bookedLabelText: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#F5DFA2',
+    letterSpacing: 0.5,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  canceledLabel: {
+    position: 'absolute',
+    top: -290,
+    left: 12,
+    borderRadius: 12,
+    overflow: 'hidden',
+  },
+  canceledLabelGradient: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderWidth: 0.5,
+    borderColor: 'rgba(160,160,160,0.3)',
+  },
+  canceledLabelText: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#DCDCDC',
+    letterSpacing: 0.5,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  
+  // Save Heart - Top Right
+  saveHeartTopRight: {
+    position: 'absolute',
+    top: -290,
+    right: 56,
+    width: 36,
+    height: 36,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  
+  // Increased frosted pane height for better spacing
+  stayCardFrostedTaller: {
+    position: 'absolute',
+    bottom: 12,
+    left: 12,
+    right: 12,
+    minHeight: 185,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 20,
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.15)',
+    padding: 20,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.3), inset 1px 1px 0 rgba(255,255,255,0.05)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+        elevation: 8,
+      },
+    }),
+  },
 });
