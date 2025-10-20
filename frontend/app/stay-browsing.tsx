@@ -759,6 +759,23 @@ const styles = StyleSheet.create({
     }),
   },
   
+  // Filter Title Above Cards
+  filterTitleContainer: {
+    paddingHorizontal: 16,
+    marginBottom: 16,
+    alignItems: 'center',
+  },
+  filterTitleText: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#F3F1E7',
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  
   // Stay Cards Section
   stayCardsSection: {
     paddingHorizontal: 16,
