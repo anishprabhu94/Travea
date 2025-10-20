@@ -649,6 +649,8 @@ const styles = StyleSheet.create({
   },
   heroBackgroundImage: {
     opacity: 0.6,
+    borderBottomLeftRadius: 32,
+    borderBottomRightRadius: 32,
   },
   heroGradient: {
     position: 'absolute',
