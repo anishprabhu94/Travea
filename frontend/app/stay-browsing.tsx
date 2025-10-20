@@ -43,8 +43,8 @@ export default function StayBrowsing() {
   
   // Calculate nights based on mode
   const calculateNights = () => {
-    if (stayMode === 'multi' && selectedDateRange.start && selectedDateRange.end) {
-      return selectedDateRange.end - selectedDateRange.start;
+    if (stayMode === 'multi' && selectedDates.length > 0) {
+      return selectedDates.length;
     }
     const start = parseInt(cityStartDay);
     const end = parseInt(cityEndDay);
@@ -52,6 +52,8 @@ export default function StayBrowsing() {
   };
   
   const totalNights = calculateNights();
+  const cityTotalDays = parseInt(cityEndDay) - parseInt(cityStartDay) + 1;
+  const maxSelectableDays = cityTotalDays - 1; // Can select up to total - 1
   
   // Generate date range for city
   const generateDateRange = () => {
@@ -68,39 +70,30 @@ export default function StayBrowsing() {
   
   // Mock trip data
   const tripData = {
-    title: 'Italian Renaissance Circuit',
+    title: tripTitle || 'Lemon Coast Trail',
     dates: `${cityStartMonth} ${cityStartDay}–${cityEndMonth} ${cityEndDay}`,
     travelers: 2,
     heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
   };
   
   // Handle date selection for Multi-Stay
-  const handleDateSelection = (date: number) => {
+  const handleDateToggle = (date: number) => {
     if (stayMode !== 'multi') return;
     
-    // Check if date is booked
-    const isBooked = Array.from(bookedStays).some(stayId => {
-      // In real implementation, check if this date is covered by a booked stay
-      return false;
-    });
-    
-    if (isBooked) return;
-    
-    if (!selectedDateRange.start) {
-      // First tap - set start
-      setSelectedDateRange({ start: date, end: null });
-    } else if (!selectedDateRange.end) {
-      // Second tap - set end
-      if (date <= selectedDateRange.start) {
-        // If end is before or equal to start, treat as new start
-        setSelectedDateRange({ start: date, end: null });
+    setSelectedDates(prev => {
+      if (prev.includes(date)) {
+        // Deselect
+        return prev.filter(d => d !== date);
       } else {
-        setSelectedDateRange({ start: selectedDateRange.start, end: date });
+        // Check if we can select more
+        if (prev.length >= maxSelectableDays) {
+          // Already at max, don't add
+          return prev;
+        }
+        // Add and sort
+        return [...prev, date].sort((a, b) => a - b);
       }
-    } else {
-      // Already have range - start new selection
-      setSelectedDateRange({ start: date, end: null });
-    }
+    });
   };
   
   // Check if date is in selected range
