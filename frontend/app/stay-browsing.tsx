@@ -958,6 +958,47 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   
+  // Day Circles - In Frosted Pane
+  dayCirclesContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    gap: 10,
+    marginTop: 16,
+  },
+  dayCircle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(207,201,184,0.3)',
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  dayCircleSelected: {
+    borderColor: 'rgba(198,178,126,0.6)',
+  },
+  dayCircleGradient: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 20,
+  },
+  dayCircleText: {
+    fontSize: 15,
+    color: 'rgba(207,201,184,0.7)',
+    fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  dayCircleTextSelected: {
+    color: '#FFFFFF',
+    fontWeight: '600',
+  },
+  
   // Filter Arrow - Left Side (Scroll Locked)
   filterArrowContainer: {
     position: 'absolute',
