@@ -97,7 +97,40 @@ export default function StayBrowsing() {
     });
   };
   
-  // Placeholder for future date range functionality
+  // Check if date is in selected range
+  const isDateInRange = (date: number) => {
+    if (!selectedDateRange.start) return false;
+    if (!selectedDateRange.end) return date === selectedDateRange.start;
+    return date >= selectedDateRange.start && date <= selectedDateRange.end;
+  };
+  
+  // Check if date is booked (placeholder logic)
+  const isDateBooked = (date: number) => {
+    // In real implementation, check against bookedStays data
+    return false;
+  };
+  
+  // Handle date selection for range
+  const handleDateSelection = (date: number) => {
+    if (stayMode !== 'multi') return;
+    
+    setSelectedDateRange(prev => {
+      if (!prev.start) {
+        // First selection - set start
+        return { start: date, end: null };
+      } else if (!prev.end) {
+        // Second selection - set end (ensure start <= end)
+        if (date < prev.start) {
+          return { start: date, end: prev.start };
+        } else {
+          return { start: prev.start, end: date };
+        }
+      } else {
+        // Range already selected - start new selection
+        return { start: date, end: null };
+      }
+    });
+  };
   
   // Mock stay data
   const mockStays = [
