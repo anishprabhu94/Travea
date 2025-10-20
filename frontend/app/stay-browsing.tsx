@@ -383,17 +383,6 @@ export default function StayBrowsing() {
           </ImageBackground>
         </View>
         
-        {/* Filter Arrow - Left Side (Scroll Locked) */}
-        <View style={styles.filterArrowContainer}>
-          <TouchableOpacity
-            style={styles.filterArrow}
-            onPress={toggleFilterPane}
-            activeOpacity={0.7}
-          >
-            <Ionicons name="chevron-forward" size={20} color="#D4BE84" />
-          </TouchableOpacity>
-        </View>
-        
         {/* Filter Pane - Inline Below Hero */}
         {filterOpen && (
           <>
