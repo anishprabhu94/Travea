@@ -979,7 +979,7 @@ const styles = StyleSheet.create({
   },
   toggleSwitchOption: {
     flex: 1,
-    paddingVertical: 12,
+    paddingVertical: 10,
     paddingHorizontal: 16,
     borderRadius: 20,
     alignItems: 'center',
