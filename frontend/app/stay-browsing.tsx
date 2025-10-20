@@ -64,6 +64,14 @@ export default function StayBrowsing() {
   
   const cityDates = generateDateRange();
   
+  // Mock trip data
+  const tripData = {
+    title: 'Italian Renaissance Circuit',
+    dates: `${cityStartMonth} ${cityStartDay}–${cityEndMonth} ${cityEndDay}`,
+    travelers: 2,
+    heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
+  };
+  
   // Handle date selection for Multi-Stay
   const handleDateSelection = (date: number) => {
     if (stayMode !== 'multi') return;
