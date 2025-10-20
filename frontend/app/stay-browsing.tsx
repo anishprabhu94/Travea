@@ -928,6 +928,31 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 8,
   },
+  frostedBookingPill: {
+    borderRadius: 16,
+    overflow: 'hidden',
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.2)',
+  },
+  frostedPillGradient: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 16,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(10px)',
+      },
+    }),
+  },
+  frostedPillText: {
+    fontSize: 11,
+    color: 'rgba(246,244,239,0.9)',
+    fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
   logoText: {
     fontSize: 11,
     color: '#CBB88C',
