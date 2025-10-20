@@ -539,9 +539,19 @@ export default function StayBrowsing() {
                     <View style={styles.bookViaRow}>
                       <Text style={styles.bookViaLabel}>Book via</Text>
                       <View style={styles.logoRow}>
-                        {stay.platforms.map(platform => (
-                          <Text key={platform} style={styles.logoText}>{platform}</Text>
-                        ))}
+                        {stay.platforms.map(platform => {
+                          const displayName = platform === 'Official Site' ? 'Website' : platform;
+                          return (
+                            <View key={platform} style={styles.frostedBookingPill}>
+                              <LinearGradient
+                                colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.04)']}
+                                style={styles.frostedPillGradient}
+                              >
+                                <Text style={styles.frostedPillText}>{displayName}</Text>
+                              </LinearGradient>
+                            </View>
+                          );
+                        })}
                       </View>
                     </View>
                   </View>
