@@ -1195,6 +1195,133 @@ const styles = StyleSheet.create({
     }),
   },
   
+  // Multi-Stay Day Calendar
+  dayCalendarContainer: {
+    width: '90%',
+    alignSelf: 'center',
+    marginTop: 16,
+    marginBottom: 24,
+    borderRadius: 24,
+    overflow: 'hidden',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.3)',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 1,
+        shadowRadius: 16,
+      },
+      android: {
+        elevation: 10,
+      },
+      web: {
+        boxShadow: '0 8px 16px rgba(0,0,0,0.2)',
+      },
+    }),
+  },
+  dayCalendarGlass: {
+    padding: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255,240,210,0.25)',
+    borderRadius: 24,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(30px)',
+      },
+    }),
+  },
+  calendarTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#F6F1E7',
+    marginBottom: 12,
+    textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  selectedRangeText: {
+    fontSize: 14,
+    color: '#D9BD78',
+    marginBottom: 16,
+    textAlign: 'center',
+    fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  hintText: {
+    fontSize: 13,
+    color: 'rgba(207,201,184,0.7)',
+    marginBottom: 16,
+    textAlign: 'center',
+    fontStyle: 'italic',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  dateGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    justifyContent: 'center',
+  },
+  dateCell: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(207,201,184,0.3)',
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  dateCellInRange: {
+    borderColor: 'rgba(217,189,120,0.4)',
+    backgroundColor: 'rgba(217,189,120,0.1)',
+  },
+  dateCellEdge: {
+    borderColor: 'rgba(217,189,120,0.6)',
+  },
+  dateCellBooked: {
+    backgroundColor: 'rgba(100,100,100,0.1)',
+    borderColor: 'rgba(160,160,160,0.3)',
+  },
+  dateCellRangeBackground: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(217,189,120,0.1)',
+    borderRadius: 22,
+  },
+  dateCellEdgeGradient: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 22,
+  },
+  dateCellText: {
+    fontSize: 15,
+    color: '#CFC9B8',
+    fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  dateCellTextInRange: {
+    color: '#D9BD78',
+    fontWeight: '600',
+  },
+  dateCellTextEdge: {
+    color: '#FFFFFF',
+    fontWeight: '600',
+  },
+  dateCellTextBooked: {
+    color: 'rgba(160,160,160,0.5)',
+    textDecorationLine: 'line-through',
+  },
+  
   // Increased frosted pane height for better spacing
   stayCardFrostedTaller: {
     position: 'absolute',
