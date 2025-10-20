@@ -316,6 +316,77 @@ export default function StayBrowsing() {
           </ImageBackground>
         </View>
         
+        {/* Multi-Stay Day Calendar - Inline Below Hero */}
+        {stayMode === 'multi' && (
+          <View style={styles.dayCalendarContainer}>
+            <LinearGradient
+              colors={['rgba(15,15,15,0.6)', 'rgba(15,15,15,0.65)']}
+              style={styles.dayCalendarGlass}
+            >
+              {/* Calendar Title */}
+              <Text style={styles.calendarTitle}>Select Date Range</Text>
+              
+              {/* Selected Range Display */}
+              {selectedDateRange.start && selectedDateRange.end ? (
+                <Text style={styles.selectedRangeText}>
+                  {totalNights} {totalNights === 1 ? 'night' : 'nights'} · {cityStartMonth} {selectedDateRange.start}–{selectedDateRange.end}
+                </Text>
+              ) : selectedDateRange.start ? (
+                <Text style={styles.selectedRangeText}>
+                  Select end date (started {cityStartMonth} {selectedDateRange.start})
+                </Text>
+              ) : (
+                <Text style={styles.hintText}>
+                  Tap start date, then end date
+                </Text>
+              )}
+              
+              {/* Date Grid */}
+              <View style={styles.dateGrid}>
+                {cityDates.map(date => {
+                  const isStart = date === selectedDateRange.start;
+                  const isEnd = date === selectedDateRange.end;
+                  const inRange = isDateInRange(date);
+                  const booked = isDateBooked(date);
+                  
+                  return (
+                    <TouchableOpacity
+                      key={date}
+                      style={[
+                        styles.dateCell,
+                        inRange && styles.dateCellInRange,
+                        (isStart || isEnd) && styles.dateCellEdge,
+                        booked && styles.dateCellBooked
+                      ]}
+                      onPress={() => handleDateSelection(date)}
+                      activeOpacity={0.7}
+                      disabled={booked}
+                    >
+                      {inRange && !isStart && !isEnd && (
+                        <View style={styles.dateCellRangeBackground} />
+                      )}
+                      {(isStart || isEnd) && (
+                        <LinearGradient
+                          colors={['#D9BD78', '#CBAF6B']}
+                          style={styles.dateCellEdgeGradient}
+                        />
+                      )}
+                      <Text style={[
+                        styles.dateCellText,
+                        inRange && styles.dateCellTextInRange,
+                        (isStart || isEnd) && styles.dateCellTextEdge,
+                        booked && styles.dateCellTextBooked
+                      ]}>
+                        {date}
+                      </Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            </LinearGradient>
+          </View>
+        )}
+        
         {/* Filter Arrow - Left Side (Scroll Locked) */}
         <View style={styles.filterArrowContainer}>
           <TouchableOpacity
