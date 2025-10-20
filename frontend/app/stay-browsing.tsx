@@ -245,22 +245,80 @@ export default function StayBrowsing() {
                 </TouchableOpacity>
               </View>
             </View>
-            
-            {/* Filter Tab - Left Edge */}
-            <TouchableOpacity
-              style={styles.filterTab}
-              onPress={toggleFilterPane}
-              activeOpacity={0.7}
-            >
-              <LinearGradient
-                colors={['rgba(217,189,120,0.3)', 'rgba(217,189,120,0.2)']}
-                style={styles.filterTabGradient}
-              >
-                <Ionicons name="options-outline" size={16} color="#F5F4EF" />
-              </LinearGradient>
-            </TouchableOpacity>
           </ImageBackground>
         </View>
+        
+        {/* Filter Arrow - Left Side (Scroll Locked) */}
+        <View style={styles.filterArrowContainer}>
+          <TouchableOpacity
+            style={styles.filterArrow}
+            onPress={toggleFilterPane}
+            activeOpacity={0.7}
+          >
+            <Ionicons name="chevron-forward" size={20} color="#D4BE84" />
+          </TouchableOpacity>
+        </View>
+        
+        {/* Filter Pane - Inline Below Hero */}
+        {filterOpen && (
+          <Animated.View 
+            style={[
+              styles.filterPaneInline,
+              { 
+                opacity: filterOpacityAnim,
+                transform: [{
+                  translateY: filterSlideAnim.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [-15, 0],
+                  })
+                }]
+              }
+            ]}
+          >
+            <LinearGradient
+              colors={['rgba(15,15,15,0.6)', 'rgba(15,15,15,0.65)']}
+              style={styles.filterPaneGlass}
+            >
+              <Text style={styles.filterPaneTitle}>Filters</Text>
+              
+              <View style={styles.filterOptions}>
+                {['all', 'boutique', 'luxury', 'affordable', 'featured'].map(filter => (
+                  <TouchableOpacity
+                    key={filter}
+                    style={[
+                      styles.filterOptionPill,
+                      activeFilter === filter && styles.filterOptionPillActive
+                    ]}
+                    onPress={() => setActiveFilter(filter as any)}
+                    activeOpacity={0.7}
+                  >
+                    {activeFilter === filter && (
+                      <LinearGradient
+                        colors={['#D4BE84', '#C6B27E']}
+                        style={styles.filterOptionGradient}
+                      />
+                    )}
+                    <Text style={[
+                      styles.filterOptionText,
+                      activeFilter === filter && styles.filterOptionTextActive
+                    ]}>
+                      {filter.charAt(0).toUpperCase() + filter.slice(1)}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </LinearGradient>
+          </Animated.View>
+        )}
+        
+        {/* Background Blur Overlay when Filter Open */}
+        {filterOpen && (
+          <TouchableOpacity
+            style={styles.filterBlurBackdrop}
+            activeOpacity={1}
+            onPress={toggleFilterPane}
+          />
+        )}
         
         {/* Stay Cards Section - EXACT FROM BOOK-JOURNEY */}
         <View style={styles.stayCardsSection}>
