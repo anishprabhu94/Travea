@@ -490,22 +490,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   
-  // Header
-  header: {
-    paddingTop: 50,
-    paddingHorizontal: 20,
-    paddingBottom: 10,
-  },
-  backButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: 'rgba(241,239,234,0.2)',
-  },
   
   // Hero Section - EXACT Trip Canvas Structure
   heroContainer: {
