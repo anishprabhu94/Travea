@@ -391,6 +391,9 @@ export default function StayBrowsing() {
                 ? selectedDates.length 
                 : totalNights;
               
+              // Mock booking status for demonstration
+              const bookingStatus = stay.id === '1' ? 'booked' : stay.id === '4' ? 'canceled' : null;
+              
               return (
                 <TouchableOpacity
                   key={stay.id}
@@ -398,7 +401,7 @@ export default function StayBrowsing() {
                   activeOpacity={0.8}
                   onPress={() => router.push({
                     pathname: '/stay-info-compact',
-                    params: { nights: displayNights.toString() }
+                    params: { nights: displayNights.toString(), stayId: stay.id }
                   })}
                 >
                   <ImageBackground
@@ -411,39 +414,66 @@ export default function StayBrowsing() {
                       style={styles.stayCardGradient}
                     />
                     
-                    {/* Frosted Pane with Content */}
+                    {/* Booking Status Banner - Top Full Width */}
+                    {bookingStatus === 'booked' && (
+                      <View style={styles.bookedBanner}>
+                        <LinearGradient
+                          colors={['rgba(217,189,120,0.35)', 'rgba(217,189,120,0.25)']}
+                          start={{ x: 0, y: 0 }}
+                          end={{ x: 1, y: 0 }}
+                          style={styles.bookedBannerGradient}
+                        >
+                          <Ionicons name="checkmark-circle" size={16} color="#D9BD78" />
+                          <Text style={styles.bookedBannerText}>BOOKED</Text>
+                        </LinearGradient>
+                      </View>
+                    )}
+                    {bookingStatus === 'canceled' && (
+                      <View style={styles.canceledBanner}>
+                        <LinearGradient
+                          colors={['rgba(107,79,76,0.5)', 'rgba(107,79,76,0.4)']}
+                          start={{ x: 0, y: 0 }}
+                          end={{ x: 1, y: 0 }}
+                          style={styles.canceledBannerGradient}
+                        >
+                          <Ionicons name="close-circle" size={16} color="rgba(244,240,236,0.9)" />
+                          <Text style={styles.canceledBannerText}>CANCELED</Text>
+                        </LinearGradient>
+                      </View>
+                    )}
+                    
                     <View style={styles.stayCardFrosted}>
-                      {/* Date Pill - Top Right */}
-                      <View style={styles.datePillTopRight}>
+                      {/* Date Pill */}
+                      <View style={styles.datePill}>
                         <Text style={styles.datePillText}>{displayDates}</Text>
                       </View>
                       
-                      {/* Save Heart - Top Right on Frosted Pane */}
+                      {/* Save Heart - NO BACKGROUND */}
                       <TouchableOpacity
-                        style={styles.saveHeartFrosted}
+                        style={styles.saveHeart}
                         onPress={() => handleSaveStay(stay.id)}
                         activeOpacity={0.7}
                       >
                         <Ionicons
                           name={savedStays.has(stay.id) ? 'heart' : 'heart-outline'}
                           size={20}
-                          color={savedStays.has(stay.id) ? '#D9BD78' : 'rgba(255,255,255,0.8)'}
+                          color={savedStays.has(stay.id) ? '#CBB88C' : 'rgba(255,255,255,0.8)'}
                         />
                       </TouchableOpacity>
                       
                       <Text style={styles.stayCardName}>{stay.name}</Text>
                       <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
-                      <Text style={styles.stayEstTotal}>Est. Total <Text style={styles.priceHighlight}>€{totalPrice}</Text> · {displayNights} {displayNights === 1 ? 'night' : 'nights'}</Text>
+                      <Text style={styles.stayEstTotal}>Est. Total €{totalPrice * displayNights} · {displayNights} {displayNights === 1 ? 'night' : 'nights'}</Text>
                       <Text style={styles.stayCardLocation}>{stay.location}</Text>
                       
-                      {/* Rating & Amenities */}
+                      {/* Rating + Luxury Amenities */}
                       <View style={styles.ratingAmenitiesRow}>
                         <View style={styles.ratingRow}>
-                          <Ionicons name="star" size={12} color="#D9BD78" />
+                          <Ionicons name="star" size={12} color="#CBB88C" />
                           <Text style={styles.ratingText}>{stay.rating}</Text>
                         </View>
                         <Text style={styles.amenityDot}>·</Text>
-                        {stay.amenities.slice(0, 3).map((amenity, index) => (
+                        {stay.amenities.filter(a => ['Pool', 'Spa', 'Gym', 'Garden', 'Rooftop Bar', 'Michelin Star', 'Historic Tower', 'Cathedral Views'].includes(a)).slice(0, 3).map((amenity, index) => (
                           <React.Fragment key={amenity}>
                             <Text style={styles.amenityText}>{amenity}</Text>
                             {index < 2 && <Text style={styles.amenityDot}>·</Text>}
@@ -451,24 +481,30 @@ export default function StayBrowsing() {
                         ))}
                       </View>
                       
-                      {/* Book Via Row */}
+                      {/* Separator Line */}
+                      <View style={styles.bookViaSeparator} />
+                      
+                      {/* Book Via with Frosted Pills */}
                       <View style={styles.bookViaSection}>
                         <Text style={styles.bookViaLabel}>Book via</Text>
-                        <View style={styles.bookingButtonsRow}>
-                          {stay.platforms.map(platform => (
-                            <TouchableOpacity 
-                              key={platform} 
-                              style={styles.bookingPlatformButton}
-                              activeOpacity={0.7}
-                            >
-                              <LinearGradient
-                                colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.03)']}
-                                style={styles.bookingPlatformGradient}
+                        <View style={styles.bookingPillsRow}>
+                          {stay.platforms.map(platform => {
+                            const displayName = platform === 'Official Site' ? 'Website' : platform;
+                            return (
+                              <TouchableOpacity 
+                                key={platform} 
+                                style={styles.bookingPill}
+                                activeOpacity={0.7}
                               >
-                                <Text style={styles.bookingPlatformText}>{platform}</Text>
-                              </LinearGradient>
-                            </TouchableOpacity>
-                          ))}
+                                <LinearGradient
+                                  colors={['rgba(255,255,255,0.1)', 'rgba(255,255,255,0.05)']}
+                                  style={styles.bookingPillGradient}
+                                >
+                                  <Text style={styles.bookingPillText}>{displayName}</Text>
+                                </LinearGradient>
+                              </TouchableOpacity>
+                            );
+                          })}
                         </View>
                       </View>
                     </View>
@@ -669,7 +705,6 @@ const styles = StyleSheet.create({
   heroDateChipTextActive: {
     color: 'rgba(214,193,152,0.95)',
     fontWeight: '600',
-  },
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
@@ -822,6 +857,7 @@ const styles = StyleSheet.create({
     right: 0,
     backgroundColor: 'rgba(20,20,20,0.55)',
     padding: 20,
+    minHeight: 220,
     borderBottomLeftRadius: 24,
     borderBottomRightRadius: 24,
     borderTopWidth: 0.5,
@@ -979,6 +1015,120 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   bookingPlatformText: {
+    fontSize: 11,
+    color: '#F7F7F7',
+    fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  
+  // Booking Status Banners
+  bookedBanner: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 10,
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    overflow: 'hidden',
+  },
+  bookedBannerGradient: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 8,
+    gap: 6,
+  },
+  bookedBannerText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#D9BD78',
+    letterSpacing: 1,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  canceledBanner: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 10,
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    overflow: 'hidden',
+  },
+  canceledBannerGradient: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 8,
+    gap: 6,
+  },
+  canceledBannerText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: 'rgba(244,240,236,0.9)',
+    letterSpacing: 1,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  
+  // Updated Date Pill and Save Heart
+  datePill: {
+    position: 'absolute',
+    top: -300,
+    right: 12,
+    backgroundColor: 'rgba(30,30,30,0.65)',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 16,
+    borderWidth: 0.5,
+    borderColor: 'rgba(217,189,120,0.2)',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.4)',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 1,
+        shadowRadius: 8,
+      },
+    }),
+  },
+  saveHeart: {
+    position: 'absolute',
+    top: 16,
+    right: 16,
+  },
+  
+  // Separator and Updated Book Via
+  bookViaSeparator: {
+    height: 0.5,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    marginVertical: 12,
+  },
+  bookingPillsRow: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  bookingPill: {
+    borderRadius: 18,
+    overflow: 'hidden',
+    borderWidth: 0.5,
+    borderColor: 'rgba(217,189,120,0.15)',
+  },
+  bookingPillGradient: {
+    paddingVertical: 8,
+    paddingHorizontal: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  bookingPillText: {
     fontSize: 11,
     color: '#F7F7F7',
     fontWeight: '500',
