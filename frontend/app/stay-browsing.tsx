@@ -1306,6 +1306,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#F6F1E7',
     marginBottom: 12,
+    textAlign: 'left',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
