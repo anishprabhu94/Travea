@@ -1073,6 +1073,24 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   
+  // Filter Title Above Cards
+  filterTitleContainer: {
+    paddingHorizontal: 16,
+    marginBottom: 16,
+    marginTop: 8,
+  },
+  filterTitleText: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#F6F1E7',
+    textAlign: 'center',
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  
   // Filter Arrow - Left Side (Scroll Locked)
   filterArrowContainer: {
     position: 'absolute',
