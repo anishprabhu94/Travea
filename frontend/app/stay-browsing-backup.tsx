@@ -13,36 +13,25 @@ import {
 import { router, useLocalSearchParams } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
+import { BlurView } from 'expo-blur';
 
 const { width, height } = Dimensions.get('window');
 
 type FilterType = 'for-you' | 'boutique' | 'luxury' | 'affordable' | 'featured';
-type ToggleMode = 'single' | 'multiple';
+type ToggleMode = 'entire-city' | 'select-dates';
 
 export default function StayBrowsing() {
   const params = useLocalSearchParams();
   const cityName = params.city as string || 'Florence';
   const cityCode = params.cityCode as string || 'FLR';
-  const cityStartMonth = params.startMonth as string || 'Jun';
-  const cityStartDay = params.startDay as string || '10';
-  const cityEndMonth = params.endMonth as string || 'Jun';
-  const cityEndDay = params.endDay as string || '13';
-  
-  // Calculate nights
-  const calculateNights = () => {
-    const start = parseInt(cityStartDay);
-    const end = parseInt(cityEndDay);
-    return end - start;
-  };
-  
-  const totalNights = calculateNights();
   
   // State
   const [activeFilter, setActiveFilter] = useState<FilterType>('for-you');
   const [filterPanelOpen, setFilterPanelOpen] = useState(false);
-  const [toggleMode, setToggleMode] = useState<ToggleMode>('single');
-  const [selectedDates, setSelectedDates] = useState<number[]>([]);
+  const [toggleMode, setToggleMode] = useState<ToggleMode>('entire-city');
+  const [selectedDates, setSelectedDates] = useState<number[]>([10, 11, 12]);
   const [savedStays, setSavedStays] = useState<Set<string>>(new Set());
+  const [bookedStays, setBookedStays] = useState<Set<string>>(new Set());
   
   // Animations
   const filterPanelAnim = useState(new Animated.Value(0))[0];
@@ -51,70 +40,102 @@ export default function StayBrowsing() {
   // Mock trip data
   const tripData = {
     title: 'Italian Renaissance Circuit',
-    dates: `${cityStartMonth} ${cityStartDay}–${cityEndMonth} ${cityEndDay}`,
+    dates: 'Jun 10–16',
     travelers: 2,
+    startDay: 10,
+    endDay: 16,
     cityImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
   };
   
-  // Generate date chips for multiple stays mode
+  // Generate date chips
   const dateChips = [];
-  for (let i = parseInt(cityStartDay); i <= parseInt(cityEndDay); i++) {
+  for (let i = tripData.startDay; i <= tripData.endDay; i++) {
     dateChips.push(i);
   }
+  
+  // Calculate nights from selected dates
+  const selectedNights = selectedDates.length > 0 ? selectedDates.length : 0;
+  const dateRangeText = selectedDates.length > 0 
+    ? `${selectedNights} ${selectedNights === 1 ? 'night' : 'nights'} · Jun ${selectedDates[0]}–${selectedDates[selectedDates.length - 1]}`
+    : '';
   
   // Mock stay data
   const mockStays = [
     {
       id: '1',
       name: 'Hotel Brunelleschi',
-      tagline: 'Historic tower meets Renaissance charm',
-      location: 'Piazza Santa Elisabetta · 0.3 mi from Duomo',
-      pricePerNight: 340,
+      address: 'Piazza Santa Elisabetta 3',
+      pricePerNight: '€340',
       rating: 4.8,
-      amenities: ['Historic Tower', 'Cathedral Views', 'Tuscan Dining', 'Wi-Fi'],
-      platforms: ['Official Site', 'Booking.com', 'Expedia'],
+      reviewCount: 342,
       type: 'boutique',
+      tags: ['Historic Tower', 'Cathedral Views', 'Tuscan Charm'],
       image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+      available: true
     },
     {
       id: '2',
       name: 'Four Seasons Firenze',
-      tagline: 'Renaissance garden sanctuary',
-      location: 'Borgo Pinti 99 · 0.8 mi from center',
-      pricePerNight: 620,
+      address: 'Borgo Pinti 99',
+      pricePerNight: '€620',
       rating: 4.9,
-      amenities: ['Garden', 'Michelin Star', 'Spa', 'Pool'],
-      platforms: ['Official Site', 'Virtuoso'],
+      reviewCount: 528,
       type: 'luxury',
+      tags: ['Renaissance Garden', 'Michelin Dining', 'Spa Sanctuary'],
       image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+      available: true
     },
     {
       id: '3',
       name: 'Portrait Firenze',
-      tagline: 'Modern elegance on the Arno',
-      location: 'Lungarno Acciaiuoli 4 · River Views',
-      pricePerNight: 480,
+      address: 'Lungarno Acciaiuoli 4',
+      pricePerNight: '€480',
       rating: 4.9,
-      amenities: ['Arno Views', 'Rooftop Bar', 'Ferragamo', 'Concierge'],
-      platforms: ['Official Site', 'Booking.com'],
+      reviewCount: 215,
       type: 'boutique',
+      tags: ['Arno Views', 'Salvatore Ferragamo', 'Modern Elegance'],
       image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+      available: true
     },
     {
       id: '4',
-      name: 'Palazzo Vecchietti',
-      tagline: 'Suites in a Renaissance palace',
-      location: 'Via degli Strozzi 4 · Shopping District',
-      pricePerNight: 295,
-      rating: 4.6,
-      amenities: ['Suites Only', 'Historic Palace', 'Central', 'Breakfast'],
-      platforms: ['Booking.com', 'Expedia'],
-      type: 'affordable',
-      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+      name: 'Hotel Savoy',
+      address: 'Piazza della Repubblica 7',
+      pricePerNight: '€385',
+      rating: 4.7,
+      reviewCount: 412,
+      type: 'luxury',
+      tags: ['Piazza Views', 'Central Location', 'Classic Luxury'],
+      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+      available: false
     },
+    {
+      id: '5',
+      name: 'Palazzo Vecchietti',
+      address: 'Via degli Strozzi 4',
+      pricePerNight: '€295',
+      rating: 4.6,
+      reviewCount: 186,
+      type: 'affordable',
+      tags: ['Renaissance Palace', 'Suites Only', 'Historic Charm'],
+      image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+      available: true
+    },
+    {
+      id: '6',
+      name: 'Il Tornabuoni Hotel',
+      address: 'Via de Tornabuoni 3',
+      pricePerNight: '€360',
+      rating: 4.8,
+      reviewCount: 298,
+      type: 'boutique',
+      tags: ['Shopping Street', 'Rooftop Bar', 'Fashion District'],
+      image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+      available: true
+    }
   ];
   
-  // Filter stays
+  // Filter stays based on active filter
   const filteredStays = mockStays.filter(stay => {
     if (activeFilter === 'for-you') return true;
     return stay.type === activeFilter;
@@ -139,6 +160,8 @@ export default function StayBrowsing() {
   }, [filterPanelOpen]);
   
   const handleDateToggle = (date: number) => {
+    if (toggleMode !== 'select-dates') return;
+    
     setSelectedDates(prev => {
       if (prev.includes(date)) {
         return prev.filter(d => d !== date);
@@ -159,14 +182,6 @@ export default function StayBrowsing() {
       return newSet;
     });
   };
-  
-  const filterTitleMap = {
-    'for-you': 'For You',
-    'boutique': 'Boutique',
-    'luxury': 'Luxury',
-    'affordable': 'Affordable',
-    'featured': 'Featured'
-  };
 
   return (
     <View style={styles.container}>
@@ -176,118 +191,211 @@ export default function StayBrowsing() {
         style={styles.backgroundImage}
         blurRadius={12}
       >
-        <LinearGradient
-          colors={['rgba(0,0,0,0.5)', 'rgba(0,0,0,0.7)']}
-          style={styles.backgroundOverlay}
-        />
+        <View style={styles.backgroundOverlay} />
       </ImageBackground>
       
       <Animated.View style={[styles.contentWrapper, { opacity: contentOpacity }]}>
-        {/* Header with Back Button */}
-        <View style={styles.header}>
-          <TouchableOpacity
-            style={styles.backButton}
-            onPress={() => router.back()}
-            activeOpacity={0.7}
-          >
-            <Ionicons name="arrow-back" size={24} color="rgba(241,239,234,0.9)" />
-          </TouchableOpacity>
-        </View>
-        
-        {/* Hero Section - EXACT Trip Canvas Style */}
-        <View style={styles.heroSection}>
-          <Text style={styles.heroTitle}>{tripData.title}</Text>
-          <View style={styles.heroMetaRow}>
-            <Text style={styles.heroMeta}>
-              <Text style={{fontWeight: '700'}}>{tripData.dates}</Text>
-              {' · '}
-              <Text style={{fontWeight: '700'}}>{tripData.travelers} Travelers</Text>
-            </Text>
-          </View>
-          
-          {/* City Pill */}
-          <View style={styles.cityPillContainer}>
-            <LinearGradient
-              colors={['rgba(214,193,152,0.25)', 'rgba(214,193,152,0.15)']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.cityPill}
-            >
-              <Text style={styles.cityPillText}>{cityName}</Text>
-            </LinearGradient>
-          </View>
-          
-          {/* Single Toggle Container */}
-          <View style={styles.toggleOuterContainer}>
-            <View style={styles.toggleContainer}>
-              <TouchableOpacity
-                style={[styles.toggleSide, toggleMode === 'single' && styles.toggleSideActive]}
-                onPress={() => setToggleMode('single')}
-                activeOpacity={0.7}
+        <ScrollView 
+          style={styles.scrollContainer}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.scrollContent}
+        >
+          {/* Hero Pane */}
+          <View style={styles.heroPaneWrapper}>
+            <BlurView intensity={28} style={styles.heroPane} tint="dark">
+              <LinearGradient
+                colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.02)']}
+                style={styles.heroPaneGradient}
               >
-                {toggleMode === 'single' && (
-                  <LinearGradient
-                    colors={['rgba(214,193,152,0.3)', 'rgba(214,193,152,0.2)']}
-                    style={styles.toggleActiveGradient}
-                  />
-                )}
-                <Text style={[styles.toggleText, toggleMode === 'single' && styles.toggleTextActive]}>
-                  Single Stay
+                {/* Trip Title */}
+                <Text style={styles.tripTitle}>{tripData.title}</Text>
+                
+                {/* Trip Details */}
+                <Text style={styles.tripDetails}>
+                  {tripData.dates} · {tripData.travelers} Travelers
                 </Text>
-              </TouchableOpacity>
-              
-              <TouchableOpacity
-                style={[styles.toggleSide, toggleMode === 'multiple' && styles.toggleSideActive]}
-                onPress={() => setToggleMode('multiple')}
-                activeOpacity={0.7}
-              >
-                {toggleMode === 'multiple' && (
-                  <LinearGradient
-                    colors={['rgba(214,193,152,0.3)', 'rgba(214,193,152,0.2)']}
-                    style={styles.toggleActiveGradient}
-                  />
-                )}
-                <Text style={[styles.toggleText, toggleMode === 'multiple' && styles.toggleTextActive]}>
-                  Multiple Stays
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          
-          {/* Date Selector for Multiple Stays */}
-          {toggleMode === 'multiple' && (
-            <ScrollView 
-              horizontal 
-              showsHorizontalScrollIndicator={false}
-              style={styles.dateChipsScroll}
-              contentContainerStyle={styles.dateChipsContent}
-            >
-              {dateChips.map(date => {
-                const isSelected = selectedDates.includes(date);
-                return (
+                
+                {/* City Chip */}
+                <LinearGradient
+                  colors={['rgba(231,201,122,0.3)', 'rgba(220,202,162,0.2)']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={styles.cityChip}
+                >
+                  <Text style={styles.cityChipText}>{cityName}</Text>
+                </LinearGradient>
+                
+                {/* Toggle Row */}
+                <View style={styles.toggleRow}>
                   <TouchableOpacity
-                    key={date}
-                    style={[styles.dateChip, isSelected && styles.dateChipActive]}
-                    onPress={() => handleDateToggle(date)}
+                    style={[
+                      styles.toggleButton,
+                      toggleMode === 'entire-city' && styles.toggleButtonActive
+                    ]}
+                    onPress={() => setToggleMode('entire-city')}
                     activeOpacity={0.7}
                   >
-                    {isSelected && (
+                    {toggleMode === 'entire-city' && (
                       <LinearGradient
-                        colors={['rgba(214,193,152,0.4)', 'rgba(214,193,152,0.3)']}
-                        style={styles.dateChipGradient}
+                        colors={['rgba(231,201,122,0.4)', 'rgba(220,202,162,0.3)']}
+                        style={styles.toggleButtonGradient}
                       />
                     )}
-                    <Text style={[styles.dateChipText, isSelected && styles.dateChipTextActive]}>
-                      {date}
+                    <Text style={[
+                      styles.toggleButtonText,
+                      toggleMode === 'entire-city' && styles.toggleButtonTextActive
+                    ]}>
+                      One Stay for Entire City
                     </Text>
                   </TouchableOpacity>
-                );
-              })}
-            </ScrollView>
-          )}
-        </View>
+                  
+                  <TouchableOpacity
+                    style={[
+                      styles.toggleButton,
+                      toggleMode === 'select-dates' && styles.toggleButtonActive
+                    ]}
+                    onPress={() => setToggleMode('select-dates')}
+                    activeOpacity={0.7}
+                  >
+                    {toggleMode === 'select-dates' && (
+                      <LinearGradient
+                        colors={['rgba(231,201,122,0.4)', 'rgba(220,202,162,0.3)']}
+                        style={styles.toggleButtonGradient}
+                      />
+                    )}
+                    <Text style={[
+                      styles.toggleButtonText,
+                      toggleMode === 'select-dates' && styles.toggleButtonTextActive
+                    ]}>
+                      Select Dates
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+                
+                {/* Date Chips (only visible when Select Dates is active) */}
+                {toggleMode === 'select-dates' && (
+                  <>
+                    <ScrollView 
+                      horizontal 
+                      showsHorizontalScrollIndicator={false}
+                      style={styles.dateChipsScroll}
+                      contentContainerStyle={styles.dateChipsContent}
+                    >
+                      {dateChips.map(date => {
+                        const isSelected = selectedDates.includes(date);
+                        return (
+                          <TouchableOpacity
+                            key={date}
+                            style={[
+                              styles.dateChip,
+                              isSelected && styles.dateChipActive
+                            ]}
+                            onPress={() => handleDateToggle(date)}
+                            activeOpacity={0.7}
+                          >
+                            {isSelected && (
+                              <LinearGradient
+                                colors={['rgba(231,201,122,0.5)', 'rgba(220,202,162,0.4)']}
+                                style={styles.dateChipGradient}
+                              />
+                            )}
+                            <Text style={[
+                              styles.dateChipText,
+                              isSelected && styles.dateChipTextActive
+                            ]}>
+                              {date}
+                            </Text>
+                          </TouchableOpacity>
+                        );
+                      })}
+                    </ScrollView>
+                    
+                    {/* Date Range Caption */}
+                    {dateRangeText && (
+                      <Text style={styles.dateRangeCaption}>{dateRangeText}</Text>
+                    )}
+                  </>
+                )}
+              </LinearGradient>
+            </BlurView>
+          </View>
+          
+          {/* Stay Grid */}
+          <View style={styles.stayGrid}>
+            {filteredStays.map((stay, index) => (
+              <TouchableOpacity
+                key={stay.id}
+                style={styles.stayCard}
+                activeOpacity={0.8}
+                onPress={() => router.push('/stay-info-compact')}
+              >
+                <ImageBackground
+                  source={{ uri: stay.image }}
+                  style={styles.stayCardImage}
+                  imageStyle={styles.stayCardImageStyle}
+                >
+                  {/* Unavailable Overlay */}
+                  {!stay.available && (
+                    <View style={styles.unavailableOverlay}>
+                      <Text style={styles.unavailableText}>
+                        Unavailable for selected range
+                      </Text>
+                    </View>
+                  )}
+                  
+                  {/* Saved Heart Icon */}
+                  <TouchableOpacity
+                    style={styles.saveButton}
+                    onPress={() => handleSaveStay(stay.id)}
+                    activeOpacity={0.7}
+                  >
+                    <Ionicons
+                      name={savedStays.has(stay.id) ? 'heart' : 'heart-outline'}
+                      size={22}
+                      color={savedStays.has(stay.id) ? '#E7C97A' : 'rgba(255,255,255,0.8)'}
+                    />
+                  </TouchableOpacity>
+                  
+                  {/* Booked Checkmark */}
+                  {bookedStays.has(stay.id) && (
+                    <View style={styles.bookedBadge}>
+                      <Ionicons name="checkmark-circle" size={24} color="#E7C97A" />
+                    </View>
+                  )}
+                  
+                  <LinearGradient
+                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.75)']}
+                    style={styles.stayCardGradient}
+                  />
+                  
+                  <View style={styles.stayCardContent}>
+                    <Text style={styles.stayCardName}>{stay.name}</Text>
+                    <Text style={styles.stayCardAddress}>{stay.address}</Text>
+                    
+                    <View style={styles.stayCardTags}>
+                      {stay.tags.slice(0, 2).map((tag, i) => (
+                        <View key={i} style={styles.tag}>
+                          <Text style={styles.tagText}>{tag}</Text>
+                        </View>
+                      ))}
+                    </View>
+                    
+                    <View style={styles.stayCardFooter}>
+                      <View style={styles.ratingRow}>
+                        <Ionicons name="star" size={14} color="#E7C97A" />
+                        <Text style={styles.ratingText}>{stay.rating}</Text>
+                        <Text style={styles.reviewCount}>({stay.reviewCount})</Text>
+                      </View>
+                      <Text style={styles.priceText}>{stay.pricePerNight}<Text style={styles.perNight}>/night</Text></Text>
+                    </View>
+                  </View>
+                </ImageBackground>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </ScrollView>
         
-        {/* Filter Arrow (Always Visible) */}
+        {/* Filter Panel Arrow (Always Visible) */}
         <TouchableOpacity
           style={styles.filterArrow}
           onPress={() => setFilterPanelOpen(!filterPanelOpen)}
@@ -295,8 +403,8 @@ export default function StayBrowsing() {
         >
           <Ionicons 
             name={filterPanelOpen ? 'chevron-back' : 'chevron-forward'} 
-            size={18} 
-            color="rgba(214,193,152,0.9)" 
+            size={20} 
+            color="#E7C97A" 
           />
         </TouchableOpacity>
         
@@ -314,152 +422,54 @@ export default function StayBrowsing() {
             }
           ]}
         >
-          <View style={styles.filterPanelContent}>
-            {(['for-you', 'boutique', 'luxury', 'affordable', 'featured'] as FilterType[]).map((filter) => (
-              <TouchableOpacity
-                key={filter}
-                style={[styles.filterButton, activeFilter === filter && styles.filterButtonActive]}
-                onPress={() => {
-                  setActiveFilter(filter);
-                  setFilterPanelOpen(false);
-                }}
-                activeOpacity={0.7}
-              >
-                {activeFilter === filter && (
-                  <LinearGradient
-                    colors={['rgba(214,193,152,0.3)', 'rgba(214,193,152,0.2)']}
-                    style={styles.filterButtonGradient}
-                  />
-                )}
-                <Text style={[styles.filterText, activeFilter === filter && styles.filterTextActive]}>
-                  {filterTitleMap[filter]}
-                </Text>
+          <BlurView intensity={32} style={styles.filterPanelBlur} tint="dark">
+            <LinearGradient
+              colors={['rgba(0,0,0,0.6)', 'rgba(0,0,0,0.5)']}
+              style={styles.filterPanelGradient}
+            >
+              {(['for-you', 'boutique', 'luxury', 'affordable', 'featured'] as FilterType[]).map(filter => (
+                <TouchableOpacity
+                  key={filter}
+                  style={[
+                    styles.filterButton,
+                    activeFilter === filter && styles.filterButtonActive
+                  ]}
+                  onPress={() => setActiveFilter(filter)}
+                  activeOpacity={0.7}
+                >
+                  {activeFilter === filter && (
+                    <LinearGradient
+                      colors={['rgba(231,201,122,0.5)', 'rgba(220,202,162,0.4)']}
+                      style={styles.filterButtonGradient}
+                    />
+                  )}
+                  <Text style={[
+                    styles.filterButtonText,
+                    activeFilter === filter && styles.filterButtonTextActive
+                  ]}>
+                    {filter === 'for-you' ? 'For You' : 
+                     filter.charAt(0).toUpperCase() + filter.slice(1)}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+              
+              {/* Search Button */}
+              <TouchableOpacity style={styles.searchButton} activeOpacity={0.7}>
+                <Ionicons name="search" size={18} color="rgba(241,239,234,0.7)" />
+                <Text style={styles.searchButtonText}>Search</Text>
               </TouchableOpacity>
-            ))}
-          </View>
+            </LinearGradient>
+          </BlurView>
         </Animated.View>
         
-        {/* Stay Grid with Filter Title */}
-        <ScrollView 
-          style={styles.scrollContainer}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.scrollContent}
+        {/* Back Button */}
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => router.back()}
+          activeOpacity={0.7}
         >
-          {/* Filter Title */}
-          <Text style={styles.filterTitleText}>{filterTitleMap[activeFilter]}</Text>
-          
-          <View style={styles.stayGrid}>
-            {filteredStays.map((stay) => {
-              const totalPrice = stay.pricePerNight * totalNights;
-              
-              // Calculate date display based on mode
-              let displayDates = '';
-              if (toggleMode === 'single') {
-                // Show full range
-                displayDates = `${cityStartMonth} ${cityStartDay}–${cityEndDay}`;
-              } else {
-                // Show selected dates range
-                if (selectedDates.length > 0) {
-                  const firstDate = selectedDates[0];
-                  const lastDate = selectedDates[selectedDates.length - 1];
-                  displayDates = `${cityStartMonth} ${firstDate}–${lastDate}`;
-                } else {
-                  displayDates = `${cityStartMonth} ${cityStartDay}`;
-                }
-              }
-              
-              // Calculate nights for display
-              const displayNights = toggleMode === 'multiple' && selectedDates.length > 0 
-                ? selectedDates.length 
-                : totalNights;
-              
-              return (
-                <TouchableOpacity
-                  key={stay.id}
-                  style={styles.stayCard}
-                  activeOpacity={0.8}
-                  onPress={() => router.push({
-                    pathname: '/stay-info-compact',
-                    params: { nights: displayNights.toString() }
-                  })}
-                >
-                  <ImageBackground
-                    source={{ uri: stay.image }}
-                    style={styles.stayCardBg}
-                    imageStyle={styles.stayCardBgStyle}
-                  >
-                    <LinearGradient
-                      colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
-                      style={styles.stayCardGradient}
-                    />
-                    
-                    {/* Frosted Pane with Content */}
-                    <View style={styles.stayCardFrosted}>
-                      {/* Date Pill - Top Right */}
-                      <View style={styles.datePillTopRight}>
-                        <Text style={styles.datePillText}>{displayDates}</Text>
-                      </View>
-                      
-                      {/* Save Heart - Top Right on Frosted Pane */}
-                      <TouchableOpacity
-                        style={styles.saveHeartFrosted}
-                        onPress={() => handleSaveStay(stay.id)}
-                        activeOpacity={0.7}
-                      >
-                        <Ionicons
-                          name={savedStays.has(stay.id) ? 'heart' : 'heart-outline'}
-                          size={20}
-                          color={savedStays.has(stay.id) ? '#D9BD78' : 'rgba(255,255,255,0.8)'}
-                        />
-                      </TouchableOpacity>
-                      
-                      <Text style={styles.stayCardName}>{stay.name}</Text>
-                      <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
-                      <Text style={styles.stayEstTotal}>Est. Total <Text style={styles.priceHighlight}>€{totalPrice}</Text> · {displayNights} {displayNights === 1 ? 'night' : 'nights'}</Text>
-                      <Text style={styles.stayCardLocation}>{stay.location}</Text>
-                      
-                      {/* Rating & Amenities */}
-                      <View style={styles.ratingAmenitiesRow}>
-                        <View style={styles.ratingRow}>
-                          <Ionicons name="star" size={12} color="#D9BD78" />
-                          <Text style={styles.ratingText}>{stay.rating}</Text>
-                        </View>
-                        <Text style={styles.amenityDot}>·</Text>
-                        {stay.amenities.slice(0, 3).map((amenity, index) => (
-                          <React.Fragment key={amenity}>
-                            <Text style={styles.amenityText}>{amenity}</Text>
-                            {index < 2 && <Text style={styles.amenityDot}>·</Text>}
-                          </React.Fragment>
-                        ))}
-                      </View>
-                      
-                      {/* Book Via Row */}
-                      <View style={styles.bookViaSection}>
-                        <Text style={styles.bookViaLabel}>Book via</Text>
-                        <View style={styles.bookingButtonsRow}>
-                          {stay.platforms.map(platform => (
-                            <TouchableOpacity 
-                              key={platform} 
-                              style={styles.bookingPlatformButton}
-                              activeOpacity={0.7}
-                            >
-                              <LinearGradient
-                                colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.03)']}
-                                style={styles.bookingPlatformGradient}
-                              >
-                                <Text style={styles.bookingPlatformText}>{platform}</Text>
-                              </LinearGradient>
-                            </TouchableOpacity>
-                          ))}
-                        </View>
-                      </View>
-                    </View>
-                  </ImageBackground>
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-        </ScrollView>
+          <Ionicons name="arrow-back" size={24} color="rgba(241,239,234,0.9)" />
+        </TouchableOpacity>
       </Animated.View>
     </View>
   );
@@ -477,37 +487,48 @@ const styles = StyleSheet.create({
   },
   backgroundOverlay: {
     ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(14,14,14,0.7)',
   },
   contentWrapper: {
     flex: 1,
   },
-  
-  // Header
-  header: {
-    paddingTop: 50,
-    paddingHorizontal: 20,
-    paddingBottom: 10,
+  scrollContainer: {
+    flex: 1,
   },
-  backButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: 'rgba(241,239,234,0.2)',
+  scrollContent: {
+    paddingBottom: 100,
   },
   
-  // Hero Section - EXACT Trip Canvas Match
-  heroSection: {
+  // Hero Pane
+  heroPaneWrapper: {
+    alignItems: 'center',
+    paddingTop: 80,
     paddingHorizontal: 20,
-    paddingTop: 8,
-    paddingBottom: 20,
+    marginBottom: 32,
+  },
+  heroPane: {
+    width: '100%',
+    maxWidth: 420,
+    borderRadius: 20,
+    overflow: 'hidden',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(231,201,122,0.25)',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.4,
+        shadowRadius: 16,
+      },
+      android: {
+        elevation: 8,
+      },
+    }),
+  },
+  heroPaneGradient: {
+    padding: 24,
     alignItems: 'center',
   },
-  heroTitle: {
-    fontSize: 26,
+  tripTitle: {
+    fontSize: 28,
     fontWeight: '600',
     color: 'rgba(245,240,230,0.95)',
     fontFamily: Platform.select({
@@ -516,113 +537,106 @@ const styles = StyleSheet.create({
       web: 'Playfair Display, Georgia, serif',
     }),
     textAlign: 'center',
-    marginBottom: 6,
+    letterSpacing: 0.5,
+    marginBottom: 8,
   },
-  heroMetaRow: {
-    flexDirection: 'row',
-    marginBottom: 14,
-  },
-  heroMeta: {
-    fontSize: 13,
-    color: 'rgba(214,193,152,0.85)',
+  tripDetails: {
+    fontSize: 14,
+    color: 'rgba(241,239,234,0.7)',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
+    marginBottom: 20,
   },
-  cityPillContainer: {
-    marginBottom: 14,
+  cityChip: {
+    paddingVertical: 10,
+    paddingHorizontal: 24,
+    borderRadius: 20,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(231,201,122,0.3)',
   },
-  cityPill: {
-    paddingVertical: 7,
-    paddingHorizontal: 18,
-    borderRadius: 14,
-    borderWidth: 0.5,
-    borderColor: 'rgba(214,193,152,0.25)',
-  },
-  cityPillText: {
-    fontSize: 12,
+  cityChipText: {
+    fontSize: 15,
     fontWeight: '600',
-    color: 'rgba(214,193,152,0.95)',
+    color: '#F1EFEA',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
   
-  // Toggle (Single Pill) - Larger
-  toggleOuterContainer: {
-    width: '100%',
-    alignItems: 'center',
-  },
-  toggleContainer: {
+  // Toggle Row
+  toggleRow: {
     flexDirection: 'row',
-    backgroundColor: 'rgba(255,255,255,0.05)',
-    borderRadius: 20,
-    padding: 3,
-    borderWidth: 0.5,
-    borderColor: 'rgba(214,193,152,0.2)',
+    gap: 12,
+    marginBottom: 16,
+    width: '100%',
   },
-  toggleSide: {
-    paddingVertical: 10,
-    paddingHorizontal: 24,
-    borderRadius: 17,
-    position: 'relative',
+  toggleButton: {
+    flex: 1,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(241,239,234,0.25)',
     overflow: 'hidden',
+    position: 'relative',
   },
-  toggleSideActive: {
-    borderWidth: 0.5,
-    borderColor: 'rgba(214,193,152,0.35)',
+  toggleButtonActive: {
+    borderColor: 'rgba(231,201,122,0.5)',
   },
-  toggleActiveGradient: {
+  toggleButtonGradient: {
     ...StyleSheet.absoluteFillObject,
-    borderRadius: 17,
+    borderRadius: 24,
   },
-  toggleText: {
+  toggleButtonText: {
     fontSize: 13,
-    color: 'rgba(214,193,152,0.5)',
+    color: 'rgba(241,239,234,0.6)',
     fontWeight: '500',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  toggleTextActive: {
-    color: 'rgba(214,193,152,0.95)',
+  toggleButtonTextActive: {
+    color: '#F1EFEA',
     fontWeight: '600',
   },
   
-  // Date Chips for Multiple Stays
+  // Date Chips
   dateChipsScroll: {
     width: '100%',
-    marginTop: 12,
+    marginTop: 8,
   },
   dateChipsContent: {
     paddingHorizontal: 4,
     gap: 8,
   },
   dateChip: {
-    width: 38,
-    height: 38,
-    borderRadius: 19,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 0.5,
-    borderColor: 'rgba(214,193,152,0.2)',
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    borderWidth: 1,
+    borderColor: 'rgba(241,239,234,0.2)',
     position: 'relative',
     overflow: 'hidden',
   },
   dateChipActive: {
-    borderColor: 'rgba(214,193,152,0.5)',
+    borderColor: 'rgba(231,201,122,0.6)',
   },
   dateChipGradient: {
     ...StyleSheet.absoluteFillObject,
-    borderRadius: 19,
+    borderRadius: 22,
   },
   dateChipText: {
-    fontSize: 13,
-    color: 'rgba(214,193,152,0.6)',
+    fontSize: 14,
+    color: 'rgba(241,239,234,0.6)',
     fontWeight: '500',
     fontFamily: Platform.select({
       ios: 'Inter',
@@ -630,303 +644,287 @@ const styles = StyleSheet.create({
     }),
   },
   dateChipTextActive: {
-    color: 'rgba(214,193,152,0.95)',
+    color: '#F1EFEA',
     fontWeight: '600',
   },
-  
-  // Filter Arrow
-  filterArrow: {
-    position: 'absolute',
-    left: 0,
-    top: height * 0.35,
-    width: 32,
-    height: 50,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
-    borderWidth: 0.5,
-    borderLeftWidth: 0,
-    borderColor: 'rgba(214,193,152,0.25)',
-    zIndex: 999,
-  },
-  
-  // Filter Panel
-  filterPanel: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    bottom: 0,
-    width: width * 0.25,
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    borderRightWidth: 0.5,
-    borderColor: 'rgba(214,193,152,0.2)',
-    zIndex: 998,
-  },
-  filterPanelContent: {
-    paddingTop: 120,
-    paddingHorizontal: 10,
-    gap: 10,
-  },
-  filterButton: {
-    paddingVertical: 11,
-    paddingHorizontal: 12,
-    borderRadius: 12,
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    borderWidth: 0.5,
-    borderColor: 'rgba(214,193,152,0.15)',
-    position: 'relative',
-    overflow: 'hidden',
-  },
-  filterButtonActive: {
-    borderColor: 'rgba(214,193,152,0.4)',
-  },
-  filterButtonGradient: {
-    ...StyleSheet.absoluteFillObject,
-    borderRadius: 12,
-  },
-  filterText: {
-    fontSize: 11,
-    color: 'rgba(214,193,152,0.6)',
-    fontWeight: '500',
-    textAlign: 'center',
+  dateRangeCaption: {
+    fontSize: 13,
+    fontStyle: 'italic',
+    color: 'rgba(241,239,234,0.6)',
+    marginTop: 12,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  filterTextActive: {
-    color: 'rgba(214,193,152,0.95)',
-    fontWeight: '600',
-  },
   
   // Stay Grid
-  scrollContainer: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 40,
-  },
-  filterTitleText: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: 'rgba(214,193,152,0.95)',
-    fontFamily: Platform.select({
-      ios: 'Playfair Display',
-      android: 'serif',
-      web: 'Playfair Display, Georgia, serif',
-    }),
-    marginBottom: 16,
-  },
   stayGrid: {
-    gap: 18,
+    paddingHorizontal: 20,
+    gap: 24,
   },
-  
-  // Stay Card - World-Class Cinematic Design
   stayCard: {
-    borderRadius: 24,
+    height: 380,
+    borderRadius: 16,
     overflow: 'hidden',
-    marginBottom: 4,
+    backgroundColor: '#1A1A1A',
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(217,189,120,0.08)',
+        shadowColor: 'rgba(0,0,0,0.5)',
         shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 1,
-        shadowRadius: 20,
+        shadowOpacity: 0.6,
+        shadowRadius: 16,
       },
       android: {
-        elevation: 10,
+        elevation: 8,
       },
     }),
   },
-  stayCardBg: {
-    width: '100%',
-    aspectRatio: 4/3,
-    minHeight: Math.min(width * 0.65, 380),
+  stayCardImage: {
+    flex: 1,
+    justifyContent: 'flex-end',
   },
-  stayCardBgStyle: {
-    borderRadius: 24,
+  stayCardImageStyle: {
+    borderRadius: 16,
   },
   stayCardGradient: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    height: '50%',
+    height: '60%',
   },
-  stayCardFrosted: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: 'rgba(20,20,20,0.55)',
+  stayCardContent: {
     padding: 20,
-    borderBottomLeftRadius: 24,
-    borderBottomRightRadius: 24,
-    borderTopWidth: 0.5,
-    borderTopColor: 'rgba(200,180,126,0.08)',
-  },
-  datePillTopRight: {
-    position: 'absolute',
-    top: -300,
-    right: 12,
-    backgroundColor: 'rgba(30,30,30,0.65)',
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 16,
-    borderWidth: 0.5,
-    borderColor: 'rgba(217,189,120,0.2)',
-    ...Platform.select({
-      ios: {
-        shadowColor: 'rgba(0,0,0,0.4)',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 1,
-        shadowRadius: 8,
-      },
-    }),
-  },
-  datePillText: {
-    fontSize: 12,
-    color: '#F7F7F7',
-    fontWeight: '600',
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
-  },
-  saveHeartFrosted: {
-    position: 'absolute',
-    top: 16,
-    right: 16,
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(20,20,20,0.5)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 0.5,
-    borderColor: 'rgba(217,189,120,0.15)',
   },
   stayCardName: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#F5F5F5',
-    marginBottom: 4,
-    letterSpacing: -0.2,
+    fontSize: 22,
+    fontWeight: '600',
+    color: '#F6F4EF',
+    marginBottom: 6,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
     }),
   },
-  stayCardTagline: {
-    fontSize: 13,
-    fontStyle: 'italic',
-    color: '#D8C389',
-    marginBottom: 8,
-    fontFamily: Platform.select({
-      ios: 'Georgia',
-      android: 'serif',
-      web: 'Georgia, serif',
-    }),
-  },
-  stayEstTotal: {
-    fontSize: 15,
-    fontWeight: '500',
-    color: '#EAE8E0',
-    marginBottom: 6,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
-  },
-  priceHighlight: {
-    color: '#E7C97A',
-    fontWeight: '600',
-  },
-  stayCardLocation: {
-    fontSize: 12,
-    color: 'rgba(213,210,202,0.7)',
-    marginBottom: 10,
-    lineHeight: 16,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
-  },
-  ratingAmenitiesRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  stayCardAddress: {
+    fontSize: 14,
+    color: 'rgba(199,194,178,0.9)',
     marginBottom: 12,
-    flexWrap: 'wrap',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  stayCardTags: {
+    flexDirection: 'row',
+    gap: 8,
+    marginBottom: 16,
+  },
+  tag: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 12,
+    backgroundColor: 'rgba(231,201,122,0.2)',
+    borderWidth: 0.5,
+    borderColor: 'rgba(231,201,122,0.3)',
+  },
+  tagText: {
+    fontSize: 11,
+    color: 'rgba(231,201,122,0.9)',
+    fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  stayCardFooter: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   ratingRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 3,
+    gap: 4,
   },
   ratingText: {
-    fontSize: 13,
-    color: '#F6F4EF',
+    fontSize: 14,
     fontWeight: '600',
+    color: '#F6F4EF',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  amenityDot: {
+  reviewCount: {
     fontSize: 13,
-    color: 'rgba(255,255,255,0.35)',
-    marginHorizontal: 6,
-  },
-  amenityText: {
-    fontSize: 12,
-    color: '#DDD6C5',
+    color: 'rgba(199,194,178,0.7)',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  bookViaSection: {
-    marginTop: 4,
-  },
-  bookViaLabel: {
-    fontSize: 11,
-    color: 'rgba(255,255,255,0.5)',
-    marginBottom: 8,
+  priceText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#E7C97A',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  bookingButtonsRow: {
-    flexDirection: 'row',
-    gap: 8,
+  perNight: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: 'rgba(231,201,122,0.7)',
   },
-  bookingPlatformButton: {
-    borderRadius: 18,
-    overflow: 'hidden',
-    borderWidth: 0.5,
-    borderColor: 'rgba(217,189,120,0.15)',
-  },
-  bookingPlatformGradient: {
-    paddingVertical: 8,
-    paddingHorizontal: 14,
+  
+  // Save & Booked Buttons
+  saveButton: {
+    position: 'absolute',
+    top: 16,
+    right: 16,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(0,0,0,0.4)',
     alignItems: 'center',
     justifyContent: 'center',
+    zIndex: 2,
   },
-  bookingPlatformText: {
-    fontSize: 11,
-    color: '#F7F7F7',
+  bookedBadge: {
+    position: 'absolute',
+    top: 16,
+    right: 64,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 2,
+  },
+  unavailableOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.65)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1,
+  },
+  unavailableText: {
+    fontSize: 15,
+    color: '#B9A97D',
     fontWeight: '500',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
+  },
+  
+  // Filter Panel
+  filterArrow: {
+    position: 'absolute',
+    left: 0,
+    top: height * 0.4,
+    width: 36,
+    height: 60,
+    backgroundColor: 'rgba(231,201,122,0.15)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderTopRightRadius: 12,
+    borderBottomRightRadius: 12,
+    borderWidth: 1,
+    borderLeftWidth: 0,
+    borderColor: 'rgba(231,201,122,0.3)',
+    zIndex: 999,
+  },
+  filterPanel: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    bottom: 0,
+    width: width * 0.25,
+    zIndex: 998,
+  },
+  filterPanelBlur: {
+    flex: 1,
+  },
+  filterPanelGradient: {
+    flex: 1,
+    paddingTop: 100,
+    paddingHorizontal: 12,
+    paddingBottom: 40,
+    borderRightWidth: 1,
+    borderColor: 'rgba(231,201,122,0.2)',
+  },
+  filterButton: {
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    borderRadius: 16,
+    marginBottom: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(241,239,234,0.15)',
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  filterButtonActive: {
+    borderColor: 'rgba(231,201,122,0.5)',
+  },
+  filterButtonGradient: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 16,
+  },
+  filterButtonText: {
+    fontSize: 13,
+    color: 'rgba(241,239,234,0.6)',
+    fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  filterButtonTextActive: {
+    color: '#F1EFEA',
+    fontWeight: '600',
+  },
+  searchButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    paddingVertical: 14,
+    marginTop: 'auto',
+    borderTopWidth: 1,
+    borderColor: 'rgba(241,239,234,0.1)',
+    paddingTop: 20,
+  },
+  searchButtonText: {
+    fontSize: 13,
+    color: 'rgba(241,239,234,0.7)',
+    fontWeight: '500',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  
+  // Back Button
+  backButton: {
+    position: 'absolute',
+    top: 50,
+    left: 20,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(241,239,234,0.2)',
+    zIndex: 1000,
   },
 });
