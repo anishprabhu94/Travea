@@ -174,36 +174,36 @@ export default function StayBrowsing() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-        {/* Hero Section - Trip Canvas Style (Modular Container) */}
+        {/* Hero Section - Modular Container (92% width, centered) */}
         <View style={styles.heroModule}>
           <ImageBackground
             source={{ uri: tripData.cityImage }}
             style={styles.heroImageBackground}
             imageStyle={styles.heroImageStyle}
           >
-            {/* Image vignette */}
+            {/* Darken text region for readability */}
             <LinearGradient
-              colors={['rgba(0,0,0,0.3)', 'rgba(0,0,0,0.1)', 'rgba(0,0,0,0.4)']}
+              colors={['rgba(0,0,0,0.5)', 'rgba(0,0,0,0.2)', 'rgba(0,0,0,0.7)']}
               style={StyleSheet.absoluteFill}
             />
-          </ImageBackground>
-          
-          {/* Frosted Glass Overlay */}
-          <View style={styles.heroFrostedContainer}>
-            {/* Top gold gradient edge */}
-            <LinearGradient
-              colors={['rgba(217,189,120,0.2)', 'rgba(217,189,120,0)']}
-              style={styles.heroTopGoldEdge}
-            />
             
-            {/* Back Button */}
+            {/* Back Button - Inside Hero */}
             <TouchableOpacity
               style={styles.backButton}
               onPress={() => router.back()}
               activeOpacity={0.7}
             >
-              <Ionicons name="arrow-back" size={20} color="rgba(232,217,166,0.9)" />
+              <Ionicons name="arrow-back" size={20} color="rgba(245,244,239,0.9)" />
             </TouchableOpacity>
+          </ImageBackground>
+          
+          {/* Frosted Glass Content Overlay */}
+          <View style={styles.heroFrostedContainer}>
+            {/* Inner gold glow edge */}
+            <LinearGradient
+              colors={['rgba(217,189,120,0.25)', 'rgba(217,189,120,0)']}
+              style={styles.heroTopGoldEdge}
+            />
             
             {/* Trip Title */}
             <Text style={styles.heroTitle}>{tripData.title}</Text>
@@ -225,8 +225,8 @@ export default function StayBrowsing() {
               </LinearGradient>
             </View>
             
-            {/* Stay Selection Toggle - Trip Canvas Style */}
-            <View style={styles.toggleContainer}>
+            {/* Stay Selection Toggle Dock */}
+            <View style={styles.toggleDock}>
               <TouchableOpacity
                 style={[styles.toggleButton, toggleMode === 'entire-city' && styles.toggleButtonActive]}
                 onPress={() => setToggleMode('entire-city')}
@@ -242,6 +242,8 @@ export default function StayBrowsing() {
                   One Stay for Entire City
                 </Text>
               </TouchableOpacity>
+              
+              <View style={styles.toggleSpacer} />
               
               <TouchableOpacity
                 style={[styles.toggleButton, toggleMode === 'select-dates' && styles.toggleButtonActive]}
@@ -266,6 +268,7 @@ export default function StayBrowsing() {
                 horizontal 
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.dateChipsContainer}
+                style={styles.dateChipsScroll}
               >
                 {dateChips.map(date => {
                   const isSelected = selectedDates.includes(date);
