@@ -96,18 +96,7 @@ export default function StayBrowsing() {
     });
   };
   
-  // Check if date is in selected range
-  const isDateInRange = (date: number) => {
-    if (!selectedDateRange.start) return false;
-    if (!selectedDateRange.end) return date === selectedDateRange.start;
-    return date >= selectedDateRange.start && date <= selectedDateRange.end;
-  };
-  
-  // Check if date is booked (placeholder logic)
-  const isDateBooked = (date: number) => {
-    // In real implementation, check against bookedStays data
-    return false;
-  };
+  // Placeholder for future date range functionality
   
   // Mock stay data
   const mockStays = [
