@@ -29,7 +29,7 @@ export default function StayBrowsing() {
   
   // State
   const [savedStays, setSavedStays] = useState<Set<string>>(new Set());
-  const [bookedStays, setBookedStays] = useState<Set<string>>(new Set());
+  const [bookedStays, setBookedStays] = useState<Set<string>>(new Set(['1'])); // Test with stay 1 booked
   const [canceledStays, setCanceledStays] = useState<Set<string>>(new Set());
   const [stayMode, setStayMode] = useState<'single' | 'multi'>('single');
   const [selectedDates, setSelectedDates] = useState<number[]>([]);
