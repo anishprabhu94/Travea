@@ -353,8 +353,18 @@ export default function StayBrowsing() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          {/* Filter Title */}
-          <Text style={styles.filterTitleText}>{filterTitleMap[activeFilter]}</Text>
+          {/* Filter Title - Muted Bronze Pill */}
+          <View style={styles.filterTitleContainer}>
+            <LinearGradient
+              colors={['rgba(156,142,106,0.3)', 'rgba(156,142,106,0.2)']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.filterTitlePill}
+            >
+              <Ionicons name="sparkles" size={16} color="#FFFFFF" />
+              <Text style={styles.filterTitleText}>{filterTitleMap[activeFilter]}</Text>
+            </LinearGradient>
+          </View>
           
           <View style={styles.stayGrid}>
             {filteredStays.map((stay) => {
