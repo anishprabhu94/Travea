@@ -26,16 +26,6 @@ export default function StayBrowsing() {
   const cityEndMonth = params.endMonth as string || 'Jun';
   const cityEndDay = params.endDay as string || '13';
   
-  // Calculate nights
-  const calculateNights = () => {
-    if (stayMode === 'multi' && selectedDateRange.start && selectedDateRange.end) {
-      return selectedDateRange.end - selectedDateRange.start;
-    }
-    const start = parseInt(cityStartDay);
-    const end = parseInt(cityEndDay);
-    return end - start;
-  };
-  
   const totalNights = calculateNights();
   
   // Generate date range for city
