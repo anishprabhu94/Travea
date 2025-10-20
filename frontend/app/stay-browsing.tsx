@@ -1382,10 +1382,11 @@ const styles = StyleSheet.create({
   // Booking Status Labels
   bookedLabel: {
     position: 'absolute',
-    top: -290,
+    top: 12,
     left: 12,
     borderRadius: 12,
     overflow: 'hidden',
+    zIndex: 10,
   },
   bookedLabelGradient: {
     paddingVertical: 6,
