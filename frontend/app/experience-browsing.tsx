@@ -184,15 +184,15 @@ export default function ExperienceBrowsing() {
   
   // Get saved experiences grouped by category
   const getSavedExperiencesByCategory = () => {
-    const allSaved = mockExperiences.filter(stay => savedExperiences.has(stay.id));
+    const allSaved = mockExperiences.filter(exp => savedExperiences.has(exp.id));
     const grouped: { [key: string]: typeof mockExperiences } = {};
     
-    allSaved.forEach(stay => {
-      const category = stay.category;
+    allSaved.forEach(exp => {
+      const category = exp.category;
       if (!grouped[category]) {
         grouped[category] = [];
       }
-      grouped[category].push(stay);
+      grouped[category].push(exp);
     });
     
     return grouped;
