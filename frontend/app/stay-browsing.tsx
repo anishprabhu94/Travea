@@ -574,30 +574,13 @@ export default function StayBrowsing() {
                           <Text style={styles.nightsRatingText}>{stay.rating}</Text>
                         </View>
                         
-                        {/* Context Layer - Experience Tags (max 2) */}
-                        <View style={styles.experienceTagsRow}>
-                          {stay.experiences.slice(0, 2).map((exp, index) => (
-                            <View key={index} style={styles.experienceTag}>
-                              <Text style={styles.experienceTagText}>{exp}</Text>
-                            </View>
-                          ))}
-                        </View>
-                        
                         {/* Ivory Separator */}
                         <View style={styles.ivorySeparator} />
                         
-                        {/* View Details CTA - Left Aligned */}
-                        <TouchableOpacity 
-                          style={styles.viewDetailsCTA}
-                          activeOpacity={0.8}
-                        >
-                          <LinearGradient
-                            colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.04)']}
-                            style={styles.viewDetailsCTAGradient}
-                          >
-                            <Text style={styles.viewDetailsCTAText}>View Details</Text>
-                          </LinearGradient>
-                        </TouchableOpacity>
+                        {/* Date Pill - Replacing View Details */}
+                        <View style={styles.cardDatePill}>
+                          <Text style={styles.cardDatePillText}>{cityStartMonth} {cityStartDay}</Text>
+                        </View>
                       </View>
                     ) : (
                       <BlurView intensity={30} tint="light" style={styles.blurViewContent}>
@@ -615,30 +598,13 @@ export default function StayBrowsing() {
                           <Text style={styles.nightsRatingText}>{stay.rating}</Text>
                         </View>
                         
-                        {/* Context Layer - Experience Tags (max 2) */}
-                        <View style={styles.experienceTagsRow}>
-                          {stay.experiences.slice(0, 2).map((exp, index) => (
-                            <View key={index} style={styles.experienceTag}>
-                              <Text style={styles.experienceTagText}>{exp}</Text>
-                            </View>
-                          ))}
-                        </View>
-                        
                         {/* Ivory Separator */}
                         <View style={styles.ivorySeparator} />
                         
-                        {/* View Details CTA - Left Aligned */}
-                        <TouchableOpacity 
-                          style={styles.viewDetailsCTA}
-                          activeOpacity={0.8}
-                        >
-                          <LinearGradient
-                            colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.04)']}
-                            style={styles.viewDetailsCTAGradient}
-                          >
-                            <Text style={styles.viewDetailsCTAText}>View Details</Text>
-                          </LinearGradient>
-                        </TouchableOpacity>
+                        {/* Date Pill - Replacing View Details */}
+                        <View style={styles.cardDatePill}>
+                          <Text style={styles.cardDatePillText}>{cityStartMonth} {cityStartDay}</Text>
+                        </View>
                       </BlurView>
                     )}
                   </View>
