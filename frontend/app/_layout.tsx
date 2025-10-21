@@ -13,7 +13,8 @@ export default function RootLayout() {
         <TripsProvider>
           <StayBookingProvider>
             <ExperienceBookingProvider>
-              <Stack screenOptions={{ headerShown: false }}>
+              <RestaurantBookingProvider>
+                <Stack screenOptions={{ headerShown: false }}>
               <Stack.Screen name="index" />
               <Stack.Screen name="landing" />
               <Stack.Screen name="trips" />
