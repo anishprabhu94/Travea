@@ -805,6 +805,13 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     alignItems: 'flex-start',
   },
+  stickyFilterTitle: {
+    position: 'absolute',
+    top: 440,
+    left: 16,
+    zIndex: 50,
+    backgroundColor: 'transparent',
+  },
   filterTitleText: {
     fontSize: 20,
     fontWeight: '600',
