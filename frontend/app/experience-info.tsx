@@ -63,8 +63,8 @@ export default function ExperienceInfo() {
   }
 
   const experience = {
-    title: 'Lemon Grove Walk',
-    tagline: 'A Sensory Journey Through Terraced Citrus Orchards',
+    title: expData.title,
+    tagline: expData.tagline,
     location: 'Amalfi Coast, Italy',
     duration: '2h 30m',
     activityType: 'Guided Walk',
