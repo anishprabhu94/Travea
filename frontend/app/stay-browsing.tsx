@@ -41,7 +41,6 @@ export default function StayBrowsing() {
   const [tripTitle, setTripTitle] = useState('');
   const contentOpacity = useState(new Animated.Value(0))[0];
   const filterClusterAnim = useState(new Animated.Value(0))[0];
-  const backdropBlurAnim = useState(new Animated.Value(0))[0];
   const dockAnim = useState(new Animated.Value(0))[0];
   
   // Calculate nights based on mode
