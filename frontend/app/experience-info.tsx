@@ -43,7 +43,7 @@ export default function ExperienceInfo() {
   }
 
   const handleMarkCanceled = () => {
-    markAsCanceled(experienceId)
+    markAsCanceled(experienceId, tripId)
     setToastMessage('Booking canceled')
     setShowToast(true)
     setTimeout(() => setShowToast(false), 3000)
