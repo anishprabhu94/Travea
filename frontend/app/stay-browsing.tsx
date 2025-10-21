@@ -379,94 +379,74 @@ export default function StayBrowsing() {
           </ImageBackground>
         </View>
         
-        {/* Filter Pane - Inline Below Hero */}
-        {filterOpen && (
-          <>
-            {/* Cinematic Backdrop Blur & Dim */}
-            <TouchableOpacity
-              style={styles.cinematicBackdrop}
-              activeOpacity={1}
-              onPress={toggleFilterPane}
-            />
-            
-            {/* Frosted Glass Filter Panel */}
-            <Animated.View 
-              style={[
-                styles.filterPaneFloating,
-                { 
-                  opacity: filterOpacityAnim,
-                  transform: [{
-                    scale: filterSlideAnim.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [0.98, 1]
-                    })
-                  }]
-                }
-              ]}
-            >
-              <LinearGradient
-                colors={['rgba(18,18,18,0.55)', 'rgba(18,18,18,0.6)']}
-                style={styles.filterPaneGlassNew}
+        {/* Floating Filter Cluster Button - Top Right */}
+        <View style={styles.filterClusterContainer}>
+          {/* Main Filter Button */}
+          <TouchableOpacity
+            style={styles.filterMainButton}
+            onPress={toggleFilterCluster}
+            activeOpacity={0.8}
+          >
+            <BlurView intensity={20} tint="dark" style={styles.filterMainButtonBlur}>
+              <Text style={styles.filterMainButtonText}>Filters ✦</Text>
+            </BlurView>
+          </TouchableOpacity>
+          
+          {/* Filter Pills Cluster */}
+          {filterClusterOpen && (
+            <>
+              {/* Background Blur */}
+              <TouchableOpacity
+                style={styles.filterClusterBackdrop}
+                activeOpacity={1}
+                onPress={toggleFilterCluster}
+              />
+              
+              <Animated.View 
+                style={[
+                  styles.filterPillsCluster,
+                  {
+                    opacity: filterClusterAnim,
+                    transform: [{
+                      scale: filterClusterAnim.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [0.95, 1]
+                      })
+                    }]
+                  }
+                ]}
               >
-                {/* Top gradient overlay */}
-                <LinearGradient
-                  colors={['rgba(255,255,255,0.05)', 'transparent']}
-                  style={styles.filterPaneTopGradient}
-                />
-                
-                {/* Close button */}
-                <TouchableOpacity
-                  style={styles.filterCloseButton}
-                  onPress={toggleFilterPane}
-                  activeOpacity={0.7}
-                >
-                  <Ionicons name="close" size={24} color="#F6F1E7" />
-                </TouchableOpacity>
-                
-                {/* Title with gold accent line */}
-                <Text style={styles.filterPaneTitleNew}>Filters</Text>
-                <View style={styles.filterGoldDivider} />
-                
-                {/* Filter Options */}
-                <View style={styles.filterOptionsNew}>
-                  {(['all', 'boutique', 'luxury', 'affordable', 'featured'] as const).map(filter => (
-                    <TouchableOpacity
-                      key={filter}
-                      style={[
-                        styles.filterOptionPillNew,
-                        activeFilter === filter && styles.filterOptionPillActiveNew
-                      ]}
-                      onPress={() => setActiveFilter(filter)}
-                      activeOpacity={0.7}
-                    >
+                {(['all', 'boutique', 'luxury', 'affordable', 'featured'] as const).map((filter, index) => (
+                  <TouchableOpacity
+                    key={filter}
+                    style={[
+                      styles.filterPill,
+                      activeFilter === filter && styles.filterPillActive,
+                      { marginTop: index * 6 }
+                    ]}
+                    onPress={() => {
+                      setActiveFilter(filter);
+                      toggleFilterCluster();
+                    }}
+                    activeOpacity={0.8}
+                  >
+                    <BlurView intensity={24} tint="dark" style={styles.filterPillBlur}>
                       {activeFilter === filter && (
-                        <LinearGradient
-                          colors={['rgba(212,190,132,0.25)', 'rgba(212,190,132,0.2)']}
-                          style={styles.filterOptionGradientNew}
-                        />
+                        <View style={styles.filterPillActiveFill} />
                       )}
                       <Text style={[
-                        styles.filterOptionTextNew,
-                        activeFilter === filter && styles.filterOptionTextActiveNew
+                        styles.filterPillText,
+                        activeFilter === filter && styles.filterPillTextActive
                       ]}>
-                        {filter === 'all' ? 'For You' : filter.charAt(0).toUpperCase() + filter.slice(1)}
+                        {filter === 'all' ? 'All' : filter.charAt(0).toUpperCase() + filter.slice(1)}
                       </Text>
-                    </TouchableOpacity>
-                  ))}
-                </View>
-                
-                {/* Reset button */}
-                <TouchableOpacity
-                  style={styles.filterResetButton}
-                  onPress={() => setActiveFilter('all')}
-                  activeOpacity={0.7}
-                >
-                  <Text style={styles.filterResetText}>Reset</Text>
-                </TouchableOpacity>
-              </LinearGradient>
-            </Animated.View>
-          </>
-        )}
+                    </BlurView>
+                  </TouchableOpacity>
+                ))}
+              </Animated.View>
+            </>
+          )}
+        </View>
         
         {/* Filter Title Above Cards */}
         <View style={styles.filterTitleContainer}>
