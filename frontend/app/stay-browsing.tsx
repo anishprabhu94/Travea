@@ -484,6 +484,13 @@ export default function StayBrowsing() {
           )}
         </View>
         
+        {/* Filter Title Above Cards */}
+        <View style={styles.filterTitleContainer}>
+          <Text style={styles.filterTitleText}>
+            {activeFilter === 'all' ? 'For You' : activeFilter === 'saved' ? 'Saved' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}
+          </Text>
+        </View>
+        
         {/* Stay Cards Section */}
         {activeFilter === 'saved' && Object.keys(groupedSavedStays).length > 1 ? (
           // Multi-category saved - horizontal carousels
