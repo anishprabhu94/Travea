@@ -65,7 +65,8 @@ export const ExperienceBookingProvider: React.FC<{ children: React.ReactNode }> 
   const markAsBooked = (experienceId: string, people: number, date: string, experienceName?: string, experienceImage?: string, pricePerPerson?: number, city?: string, cityCode?: string, tripId?: string) => {
     setBookings(prev => {
       const newMap = new Map(prev);
-      newMap.set(experienceId, { 
+      const key = tripId ? `${tripId}-${experienceId}` : experienceId; // Trip-specific key
+      newMap.set(key, { 
         experienceId, 
         status: 'booked', 
         people, 
@@ -81,24 +82,27 @@ export const ExperienceBookingProvider: React.FC<{ children: React.ReactNode }> 
     });
   };
 
-  const markAsCanceled = (experienceId: string) => {
+  const markAsCanceled = (experienceId: string, tripId?: string) => {
     setBookings(prev => {
       const newMap = new Map(prev);
-      const existing = prev.get(experienceId);
+      const key = tripId ? `${tripId}-${experienceId}` : experienceId;
+      const existing = prev.get(key);
       if (existing) {
-        newMap.set(experienceId, { ...existing, status: 'canceled' });
+        newMap.set(key, { ...existing, status: 'canceled' });
       }
       return newMap;
     });
   };
 
-  const getBookingStatus = (experienceId: string): 'none' | 'booked' | 'canceled' => {
-    const booking = bookings.get(experienceId);
+  const getBookingStatus = (experienceId: string, tripId?: string): 'none' | 'booked' | 'canceled' => {
+    const key = tripId ? `${tripId}-${experienceId}` : experienceId;
+    const booking = bookings.get(key);
     return booking ? booking.status : 'none';
   };
 
-  const getBooking = (experienceId: string): ExperienceBooking | undefined => {
-    return bookings.get(experienceId);
+  const getBooking = (experienceId: string, tripId?: string): ExperienceBooking | undefined => {
+    const key = tripId ? `${tripId}-${experienceId}` : experienceId;
+    return bookings.get(key);
   };
 
   const getBookingsByTrip = (tripId: string): ExperienceBooking[] => {
