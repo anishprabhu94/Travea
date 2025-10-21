@@ -307,7 +307,6 @@ export default function StayBrowsing() {
         const firstDate = sortedDates[0];
         const lastDate = sortedDates[sortedDates.length - 1];
         
-        // Simple month calculation (assuming same month for now)
         return {
           startMonth: cityStartMonth,
           startDay: firstDate.toString(),
