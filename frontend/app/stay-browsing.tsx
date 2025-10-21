@@ -997,7 +997,8 @@ export default function StayBrowsing() {
                 })}
               </ScrollView>
             </View>
-          ))
+          ))}
+            </>
           ) : (
             // Other filters: Show regular vertical cards
             filteredStays.map((stay, idx) => {
