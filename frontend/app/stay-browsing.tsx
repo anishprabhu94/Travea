@@ -430,28 +430,20 @@ export default function StayBrowsing() {
           
           {/* Filter Pills Cluster */}
           {filterClusterOpen && (
-            <>
-              {/* Simple Backdrop - Click to Close */}
-              <TouchableOpacity
-                style={styles.filterClusterBackdrop}
-                activeOpacity={1}
-                onPress={toggleFilterCluster}
-              />
-              
-              <Animated.View 
-                style={[
-                  styles.filterPillsCluster,
-                  {
-                    opacity: filterClusterAnim,
-                    transform: [{
-                      scale: filterClusterAnim.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [0.95, 1]
-                      })
-                    }]
-                  }
-                ]}
-              >
+            <Animated.View 
+              style={[
+                styles.filterPillsCluster,
+                {
+                  opacity: filterClusterAnim,
+                  transform: [{
+                    scale: filterClusterAnim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [0.95, 1]
+                    })
+                  }]
+                }
+              ]}
+            >
                 {(['all', 'boutique', 'luxury', 'affordable', 'featured', 'saved'] as const).map((filter, index) => (
                   <TouchableOpacity
                     key={filter}
