@@ -400,7 +400,7 @@ export default function StayBrowsing() {
           </ImageBackground>
         </View>
         
-        {/* Floating Filter Cluster Button - Top Right */}
+        {/* Floating Filter Cluster Button - Top Right (Moved Down) */}
         <View style={styles.filterClusterContainer}>
           {/* Main Filter Button */}
           <TouchableOpacity
@@ -416,12 +416,26 @@ export default function StayBrowsing() {
           {/* Filter Pills Cluster */}
           {filterClusterOpen && (
             <>
-              {/* Background Blur */}
-              <TouchableOpacity
-                style={styles.filterClusterBackdrop}
-                activeOpacity={1}
-                onPress={toggleFilterCluster}
-              />
+              {/* Intensive Background Blur */}
+              <Animated.View
+                style={[
+                  styles.filterClusterBackdrop,
+                  {
+                    opacity: backdropBlurAnim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [0, 0.95]
+                    })
+                  }
+                ]}
+                pointerEvents="auto"
+              >
+                <TouchableOpacity
+                  style={StyleSheet.absoluteFill}
+                  activeOpacity={1}
+                  onPress={toggleFilterCluster}
+                />
+                <BlurView intensity={15} tint="dark" style={StyleSheet.absoluteFill} />
+              </Animated.View>
               
               <Animated.View 
                 style={[
@@ -437,7 +451,7 @@ export default function StayBrowsing() {
                   }
                 ]}
               >
-                {(['all', 'boutique', 'luxury', 'affordable', 'featured'] as const).map((filter, index) => (
+                {(['all', 'boutique', 'luxury', 'affordable', 'featured', 'saved'] as const).map((filter, index) => (
                   <TouchableOpacity
                     key={filter}
                     style={[
@@ -459,7 +473,7 @@ export default function StayBrowsing() {
                         styles.filterPillText,
                         activeFilter === filter && styles.filterPillTextActive
                       ]}>
-                        {filter === 'all' ? 'All' : filter.charAt(0).toUpperCase() + filter.slice(1)}
+                        {filter === 'all' ? 'All' : filter === 'saved' ? 'Saved' : filter.charAt(0).toUpperCase() + filter.slice(1)}
                       </Text>
                     </BlurView>
                   </TouchableOpacity>
