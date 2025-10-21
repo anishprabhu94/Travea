@@ -449,13 +449,12 @@ export default function StayBrowsing() {
                 }
               ]}
             >
-                {(['all', 'boutique', 'luxury', 'affordable', 'featured', 'saved'] as const).map((filter, index) => (
+                {(['all', 'boutique', 'luxury', 'affordable', 'featured'] as const).map((filter, index) => (
                   <TouchableOpacity
                     key={filter}
                     style={[
                       styles.filterPill,
                       activeFilter === filter && styles.filterPillActive,
-                      { marginTop: index * 6 }
                     ]}
                     onPress={() => {
                       setActiveFilter(filter);
@@ -471,7 +470,7 @@ export default function StayBrowsing() {
                         styles.filterPillText,
                         activeFilter === filter && styles.filterPillTextActive
                       ]}>
-                        {filter === 'all' ? 'All' : filter === 'saved' ? 'Saved' : filter.charAt(0).toUpperCase() + filter.slice(1)}
+                        {filter === 'all' ? 'For You' : filter.charAt(0).toUpperCase() + filter.slice(1)}
                       </Text>
                     </View>
                   </TouchableOpacity>
