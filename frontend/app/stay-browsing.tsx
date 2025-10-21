@@ -148,6 +148,7 @@ export default function StayBrowsing() {
       experiences: ['Historic Tower', 'Cathedral Views'],
       platforms: ['Official Site', 'Booking.com', 'Expedia'],
       image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+      category: 'boutique',
     },
     {
       id: '2',
@@ -160,6 +161,7 @@ export default function StayBrowsing() {
       experiences: ['Garden Oasis', 'Spa Retreat'],
       platforms: ['Official Site', 'Virtuoso'],
       image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+      category: 'luxury',
     },
     {
       id: '3',
@@ -172,6 +174,7 @@ export default function StayBrowsing() {
       experiences: ['River Views', 'Modern Design'],
       platforms: ['Official Site', 'Booking.com'],
       image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
+      category: 'luxury',
     },
     {
       id: '4',
@@ -184,6 +187,7 @@ export default function StayBrowsing() {
       experiences: ['Palace Suites'],
       platforms: ['Booking.com', 'Expedia'],
       image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
+      category: 'affordable',
     },
   ];
   
