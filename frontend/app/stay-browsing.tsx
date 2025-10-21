@@ -36,12 +36,11 @@ export default function StayBrowsing() {
   const [stayMode, setStayMode] = useState<'single' | 'multi'>('single');
   const [selectedDates, setSelectedDates] = useState<number[]>([]);
   const [selectedDateRange, setSelectedDateRange] = useState<{start: number | null, end: number | null}>({start: null, end: null});
-  const [filterOpen, setFilterOpen] = useState(false);
+  const [filterClusterOpen, setFilterClusterOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState<'all' | 'boutique' | 'luxury' | 'affordable' | 'featured'>('all');
   const [tripTitle, setTripTitle] = useState('');
   const contentOpacity = useState(new Animated.Value(0))[0];
-  const filterSlideAnim = useState(new Animated.Value(0))[0];
-  const filterOpacityAnim = useState(new Animated.Value(0))[0];
+  const filterClusterAnim = useState(new Animated.Value(0))[0];
   const dockAnim = useState(new Animated.Value(0))[0];
   
   // Calculate nights based on mode
