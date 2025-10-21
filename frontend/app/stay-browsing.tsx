@@ -429,7 +429,7 @@ export default function StayBrowsing() {
             activeOpacity={0.8}
           >
             <View style={styles.filterMainButtonView}>
-              <Text style={styles.filterMainButtonText}>Filters ✦</Text>
+              <Text style={styles.filterMainButtonText}>✦ Filters</Text>
             </View>
           </TouchableOpacity>
           
