@@ -27,13 +27,13 @@ export default function ExperienceBrowsing() {
   const tripId = params.tripId as string;
   const cityCode = params.cityCode as string;
   
-  console.log('StayBrowsing - Params:', { tripId, cityCode });
-  console.log('StayBrowsing - Available trips:', trips.length);
+  console.log('ExperienceBrowsing - Params:', { tripId, cityCode });
+  console.log('ExperienceBrowsing - Available trips:', trips.length);
   
   // Get real trip data - prioritize params, fallback to first trip
   const trip = tripId ? getTripById(tripId) : (trips.length > 0 ? trips[0] : null);
   
-  console.log('StayBrowsing - Selected trip:', trip ? trip.title : 'No trip found');
+  console.log('ExperienceBrowsing - Selected trip:', trip ? trip.title : 'No trip found');
   
   // Get city from trip - prioritize cityCode match, fallback to first city
   const city = trip?.cities ? (
@@ -42,7 +42,7 @@ export default function ExperienceBrowsing() {
       : trip.cities[0]
   ) : null;
   
-  console.log('StayBrowsing - Selected city:', city ? city.name : 'No city found');
+  console.log('ExperienceBrowsing - Selected city:', city ? city.name : 'No city found');
   
   // Use real data from trip with proper fallbacks
   const cityName = city?.name || 'Florence';
@@ -53,7 +53,7 @@ export default function ExperienceBrowsing() {
   const travelers = trip?.travelers || 2;
   const tripTitle = trip?.title || 'Summer in Italy';
   
-  console.log('StayBrowsing - Display data:', {
+  console.log('ExperienceBrowsing - Display data:', {
     cityName,
     dateRange: `${cityStartMonth} ${cityStartDay}-${cityEndMonth} ${cityEndDay}`,
     travelers
