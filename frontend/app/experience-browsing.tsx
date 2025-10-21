@@ -505,9 +505,9 @@ export default function ExperienceBrowsing() {
             </>
           ) : (
             // Other filters: Show regular vertical cards
-            filteredExperiences.map((stay, idx) => {
-            const totalPrice = stay.pricePerNight * totalNights;
-            const bookingStatus = getBookingStatus(stay.id);
+            filteredExperiences.map((experience, idx) => {
+            const totalPrice = experience.pricePerPerson * travelers;
+            const bookingStatus = getBookingStatus(experience.id);
             
             return (
               <TouchableOpacity 
