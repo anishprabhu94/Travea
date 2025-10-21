@@ -3,6 +3,7 @@ import { BookmarkProvider } from '../contexts/BookmarkContext'
 import { TripCanvasProvider } from '../contexts/TripCanvasContext'
 import { TripsProvider } from '../contexts/TripsContext'
 import { StayBookingProvider } from '../contexts/StayBookingContext'
+import { ExperienceBookingProvider } from '../contexts/ExperienceBookingContext'
 
 export default function RootLayout() {
   return (
