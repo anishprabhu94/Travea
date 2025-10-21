@@ -567,9 +567,9 @@ export default function ExperienceBrowsing() {
                   >
                     <BlurView intensity={20} tint="light" style={styles.saveHeartBlur}>
                       <Ionicons
-                        name={savedStays.has(stay.id) ? 'heart' : 'heart-outline'}
+                        name={savedExperiences.has(stay.id) ? 'heart' : 'heart-outline'}
                         size={20}
-                        color={savedStays.has(stay.id) ? '#CBB88C' : 'rgba(255,255,255,0.7)'}
+                        color={savedExperiences.has(stay.id) ? '#CBB88C' : 'rgba(255,255,255,0.7)'}
                       />
                     </BlurView>
                   </TouchableOpacity>
