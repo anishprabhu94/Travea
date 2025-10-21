@@ -847,14 +847,14 @@ const styles = StyleSheet.create({
     bottom: 12,
     left: 12,
     right: 12,
-    minHeight: 180,
+    minHeight: 130,
     backgroundColor: Platform.OS === 'web' ? 'rgba(255,255,255,0.08)' : 'transparent',
     borderRadius: 20,
     borderWidth: 0.5,
     borderColor: 'rgba(181,155,115,0.15)',
-    padding: 20,
-    paddingTop: 18,
-    paddingBottom: 20,
+    padding: 16,
+    paddingTop: 14,
+    paddingBottom: 16,
     ...Platform.select({
       web: {
         backdropFilter: 'blur(30px) saturate(130%)',
