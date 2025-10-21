@@ -694,7 +694,7 @@ export default function ExperienceBrowsing() {
                 }
               ]}
             >
-                {(['all', 'boutique', 'luxury', 'affordable', 'featured', 'saved'] as const).map((filter, index) => (
+                {(['attractions', 'immersions', 'adventures', 'saved'] as const).map((filter, index) => (
                   <TouchableOpacity
                     key={filter}
                     style={[
