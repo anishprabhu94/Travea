@@ -550,40 +550,89 @@ export default function StayBrowsing() {
                   </TouchableOpacity>
                   
                   <View style={styles.stayCardFrosted}>
-                    {/* Hero Layer - Title & Tagline */}
-                    <Text style={styles.stayCardName}>{stay.name}</Text>
-                    <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
-                    
-                    {/* Decision Layer - Combined Price, Nights, Rating */}
-                    <View style={styles.decisionRow}>
-                      <Text style={styles.priceText}>€{totalPrice}</Text>
-                      <Text style={styles.decisionDot}> · </Text>
-                      <Text style={styles.nightsRatingText}>{totalNights} nights</Text>
-                      <Text style={styles.decisionDot}> · </Text>
-                      <Text style={styles.nightsRatingText}>{stay.rating}⭐</Text>
-                    </View>
-                    
-                    {/* Context Layer - Experience Tags (max 2) */}
-                    <View style={styles.experienceTagsRow}>
-                      {stay.experiences.slice(0, 2).map((exp, index) => (
-                        <View key={index} style={styles.experienceTag}>
-                          <Text style={styles.experienceTagText}>{exp}</Text>
+                    {Platform.OS === 'web' ? (
+                      <View style={styles.frostedContent}>
+                        {/* Hero Layer - Title & Tagline */}
+                        <Text style={styles.stayCardName}>{stay.name}</Text>
+                        <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
+                        
+                        {/* Decision Layer - Combined Price, Nights, Rating with Star */}
+                        <View style={styles.decisionRow}>
+                          <Text style={styles.priceText}>€{totalPrice}</Text>
+                          <Text style={styles.decisionDot}> · </Text>
+                          <Text style={styles.nightsRatingText}>{totalNights} nights</Text>
+                          <Text style={styles.decisionDot}> · </Text>
+                          <Ionicons name="star" size={12} color="#FFFFFF" style={{marginRight: 3}} />
+                          <Text style={styles.nightsRatingText}>{stay.rating}</Text>
                         </View>
-                      ))}
-                    </View>
-                    
-                    {/* View Details CTA */}
-                    <TouchableOpacity 
-                      style={styles.viewDetailsCTA}
-                      activeOpacity={0.8}
-                    >
-                      <LinearGradient
-                        colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.04)']}
-                        style={styles.viewDetailsCTAGradient}
-                      >
-                        <Text style={styles.viewDetailsCTAText}>View Details</Text>
-                      </LinearGradient>
-                    </TouchableOpacity>
+                        
+                        {/* Context Layer - Experience Tags (max 2) */}
+                        <View style={styles.experienceTagsRow}>
+                          {stay.experiences.slice(0, 2).map((exp, index) => (
+                            <View key={index} style={styles.experienceTag}>
+                              <Text style={styles.experienceTagText}>{exp}</Text>
+                            </View>
+                          ))}
+                        </View>
+                        
+                        {/* Ivory Separator */}
+                        <View style={styles.ivorySeparator} />
+                        
+                        {/* View Details CTA - Left Aligned */}
+                        <TouchableOpacity 
+                          style={styles.viewDetailsCTA}
+                          activeOpacity={0.8}
+                        >
+                          <LinearGradient
+                            colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.04)']}
+                            style={styles.viewDetailsCTAGradient}
+                          >
+                            <Text style={styles.viewDetailsCTAText}>View Details</Text>
+                          </LinearGradient>
+                        </TouchableOpacity>
+                      </View>
+                    ) : (
+                      <BlurView intensity={30} tint="light" style={styles.blurViewContent}>
+                        {/* Hero Layer - Title & Tagline */}
+                        <Text style={styles.stayCardName}>{stay.name}</Text>
+                        <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
+                        
+                        {/* Decision Layer - Combined Price, Nights, Rating with Star */}
+                        <View style={styles.decisionRow}>
+                          <Text style={styles.priceText}>€{totalPrice}</Text>
+                          <Text style={styles.decisionDot}> · </Text>
+                          <Text style={styles.nightsRatingText}>{totalNights} nights</Text>
+                          <Text style={styles.decisionDot}> · </Text>
+                          <Ionicons name="star" size={12} color="#FFFFFF" style={{marginRight: 3}} />
+                          <Text style={styles.nightsRatingText}>{stay.rating}</Text>
+                        </View>
+                        
+                        {/* Context Layer - Experience Tags (max 2) */}
+                        <View style={styles.experienceTagsRow}>
+                          {stay.experiences.slice(0, 2).map((exp, index) => (
+                            <View key={index} style={styles.experienceTag}>
+                              <Text style={styles.experienceTagText}>{exp}</Text>
+                            </View>
+                          ))}
+                        </View>
+                        
+                        {/* Ivory Separator */}
+                        <View style={styles.ivorySeparator} />
+                        
+                        {/* View Details CTA - Left Aligned */}
+                        <TouchableOpacity 
+                          style={styles.viewDetailsCTA}
+                          activeOpacity={0.8}
+                        >
+                          <LinearGradient
+                            colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.04)']}
+                            style={styles.viewDetailsCTAGradient}
+                          >
+                            <Text style={styles.viewDetailsCTAText}>View Details</Text>
+                          </LinearGradient>
+                        </TouchableOpacity>
+                      </BlurView>
+                    )}
                   </View>
                 </ImageBackground>
               </TouchableOpacity>
