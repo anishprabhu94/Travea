@@ -283,14 +283,63 @@ export default function ExperienceInfo() {
         </View>
       </ScrollView>
 
+      {/* Toast Notification */}
+      {showToast && (
+        <View style={styles.toastContainer}>
+          <BlurView intensity={30} tint="light" style={styles.toastBlur}>
+            <Text style={styles.toastText}>{toastMessage}</Text>
+          </BlurView>
+        </View>
+      )}
+
+      {/* Bottom Dock with Booking Buttons */}
       <View style={styles.bottomDock}>
         <BlurView intensity={20} tint="light" style={styles.dockContainer}>
-          <View style={styles.dockContent}>
-            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8} onPress={() => router.push('/landing')}><Ionicons name="home" size={22} color="rgba(255,255,255,0.7)" /><Text style={styles.dockLabelInactive}>Home</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8} onPress={() => router.push('/bookings')}><Ionicons name="calendar" size={22} color="rgba(255,255,255,0.7)" /><Text style={styles.dockLabelInactive}>Trip Canvas</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8} onPress={() => router.push('/trips')}><Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.7)" /><Text style={styles.dockLabelInactive}>My Trips</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}><Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.7)" /><Text style={styles.dockLabelInactive}>Concierge</Text></TouchableOpacity>
-          </View>
+          {bookingStatus === 'none' ? (
+            <TouchableOpacity 
+              style={styles.bookButton}
+              onPress={handleMarkBooked}
+              activeOpacity={0.8}
+            >
+              <LinearGradient
+                colors={['#C9A65B', '#B89550']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={styles.bookButtonGradient}
+              >
+                <Ionicons name="checkmark-circle-outline" size={20} color="#FFFFFF" />
+                <Text style={styles.bookButtonText}>Mark as Booked</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          ) : bookingStatus === 'booked' ? (
+            <View style={styles.buttonRow}>
+              <View style={styles.bookedBadge}>
+                <Ionicons name="checkmark-circle" size={18} color="#C9A65B" />
+                <Text style={styles.bookedText}>Booked</Text>
+              </View>
+              <TouchableOpacity 
+                style={styles.cancelButton}
+                onPress={handleMarkCanceled}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.cancelButtonText}>Cancel Booking</Text>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <View style={styles.buttonRow}>
+              <View style={styles.canceledBadge}>
+                <Ionicons name="close-circle" size={18} color="#999999" />
+                <Text style={styles.canceledText}>Canceled</Text>
+              </View>
+              <TouchableOpacity 
+                style={styles.rebookButton}
+                onPress={handleMarkBooked}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.rebookButtonText}>Rebook</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </BlurView>
       </View>
     </View>
