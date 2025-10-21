@@ -527,18 +527,19 @@ export default function StayBrowsing() {
         
         {/* Stay Cards Section */}
         <View style={styles.stayCardsSection}>
-          {/* Saved Carousels by Category */}
-          {Object.entries(savedStaysByCategory).map(([category, stays]) => (
-            <View key={category} style={styles.savedCategorySection}>
-              <Text style={styles.savedCategoryTitle}>
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </Text>
-              <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.savedCarouselContent}
-                style={styles.savedCarousel}
-              >
+          {activeFilter === 'saved' ? (
+            // Saved filter: Show ONLY carousels by category
+            Object.entries(savedStaysByCategory).map(([category, stays]) => (
+              <View key={category} style={styles.savedCategorySection}>
+                <Text style={styles.savedCategoryTitle}>
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </Text>
+                <ScrollView
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={styles.savedCarouselContent}
+                  style={styles.savedCarousel}
+                >
                 {stays.map((stay) => {
                   const totalPrice = stay.pricePerNight * totalNights;
                   const bookingStatus = getBookingStatus(stay.id);
