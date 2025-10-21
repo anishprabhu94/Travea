@@ -614,17 +614,6 @@ export default function StayBrowsing() {
         </View>
       </Animated.ScrollView>
       
-      {/* Filter Arrow - Left Side (Scroll Locked - Outside ScrollView) */}
-      <View style={styles.filterArrowContainer}>
-        <TouchableOpacity
-          style={styles.filterArrow}
-          onPress={toggleFilterPane}
-          activeOpacity={0.7}
-        >
-          <Ionicons name="chevron-forward" size={20} color="#D4BE84" />
-        </TouchableOpacity>
-      </View>
-      
       {/* Bottom Dock - Exact from Landing Page */}
       <Animated.View 
         style={[
