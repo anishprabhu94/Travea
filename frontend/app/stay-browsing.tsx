@@ -2020,7 +2020,7 @@ const styles = StyleSheet.create({
   },
   filterPillsCluster: {
     marginTop: 8,
-    gap: 6,
+    gap: 8,
   },
   filterPill: {
     width: 110,
