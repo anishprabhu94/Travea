@@ -66,7 +66,7 @@ export default function RestaurantBrowsing() {
   const [savedRestaurants, setSavedRestaurants] = useState<Set<string>>(new Set());
   const [selectedDay, setSelectedDay] = useState<number>(parseInt(cityStartDay)); // Only ONE day at a time
   const [filterClusterOpen, setFilterClusterOpen] = useState(false);
-  const [activeFilter, setActiveFilter] = useState<'attractions' | 'immersions' | 'adventures'>('attractions');
+  const [activeFilter, setActiveFilter] = useState<'breakfast' | 'lunch' | 'dinner'>('breakfast');
   const contentOpacity = useState(new Animated.Value(0))[0];
   const filterClusterAnim = useState(new Animated.Value(0))[0];
   const dockAnim = useState(new Animated.Value(0))[0];
