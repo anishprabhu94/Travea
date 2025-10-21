@@ -578,17 +578,17 @@ export default function ExperienceBrowsing() {
                     {Platform.OS === 'web' ? (
                       <View style={styles.frostedContent}>
                         {/* Hero Layer - Title & Tagline */}
-                        <Text style={styles.stayCardName}>{stay.name}</Text>
-                        <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
+                        <Text style={styles.stayCardName}>{experience.name}</Text>
+                        <Text style={styles.stayCardTagline}>{experience.tagline}</Text>
                         
-                        {/* Decision Layer - Combined Price, Nights, Rating with Star */}
+                        {/* Decision Layer - Combined Price, People, Rating with Star */}
                         <View style={styles.decisionRow}>
                           <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
                           <Text style={styles.decisionDot}> · </Text>
-                          <Text style={styles.nightsRatingText}>{totalNights} nights</Text>
+                          <Text style={styles.nightsRatingText}>{travelers} {travelers === 1 ? 'person' : 'people'}</Text>
                           <Text style={styles.decisionDot}> · </Text>
                           <Ionicons name="star" size={12} color="#FFFFFF" style={{marginRight: 3}} />
-                          <Text style={styles.nightsRatingText}>{stay.rating}</Text>
+                          <Text style={styles.nightsRatingText}>{experience.rating}</Text>
                         </View>
                         
                         {/* Ivory Separator */}
