@@ -489,6 +489,7 @@ export default function StayBrowsing() {
         <View style={styles.stayCardsSection}>
           {mockStays.map((stay, idx) => {
             const totalPrice = stay.pricePerNight * totalNights;
+            const bookingStatus = getBookingStatus(stay.id);
             
             return (
               <TouchableOpacity 
@@ -516,7 +517,7 @@ export default function StayBrowsing() {
                   </View>
                   
                   {/* Booking Status Label - Top Left of Image */}
-                  {bookedStays.has(stay.id) && (
+                  {bookingStatus === 'booked' && (
                     <View style={styles.bookedLabel}>
                       <LinearGradient
                         colors={['rgba(212,190,132,0.45)', 'rgba(212,190,132,0.25)']}
@@ -527,7 +528,7 @@ export default function StayBrowsing() {
                     </View>
                   )}
                   
-                  {canceledStays.has(stay.id) && (
+                  {bookingStatus === 'canceled' && (
                     <View style={styles.canceledLabel}>
                       <LinearGradient
                         colors={['rgba(156,94,94,0.35)', 'rgba(64,28,28,0.25)']}
