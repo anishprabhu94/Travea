@@ -1,32 +1,32 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-interface ExperienceBooking {
-  experienceId: string;
+interface RestaurantBooking {
+  restaurantId: string;
   status: 'booked' | 'canceled';
   people: number;
   date: string;
-  experienceName?: string;
-  experienceImage?: string;
+  restaurantName?: string;
+  restaurantImage?: string;
   pricePerPerson?: number;
   city?: string;
   cityCode?: string;
   tripId?: string;
 }
 
-interface ExperienceBookingContextType {
-  bookings: Map<string, ExperienceBooking>;
-  markAsBooked: (experienceId: string, people: number, date: string, experienceName?: string, experienceImage?: string, pricePerPerson?: number, city?: string, cityCode?: string, tripId?: string) => void;
-  markAsCanceled: (experienceId: string, tripId?: string) => void;
-  getBookingStatus: (experienceId: string, tripId?: string) => 'none' | 'booked' | 'canceled';
-  getBooking: (experienceId: string, tripId?: string) => ExperienceBooking | undefined;
-  getBookingsByTrip: (tripId: string) => ExperienceBooking[];
+interface RestaurantBookingContextType {
+  bookings: Map<string, RestaurantBooking>;
+  markAsBooked: (restaurantId: string, people: number, date: string, restaurantName?: string, restaurantImage?: string, pricePerPerson?: number, city?: string, cityCode?: string, tripId?: string) => void;
+  markAsCanceled: (restaurantId: string, tripId?: string) => void;
+  getBookingStatus: (restaurantId: string, tripId?: string) => 'none' | 'booked' | 'canceled';
+  getBooking: (restaurantId: string, tripId?: string) => RestaurantBooking | undefined;
+  getBookingsByTrip: (tripId: string) => RestaurantBooking[];
 }
 
-const ExperienceBookingContext = createContext<ExperienceBookingContextType | undefined>(undefined);
+const RestaurantBookingContext = createContext<RestaurantBookingContextType | undefined>(undefined);
 
-export const ExperienceBookingProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [bookings, setBookings] = useState<Map<string, ExperienceBooking>>(new Map());
+export const RestaurantBookingProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [bookings, setBookings] = useState<Map<string, RestaurantBooking>>(new Map());
 
   // Load bookings from AsyncStorage
   useEffect(() => {
@@ -40,39 +40,39 @@ export const ExperienceBookingProvider: React.FC<{ children: React.ReactNode }> 
 
   const loadBookings = async () => {
     try {
-      const stored = await AsyncStorage.getItem('experienceBookings');
+      const stored = await AsyncStorage.getItem('restaurantBookings');
       if (stored) {
         const parsed = JSON.parse(stored);
-        const map = new Map<string, ExperienceBooking>(Object.entries(parsed));
+        const map = new Map<string, RestaurantBooking>(Object.entries(parsed));
         setBookings(map);
-        console.log('Experience bookings loaded:', map.size);
+        console.log('Restaurant bookings loaded:', map.size);
       }
     } catch (error) {
-      console.error('Error loading experience bookings:', error);
+      console.error('Error loading restaurant bookings:', error);
     }
   };
 
   const saveBookings = async () => {
     try {
       const obj = Object.fromEntries(bookings);
-      await AsyncStorage.setItem('experienceBookings', JSON.stringify(obj));
-      console.log('Experience bookings saved:', bookings.size);
+      await AsyncStorage.setItem('restaurantBookings', JSON.stringify(obj));
+      console.log('Restaurant bookings saved:', bookings.size);
     } catch (error) {
-      console.error('Error saving experience bookings:', error);
+      console.error('Error saving restaurant bookings:', error);
     }
   };
 
-  const markAsBooked = (experienceId: string, people: number, date: string, experienceName?: string, experienceImage?: string, pricePerPerson?: number, city?: string, cityCode?: string, tripId?: string) => {
+  const markAsBooked = (restaurantId: string, people: number, date: string, restaurantName?: string, restaurantImage?: string, pricePerPerson?: number, city?: string, cityCode?: string, tripId?: string) => {
     setBookings(prev => {
       const newMap = new Map(prev);
-      const key = tripId ? `${tripId}-${experienceId}` : experienceId; // Trip-specific key
+      const key = tripId ? `${tripId}-${restaurantId}` : restaurantId; // Trip-specific key
       newMap.set(key, { 
-        experienceId, 
+        restaurantId, 
         status: 'booked', 
         people, 
         date,
-        experienceName,
-        experienceImage,
+        restaurantName,
+        restaurantImage,
         pricePerPerson,
         city,
         cityCode,
@@ -82,10 +82,10 @@ export const ExperienceBookingProvider: React.FC<{ children: React.ReactNode }> 
     });
   };
 
-  const markAsCanceled = (experienceId: string, tripId?: string) => {
+  const markAsCanceled = (restaurantId: string, tripId?: string) => {
     setBookings(prev => {
       const newMap = new Map(prev);
-      const key = tripId ? `${tripId}-${experienceId}` : experienceId;
+      const key = tripId ? `${tripId}-${restaurantId}` : restaurantId;
       const existing = prev.get(key);
       if (existing) {
         newMap.set(key, { ...existing, status: 'canceled' });
@@ -94,25 +94,25 @@ export const ExperienceBookingProvider: React.FC<{ children: React.ReactNode }> 
     });
   };
 
-  const getBookingStatus = (experienceId: string, tripId?: string): 'none' | 'booked' | 'canceled' => {
-    const key = tripId ? `${tripId}-${experienceId}` : experienceId;
+  const getBookingStatus = (restaurantId: string, tripId?: string): 'none' | 'booked' | 'canceled' => {
+    const key = tripId ? `${tripId}-${restaurantId}` : restaurantId;
     const booking = bookings.get(key);
     return booking ? booking.status : 'none';
   };
 
-  const getBooking = (experienceId: string, tripId?: string): ExperienceBooking | undefined => {
-    const key = tripId ? `${tripId}-${experienceId}` : experienceId;
+  const getBooking = (restaurantId: string, tripId?: string): RestaurantBooking | undefined => {
+    const key = tripId ? `${tripId}-${restaurantId}` : restaurantId;
     return bookings.get(key);
   };
 
-  const getBookingsByTrip = (tripId: string): ExperienceBooking[] => {
+  const getBookingsByTrip = (tripId: string): RestaurantBooking[] => {
     return Array.from(bookings.values()).filter(booking => 
       booking.tripId === tripId && booking.status === 'booked'
     );
   };
 
   return (
-    <ExperienceBookingContext.Provider value={{ 
+    <RestaurantBookingContext.Provider value={{ 
       bookings, 
       markAsBooked, 
       markAsCanceled, 
@@ -121,14 +121,14 @@ export const ExperienceBookingProvider: React.FC<{ children: React.ReactNode }> 
       getBookingsByTrip
     }}>
       {children}
-    </ExperienceBookingContext.Provider>
+    </RestaurantBookingContext.Provider>
   );
 };
 
-export const useExperienceBooking = () => {
-  const context = useContext(ExperienceBookingContext);
+export const useRestaurantBooking = () => {
+  const context = useContext(RestaurantBookingContext);
   if (!context) {
-    throw new Error('useExperienceBooking must be used within ExperienceBookingProvider');
+    throw new Error('useRestaurantBooking must be used within RestaurantBookingProvider');
   }
   return context;
 };
