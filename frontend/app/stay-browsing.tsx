@@ -1382,7 +1382,7 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Booking Status Labels
+  // Booking Status Labels - Enhanced with Depth
   bookedLabel: {
     position: 'absolute',
     top: 12,
@@ -1390,8 +1390,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
     zIndex: 10,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
     borderWidth: 1,
     borderColor: 'rgba(212,190,132,0.5)',
     ...Platform.select({
@@ -1419,6 +1417,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#FFFBEA',
     letterSpacing: 0.36,
+    textTransform: 'uppercase',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
@@ -1431,8 +1430,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
     zIndex: 10,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
     borderWidth: 1,
     borderColor: 'rgba(156,94,94,0.4)',
     ...Platform.select({
@@ -1460,6 +1457,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#F7E6E6',
     letterSpacing: 0.36,
+    textTransform: 'uppercase',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
