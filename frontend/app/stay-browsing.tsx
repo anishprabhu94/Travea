@@ -550,43 +550,40 @@ export default function StayBrowsing() {
                   </TouchableOpacity>
                   
                   <View style={styles.stayCardFrosted}>
-
+                    {/* Hero Layer - Title & Tagline */}
                     <Text style={styles.stayCardName}>{stay.name}</Text>
                     <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
-                    <Text style={styles.stayEstTotal}>Est. Total €{totalPrice} · {totalNights} nights</Text>
-                    <Text style={styles.stayCardLocation}>{stay.location}</Text>
-                    <View style={styles.ratingAmenitiesRow}>
-                      <View style={styles.ratingRow}>
-                        <Ionicons name="star" size={12} color="#CBB88C" />
-                        <Text style={styles.ratingText}>{stay.rating}</Text>
-                      </View>
-                      <Text style={styles.amenityDot}>·</Text>
-                      {stay.amenities.map((amenity, index) => (
-                        <React.Fragment key={amenity}>
-                          <Text style={styles.amenityText}>{amenity}</Text>
-                          {index < stay.amenities.length - 1 && <Text style={styles.amenityDot}>·</Text>}
-                        </React.Fragment>
+                    
+                    {/* Decision Layer - Combined Price, Nights, Rating */}
+                    <View style={styles.decisionRow}>
+                      <Text style={styles.priceText}>€{totalPrice}</Text>
+                      <Text style={styles.decisionDot}> · </Text>
+                      <Text style={styles.nightsRatingText}>{totalNights} nights</Text>
+                      <Text style={styles.decisionDot}> · </Text>
+                      <Text style={styles.nightsRatingText}>{stay.rating}⭐</Text>
+                    </View>
+                    
+                    {/* Context Layer - Experience Tags (max 2) */}
+                    <View style={styles.experienceTagsRow}>
+                      {stay.experiences.slice(0, 2).map((exp, index) => (
+                        <View key={index} style={styles.experienceTag}>
+                          <Text style={styles.experienceTagText}>{exp}</Text>
+                        </View>
                       ))}
                     </View>
-                    <View style={styles.bookViaDivider} />
-                    <View style={styles.bookViaRow}>
-                      <Text style={styles.bookViaLabel}>Book via</Text>
-                      <View style={styles.logoRow}>
-                        {stay.platforms.map(platform => {
-                          const displayName = platform === 'Official Site' ? 'Website' : platform;
-                          return (
-                            <View key={platform} style={styles.frostedBookingPill}>
-                              <LinearGradient
-                                colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.04)']}
-                                style={styles.frostedPillGradient}
-                              >
-                                <Text style={styles.frostedPillText}>{displayName}</Text>
-                              </LinearGradient>
-                            </View>
-                          );
-                        })}
-                      </View>
-                    </View>
+                    
+                    {/* View Details CTA */}
+                    <TouchableOpacity 
+                      style={styles.viewDetailsCTA}
+                      activeOpacity={0.8}
+                    >
+                      <LinearGradient
+                        colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.04)']}
+                        style={styles.viewDetailsCTAGradient}
+                      >
+                        <Text style={styles.viewDetailsCTAText}>View Details</Text>
+                      </LinearGradient>
+                    </TouchableOpacity>
                   </View>
                 </ImageBackground>
               </TouchableOpacity>
