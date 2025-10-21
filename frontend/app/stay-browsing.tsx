@@ -350,7 +350,7 @@ export default function StayBrowsing() {
         return {
           startMonth: cityStartMonth,
           startDay: firstDate.toString(),
-          endMonth: cityStartMonth,
+          endMonth: cityEndMonth,
           endDay: lastDate.toString()
         };
       }
