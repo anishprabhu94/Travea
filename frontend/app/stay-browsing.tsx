@@ -516,11 +516,11 @@ export default function StayBrowsing() {
                     <Text style={styles.datePillText}>{cityStartMonth} {cityStartDay}</Text>
                   </View>
                   
-                  {/* Booking Status Label - Top Left of Image */}
+                  {/* Booking Status Label - Top Left of Image (Enhanced Visibility) */}
                   {bookingStatus === 'booked' && (
                     <View style={styles.bookedLabel}>
                       <LinearGradient
-                        colors={['rgba(212,190,132,0.45)', 'rgba(212,190,132,0.25)']}
+                        colors={['rgba(212,190,132,0.75)', 'rgba(180,155,100,0.55)']}
                         style={styles.bookedLabelGradient}
                       >
                         <Text style={styles.bookedLabelText}>BOOKED</Text>
@@ -531,7 +531,7 @@ export default function StayBrowsing() {
                   {bookingStatus === 'canceled' && (
                     <View style={styles.canceledLabel}>
                       <LinearGradient
-                        colors={['rgba(156,94,94,0.35)', 'rgba(64,28,28,0.25)']}
+                        colors={['rgba(140,80,80,0.75)', 'rgba(100,50,50,0.55)']}
                         style={styles.canceledLabelGradient}
                       >
                         <Text style={styles.canceledLabelText}>CANCELED</Text>
