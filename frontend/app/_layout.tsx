@@ -4,6 +4,7 @@ import { TripCanvasProvider } from '../contexts/TripCanvasContext'
 import { TripsProvider } from '../contexts/TripsContext'
 import { StayBookingProvider } from '../contexts/StayBookingContext'
 import { ExperienceBookingProvider } from '../contexts/ExperienceBookingContext'
+import { RestaurantBookingProvider } from '../contexts/RestaurantBookingContext'
 
 export default function RootLayout() {
   return (
