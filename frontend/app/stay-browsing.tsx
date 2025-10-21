@@ -472,8 +472,7 @@ export default function StayBrowsing() {
                   </TouchableOpacity>
                 ))}
               </Animated.View>
-            </>
-          )}
+            )}
         </View>
         
         {/* Filter Title Above Cards */}
