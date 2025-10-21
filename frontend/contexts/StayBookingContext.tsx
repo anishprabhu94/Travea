@@ -62,10 +62,21 @@ export const StayBookingProvider: React.FC<{ children: React.ReactNode }> = ({ c
     }
   };
 
-  const markAsBooked = (stayId: string, nights: number, dateRange: string) => {
+  const markAsBooked = (stayId: string, nights: number, dateRange: string, stayName?: string, stayImage?: string, pricePerNight?: number, city?: string, cityCode?: string, tripId?: string) => {
     setBookings(prev => {
       const newMap = new Map(prev);
-      newMap.set(stayId, { stayId, status: 'booked', nights, dateRange });
+      newMap.set(stayId, { 
+        stayId, 
+        status: 'booked', 
+        nights, 
+        dateRange,
+        stayName,
+        stayImage,
+        pricePerNight,
+        city,
+        cityCode,
+        tripId
+      });
       return newMap;
     });
   };
@@ -73,7 +84,10 @@ export const StayBookingProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const markAsCanceled = (stayId: string) => {
     setBookings(prev => {
       const newMap = new Map(prev);
-      newMap.set(stayId, { stayId, status: 'canceled', nights: 0, dateRange: '' });
+      const existing = prev.get(stayId);
+      if (existing) {
+        newMap.set(stayId, { ...existing, status: 'canceled' });
+      }
       return newMap;
     });
   };
@@ -83,8 +97,25 @@ export const StayBookingProvider: React.FC<{ children: React.ReactNode }> = ({ c
     return booking ? booking.status : 'none';
   };
 
+  const getBooking = (stayId: string): StayBooking | undefined => {
+    return bookings.get(stayId);
+  };
+
+  const getBookingsByTrip = (tripId: string): StayBooking[] => {
+    return Array.from(bookings.values()).filter(booking => 
+      booking.tripId === tripId && booking.status === 'booked'
+    );
+  };
+
   return (
-    <StayBookingContext.Provider value={{ bookings, markAsBooked, markAsCanceled, getBookingStatus }}>
+    <StayBookingContext.Provider value={{ 
+      bookings, 
+      markAsBooked, 
+      markAsCanceled, 
+      getBookingStatus,
+      getBooking,
+      getBookingsByTrip
+    }}>
       {children}
     </StayBookingContext.Provider>
   );
