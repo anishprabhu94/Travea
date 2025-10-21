@@ -60,7 +60,7 @@ export default function ExperienceBrowsing() {
   });
   
   // Use StayBookingContext
-  const { getBookingStatus } = useStayBooking();
+  const { getBookingStatus } = useExperienceBooking();
   
   // State
   const [savedStays, setSavedStays] = useState<Set<string>>(new Set());
