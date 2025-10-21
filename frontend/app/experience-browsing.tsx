@@ -457,7 +457,7 @@ export default function ExperienceBrowsing() {
                         <View style={styles.stayCardFrosted}>
                           {Platform.OS === 'web' ? (
                             <View style={styles.frostedContent}>
-                              <Text style={styles.stayCardName}>{stay.name}</Text>
+                              <Text style={styles.stayCardName}>{experience.name}</Text>
                               <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
                               <View style={styles.decisionRow}>
                                 <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
@@ -476,7 +476,7 @@ export default function ExperienceBrowsing() {
                             </View>
                           ) : (
                             <BlurView intensity={30} tint="light" style={styles.blurViewContent}>
-                              <Text style={styles.stayCardName}>{stay.name}</Text>
+                              <Text style={styles.stayCardName}>{experience.name}</Text>
                               <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
                               <View style={styles.decisionRow}>
                                 <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
