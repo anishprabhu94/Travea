@@ -1791,7 +1791,7 @@ const styles = StyleSheet.create({
   blurViewContent: {
     flex: 1,
     borderRadius: 20,
-    padding: 20,
+    paddingHorizontal: 20,
     paddingTop: 18,
     paddingBottom: 20,
     overflow: 'hidden',
