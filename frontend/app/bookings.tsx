@@ -1338,12 +1338,21 @@ export default function TripCanvas() {
     );
   };
 
-  // Stays Section - Image-Based Cards
+  // Stays Section - Image-Based Cards with Real Bookings
   const renderStays = () => {
-    if (activeDay.stays.length === 0) return null;
+    // Get booked stays for current trip
+    const bookedStays = getBookingsByTrip(currentTrip.id);
     
-    // Get mock status from activeDay
-    const sectionStatus = activeDay.mockBookingStatus?.stays || 'Pending';
+    // Filter stays for active city
+    const cityBookedStays = bookedStays.filter(booking => 
+      booking.cityCode === activeCityCode
+    );
+    
+    console.log('Trip Canvas - Booked stays for trip:', currentTrip.id, 'count:', bookedStays.length);
+    console.log('Trip Canvas - City booked stays for', activeCityCode, ':', cityBookedStays.length);
+    
+    // Determine status: if any stays booked for this city, show "Booked", else "Pending"
+    const sectionStatus = cityBookedStays.length > 0 ? 'Booked' : 'Pending';
     
     return (
       <View style={styles.categorySection}>
@@ -1376,40 +1385,62 @@ export default function TripCanvas() {
             </TouchableOpacity>
           </View>
           <View style={styles.categoryDivider} />
-          <ScrollView 
-            horizontal 
-            showsHorizontalScrollIndicator={false}
-            style={styles.horizontalScroll}
-          >
-            {activeDay.stays.map((stay, index) => (
-              <TouchableOpacity 
-                key={stay.id} 
-                style={[styles.stayImageCard, index === activeDay.stays.length - 1 && {marginRight: 0}]}
-                activeOpacity={0.8}
-                onPress={() => router.push('/stay-info-compact')}
-              >
-                <ImageBackground
-                  source={{ uri: stay.image }}
-                  style={styles.stayImageCardBg}
-                  imageStyle={styles.stayImageCardBgStyle}
+          
+          {cityBookedStays.length > 0 ? (
+            <ScrollView 
+              horizontal 
+              showsHorizontalScrollIndicator={false}
+              style={styles.horizontalScroll}
+            >
+              {cityBookedStays.map((booking, index) => (
+                <TouchableOpacity 
+                  key={booking.stayId} 
+                  style={[styles.stayImageCard, index === cityBookedStays.length - 1 && {marginRight: 0}]}
+                  activeOpacity={0.8}
+                  onPress={() => router.push({
+                    pathname: '/stay-info-compact',
+                    params: {
+                      stayId: booking.stayId,
+                      nights: booking.nights.toString(),
+                      tripId: currentTrip.id,
+                      cityCode: activeCityCode,
+                      city: booking.city,
+                      dateRange: booking.dateRange
+                    }
+                  })}
                 >
-                  <View style={styles.cardDateBadgeOnImage}>
-                    <Text style={styles.cardDateText}>{activeCityStayDates}</Text>
-                  </View>
-                  <LinearGradient
-                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
-                    style={styles.stayImageCardGradient}
-                  />
-                  <View style={styles.stayImageCardFrosted}>
-                    <Text style={styles.stayCardName}>{stay.name}</Text>
-                    <Text style={styles.stayCardAddress}>{stay.address}</Text>
-                    <Text style={styles.stayCardTimes}>{stay.checkin} · {stay.checkout}</Text>
-                    <Text style={styles.stayCardPlatform}>{stay.platform}</Text>
-                  </View>
-                </ImageBackground>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
+                  <ImageBackground
+                    source={{ uri: booking.stayImage || 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' }}
+                    style={styles.stayImageCardBg}
+                    imageStyle={styles.stayImageCardBgStyle}
+                  >
+                    <View style={styles.cardDateBadgeOnImage}>
+                      <Text style={styles.cardDateText}>{booking.dateRange || activeCityStayDates}</Text>
+                    </View>
+                    <LinearGradient
+                      colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
+                      style={styles.stayImageCardGradient}
+                    />
+                    <View style={styles.stayImageCardFrosted}>
+                      <Text style={styles.stayCardName}>{booking.stayName || 'Stay'}</Text>
+                      <Text style={styles.stayCardAddress}>{booking.city || activeCityCode}</Text>
+                      <Text style={styles.stayCardTimes}>{booking.nights} {booking.nights === 1 ? 'night' : 'nights'}</Text>
+                      <Text style={styles.stayCardPlatform}>€{booking.pricePerNight ? booking.pricePerNight * booking.nights : '---'}</Text>
+                    </View>
+                  </ImageBackground>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          ) : (
+            <View style={{ padding: 16, alignItems: 'center' }}>
+              <Text style={{ color: 'rgba(255,255,255,0.5)', fontSize: 14, fontFamily: 'DMSans-Regular' }}>
+                No stays booked yet
+              </Text>
+              <Text style={{ color: 'rgba(255,255,255,0.3)', fontSize: 12, fontFamily: 'DMSans-Regular', marginTop: 4 }}>
+                Tap the compass to browse stays
+              </Text>
+            </View>
+          )}
         </View>
       </View>
     );
