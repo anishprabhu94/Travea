@@ -1999,9 +1999,9 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  filterMainButtonBlur: {
+  filterMainButtonView: {
     flex: 1,
-    backgroundColor: 'rgba(20,20,20,0.55)',
+    backgroundColor: 'rgba(20,20,20,0.85)',
     borderWidth: 0.5,
     borderColor: 'rgba(255,255,255,0.12)',
     alignItems: 'center',
