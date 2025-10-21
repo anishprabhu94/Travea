@@ -473,7 +473,7 @@ export default function StayBrowsing() {
         {/* Filter Title Above Cards */}
         <View style={styles.filterTitleContainer}>
           <Text style={styles.filterTitleText}>
-            {activeFilter === 'all' ? 'For You' : activeFilter === 'saved' ? 'Saved' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}
+            {activeFilter === 'all' ? 'For You' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}
           </Text>
         </View>
         
