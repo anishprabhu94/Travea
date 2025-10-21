@@ -2019,7 +2019,7 @@ const styles = StyleSheet.create({
   },
   filterClusterBackdrop: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.75)',
+    backgroundColor: 'rgba(0,0,0,0.4)',
     zIndex: 98,
   },
   filterPillsCluster: {
