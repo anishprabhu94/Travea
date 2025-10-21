@@ -37,7 +37,7 @@ export default function StayBrowsing() {
   const [selectedDates, setSelectedDates] = useState<number[]>([]);
   const [selectedDateRange, setSelectedDateRange] = useState<{start: number | null, end: number | null}>({start: null, end: null});
   const [filterClusterOpen, setFilterClusterOpen] = useState(false);
-  const [activeFilter, setActiveFilter] = useState<'all' | 'boutique' | 'luxury' | 'affordable' | 'featured'>('all');
+  const [activeFilter, setActiveFilter] = useState<'all' | 'boutique' | 'luxury' | 'affordable' | 'featured' | 'saved'>('all');
   const [tripTitle, setTripTitle] = useState('');
   const contentOpacity = useState(new Animated.Value(0))[0];
   const filterClusterAnim = useState(new Animated.Value(0))[0];
