@@ -6,6 +6,12 @@ interface StayBooking {
   status: 'booked' | 'canceled';
   nights: number;
   dateRange: string;
+  stayName?: string;
+  stayImage?: string;
+  pricePerNight?: number;
+  city?: string;
+  cityCode?: string;
+  tripId?: string;
 }
 
 interface StayBookingContextType {
