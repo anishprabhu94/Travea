@@ -1913,15 +1913,15 @@ const styles = StyleSheet.create({
   cardDatePill: {
     alignSelf: 'flex-start',
     backgroundColor: 'rgba(20,20,20,0.8)',
-    borderRadius: 10,
+    borderRadius: 12,
     borderWidth: 0.5,
     borderColor: 'rgba(181,155,115,0.3)',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
+    paddingHorizontal: 14,
+    paddingVertical: 6,
     marginTop: 2,
   },
   cardDatePillText: {
-    fontSize: 11,
+    fontSize: 13,
     fontWeight: '600',
     color: '#CBB88C',
     fontFamily: Platform.select({
