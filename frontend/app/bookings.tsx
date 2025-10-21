@@ -399,7 +399,7 @@ export default function TripCanvas() {
     router.push({
       pathname: '/stay-browsing',
       params: {
-        tripId: selectedTripId,
+        tripId: currentTrip.id,
         city: city.name || activeCityCode,
         cityCode: activeCityCode,
         startMonth: city.startMonth,
