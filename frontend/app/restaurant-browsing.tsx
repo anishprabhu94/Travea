@@ -104,17 +104,17 @@ export default function RestaurantBrowsing() {
   
   // Mock restaurant data - 2 per category
   const mockRestaurants = [
-    // ATTRACTIONS (2)
-    { id: 'exp1', name: 'Uffizi Gallery Tour', tagline: 'Renaissance masterpieces unveiled', pricePerPerson: 85, rating: 4.9, image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', category: 'attractions' },
-    { id: 'exp2', name: 'Duomo Rooftop Access', tagline: 'Cathedral heights & city views', pricePerPerson: 65, rating: 4.8, image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', category: 'attractions' },
+    // BREAKFAST (2)
+    { id: 'rest1', name: 'Caffè Rivoire', tagline: 'Classic Florentine morning rituals', pricePerPerson: 28, rating: 4.8, image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', category: 'breakfast' },
+    { id: 'rest2', name: 'La Ménagère', tagline: 'Garden brunch & artisan pastries', pricePerPerson: 35, rating: 4.7, image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', category: 'breakfast' },
     
-    // IMMERSIONS (2)
-    { id: 'exp3', name: 'Tuscan Cooking Class', tagline: 'From market to table', pricePerPerson: 145, rating: 4.9, image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg', category: 'immersions' },
-    { id: 'exp4', name: 'Wine Tasting in Chianti', tagline: 'Vineyards & villa terraces', pricePerPerson: 165, rating: 4.9, image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', category: 'immersions' },
+    // LUNCH (2)
+    { id: 'rest3', name: 'Trattoria Mario', tagline: 'Tuscan traditions since 1953', pricePerPerson: 45, rating: 4.9, image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg', category: 'lunch' },
+    { id: 'rest4', name: "All'Antico Vinaio", tagline: 'Legendary schiacciata sandwiches', pricePerPerson: 22, rating: 4.8, image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', category: 'lunch' },
     
-    // ADVENTURES (2)
-    { id: 'exp5', name: 'Vespa Tour', tagline: 'Hills, curves & cypress roads', pricePerPerson: 195, rating: 4.9, image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', category: 'adventures' },
-    { id: 'exp6', name: 'Hot Air Balloon', tagline: 'Dawn over Tuscan valleys', pricePerPerson: 285, rating: 4.9, image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg', category: 'adventures' },
+    // DINNER (2)
+    { id: 'rest5', name: 'Enoteca Pinchiorri', tagline: 'Three Michelin stars, wine cellar sanctuary', pricePerPerson: 285, rating: 4.9, image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', category: 'dinner' },
+    { id: 'rest6', name: 'Il Santo Bevitore', tagline: 'Oltrarno contemporary Tuscan dining', pricePerPerson: 75, rating: 4.8, image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg', category: 'dinner' },
   ];
   
   // Entry animation
