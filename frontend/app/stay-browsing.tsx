@@ -616,7 +616,7 @@ export default function StayBrowsing() {
                   {bookingStatus === 'booked' && (
                     <View style={styles.bookedLabel}>
                       <LinearGradient
-                        colors={['rgba(212,190,132,0.75)', 'rgba(180,155,100,0.55)']}
+                        colors={['rgba(212,190,132,0.9)', 'rgba(180,155,100,0.75)']}
                         style={styles.bookedLabelGradient}
                       >
                         <Text style={styles.bookedLabelText}>BOOKED</Text>
