@@ -358,9 +358,14 @@ export default function StayBrowsing() {
                 </TouchableOpacity>
               </View>
               
-              {/* Day Circles - Show when Multi-Stay selected */}
+              {/* Day Circles - Show when Multi-Stay selected (Horizontal Scroll) */}
               {stayMode === 'multi' && (
-                <View style={styles.dayCirclesContainer}>
+                <ScrollView 
+                  horizontal 
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={styles.dayCirclesScrollContent}
+                  style={styles.dayCirclesScroll}
+                >
                   {cityDates.map(date => {
                     const isSelected = selectedDates.includes(date);
                     return (
@@ -383,7 +388,7 @@ export default function StayBrowsing() {
                       </TouchableOpacity>
                     );
                   })}
-                </View>
+                </ScrollView>
               )}
             </View>
           </ImageBackground>
