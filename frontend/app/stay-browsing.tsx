@@ -1503,7 +1503,7 @@ const styles = StyleSheet.create({
   // Booking Status Labels - Enhanced with Depth
   bookedLabel: {
     position: 'absolute',
-    top: 12,
+    top: 18,
     left: 12,
     borderRadius: 12,
     overflow: 'hidden',
