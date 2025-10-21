@@ -655,7 +655,9 @@ export default function StayBrowsing() {
                               </View>
                               <View style={styles.ivorySeparator} />
                               <View style={styles.cardDatePill}>
-                                <Text style={styles.cardDatePillText}>{displayDates.startMonth} {displayDates.startDay}</Text>
+                                <Text style={styles.cardDatePillText}>
+                                  {displayDates.startMonth.slice(0, 3)} {displayDates.startDay}–{displayDates.endMonth.slice(0, 3)} {displayDates.endDay}
+                                </Text>
                               </View>
                             </View>
                           ) : (
@@ -672,7 +674,9 @@ export default function StayBrowsing() {
                               </View>
                               <View style={styles.ivorySeparator} />
                               <View style={styles.cardDatePill}>
-                                <Text style={styles.cardDatePillText}>{displayDates.startMonth} {displayDates.startDay}</Text>
+                                <Text style={styles.cardDatePillText}>
+                                  {displayDates.startMonth.slice(0, 3)} {displayDates.startDay}–{displayDates.endMonth.slice(0, 3)} {displayDates.endDay}
+                                </Text>
                               </View>
                             </BlurView>
                           )}
