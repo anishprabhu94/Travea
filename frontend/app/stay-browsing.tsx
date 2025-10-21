@@ -1835,7 +1835,7 @@ const styles = StyleSheet.create({
   // Floating Filter Cluster Button System
   filterClusterContainer: {
     position: 'absolute',
-    top: 300,
+    top: 360,
     right: 16,
     zIndex: 100,
   },
