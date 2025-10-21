@@ -36,7 +36,7 @@ export default function RestaurantInfo() {
   const [toastMessage, setToastMessage] = useState('')
 
   // Get restaurant data
-  const expData = MOCK_EXPERIENCES[restaurantId] || MOCK_EXPERIENCES['exp1'];
+  const expData = MOCK_EXPERIENCES[restaurantId] || MOCK_EXPERIENCES['rest1'];
 
   const handleMarkBooked = () => {
     markAsBooked(
