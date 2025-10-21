@@ -605,12 +605,12 @@ export default function ExperienceBrowsing() {
     }
   }, [stayMode, selectedDates, cityStartMonth, cityStartDay, cityEndMonth, cityEndDay]);
   
-  const filteredStays = getFilteredStays();
-  const savedStaysByCategory = getSavedStaysByCategory();
+  const filteredExperiences = getFilteredExperiences();
+  const savedExperiencesByCategory = getSavedExperiencesByCategory();
   
   // Debug log
-  console.log('Saved stays count:', savedStays.size);
-  console.log('Saved by category:', savedStaysByCategory);
+  console.log('Saved experiences count:', savedExperiences.size);
+  console.log('Saved by category:', savedExperiencesByCategory);
 
   return (
     <View style={styles.container}>
