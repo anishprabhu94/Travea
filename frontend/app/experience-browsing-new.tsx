@@ -739,7 +739,7 @@ export default function ExperienceBrowsing() {
               {Object.entries(savedExperiencesByCategory).map(([category, stays]) => (
                 <View key={category} style={styles.savedCategorySection}>
                   <Text style={styles.savedCategoryTitle}>
-                    {category === 'all' ? 'For You' : category.charAt(0).toUpperCase() + category.slice(1)}
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
                   </Text>
                 <ScrollView
                   horizontal
