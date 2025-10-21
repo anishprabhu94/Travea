@@ -1796,4 +1796,109 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     overflow: 'hidden',
   },
+  
+  // Floating Filter Cluster Button System
+  filterClusterContainer: {
+    position: 'absolute',
+    top: 300,
+    right: 16,
+    zIndex: 100,
+  },
+  filterMainButton: {
+    width: 100,
+    height: 44,
+    borderRadius: 22,
+    overflow: 'hidden',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.35)',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 1,
+        shadowRadius: 16,
+      },
+      android: {
+        elevation: 8,
+      },
+      web: {
+        boxShadow: '0px 4px 16px rgba(0,0,0,0.35)',
+      },
+    }),
+  },
+  filterMainButtonBlur: {
+    flex: 1,
+    backgroundColor: 'rgba(20,20,20,0.55)',
+    borderWidth: 0.5,
+    borderColor: 'rgba(255,255,255,0.12)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 22,
+  },
+  filterMainButtonText: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#F6F1E7',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  filterClusterBackdrop: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.1)',
+  },
+  filterPillsCluster: {
+    marginTop: 8,
+    gap: 6,
+  },
+  filterPill: {
+    width: 110,
+    height: 36,
+    borderRadius: 18,
+    overflow: 'hidden',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.25)',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 1,
+        shadowRadius: 8,
+      },
+      android: {
+        elevation: 4,
+      },
+      web: {
+        boxShadow: '0px 2px 8px rgba(0,0,0,0.25)',
+      },
+    }),
+  },
+  filterPillBlur: {
+    flex: 1,
+    backgroundColor: 'rgba(20,20,20,0.55)',
+    borderWidth: 0.5,
+    borderColor: 'rgba(255,255,255,0.12)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 18,
+  },
+  filterPillActive: {
+    borderColor: 'rgba(212,190,132,0.25)',
+  },
+  filterPillActiveFill: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(212,190,132,0.25)',
+    borderRadius: 18,
+  },
+  filterPillText: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#DAD6C7',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  filterPillTextActive: {
+    color: '#FFFFFF',
+    fontWeight: '600',
+  },
 });
+
