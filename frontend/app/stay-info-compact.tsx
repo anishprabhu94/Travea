@@ -83,7 +83,7 @@ export default function StayInfoCompact() {
     reviewCount: 342,
     pricePerNight: `€${pricePerNight}`,
     totalPrice: `€${totalPrice}`,
-    heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+    heroImage: stayData.image,
     
     essenceTags: ['Azure Air', 'Lemon Calm', 'Cliff Light'],
     
