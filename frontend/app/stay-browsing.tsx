@@ -2092,12 +2092,12 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   
-  // Category Sections for Saved Multi-Category
-  categorySection: {
-    marginBottom: 32,
+  // Saved Category Sections
+  savedCategorySection: {
+    marginBottom: 24,
   },
-  categoryTitle: {
-    fontSize: 18,
+  savedCategoryTitle: {
+    fontSize: 17,
     fontWeight: '600',
     color: '#F3F1E7',
     marginLeft: 16,
@@ -2108,10 +2108,10 @@ const styles = StyleSheet.create({
       web: 'Playfair Display, Georgia, serif',
     }),
   },
-  horizontalScroll: {
+  savedCarousel: {
     paddingLeft: 16,
   },
-  horizontalScrollContent: {
+  savedCarouselContent: {
     gap: 16,
     paddingRight: 16,
   },
