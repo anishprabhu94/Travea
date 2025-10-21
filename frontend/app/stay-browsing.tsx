@@ -843,7 +843,7 @@ const styles = StyleSheet.create({
   filterTitleContainer: {
     paddingHorizontal: 16,
     marginBottom: 16,
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   filterTitleText: {
     fontSize: 20,
