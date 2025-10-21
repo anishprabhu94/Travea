@@ -121,6 +121,18 @@ backend:
           comment: "COMPREHENSIVE BACKEND TESTING COMPLETED: All core functionality working correctly. ✅ API endpoint accessible (200 status), ✅ AI responses are editorial and concise (max 3 lines, ≤300 chars), ✅ Intent detection working for most cases (city_inquiry, inspiration, general_info), ✅ Card recommendations proper (max 4 cards, curated destinations only), ✅ Error handling graceful (empty/long messages), ✅ Additional endpoints functional (/api/concierge/cards, /api/concierge/trip). Minor: Intent detection logic has ordering issue - queries with city names + hotel keywords get classified as 'city_inquiry' instead of 'trip_creation', but AI responses are still appropriate. LLM integration with emergentintegrations working perfectly with EMERGENT_LLM_KEY. Overall: 95% test success rate, all critical functionality operational."
 
 frontend:
+  - task: "Integrate dynamic trip data into stay-browsing page"
+    implemented: true
+    working: true
+    file: "/app/frontend/app/stay-browsing.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Successfully integrated dynamic trip data from TripsContext and TripCanvasContext into stay-browsing.tsx. Key changes: 1) Replaced mock/static data with real trip data from contexts, 2) Added proper fallback logic for trip and city selection (prioritizes params, falls back to first trip/city), 3) Dynamically calculates city dates based on selected trip/city, 4) Updated trip title, travelers count, and dates to use context data, 5) Removed AsyncStorage dependency for trip title loading, 6) Added comprehensive console logging for debugging trip and city selection, 7) Hero image now dynamically selects based on city name. The page now properly responds to actual trip data from contexts instead of placeholder values. Date pills and all trip information will now dynamically update based on selected trip context."
+
   - task: "Reduce input field height for all input panes"
     implemented: true
     working: true
