@@ -516,11 +516,6 @@ export default function StayBrowsing() {
                     style={styles.stayCardGradient}
                   />
                   
-                  {/* Date Pill - Top Right */}
-                  <View style={styles.datePill}>
-                    <Text style={styles.datePillText}>{cityStartMonth} {cityStartDay}</Text>
-                  </View>
-                  
                   {/* Booking Status Label - Top Left of Image (Enhanced Visibility) */}
                   {bookingStatus === 'booked' && (
                     <View style={styles.bookedLabel}>
@@ -544,17 +539,19 @@ export default function StayBrowsing() {
                     </View>
                   )}
                   
-                  {/* Save Heart - Top Right of Image */}
+                  {/* Save Heart - Top Right on Frosted Circle */}
                   <TouchableOpacity
-                    style={styles.saveHeartTopRight}
+                    style={styles.saveHeartFrostedCircle}
                     onPress={() => handleSaveStay(stay.id)}
                     activeOpacity={0.7}
                   >
-                    <Ionicons
-                      name={savedStays.has(stay.id) ? 'heart' : 'heart-outline'}
-                      size={22}
-                      color={savedStays.has(stay.id) ? '#CBB88C' : 'rgba(255,255,255,0.7)'}
-                    />
+                    <BlurView intensity={20} tint="light" style={styles.saveHeartBlur}>
+                      <Ionicons
+                        name={savedStays.has(stay.id) ? 'heart' : 'heart-outline'}
+                        size={20}
+                        color={savedStays.has(stay.id) ? '#CBB88C' : 'rgba(255,255,255,0.7)'}
+                      />
+                    </BlurView>
                   </TouchableOpacity>
                   
                   <View style={styles.stayCardFrosted}>
