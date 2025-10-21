@@ -333,7 +333,7 @@ export default function RestaurantBrowsing() {
                 }
               ]}
             >
-                {(['attractions', 'immersions', 'adventures', 'saved'] as const).map((filter, index) => (
+                {(['breakfast', 'lunch', 'dinner', 'saved'] as const).map((filter, index) => (
                   <TouchableOpacity
                     key={filter}
                     style={[
