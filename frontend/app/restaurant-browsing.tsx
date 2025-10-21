@@ -567,9 +567,9 @@ export default function RestaurantBrowsing() {
                   >
                     <BlurView intensity={20} tint="light" style={styles.saveHeartBlur}>
                       <Ionicons
-                        name={savedStays.has(stay.id) ? 'heart' : 'heart-outline'}
+                        name={savedRestaurants.has(stay.id) ? 'heart' : 'heart-outline'}
                         size={20}
-                        color={savedStays.has(stay.id) ? '#CBB88C' : 'rgba(255,255,255,0.7)'}
+                        color={savedRestaurants.has(stay.id) ? '#CBB88C' : 'rgba(255,255,255,0.7)'}
                       />
                     </BlurView>
                   </TouchableOpacity>
