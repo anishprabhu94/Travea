@@ -1343,7 +1343,7 @@ export default function TripCanvas() {
   // Stays Section - Image-Based Cards with Real Bookings
   const renderStays = () => {
     // Get booked stays for current trip
-    const bookedStays = getBookingsByTrip(currentTrip.id);
+    const bookedStays = getStayBookingsByTrip(currentTrip.id);
     
     // Filter stays for active city
     const cityBookedStays = bookedStays.filter(booking => 
