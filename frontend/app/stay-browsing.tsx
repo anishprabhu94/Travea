@@ -2097,5 +2097,35 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontWeight: '600',
   },
+  
+  // Category Sections for Saved Multi-Category
+  categorySection: {
+    marginBottom: 32,
+  },
+  categoryTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#F3F1E7',
+    marginLeft: 16,
+    marginBottom: 12,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  horizontalScroll: {
+    paddingLeft: 16,
+  },
+  horizontalScrollContent: {
+    gap: 16,
+    paddingRight: 16,
+  },
+  stayCardHorizontal: {
+    width: 300,
+    height: 280,
+    borderRadius: 24,
+    overflow: 'hidden',
+  },
 });
 
