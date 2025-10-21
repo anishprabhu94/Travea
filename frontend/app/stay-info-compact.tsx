@@ -23,16 +23,31 @@ export default function StayInfoCompact() {
   const params = useLocalSearchParams()
   const nights = parseInt(params.nights as string || '3')
   const stayId = params.stayId as string || 'default-stay'
+  const tripId = params.tripId as string || undefined
+  const cityCode = params.cityCode as string || undefined
+  const city = params.city as string || undefined
+  const dateRange = params.dateRange as string || undefined
   
   const { getBookingStatus, markAsBooked, markAsCanceled } = useStayBooking()
   const bookingStatus = getBookingStatus(stayId)
   
   const [activeTab, setActiveTab] = useState<TabType>('gallery')
   const [showToast, setShowToast] = useState(false)
-  const [toastMessage, setToastMessage] = useState('')
+  const [toastMessage] = useState('')
 
   const handleMarkBooked = () => {
-    markAsBooked(stayId, nights, `Jun 10–${10 + nights}`)
+    // Pass all stay information including trip context
+    markAsBooked(
+      stayId, 
+      nights, 
+      dateRange || `Jun 10–${10 + nights}`,
+      stay.name,
+      stay.heroImage,
+      pricePerNight,
+      city,
+      cityCode,
+      tripId
+    )
     setToastMessage(`Stay booked · ${nights} ${nights === 1 ? 'night' : 'nights'}`)
     setShowToast(true)
     setTimeout(() => setShowToast(false), 3000)
