@@ -395,10 +395,11 @@ export default function TripCanvas() {
       return;
     }
     
-    // Navigate with city dates
+    // Navigate with city dates and tripId
     router.push({
       pathname: '/stay-browsing',
       params: {
+        tripId: selectedTripId,
         city: city.name || activeCityCode,
         cityCode: activeCityCode,
         startMonth: city.startMonth,
