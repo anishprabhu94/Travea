@@ -248,26 +248,8 @@ export default function StayBrowsing() {
     },
   ];
   
-  // Entry animation and load trip title
+  // Entry animation
   useEffect(() => {
-    // Load trip title from AsyncStorage
-    const loadTripTitle = async () => {
-      try {
-        const tripsData = await AsyncStorage.getItem('trips');
-        if (tripsData) {
-          const trips = JSON.parse(tripsData);
-          if (trips && trips.length > 0) {
-            // Get the first active trip
-            setTripTitle(trips[0].title);
-          }
-        }
-      } catch (error) {
-        console.log('Error loading trip title:', error);
-      }
-    };
-    
-    loadTripTitle();
-    
     Animated.parallel([
       Animated.timing(contentOpacity, {
         toValue: 1,
