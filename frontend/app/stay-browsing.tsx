@@ -724,8 +724,7 @@ export default function StayBrowsing() {
               </TouchableOpacity>
             );
           })}
-          </View>
-        )}
+        </View>
       </Animated.ScrollView>
       
       {/* Bottom Dock - Exact from Landing Page */}
