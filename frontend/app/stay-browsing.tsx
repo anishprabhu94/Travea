@@ -1820,7 +1820,7 @@ const styles = StyleSheet.create({
   ivorySeparator: {
     height: 0.5,
     backgroundColor: 'rgba(218,214,199,0.2)',
-    marginVertical: 12,
+    marginVertical: 8,
     marginHorizontal: -4,
   },
   
