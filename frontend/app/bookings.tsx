@@ -647,13 +647,16 @@ export default function TripCanvas() {
   };
   
   // Handle delete trip
-  const handleDeleteTrip = () => {
+  const handleDeleteTrip = async () => {
     if (currentTrip) {
+      console.log('Deleting trip:', currentTrip.id);
       deleteTrip(currentTrip.id);
       setShowDeleteModal(false);
       setShowEditPane(false);
-      router.push('/trips');
-      // TODO: Show toast message "Trip deleted successfully"
+      // Small delay to ensure context updates
+      setTimeout(() => {
+        router.push('/trips');
+      }, 100);
     }
   };
   
