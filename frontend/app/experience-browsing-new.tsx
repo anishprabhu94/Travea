@@ -63,27 +63,13 @@ export default function ExperienceBrowsing() {
   const { getBookingStatus } = useExperienceBooking();
   
   // State
-  const [savedStays, setSavedStays] = useState<Set<string>>(new Set());
-  const [stayMode, setStayMode] = useState<'single' | 'multi'>('single');
-  const [selectedDates, setSelectedDates] = useState<number[]>([]);
-  const [selectedDateRange, setSelectedDateRange] = useState<{start: number | null, end: number | null}>({start: null, end: null});
+  const [savedExperiences, setSavedExperiences] = useState<Set<string>>(new Set());
+  const [selectedDay, setSelectedDay] = useState<number>(parseInt(cityStartDay)); // Only ONE day at a time
   const [filterClusterOpen, setFilterClusterOpen] = useState(false);
-  const [activeFilter, setActiveFilter] = useState<'all' | 'boutique' | 'luxury' | 'affordable' | 'featured' | 'saved'>('all');
+  const [activeFilter, setActiveFilter] = useState<'attractions' | 'immersions' | 'adventures'>('attractions');
   const contentOpacity = useState(new Animated.Value(0))[0];
   const filterClusterAnim = useState(new Animated.Value(0))[0];
   const dockAnim = useState(new Animated.Value(0))[0];
-  
-  // Calculate nights based on mode
-  const calculateNights = () => {
-    if (stayMode === 'multi' && selectedDates.length > 0) {
-      return selectedDates.length;
-    }
-    const start = parseInt(cityStartDay);
-    const end = parseInt(cityEndDay);
-    return end - start;
-  };
-  
-  const totalNights = calculateNights();
   const cityTotalDays = parseInt(cityEndDay) - parseInt(cityStartDay) + 1;
   const maxSelectableDays = cityTotalDays - 1; // Can select up to total - 1
   
