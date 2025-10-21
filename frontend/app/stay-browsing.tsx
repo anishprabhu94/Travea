@@ -943,7 +943,7 @@ const styles = StyleSheet.create({
   },
   stickyFilterTitle: {
     position: 'absolute',
-    top: 440,
+    top: 390,
     left: 16,
     zIndex: 50,
     backgroundColor: 'transparent',
