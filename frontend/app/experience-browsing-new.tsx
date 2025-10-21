@@ -14,12 +14,12 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { BlurView } from 'expo-blur';
-import { useStayBooking } from '../contexts/StayBookingContext';
+import { useExperienceBooking } from '../contexts/ExperienceBookingContext';
 import { useTrips } from '../contexts/TripsContext';
 
 const { width, height } = Dimensions.get('window');
 
-export default function StayBrowsing() {
+export default function ExperienceBrowsing() {
   const params = useLocalSearchParams();
   const { trips, getTripById } = useTrips();
   
