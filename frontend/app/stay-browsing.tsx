@@ -242,12 +242,10 @@ export default function StayBrowsing() {
         }),
       ]).start(() => {
         setFilterClusterOpen(false);
-        setScrollEnabled(true);
       });
     } else {
       // Open animation
       setFilterClusterOpen(true);
-      setScrollEnabled(false);
       Animated.parallel([
         Animated.timing(filterClusterAnim, {
           toValue: 1,
