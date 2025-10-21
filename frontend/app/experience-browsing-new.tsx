@@ -879,7 +879,7 @@ export default function ExperienceBrowsing() {
                         
                         <TouchableOpacity
                           style={styles.saveHeartFrostedCircle}
-                          onPressIn={() => handleSaveStay(stay.id)}
+                          onPressIn={() => handleSaveExperience(stay.id)}
                           activeOpacity={0.7}
                         >
                           <BlurView intensity={20} tint="light" style={styles.saveHeartBlur}>
