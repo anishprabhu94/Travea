@@ -4,12 +4,12 @@ import { router, useLocalSearchParams } from 'expo-router'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
 import { BlurView } from 'expo-blur'
-import { useExperienceBooking } from '../contexts/ExperienceBookingContext'
+import { useRestaurantBooking } from '../contexts/RestaurantBookingContext'
 
 const { width } = Dimensions.get('window')
 type TabType = 'highlights' | 'itinerary' | 'location'
 
-// Mock experience data
+// Mock restaurant data
 const MOCK_EXPERIENCES: any = {
   'exp1': { id: 'exp1', title: 'Uffizi Gallery Tour', tagline: 'Renaissance masterpieces unveiled', pricePerPerson: 85, rating: 4.9, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
   'exp2': { id: 'exp2', title: 'Duomo Rooftop Access', tagline: 'Cathedral heights & city views', pricePerPerson: 65, rating: 4.8, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
@@ -19,28 +19,28 @@ const MOCK_EXPERIENCES: any = {
   'exp6': { id: 'exp6', title: 'Hot Air Balloon', tagline: 'Dawn over Tuscan valleys', pricePerPerson: 285, rating: 4.9, heroImage: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
 };
 
-export default function ExperienceInfo() {
+export default function RestaurantInfo() {
   const params = useLocalSearchParams()
   const people = parseInt(params.people as string || '2')
-  const experienceId = params.experienceId as string || 'exp1'
+  const restaurantId = params.restaurantId as string || 'exp1'
   const tripId = params.tripId as string || undefined
   const cityCode = params.cityCode as string || undefined
   const city = params.city as string || undefined
   const date = params.date as string || undefined
   
-  const { getBookingStatus, markAsBooked, markAsCanceled } = useExperienceBooking()
-  const bookingStatus = getBookingStatus(experienceId, tripId)
+  const { getBookingStatus, markAsBooked, markAsCanceled } = useRestaurantBooking()
+  const bookingStatus = getBookingStatus(restaurantId, tripId)
   
   const [activeTab, setActiveTab] = useState<TabType>('highlights')
   const [showToast, setShowToast] = useState(false)
   const [toastMessage, setToastMessage] = useState('')
 
-  // Get experience data
-  const expData = MOCK_EXPERIENCES[experienceId] || MOCK_EXPERIENCES['exp1'];
+  // Get restaurant data
+  const expData = MOCK_EXPERIENCES[restaurantId] || MOCK_EXPERIENCES['exp1'];
 
   const handleMarkBooked = () => {
     markAsBooked(
-      experienceId,
+      restaurantId,
       people,
       date || 'Jun 10',
       expData.title,
@@ -50,19 +50,19 @@ export default function ExperienceInfo() {
       cityCode,
       tripId
     )
-    setToastMessage(`Experience booked · ${people} ${people === 1 ? 'person' : 'people'}`)
+    setToastMessage(`Restaurant booked · ${people} ${people === 1 ? 'person' : 'people'}`)
     setShowToast(true)
     setTimeout(() => setShowToast(false), 3000)
   }
 
   const handleMarkCanceled = () => {
-    markAsCanceled(experienceId, tripId)
+    markAsCanceled(restaurantId, tripId)
     setToastMessage('Booking canceled')
     setShowToast(true)
     setTimeout(() => setShowToast(false), 3000)
   }
 
-  const experience = {
+  const restaurant = {
     title: expData.title,
     tagline: expData.tagline,
     location: 'Amalfi Coast, Italy',
@@ -85,7 +85,7 @@ export default function ExperienceInfo() {
     itinerarySteps: [
       { time: '10:00', title: 'Meeting & Introduction', description: 'Gather at Villa Cimbrone Gardens', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
       { time: '10:30', title: 'Terraced Groves', description: 'Walk through ancient lemon terraces', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
-      { time: '11:30', title: 'Tasting Experience', description: 'Sample limoncello and local treats', image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
+      { time: '11:30', title: 'Tasting Restaurant', description: 'Sample limoncello and local treats', image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
       { time: '12:30', title: 'Conclusion', description: 'Return to meeting point', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
     ],
     
@@ -99,7 +99,7 @@ export default function ExperienceInfo() {
       ],
     },
     
-    experienceDetails: [
+    restaurantDetails: [
       { icon: 'time-outline', label: 'Start Time', value: '10:00 AM · Villa Cimbrone' },
       { icon: 'hourglass-outline', label: 'Duration', value: '2h 30m guided walk' },
       { icon: 'people-outline', label: 'Group Size', value: 'Small Group (Max 8 people)' },
@@ -126,7 +126,7 @@ export default function ExperienceInfo() {
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
         <View style={styles.heroSection}>
-          <ImageBackground source={{ uri: experience.heroImage }} style={styles.heroImage} imageStyle={styles.heroImageStyle}>
+          <ImageBackground source={{ uri: restaurant.heroImage }} style={styles.heroImage} imageStyle={styles.heroImageStyle}>
             <LinearGradient colors={['rgba(0,0,0,0.2)', 'rgba(13,13,13,0.85)']} style={styles.heroGradient} />
             <TouchableOpacity style={styles.backButton} onPress={() => router.back()} activeOpacity={0.8}>
               <Ionicons name="arrow-back" size={20} color="#D9CBA0" />
@@ -134,23 +134,23 @@ export default function ExperienceInfo() {
             <View style={styles.heroContent}>
               <View style={styles.transportTypeBadge}>
                 <Ionicons name="compass-outline" size={14} color="#D9CBA0" />
-                <Text style={styles.transportTypeText}>Experience</Text>
+                <Text style={styles.transportTypeText}>Restaurant</Text>
               </View>
               <View style={styles.heroRouteRow}>
                 <View style={styles.heroRouteLeft}>
-                  <Text style={styles.heroRoute}>{experience.title}</Text>
-                  <Text style={styles.heroTagline}>{experience.tagline}</Text>
+                  <Text style={styles.heroRoute}>{restaurant.title}</Text>
+                  <Text style={styles.heroTagline}>{restaurant.tagline}</Text>
                   <View style={styles.heroMetaRow}>
                     <View style={styles.heroMetaItem}>
                       <Ionicons name="time-outline" size={14} color="#D9CBA0" />
-                      <Text style={styles.heroMetaText}>{experience.duration}</Text>
+                      <Text style={styles.heroMetaText}>{restaurant.duration}</Text>
                     </View>
                     <View style={styles.heroMetaDivider} />
-                    <Text style={styles.heroMetaText}>{experience.groupSize}</Text>
+                    <Text style={styles.heroMetaText}>{restaurant.groupSize}</Text>
                   </View>
                 </View>
                 <View style={styles.heroPriceTag}>
-                  <Text style={styles.heroPriceAmount}>{experience.estimatedPrice}</Text>
+                  <Text style={styles.heroPriceAmount}>{restaurant.estimatedPrice}</Text>
                   <Text style={styles.heroPriceLabel}>per person</Text>
                 </View>
               </View>
@@ -162,7 +162,7 @@ export default function ExperienceInfo() {
           <LinearGradient colors={['rgba(217,203,160,0.12)', 'rgba(217,203,160,0.04)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.bookingStripGradient}>
             <Text style={styles.bookingLabel}>Book via</Text>
             <View style={styles.bookingPillsRow}>
-              {experience.bookingPlatforms.map((platform, index) => (
+              {restaurant.bookingPlatforms.map((platform, index) => (
                 <TouchableOpacity key={index} style={styles.bookingPillMini} activeOpacity={0.8}>
                   <Text style={styles.bookingPillMiniText}>{platform}</Text>
                 </TouchableOpacity>
@@ -185,7 +185,7 @@ export default function ExperienceInfo() {
           <View style={styles.tabContent}>
             {activeTab === 'highlights' && (
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.routeScroll}>
-                {experience.highlightImages.map((image, index) => (
+                {restaurant.highlightImages.map((image, index) => (
                   <View key={index} style={[styles.routeCard, index === 0 && styles.firstRouteCard]}>
                     <ImageBackground source={{ uri: image }} style={styles.routeCardBg} imageStyle={styles.routeCardBgStyle}>
                       <LinearGradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.5)']} style={styles.routeCardGradient} />
@@ -197,7 +197,7 @@ export default function ExperienceInfo() {
 
             {activeTab === 'itinerary' && (
               <View style={styles.itineraryList}>
-                {experience.itinerarySteps.map((step, index) => (
+                {restaurant.itinerarySteps.map((step, index) => (
                   <View key={index} style={styles.itineraryStep}>
                     <View style={styles.itineraryTime}>
                       <Ionicons name="time-outline" size={16} color="#D9CBA0" />
@@ -217,12 +217,12 @@ export default function ExperienceInfo() {
                 <View style={styles.mapBackground}>
                   <LinearGradient colors={['rgba(217,203,160,0.12)', 'rgba(217,203,160,0.04)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.mapGradient}>
                     <Ionicons name="location" size={48} color="#D9CBA0" />
-                    <Text style={styles.mapLocationText}>{experience.locationDetails.meetingPoint}</Text>
+                    <Text style={styles.mapLocationText}>{restaurant.locationDetails.meetingPoint}</Text>
                   </LinearGradient>
                 </View>
                 <Text style={styles.nearbyTitle}>Nearby Landmarks</Text>
                 <View style={styles.landmarksGrid}>
-                  {experience.locationDetails.nearbyLandmarks.map((landmark, index) => (
+                  {restaurant.locationDetails.nearbyLandmarks.map((landmark, index) => (
                     <View key={index} style={styles.landmarkCard}>
                       <ImageBackground source={{ uri: landmark.image }} style={styles.landmarkBg} imageStyle={styles.landmarkBgStyle}>
                         <LinearGradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.8)']} style={styles.landmarkGradient} />
@@ -240,11 +240,11 @@ export default function ExperienceInfo() {
         </View>
 
         <View style={styles.detailsSection}>
-          <Text style={styles.sectionTitle}>Experience Overview</Text>
+          <Text style={styles.sectionTitle}>Restaurant Overview</Text>
           <View style={styles.detailsPane}>
             <LinearGradient colors={['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.02)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.detailsPaneGradient}>
               <View style={styles.detailsGrid}>
-                {experience.experienceDetails.map((detail, index) => (
+                {restaurant.restaurantDetails.map((detail, index) => (
                   <View key={index} style={styles.detailRow}>
                     <View style={styles.detailLeft}>
                       <Ionicons name={detail.icon as any} size={16} color="#D9CBA0" />
@@ -261,7 +261,7 @@ export default function ExperienceInfo() {
         <View style={styles.comfortsSection}>
           <Text style={styles.sectionTitle}>What's Included</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.comfortsRow}>
-            {experience.included.map((item, index) => (
+            {restaurant.included.map((item, index) => (
               <View key={index} style={[styles.comfortCapsule, index === 0 && styles.firstComfortCapsule]}>
                 <LinearGradient colors={['rgba(217,203,160,0.12)', 'rgba(217,203,160,0.04)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.comfortCapsuleGradient}>
                   <View style={styles.comfortIconCircle}>
@@ -281,7 +281,7 @@ export default function ExperienceInfo() {
             <TouchableOpacity activeOpacity={0.8}><Text style={styles.seeAllLink}>See all →</Text></TouchableOpacity>
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.impressionsCarousel}>
-            {experience.reviews.map((review, index) => (
+            {restaurant.reviews.map((review, index) => (
               <View key={index} style={[styles.impressionCard, index === 0 && styles.firstImpressionCard]}>
                 <LinearGradient colors={['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.02)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.impressionCardGradient}>
                   <View style={styles.impressionStars}>
