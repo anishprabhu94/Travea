@@ -256,6 +256,11 @@ export default function StayBrowsing() {
     });
   };
   
+  // Format price with comma
+  const formatPrice = (price: number) => {
+    return price >= 1000 ? price.toLocaleString('en-US') : price.toString();
+  };
+  
   // Filter stays based on active filter
   const getFilteredStays = () => {
     if (activeFilter === 'saved') {
