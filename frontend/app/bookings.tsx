@@ -372,6 +372,7 @@ export default function TripCanvas() {
   const { trips, getTripById, getFilteredTrips, deleteTrip, updateTrip } = useTrips();
   const { getBookingsByTrip: getStayBookingsByTrip } = useStayBooking();
   const { getBookingsByTrip: getExperienceBookingsByTrip } = useExperienceBooking();
+  const { getBookingsByTrip: getRestaurantBookingsByTrip } = useRestaurantBooking();
   
   // State management - ALL hooks must be called before any conditional returns
   const [activeDayId, setActiveDayId] = useState('day1-2');
