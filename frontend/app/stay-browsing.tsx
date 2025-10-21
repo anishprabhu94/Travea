@@ -1972,7 +1972,7 @@ const styles = StyleSheet.create({
   // Floating Filter Cluster Button System
   filterClusterContainer: {
     position: 'absolute',
-    top: 330,
+    top: 310,
     right: 16,
     zIndex: 100,
   },
