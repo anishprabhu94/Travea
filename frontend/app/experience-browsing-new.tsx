@@ -555,9 +555,9 @@ export default function ExperienceBrowsing() {
     }
   };
   
-  // Get saved stays grouped by category
-  const getSavedStaysByCategory = () => {
-    const allSaved = mockStays.filter(stay => savedStays.has(stay.id));
+  // Get saved experiences grouped by category
+  const getSavedExperiencesByCategory = () => {
+    const allSaved = mockStays.filter(stay => savedExperiences.has(stay.id));
     const grouped: { [key: string]: typeof mockStays } = {};
     
     allSaved.forEach(stay => {
