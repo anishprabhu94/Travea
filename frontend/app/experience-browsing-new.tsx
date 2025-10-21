@@ -521,39 +521,15 @@ export default function ExperienceBrowsing() {
     return grouped;
   };
   
-  // Calculate display dates for cards - useMemo to recalculate when dependencies change
+  // Calculate display dates for experiences - show selected day
   const displayDates = useMemo(() => {
-    if (stayMode === 'single') {
-      // Show full city dates
-      return {
-        startMonth: cityStartMonth,
-        startDay: cityStartDay,
-        endMonth: cityEndMonth,
-        endDay: cityEndDay
-      };
-    } else {
-      // Multi-stay: show selected dates
-      if (selectedDates.length >= 2) {
-        const sortedDates = [...selectedDates].sort((a, b) => a - b);
-        const firstDate = sortedDates[0];
-        const lastDate = sortedDates[sortedDates.length - 1];
-        
-        return {
-          startMonth: cityStartMonth,
-          startDay: firstDate.toString(),
-          endMonth: cityEndMonth,
-          endDay: lastDate.toString()
-        };
-      }
-      // Default to city dates if no selection
-      return {
-        startMonth: cityStartMonth,
-        startDay: cityStartDay,
-        endMonth: cityEndMonth,
-        endDay: cityEndDay
-      };
-    }
-  }, [stayMode, selectedDates, cityStartMonth, cityStartDay, cityEndMonth, cityEndDay]);
+    return {
+      startMonth: cityStartMonth,
+      startDay: selectedDay.toString(),
+      endMonth: cityStartMonth, // Same day for experiences
+      endDay: selectedDay.toString()
+    };
+  }, [selectedDay, cityStartMonth]);
   
   const filteredExperiences = getFilteredExperiences();
   const savedExperiencesByCategory = getSavedExperiencesByCategory();
