@@ -275,6 +275,38 @@ export default function StayBrowsing() {
       return newSet;
     });
   };
+  
+  // Filter stays based on active filter
+  const getFilteredStays = () => {
+    if (activeFilter === 'saved') {
+      // Return only saved stays
+      return mockStays.filter(stay => savedStays.has(stay.id));
+    } else if (activeFilter === 'all') {
+      return mockStays;
+    } else {
+      // Filter by category
+      return mockStays.filter(stay => stay.category === activeFilter);
+    }
+  };
+  
+  // Group saved stays by category for horizontal carousels
+  const getGroupedSavedStays = () => {
+    const savedStaysList = mockStays.filter(stay => savedStays.has(stay.id));
+    const grouped: { [key: string]: typeof mockStays } = {};
+    
+    savedStaysList.forEach(stay => {
+      const category = stay.category;
+      if (!grouped[category]) {
+        grouped[category] = [];
+      }
+      grouped[category].push(stay);
+    });
+    
+    return grouped;
+  };
+  
+  const filteredStays = getFilteredStays();
+  const groupedSavedStays = activeFilter === 'saved' ? getGroupedSavedStays() : {};
 
   return (
     <View style={styles.container}>
