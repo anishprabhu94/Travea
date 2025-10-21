@@ -54,7 +54,7 @@ export default function StayInfoCompact() {
   }
 
   const handleMarkCanceled = () => {
-    markAsCanceled(stayId)
+    markAsCanceled(stayId, tripId)
     setToastMessage('Booking canceled')
     setShowToast(true)
     setTimeout(() => setShowToast(false), 3000)
