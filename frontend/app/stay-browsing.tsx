@@ -327,6 +327,10 @@ export default function StayBrowsing() {
   const filteredStays = getFilteredStays();
   const savedStaysByCategory = getSavedStaysByCategory();
   const displayDates = getDisplayDates();
+  
+  // Debug log
+  console.log('Saved stays count:', savedStays.size);
+  console.log('Saved by category:', savedStaysByCategory);
 
   return (
     <View style={styles.container}>
