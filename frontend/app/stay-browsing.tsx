@@ -584,7 +584,10 @@ export default function StayBrowsing() {
                         
                         <TouchableOpacity
                           style={styles.saveHeartFrostedCircle}
-                          onPress={() => handleSaveStay(stay.id)}
+                          onPress={(e) => {
+                            e.stopPropagation();
+                            handleSaveStay(stay.id);
+                          }}
                           activeOpacity={0.7}
                         >
                           <BlurView intensity={20} tint="light" style={styles.saveHeartBlur}>
