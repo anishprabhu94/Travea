@@ -43,14 +43,18 @@ export default function StayInfoCompact() {
   const [showToast, setShowToast] = useState(false)
   const [toastMessage] = useState('')
 
+  // Get stay data
+  const stayData = MOCK_STAYS[stayId] || MOCK_STAYS['1'];
+  const pricePerNight = stayData.pricePerNight;
+
   const handleMarkBooked = () => {
     // Pass all stay information including trip context
     markAsBooked(
       stayId, 
       nights, 
       dateRange || `Jun 10–${10 + nights}`,
-      stay.name,
-      stay.heroImage,
+      stayData.name,
+      stayData.image,
       pricePerNight,
       city,
       cityCode,
