@@ -1961,9 +1961,9 @@ const styles = StyleSheet.create({
   },
   saveHeartBlur: {
     flex: 1,
-    backgroundColor: 'rgba(255,255,255,0.5)',
+    backgroundColor: 'rgba(100,100,100,0.7)',
     borderWidth: 0.5,
-    borderColor: 'rgba(255,255,255,0.5)',
+    borderColor: 'rgba(120,120,120,0.8)',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 20,
