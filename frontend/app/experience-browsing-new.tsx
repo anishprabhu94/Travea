@@ -940,7 +940,7 @@ export default function ExperienceBrowsing() {
             </>
           ) : (
             // Other filters: Show regular vertical cards
-            filteredStays.map((stay, idx) => {
+            filteredExperiences.map((stay, idx) => {
             const totalPrice = stay.pricePerNight * totalNights;
             const bookingStatus = getBookingStatus(stay.id);
             
