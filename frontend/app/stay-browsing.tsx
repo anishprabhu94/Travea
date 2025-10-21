@@ -647,10 +647,10 @@ export default function StayBrowsing() {
                 })}
               </ScrollView>
             </View>
-          ))}
-          
-          {/* Regular Filtered Stays */}
-          {filteredStays.map((stay, idx) => {
+          ))
+          ) : (
+            // Other filters: Show regular vertical cards
+            filteredStays.map((stay, idx) => {
             const totalPrice = stay.pricePerNight * totalNights;
             const bookingStatus = getBookingStatus(stay.id);
             
