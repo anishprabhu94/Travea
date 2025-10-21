@@ -1683,4 +1683,84 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  
+  // Decision Layer - Combined Price/Nights/Rating
+  decisionRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  priceText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#EEDCB6',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  nightsRatingText: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: '#DAD6C7',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  decisionDot: {
+    fontSize: 13,
+    color: '#D4BE84',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  
+  // Context Layer - Experience Tags
+  experienceTagsRow: {
+    flexDirection: 'row',
+    gap: 8,
+    marginBottom: 14,
+    flexWrap: 'wrap',
+  },
+  experienceTag: {
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 8,
+    borderWidth: 0.5,
+    borderColor: 'rgba(255,255,255,0.08)',
+    paddingHorizontal: 6,
+    paddingVertical: 4,
+  },
+  experienceTagText: {
+    fontSize: 12,
+    color: '#D4BE84',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  
+  // View Details CTA
+  viewDetailsCTA: {
+    alignSelf: 'center',
+    borderRadius: 16,
+    overflow: 'hidden',
+    marginTop: 4,
+  },
+  viewDetailsCTAGradient: {
+    paddingHorizontal: 24,
+    paddingVertical: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  viewDetailsCTAText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#D4BE84',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
 });
