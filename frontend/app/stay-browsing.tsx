@@ -2177,6 +2177,7 @@ const styles = StyleSheet.create({
   },
   savedCarousel: {
     paddingLeft: 16,
+    flexGrow: 0,
   },
   savedCarouselContent: {
     gap: 16,
