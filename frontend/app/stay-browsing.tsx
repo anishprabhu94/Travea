@@ -1985,9 +1985,9 @@ const styles = StyleSheet.create({
   },
   saveHeartBlur: {
     flex: 1,
-    backgroundColor: 'rgba(255,255,255,0.15)',
+    backgroundColor: 'rgba(255,255,255,0.3)',
     borderWidth: 0.5,
-    borderColor: 'rgba(255,255,255,0.2)',
+    borderColor: 'rgba(255,255,255,0.35)',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 20,
