@@ -1570,13 +1570,21 @@ export default function TripCanvas() {
     );
   };
 
-  // Experiences Section - Horizontal Scroll
+  // Experiences Section - With Real Bookings
   const renderExperiences = () => {
-    if (activeDay.experiences.length === 0) return null;
+    // Get booked experiences for current trip
+    const bookedExperiences = getExperienceBookingsByTrip(currentTrip.id);
     
-    // Get unique dates for experiences
-    const uniqueDates = [...new Set(activeDay.experiences.map(exp => exp.date))];
-    const displayDate = uniqueDates.length === 1 ? uniqueDates[0] : `${uniqueDates[0]} – ${uniqueDates[uniqueDates.length - 1]}`;
+    // Filter experiences for active city
+    const cityBookedExperiences = bookedExperiences.filter(booking => 
+      booking.cityCode === activeCityCode
+    );
+    
+    console.log('Trip Canvas - Booked experiences for trip:', currentTrip.id, 'count:', bookedExperiences.length);
+    console.log('Trip Canvas - City booked experiences for', activeCityCode, ':', cityBookedExperiences.length);
+    
+    // Determine status
+    const sectionStatus = cityBookedExperiences.length > 0 ? 'Booked' : 'Pending';
     
     return (
       <View style={styles.categorySection}>
@@ -1585,54 +1593,96 @@ export default function TripCanvas() {
             <View style={styles.categoryHeaderLeft}>
               <Ionicons name="ticket" size={18} color="#B59B73" style={{marginRight: 8}} />
               <Text style={styles.categoryTitle}>Experiences</Text>
+              {/* Status Pill */}
+              <View style={[styles.sectionStatusPill, {
+                backgroundColor: sectionStatus === 'Booked' ? 'rgba(201,166,91,0.25)' : 
+                                sectionStatus === 'Pending' ? 'rgba(150,150,150,0.25)' : 
+                                'rgba(255,255,255,0.1)'
+              }]}>
+                <Text style={[styles.sectionStatusText, {
+                  color: sectionStatus === 'Booked' ? '#C9A65B' : 
+                        sectionStatus === 'Pending' ? '#999999' : 
+                        'rgba(255,255,255,0.6)'
+                }]}>
+                  {sectionStatus}
+                </Text>
+              </View>
             </View>
             <TouchableOpacity 
               style={styles.browseIconButton}
-              onPress={() => router.push('/book-journey')}
+              onPress={() => router.push({
+                pathname: '/experience-browsing',
+                params: {
+                  tripId: currentTrip.id,
+                  cityCode: activeCityCode,
+                }
+              })}
               activeOpacity={0.7}
             >
               <Ionicons name="compass-outline" size={18} color="rgba(203,184,140,0.8)" />
             </TouchableOpacity>
           </View>
           <View style={styles.categoryDivider} />
-          <ScrollView 
-            horizontal 
-            showsHorizontalScrollIndicator={false}
-            style={styles.horizontalScroll}
-          >
-            {activeDay.experiences.map((exp, index) => (
-              <TouchableOpacity 
-                key={exp.id} 
-                style={[styles.experienceImageCard, index === activeDay.experiences.length - 1 && {marginRight: 0}]}
-                activeOpacity={0.8}
-                onPress={() => router.push('/experience-info')}
-              >
-                <ImageBackground
-                  source={{ uri: exp.image }}
-                  style={styles.experienceImageCardBg}
-                  imageStyle={styles.experienceImageCardBgStyle}
+          
+          {cityBookedExperiences.length > 0 ? (
+            <ScrollView 
+              horizontal 
+              showsHorizontalScrollIndicator={false}
+              style={styles.horizontalScroll}
+            >
+              {cityBookedExperiences.map((booking, index) => (
+                <TouchableOpacity 
+                  key={booking.experienceId} 
+                  style={[styles.experienceImageCard, index === cityBookedExperiences.length - 1 && {marginRight: 0}]}
+                  activeOpacity={0.8}
+                  onPress={() => router.push({
+                    pathname: '/experience-info',
+                    params: {
+                      experienceId: booking.experienceId,
+                      people: booking.people.toString(),
+                      tripId: currentTrip.id,
+                      cityCode: activeCityCode,
+                      city: booking.city,
+                      date: booking.date
+                    }
+                  })}
                 >
-                  <View style={styles.cardDateBadgeOnImage}>
-                    <Text style={styles.cardDateText}>{activeCityFirstDate}</Text>
-                  </View>
-                  <LinearGradient
-                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
-                    style={styles.experienceImageCardGradient}
-                  />
-                  <View style={styles.experienceImageCardFrosted}>
-                    <Text style={styles.experienceCardTitle}>{exp.title}</Text>
-                    <View style={styles.experienceCardDetailsRow}>
-                      <Ionicons name="time-outline" size={14} color="rgba(181,155,115,0.9)" />
-                      <Text style={styles.experienceCardDetails}>
-                        {'duration' in exp ? exp.duration : exp.details}
-                      </Text>
-                      <Text style={styles.experienceCardLocation}>· 0.4 Mi from center</Text>
+                  <ImageBackground
+                    source={{ uri: booking.experienceImage || 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' }}
+                    style={styles.experienceImageCardBg}
+                    imageStyle={styles.experienceImageCardBgStyle}
+                  >
+                    <View style={styles.cardDateBadgeOnImage}>
+                      <Text style={styles.cardDateText}>{booking.date || activeCityFirstDate}</Text>
                     </View>
-                  </View>
-                </ImageBackground>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
+                    <LinearGradient
+                      colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
+                      style={styles.experienceImageCardGradient}
+                    />
+                    <View style={styles.experienceImageCardFrosted}>
+                      <Text style={styles.experienceCardTitle}>{booking.experienceName || 'Experience'}</Text>
+                      <View style={styles.experienceCardDetailsRow}>
+                        <Ionicons name="people-outline" size={14} color="rgba(181,155,115,0.9)" />
+                        <Text style={styles.experienceCardDetails}>
+                          {booking.people} {booking.people === 1 ? 'person' : 'people'}
+                        </Text>
+                        <Text style={styles.experienceCardLocation}>· €{booking.pricePerPerson ? booking.pricePerPerson * booking.people : '---'}</Text>
+                      </View>
+                    </View>
+                  </ImageBackground>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          ) : (
+            <View style={{ padding: 16, alignItems: 'center' }}>
+              <Text style={{ color: 'rgba(255,255,255,0.5)', fontSize: 14, fontFamily: 'DMSans-Regular' }}>
+                No experiences booked yet
+              </Text>
+              <Text style={{ color: 'rgba(255,255,255,0.3)', fontSize: 12, fontFamily: 'DMSans-Regular', marginTop: 4 }}>
+                Tap the compass to browse experiences
+              </Text>
+            </View>
+          )}
         </View>
       </View>
     );
