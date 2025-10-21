@@ -177,7 +177,7 @@ export default function RestaurantBrowsing() {
       // Show only saved restaurants
       return mockRestaurants.filter(exp => savedRestaurants.has(exp.id));
     } else {
-      // Filter by category (attractions, immersions, adventures)
+      // Filter by category (breakfast, lunch, dinner)
       return mockRestaurants.filter(exp => exp.category === activeFilter);
     }
   };
