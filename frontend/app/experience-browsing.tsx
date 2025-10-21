@@ -465,7 +465,7 @@ export default function ExperienceBrowsing() {
                                 <Text style={styles.nightsRatingText}>{totalNights} nights</Text>
                                 <Text style={styles.decisionDot}> · </Text>
                                 <Ionicons name="star" size={12} color="#FFFFFF" style={{marginRight: 3}} />
-                                <Text style={styles.nightsRatingText}>{stay.rating}</Text>
+                                <Text style={styles.nightsRatingText}>{experience.rating}</Text>
                               </View>
                               <View style={styles.ivorySeparator} />
                               <View style={styles.cardDatePill}>
@@ -484,7 +484,7 @@ export default function ExperienceBrowsing() {
                                 <Text style={styles.nightsRatingText}>{totalNights} nights</Text>
                                 <Text style={styles.decisionDot}> · </Text>
                                 <Ionicons name="star" size={12} color="#FFFFFF" style={{marginRight: 3}} />
-                                <Text style={styles.nightsRatingText}>{stay.rating}</Text>
+                                <Text style={styles.nightsRatingText}>{experience.rating}</Text>
                               </View>
                               <View style={styles.ivorySeparator} />
                               <View style={styles.cardDatePill}>
