@@ -19,10 +19,18 @@ const { width, height } = Dimensions.get('window')
 
 type TabType = 'gallery' | 'rooms' | 'location'
 
+// Mock stay data (same as stay-browsing)
+const MOCK_STAYS: any = {
+  '1': { id: '1', name: 'Hotel Brunelleschi', tagline: 'Historic tower meets Renaissance charm', pricePerNight: 340, rating: 4.8, image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
+  '2': { id: '2', name: 'Four Seasons Firenze', tagline: 'Renaissance garden sanctuary', pricePerNight: 620, rating: 4.9, image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
+  '3': { id: '3', name: 'Portrait Firenze', tagline: 'Modern elegance on the Arno', pricePerNight: 480, rating: 4.9, image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
+  '4': { id: '4', name: 'Palazzo Vecchietti', tagline: 'Suites in a Renaissance palace', pricePerNight: 295, rating: 4.6, image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
+};
+
 export default function StayInfoCompact() {
   const params = useLocalSearchParams()
   const nights = parseInt(params.nights as string || '3')
-  const stayId = params.stayId as string || 'default-stay'
+  const stayId = params.stayId as string || '1'
   const tripId = params.tripId as string || undefined
   const cityCode = params.cityCode as string || undefined
   const city = params.city as string || undefined
