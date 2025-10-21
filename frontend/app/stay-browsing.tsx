@@ -1789,10 +1789,65 @@ const styles = StyleSheet.create({
   blurViewContent: {
     flex: 1,
     borderRadius: 20,
-    paddingHorizontal: 20,
-    paddingTop: 18,
-    paddingBottom: 20,
+    paddingHorizontal: 16,
+    paddingTop: 14,
+    paddingBottom: 16,
     overflow: 'hidden',
+  },
+  
+  // Card Date Pill (Inside Card, Replacing View Details)
+  cardDatePill: {
+    alignSelf: 'flex-start',
+    backgroundColor: 'rgba(20,20,20,0.8)',
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.3)',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    marginTop: 2,
+  },
+  cardDatePillText: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#CBB88C',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  
+  // Save Heart with Frosted Circle (Top Right)
+  saveHeartFrostedCircle: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    overflow: 'hidden',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.25)',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 1,
+        shadowRadius: 8,
+      },
+      android: {
+        elevation: 4,
+      },
+      web: {
+        boxShadow: '0px 2px 8px rgba(0,0,0,0.25)',
+      },
+    }),
+  },
+  saveHeartBlur: {
+    flex: 1,
+    backgroundColor: 'rgba(255,255,255,0.15)',
+    borderWidth: 0.5,
+    borderColor: 'rgba(255,255,255,0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
   },
   
   // Floating Filter Cluster Button System
