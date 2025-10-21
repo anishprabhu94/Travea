@@ -17,9 +17,9 @@ interface StayBooking {
 interface StayBookingContextType {
   bookings: Map<string, StayBooking>;
   markAsBooked: (stayId: string, nights: number, dateRange: string, stayName?: string, stayImage?: string, pricePerNight?: number, city?: string, cityCode?: string, tripId?: string) => void;
-  markAsCanceled: (stayId: string) => void;
-  getBookingStatus: (stayId: string) => 'none' | 'booked' | 'canceled';
-  getBooking: (stayId: string) => StayBooking | undefined;
+  markAsCanceled: (stayId: string, tripId?: string) => void;
+  getBookingStatus: (stayId: string, tripId?: string) => 'none' | 'booked' | 'canceled';
+  getBooking: (stayId: string, tripId?: string) => StayBooking | undefined;
   getBookingsByTrip: (tripId: string) => StayBooking[];
 }
 
