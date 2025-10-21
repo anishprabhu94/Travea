@@ -448,25 +448,20 @@ export default function StayBrowsing() {
           {/* Filter Pills Cluster */}
           {filterClusterOpen && (
             <>
-              {/* Intensive Background Blur */}
+              {/* Intensive Background Blur - Blurs page, not pills */}
               <Animated.View
                 style={[
                   styles.filterClusterBackdrop,
                   {
-                    opacity: backdropBlurAnim.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [0, 0.95]
-                    })
+                    opacity: backdropBlurAnim,
                   }
                 ]}
-                pointerEvents="auto"
               >
                 <TouchableOpacity
                   style={StyleSheet.absoluteFill}
                   activeOpacity={1}
                   onPress={toggleFilterCluster}
                 />
-                <BlurView intensity={15} tint="dark" style={StyleSheet.absoluteFill} />
               </Animated.View>
               
               <Animated.View 
