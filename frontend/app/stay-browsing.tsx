@@ -1936,6 +1936,20 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 16,
     overflow: 'hidden',
+    borderWidth: 0.5,
+    borderColor: 'rgba(181,155,115,0.2)',
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.3,
+        shadowRadius: 12,
+      },
+      android: {
+        elevation: 8,
+      },
+    }),
   },
   
   // Card Date Pill (Inside Card, Replacing View Details)
