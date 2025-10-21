@@ -36,7 +36,8 @@ export default function RootLayout() {
               <Stack.Screen name="experience-info" />
               <Stack.Screen name="restaurant-info" />
               <Stack.Screen name="concierge" />
-              </Stack>
+                </Stack>
+              </RestaurantBookingProvider>
             </ExperienceBookingProvider>
           </StayBookingProvider>
         </TripsProvider>
