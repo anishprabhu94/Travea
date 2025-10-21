@@ -1693,13 +1693,16 @@ export default function TripCanvas() {
     );
   };
 
-  // Restaurants Section - Horizontal Scroll
+
+  // Restaurants Section - With Real Bookings
   const renderRestaurants = () => {
-    if (activeDay.restaurants.length === 0) return null;
+    const bookedRestaurants = getRestaurantBookingsByTrip(currentTrip.id);
+    const cityBookedRestaurants = bookedRestaurants.filter(booking => booking.cityCode === activeCityCode);
     
-    // Get unique dates for restaurants
-    const uniqueDates = [...new Set(activeDay.restaurants.map(rest => rest.date))];
-    const displayDate = uniqueDates.length === 1 ? uniqueDates[0] : `${uniqueDates[0]} – ${uniqueDates[uniqueDates.length - 1]}`;
+    console.log('Trip Canvas - Booked restaurants for trip:', currentTrip.id, 'count:', bookedRestaurants.length);
+    console.log('Trip Canvas - City booked restaurants for', activeCityCode, ':', cityBookedRestaurants.length);
+    
+    const sectionStatus = cityBookedRestaurants.length > 0 ? 'Booked' : 'Pending';
     
     return (
       <View style={styles.categorySection}>
@@ -1708,48 +1711,84 @@ export default function TripCanvas() {
             <View style={styles.categoryHeaderLeft}>
               <Ionicons name="restaurant" size={18} color="#B59B73" style={{marginRight: 8}} />
               <Text style={styles.categoryTitle}>Restaurants</Text>
+              <View style={[styles.sectionStatusPill, {
+                backgroundColor: sectionStatus === 'Booked' ? 'rgba(201,166,91,0.25)' : 'rgba(150,150,150,0.25)'
+              }]}>
+                <Text style={[styles.sectionStatusText, {
+                  color: sectionStatus === 'Booked' ? '#C9A65B' : '#999999'
+                }]}>
+                  {sectionStatus}
+                </Text>
+              </View>
             </View>
             <TouchableOpacity 
               style={styles.browseIconButton}
-              onPress={() => router.push('/book-journey')}
+              onPress={() => router.push({
+                pathname: '/restaurant-browsing',
+                params: { tripId: currentTrip.id, cityCode: activeCityCode }
+              })}
               activeOpacity={0.7}
             >
               <Ionicons name="compass-outline" size={18} color="rgba(203,184,140,0.8)" />
             </TouchableOpacity>
           </View>
           <View style={styles.categoryDivider} />
-          <ScrollView 
-            horizontal 
-            showsHorizontalScrollIndicator={false}
-            style={styles.horizontalScroll}
-          >
-            {activeDay.restaurants.map((rest, index) => (
-              <TouchableOpacity 
-                key={rest.id} 
-                style={[styles.restaurantImageCard, index === activeDay.restaurants.length - 1 && {marginRight: 0}]}
-                activeOpacity={0.8}
-                onPress={() => router.push('/restaurant-info')}
-              >
-                <ImageBackground
-                  source={{ uri: rest.image }}
-                  style={styles.restaurantImageCardBg}
-                  imageStyle={styles.restaurantImageCardBgStyle}
+          
+          {cityBookedRestaurants.length > 0 ? (
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
+              {cityBookedRestaurants.map((booking, index) => (
+                <TouchableOpacity 
+                  key={booking.restaurantId} 
+                  style={[styles.experienceImageCard, index === cityBookedRestaurants.length - 1 && {marginRight: 0}]}
+                  activeOpacity={0.8}
+                  onPress={() => router.push({
+                    pathname: '/restaurant-info',
+                    params: {
+                      restaurantId: booking.restaurantId,
+                      people: booking.people.toString(),
+                      tripId: currentTrip.id,
+                      cityCode: activeCityCode,
+                      city: booking.city,
+                      date: booking.date
+                    }
+                  })}
                 >
-                  <View style={styles.cardDateBadgeOnImage}>
-                    <Text style={styles.cardDateText}>{activeCityFirstDate}</Text>
-                  </View>
-                  <LinearGradient
-                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
-                    style={styles.restaurantImageCardGradient}
-                  />
-                  <View style={styles.restaurantImageCardFrosted}>
-                    <Text style={styles.restaurantCardTitle}>{rest.name}</Text>
-                    <Text style={styles.restaurantCardDetails}>{rest.time} · {rest.details}</Text>
-                  </View>
-                </ImageBackground>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
+                  <ImageBackground
+                    source={{ uri: booking.restaurantImage || 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' }}
+                    style={styles.experienceImageCardBg}
+                    imageStyle={styles.experienceImageCardBgStyle}
+                  >
+                    <View style={styles.cardDateBadgeOnImage}>
+                      <Text style={styles.cardDateText}>{booking.date || activeCityFirstDate}</Text>
+                    </View>
+                    <LinearGradient
+                      colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
+                      style={styles.experienceImageCardGradient}
+                    />
+                    <View style={styles.experienceImageCardFrosted}>
+                      <Text style={styles.experienceCardTitle}>{booking.restaurantName || 'Restaurant'}</Text>
+                      <View style={styles.experienceCardDetailsRow}>
+                        <Ionicons name="people-outline" size={14} color="rgba(181,155,115,0.9)" />
+                        <Text style={styles.experienceCardDetails}>
+                          {booking.people} {booking.people === 1 ? 'person' : 'people'}
+                        </Text>
+                        <Text style={styles.experienceCardLocation}>· €{booking.pricePerPerson ? booking.pricePerPerson * booking.people : '---'}</Text>
+                      </View>
+                    </View>
+                  </ImageBackground>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          ) : (
+            <View style={{ padding: 16, alignItems: 'center' }}>
+              <Text style={{ color: 'rgba(255,255,255,0.5)', fontSize: 14, fontFamily: 'DMSans-Regular' }}>
+                No restaurants booked yet
+              </Text>
+              <Text style={{ color: 'rgba(255,255,255,0.3)', fontSize: 12, fontFamily: 'DMSans-Regular', marginTop: 4 }}>
+                Tap the compass to browse restaurants
+              </Text>
+            </View>
+          )}
         </View>
       </View>
     );
