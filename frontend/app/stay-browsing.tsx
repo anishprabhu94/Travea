@@ -16,6 +16,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { BlurView } from 'expo-blur';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useStayBooking } from '../contexts/StayBookingContext';
+import { useTrips } from '../contexts/TripsContext';
 
 const { width, height } = Dimensions.get('window');
 
