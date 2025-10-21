@@ -415,7 +415,7 @@ export default function StayBrowsing() {
           </ImageBackground>
         </View>
         
-        {/* Floating Filter Cluster Button - Top Right (Moved Down) */}
+        {/* Floating Filter Cluster Button - Top Right */}
         <View style={styles.filterClusterContainer}>
           {/* Main Filter Button */}
           <TouchableOpacity
@@ -423,9 +423,9 @@ export default function StayBrowsing() {
             onPress={toggleFilterCluster}
             activeOpacity={0.8}
           >
-            <BlurView intensity={20} tint="dark" style={styles.filterMainButtonBlur}>
+            <View style={styles.filterMainButtonView}>
               <Text style={styles.filterMainButtonText}>Filters ✦</Text>
-            </BlurView>
+            </View>
           </TouchableOpacity>
           
           {/* Filter Pills Cluster */}
@@ -466,7 +466,7 @@ export default function StayBrowsing() {
                     }}
                     activeOpacity={0.8}
                   >
-                    <BlurView intensity={24} tint="dark" style={styles.filterPillBlur}>
+                    <View style={styles.filterPillView}>
                       {activeFilter === filter && (
                         <View style={styles.filterPillActiveFill} />
                       )}
@@ -476,7 +476,7 @@ export default function StayBrowsing() {
                       ]}>
                         {filter === 'all' ? 'All' : filter === 'saved' ? 'Saved' : filter.charAt(0).toUpperCase() + filter.slice(1)}
                       </Text>
-                    </BlurView>
+                    </View>
                   </TouchableOpacity>
                 ))}
               </Animated.View>
