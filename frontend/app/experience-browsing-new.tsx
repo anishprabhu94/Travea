@@ -527,13 +527,13 @@ export default function ExperienceBrowsing() {
     }
   };
   
-  const handleSaveStay = (stayId: string) => {
-    setSavedStays(prev => {
+  const handleSaveExperience = (experienceId: string) => {
+    setSavedExperiences(prev => {
       const newSet = new Set(prev);
-      if (newSet.has(stayId)) {
-        newSet.delete(stayId);
+      if (newSet.has(experienceId)) {
+        newSet.delete(experienceId);
       } else {
-        newSet.add(stayId);
+        newSet.add(experienceId);
       }
       return newSet;
     });
