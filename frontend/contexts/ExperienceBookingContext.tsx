@@ -17,9 +17,9 @@ interface ExperienceBooking {
 interface ExperienceBookingContextType {
   bookings: Map<string, ExperienceBooking>;
   markAsBooked: (experienceId: string, people: number, date: string, experienceName?: string, experienceImage?: string, pricePerPerson?: number, city?: string, cityCode?: string, tripId?: string) => void;
-  markAsCanceled: (experienceId: string) => void;
-  getBookingStatus: (experienceId: string) => 'none' | 'booked' | 'canceled';
-  getBooking: (experienceId: string) => ExperienceBooking | undefined;
+  markAsCanceled: (experienceId: string, tripId?: string) => void;
+  getBookingStatus: (experienceId: string, tripId?: string) => 'none' | 'booked' | 'canceled';
+  getBooking: (experienceId: string, tripId?: string) => ExperienceBooking | undefined;
   getBookingsByTrip: (tripId: string) => ExperienceBooking[];
 }
 
