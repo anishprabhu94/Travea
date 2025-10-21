@@ -175,10 +175,10 @@ export default function ExperienceBrowsing() {
   const getFilteredExperiences = () => {
     if (activeFilter === 'saved') {
       // Show only saved experiences
-      return mockExperiences.filter(stay => savedExperiences.has(stay.id));
+      return mockExperiences.filter(exp => savedExperiences.has(exp.id));
     } else {
       // Filter by category (attractions, immersions, adventures)
-      return mockExperiences.filter(stay => stay.category === activeFilter);
+      return mockExperiences.filter(exp => exp.category === activeFilter);
     }
   };
   
