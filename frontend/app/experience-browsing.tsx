@@ -386,29 +386,29 @@ export default function ExperienceBrowsing() {
                   contentContainerStyle={styles.savedCarouselContent}
                   style={styles.savedCarousel}
                 >
-                {stays.map((stay) => {
-                  const totalPrice = stay.pricePerNight * totalNights;
-                  const bookingStatus = getBookingStatus(stay.id);
+                {experiences.map((experience) => {
+                  const totalPrice = experience.pricePerPerson * travelers;
+                  const bookingStatus = getBookingStatus(experience.id, tripId);
                   
                   return (
                     <TouchableOpacity 
-                      key={stay.id}
+                      key={experience.id}
                       style={styles.stayCardHorizontal} 
                       activeOpacity={0.8}
                       onPress={() => router.push({
-                        pathname: '/stay-info-compact',
+                        pathname: '/experience-info',
                         params: { 
-                          nights: totalNights.toString(), 
-                          stayId: stay.id,
+                          people: travelers.toString(), 
+                          experienceId: experience.id,
                           tripId: tripId,
                           cityCode: cityCode,
                           city: cityName,
-                          dateRange: `${displayDates.startMonth} ${displayDates.startDay}–${displayDates.endMonth} ${displayDates.endDay}`
+                          date: `${displayDates.startMonth} ${displayDates.startDay}`
                         }
                       })}
                     >
                       <ImageBackground
-                        source={{ uri: stay.image }}
+                        source={{ uri: experience.image }}
                         style={styles.stayCardBg}
                         imageStyle={styles.stayCardBgStyle}
                       >
