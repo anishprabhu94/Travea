@@ -506,7 +506,7 @@ export default function StayBrowsing() {
                         styles.filterPillText,
                         activeFilter === filter && styles.filterPillTextActive
                       ]}>
-                        {filter === 'all' ? 'For You' : filter.charAt(0).toUpperCase() + filter.slice(1)}
+                        {filter === 'all' ? 'For You' : filter === 'saved' ? 'Saved' : filter.charAt(0).toUpperCase() + filter.slice(1)}
                       </Text>
                     </View>
                   </TouchableOpacity>
