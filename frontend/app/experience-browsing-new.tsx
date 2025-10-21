@@ -715,7 +715,7 @@ export default function ExperienceBrowsing() {
                         styles.filterPillText,
                         activeFilter === filter && styles.filterPillTextActive
                       ]}>
-                        {filter === 'all' ? 'For You' : filter === 'saved' ? 'Saved' : filter.charAt(0).toUpperCase() + filter.slice(1)}
+                        {filter === 'saved' ? 'Saved' : filter.charAt(0).toUpperCase() + filter.slice(1)}
                       </Text>
                     </View>
                   </TouchableOpacity>
