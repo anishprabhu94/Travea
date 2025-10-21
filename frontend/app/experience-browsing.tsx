@@ -498,17 +498,17 @@ export default function ExperienceBrowsing() {
   const getFilteredExperiences = () => {
     if (activeFilter === 'saved') {
       // Show only saved experiences
-      return mockStays.filter(stay => savedExperiences.has(stay.id));
+      return mockExperiences.filter(stay => savedExperiences.has(stay.id));
     } else {
       // Filter by category (attractions, immersions, adventures)
-      return mockStays.filter(stay => stay.category === activeFilter);
+      return mockExperiences.filter(stay => stay.category === activeFilter);
     }
   };
   
   // Get saved experiences grouped by category
   const getSavedExperiencesByCategory = () => {
-    const allSaved = mockStays.filter(stay => savedExperiences.has(stay.id));
-    const grouped: { [key: string]: typeof mockStays } = {};
+    const allSaved = mockExperiences.filter(stay => savedExperiences.has(stay.id));
+    const grouped: { [key: string]: typeof mockExperiences } = {};
     
     allSaved.forEach(stay => {
       const category = stay.category;
