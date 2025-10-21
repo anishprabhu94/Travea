@@ -594,73 +594,35 @@ export default function ExperienceBrowsing() {
                 </LinearGradient>
               </View>
               
-              {/* Stay Mode Toggle Switch */}
-              <View style={styles.toggleSwitchContainer}>
-                <TouchableOpacity
-                  style={[styles.toggleSwitchOption, stayMode === 'single' && styles.toggleSwitchOptionActive]}
-                  onPress={() => setStayMode('single')}
-                  activeOpacity={0.7}
-                >
-                  {stayMode === 'single' && (
-                    <LinearGradient
-                      colors={['#C6B27E', '#B8A473']}
-                      style={styles.toggleSwitchGradient}
-                    />
-                  )}
-                  <Text style={[styles.toggleSwitchText, stayMode === 'single' && styles.toggleSwitchTextActive]}>
-                    Single Stay
-                  </Text>
-                </TouchableOpacity>
-                
-                <TouchableOpacity
-                  style={[styles.toggleSwitchOption, stayMode === 'multi' && styles.toggleSwitchOptionActive]}
-                  onPress={() => setStayMode('multi')}
-                  activeOpacity={0.7}
-                >
-                  {stayMode === 'multi' && (
-                    <LinearGradient
-                      colors={['#C6B27E', '#B8A473']}
-                      style={styles.toggleSwitchGradient}
-                    />
-                  )}
-                  <Text style={[styles.toggleSwitchText, stayMode === 'multi' && styles.toggleSwitchTextActive]}>
-                    Multi-Stay
-                  </Text>
-                </TouchableOpacity>
-              </View>
-              
-              {/* Day Circles - Show when Multi-Stay selected (Horizontal Scroll) */}
-              {stayMode === 'multi' && (
-                <ScrollView 
-                  horizontal 
-                  showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={styles.dayCirclesScrollContent}
-                  style={styles.dayCirclesScroll}
-                >
-                  {cityDates.map(date => {
-                    const isSelected = selectedDates.includes(date);
-                    return (
-                      <TouchableOpacity
-                        key={date}
-                        style={[styles.dayCircle, isSelected && styles.dayCircleSelected]}
-                        onPress={() => handleDateToggle(date)}
-                        activeOpacity={0.7}
-                        disabled={selectedDates.length >= maxSelectableDays && !isSelected}
-                      >
-                        {isSelected && (
-                          <LinearGradient
-                            colors={['#C6B27E', '#B8A473']}
-                            style={styles.dayCircleGradient}
-                          />
-                        )}
-                        <Text style={[styles.dayCircleText, isSelected && styles.dayCircleTextSelected]}>
-                          {date}
-                        </Text>
-                      </TouchableOpacity>
-                    );
-                  })}
-                </ScrollView>
-              )}
+              {/* Day Selection for Experiences */}
+              <ScrollView 
+                horizontal 
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.dayCirclesScrollContent}
+                style={styles.dayCirclesScroll}
+              >
+                {cityDates.map(date => {
+                  const isSelected = selectedDay === date;
+                  return (
+                    <TouchableOpacity
+                      key={date}
+                      style={[styles.dayCircle, isSelected && styles.dayCircleSelected]}
+                      onPress={() => handleDaySelection(date)}
+                      activeOpacity={0.7}
+                    >
+                      {isSelected && (
+                        <LinearGradient
+                          colors={['#C6B27E', '#B8A473']}
+                          style={styles.dayCircleGradient}
+                        />
+                      )}
+                      <Text style={[styles.dayCircleText, isSelected && styles.dayCircleTextSelected]}>
+                        {date}
+                      </Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </ScrollView>
             </View>
           </ImageBackground>
         </View>
