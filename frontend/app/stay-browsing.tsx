@@ -848,7 +848,14 @@ export default function StayBrowsing() {
                       activeOpacity={0.8}
                       onPress={() => router.push({
                         pathname: '/stay-info-compact',
-                        params: { nights: totalNights.toString(), stayId: stay.id }
+                        params: { 
+                          nights: totalNights.toString(), 
+                          stayId: stay.id,
+                          tripId: tripId,
+                          cityCode: cityCode,
+                          city: cityName,
+                          dateRange: `${displayDates.startMonth} ${displayDates.startDay}–${displayDates.endMonth} ${displayDates.endDay}`
+                        }
                       })}
                     >
                       <ImageBackground
