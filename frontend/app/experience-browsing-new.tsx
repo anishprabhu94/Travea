@@ -545,15 +545,12 @@ export default function ExperienceBrowsing() {
   };
   
   // Filter stays based on active filter
-  const getFilteredStays = () => {
+  const getFilteredExperiences = () => {
     if (activeFilter === 'saved') {
-      // Show only saved stays
-      return mockStays.filter(stay => savedStays.has(stay.id));
-    } else if (activeFilter === 'all') {
-      // For You category
-      return mockStays.filter(stay => stay.category === 'all');
+      // Show only saved experiences
+      return mockStays.filter(stay => savedExperiences.has(stay.id));
     } else {
-      // Filter by category
+      // Filter by category (attractions, immersions, adventures)
       return mockStays.filter(stay => stay.category === activeFilter);
     }
   };
