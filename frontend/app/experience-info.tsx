@@ -72,7 +72,7 @@ export default function ExperienceInfo() {
     estimatedPrice: '€45',
     startTime: '10:00 AM',
     meetingPoint: 'Villa Cimbrone Gardens',
-    heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+    heroImage: expData.heroImage,
     
     bookingPlatforms: ['Viator', 'GetYourGuide', 'Direct'],
     
