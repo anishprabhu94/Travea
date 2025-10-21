@@ -28,17 +28,37 @@ export default function StayBrowsing() {
   const tripId = params.tripId as string;
   const cityCode = params.cityCode as string;
   
-  // Get real trip data
-  const trip = tripId ? getTripById(tripId) : trips[0]; // Default to first trip if no tripId
-  const city = trip?.cities.find(c => c.code === cityCode) || trip?.cities[0]; // Default to first city
+  console.log('StayBrowsing - Params:', { tripId, cityCode });
+  console.log('StayBrowsing - Available trips:', trips.length);
   
-  // Use real data from trip
+  // Get real trip data - prioritize params, fallback to first trip
+  const trip = tripId ? getTripById(tripId) : (trips.length > 0 ? trips[0] : null);
+  
+  console.log('StayBrowsing - Selected trip:', trip ? trip.title : 'No trip found');
+  
+  // Get city from trip - prioritize cityCode match, fallback to first city
+  const city = trip?.cities ? (
+    cityCode 
+      ? trip.cities.find(c => c.code === cityCode) || trip.cities[0]
+      : trip.cities[0]
+  ) : null;
+  
+  console.log('StayBrowsing - Selected city:', city ? city.name : 'No city found');
+  
+  // Use real data from trip with proper fallbacks
   const cityName = city?.name || 'Florence';
-  const cityStartMonth = city?.startMonth || 'Jun';
-  const cityStartDay = city?.startDay.toString() || '10';
-  const cityEndMonth = city?.endMonth || 'Jun';
-  const cityEndDay = city?.endDay.toString() || '13';
+  const cityStartMonth = city?.startMonth || trip?.startMonth || 'Jun';
+  const cityStartDay = (city?.startDay || trip?.startDay || 10).toString();
+  const cityEndMonth = city?.endMonth || trip?.endMonth || 'Jun';
+  const cityEndDay = (city?.endDay || trip?.endDay || 13).toString();
   const travelers = trip?.travelers || 2;
+  const tripTitle = trip?.title || 'Summer in Italy';
+  
+  console.log('StayBrowsing - Display data:', {
+    cityName,
+    dateRange: `${cityStartMonth} ${cityStartDay}-${cityEndMonth} ${cityEndDay}`,
+    travelers
+  });
   
   // Use StayBookingContext
   const { getBookingStatus } = useStayBooking();
