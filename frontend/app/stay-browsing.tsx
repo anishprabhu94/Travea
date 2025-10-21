@@ -431,21 +431,12 @@ export default function StayBrowsing() {
           {/* Filter Pills Cluster */}
           {filterClusterOpen && (
             <>
-              {/* Intensive Background Blur - Blurs page, not pills */}
-              <Animated.View
-                style={[
-                  styles.filterClusterBackdrop,
-                  {
-                    opacity: backdropBlurAnim,
-                  }
-                ]}
-              >
-                <TouchableOpacity
-                  style={StyleSheet.absoluteFill}
-                  activeOpacity={1}
-                  onPress={toggleFilterCluster}
-                />
-              </Animated.View>
+              {/* Simple Backdrop - Click to Close */}
+              <TouchableOpacity
+                style={styles.filterClusterBackdrop}
+                activeOpacity={1}
+                onPress={toggleFilterCluster}
+              />
               
               <Animated.View 
                 style={[
