@@ -221,18 +221,6 @@ export default function StayBrowsing() {
     ]).start();
   }, []);
   
-  // Add focus listener to reload booking status
-  useEffect(() => {
-    const unsubscribe = router.subscribe(() => {
-      // Force re-render when returning to this page
-      console.log('Stay browsing page focused - reloading bookings');
-    });
-    
-    return () => {
-      if (unsubscribe) unsubscribe();
-    };
-  }, []);
-  
   // Toggle filter pane
   const toggleFilterPane = () => {
     if (filterOpen) {
