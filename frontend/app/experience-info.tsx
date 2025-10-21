@@ -1,15 +1,53 @@
 import React, { useState } from 'react'
 import { View, Text, ScrollView, TouchableOpacity, ImageBackground, Platform, StyleSheet, Dimensions } from 'react-native'
-import { router } from 'expo-router'
+import { router, useLocalSearchParams } from 'expo-router'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
 import { BlurView } from 'expo-blur'
+import { useExperienceBooking } from '../contexts/ExperienceBookingContext'
 
 const { width } = Dimensions.get('window')
 type TabType = 'highlights' | 'itinerary' | 'location'
 
 export default function ExperienceInfo() {
+  const params = useLocalSearchParams()
+  const people = parseInt(params.people as string || '2')
+  const experienceId = params.experienceId as string || 'default-experience'
+  const tripId = params.tripId as string || undefined
+  const cityCode = params.cityCode as string || undefined
+  const city = params.city as string || undefined
+  const date = params.date as string || undefined
+  
+  const { getBookingStatus, markAsBooked, markAsCanceled } = useExperienceBooking()
+  const bookingStatus = getBookingStatus(experienceId)
+  
   const [activeTab, setActiveTab] = useState<TabType>('highlights')
+  const [showToast, setShowToast] = useState(false)
+  const [toastMessage, setToastMessage] = useState('')
+
+  const handleMarkBooked = () => {
+    markAsBooked(
+      experienceId,
+      people,
+      date || 'Jun 10',
+      experience.title,
+      experience.heroImage,
+      45, // pricePerPerson
+      city,
+      cityCode,
+      tripId
+    )
+    setToastMessage(`Experience booked · ${people} ${people === 1 ? 'person' : 'people'}`)
+    setShowToast(true)
+    setTimeout(() => setShowToast(false), 3000)
+  }
+
+  const handleMarkCanceled = () => {
+    markAsCanceled(experienceId)
+    setToastMessage('Booking canceled')
+    setShowToast(true)
+    setTimeout(() => setShowToast(false), 3000)
+  }
 
   const experience = {
     title: 'Lemon Grove Walk',
