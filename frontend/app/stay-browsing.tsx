@@ -727,7 +727,7 @@ export default function StayBrowsing() {
                         
                         {/* Date Pill - Replacing View Details */}
                         <View style={styles.cardDatePill}>
-                          <Text style={styles.cardDatePillText}>{cityStartMonth} {cityStartDay}</Text>
+                          <Text style={styles.cardDatePillText}>{displayDates.startMonth} {displayDates.startDay}</Text>
                         </View>
                       </View>
                     ) : (
@@ -751,7 +751,7 @@ export default function StayBrowsing() {
                         
                         {/* Date Pill - Replacing View Details */}
                         <View style={styles.cardDatePill}>
-                          <Text style={styles.cardDatePillText}>{cityStartMonth} {cityStartDay}</Text>
+                          <Text style={styles.cardDatePillText}>{displayDates.startMonth} {displayDates.startDay}</Text>
                         </View>
                       </BlurView>
                     )}
