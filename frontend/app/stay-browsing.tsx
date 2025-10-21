@@ -1124,12 +1124,13 @@ const styles = StyleSheet.create({
   },
   
   // Day Circles - In Frosted Pane
-  dayCirclesContainer: {
+  dayCirclesScroll: {
+    marginTop: 12,
+  },
+  dayCirclesScrollContent: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
     gap: 10,
-    marginTop: 16,
+    paddingHorizontal: 2,
   },
   dayCircle: {
     width: 40,
