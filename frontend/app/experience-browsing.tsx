@@ -375,7 +375,7 @@ export default function ExperienceBrowsing() {
           {activeFilter === 'saved' ? (
             // Saved filter: Show carousels by category (including For You)
             <>
-              {Object.entries(savedExperiencesByCategory).map(([category, stays]) => (
+              {Object.entries(savedExperiencesByCategory).map(([category, experiences]) => (
                 <View key={category} style={styles.savedCategorySection}>
                   <Text style={styles.savedCategoryTitle}>
                     {category.charAt(0).toUpperCase() + category.slice(1)}
