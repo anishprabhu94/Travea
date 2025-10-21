@@ -65,7 +65,8 @@ export const StayBookingProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const markAsBooked = (stayId: string, nights: number, dateRange: string, stayName?: string, stayImage?: string, pricePerNight?: number, city?: string, cityCode?: string, tripId?: string) => {
     setBookings(prev => {
       const newMap = new Map(prev);
-      newMap.set(stayId, { 
+      const key = tripId ? `${tripId}-${stayId}` : stayId; // Trip-specific key
+      newMap.set(key, { 
         stayId, 
         status: 'booked', 
         nights, 
@@ -81,24 +82,27 @@ export const StayBookingProvider: React.FC<{ children: React.ReactNode }> = ({ c
     });
   };
 
-  const markAsCanceled = (stayId: string) => {
+  const markAsCanceled = (stayId: string, tripId?: string) => {
     setBookings(prev => {
       const newMap = new Map(prev);
-      const existing = prev.get(stayId);
+      const key = tripId ? `${tripId}-${stayId}` : stayId;
+      const existing = prev.get(key);
       if (existing) {
-        newMap.set(stayId, { ...existing, status: 'canceled' });
+        newMap.set(key, { ...existing, status: 'canceled' });
       }
       return newMap;
     });
   };
 
-  const getBookingStatus = (stayId: string): 'none' | 'booked' | 'canceled' => {
-    const booking = bookings.get(stayId);
+  const getBookingStatus = (stayId: string, tripId?: string): 'none' | 'booked' | 'canceled' => {
+    const key = tripId ? `${tripId}-${stayId}` : stayId;
+    const booking = bookings.get(key);
     return booking ? booking.status : 'none';
   };
 
-  const getBooking = (stayId: string): StayBooking | undefined => {
-    return bookings.get(stayId);
+  const getBooking = (stayId: string, tripId?: string): StayBooking | undefined => {
+    const key = tripId ? `${tripId}-${stayId}` : stayId;
+    return bookings.get(key);
   };
 
   const getBookingsByTrip = (tripId: string): StayBooking[] => {
