@@ -22,7 +22,7 @@ const MOCK_EXPERIENCES: any = {
 export default function RestaurantInfo() {
   const params = useLocalSearchParams()
   const people = parseInt(params.people as string || '2')
-  const restaurantId = params.restaurantId as string || 'exp1'
+  const restaurantId = params.restaurantId as string || 'rest1'
   const tripId = params.tripId as string || undefined
   const cityCode = params.cityCode as string || undefined
   const city = params.city as string || undefined
