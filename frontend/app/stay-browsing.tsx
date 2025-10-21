@@ -39,7 +39,6 @@ export default function StayBrowsing() {
   const [filterClusterOpen, setFilterClusterOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState<'all' | 'boutique' | 'luxury' | 'affordable' | 'featured' | 'saved'>('all');
   const [tripTitle, setTripTitle] = useState('');
-  const [scrollEnabled, setScrollEnabled] = useState(true);
   const contentOpacity = useState(new Animated.Value(0))[0];
   const filterClusterAnim = useState(new Animated.Value(0))[0];
   const backdropBlurAnim = useState(new Animated.Value(0))[0];
