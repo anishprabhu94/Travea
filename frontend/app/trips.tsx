@@ -633,24 +633,42 @@ export default function MyTrips() {
         )}
         
         {activeTab === 'ongoing' && (
-          <View style={styles.emptyState}>
-            <Text style={styles.emptyStateText}>No active trips</Text>
-            <Text style={styles.emptyStateSubtext}>Your current journey will appear here</Text>
-          </View>
+          ongoingTrips.length > 0 ? (
+            <ScrollView style={styles.tripsList} contentContainerStyle={styles.tripsListContent}>
+              {ongoingTrips.map(trip => renderTripCard(trip))}
+            </ScrollView>
+          ) : (
+            <View style={styles.emptyState}>
+              <Text style={styles.emptyStateText}>No active trips</Text>
+              <Text style={styles.emptyStateSubtext}>Your current journey will appear here</Text>
+            </View>
+          )
         )}
         
         {activeTab === 'upcoming' && (
-          <View style={styles.emptyState}>
-            <Text style={styles.emptyStateText}>No upcoming trips</Text>
-            <Text style={styles.emptyStateSubtext}>Finalize your plans to see them here</Text>
-          </View>
+          upcomingTrips.length > 0 ? (
+            <ScrollView style={styles.tripsList} contentContainerStyle={styles.tripsListContent}>
+              {upcomingTrips.map(trip => renderTripCard(trip))}
+            </ScrollView>
+          ) : (
+            <View style={styles.emptyState}>
+              <Text style={styles.emptyStateText}>No upcoming trips</Text>
+              <Text style={styles.emptyStateSubtext}>Finalize your plans to see them here</Text>
+            </View>
+          )
         )}
         
         {activeTab === 'completed' && (
-          <View style={styles.emptyState}>
-            <Text style={styles.emptyStateText}>No completed trips yet</Text>
-            <Text style={styles.emptyStateSubtext}>Your travel history will be saved here</Text>
-          </View>
+          completedTrips.length > 0 ? (
+            <ScrollView style={styles.tripsList} contentContainerStyle={styles.tripsListContent}>
+              {completedTrips.map(trip => renderTripCard(trip))}
+            </ScrollView>
+          ) : (
+            <View style={styles.emptyState}>
+              <Text style={styles.emptyStateText}>No completed trips yet</Text>
+              <Text style={styles.emptyStateSubtext}>Your travel history will be saved here</Text>
+            </View>
+          )
         )}
       </Animated.View>
 
