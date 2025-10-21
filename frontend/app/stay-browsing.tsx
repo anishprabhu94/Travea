@@ -263,7 +263,10 @@ export default function StayBrowsing() {
   
   // Filter stays based on active filter
   const getFilteredStays = () => {
-    if (activeFilter === 'all') {
+    if (activeFilter === 'saved') {
+      // Show only saved stays
+      return mockStays.filter(stay => savedStays.has(stay.id));
+    } else if (activeFilter === 'all') {
       return mockStays;
     } else {
       // Filter by category
