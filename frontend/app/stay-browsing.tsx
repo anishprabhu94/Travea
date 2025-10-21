@@ -871,23 +871,26 @@ const styles = StyleSheet.create({
   },
   stayCardName: {
     fontSize: 18,
-    fontWeight: '600',
-    color: '#F3F1E7',
+    fontWeight: '700',
+    color: '#F6F1E7',
     marginBottom: 6,
+    lineHeight: 23,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'sans-serif',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  stayCardTagline: {
+    fontSize: 14,
+    fontStyle: 'italic',
+    color: '#C7BFA6',
+    marginBottom: 12,
+    lineHeight: 18,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
-    }),
-  },
-  stayCardTagline: {
-    fontSize: 13,
-    fontStyle: 'italic',
-    color: 'rgba(255,255,255,0.7)',
-    marginBottom: 8,
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
     }),
   },
   stayEstTotal: {
