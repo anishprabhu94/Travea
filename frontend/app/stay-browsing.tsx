@@ -311,7 +311,6 @@ export default function StayBrowsing() {
         style={[styles.scrollContainer, { opacity: contentOpacity }]}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
-        scrollEnabled={scrollEnabled}
       >
         {/* Hero Section - EXACT FROM TRIP CANVAS */}
         <View style={styles.heroContainer}>
