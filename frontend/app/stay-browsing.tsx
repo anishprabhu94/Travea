@@ -281,13 +281,10 @@ export default function StayBrowsing() {
     
     allSaved.forEach(stay => {
       const category = stay.category;
-      // Only include if it matches current filter or we're on "all"
-      if (activeFilter === 'all' || stay.category === activeFilter) {
-        if (!grouped[category]) {
-          grouped[category] = [];
-        }
-        grouped[category].push(stay);
+      if (!grouped[category]) {
+        grouped[category] = [];
       }
+      grouped[category].push(stay);
     });
     
     return grouped;
