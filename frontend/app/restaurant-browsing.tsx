@@ -446,9 +446,9 @@ export default function RestaurantBrowsing() {
                         >
                           <BlurView intensity={20} tint="light" style={styles.saveHeartBlur}>
                             <Ionicons
-                              name={savedRestaurants.has(stay.id) ? 'heart' : 'heart-outline'}
+                              name={savedRestaurants.has(restaurant.id) ? 'heart' : 'heart-outline'}
                               size={20}
-                              color={savedRestaurants.has(stay.id) ? '#CBB88C' : 'rgba(255,255,255,0.7)'}
+                              color={savedRestaurants.has(restaurant.id) ? '#CBB88C' : 'rgba(255,255,255,0.7)'}
                             />
                           </BlurView>
                         </TouchableOpacity>
@@ -562,14 +562,14 @@ export default function RestaurantBrowsing() {
                   {/* Save Heart - Top Right on Frosted Circle */}
                   <TouchableOpacity
                     style={styles.saveHeartFrostedCircle}
-                    onPressIn={() => handleSaveStay(stay.id)}
+                    onPressIn={() => handleSaveRestaurant(restaurant.id)}
                     activeOpacity={0.7}
                   >
                     <BlurView intensity={20} tint="light" style={styles.saveHeartBlur}>
                       <Ionicons
-                        name={savedRestaurants.has(stay.id) ? 'heart' : 'heart-outline'}
+                        name={savedRestaurants.has(restaurant.id) ? 'heart' : 'heart-outline'}
                         size={20}
-                        color={savedRestaurants.has(stay.id) ? '#CBB88C' : 'rgba(255,255,255,0.7)'}
+                        color={savedRestaurants.has(restaurant.id) ? '#CBB88C' : 'rgba(255,255,255,0.7)'}
                       />
                     </BlurView>
                   </TouchableOpacity>
