@@ -487,107 +487,127 @@ export default function StayBrowsing() {
         </View>
         
         {/* Stay Cards Section */}
-        {activeFilter === 'saved' && Object.keys(groupedSavedStays).length > 1 ? (
-          // Multi-category saved - horizontal carousels
-          <View style={styles.stayCardsSection}>
-            {Object.entries(groupedSavedStays).map(([category, stays]) => (
-              <View key={category} style={styles.categorySection}>
-                <Text style={styles.categoryTitle}>
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </Text>
-                <ScrollView
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={styles.horizontalScrollContent}
-                  style={styles.horizontalScroll}
-                >
-                  {stays.map((stay) => {
-                    const totalPrice = stay.pricePerNight * totalNights;
-                    const bookingStatus = getBookingStatus(stay.id);
-                    
-                    return (
-                      <TouchableOpacity 
-                        key={stay.id}
-                        style={styles.stayCardHorizontal} 
-                        activeOpacity={0.8}
-                        onPress={() => router.push({
-                          pathname: '/stay-info-compact',
-                          params: { nights: totalNights.toString(), stayId: stay.id }
-                        })}
+        <View style={styles.stayCardsSection}>
+          {/* Saved Carousels by Category */}
+          {Object.entries(savedStaysByCategory).map(([category, stays]) => (
+            <View key={category} style={styles.savedCategorySection}>
+              <Text style={styles.savedCategoryTitle}>
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </Text>
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.savedCarouselContent}
+                style={styles.savedCarousel}
+              >
+                {stays.map((stay) => {
+                  const totalPrice = stay.pricePerNight * totalNights;
+                  const bookingStatus = getBookingStatus(stay.id);
+                  
+                  return (
+                    <TouchableOpacity 
+                      key={stay.id}
+                      style={styles.stayCardHorizontal} 
+                      activeOpacity={0.8}
+                      onPress={() => router.push({
+                        pathname: '/stay-info-compact',
+                        params: { nights: totalNights.toString(), stayId: stay.id }
+                      })}
+                    >
+                      <ImageBackground
+                        source={{ uri: stay.image }}
+                        style={styles.stayCardBg}
+                        imageStyle={styles.stayCardBgStyle}
                       >
-                        <ImageBackground
-                          source={{ uri: stay.image }}
-                          style={styles.stayCardBg}
-                          imageStyle={styles.stayCardBgStyle}
-                        >
-                          <LinearGradient
-                            colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
-                            style={styles.stayCardGradient}
-                          />
-                          
-                          {bookingStatus === 'booked' && (
-                            <View style={styles.bookedLabel}>
-                              <LinearGradient
-                                colors={['rgba(212,190,132,0.75)', 'rgba(180,155,100,0.55)']}
-                                style={styles.bookedLabelGradient}
-                              >
-                                <Text style={styles.bookedLabelText}>BOOKED</Text>
-                              </LinearGradient>
-                            </View>
-                          )}
-                          
-                          {bookingStatus === 'canceled' && (
-                            <View style={styles.canceledLabel}>
-                              <LinearGradient
-                                colors={['rgba(140,80,80,0.75)', 'rgba(100,50,50,0.55)']}
-                                style={styles.canceledLabelGradient}
-                              >
-                                <Text style={styles.canceledLabelText}>CANCELED</Text>
-                              </LinearGradient>
-                            </View>
-                          )}
-                          
-                          <TouchableOpacity
-                            style={styles.saveHeartFrostedCircle}
-                            onPress={() => handleSaveStay(stay.id)}
-                            activeOpacity={0.7}
-                          >
-                            <BlurView intensity={20} tint="light" style={styles.saveHeartBlur}>
-                              <Ionicons
-                                name={savedStays.has(stay.id) ? 'heart' : 'heart-outline'}
-                                size={20}
-                                color={savedStays.has(stay.id) ? '#CBB88C' : 'rgba(255,255,255,0.7)'}
-                              />
-                            </BlurView>
-                          </TouchableOpacity>
-                          
-                          {/* Frosted pane content omitted for brevity in horizontal view - add similar structure */}
-                          <View style={styles.stayCardFrosted}>
-                            <Text style={styles.stayCardName}>{stay.name}</Text>
-                            <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
-                            <View style={styles.decisionRow}>
-                              <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
-                              <Text style={styles.decisionDot}> · </Text>
-                              <Ionicons name="star" size={12} color="#FFFFFF" style={{marginRight: 3}} />
-                              <Text style={styles.nightsRatingText}>{stay.rating}</Text>
-                            </View>
-                            <View style={styles.ivorySeparator} />
-                            <View style={styles.cardDatePill}>
-                              <Text style={styles.cardDatePillText}>{cityStartMonth} {cityStartDay}</Text>
-                            </View>
+                        <LinearGradient
+                          colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
+                          style={styles.stayCardGradient}
+                        />
+                        
+                        {bookingStatus === 'booked' && (
+                          <View style={styles.bookedLabel}>
+                            <LinearGradient
+                              colors={['rgba(212,190,132,0.9)', 'rgba(180,155,100,0.75)']}
+                              style={styles.bookedLabelGradient}
+                            >
+                              <Text style={styles.bookedLabelText}>BOOKED</Text>
+                            </LinearGradient>
                           </View>
-                        </ImageBackground>
-                      </TouchableOpacity>
-                    );
-                  })}
-                </ScrollView>
-              </View>
-            ))}
-          </View>
-        ) : (
-          // Single category or non-saved filter - vertical list
-          <View style={styles.stayCardsSection}>
-            {filteredStays.map((stay, idx) => {
+                        )}
+                        
+                        {bookingStatus === 'canceled' && (
+                          <View style={styles.canceledLabel}>
+                            <LinearGradient
+                              colors={['rgba(140,80,80,0.75)', 'rgba(100,50,50,0.55)']}
+                              style={styles.canceledLabelGradient}
+                            >
+                              <Text style={styles.canceledLabelText}>CANCELED</Text>
+                            </LinearGradient>
+                          </View>
+                        )}
+                        
+                        <TouchableOpacity
+                          style={styles.saveHeartFrostedCircle}
+                          onPress={() => handleSaveStay(stay.id)}
+                          activeOpacity={0.7}
+                        >
+                          <BlurView intensity={20} tint="light" style={styles.saveHeartBlur}>
+                            <Ionicons
+                              name={savedStays.has(stay.id) ? 'heart' : 'heart-outline'}
+                              size={20}
+                              color={savedStays.has(stay.id) ? '#CBB88C' : 'rgba(255,255,255,0.7)'}
+                            />
+                          </BlurView>
+                        </TouchableOpacity>
+                        
+                        {/* Frosted pane with all content */}
+                        <View style={styles.stayCardFrosted}>
+                          {Platform.OS === 'web' ? (
+                            <View style={styles.frostedContent}>
+                              <Text style={styles.stayCardName}>{stay.name}</Text>
+                              <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
+                              <View style={styles.decisionRow}>
+                                <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
+                                <Text style={styles.decisionDot}> · </Text>
+                                <Text style={styles.nightsRatingText}>{totalNights} nights</Text>
+                                <Text style={styles.decisionDot}> · </Text>
+                                <Ionicons name="star" size={12} color="#FFFFFF" style={{marginRight: 3}} />
+                                <Text style={styles.nightsRatingText}>{stay.rating}</Text>
+                              </View>
+                              <View style={styles.ivorySeparator} />
+                              <View style={styles.cardDatePill}>
+                                <Text style={styles.cardDatePillText}>{cityStartMonth} {cityStartDay}</Text>
+                              </View>
+                            </View>
+                          ) : (
+                            <BlurView intensity={30} tint="light" style={styles.blurViewContent}>
+                              <Text style={styles.stayCardName}>{stay.name}</Text>
+                              <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
+                              <View style={styles.decisionRow}>
+                                <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
+                                <Text style={styles.decisionDot}> · </Text>
+                                <Text style={styles.nightsRatingText}>{totalNights} nights</Text>
+                                <Text style={styles.decisionDot}> · </Text>
+                                <Ionicons name="star" size={12} color="#FFFFFF" style={{marginRight: 3}} />
+                                <Text style={styles.nightsRatingText}>{stay.rating}</Text>
+                              </View>
+                              <View style={styles.ivorySeparator} />
+                              <View style={styles.cardDatePill}>
+                                <Text style={styles.cardDatePillText}>{cityStartMonth} {cityStartDay}</Text>
+                              </View>
+                            </BlurView>
+                          )}
+                        </View>
+                      </ImageBackground>
+                    </TouchableOpacity>
+                  );
+                })}
+              </ScrollView>
+            </View>
+          ))}
+          
+          {/* Regular Filtered Stays */}
+          {filteredStays.map((stay, idx) => {
             const totalPrice = stay.pricePerNight * totalNights;
             const bookingStatus = getBookingStatus(stay.id);
             
