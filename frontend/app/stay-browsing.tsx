@@ -839,7 +839,7 @@ const styles = StyleSheet.create({
     left: 12,
     right: 12,
     minHeight: 190,
-    backgroundColor: 'rgba(255,255,255,0.06)',
+    backgroundColor: 'rgba(255,255,255,0.08)',
     borderRadius: 20,
     borderWidth: 0.5,
     borderColor: 'rgba(181,155,115,0.15)',
@@ -848,7 +848,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(25px)',
+        backdropFilter: 'blur(30px) saturate(130%)',
         boxShadow: '0 8px 24px rgba(0,0,0,0.3), inset 1px 1px 0 rgba(255,255,255,0.05)',
       },
       default: {
