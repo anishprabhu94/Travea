@@ -29,7 +29,7 @@ export default function StayInfoCompact() {
   const dateRange = params.dateRange as string || undefined
   
   const { getBookingStatus, markAsBooked, markAsCanceled } = useStayBooking()
-  const bookingStatus = getBookingStatus(stayId)
+  const bookingStatus = getBookingStatus(stayId, tripId)
   
   const [activeTab, setActiveTab] = useState<TabType>('gallery')
   const [showToast, setShowToast] = useState(false)
