@@ -1790,12 +1790,12 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // View Details CTA
+  // View Details CTA - Left Aligned
   viewDetailsCTA: {
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
     borderRadius: 16,
     overflow: 'hidden',
-    marginTop: 4,
+    marginTop: 8,
   },
   viewDetailsCTAGradient: {
     paddingHorizontal: 24,
@@ -1811,5 +1811,26 @@ const styles = StyleSheet.create({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
+  },
+  
+  // Ivory Separator Line
+  ivorySeparator: {
+    height: 0.5,
+    backgroundColor: 'rgba(218,214,199,0.2)',
+    marginVertical: 12,
+    marginHorizontal: -4,
+  },
+  
+  // BlurView Content for Native
+  frostedContent: {
+    flex: 1,
+  },
+  blurViewContent: {
+    flex: 1,
+    borderRadius: 20,
+    padding: 20,
+    paddingTop: 18,
+    paddingBottom: 20,
+    overflow: 'hidden',
   },
 });
