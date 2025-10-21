@@ -517,7 +517,7 @@ export default function StayBrowsing() {
                   {bookedStays.has(stay.id) && (
                     <View style={styles.bookedLabel}>
                       <LinearGradient
-                        colors={['rgba(212,190,132,0.35)', 'rgba(212,190,132,0.15)']}
+                        colors={['rgba(212,190,132,0.45)', 'rgba(212,190,132,0.25)']}
                         style={styles.bookedLabelGradient}
                       >
                         <Text style={styles.bookedLabelText}>BOOKED</Text>
@@ -528,7 +528,7 @@ export default function StayBrowsing() {
                   {canceledStays.has(stay.id) && (
                     <View style={styles.canceledLabel}>
                       <LinearGradient
-                        colors={['rgba(156,94,94,0.25)', 'rgba(64,28,28,0.15)']}
+                        colors={['rgba(156,94,94,0.35)', 'rgba(64,28,28,0.25)']}
                         style={styles.canceledLabelGradient}
                       >
                         <Text style={styles.canceledLabelText}>CANCELED</Text>
