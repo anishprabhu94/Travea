@@ -19,7 +19,7 @@ export default function ExperienceInfo() {
   const date = params.date as string || undefined
   
   const { getBookingStatus, markAsBooked, markAsCanceled } = useExperienceBooking()
-  const bookingStatus = getBookingStatus(experienceId)
+  const bookingStatus = getBookingStatus(experienceId, tripId)
   
   const [activeTab, setActiveTab] = useState<TabType>('highlights')
   const [showToast, setShowToast] = useState(false)
