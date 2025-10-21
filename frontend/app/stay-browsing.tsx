@@ -22,12 +22,23 @@ const { width, height } = Dimensions.get('window');
 
 export default function StayBrowsing() {
   const params = useLocalSearchParams();
-  const cityName = params.city as string || 'Florence';
-  const cityCode = params.cityCode as string || 'FLR';
-  const cityStartMonth = params.startMonth as string || 'Jun';
-  const cityStartDay = params.startDay as string || '10';
-  const cityEndMonth = params.endMonth as string || 'Jun';
-  const cityEndDay = params.endDay as string || '13';
+  const { trips, getTripById } = useTrips();
+  
+  // Get trip and city from params
+  const tripId = params.tripId as string;
+  const cityCode = params.cityCode as string;
+  
+  // Get real trip data
+  const trip = tripId ? getTripById(tripId) : trips[0]; // Default to first trip if no tripId
+  const city = trip?.cities.find(c => c.code === cityCode) || trip?.cities[0]; // Default to first city
+  
+  // Use real data from trip
+  const cityName = city?.name || 'Florence';
+  const cityStartMonth = city?.startMonth || 'Jun';
+  const cityStartDay = city?.startDay.toString() || '10';
+  const cityEndMonth = city?.endMonth || 'Jun';
+  const cityEndDay = city?.endDay.toString() || '13';
+  const travelers = trip?.travelers || 2;
   
   // Use StayBookingContext
   const { getBookingStatus } = useStayBooking();
