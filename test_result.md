@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Fix Sign In/Sign Up blank screen issue and implement luxury frosted glass design with React Native Web compatibility"
+user_problem_statement: "Fix Sign In/Sign Up blank screen issue and implement luxury frosted glass design with React Native Web compatibility. Integrate dynamic trip data from TripsContext and TripCanvasContext into stay-browsing page."
 
 backend:
   - task: "AI Concierge API endpoint with emergentintegrations"
