@@ -764,8 +764,7 @@ export default function StayBrowsing() {
               </TouchableOpacity>
             );
           })
-          )
-        }
+          )}
         </View>
       </Animated.ScrollView>
       
