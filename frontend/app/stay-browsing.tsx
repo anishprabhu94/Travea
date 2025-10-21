@@ -228,35 +228,19 @@ export default function StayBrowsing() {
   const toggleFilterCluster = () => {
     if (filterClusterOpen) {
       // Close animation
-      Animated.parallel([
-        Animated.timing(filterClusterAnim, {
-          toValue: 0,
-          duration: 250,
-          useNativeDriver: true,
-        }),
-        Animated.timing(backdropBlurAnim, {
-          toValue: 0,
-          duration: 250,
-          useNativeDriver: true,
-        }),
-      ]).start(() => {
-        setFilterClusterOpen(false);
-      });
+      Animated.timing(filterClusterAnim, {
+        toValue: 0,
+        duration: 250,
+        useNativeDriver: true,
+      }).start(() => setFilterClusterOpen(false));
     } else {
       // Open animation
       setFilterClusterOpen(true);
-      Animated.parallel([
-        Animated.timing(filterClusterAnim, {
-          toValue: 1,
-          duration: 300,
-          useNativeDriver: true,
-        }),
-        Animated.timing(backdropBlurAnim, {
-          toValue: 1,
-          duration: 300,
-          useNativeDriver: true,
-        }),
-      ]).start();
+      Animated.timing(filterClusterAnim, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
     }
   };
   
