@@ -286,13 +286,13 @@ export default function StayBrowsing() {
               style={styles.heroGradient}
             />
             
-            {/* Back Button - Top Left (White Arrow) */}
+            {/* Back Button - Top Left (Soft Bronze) */}
             <TouchableOpacity
               style={styles.backButtonTopLeft}
               onPress={() => router.back()}
               activeOpacity={0.7}
             >
-              <Ionicons name="arrow-back" size={24} color="#FFFFFF" />
+              <Ionicons name="arrow-back" size={20} color="#D4BE84" />
             </TouchableOpacity>
             
             {/* Frosted pane container for hero content */}
