@@ -9,10 +9,20 @@ import { useExperienceBooking } from '../contexts/ExperienceBookingContext'
 const { width } = Dimensions.get('window')
 type TabType = 'highlights' | 'itinerary' | 'location'
 
+// Mock experience data
+const MOCK_EXPERIENCES: any = {
+  'exp1': { id: 'exp1', title: 'Uffizi Gallery Tour', tagline: 'Renaissance masterpieces unveiled', pricePerPerson: 85, rating: 4.9, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
+  'exp2': { id: 'exp2', title: 'Duomo Rooftop Access', tagline: 'Cathedral heights & city views', pricePerPerson: 65, rating: 4.8, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
+  'exp3': { id: 'exp3', title: 'Tuscan Cooking Class', tagline: 'From market to table', pricePerPerson: 145, rating: 4.9, heroImage: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
+  'exp4': { id: 'exp4', title: 'Wine Tasting in Chianti', tagline: 'Vineyards & villa terraces', pricePerPerson: 165, rating: 4.9, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
+  'exp5': { id: 'exp5', title: 'Vespa Tour', tagline: 'Hills, curves & cypress roads', pricePerPerson: 195, rating: 4.9, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
+  'exp6': { id: 'exp6', title: 'Hot Air Balloon', tagline: 'Dawn over Tuscan valleys', pricePerPerson: 285, rating: 4.9, heroImage: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
+};
+
 export default function ExperienceInfo() {
   const params = useLocalSearchParams()
   const people = parseInt(params.people as string || '2')
-  const experienceId = params.experienceId as string || 'default-experience'
+  const experienceId = params.experienceId as string || 'exp1'
   const tripId = params.tripId as string || undefined
   const cityCode = params.cityCode as string || undefined
   const city = params.city as string || undefined
