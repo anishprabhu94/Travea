@@ -35,14 +35,17 @@ export default function ExperienceInfo() {
   const [showToast, setShowToast] = useState(false)
   const [toastMessage, setToastMessage] = useState('')
 
+  // Get experience data
+  const expData = MOCK_EXPERIENCES[experienceId] || MOCK_EXPERIENCES['exp1'];
+
   const handleMarkBooked = () => {
     markAsBooked(
       experienceId,
       people,
       date || 'Jun 10',
-      experience.title,
-      experience.heroImage,
-      45, // pricePerPerson
+      expData.title,
+      expData.heroImage,
+      expData.pricePerPerson,
       city,
       cityCode,
       tripId
