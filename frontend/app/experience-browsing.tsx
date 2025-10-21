@@ -106,8 +106,8 @@ export default function ExperienceBrowsing() {
   const mockExperiences = [
     // ATTRACTIONS CATEGORY (5 experiences)
     {
-      id: '21',
-      name: 'Antica Torre di Via Tornabuoni',
+      id: 'exp1',
+      name: 'Uffizi Gallery Tour',
       tagline: 'Medieval tower suite with Duomo views',
       location: 'Via Tornabuoni · Fashion District',
       pricePerNight: 385,
