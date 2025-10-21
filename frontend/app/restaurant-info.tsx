@@ -1,112 +1,156 @@
 import React, { useState } from 'react'
 import { View, Text, ScrollView, TouchableOpacity, ImageBackground, Platform, StyleSheet, Dimensions } from 'react-native'
-import { router } from 'expo-router'
+import { router, useLocalSearchParams } from 'expo-router'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
 import { BlurView } from 'expo-blur'
+import { useExperienceBooking } from '../contexts/ExperienceBookingContext'
 
 const { width } = Dimensions.get('window')
-type TabType = 'menu' | 'ambiance' | 'location'
+type TabType = 'highlights' | 'itinerary' | 'location'
 
-export default function RestaurantInfo() {
-  const [activeTab, setActiveTab] = useState<TabType>('ambiance')
+// Mock experience data
+const MOCK_EXPERIENCES: any = {
+  'exp1': { id: 'exp1', title: 'Uffizi Gallery Tour', tagline: 'Renaissance masterpieces unveiled', pricePerPerson: 85, rating: 4.9, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
+  'exp2': { id: 'exp2', title: 'Duomo Rooftop Access', tagline: 'Cathedral heights & city views', pricePerPerson: 65, rating: 4.8, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
+  'exp3': { id: 'exp3', title: 'Tuscan Cooking Class', tagline: 'From market to table', pricePerPerson: 145, rating: 4.9, heroImage: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
+  'exp4': { id: 'exp4', title: 'Wine Tasting in Chianti', tagline: 'Vineyards & villa terraces', pricePerPerson: 165, rating: 4.9, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
+  'exp5': { id: 'exp5', title: 'Vespa Tour', tagline: 'Hills, curves & cypress roads', pricePerPerson: 195, rating: 4.9, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
+  'exp6': { id: 'exp6', title: 'Hot Air Balloon', tagline: 'Dawn over Tuscan valleys', pricePerPerson: 285, rating: 4.9, heroImage: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
+};
 
-  const restaurant = {
-    name: 'Ristorante La Caravella',
-    tagline: 'Historic Elegance Meets Coastal Flavors',
-    location: 'Amalfi, Amalfi Coast',
-    cuisine: 'Italian Mediterranean',
-    mealType: 'Dinner', // Can be 'Breakfast', 'Lunch', or 'Dinner'
-    priceRange: '€€€',
-    estimatedPrice: '€85',
-    reservationTime: '8:00 PM',
-    dressCode: 'Smart Casual',
-    heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
+export default function ExperienceInfo() {
+  const params = useLocalSearchParams()
+  const people = parseInt(params.people as string || '2')
+  const experienceId = params.experienceId as string || 'exp1'
+  const tripId = params.tripId as string || undefined
+  const cityCode = params.cityCode as string || undefined
+  const city = params.city as string || undefined
+  const date = params.date as string || undefined
+  
+  const { getBookingStatus, markAsBooked, markAsCanceled } = useExperienceBooking()
+  const bookingStatus = getBookingStatus(experienceId, tripId)
+  
+  const [activeTab, setActiveTab] = useState<TabType>('highlights')
+  const [showToast, setShowToast] = useState(false)
+  const [toastMessage, setToastMessage] = useState('')
+
+  // Get experience data
+  const expData = MOCK_EXPERIENCES[experienceId] || MOCK_EXPERIENCES['exp1'];
+
+  const handleMarkBooked = () => {
+    markAsBooked(
+      experienceId,
+      people,
+      date || 'Jun 10',
+      expData.title,
+      expData.heroImage,
+      expData.pricePerPerson,
+      city,
+      cityCode,
+      tripId
+    )
+    setToastMessage(`Experience booked · ${people} ${people === 1 ? 'person' : 'people'}`)
+    setShowToast(true)
+    setTimeout(() => setShowToast(false), 3000)
+  }
+
+  const handleMarkCanceled = () => {
+    markAsCanceled(experienceId, tripId)
+    setToastMessage('Booking canceled')
+    setShowToast(true)
+    setTimeout(() => setShowToast(false), 3000)
+  }
+
+  const experience = {
+    title: expData.title,
+    tagline: expData.tagline,
+    location: 'Amalfi Coast, Italy',
+    duration: '2h 30m',
+    activityType: 'Guided Walk',
+    groupSize: 'Small Group (Max 8)',
+    estimatedPrice: '€45',
+    startTime: '10:00 AM',
+    meetingPoint: 'Villa Cimbrone Gardens',
+    heroImage: expData.heroImage,
     
-    bookingPlatforms: ['OpenTable', 'TheFork', 'Direct'],
+    bookingPlatforms: ['Viator', 'GetYourGuide', 'Direct'],
     
-    ambianceImages: [
+    highlightImages: [
       'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
       'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg',
       'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg',
     ],
     
-    menuHighlights: [
-      { course: 'Antipasti', dish: 'Carpaccio di Pesce', description: 'Fresh local catch, lemon, olive oil', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
-      { course: 'Primi', dish: 'Scialatielli ai Frutti di Mare', description: 'Handmade pasta, seafood medley', image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
-      { course: 'Secondi', dish: 'Branzino al Forno', description: 'Roasted sea bass, herbs, potatoes', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
-      { course: 'Dolci', dish: 'Delizia al Limone', description: 'Lemon cream cake, local specialty', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
+    itinerarySteps: [
+      { time: '10:00', title: 'Meeting & Introduction', description: 'Gather at Villa Cimbrone Gardens', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
+      { time: '10:30', title: 'Terraced Groves', description: 'Walk through ancient lemon terraces', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
+      { time: '11:30', title: 'Tasting Experience', description: 'Sample limoncello and local treats', image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
+      { time: '12:30', title: 'Conclusion', description: 'Return to meeting point', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
     ],
     
     locationDetails: {
-      address: 'Via Matteo Camera, 12, Amalfi',
-      coordinates: 'Amalfi Historic Center',
+      meetingPoint: 'Villa Cimbrone Gardens',
+      coordinates: 'Amalfi Coast',
       mapImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg',
       nearbyLandmarks: [
-        { name: 'Amalfi Cathedral', distance: '2 min walk', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
-        { name: 'Piazza Duomo', distance: '1 min walk', image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
+        { name: 'Villa Cimbrone', distance: '0 min walk', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
+        { name: 'Ravello Center', distance: '5 min walk', image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
       ],
     },
     
-    diningDetails: [
-      { icon: 'time-outline', label: 'Reservation', value: '8:00 PM · Jun 9' },
-      { icon: 'people-outline', label: 'Party Size', value: '2 guests' },
-      { icon: 'restaurant-outline', label: 'Cuisine', value: 'Italian Mediterranean' },
-      { icon: 'shirt-outline', label: 'Dress Code', value: 'Smart Casual' },
-      { icon: 'star-outline', label: 'Michelin', value: '1 Star · Traditional' },
-      { icon: 'card-outline', label: 'Est. Total', value: '€85 per person (3-course)' },
+    experienceDetails: [
+      { icon: 'time-outline', label: 'Start Time', value: '10:00 AM · Villa Cimbrone' },
+      { icon: 'hourglass-outline', label: 'Duration', value: '2h 30m guided walk' },
+      { icon: 'people-outline', label: 'Group Size', value: 'Small Group (Max 8 people)' },
+      { icon: 'walk-outline', label: 'Activity Type', value: 'Guided Walk · Easy terrain' },
+      { icon: 'language-outline', label: 'Languages', value: 'English, Italian' },
+      { icon: 'card-outline', label: 'Est. Total', value: '€45 per person' },
     ],
     
-    features: [
-      { icon: 'wine-outline', label: 'Wine Cellar', subtext: '500+ selections' },
-      { icon: 'leaf-outline', label: 'Terrace Seating', subtext: 'Sea views' },
-      { icon: 'fish-outline', label: 'Fresh Seafood', subtext: 'Daily catch' },
-      { icon: 'flame-outline', label: 'Open Kitchen', subtext: 'Chef\'s table' },
+    included: [
+      { icon: 'person-outline', label: 'Expert Guide', subtext: 'Local historian' },
+      { icon: 'wine-outline', label: 'Tastings', subtext: 'Limoncello samples' },
+      { icon: 'water-outline', label: 'Refreshments', subtext: 'Water provided' },
+      { icon: 'camera-outline', label: 'Photo Stops', subtext: 'Scenic viewpoints' },
     ],
     
     reviews: [
-      { quote: 'The lemon dessert was heaven', traveler: 'Francesca B.', rating: 5 },
-      { quote: 'Best dining in Amalfi, hands down', traveler: 'Robert M.', rating: 5 },
-      { quote: 'Historic charm with impeccable service', traveler: 'Elena P.', rating: 5 },
+      { quote: 'A magical walk through fragrant groves', traveler: 'Catherine P.', rating: 5 },
+      { quote: 'The highlight of our Amalfi trip', traveler: 'Thomas R.', rating: 5 },
+      { quote: 'Beautiful scenery and wonderful guide', traveler: 'Julia M.', rating: 5 },
     ],
-  }
-
-  // Get meal type icon
-  const getMealIcon = () => {
-    switch(restaurant.mealType.toLowerCase()) {
-      case 'breakfast': return 'sunny-outline'
-      case 'lunch': return 'partly-sunny-outline'
-      case 'dinner': return 'moon-outline'
-      default: return 'restaurant-outline'
-    }
   }
 
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
         <View style={styles.heroSection}>
-          <ImageBackground source={{ uri: restaurant.heroImage }} style={styles.heroImage} imageStyle={styles.heroImageStyle}>
+          <ImageBackground source={{ uri: experience.heroImage }} style={styles.heroImage} imageStyle={styles.heroImageStyle}>
             <LinearGradient colors={['rgba(0,0,0,0.2)', 'rgba(13,13,13,0.85)']} style={styles.heroGradient} />
             <TouchableOpacity style={styles.backButton} onPress={() => router.back()} activeOpacity={0.8}>
               <Ionicons name="arrow-back" size={20} color="#D9CBA0" />
             </TouchableOpacity>
             <View style={styles.heroContent}>
-              <View style={styles.mealTypeBadge}>
-                <Ionicons name={getMealIcon()} size={14} color="#D9CBA0" />
-                <Text style={styles.mealTypeText}>{restaurant.mealType}</Text>
+              <View style={styles.transportTypeBadge}>
+                <Ionicons name="compass-outline" size={14} color="#D9CBA0" />
+                <Text style={styles.transportTypeText}>Experience</Text>
               </View>
               <View style={styles.heroRouteRow}>
                 <View style={styles.heroRouteLeft}>
-                  <Text style={styles.heroRoute}>{restaurant.name}</Text>
-                  <Text style={styles.heroTagline}>{restaurant.tagline}</Text>
+                  <Text style={styles.heroRoute}>{experience.title}</Text>
+                  <Text style={styles.heroTagline}>{experience.tagline}</Text>
                   <View style={styles.heroMetaRow}>
-                    <Text style={styles.heroMetaText}>{restaurant.cuisine}</Text>
+                    <View style={styles.heroMetaItem}>
+                      <Ionicons name="time-outline" size={14} color="#D9CBA0" />
+                      <Text style={styles.heroMetaText}>{experience.duration}</Text>
+                    </View>
                     <View style={styles.heroMetaDivider} />
-                    <Text style={styles.heroMetaText}>{restaurant.priceRange}</Text>
+                    <Text style={styles.heroMetaText}>{experience.groupSize}</Text>
                   </View>
                 </View>
                 <View style={styles.heroPriceTag}>
-                  <Text style={styles.heroPriceAmount}>{restaurant.estimatedPrice}</Text>
+                  <Text style={styles.heroPriceAmount}>{experience.estimatedPrice}</Text>
                   <Text style={styles.heroPriceLabel}>per person</Text>
                 </View>
               </View>
@@ -116,9 +160,9 @@ export default function RestaurantInfo() {
 
         <View style={styles.floatingBookingStrip}>
           <LinearGradient colors={['rgba(217,203,160,0.12)', 'rgba(217,203,160,0.04)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.bookingStripGradient}>
-            <Text style={styles.bookingLabel}>Reserve via</Text>
+            <Text style={styles.bookingLabel}>Book via</Text>
             <View style={styles.bookingPillsRow}>
-              {restaurant.bookingPlatforms.map((platform, index) => (
+              {experience.bookingPlatforms.map((platform, index) => (
                 <TouchableOpacity key={index} style={styles.bookingPillMini} activeOpacity={0.8}>
                   <Text style={styles.bookingPillMiniText}>{platform}</Text>
                 </TouchableOpacity>
@@ -129,7 +173,7 @@ export default function RestaurantInfo() {
 
         <View style={styles.galleryZone}>
           <View style={styles.tabSelectors}>
-            {['menu', 'ambiance', 'location'].map((tab) => (
+            {['highlights', 'itinerary', 'location'].map((tab) => (
               <TouchableOpacity key={tab} style={[styles.tabPill, activeTab === tab && styles.tabPillActive]} onPress={() => setActiveTab(tab as TabType)} activeOpacity={0.8}>
                 <Text style={[styles.tabPillText, activeTab === tab && styles.tabPillTextActive]}>
                   {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -139,26 +183,9 @@ export default function RestaurantInfo() {
           </View>
 
           <View style={styles.tabContent}>
-            {activeTab === 'menu' && (
-              <View style={styles.menuList}>
-                {restaurant.menuHighlights.map((item, index) => (
-                  <View key={index} style={styles.menuItem}>
-                    <ImageBackground source={{ uri: item.image }} style={styles.menuItemBg} imageStyle={styles.menuItemBgStyle}>
-                      <LinearGradient colors={['rgba(0,0,0,0)', 'rgba(13,13,13,0.85)']} style={styles.menuItemGradient} />
-                      <View style={styles.menuItemInfo}>
-                        <Text style={styles.menuCourse}>{item.course}</Text>
-                        <Text style={styles.menuDish}>{item.dish}</Text>
-                        <Text style={styles.menuDescription}>{item.description}</Text>
-                      </View>
-                    </ImageBackground>
-                  </View>
-                ))}
-              </View>
-            )}
-
-            {activeTab === 'ambiance' && (
+            {activeTab === 'highlights' && (
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.routeScroll}>
-                {restaurant.ambianceImages.map((image, index) => (
+                {experience.highlightImages.map((image, index) => (
                   <View key={index} style={[styles.routeCard, index === 0 && styles.firstRouteCard]}>
                     <ImageBackground source={{ uri: image }} style={styles.routeCardBg} imageStyle={styles.routeCardBgStyle}>
                       <LinearGradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.5)']} style={styles.routeCardGradient} />
@@ -168,17 +195,34 @@ export default function RestaurantInfo() {
               </ScrollView>
             )}
 
+            {activeTab === 'itinerary' && (
+              <View style={styles.itineraryList}>
+                {experience.itinerarySteps.map((step, index) => (
+                  <View key={index} style={styles.itineraryStep}>
+                    <View style={styles.itineraryTime}>
+                      <Ionicons name="time-outline" size={16} color="#D9CBA0" />
+                      <Text style={styles.itineraryTimeText}>{step.time}</Text>
+                    </View>
+                    <View style={styles.itineraryContent}>
+                      <Text style={styles.itineraryTitle}>{step.title}</Text>
+                      <Text style={styles.itineraryDescription}>{step.description}</Text>
+                    </View>
+                  </View>
+                ))}
+              </View>
+            )}
+
             {activeTab === 'location' && (
               <View style={styles.locationContent}>
                 <View style={styles.mapBackground}>
                   <LinearGradient colors={['rgba(217,203,160,0.12)', 'rgba(217,203,160,0.04)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.mapGradient}>
                     <Ionicons name="location" size={48} color="#D9CBA0" />
-                    <Text style={styles.mapLocationText}>{restaurant.locationDetails.address}</Text>
+                    <Text style={styles.mapLocationText}>{experience.locationDetails.meetingPoint}</Text>
                   </LinearGradient>
                 </View>
                 <Text style={styles.nearbyTitle}>Nearby Landmarks</Text>
                 <View style={styles.landmarksGrid}>
-                  {restaurant.locationDetails.nearbyLandmarks.map((landmark, index) => (
+                  {experience.locationDetails.nearbyLandmarks.map((landmark, index) => (
                     <View key={index} style={styles.landmarkCard}>
                       <ImageBackground source={{ uri: landmark.image }} style={styles.landmarkBg} imageStyle={styles.landmarkBgStyle}>
                         <LinearGradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.8)']} style={styles.landmarkGradient} />
@@ -196,11 +240,11 @@ export default function RestaurantInfo() {
         </View>
 
         <View style={styles.detailsSection}>
-          <Text style={styles.sectionTitle}>Dining Details</Text>
+          <Text style={styles.sectionTitle}>Experience Overview</Text>
           <View style={styles.detailsPane}>
             <LinearGradient colors={['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.02)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.detailsPaneGradient}>
               <View style={styles.detailsGrid}>
-                {restaurant.diningDetails.map((detail, index) => (
+                {experience.experienceDetails.map((detail, index) => (
                   <View key={index} style={styles.detailRow}>
                     <View style={styles.detailLeft}>
                       <Ionicons name={detail.icon as any} size={16} color="#D9CBA0" />
@@ -215,16 +259,16 @@ export default function RestaurantInfo() {
         </View>
 
         <View style={styles.comfortsSection}>
-          <Text style={styles.sectionTitle}>Restaurant Features</Text>
+          <Text style={styles.sectionTitle}>What's Included</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.comfortsRow}>
-            {restaurant.features.map((feature, index) => (
+            {experience.included.map((item, index) => (
               <View key={index} style={[styles.comfortCapsule, index === 0 && styles.firstComfortCapsule]}>
                 <LinearGradient colors={['rgba(217,203,160,0.12)', 'rgba(217,203,160,0.04)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.comfortCapsuleGradient}>
                   <View style={styles.comfortIconCircle}>
-                    <Ionicons name={feature.icon as any} size={24} color="#D9CBA0" />
+                    <Ionicons name={item.icon as any} size={24} color="#D9CBA0" />
                   </View>
-                  <Text style={styles.comfortLabel}>{feature.label}</Text>
-                  <Text style={styles.comfortSubtext}>{feature.subtext}</Text>
+                  <Text style={styles.comfortLabel}>{item.label}</Text>
+                  <Text style={styles.comfortSubtext}>{item.subtext}</Text>
                 </LinearGradient>
               </View>
             ))}
@@ -233,11 +277,11 @@ export default function RestaurantInfo() {
 
         <View style={styles.impressionsSection}>
           <View style={styles.impressionsHeader}>
-            <Text style={styles.sectionTitle}>Diner Reviews</Text>
+            <Text style={styles.sectionTitle}>Guest Reviews</Text>
             <TouchableOpacity activeOpacity={0.8}><Text style={styles.seeAllLink}>See all →</Text></TouchableOpacity>
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.impressionsCarousel}>
-            {restaurant.reviews.map((review, index) => (
+            {experience.reviews.map((review, index) => (
               <View key={index} style={[styles.impressionCard, index === 0 && styles.firstImpressionCard]}>
                 <LinearGradient colors={['rgba(217,203,160,0.08)', 'rgba(217,203,160,0.02)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.impressionCardGradient}>
                   <View style={styles.impressionStars}>
@@ -252,14 +296,63 @@ export default function RestaurantInfo() {
         </View>
       </ScrollView>
 
+      {/* Toast Notification */}
+      {showToast && (
+        <View style={styles.toastContainer}>
+          <BlurView intensity={30} tint="light" style={styles.toastBlur}>
+            <Text style={styles.toastText}>{toastMessage}</Text>
+          </BlurView>
+        </View>
+      )}
+
+      {/* Bottom Dock with Booking Buttons */}
       <View style={styles.bottomDock}>
         <BlurView intensity={20} tint="light" style={styles.dockContainer}>
-          <View style={styles.dockContent}>
-            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8} onPress={() => router.push('/landing')}><Ionicons name="home" size={22} color="rgba(255,255,255,0.7)" /><Text style={styles.dockLabelInactive}>Home</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8} onPress={() => router.push('/bookings')}><Ionicons name="calendar" size={22} color="rgba(255,255,255,0.7)" /><Text style={styles.dockLabelInactive}>Trip Canvas</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8} onPress={() => router.push('/trips')}><Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.7)" /><Text style={styles.dockLabelInactive}>My Trips</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}><Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.7)" /><Text style={styles.dockLabelInactive}>Concierge</Text></TouchableOpacity>
-          </View>
+          {bookingStatus === 'none' ? (
+            <TouchableOpacity 
+              style={styles.bookButton}
+              onPress={handleMarkBooked}
+              activeOpacity={0.8}
+            >
+              <LinearGradient
+                colors={['#C9A65B', '#B89550']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={styles.bookButtonGradient}
+              >
+                <Ionicons name="checkmark-circle-outline" size={20} color="#FFFFFF" />
+                <Text style={styles.bookButtonText}>Mark as Booked</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          ) : bookingStatus === 'booked' ? (
+            <View style={styles.buttonRow}>
+              <View style={styles.bookedBadge}>
+                <Ionicons name="checkmark-circle" size={18} color="#C9A65B" />
+                <Text style={styles.bookedText}>Booked</Text>
+              </View>
+              <TouchableOpacity 
+                style={styles.cancelButton}
+                onPress={handleMarkCanceled}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.cancelButtonText}>Cancel Booking</Text>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <View style={styles.buttonRow}>
+              <View style={styles.canceledBadge}>
+                <Ionicons name="close-circle" size={18} color="#999999" />
+                <Text style={styles.canceledText}>Canceled</Text>
+              </View>
+              <TouchableOpacity 
+                style={styles.rebookButton}
+                onPress={handleMarkBooked}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.rebookButtonText}>Rebook</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </BlurView>
       </View>
     </View>
@@ -276,13 +369,14 @@ const styles = StyleSheet.create({
   heroGradient: { ...StyleSheet.absoluteFillObject },
   backButton: { position: 'absolute', top: 48, left: 24, width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(13,13,13,0.6)', borderWidth: 1, borderColor: 'rgba(217,203,160,0.3)', alignItems: 'center', justifyContent: 'center', zIndex: 10 },
   heroContent: { position: 'absolute', bottom: 24, left: 24, right: 24 },
-  mealTypeBadge: { flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: 'rgba(217,203,160,0.15)', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 12, borderWidth: 1, borderColor: 'rgba(217,203,160,0.3)', alignSelf: 'flex-start', marginBottom: 12 },
-  mealTypeText: { fontSize: 11, fontWeight: '600', color: '#D9CBA0', textTransform: 'uppercase', letterSpacing: 0.5, fontFamily: Platform.select({ ios: 'Inter', web: 'Inter, -apple-system, sans-serif' }) },
+  transportTypeBadge: { flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: 'rgba(217,203,160,0.15)', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 12, borderWidth: 1, borderColor: 'rgba(217,203,160,0.3)', alignSelf: 'flex-start', marginBottom: 12 },
+  transportTypeText: { fontSize: 11, fontWeight: '600', color: '#D9CBA0', textTransform: 'uppercase', letterSpacing: 0.5, fontFamily: Platform.select({ ios: 'Inter', web: 'Inter, -apple-system, sans-serif' }) },
   heroRouteRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
   heroRouteLeft: { flex: 1, marginRight: 16 },
   heroRoute: { fontSize: 26, fontWeight: '600', color: '#FFFFFF', marginBottom: 6, fontFamily: Platform.select({ ios: 'Playfair Display', android: 'serif', web: 'Playfair Display, Georgia, serif' }) },
   heroTagline: { fontSize: 15, fontStyle: 'italic', color: '#D9CBA0', marginBottom: 12, fontFamily: Platform.select({ ios: 'Inter', web: 'Inter, -apple-system, sans-serif' }) },
   heroMetaRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  heroMetaItem: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   heroMetaDivider: { width: 1, height: 12, backgroundColor: 'rgba(217,203,160,0.4)' },
   heroMetaText: { fontSize: 13, color: 'rgba(255,255,255,0.8)', fontFamily: Platform.select({ ios: 'Inter', web: 'Inter, -apple-system, sans-serif' }) },
   heroPriceTag: { backgroundColor: 'rgba(217,203,160,0.15)', paddingHorizontal: 14, paddingVertical: 10, borderRadius: 14, borderWidth: 1, borderColor: 'rgba(217,203,160,0.3)', alignItems: 'center' },
@@ -301,25 +395,23 @@ const styles = StyleSheet.create({
   tabPillText: { fontSize: 13, fontWeight: '600', color: 'rgba(255,255,255,0.6)', fontFamily: Platform.select({ ios: 'Inter', web: 'Inter, -apple-system, sans-serif' }) },
   tabPillTextActive: { color: '#D9CBA0' },
   tabContent: { minHeight: 280 },
-  menuList: { gap: 16 },
-  menuItem: { height: 160, borderRadius: 20, overflow: 'hidden' },
-  menuItemBg: { flex: 1, justifyContent: 'flex-end' },
-  menuItemBgStyle: { borderRadius: 20 },
-  menuItemGradient: { ...StyleSheet.absoluteFillObject },
-  menuItemInfo: { padding: 20 },
-  menuCourse: { fontSize: 11, fontWeight: '600', color: '#D9CBA0', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6, fontFamily: Platform.select({ ios: 'Inter', web: 'Inter, -apple-system, sans-serif' }) },
-  menuDish: { fontSize: 18, fontWeight: '600', color: '#FFFFFF', marginBottom: 4, fontFamily: Platform.select({ ios: 'Playfair Display', android: 'serif', web: 'Playfair Display, Georgia, serif' }) },
-  menuDescription: { fontSize: 13, color: 'rgba(255,255,255,0.8)', fontFamily: Platform.select({ ios: 'Inter', web: 'Inter, -apple-system, sans-serif' }) },
   routeScroll: { paddingRight: 24 },
   routeCard: { width: 320, height: 240, borderRadius: 20, overflow: 'hidden', marginRight: 16 },
   firstRouteCard: { marginLeft: 0 },
   routeCardBg: { flex: 1 },
   routeCardBgStyle: { borderRadius: 20 },
   routeCardGradient: { ...StyleSheet.absoluteFillObject },
+  itineraryList: { gap: 16 },
+  itineraryStep: { flexDirection: 'row', gap: 16, backgroundColor: 'rgba(217,203,160,0.06)', padding: 16, borderRadius: 16, borderWidth: 1, borderColor: 'rgba(217,203,160,0.2)' },
+  itineraryTime: { flexDirection: 'row', alignItems: 'center', gap: 6 },
+  itineraryTimeText: { fontSize: 14, fontWeight: '600', color: '#D9CBA0', fontFamily: Platform.select({ ios: 'Inter', web: 'Inter, -apple-system, sans-serif' }) },
+  itineraryContent: { flex: 1 },
+  itineraryTitle: { fontSize: 15, fontWeight: '600', color: '#FFFFFF', marginBottom: 4, fontFamily: Platform.select({ ios: 'Inter', web: 'Inter, -apple-system, sans-serif' }) },
+  itineraryDescription: { fontSize: 13, color: 'rgba(255,255,255,0.7)', fontFamily: Platform.select({ ios: 'Inter', web: 'Inter, -apple-system, sans-serif' }) },
   locationContent: { gap: 20 },
   mapBackground: { height: 160, borderRadius: 20, borderWidth: 1, borderColor: 'rgba(217,203,160,0.25)', overflow: 'hidden' },
   mapGradient: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 8 },
-  mapLocationText: { fontSize: 14, fontWeight: '600', color: '#D9CBA0', textAlign: 'center', paddingHorizontal: 20, fontFamily: Platform.select({ ios: 'Inter', web: 'Inter, -apple-system, sans-serif' }) },
+  mapLocationText: { fontSize: 15, fontWeight: '600', color: '#D9CBA0', fontFamily: Platform.select({ ios: 'Inter', web: 'Inter, -apple-system, sans-serif' }) },
   nearbyTitle: { fontSize: 16, fontWeight: '600', color: '#FFFFFF', marginTop: 8, fontFamily: Platform.select({ ios: 'Inter', web: 'Inter, -apple-system, sans-serif' }) },
   landmarksGrid: { flexDirection: 'row', gap: 12 },
   landmarkCard: { flex: 1, height: 140, borderRadius: 16, overflow: 'hidden' },
@@ -357,8 +449,20 @@ const styles = StyleSheet.create({
   impressionQuote: { fontSize: 14, lineHeight: 20, color: 'rgba(255,255,255,0.9)', fontStyle: 'italic', marginBottom: 12, fontFamily: Platform.select({ ios: 'Inter', web: 'Inter, -apple-system, sans-serif' }) },
   impressionTraveler: { fontSize: 12, color: '#D9CBA0', fontFamily: Platform.select({ ios: 'Inter', web: 'Inter, -apple-system, sans-serif' }) },
   bottomDock: { position: 'absolute', bottom: 12, left: 0, right: 0, alignItems: 'center', zIndex: 100 },
-  dockContainer: { width: '92%', height: 60, borderRadius: 28, overflow: 'hidden' },
-  dockContent: { flex: 1, backgroundColor: 'rgba(25,25,25,0.35)', flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16 },
-  dockItem: { flex: 1, alignItems: 'center', paddingVertical: 8 },
-  dockLabelInactive: { fontSize: 11, color: 'rgba(255,255,255,0.7)', marginTop: 4, fontFamily: Platform.select({ ios: 'Inter', android: 'Inter', web: 'Inter, -apple-system, sans-serif' }) },
+  dockContainer: { width: '92%', height: 60, borderRadius: 28, overflow: 'hidden', backgroundColor: 'rgba(25,25,25,0.45)' },
+  toastContainer: { position: 'absolute', top: 60, left: 0, right: 0, alignItems: 'center', zIndex: 200 },
+  toastBlur: { paddingHorizontal: 24, paddingVertical: 12, borderRadius: 20, overflow: 'hidden', backgroundColor: 'rgba(25,25,25,0.5)' },
+  toastText: { fontSize: 14, color: '#FFFFFF', fontFamily: 'DMSans-Medium' },
+  bookButton: { width: '100%', height: 60, borderRadius: 28, overflow: 'hidden' },
+  bookButtonGradient: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
+  bookButtonText: { fontSize: 16, fontFamily: 'DMSans-Bold', color: '#FFFFFF', letterSpacing: 0.5 },
+  buttonRow: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 20 },
+  bookedBadge: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: 'rgba(201,166,91,0.15)', borderRadius: 16, borderWidth: 1, borderColor: 'rgba(201,166,91,0.3)' },
+  bookedText: { fontSize: 15, fontFamily: 'DMSans-Bold', color: '#C9A65B', letterSpacing: 0.3 },
+  cancelButton: { paddingHorizontal: 20, paddingVertical: 10, backgroundColor: 'rgba(140,80,80,0.2)', borderRadius: 16, borderWidth: 1, borderColor: 'rgba(140,80,80,0.4)' },
+  cancelButtonText: { fontSize: 14, fontFamily: 'DMSans-Medium', color: 'rgba(255,120,120,0.9)' },
+  canceledBadge: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingHorizontal: 16, paddingVertical: 10, backgroundColor: 'rgba(150,150,150,0.15)', borderRadius: 16, borderWidth: 1, borderColor: 'rgba(150,150,150,0.3)' },
+  canceledText: { fontSize: 15, fontFamily: 'DMSans-Bold', color: '#999999', letterSpacing: 0.3 },
+  rebookButton: { paddingHorizontal: 20, paddingVertical: 10, backgroundColor: 'rgba(201,166,91,0.2)', borderRadius: 16, borderWidth: 1, borderColor: 'rgba(201,166,91,0.4)' },
+  rebookButtonText: { fontSize: 14, fontFamily: 'DMSans-Medium', color: '#C9A65B' },
 })
