@@ -368,6 +368,7 @@ const AVAILABLE_CITIES = [
 export default function TripCanvas() {
   const params = useLocalSearchParams();
   const { trips, getTripById, getFilteredTrips, deleteTrip, updateTrip } = useTrips();
+  const { getBookingsByTrip } = useStayBooking();
   
   // State management - ALL hooks must be called before any conditional returns
   const [activeDayId, setActiveDayId] = useState('day1-2');
