@@ -727,7 +727,7 @@ export default function ExperienceBrowsing() {
         {/* Filter Title Above Cards */}
         <View style={styles.filterTitleContainer}>
           <Text style={styles.filterTitleText}>
-            {activeFilter === 'all' ? 'For You' : activeFilter === 'saved' ? 'Saved' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}
+            {activeFilter === 'saved' ? 'Saved' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}
           </Text>
         </View>
         
