@@ -496,7 +496,8 @@ export default function StayBrowsing() {
       // Show only saved stays
       return mockStays.filter(stay => savedStays.has(stay.id));
     } else if (activeFilter === 'all') {
-      return mockStays;
+      // For You category
+      return mockStays.filter(stay => stay.category === 'all');
     } else {
       // Filter by category
       return mockStays.filter(stay => stay.category === activeFilter);
