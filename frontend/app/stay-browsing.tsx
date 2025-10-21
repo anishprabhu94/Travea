@@ -567,7 +567,7 @@ export default function StayBrowsing() {
                             <Text style={styles.stayCardName}>{stay.name}</Text>
                             <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
                             <View style={styles.decisionRow}>
-                              <Text style={styles.priceText}>€{totalPrice}</Text>
+                              <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
                               <Text style={styles.decisionDot}> · </Text>
                               <Ionicons name="star" size={12} color="#FFFFFF" style={{marginRight: 3}} />
                               <Text style={styles.nightsRatingText}>{stay.rating}</Text>
@@ -659,7 +659,7 @@ export default function StayBrowsing() {
                         
                         {/* Decision Layer - Combined Price, Nights, Rating with Star */}
                         <View style={styles.decisionRow}>
-                          <Text style={styles.priceText}>€{totalPrice}</Text>
+                          <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
                           <Text style={styles.decisionDot}> · </Text>
                           <Text style={styles.nightsRatingText}>{totalNights} nights</Text>
                           <Text style={styles.decisionDot}> · </Text>
@@ -683,7 +683,7 @@ export default function StayBrowsing() {
                         
                         {/* Decision Layer - Combined Price, Nights, Rating with Star */}
                         <View style={styles.decisionRow}>
-                          <Text style={styles.priceText}>€{totalPrice}</Text>
+                          <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
                           <Text style={styles.decisionDot}> · </Text>
                           <Text style={styles.nightsRatingText}>{totalNights} nights</Text>
                           <Text style={styles.decisionDot}> · </Text>
