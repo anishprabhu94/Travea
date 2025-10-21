@@ -76,8 +76,19 @@ export default function MyTrips() {
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [selectedFilter, setSelectedFilter] = useState('planning')
   
-  // Get Planning trips
+  // Get trips by status
   const planningTrips = getFilteredTrips('Planning')
+  const upcomingTrips = getFilteredTrips('Upcoming')
+  const ongoingTrips = getFilteredTrips('Ongoing')
+  const completedTrips = getFilteredTrips('Completed')
+  
+  console.log('MyTrips - Trip counts:', {
+    planning: planningTrips.length,
+    upcoming: upcomingTrips.length,
+    ongoing: ongoingTrips.length,
+    completed: completedTrips.length,
+    total: trips.length
+  })
   
   // Animation refs
   const fadeAnim = useRef(new Animated.Value(0)).current
