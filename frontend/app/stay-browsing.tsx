@@ -713,13 +713,6 @@ export default function StayBrowsing() {
         )}
       </Animated.ScrollView>
       
-      {/* Sticky Filter Title - Scroll Locked */}
-      <View style={styles.stickyFilterTitle}>
-        <Text style={styles.filterTitleText}>
-          {activeFilter === 'all' ? 'For You' : activeFilter === 'saved' ? 'Saved' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}
-        </Text>
-      </View>
-      
       {/* Bottom Dock - Exact from Landing Page */}
       <Animated.View 
         style={[
