@@ -756,12 +756,133 @@ export default function StayBrowsing() {
         {/* Stay Cards Section */}
         <View style={styles.stayCardsSection}>
           {activeFilter === 'saved' ? (
-            // Saved filter: Show ONLY carousels by category
-            Object.entries(savedStaysByCategory).map(([category, stays]) => (
-              <View key={category} style={styles.savedCategorySection}>
-                <Text style={styles.savedCategoryTitle}>
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </Text>
+            // Saved filter: Show ALL saved stays first, then by category
+            <>
+              {/* All Saved Section - Show all saved stays */}
+              {savedStays.size > 0 && (
+                <View style={styles.savedCategorySection}>
+                  <Text style={styles.savedCategoryTitle}>All Saved</Text>
+                  <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={styles.savedCarouselContent}
+                    style={styles.savedCarousel}
+                  >
+                    {mockStays.filter(stay => savedStays.has(stay.id)).map((stay) => {
+                      const totalPrice = stay.pricePerNight * totalNights;
+                      const bookingStatus = getBookingStatus(stay.id);
+                      
+                      return (
+                        <TouchableOpacity 
+                          key={stay.id}
+                          style={styles.stayCardHorizontal} 
+                          activeOpacity={0.8}
+                          onPress={() => router.push({
+                            pathname: '/stay-info-compact',
+                            params: { nights: totalNights.toString(), stayId: stay.id }
+                          })}
+                        >
+                          <ImageBackground
+                            source={{ uri: stay.image }}
+                            style={styles.stayCardBg}
+                            imageStyle={styles.stayCardBgStyle}
+                          >
+                            <LinearGradient
+                              colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
+                              style={styles.stayCardGradient}
+                            />
+                            
+                            {bookingStatus === 'booked' && (
+                              <View style={styles.bookedLabel}>
+                                <LinearGradient
+                                  colors={['rgba(212,190,132,0.9)', 'rgba(180,155,100,0.75)']}
+                                  style={styles.bookedLabelGradient}
+                                >
+                                  <Text style={styles.bookedLabelText}>BOOKED</Text>
+                                </LinearGradient>
+                              </View>
+                            )}
+                            
+                            {bookingStatus === 'canceled' && (
+                              <View style={styles.canceledLabel}>
+                                <LinearGradient
+                                  colors={['rgba(140,80,80,0.75)', 'rgba(100,50,50,0.55)']}
+                                  style={styles.canceledLabelGradient}
+                                >
+                                  <Text style={styles.canceledLabelText}>CANCELED</Text>
+                                </LinearGradient>
+                              </View>
+                            )}
+                            
+                            <TouchableOpacity
+                              style={styles.saveHeartFrostedCircle}
+                              onPressIn={() => handleSaveStay(stay.id)}
+                              activeOpacity={0.7}
+                            >
+                              <BlurView intensity={20} tint="light" style={styles.saveHeartBlur}>
+                                <Ionicons
+                                  name={savedStays.has(stay.id) ? 'heart' : 'heart-outline'}
+                                  size={20}
+                                  color={savedStays.has(stay.id) ? '#CBB88C' : 'rgba(255,255,255,0.7)'}
+                                />
+                              </BlurView>
+                            </TouchableOpacity>
+                            
+                            <View style={styles.stayCardFrosted}>
+                              {Platform.OS === 'web' ? (
+                                <View style={styles.frostedContent}>
+                                  <Text style={styles.stayCardName}>{stay.name}</Text>
+                                  <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
+                                  <View style={styles.decisionRow}>
+                                    <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
+                                    <Text style={styles.decisionDot}> · </Text>
+                                    <Text style={styles.nightsRatingText}>{totalNights} nights</Text>
+                                    <Text style={styles.decisionDot}> · </Text>
+                                    <Ionicons name="star" size={12} color="#FFFFFF" style={{marginRight: 3}} />
+                                    <Text style={styles.nightsRatingText}>{stay.rating}</Text>
+                                  </View>
+                                  <View style={styles.ivorySeparator} />
+                                  <View style={styles.cardDatePill}>
+                                    <Text style={styles.cardDatePillText}>
+                                      {displayDates.startMonth.slice(0, 3)} {displayDates.startDay}–{displayDates.endMonth.slice(0, 3)} {displayDates.endDay}
+                                    </Text>
+                                  </View>
+                                </View>
+                              ) : (
+                                <BlurView intensity={30} tint="light" style={styles.blurViewContent}>
+                                  <Text style={styles.stayCardName}>{stay.name}</Text>
+                                  <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
+                                  <View style={styles.decisionRow}>
+                                    <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
+                                    <Text style={styles.decisionDot}> · </Text>
+                                    <Text style={styles.nightsRatingText}>{totalNights} nights</Text>
+                                    <Text style={styles.decisionDot}> · </Text>
+                                    <Ionicons name="star" size={12} color="#FFFFFF" style={{marginRight: 3}} />
+                                    <Text style={styles.nightsRatingText}>{stay.rating}</Text>
+                                  </View>
+                                  <View style={styles.ivorySeparator} />
+                                  <View style={styles.cardDatePill}>
+                                    <Text style={styles.cardDatePillText}>
+                                      {displayDates.startMonth.slice(0, 3)} {displayDates.startDay}–{displayDates.endMonth.slice(0, 3)} {displayDates.endDay}
+                                    </Text>
+                                  </View>
+                                </BlurView>
+                              )}
+                            </View>
+                          </ImageBackground>
+                        </TouchableOpacity>
+                      );
+                    })}
+                  </ScrollView>
+                </View>
+              )}
+              
+              {/* Category-specific sections */}
+              {Object.entries(savedStaysByCategory).map(([category, stays]) => (
+                <View key={category} style={styles.savedCategorySection}>
+                  <Text style={styles.savedCategoryTitle}>
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                  </Text>
                 <ScrollView
                   horizontal
                   showsHorizontalScrollIndicator={false}
