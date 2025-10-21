@@ -101,12 +101,14 @@ export default function StayBrowsing() {
   
   const cityDates = generateDateRange();
   
-  // Mock trip data
+  // Real trip data from context
   const tripData = {
-    title: tripTitle || 'Lemon Coast Trail',
+    title: tripTitle,
     dates: `${cityStartMonth} ${cityStartDay}–${cityEndMonth} ${cityEndDay}`,
-    travelers: 2,
-    heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
+    travelers: travelers,
+    heroImage: trip?.cities?.[0]?.name === 'Amalfi Coast' || city?.name === 'Amalfi Coast'
+      ? 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg'
+      : 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
   };
   
   // Handle date selection for Multi-Stay
