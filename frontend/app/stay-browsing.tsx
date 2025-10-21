@@ -958,7 +958,7 @@ export default function StayBrowsing() {
             // Other filters: Show regular vertical cards
             filteredStays.map((stay, idx) => {
             const totalPrice = stay.pricePerNight * totalNights;
-            const bookingStatus = getBookingStatus(stay.id);
+            const bookingStatus = getBookingStatus(stay.id, tripId);
             
             return (
               <TouchableOpacity 
