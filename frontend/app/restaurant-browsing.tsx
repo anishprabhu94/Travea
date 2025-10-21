@@ -14,12 +14,12 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { BlurView } from 'expo-blur';
-import { useExperienceBooking } from '../contexts/ExperienceBookingContext';
+import { useRestaurantBooking } from '../contexts/RestaurantBookingContext';
 import { useTrips } from '../contexts/TripsContext';
 
 const { width, height } = Dimensions.get('window');
 
-export default function ExperienceBrowsing() {
+export default function RestaurantBrowsing() {
   const params = useLocalSearchParams();
   const { trips, getTripById } = useTrips();
   
@@ -27,13 +27,13 @@ export default function ExperienceBrowsing() {
   const tripId = params.tripId as string;
   const cityCode = params.cityCode as string;
   
-  console.log('ExperienceBrowsing - Params:', { tripId, cityCode });
-  console.log('ExperienceBrowsing - Available trips:', trips.length);
+  console.log('RestaurantBrowsing - Params:', { tripId, cityCode });
+  console.log('RestaurantBrowsing - Available trips:', trips.length);
   
   // Get real trip data - prioritize params, fallback to first trip
   const trip = tripId ? getTripById(tripId) : (trips.length > 0 ? trips[0] : null);
   
-  console.log('ExperienceBrowsing - Selected trip:', trip ? trip.title : 'No trip found');
+  console.log('RestaurantBrowsing - Selected trip:', trip ? trip.title : 'No trip found');
   
   // Get city from trip - prioritize cityCode match, fallback to first city
   const city = trip?.cities ? (
@@ -42,7 +42,7 @@ export default function ExperienceBrowsing() {
       : trip.cities[0]
   ) : null;
   
-  console.log('ExperienceBrowsing - Selected city:', city ? city.name : 'No city found');
+  console.log('RestaurantBrowsing - Selected city:', city ? city.name : 'No city found');
   
   // Use real data from trip with proper fallbacks
   const cityName = city?.name || 'Florence';
@@ -53,17 +53,17 @@ export default function ExperienceBrowsing() {
   const travelers = trip?.travelers || 2;
   const tripTitle = trip?.title || 'Summer in Italy';
   
-  console.log('ExperienceBrowsing - Display data:', {
+  console.log('RestaurantBrowsing - Display data:', {
     cityName,
     dateRange: `${cityStartMonth} ${cityStartDay}-${cityEndMonth} ${cityEndDay}`,
     travelers
   });
   
   // Use StayBookingContext
-  const { getBookingStatus } = useExperienceBooking();
+  const { getBookingStatus } = useRestaurantBooking();
   
   // State
-  const [savedExperiences, setSavedExperiences] = useState<Set<string>>(new Set());
+  const [savedRestaurants, setSavedRestaurants] = useState<Set<string>>(new Set());
   const [selectedDay, setSelectedDay] = useState<number>(parseInt(cityStartDay)); // Only ONE day at a time
   const [filterClusterOpen, setFilterClusterOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState<'attractions' | 'immersions' | 'adventures'>('attractions');
@@ -71,7 +71,7 @@ export default function ExperienceBrowsing() {
   const filterClusterAnim = useState(new Animated.Value(0))[0];
   const dockAnim = useState(new Animated.Value(0))[0];
   
-  // For experiences, we typically book for 1 day (the selected day)
+  // For restaurants, we typically book for 1 day (the selected day)
   const totalNights = 1;
   
   // Generate date range for city
@@ -97,13 +97,13 @@ export default function ExperienceBrowsing() {
       : 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
   };
   
-  // Handle day selection for experiences (single day only)
+  // Handle day selection for restaurants (single day only)
   const handleDaySelection = (date: number) => {
     setSelectedDay(date);
   };
   
-  // Mock experience data - 2 per category
-  const mockExperiences = [
+  // Mock restaurant data - 2 per category
+  const mockRestaurants = [
     // ATTRACTIONS (2)
     { id: 'exp1', name: 'Uffizi Gallery Tour', tagline: 'Renaissance masterpieces unveiled', pricePerPerson: 85, rating: 4.9, image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', category: 'attractions' },
     { id: 'exp2', name: 'Duomo Rooftop Access', tagline: 'Cathedral heights & city views', pricePerPerson: 65, rating: 4.8, image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', category: 'attractions' },
@@ -154,13 +154,13 @@ export default function ExperienceBrowsing() {
     }
   };
   
-  const handleSaveExperience = (experienceId: string) => {
-    setSavedExperiences(prev => {
+  const handleSaveRestaurant = (restaurantId: string) => {
+    setSavedRestaurants(prev => {
       const newSet = new Set(prev);
-      if (newSet.has(experienceId)) {
-        newSet.delete(experienceId);
+      if (newSet.has(restaurantId)) {
+        newSet.delete(restaurantId);
       } else {
-        newSet.add(experienceId);
+        newSet.add(restaurantId);
       }
       return newSet;
     });
@@ -172,20 +172,20 @@ export default function ExperienceBrowsing() {
   };
   
   // Filter stays based on active filter
-  const getFilteredExperiences = () => {
+  const getFilteredRestaurants = () => {
     if (activeFilter === 'saved') {
-      // Show only saved experiences
-      return mockExperiences.filter(exp => savedExperiences.has(exp.id));
+      // Show only saved restaurants
+      return mockRestaurants.filter(exp => savedRestaurants.has(exp.id));
     } else {
       // Filter by category (attractions, immersions, adventures)
-      return mockExperiences.filter(exp => exp.category === activeFilter);
+      return mockRestaurants.filter(exp => exp.category === activeFilter);
     }
   };
   
-  // Get saved experiences grouped by category
-  const getSavedExperiencesByCategory = () => {
-    const allSaved = mockExperiences.filter(exp => savedExperiences.has(exp.id));
-    const grouped: { [key: string]: typeof mockExperiences } = {};
+  // Get saved restaurants grouped by category
+  const getSavedRestaurantsByCategory = () => {
+    const allSaved = mockRestaurants.filter(exp => savedRestaurants.has(exp.id));
+    const grouped: { [key: string]: typeof mockRestaurants } = {};
     
     allSaved.forEach(exp => {
       const category = exp.category;
@@ -198,22 +198,22 @@ export default function ExperienceBrowsing() {
     return grouped;
   };
   
-  // Calculate display dates for experiences - show selected day
+  // Calculate display dates for restaurants - show selected day
   const displayDates = useMemo(() => {
     return {
       startMonth: cityStartMonth,
       startDay: selectedDay.toString(),
-      endMonth: cityStartMonth, // Same day for experiences
+      endMonth: cityStartMonth, // Same day for restaurants
       endDay: selectedDay.toString()
     };
   }, [selectedDay, cityStartMonth]);
   
-  const filteredExperiences = getFilteredExperiences();
-  const savedExperiencesByCategory = getSavedExperiencesByCategory();
+  const filteredRestaurants = getFilteredRestaurants();
+  const savedRestaurantsByCategory = getSavedRestaurantsByCategory();
   
   // Debug log
-  console.log('Saved experiences count:', savedExperiences.size);
-  console.log('Saved by category:', savedExperiencesByCategory);
+  console.log('Saved restaurants count:', savedRestaurants.size);
+  console.log('Saved by category:', savedRestaurantsByCategory);
 
   return (
     <View style={styles.container}>
@@ -271,7 +271,7 @@ export default function ExperienceBrowsing() {
                 </LinearGradient>
               </View>
               
-              {/* Day Selection for Experiences */}
+              {/* Day Selection for Restaurants */}
               <ScrollView 
                 horizontal 
                 showsHorizontalScrollIndicator={false}
@@ -375,7 +375,7 @@ export default function ExperienceBrowsing() {
           {activeFilter === 'saved' ? (
             // Saved filter: Show carousels by category (including For You)
             <>
-              {Object.entries(savedExperiencesByCategory).map(([category, stays]) => (
+              {Object.entries(savedRestaurantsByCategory).map(([category, stays]) => (
                 <View key={category} style={styles.savedCategorySection}>
                   <Text style={styles.savedCategoryTitle}>
                     {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -441,14 +441,14 @@ export default function ExperienceBrowsing() {
                         
                         <TouchableOpacity
                           style={styles.saveHeartFrostedCircle}
-                          onPressIn={() => handleSaveExperience(stay.id)}
+                          onPressIn={() => handleSaveRestaurant(stay.id)}
                           activeOpacity={0.7}
                         >
                           <BlurView intensity={20} tint="light" style={styles.saveHeartBlur}>
                             <Ionicons
-                              name={savedExperiences.has(stay.id) ? 'heart' : 'heart-outline'}
+                              name={savedRestaurants.has(stay.id) ? 'heart' : 'heart-outline'}
                               size={20}
-                              color={savedExperiences.has(stay.id) ? '#CBB88C' : 'rgba(255,255,255,0.7)'}
+                              color={savedRestaurants.has(stay.id) ? '#CBB88C' : 'rgba(255,255,255,0.7)'}
                             />
                           </BlurView>
                         </TouchableOpacity>
@@ -505,20 +505,20 @@ export default function ExperienceBrowsing() {
             </>
           ) : (
             // Other filters: Show regular vertical cards
-            filteredExperiences.map((experience, idx) => {
-            const totalPrice = experience.pricePerPerson * travelers;
-            const bookingStatus = getBookingStatus(experience.id, tripId);
+            filteredRestaurants.map((restaurant, idx) => {
+            const totalPrice = restaurant.pricePerPerson * travelers;
+            const bookingStatus = getBookingStatus(restaurant.id, tripId);
             
             return (
               <TouchableOpacity 
-                key={experience.id}
+                key={restaurant.id}
                 style={[styles.stayCard, idx === 0 && styles.firstCard]} 
                 activeOpacity={0.8}
                 onPress={() => router.push({
-                  pathname: '/experience-info',
+                  pathname: '/restaurant-info',
                   params: { 
                     people: travelers.toString(), 
-                    experienceId: experience.id,
+                    restaurantId: restaurant.id,
                     tripId: tripId,
                     cityCode: cityCode,
                     city: cityName,
@@ -527,7 +527,7 @@ export default function ExperienceBrowsing() {
                 })}
               >
                 <ImageBackground
-                  source={{ uri: experience.image }}
+                  source={{ uri: restaurant.image }}
                   style={styles.stayCardBg}
                   imageStyle={styles.stayCardBgStyle}
                 >
@@ -578,8 +578,8 @@ export default function ExperienceBrowsing() {
                     {Platform.OS === 'web' ? (
                       <View style={styles.frostedContent}>
                         {/* Hero Layer - Title & Tagline */}
-                        <Text style={styles.stayCardName}>{experience.name}</Text>
-                        <Text style={styles.stayCardTagline}>{experience.tagline}</Text>
+                        <Text style={styles.stayCardName}>{restaurant.name}</Text>
+                        <Text style={styles.stayCardTagline}>{restaurant.tagline}</Text>
                         
                         {/* Decision Layer - Combined Price, People, Rating with Star */}
                         <View style={styles.decisionRow}>
@@ -588,7 +588,7 @@ export default function ExperienceBrowsing() {
                           <Text style={styles.nightsRatingText}>{travelers} {travelers === 1 ? 'person' : 'people'}</Text>
                           <Text style={styles.decisionDot}> · </Text>
                           <Ionicons name="star" size={12} color="#FFFFFF" style={{marginRight: 3}} />
-                          <Text style={styles.nightsRatingText}>{experience.rating}</Text>
+                          <Text style={styles.nightsRatingText}>{restaurant.rating}</Text>
                         </View>
                         
                         {/* Ivory Separator */}
@@ -604,8 +604,8 @@ export default function ExperienceBrowsing() {
                     ) : (
                       <BlurView intensity={30} tint="light" style={styles.blurViewContent}>
                         {/* Hero Layer - Title & Tagline */}
-                        <Text style={styles.stayCardName}>{experience.name}</Text>
-                        <Text style={styles.stayCardTagline}>{experience.tagline}</Text>
+                        <Text style={styles.stayCardName}>{restaurant.name}</Text>
+                        <Text style={styles.stayCardTagline}>{restaurant.tagline}</Text>
                         
                         {/* Decision Layer - Combined Price, People, Rating with Star */}
                         <View style={styles.decisionRow}>
@@ -614,7 +614,7 @@ export default function ExperienceBrowsing() {
                           <Text style={styles.nightsRatingText}>{travelers} {travelers === 1 ? 'person' : 'people'}</Text>
                           <Text style={styles.decisionDot}> · </Text>
                           <Ionicons name="star" size={12} color="#FFFFFF" style={{marginRight: 3}} />
-                          <Text style={styles.nightsRatingText}>{experience.rating}</Text>
+                          <Text style={styles.nightsRatingText}>{restaurant.rating}</Text>
                         </View>
                         
                         {/* Ivory Separator */}
@@ -1760,14 +1760,14 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Context Layer - Experience Tags
-  experienceTagsRow: {
+  // Context Layer - Restaurant Tags
+  restaurantTagsRow: {
     flexDirection: 'row',
     gap: 8,
     marginBottom: 14,
     flexWrap: 'wrap',
   },
-  experienceTag: {
+  restaurantTag: {
     backgroundColor: 'rgba(255,255,255,0.06)',
     borderRadius: 8,
     borderWidth: 0.5,
@@ -1775,7 +1775,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     paddingVertical: 4,
   },
-  experienceTagText: {
+  restaurantTagText: {
     fontSize: 12,
     color: '#D4BE84',
     fontFamily: Platform.select({
