@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import { useTripCanvas } from '../contexts/TripCanvasContext';
 import { useTrips } from '../contexts/TripsContext';
+import { useStayBooking } from '../contexts/StayBookingContext';
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
