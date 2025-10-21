@@ -70,8 +70,9 @@ export default function ExperienceBrowsing() {
   const contentOpacity = useState(new Animated.Value(0))[0];
   const filterClusterAnim = useState(new Animated.Value(0))[0];
   const dockAnim = useState(new Animated.Value(0))[0];
-  const cityTotalDays = parseInt(cityEndDay) - parseInt(cityStartDay) + 1;
-  const maxSelectableDays = cityTotalDays - 1; // Can select up to total - 1
+  
+  // For experiences, we typically book for 1 day (the selected day)
+  const totalNights = 1;
   
   // Generate date range for city
   const generateDateRange = () => {
