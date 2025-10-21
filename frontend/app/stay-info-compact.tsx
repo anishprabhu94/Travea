@@ -72,13 +72,12 @@ export default function StayInfoCompact() {
     setTimeout(() => setShowToast(false), 3000)
   }
 
-  // Compact stay data
-  const pricePerNight = 420 // Base price in euros
+  // Compact stay data (use dynamic data)
   const totalPrice = pricePerNight * nights
   
   const stay = {
-    name: 'Hotel Santa Caterina',
-    tagline: 'Where terraces meet the azure sea',
+    name: stayData.name,
+    tagline: stayData.tagline,
     location: 'Positano, Amalfi Coast',
     rating: 4.8,
     reviewCount: 342,
