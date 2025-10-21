@@ -97,59 +97,9 @@ export default function ExperienceBrowsing() {
       : 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
   };
   
-  // Handle date selection for Multi-Stay
-  const handleDateToggle = (date: number) => {
-    if (stayMode !== 'multi') return;
-    
-    setSelectedDates(prev => {
-      if (prev.includes(date)) {
-        // Deselect
-        return prev.filter(d => d !== date);
-      } else {
-        // Check if we can select more
-        if (prev.length >= maxSelectableDays) {
-          // Already at max, don't add
-          return prev;
-        }
-        // Add and sort
-        return [...prev, date].sort((a, b) => a - b);
-      }
-    });
-  };
-  
-  // Check if date is in selected range
-  const isDateInRange = (date: number) => {
-    if (!selectedDateRange.start) return false;
-    if (!selectedDateRange.end) return date === selectedDateRange.start;
-    return date >= selectedDateRange.start && date <= selectedDateRange.end;
-  };
-  
-  // Check if date is booked (placeholder logic)
-  const isDateBooked = (date: number) => {
-    // In real implementation, check against bookedStays data
-    return false;
-  };
-  
-  // Handle date selection for range
-  const handleDateSelection = (date: number) => {
-    if (stayMode !== 'multi') return;
-    
-    setSelectedDateRange(prev => {
-      if (!prev.start) {
-        // First selection - set start
-        return { start: date, end: null };
-      } else if (!prev.end) {
-        // Second selection - set end (ensure start <= end)
-        if (date < prev.start) {
-          return { start: date, end: prev.start };
-        } else {
-          return { start: prev.start, end: date };
-        }
-      } else {
-        // Range already selected - start new selection
-        return { start: date, end: null };
-      }
-    });
+  // Handle day selection for experiences (single day only)
+  const handleDaySelection = (date: number) => {
+    setSelectedDay(date);
   };
   
   // Mock stay data - at least 5 per category (MECE)
