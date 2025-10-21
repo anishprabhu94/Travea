@@ -102,9 +102,9 @@ export default function ExperienceBrowsing() {
     setSelectedDay(date);
   };
   
-  // Mock stay data - at least 5 per category (MECE)
-  const mockStays = [
-    // FOR YOU CATEGORY (5 stays)
+  // Mock experience data - at least 5 per category (MECE)
+  const mockExperiences = [
+    // ATTRACTIONS CATEGORY (5 experiences)
     {
       id: '21',
       name: 'Antica Torre di Via Tornabuoni',
