@@ -290,41 +290,8 @@ export default function StayBrowsing() {
     return grouped;
   };
   
-  // Calculate display dates for cards
-  const getDisplayDates = () => {
-    if (stayMode === 'single') {
-      // Show full city dates
-      return {
-        startMonth: cityStartMonth,
-        startDay: cityStartDay,
-        endMonth: cityEndMonth,
-        endDay: cityEndDay
-      };
-    } else {
-      // Multi-stay: show selected dates
-      if (selectedDates.length >= 2) {
-        const sortedDates = [...selectedDates].sort((a, b) => a - b);
-        const firstDate = sortedDates[0];
-        const lastDate = sortedDates[sortedDates.length - 1];
-        
-        // Simple month calculation (assuming same month for now)
-        return {
-          startMonth: cityStartMonth,
-          startDay: firstDate.toString(),
-          endMonth: cityStartMonth,
-          endDay: lastDate.toString()
-        };
-      }
-      // Default to city dates if no selection
-      return {
-        startMonth: cityStartMonth,
-        startDay: cityStartDay,
-        endMonth: cityEndMonth,
-        endDay: cityEndDay
-      };
-    }
-  };
-  
+  const filteredStays = getFilteredStays();
+  const savedStaysByCategory = getSavedStaysByCategory();
   const displayDates = getDisplayDates();
 
   return (
