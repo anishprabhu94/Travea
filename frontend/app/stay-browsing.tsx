@@ -737,7 +737,8 @@ export default function StayBrowsing() {
               </TouchableOpacity>
             );
           })}
-        </View>
+          </View>
+        )}
       </Animated.ScrollView>
       
       {/* Sticky Filter Title - Scroll Locked */}
