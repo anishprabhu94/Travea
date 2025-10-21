@@ -220,37 +220,23 @@ export default function StayBrowsing() {
     ]).start();
   }, []);
   
-  // Toggle filter pane
-  const toggleFilterPane = () => {
-    if (filterOpen) {
+  // Toggle filter cluster
+  const toggleFilterCluster = () => {
+    if (filterClusterOpen) {
       // Close animation
-      Animated.parallel([
-        Animated.timing(filterSlideAnim, {
-          toValue: 0,
-          duration: 250,
-          useNativeDriver: true,
-        }),
-        Animated.timing(filterOpacityAnim, {
-          toValue: 0,
-          duration: 250,
-          useNativeDriver: true,
-        }),
-      ]).start(() => setFilterOpen(false));
+      Animated.timing(filterClusterAnim, {
+        toValue: 0,
+        duration: 250,
+        useNativeDriver: true,
+      }).start(() => setFilterClusterOpen(false));
     } else {
       // Open animation
-      setFilterOpen(true);
-      Animated.parallel([
-        Animated.timing(filterSlideAnim, {
-          toValue: 1,
-          duration: 300,
-          useNativeDriver: true,
-        }),
-        Animated.timing(filterOpacityAnim, {
-          toValue: 1,
-          duration: 300,
-          useNativeDriver: true,
-        }),
-      ]).start();
+      setFilterClusterOpen(true);
+      Animated.timing(filterClusterAnim, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
     }
   };
   
