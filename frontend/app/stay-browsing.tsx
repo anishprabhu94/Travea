@@ -1230,6 +1230,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     marginBottom: 16,
     marginTop: 8,
+    alignItems: 'flex-start',
   },
   filterTitleText: {
     fontSize: 20,
