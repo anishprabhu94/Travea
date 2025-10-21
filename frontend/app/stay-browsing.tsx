@@ -316,8 +316,8 @@ export default function StayBrowsing() {
     return grouped;
   };
   
-  // Calculate display dates for cards
-  const getDisplayDates = () => {
+  // Calculate display dates for cards - useMemo to recalculate when dependencies change
+  const displayDates = useMemo(() => {
     if (stayMode === 'single') {
       // Show full city dates
       return {
@@ -348,7 +348,7 @@ export default function StayBrowsing() {
         endDay: cityEndDay
       };
     }
-  };
+  }, [stayMode, selectedDates, cityStartMonth, cityStartDay, cityEndMonth, cityEndDay]);
   
   const filteredStays = getFilteredStays();
   const savedStaysByCategory = getSavedStaysByCategory();
