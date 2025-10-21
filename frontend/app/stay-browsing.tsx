@@ -271,18 +271,27 @@ export default function StayBrowsing() {
     }
   };
   
-  // Get saved stays for the current filter
-  const getSavedStaysForFilter = () => {
+  // Get saved stays grouped by category
+  const getSavedStaysByCategory = () => {
     const allSaved = mockStays.filter(stay => savedStays.has(stay.id));
-    if (activeFilter === 'all') {
-      return allSaved;
-    } else {
-      return allSaved.filter(stay => stay.category === activeFilter);
-    }
+    const grouped: { [key: string]: typeof mockStays } = {};
+    
+    allSaved.forEach(stay => {
+      const category = stay.category;
+      // Only include if it matches current filter or we're on "all"
+      if (activeFilter === 'all' || stay.category === activeFilter) {
+        if (!grouped[category]) {
+          grouped[category] = [];
+        }
+        grouped[category].push(stay);
+      }
+    });
+    
+    return grouped;
   };
   
   const filteredStays = getFilteredStays();
-  const savedStaysForFilter = getSavedStaysForFilter();
+  const savedStaysByCategory = getSavedStaysByCategory();
 
   return (
     <View style={styles.container}>
