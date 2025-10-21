@@ -485,7 +485,7 @@ export default function StayBrowsing() {
                 }
               ]}
             >
-                {(['all', 'boutique', 'luxury', 'affordable', 'featured'] as const).map((filter, index) => (
+                {(['all', 'boutique', 'luxury', 'affordable', 'featured', 'saved'] as const).map((filter, index) => (
                   <TouchableOpacity
                     key={filter}
                     style={[
