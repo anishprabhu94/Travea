@@ -2041,7 +2041,7 @@ const styles = StyleSheet.create({
   filterClusterBackdrop: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(0,0,0,0.75)',
-    zIndex: 99,
+    zIndex: 98,
   },
   filterPillsCluster: {
     marginTop: 8,
