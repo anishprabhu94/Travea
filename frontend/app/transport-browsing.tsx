@@ -370,7 +370,7 @@ export default function TransportBrowsing() {
         {/* Filter Title Above Cards */}
         <View style={styles.filterTitleContainer}>
           <Text style={styles.filterTitleText}>
-            {activeFilter === 'saved' ? 'Saved' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}
+            {activeFilter === 'saved' ? 'Saved' : activeFilter === 'car_rental' ? 'Car Rental' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}
           </Text>
         </View>
         
