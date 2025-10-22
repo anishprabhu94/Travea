@@ -702,7 +702,7 @@ const styles = StyleSheet.create({
         minHeight: '100vh',
         margin: 0,
         padding: 0,
-        background: 'linear-gradient(180deg, #0E0E0E 0%, #151515 100%)', // Deep charcoal gradient
+        backgroundColor: '#0E0E0E', // Deep charcoal (gradient removed for RN Web compatibility)
       },
       default: {
         // Gradient simulation for native using backgroundColor
