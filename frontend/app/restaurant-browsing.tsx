@@ -387,8 +387,8 @@ export default function RestaurantBrowsing() {
                   style={styles.savedCarousel}
                 >
                 {restaurants.map((restaurant) => {
-                  const totalPrice = stay.pricePerNight * totalNights;
-                  const bookingStatus = getBookingStatus(stay.id);
+                  const totalPrice = restaurant.pricePerPerson * travelers;
+                  const bookingStatus = getBookingStatus(restaurant.id, tripId);
                   
                   return (
                     <TouchableOpacity 
