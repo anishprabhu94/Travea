@@ -134,11 +134,21 @@ export default function Landing() {
   const [searchResults, setSearchResults] = useState<any>(null)
   const [bookmarkAnimations, setBookmarkAnimations] = useState<{[key: string]: Animated.Value}>({})
   
+  // Search transition states
+  const [searchTransitionState, setSearchTransitionState] = useState<'idle' | 'activated' | 'results'>('idle')
+  const [selectedCity, setSelectedCity] = useState<string | null>(null)
+  
   // Animation refs
   const fadeAnim = useRef(new Animated.Value(0)).current
   const greetingAnim = useRef(new Animated.Value(0)).current
   const dockAnim = useRef(new Animated.Value(0)).current
   const dockGlowAnim = useRef(new Animated.Value(0)).current
+  
+  // Search transition animation refs
+  const searchPaneExpansion = useRef(new Animated.Value(1)).current // Scale for pane expansion
+  const searchBlurIntensity = useRef(new Animated.Value(25)).current // Blur intensity
+  const backgroundDim = useRef(new Animated.Value(1)).current // Background opacity
+  const searchGlowAnim = useRef(new Animated.Value(0)).current // Glow effect
 
   useEffect(() => {
     // Page load animations
