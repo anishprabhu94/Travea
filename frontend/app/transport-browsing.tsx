@@ -120,9 +120,6 @@ export default function TransportBrowsing() {
     { id: 'trans7', origin: 'Florence', destination: 'Chianti', provider: 'Private Driver', duration: '4h', departTime: '10:00', arriveTime: '14:00', pricePerPerson: 120, icon: 'car-sport', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', category: 'other' },
     { id: 'trans8', origin: 'Florence', destination: 'Pisa Airport', provider: 'Shuttle Service', duration: '1h', departTime: '06:30', arriveTime: '07:30', pricePerPerson: 25, icon: 'airplane', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', category: 'other' },
   ];
-    { id: 'exp5', name: 'Vespa Tour', tagline: 'Hills, curves & cypress roads', pricePerPerson: 195, rating: 4.9, image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', category: 'adventures' },
-    { id: 'exp6', name: 'Hot Air Balloon', tagline: 'Dawn over Tuscan valleys', pricePerPerson: 285, rating: 4.9, image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg', category: 'adventures' },
-  ];
   
   // Entry animation
   useEffect(() => {
