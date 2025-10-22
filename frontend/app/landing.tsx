@@ -744,13 +744,11 @@ export default function Landing() {
                 contentContainerStyle={styles.expansionCardFeedContent}
                 showsVerticalScrollIndicator={false}
               >
-                {getCarouselConfig()
-                  .find(c => c.title === expandedCarousel)
-                  ?.cards.map((destination, cardIndex) => (
-                    <View key={`expanded-${destination.id}`} style={styles.expansionCardWrapper}>
-                      {renderDestinationCard(destination, cardIndex)}
-                    </View>
-                  ))}
+                {getAllCardsForCarousel(expandedCarousel).map((destination, cardIndex) => (
+                  <View key={`expanded-${destination.id}-${cardIndex}`} style={styles.expansionCardWrapper}>
+                    {renderDestinationCard(destination, cardIndex)}
+                  </View>
+                ))}
               </ScrollView>
             </View>
           </View>
