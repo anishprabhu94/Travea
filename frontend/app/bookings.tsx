@@ -3472,23 +3472,20 @@ const styles = StyleSheet.create({
   flightCardTraveler: {
     fontSize: 11,
     fontWeight: '700',
-    color: 'rgba(181,155,115,0.8)',
+    color: 'rgba(181,155,115,0.9)',
     textTransform: 'uppercase',
     letterSpacing: 1.5,
-    marginBottom: 12,
+    marginBottom: 8,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  flightCardHeader: {
-    marginBottom: 10,
-  },
   flightCardRoute: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '700',
     color: 'rgba(255,255,255,0.95)',
-    marginBottom: 8,
+    marginBottom: 10,
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
@@ -3496,20 +3493,20 @@ const styles = StyleSheet.create({
     }),
   },
   flightCardAirline: {
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: '600',
-    color: 'rgba(181,155,115,0.85)',
-    marginBottom: 10,
+    color: 'rgba(181,155,115,0.9)',
+    marginBottom: 8,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
   flightCardTime: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: '500',
-    color: 'rgba(181,155,115,0.95)',
-    marginBottom: 8,
+    color: 'rgba(255,255,255,0.85)',
+    marginBottom: 6,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
@@ -3518,8 +3515,8 @@ const styles = StyleSheet.create({
   flightCardDetails: {
     fontSize: 13,
     fontWeight: '400',
-    color: 'rgba(255,255,255,0.75)',
-    lineHeight: 20,
+    color: 'rgba(255,255,255,0.7)',
+    lineHeight: 18,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
