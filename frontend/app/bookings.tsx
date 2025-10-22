@@ -1361,19 +1361,23 @@ export default function TripCanvas() {
                   style={styles.flightImageCardBg}
                   imageStyle={styles.flightImageCardBgStyle}
                 >
-                  {/* Date Badge - Top Right */}
-                  <View style={styles.cardDateBadgeOnImage}>
+                  {/* Date Badge - Top Left */}
+                  <View style={styles.cardDateBadgeOnImageLeft}>
                     <Text style={styles.cardDateText}>{activeCityFirstDate}</Text>
                   </View>
                   
-                  {/* Remove Flight Button - Top Left */}
+                  {/* Remove Flight Button - Top Right */}
                   <TouchableOpacity
                     style={styles.removeFlightButton}
                     onPress={() => {
-                      setDayFlights(prev => ({
-                        ...prev,
-                        [activeDay.id]: (prev[activeDay.id] || []).filter(f => f.id !== flight.id)
-                      }));
+                      setDayFlights(prev => {
+                        const currentFlights = prev[activeDay.id] || [];
+                        const filteredFlights = currentFlights.filter(f => f.id !== flight.id);
+                        return {
+                          ...prev,
+                          [activeDay.id]: filteredFlights
+                        };
+                      });
                     }}
                     activeOpacity={0.7}
                   >
@@ -1391,8 +1395,14 @@ export default function TripCanvas() {
                     <Text style={styles.flightCardTraveler}>{flight.traveler}</Text>
                     <Text style={styles.flightCardRoute}>{flight.route}</Text>
                     <Text style={styles.flightCardAirline}>{flight.airline}</Text>
-                    <Text style={styles.flightCardTime}>{flight.time}</Text>
-                    <Text style={styles.flightCardDetails}>{flight.details}</Text>
+                    <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 6}}>
+                      <Ionicons name="time-outline" size={14} color="rgba(255,255,255,0.85)" style={{marginRight: 6}} />
+                      <Text style={styles.flightCardTime}>22:00 – 06:30 · 8h 30m Nonstop</Text>
+                    </View>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                      <Ionicons name="navigate-outline" size={14} color="rgba(255,255,255,0.7)" style={{marginRight: 6}} />
+                      <Text style={styles.flightCardDetails}>T1 Gate B12</Text>
+                    </View>
                   </View>
                 </ImageBackground>
               </View>
