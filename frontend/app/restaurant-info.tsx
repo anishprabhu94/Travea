@@ -305,54 +305,70 @@ export default function RestaurantInfo() {
         </View>
       )}
 
-      {/* Bottom Dock with Booking Buttons */}
+      {/* Bottom Dock - Navigation Bar Style (Frosted Glass Capsule) */}
       <View style={styles.bottomDock}>
-        <BlurView intensity={20} tint="light" style={styles.dockContainer}>
-          {bookingStatus === 'none' ? (
-            <TouchableOpacity 
-              style={styles.bookButton}
+        <BlurView intensity={22} tint="light" style={styles.dockContainer}>
+          <View style={styles.dockContent}>
+            {/* Mark as Booked */}
+            <TouchableOpacity
+              style={styles.dockAction}
               onPress={handleMarkBooked}
-              activeOpacity={0.8}
+              activeOpacity={0.7}
+              disabled={bookingStatus === 'booked'}
             >
               <LinearGradient
-                colors={['#C9A65B', '#B89550']}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={styles.bookButtonGradient}
+                colors={bookingStatus === 'booked' 
+                  ? ['rgba(217,189,120,0.25)', 'rgba(217,189,120,0.15)']
+                  : ['rgba(217,189,120,0.15)', 'rgba(217,189,120,0.08)']}
+                style={styles.dockActionGradient}
               >
-                <Ionicons name="checkmark-circle-outline" size={20} color="#FFFFFF" />
-                <Text style={styles.bookButtonText}>Mark as Booked</Text>
+                {bookingStatus === 'booked' && (
+                  <Ionicons 
+                    name="checkmark-circle-outline" 
+                    size={16} 
+                    color="#D9BD78" 
+                    style={{marginRight: 6}} 
+                  />
+                )}
+                <Text style={[styles.dockActionText, bookingStatus === 'booked' && styles.dockActionTextActive]}>
+                  {bookingStatus === 'booked' ? 'Booked ✓' : 'Mark as Booked'}
+                </Text>
               </LinearGradient>
             </TouchableOpacity>
-          ) : bookingStatus === 'booked' ? (
-            <View style={styles.buttonRow}>
-              <View style={styles.bookedBadge}>
-                <Ionicons name="checkmark-circle" size={18} color="#C9A65B" />
-                <Text style={styles.bookedText}>Booked</Text>
-              </View>
-              <TouchableOpacity 
-                style={styles.cancelButton}
-                onPress={handleMarkCanceled}
-                activeOpacity={0.8}
+            
+            {/* Divider */}
+            <LinearGradient
+              colors={['rgba(217,189,120,0.3)', 'rgba(217,189,120,0.15)', 'rgba(217,189,120,0.3)']}
+              style={styles.dockDivider}
+            />
+            
+            {/* Mark as Canceled */}
+            <TouchableOpacity
+              style={styles.dockAction}
+              onPress={handleMarkCanceled}
+              activeOpacity={0.7}
+              disabled={bookingStatus === 'canceled'}
+            >
+              <LinearGradient
+                colors={bookingStatus === 'canceled'
+                  ? ['rgba(107,79,76,0.25)', 'rgba(107,79,76,0.15)']
+                  : ['rgba(107,79,76,0.15)', 'rgba(107,79,76,0.08)']}
+                style={styles.dockActionGradient}
               >
-                <Text style={styles.cancelButtonText}>Cancel Booking</Text>
-              </TouchableOpacity>
-            </View>
-          ) : (
-            <View style={styles.buttonRow}>
-              <View style={styles.canceledBadge}>
-                <Ionicons name="close-circle" size={18} color="#999999" />
-                <Text style={styles.canceledText}>Canceled</Text>
-              </View>
-              <TouchableOpacity 
-                style={styles.rebookButton}
-                onPress={handleMarkBooked}
-                activeOpacity={0.8}
-              >
-                <Text style={styles.rebookButtonText}>Rebook</Text>
-              </TouchableOpacity>
-            </View>
-          )}
+                {bookingStatus === 'canceled' && (
+                  <Ionicons 
+                    name="close-circle-outline" 
+                    size={16} 
+                    color="rgba(245,244,239,0.8)" 
+                    style={{marginRight: 6}} 
+                  />
+                )}
+                <Text style={[styles.dockActionText, bookingStatus === 'canceled' && styles.dockActionTextCanceled]}>
+                  {bookingStatus === 'canceled' ? 'Canceled ✕' : 'Mark as Canceled'}
+                </Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          </View>
         </BlurView>
       </View>
     </View>
