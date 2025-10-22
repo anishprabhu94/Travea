@@ -294,67 +294,40 @@ export default function Landing() {
     return baseCards
   }
   
-  // Carousel configurations
+  // Carousel configurations - now showing ALL cards in each carousel
   const getCarouselConfig = () => {
     const baseCards = getCurrentCards()
     
     if (activeMode === 'vacations') {
-      // For You Tab: Curated + Multi-City Circuits + Quick Getaways
+      // For You Tab: Multi-City Circuits + All Curated Cards
       return [
-        { 
-          id: 'vacations_curated', 
-          title: 'Curated for You', 
-          cards: baseCards.slice(2, 6).map((card, index) => ({
-            ...card,
-            id: `vacations_curated_${card.id}_${index}`,
-            isCondeNastPick: index < 2
-          }))
-        },
         { 
           id: 'vacations_circuits', 
           title: 'Multi-City Circuits', 
-          cards: baseCards.slice(0, 2).map((card, index) => ({
+          cards: baseCards.filter(card => card.isMultiCity).map((card, index) => ({
             ...card,
             id: `vacations_circuits_${card.id}_${index}`,
           }))
         },
         { 
-          id: 'vacations_quick', 
-          title: 'Quick Getaways', 
-          cards: baseCards.slice(6, 10).map((card, index) => ({
+          id: 'vacations_curated', 
+          title: 'Curated for You', 
+          cards: baseCards.filter(card => !card.isMultiCity).map((card, index) => ({
             ...card,
-            id: `vacations_quick_${card.id}_${index}`,
+            id: `vacations_curated_${card.id}_${index}`,
             isCondeNastPick: index < 2
           }))
         }
       ]
     } else if (activeMode === 'discover') {
-      // Discover Tab: Trending Now + Slow Living + Hidden Gems
+      // Discover Tab: All cards in single carousel for now
       return [
         { 
-          id: 'discover_trending', 
-          title: 'Trending Now', 
-          cards: baseCards.slice(0, 4).map((card, index) => ({
+          id: 'discover_all', 
+          title: 'Discover Destinations', 
+          cards: baseCards.map((card, index) => ({
             ...card,
-            id: `discover_trending_${card.id}_${index}`,
-            isCondeNastPick: index < 2
-          }))
-        },
-        { 
-          id: 'discover_slow', 
-          title: 'Slow Living', 
-          cards: baseCards.slice(4, 8).map((card, index) => ({
-            ...card,
-            id: `discover_slow_${card.id}_${index}`,
-            isCondeNastPick: index < 2
-          }))
-        },
-        { 
-          id: 'discover_gems', 
-          title: 'Hidden Gems', 
-          cards: baseCards.slice(8, 12).map((card, index) => ({
-            ...card,
-            id: `discover_gems_${card.id}_${index}`,
+            id: `discover_all_${card.id}_${index}`,
             isCondeNastPick: index < 2
           }))
         }
