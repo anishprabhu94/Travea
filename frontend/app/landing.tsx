@@ -559,7 +559,7 @@ export default function Landing() {
         {activeMode === 'search' && (
           <View style={styles.searchContainer}>
             <ImageBackground
-              source={{ uri: 'https://customer-assets.emergentagent.com/job_c851a5c2-e443-4a96-b503-41a7575b9658/artifacts/86nrn7i6_output%20%286%29.jpg' }}
+              source={{ uri: 'https://customer-assets.emergentagent.com/job_frosted-journey-1/artifacts/kltmxjks_search%202.jpg' }}
               style={styles.searchImageBackground}
               imageStyle={styles.searchImageStyle}
             >
