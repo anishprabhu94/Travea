@@ -5,6 +5,7 @@ import { TripsProvider } from '../contexts/TripsContext'
 import { StayBookingProvider } from '../contexts/StayBookingContext'
 import { ExperienceBookingProvider } from '../contexts/ExperienceBookingContext'
 import { RestaurantBookingProvider } from '../contexts/RestaurantBookingContext'
+import { TransportBookingProvider } from '../contexts/TransportBookingContext'
 
 export default function RootLayout() {
   return (
