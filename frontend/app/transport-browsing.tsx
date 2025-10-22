@@ -375,7 +375,7 @@ export default function TransportBrowsing() {
                         styles.filterPillText,
                         activeFilter === filter && styles.filterPillTextActive
                       ]}>
-                        {filter === 'saved' ? 'Saved' : filter.charAt(0).toUpperCase() + filter.slice(1)}
+                        {filter === 'saved' ? 'Saved' : filter === 'car_rental' ? 'Car Rental' : filter.charAt(0).toUpperCase() + filter.slice(1)}
                       </Text>
                     </View>
                   </TouchableOpacity>
