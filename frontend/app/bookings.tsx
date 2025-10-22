@@ -487,6 +487,39 @@ export default function TripCanvas() {
   
   const currentTrip = getTripToDisplay();
   
+  // Get number of travelers from trip data
+  const numberOfTravelers = currentTrip?.travelers || 2;
+  
+  // Calculate flight status based on number of travelers
+  const calculateFlightStatus = (flights: any[]) => {
+    if (flights.length === 0) return 'Pending';
+    if (flights.length >= numberOfTravelers) return 'Booked';
+    return 'Pending';
+  };
+  
+  // Add flight function
+  const handleAddFlight = (dayId: string, activeCityFirstDate: string) => {
+    if (!flightNumber.trim()) return;
+    
+    // Mock flight data - in real app, this would call an API
+    const newFlight = {
+      id: Date.now().toString(),
+      traveler: `Traveler ${(dayFlights[dayId]?.length || 0) + 1}`,
+      date: activeCityFirstDate,
+      route: 'JFK → FCO', // Mock data
+      airline: flightNumber.toUpperCase(),
+      time: '10:00 – 22:30 · 8h 30m Nonstop', // Mock data
+      details: 'T1 Gate B12', // Mock data
+    };
+    
+    setDayFlights(prev => ({
+      ...prev,
+      [dayId]: [...(prev[dayId] || []), newFlight]
+    }));
+    
+    setFlightNumber('');
+  };
+  
   // Load trip data into edit state when opening edit pane
   useEffect(() => {
     if (currentTrip && showEditPane) {
