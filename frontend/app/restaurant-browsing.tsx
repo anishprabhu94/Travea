@@ -470,7 +470,7 @@ export default function RestaurantBrowsing() {
                               <View style={styles.ivorySeparator} />
                               <View style={styles.cardDatePill}>
                                 <Text style={styles.cardDatePillText}>
-                                  {displayDates.startMonth.slice(0, 3)} {displayDates.startDay}–{displayDates.endMonth.slice(0, 3)} {displayDates.endDay}
+                                  {displayDates.startMonth.slice(0, 3)} {displayDates.startDay}
                                 </Text>
                               </View>
                             </View>
@@ -489,7 +489,7 @@ export default function RestaurantBrowsing() {
                               <View style={styles.ivorySeparator} />
                               <View style={styles.cardDatePill}>
                                 <Text style={styles.cardDatePillText}>
-                                  {displayDates.startMonth.slice(0, 3)} {displayDates.startDay}–{displayDates.endMonth.slice(0, 3)} {displayDates.endDay}
+                                  {displayDates.startMonth.slice(0, 3)} {displayDates.startDay}
                                 </Text>
                               </View>
                             </BlurView>
@@ -597,7 +597,7 @@ export default function RestaurantBrowsing() {
                         {/* Date Pill - Replacing View Details */}
                         <View style={styles.cardDatePill}>
                           <Text style={styles.cardDatePillText}>
-                            {displayDates.startMonth.slice(0, 3)} {displayDates.startDay}–{displayDates.endMonth.slice(0, 3)} {displayDates.endDay}
+                            {displayDates.startMonth.slice(0, 3)} {displayDates.startDay}
                           </Text>
                         </View>
                       </View>
@@ -623,7 +623,7 @@ export default function RestaurantBrowsing() {
                         {/* Date Pill - Replacing View Details */}
                         <View style={styles.cardDatePill}>
                           <Text style={styles.cardDatePillText}>
-                            {displayDates.startMonth.slice(0, 3)} {displayDates.startDay}–{displayDates.endMonth.slice(0, 3)} {displayDates.endDay}
+                            {displayDates.startMonth.slice(0, 3)} {displayDates.startDay}
                           </Text>
                         </View>
                       </BlurView>
