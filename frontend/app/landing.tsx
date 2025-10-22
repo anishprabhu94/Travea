@@ -567,9 +567,12 @@ export default function Landing() {
                   style={styles.carousel}
                   contentContainerStyle={styles.carouselContent}
                 >
-                  {carousel.cards.map((destination, cardIndex) => 
-                    renderDestinationCard(destination, cardIndex)
-                  )}
+                  {(() => {
+                    console.log(`Rendering carousel "${carousel.title}" with ${carousel.cards.length} cards`);
+                    return carousel.cards.map((destination, cardIndex) => 
+                      renderDestinationCard(destination, cardIndex)
+                    );
+                  })()}
                 </ScrollView>
               </View>
             ))}
