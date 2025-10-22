@@ -1414,7 +1414,8 @@ export default function TripCanvas() {
                   </View>
                 </ImageBackground>
               </View>
-            ))}
+              );
+            })}
             
             {/* Flight Input Card - Always shown as last card */}
             <View style={styles.flightInputCard}>
