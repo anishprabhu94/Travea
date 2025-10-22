@@ -389,6 +389,39 @@ export default function Landing() {
     ]).start()
   }
 
+  // Helper: Check if city exists in user's trips
+  const getCityTripContext = (city: string) => {
+    for (const trip of trips) {
+      // Check if any city in the trip matches the searched city
+      if (trip.cities && trip.cities.some((c: any) => c.name === city)) {
+        return {
+          exists: true,
+          trip: trip,
+          cityData: trip.cities.find((c: any) => c.name === city)
+        }
+      }
+    }
+    return { exists: false, trip: null, cityData: null }
+  }
+
+  // Helper: Get booked items for a specific city and trip
+  const getBookedItemsForCity = (tripId: string, city: string) => {
+    const stays = Object.values(bookedStays).filter((stay: any) => 
+      stay.tripId === tripId && stay.stayName?.includes(city)
+    )
+    const experiences = Object.values(bookedExperiences).filter((exp: any) => 
+      exp.tripId === tripId
+    )
+    const restaurants = Object.values(bookedRestaurants).filter((rest: any) => 
+      rest.tripId === tripId
+    )
+    const transports = Object.values(bookedTransports).filter((trans: any) => 
+      trans.tripId === tripId
+    )
+    
+    return { stays, experiences, restaurants, transports }
+  }
+
   const getCurrentCards = () => {
     if (activeMode === 'search') return []
     // Map new mode names to card categories
