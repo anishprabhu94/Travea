@@ -1385,7 +1385,7 @@ export default function TripCanvas() {
               />
               <TouchableOpacity 
                 style={styles.addFlightButton}
-                onPress={handleAddFlight}
+                onPress={() => handleAddFlight(activeDay.id, activeCityFirstDate)}
                 activeOpacity={0.7}
               >
                 <Text style={styles.addFlightButtonText}>Add Flight</Text>
