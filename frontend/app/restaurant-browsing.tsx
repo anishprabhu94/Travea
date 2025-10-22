@@ -481,10 +481,10 @@ export default function RestaurantBrowsing() {
                               <View style={styles.decisionRow}>
                                 <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
                                 <Text style={styles.decisionDot}> · </Text>
-                                <Text style={styles.nightsRatingText}>{totalNights} nights</Text>
+                                <Text style={styles.nightsRatingText}>{travelers} {travelers === 1 ? 'person' : 'people'}</Text>
                                 <Text style={styles.decisionDot}> · </Text>
                                 <Ionicons name="star" size={12} color="#FFFFFF" style={{marginRight: 3}} />
-                                <Text style={styles.nightsRatingText}>{stay.rating}</Text>
+                                <Text style={styles.nightsRatingText}>{restaurant.rating}</Text>
                               </View>
                               <View style={styles.ivorySeparator} />
                               <View style={styles.cardDatePill}>
