@@ -528,33 +528,37 @@ export default function TransportBrowsing() {
                           ) : (
                             <BlurView intensity={30} tint="light" style={styles.blurViewContentCompact}>
                               {/* Transport icon + Origin -> Destination */}
-                              <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 6}}>
+                              <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 4}}>
                                 <View style={styles.transportIconCircle}>
                                   <Ionicons name={transport.icon} size={14} color="#FFFFFF" />
                                 </View>
-                                <Text style={[styles.stayCardName, {lineHeight: 28}]}>
+                                <Text style={[styles.stayCardName, {flex: 1, paddingTop: 5}]}>
                                   {transport.origin} → {transport.destination}
                                 </Text>
                               </View>
                               
                               {/* Provider with Duration icon */}
-                              <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 6}}>
+                              <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 4}}>
                                 <Text style={styles.stayCardTagline}>{transport.provider}</Text>
                                 <Text style={[styles.stayCardTagline, {marginHorizontal: 6}]}> · </Text>
-                                <Ionicons name="time-outline" size={13} color="#FFFFFF" style={{marginRight: 4, marginTop: -2}} />
-                                <Text style={styles.stayCardTagline}>{transport.duration}</Text>
+                                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                  <Ionicons name="time-outline" size={13} color="#FFFFFF" style={{marginRight: 3}} />
+                                  <Text style={{...styles.stayCardTagline, paddingTop: 2}}>{transport.duration}</Text>
+                                </View>
                               </View>
                               
                               {/* Depart & Arrive with clock icons */}
-                              <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10}}>
-                                <Ionicons name="time-outline" size={13} color="rgba(217,203,160,0.8)" style={{marginRight: 4, marginTop: -2}} />
-                                <Text style={styles.nightsRatingText}>Depart: {transport.departTime}</Text>
+                              <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 8}}>
+                                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                  <Ionicons name="time-outline" size={13} color="rgba(217,203,160,0.8)" style={{marginRight: 3}} />
+                                  <Text style={{...styles.nightsRatingText, paddingTop: 2}}>Depart: {transport.departTime}</Text>
+                                </View>
                                 <Text style={styles.decisionDot}> · </Text>
-                                <Text style={styles.nightsRatingText}>Arrive: {transport.arriveTime}</Text>
+                                <Text style={{...styles.nightsRatingText, paddingTop: 2}}>Arrive: {transport.arriveTime}</Text>
                               </View>
                               
                               {/* Est. Price on separate line */}
-                              <Text style={[styles.priceText, {marginBottom: 10}]}>
+                              <Text style={[styles.priceText, {marginBottom: 8}]}>
                                 Est. Price: €{formatPrice(totalPrice)}
                               </Text>
                               
