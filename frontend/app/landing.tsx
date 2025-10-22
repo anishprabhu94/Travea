@@ -790,8 +790,8 @@ export default function Landing() {
                           ]}
                           pointerEvents="box-none"
                         >
-                          <BlurView intensity={25} tint="light" style={styles.searchBarContainer}>
-                            <View style={styles.searchBarContent}>
+                          <BlurView intensity={25} tint="light" style={styles.searchBarContainer} pointerEvents="box-none">
+                            <View style={styles.searchBarContent} pointerEvents="box-none">
                               <Ionicons name="search-outline" size={18} color="rgba(255,255,255,0.75)" style={styles.searchIcon} />
                               <TextInput
                                 style={styles.searchInput}
