@@ -41,7 +41,7 @@ interface DestinationCard {
 }
 
 const destinationCards: DestinationCard[] = [
-  // 2 MULTI-CITY CIRCUITS
+  // MULTI-CITY CIRCUITS
   { 
     id: 'italian-coast-circuit', 
     city: 'Amalfi → Ravello → Sorrento', 
@@ -70,6 +70,34 @@ const destinationCards: DestinationCard[] = [
     cityInitials: ['FLR', 'SIE', 'SGM'],
     duration: '5 days',
     circuitTitle: 'Tuscan Renaissance Loop'
+  },
+  { 
+    id: 'kyoto-osaka-circuit', 
+    city: 'Kyoto → Osaka → Nara', 
+    region: 'Japan', 
+    tagline: 'Ancient temples & modern pulse', 
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', 
+    transport: [{ icon: 'calendar-outline', time: '6 days' }], 
+    category: 'inspire',
+    isMultiCity: true,
+    cities: ['Kyoto', 'Osaka', 'Nara'],
+    cityInitials: ['KYO', 'OSA', 'NAR'],
+    duration: '6 days',
+    circuitTitle: 'Kyoto – Osaka Loop'
+  },
+  { 
+    id: 'kyoto-tokyo-circuit', 
+    city: 'Kyoto → Hakone → Tokyo', 
+    region: 'Japan', 
+    tagline: 'Tradition meets metropolis', 
+    image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', 
+    transport: [{ icon: 'calendar-outline', time: '8 days' }], 
+    category: 'inspire',
+    isMultiCity: true,
+    cities: ['Kyoto', 'Hakone', 'Tokyo'],
+    cityInitials: ['KYO', 'HAK', 'TYO'],
+    duration: '8 days',
+    circuitTitle: 'Kyoto – Nara – Tokyo'
   },
   
   // 12 UNIQUE VACATIONS DESTINATIONS
