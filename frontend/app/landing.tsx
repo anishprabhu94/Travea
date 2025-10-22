@@ -570,32 +570,9 @@ export default function Landing() {
           >
             {getCarouselConfig().map((carousel, carouselIndex) => (
               <View key={`${activeMode}-${carouselIndex}`} style={styles.carouselSection}>
-                {/* Carousel Title with Frosted Button */}
+                {/* Carousel Title */}
                 <View style={styles.carouselHeader}>
                   <Text style={styles.carouselTitle}>{carousel.title}</Text>
-                  <View style={styles.titleArrowSpacing} />
-                  {expandedCarousel !== carousel.title && (
-                    <TouchableOpacity 
-                      style={styles.frostedButton} 
-                      activeOpacity={0.8}
-                      onPress={() => setExpandedCarousel(carousel.title)}
-                      disabled={expandedCarousel !== null}
-                    >
-                      <BlurView intensity={12} tint="light" style={styles.frostedButtonBlur}>
-                        <View style={[
-                          styles.frostedButtonInner,
-                          expandedCarousel !== null && { opacity: 0.3 }
-                        ]}>
-                          <Ionicons 
-                            name="chevron-forward" 
-                            size={14} 
-                            color="rgba(201,169,109,0.8)"
-                            style={expandedCarousel === carousel.title && { transform: [{ rotate: '90deg' }] }}
-                          />
-                        </View>
-                      </BlurView>
-                    </TouchableOpacity>
-                  )}
                 </View>
 
                 {/* Horizontal Carousel */}
