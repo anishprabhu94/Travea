@@ -1931,6 +1931,19 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
+  resultsSearchInput: {
+    fontSize: 16,
+    color: '#F8F8F8',
+    letterSpacing: 0.3,
+    flex: 1,
+    paddingVertical: 0,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+    outlineStyle: 'none',
+  },
   resultsFeed: {
     flex: 1,
   },
