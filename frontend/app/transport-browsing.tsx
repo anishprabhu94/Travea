@@ -340,7 +340,7 @@ export default function TransportBrowsing() {
                 }
               ]}
             >
-                {(['attractions', 'immersions', 'adventures', 'saved'] as const).map((filter, index) => (
+                {(['train', 'bus', 'car_rental', 'other', 'saved'] as const).map((filter, index) => (
                   <TouchableOpacity
                     key={filter}
                     style={[
