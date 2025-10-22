@@ -1879,7 +1879,7 @@ const styles = StyleSheet.create({
   // Frosted Feed Container
   expansionFeedContainer: {
     position: 'absolute',
-    top: 64,
+    top: Dimensions.get('window').height * 0.18, // Below header (18% of screen)
     left: 0,
     right: 0,
     bottom: 0,
