@@ -673,7 +673,7 @@ export default function Landing() {
             <View style={styles.expansionTopBar}>
               {/* Background Image Layer */}
               <ImageBackground
-                source={{ uri: 'https://customer-assets.emergentagent.com/job_tripplanner-90/artifacts/r8wdai22_image.png' }}
+                source={{ uri: 'https://customer-assets.emergentagent.com/job_tripplanner-90/artifacts/gilr1svu_search%202.jpg' }}
                 style={styles.headerBackgroundImage}
                 imageStyle={styles.headerBackgroundImageStyle}
                 blurRadius={22}
