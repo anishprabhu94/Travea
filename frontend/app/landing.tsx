@@ -971,11 +971,6 @@ export default function Landing() {
                         // CITY NOT IN ANY TRIP - Show standard discovery flow
                         return (
                           <>
-                            {/* Inspired By Your Interests */}
-                            <View style={styles.inspiredHeader}>
-                              <Text style={styles.inspiredText}>Inspired by your interests ✦</Text>
-                            </View>
-                            
                             {/* Primary City Card */}
                             {destinationCards
                               .filter(card => !card.isMultiCity && 
@@ -1000,18 +995,25 @@ export default function Landing() {
                               ))
                             }
                             
-                            {/* Multi-City Circuits featuring this city */}
+                            {/* Multi-City Circuits Carousel */}
                             <View style={styles.relatedSection}>
                               <Text style={styles.relatedSectionTitle}>Journeys including {selectedCity} ✦</Text>
-                              {destinationCards
-                                .filter(card => card.isMultiCity && 
-                                  card.cities?.some(city => city.toLowerCase().includes(selectedCity!.toLowerCase())))
-                                .map((destination, index) => (
-                                  <View key={`multi-${destination.id}`} style={styles.resultCardWrapper}>
-                                    {renderDestinationCard(destination, index)}
-                                  </View>
-                                ))
-                              }
+                              <ScrollView
+                                horizontal
+                                showsHorizontalScrollIndicator={false}
+                                style={styles.resultsCarousel}
+                                contentContainerStyle={styles.resultsCarouselContent}
+                              >
+                                {destinationCards
+                                  .filter(card => card.isMultiCity && 
+                                    card.cities?.some(city => city.toLowerCase().includes(selectedCity!.toLowerCase())))
+                                  .map((destination, index) => (
+                                    <View key={`multi-${destination.id}`} style={styles.resultsCarouselCard}>
+                                      {renderDestinationCard(destination, index)}
+                                    </View>
+                                  ))
+                                }
+                              </ScrollView>
                             </View>
                           </>
                         )
