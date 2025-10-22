@@ -1803,13 +1803,23 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, Inter, -apple-system, sans-serif',
     }),
   },
-  expansionCardFeed: {
+  // Frosted Feed Container
+  expansionFeedContainer: {
     position: 'absolute',
-    top: 100,
+    top: 64,
     left: 0,
     right: 0,
     bottom: 0,
     zIndex: 1001,
+    backgroundColor: 'rgba(10,10,10,0.55)', // Dark glass tone
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(25px)', // Depth blur
+      },
+    }),
+  },
+  expansionCardFeed: {
+    flex: 1,
   },
   expansionCardFeedContent: {
     paddingHorizontal: 20,
