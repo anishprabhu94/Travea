@@ -611,6 +611,54 @@ export default function Landing() {
             ))}
           </ScrollView>
         )}
+        
+        {/* Expansion View Overlay */}
+        {expandedCarousel !== null && (
+          <View style={styles.expansionOverlay}>
+            {/* Blur/Dim Background */}
+            <TouchableOpacity 
+              style={styles.expansionBlurBackground}
+              activeOpacity={1}
+              onPress={() => setExpandedCarousel(null)}
+            >
+              <BlurView intensity={30} tint="dark" style={styles.expansionBlur}>
+                <View style={styles.expansionDim} />
+              </BlurView>
+            </TouchableOpacity>
+            
+            {/* Frosted Top Bar */}
+            <View style={styles.expansionTopBar}>
+              <BlurView intensity={50} tint="light" style={styles.expansionTopBarBlur}>
+                <View style={styles.expansionTopBarContent}>
+                  <Text style={styles.expansionTopBarTitle}>{expandedCarousel}</Text>
+                  <TouchableOpacity 
+                    style={styles.expansionCloseButton}
+                    onPress={() => setExpandedCarousel(null)}
+                    activeOpacity={0.7}
+                  >
+                    <Text style={styles.expansionCloseIcon}>✦</Text>
+                    <Text style={styles.expansionCloseText}>Close</Text>
+                  </TouchableOpacity>
+                </View>
+              </BlurView>
+            </View>
+            
+            {/* Vertical Card Feed */}
+            <ScrollView 
+              style={styles.expansionCardFeed}
+              contentContainerStyle={styles.expansionCardFeedContent}
+              showsVerticalScrollIndicator={false}
+            >
+              {getCarouselConfig()
+                .find(c => c.title === expandedCarousel)
+                ?.cards.map((destination, cardIndex) => (
+                  <View key={`expanded-${destination.id}`} style={styles.expansionCardWrapper}>
+                    {renderDestinationCard(destination, cardIndex)}
+                  </View>
+                ))}
+            </ScrollView>
+          </View>
+        )}
 
         {/* Search Pane */}
         {activeMode === 'search' && (
