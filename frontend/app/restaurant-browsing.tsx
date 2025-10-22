@@ -375,7 +375,7 @@ export default function RestaurantBrowsing() {
           {activeFilter === 'saved' ? (
             // Saved filter: Show carousels by category (including For You)
             <>
-              {Object.entries(savedRestaurantsByCategory).map(([category, stays]) => (
+              {Object.entries(savedRestaurantsByCategory).map(([category, restaurants]) => (
                 <View key={category} style={styles.savedCategorySection}>
                   <Text style={styles.savedCategoryTitle}>
                     {category.charAt(0).toUpperCase() + category.slice(1)}
