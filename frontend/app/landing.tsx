@@ -669,33 +669,72 @@ export default function Landing() {
               </BlurView>
             </TouchableOpacity>
             
-            {/* Frosted Top Bar - Dark Glass Design */}
+            {/* Redesigned Header Bar with Coastal Sunset Background */}
             <View style={styles.expansionTopBar}>
-              {/* Edge Highlight - Top Air Gap */}
-              <View style={styles.edgeHighlightTop} />
-              
-              <BlurView intensity={25} tint="dark" style={styles.expansionTopBarBlur}>
-                <View style={styles.expansionTopBarContent}>
-                  <Text style={styles.expansionTopBarTitle}>{expandedCarousel}</Text>
-                  <TouchableOpacity 
-                    style={styles.expansionCloseButton}
-                    onPress={() => setExpandedCarousel(null)}
-                    activeOpacity={0.7}
-                  >
-                    <BlurView intensity={20} tint="light" style={styles.closePillBlur}>
-                      <View style={styles.closePillContent}>
-                        <Text style={styles.expansionCloseIcon}>✦</Text>
-                        <Text style={styles.expansionCloseText}>Close</Text>
-                      </View>
-                    </BlurView>
-                  </TouchableOpacity>
-                </View>
-                {/* Gold Divider Line at Bottom */}
-                <View style={styles.topBarDivider} />
-              </BlurView>
-              
-              {/* Edge Highlight - Bottom Air Gap */}
-              <View style={styles.edgeHighlightBottom} />
+              {/* Background Image Layer */}
+              <ImageBackground
+                source={{ uri: 'https://customer-assets.emergentagent.com/job_tripplanner-90/artifacts/r8wdai22_image.png' }}
+                style={styles.headerBackgroundImage}
+                imageStyle={styles.headerBackgroundImageStyle}
+                blurRadius={22}
+              >
+                {/* Frosted Glass Overlay */}
+                <BlurView intensity={25} tint="dark" style={styles.headerFrostedPane}>
+                  {/* Warm Gold Gradient Overlay */}
+                  <LinearGradient
+                    colors={[
+                      'rgba(212,190,132,0.08)',
+                      'rgba(212,190,132,0.04)',
+                      'rgba(212,190,132,0.00)'
+                    ]}
+                    style={styles.headerGoldGradient}
+                  />
+                  
+                  {/* Content Container */}
+                  <View style={styles.headerContent}>
+                    {/* Left: Title and Subtitle */}
+                    <View style={styles.headerTextContainer}>
+                      <Text style={styles.headerTitle}>{expandedCarousel}</Text>
+                      <Text style={styles.headerSubtitle}>Handpicked journeys ✦ Just for you</Text>
+                    </View>
+                    
+                    {/* Right: Close Pill with Gradient */}
+                    <TouchableOpacity 
+                      style={styles.headerCloseButton}
+                      onPress={() => setExpandedCarousel(null)}
+                      activeOpacity={0.7}
+                    >
+                      <LinearGradient
+                        colors={[
+                          'rgba(212,190,132,0.22)',
+                          'rgba(212,190,132,0.06)'
+                        ]}
+                        style={styles.closePillGradient}
+                      >
+                        <BlurView intensity={15} tint="light" style={styles.closePillBlur}>
+                          <View style={styles.closePillContent}>
+                            <Text style={styles.headerCloseIcon}>✦</Text>
+                            <Text style={styles.headerCloseText}>Close</Text>
+                          </View>
+                        </BlurView>
+                      </LinearGradient>
+                    </TouchableOpacity>
+                  </View>
+                  
+                  {/* Faint Highlight Line at Bottom */}
+                  <View style={styles.headerSeparatorLine} />
+                </BlurView>
+                
+                {/* Fade Gradient into Dark Interface */}
+                <LinearGradient
+                  colors={[
+                    'rgba(14,14,14,0)',
+                    'rgba(14,14,14,0.3)',
+                    'rgba(14,14,14,0.8)'
+                  ]}
+                  style={styles.headerFadeGradient}
+                />
+              </ImageBackground>
             </View>
             
             {/* Vertical Card Feed with Frosted Container */}
