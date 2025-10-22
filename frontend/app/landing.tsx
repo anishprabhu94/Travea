@@ -576,9 +576,17 @@ export default function Landing() {
                 <View style={styles.carouselHeader}>
                   <Text style={styles.carouselTitle}>{carousel.title}</Text>
                   <View style={styles.titleArrowSpacing} />
-                  <TouchableOpacity style={styles.frostedButton} activeOpacity={0.8}>
+                  <TouchableOpacity 
+                    style={styles.frostedButton} 
+                    activeOpacity={0.8}
+                    onPress={() => setExpandedCarousel(carousel.title)}
+                    disabled={expandedCarousel !== null && expandedCarousel !== carousel.title}
+                  >
                     <BlurView intensity={12} tint="light" style={styles.frostedButtonBlur}>
-                      <View style={styles.frostedButtonInner}>
+                      <View style={[
+                        styles.frostedButtonInner,
+                        expandedCarousel !== null && expandedCarousel !== carousel.title && { opacity: 0.3 }
+                      ]}>
                         <Ionicons name="chevron-forward" size={14} color="rgba(201,169,109,0.8)" />
                       </View>
                     </BlurView>
