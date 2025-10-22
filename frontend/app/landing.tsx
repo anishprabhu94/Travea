@@ -1759,14 +1759,83 @@ const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: 'rgba(10,10,10,0.55)', // Dark neutral veil
   },
-  // Dark Frosted Top Bar
+  // Redesigned Header Bar with Background Image
   expansionTopBar: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    height: 64,
+    height: Dimensions.get('window').height * 0.18, // 18% of screen
     zIndex: 1001,
+  },
+  headerBackgroundImage: {
+    flex: 1,
+    width: '100%',
+  },
+  headerBackgroundImageStyle: {
+    opacity: 0.9,
+  },
+  headerFrostedPane: {
+    flex: 1,
+    backgroundColor: 'rgba(15,15,15,0.55)',
+  },
+  headerGoldGradient: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '30%',
+  },
+  headerContent: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 24,
+    paddingTop: 50,
+    paddingBottom: 16,
+  },
+  headerTextContainer: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#EAE7DF', // Warm ivory
+    letterSpacing: 0.3,
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Playfair Display',
+      android: 'serif',
+      web: 'Playfair Display, Georgia, serif',
+    }),
+  },
+  headerSubtitle: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: 'rgba(234,231,223,0.6)',
+    letterSpacing: 0.2,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, sans-serif',
+    }),
+  },
+  headerSeparatorLine: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 1,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+  },
+  headerFadeGradient: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 60,
   },
   // Edge Highlight - Air Gap Effect
   edgeHighlightTop: {
