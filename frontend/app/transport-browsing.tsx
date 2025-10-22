@@ -606,49 +606,26 @@ export default function TransportBrowsing() {
                     {Platform.OS === 'web' ? (
                       <View style={styles.frostedContent}>
                         {/* Transport icon + Origin -> Destination */}
-                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10}}>
-                          <View style={{
-                            width: 36, 
-                            height: 36, 
-                            borderRadius: 18, 
-                            backgroundColor: 'rgba(203,184,140,0.2)', 
-                            alignItems: 'center', 
-                            justifyContent: 'center', 
-                            marginRight: 10, 
-                            borderWidth: 1, 
-                            borderColor: 'rgba(203,184,140,0.3)'
-                          }}>
-                            <Ionicons name={transport.icon} size={18} color="#CBB88C" />
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 8}}>
+                          <View style={styles.transportIconCircle}>
+                            <Ionicons name={transport.icon} size={14} color="#FFFFFF" />
                           </View>
-                          <Text style={{fontSize: 18, fontFamily: 'DMSans-Bold', color: '#FFFFFF', flex: 1, letterSpacing: 0.3}}>
+                          <Text style={styles.stayCardName}>
                             {transport.origin} → {transport.destination}
                           </Text>
                         </View>
                         
                         {/* Provider · Duration */}
-                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 8}}>
-                          <Text style={{fontSize: 14, color: 'rgba(217,203,160,0.8)', fontFamily: 'DMSans-Regular'}}>{transport.provider}</Text>
-                          <Text style={{fontSize: 14, color: 'rgba(255,255,255,0.4)', marginHorizontal: 6}}> · </Text>
-                          <Ionicons name="time-outline" size={14} color="rgba(217,203,160,0.8)" style={{marginRight: 4}} />
-                          <Text style={{fontSize: 14, color: 'rgba(217,203,160,0.8)', fontFamily: 'DMSans-Regular'}}>{transport.duration}</Text>
-                        </View>
+                        <Text style={styles.stayCardTagline}>{transport.provider} · {transport.duration}</Text>
                         
-                        {/* Depart & Arrive */}
-                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 12}}>
-                          <Ionicons name="calendar-outline" size={14} color="rgba(217,203,160,0.8)" style={{marginRight: 4}} />
-                          <Text style={{fontSize: 13, color: 'rgba(217,203,160,0.8)', fontFamily: 'DMSans-Regular'}}>
-                            Depart: {transport.departTime}
+                        {/* Depart & Arrive with Est. Total */}
+                        <View style={styles.decisionRow}>
+                          <Text style={styles.nightsRatingText}>
+                            {transport.departTime}–{transport.arriveTime}
                           </Text>
-                          <Text style={{fontSize: 14, color: 'rgba(255,255,255,0.4)', marginHorizontal: 6}}> · </Text>
-                          <Text style={{fontSize: 13, color: 'rgba(217,203,160,0.8)', fontFamily: 'DMSans-Regular'}}>
-                            Arrive: {transport.arriveTime}
-                          </Text>
+                          <Text style={styles.decisionDot}> · </Text>
+                          <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
                         </View>
-                        
-                        {/* Est. Total */}
-                        <Text style={{fontSize: 16, color: '#FFFFFF', fontFamily: 'DMSans-Medium', marginBottom: 14}}>
-                          Est. Total: €{formatPrice(totalPrice)} pp
-                        </Text>
                         
                         <View style={styles.ivorySeparator} />
                         <View style={styles.cardDatePill}>
@@ -660,49 +637,26 @@ export default function TransportBrowsing() {
                     ) : (
                       <BlurView intensity={30} tint="light" style={styles.blurViewContent}>
                         {/* Transport icon + Origin -> Destination */}
-                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10}}>
-                          <View style={{
-                            width: 36, 
-                            height: 36, 
-                            borderRadius: 18, 
-                            backgroundColor: 'rgba(203,184,140,0.2)', 
-                            alignItems: 'center', 
-                            justifyContent: 'center', 
-                            marginRight: 10, 
-                            borderWidth: 1, 
-                            borderColor: 'rgba(203,184,140,0.3)'
-                          }}>
-                            <Ionicons name={transport.icon} size={18} color="#CBB88C" />
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 8}}>
+                          <View style={styles.transportIconCircle}>
+                            <Ionicons name={transport.icon} size={14} color="#FFFFFF" />
                           </View>
-                          <Text style={{fontSize: 18, fontFamily: 'DMSans-Bold', color: '#FFFFFF', flex: 1, letterSpacing: 0.3}}>
+                          <Text style={styles.stayCardName}>
                             {transport.origin} → {transport.destination}
                           </Text>
                         </View>
                         
                         {/* Provider · Duration */}
-                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 8}}>
-                          <Text style={{fontSize: 14, color: 'rgba(217,203,160,0.8)', fontFamily: 'DMSans-Regular'}}>{transport.provider}</Text>
-                          <Text style={{fontSize: 14, color: 'rgba(255,255,255,0.4)', marginHorizontal: 6}}> · </Text>
-                          <Ionicons name="time-outline" size={14} color="rgba(217,203,160,0.8)" style={{marginRight: 4}} />
-                          <Text style={{fontSize: 14, color: 'rgba(217,203,160,0.8)', fontFamily: 'DMSans-Regular'}}>{transport.duration}</Text>
-                        </View>
+                        <Text style={styles.stayCardTagline}>{transport.provider} · {transport.duration}</Text>
                         
-                        {/* Depart & Arrive */}
-                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 12}}>
-                          <Ionicons name="calendar-outline" size={14} color="rgba(217,203,160,0.8)" style={{marginRight: 4}} />
-                          <Text style={{fontSize: 13, color: 'rgba(217,203,160,0.8)', fontFamily: 'DMSans-Regular'}}>
-                            Depart: {transport.departTime}
+                        {/* Depart & Arrive with Est. Total */}
+                        <View style={styles.decisionRow}>
+                          <Text style={styles.nightsRatingText}>
+                            {transport.departTime}–{transport.arriveTime}
                           </Text>
-                          <Text style={{fontSize: 14, color: 'rgba(255,255,255,0.4)', marginHorizontal: 6}}> · </Text>
-                          <Text style={{fontSize: 13, color: 'rgba(217,203,160,0.8)', fontFamily: 'DMSans-Regular'}}>
-                            Arrive: {transport.arriveTime}
-                          </Text>
+                          <Text style={styles.decisionDot}> · </Text>
+                          <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
                         </View>
-                        
-                        {/* Est. Total */}
-                        <Text style={{fontSize: 16, color: '#FFFFFF', fontFamily: 'DMSans-Medium', marginBottom: 14}}>
-                          Est. Total: €{formatPrice(totalPrice)} pp
-                        </Text>
                         
                         <View style={styles.ivorySeparator} />
                         <View style={styles.cardDatePill}>
