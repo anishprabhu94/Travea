@@ -104,6 +104,7 @@ export default function Landing() {
   const router = useRouter()
   const { bookmarkedItems, addBookmark, removeBookmark } = useBookmarks()
   const [activeMode, setActiveMode] = useState('vacations') // Default to Vacations
+  const [expandedCarousel, setExpandedCarousel] = useState<string | null>(null)
   const [bookmarkAnimations, setBookmarkAnimations] = useState<{[key: string]: Animated.Value}>({})
   
   // Animation refs
