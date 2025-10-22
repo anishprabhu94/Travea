@@ -15,6 +15,11 @@ import { BlurView } from 'expo-blur'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
 import { useBookmarks } from '../contexts/BookmarkContext'
+import { useTrips } from '../contexts/TripsContext'
+import { useStayBooking } from '../contexts/StayBookingContext'
+import { useExperienceBooking } from '../contexts/ExperienceBookingContext'
+import { useRestaurantBooking } from '../contexts/RestaurantBookingContext'
+import { useTransportBooking } from '../contexts/TransportBookingContext'
 import TraveaWordmark from '../components/TraveaWordmark'
 
 const { width, height } = Dimensions.get('window')
