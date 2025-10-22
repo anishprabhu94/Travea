@@ -1456,35 +1456,26 @@ export default function TripCanvas() {
   };
 
   // Transport Section - Horizontal Scroll
+
+  // Transport Section - With Real Bookings
   const renderTransport = () => {
-    if (activeDay.transport.length === 0) return null;
+    const bookedTransports = getTransportBookingsByTrip(currentTrip.id);
+    const cityBookedTransports = bookedTransports.filter(booking => booking.cityCode === activeCityCode);
     
-    // Get unique dates for transport items
-    const uniqueDates = [...new Set(activeDay.transport.map(item => item.date))];
-    const displayDate = uniqueDates.length === 1 ? uniqueDates[0] : `${uniqueDates[0]} – ${uniqueDates[uniqueDates.length - 1]}`;
-    
-    // Get mock status from activeDay
-    const sectionStatus = activeDay.mockBookingStatus?.transport || 'Pending';
+    const sectionStatus = cityBookedTransports.length > 0 ? 'Booked' : 'Pending';
     
     return (
       <View style={styles.categorySection}>
         <View style={styles.frostedPanel}>
           <View style={styles.categoryHeader}>
             <View style={styles.categoryHeaderLeft}>
-              <Ionicons name="car" size={18} color="#B59B73" style={{marginRight: 8}} />
+              <Ionicons name="car-sport" size={18} color="#B59B73" style={{marginRight: 8}} />
               <Text style={styles.categoryTitle}>Transport</Text>
-              {/* Status Pill */}
               <View style={[styles.sectionStatusPill, {
-                backgroundColor: sectionStatus === 'Booked' ? 'rgba(201,166,91,0.25)' : 
-                                sectionStatus === 'Pending' ? 'rgba(150,150,150,0.25)' : 
-                                sectionStatus === 'N/A' ? 'rgba(255,255,255,0.1)' :
-                                'rgba(255,255,255,0.1)'
+                backgroundColor: sectionStatus === 'Booked' ? 'rgba(201,166,91,0.25)' : 'rgba(150,150,150,0.25)'
               }]}>
                 <Text style={[styles.sectionStatusText, {
-                  color: sectionStatus === 'Booked' ? '#C9A65B' : 
-                        sectionStatus === 'Pending' ? '#999999' :
-                        sectionStatus === 'N/A' ? 'rgba(255,255,255,0.6)' : 
-                        'rgba(255,255,255,0.6)'
+                  color: sectionStatus === 'Booked' ? '#C9A65B' : '#999999'
                 }]}>
                   {sectionStatus}
                 </Text>
@@ -1492,50 +1483,76 @@ export default function TripCanvas() {
             </View>
             <TouchableOpacity 
               style={styles.browseIconButton}
-              onPress={() => router.push('/book-journey')}
+              onPress={() => router.push({
+                pathname: '/transport-browsing',
+                params: { tripId: currentTrip.id, cityCode: activeCityCode }
+              })}
               activeOpacity={0.7}
             >
               <Ionicons name="compass-outline" size={18} color="rgba(203,184,140,0.8)" />
             </TouchableOpacity>
           </View>
           <View style={styles.categoryDivider} />
-          <ScrollView 
-            horizontal 
-            showsHorizontalScrollIndicator={false}
-            style={styles.horizontalScroll}
-          >
-            {activeDay.transport.map((item, index) => (
-              <TouchableOpacity 
-                key={item.id} 
-                style={[styles.transportImageCard, index === activeDay.transport.length - 1 && {marginRight: 0}]}
-                activeOpacity={0.8}
-                onPress={() => {
-                  // Navigate based on transport type
-                  if (item.type === 'train') {
-                    router.push('/train-info');
-                  } else if (item.type === 'bus') {
-                    router.push('/bus-info');
-                  } else if (item.type === 'rental-car') {
-                    router.push('/car-rental-info');
-                  } else if (item.type === 'ferry') {
-                    router.push('/ferry-info');
-                  }
-                }}
-              >
-                <ImageBackground
-                  source={{ uri: item.image }}
-                  style={styles.transportImageCardBg}
-                  imageStyle={styles.transportImageCardBgStyle}
+          
+          {cityBookedTransports.length > 0 ? (
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
+              {cityBookedTransports.map((booking, index) => (
+                <TouchableOpacity 
+                  key={booking.transportId} 
+                  style={[styles.experienceImageCard, index === cityBookedTransports.length - 1 && {marginRight: 0}]}
+                  activeOpacity={0.8}
+                  onPress={() => router.push({
+                    pathname: '/transport-info',
+                    params: {
+                      transportId: booking.transportId,
+                      people: booking.people.toString(),
+                      tripId: currentTrip.id,
+                      cityCode: activeCityCode,
+                      city: booking.city,
+                      date: booking.date
+                    }
+                  })}
                 >
-                  <View style={styles.cardDateBadgeOnImage}>
-                    <Text style={styles.cardDateText}>{activeCityFirstDate}</Text>
-                  </View>
-                  <LinearGradient
-                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
-                    style={styles.transportImageCardGradient}
-                  />
-                  <View style={styles.transportImageCardFrosted}>
-                    {/* Transport Type Icon - Top Right */}
+                  <ImageBackground
+                    source={{ uri: booking.transportImage || 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' }}
+                    style={styles.experienceImageCardBg}
+                    imageStyle={styles.experienceImageCardBgStyle}
+                  >
+                    <View style={styles.cardDateBadgeOnImage}>
+                      <Text style={styles.cardDateText}>{booking.date || activeCityFirstDate}</Text>
+                    </View>
+                    <LinearGradient
+                      colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
+                      style={styles.experienceImageCardGradient}
+                    />
+                    <View style={styles.experienceImageCardFrosted}>
+                      <Text style={styles.experienceCardTitle}>{booking.transportName || 'Transport'}</Text>
+                      <View style={styles.experienceCardDetailsRow}>
+                        <Ionicons name="people-outline" size={14} color="rgba(181,155,115,0.9)" />
+                        <Text style={styles.experienceCardDetails}>
+                          {booking.people} {booking.people === 1 ? 'person' : 'people'}
+                        </Text>
+                        <Text style={styles.experienceCardLocation}>· €{booking.pricePerPerson ? booking.pricePerPerson * booking.people : '---'}</Text>
+                      </View>
+                    </View>
+                  </ImageBackground>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          ) : (
+            <View style={{ padding: 16, alignItems: 'center' }}>
+              <Text style={{ color: 'rgba(255,255,255,0.5)', fontSize: 14, fontFamily: 'DMSans-Regular' }}>
+                No transport booked yet
+              </Text>
+              <Text style={{ color: 'rgba(255,255,255,0.3)', fontSize: 12, fontFamily: 'DMSans-Regular', marginTop: 4 }}>
+                Tap the compass to browse transport
+              </Text>
+            </View>
+          )}
+        </View>
+      </View>
+    );
+  };
                     <View style={styles.transportTypeIcon}>
                       <Ionicons 
                         name={
