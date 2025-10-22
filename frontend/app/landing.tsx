@@ -161,6 +161,11 @@ const destinationCards: DestinationCard[] = [
 export default function Landing() {
   const router = useRouter()
   const { bookmarkedItems, addBookmark, removeBookmark } = useBookmarks()
+  const { trips } = useTrips()
+  const { bookedStays } = useStayBooking()
+  const { bookedExperiences } = useExperienceBooking()
+  const { bookedRestaurants } = useRestaurantBooking()
+  const { bookedTransports } = useTransportBooking()
   const [activeMode, setActiveMode] = useState<'vacations' | 'weekends'>('vacations')
   const [searchActive, setSearchActive] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
