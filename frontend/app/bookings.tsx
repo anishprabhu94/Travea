@@ -1278,43 +1278,6 @@ export default function TripCanvas() {
     </View>
   );
 
-  // Flights Section - Frosted Glass Cards with Input Card
-  const [flightNumber, setFlightNumber] = useState('');
-  const [dayFlights, setDayFlights] = useState<{[key: string]: any[]}>({}); // Store flights per day
-  
-  // Get number of travelers from trip data
-  const numberOfTravelers = currentTrip?.travelers || 2;
-  
-  // Calculate flight status based on number of travelers
-  const calculateFlightStatus = (flights: any[]) => {
-    if (flights.length === 0) return 'Pending';
-    if (flights.length >= numberOfTravelers) return 'Booked';
-    return 'Pending';
-  };
-  
-  // Add flight function
-  const handleAddFlight = () => {
-    if (!flightNumber.trim()) return;
-    
-    // Mock flight data - in real app, this would call an API
-    const newFlight = {
-      id: Date.now().toString(),
-      traveler: `Traveler ${(dayFlights[activeDay.id]?.length || 0) + 1}`,
-      date: activeCityFirstDate,
-      route: 'JFK → FCO', // Mock data
-      airline: flightNumber.toUpperCase(),
-      time: '10:00 – 22:30 · 8h 30m Nonstop', // Mock data
-      details: 'T1 Gate B12', // Mock data
-    };
-    
-    setDayFlights(prev => ({
-      ...prev,
-      [activeDay.id]: [...(prev[activeDay.id] || []), newFlight]
-    }));
-    
-    setFlightNumber('');
-  };
-  
   const renderFlights = () => {
     const currentDayFlights = dayFlights[activeDay.id] || [];
     const allFlights = [...activeDay.flights, ...currentDayFlights];
