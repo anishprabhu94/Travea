@@ -622,20 +622,36 @@ export default function Landing() {
         {/* Expansion View Overlay */}
         {expandedCarousel !== null && (
           <View style={styles.expansionOverlay}>
-            {/* Blur/Dim Background */}
+            {/* Multi-Layer Background Blur System */}
             <TouchableOpacity 
               style={styles.expansionBlurBackground}
               activeOpacity={1}
               onPress={() => setExpandedCarousel(null)}
             >
-              <BlurView intensity={30} tint="dark" style={styles.expansionBlur}>
+              {/* Base Blur Layer */}
+              <BlurView intensity={22} tint="dark" style={styles.expansionBlur}>
+                {/* Warm-Neutral Frost Overlay */}
+                <View style={styles.expansionFrostTone} />
+                {/* Vertical Gradient Depth Overlay */}
+                <LinearGradient
+                  colors={[
+                    'rgba(15,15,15,0.15)',
+                    'rgba(15,15,15,0.35)',
+                    'rgba(15,15,15,0.55)'
+                  ]}
+                  style={styles.expansionGradientDepth}
+                />
+                {/* Dim Layer */}
                 <View style={styles.expansionDim} />
               </BlurView>
             </TouchableOpacity>
             
-            {/* Frosted Top Bar */}
+            {/* Frosted Top Bar - Dark Glass Design */}
             <View style={styles.expansionTopBar}>
-              <BlurView intensity={50} tint="light" style={styles.expansionTopBarBlur}>
+              {/* Edge Highlight - Top Air Gap */}
+              <View style={styles.edgeHighlightTop} />
+              
+              <BlurView intensity={25} tint="dark" style={styles.expansionTopBarBlur}>
                 <View style={styles.expansionTopBarContent}>
                   <Text style={styles.expansionTopBarTitle}>{expandedCarousel}</Text>
                   <TouchableOpacity 
@@ -643,27 +659,38 @@ export default function Landing() {
                     onPress={() => setExpandedCarousel(null)}
                     activeOpacity={0.7}
                   >
-                    <Text style={styles.expansionCloseIcon}>✦</Text>
-                    <Text style={styles.expansionCloseText}>Close</Text>
+                    <BlurView intensity={20} tint="light" style={styles.closePillBlur}>
+                      <View style={styles.closePillContent}>
+                        <Text style={styles.expansionCloseIcon}>✦</Text>
+                        <Text style={styles.expansionCloseText}>Close</Text>
+                      </View>
+                    </BlurView>
                   </TouchableOpacity>
                 </View>
+                {/* Gold Divider Line at Bottom */}
+                <View style={styles.topBarDivider} />
               </BlurView>
+              
+              {/* Edge Highlight - Bottom Air Gap */}
+              <View style={styles.edgeHighlightBottom} />
             </View>
             
-            {/* Vertical Card Feed */}
-            <ScrollView 
-              style={styles.expansionCardFeed}
-              contentContainerStyle={styles.expansionCardFeedContent}
-              showsVerticalScrollIndicator={false}
-            >
-              {getCarouselConfig()
-                .find(c => c.title === expandedCarousel)
-                ?.cards.map((destination, cardIndex) => (
-                  <View key={`expanded-${destination.id}`} style={styles.expansionCardWrapper}>
-                    {renderDestinationCard(destination, cardIndex)}
-                  </View>
-                ))}
-            </ScrollView>
+            {/* Vertical Card Feed with Frosted Container */}
+            <View style={styles.expansionFeedContainer}>
+              <ScrollView 
+                style={styles.expansionCardFeed}
+                contentContainerStyle={styles.expansionCardFeedContent}
+                showsVerticalScrollIndicator={false}
+              >
+                {getCarouselConfig()
+                  .find(c => c.title === expandedCarousel)
+                  ?.cards.map((destination, cardIndex) => (
+                    <View key={`expanded-${destination.id}`} style={styles.expansionCardWrapper}>
+                      {renderDestinationCard(destination, cardIndex)}
+                    </View>
+                  ))}
+              </ScrollView>
+            </View>
           </View>
         )}
 
