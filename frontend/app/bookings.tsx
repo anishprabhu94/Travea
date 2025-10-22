@@ -3475,7 +3475,7 @@ const styles = StyleSheet.create({
   },
   removeFlightButton: {
     position: 'absolute',
-    top: 12,
+    top: 16,
     right: 12,
     width: 32,
     height: 32,
