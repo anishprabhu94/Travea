@@ -252,6 +252,105 @@ export default function Landing() {
     }
   }
 
+  // Stage 1: Search Activation Handler
+  const handleSearchActivation = () => {
+    setSearchTransitionState('activated')
+    
+    // Smooth cinematic animations (350ms with ease-in-out)
+    Animated.parallel([
+      // Expand pane by ~10-15%
+      Animated.timing(searchPaneExpansion, {
+        toValue: 1.12,
+        duration: 350,
+        useNativeDriver: true,
+      }),
+      // Increase blur intensity +4px
+      Animated.timing(searchBlurIntensity, {
+        toValue: 29,
+        duration: 350,
+        useNativeDriver: false,
+      }),
+      // Dim background to 60%
+      Animated.timing(backgroundDim, {
+        toValue: 0.6,
+        duration: 350,
+        useNativeDriver: true,
+      }),
+      // Shift glow to golden hue
+      Animated.timing(searchGlowAnim, {
+        toValue: 1,
+        duration: 350,
+        useNativeDriver: false,
+      })
+    ]).start()
+  }
+
+  // Stage 2: City Selection and Transition to Results
+  const handleCitySelection = (city: string) => {
+    setSelectedCity(city)
+    
+    // Pulse effect to signal handoff
+    Animated.sequence([
+      Animated.timing(searchGlowAnim, {
+        toValue: 1.3,
+        duration: 200,
+        useNativeDriver: false,
+      }),
+      Animated.timing(searchGlowAnim, {
+        toValue: 1,
+        duration: 200,
+        useNativeDriver: false,
+      })
+    ]).start(() => {
+      // After pulse, transition to results
+      setSearchTransitionState('results')
+      
+      // Transform pane into result state
+      Animated.parallel([
+        Animated.timing(searchPaneExpansion, {
+          toValue: 1.5, // Expand further for results
+          duration: 350,
+          useNativeDriver: true,
+        }),
+        Animated.timing(backgroundDim, {
+          toValue: 0.4, // Brighten slightly to reveal context
+          duration: 350,
+          useNativeDriver: true,
+        })
+      ]).start()
+    })
+  }
+
+  // Stage 4: Back to Search
+  const handleBackToSearch = () => {
+    setSearchTransitionState('idle')
+    setSelectedCity(null)
+    
+    // Fold back animations
+    Animated.parallel([
+      Animated.timing(searchPaneExpansion, {
+        toValue: 1,
+        duration: 350,
+        useNativeDriver: true,
+      }),
+      Animated.timing(searchBlurIntensity, {
+        toValue: 25,
+        duration: 350,
+        useNativeDriver: false,
+      }),
+      Animated.timing(backgroundDim, {
+        toValue: 1,
+        duration: 350,
+        useNativeDriver: true,
+      }),
+      Animated.timing(searchGlowAnim, {
+        toValue: 0,
+        duration: 350,
+        useNativeDriver: false,
+      })
+    ]).start()
+  }
+
   const getCurrentCards = () => {
     if (activeMode === 'search') return []
     // Map new mode names to card categories
