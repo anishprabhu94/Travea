@@ -113,8 +113,8 @@ export default function TransportBrowsing() {
     { id: 'trans4', origin: 'Florence', destination: 'Pisa', provider: 'Busitalia', duration: '1h 30m', departTime: '08:45', arriveTime: '10:15', pricePerPerson: 10, icon: 'bus', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', category: 'bus' },
     
     // CAR_RENTAL (2)
-    { id: 'trans5', origin: 'Florence', destination: 'Self-drive', provider: 'Hertz', duration: 'Full day', departTime: '08:00', arriveTime: '20:00', pricePerPerson: 85, icon: 'car', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', category: 'car_rental' },
-    { id: 'trans6', origin: 'Florence', destination: 'Self-drive', provider: 'Europcar', duration: 'Full day', departTime: '09:00', arriveTime: '18:00', pricePerPerson: 75, icon: 'car', image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg', category: 'car_rental' },
+    { id: 'trans5', origin: 'Florence', destination: 'Amalfi', provider: 'Hertz', duration: 'Full day', departTime: '08:00', arriveTime: '20:00', pricePerPerson: 85, icon: 'car', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', category: 'car_rental' },
+    { id: 'trans6', origin: 'Florence', destination: 'Tuscany', provider: 'Europcar', duration: 'Full day', departTime: '09:00', arriveTime: '18:00', pricePerPerson: 75, icon: 'car', image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg', category: 'car_rental' },
     
     // OTHER (2)
     { id: 'trans7', origin: 'Florence', destination: 'Chianti', provider: 'Private Driver', duration: '4h', departTime: '10:00', arriveTime: '14:00', pricePerPerson: 120, icon: 'car-sport', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', category: 'other' },
