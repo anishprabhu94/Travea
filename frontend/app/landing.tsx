@@ -850,47 +850,127 @@ export default function Landing() {
                     </BlurView>
                   </TouchableOpacity>
                   
-                  {/* Scrollable Results Feed */}
+                  {/* Scrollable Results Feed - Context Aware */}
                   <ScrollView 
                     style={styles.resultsFeed}
                     contentContainerStyle={styles.resultsFeedContent}
                     showsVerticalScrollIndicator={false}
                   >
-                    {/* Primary City Card */}
-                    {destinationCards
-                      .filter(card => !card.isMultiCity && card.city === selectedCity)
-                      .map((destination, index) => (
-                        <Animated.View 
-                          key={`primary-${destination.id}`}
-                          style={[
-                            styles.resultCardWrapper,
-                            {
-                              transform: [{
-                                scale: new Animated.Value(1.02).interpolate({
-                                  inputRange: [1, 1.02],
-                                  outputRange: [1, 1.02]
-                                })
-                              }]
+                    {(() => {
+                      const cityContext = selectedCity ? getCityTripContext(selectedCity) : { exists: false, trip: null, cityData: null }
+                      
+                      if (cityContext.exists && cityContext.trip) {
+                        // CITY EXISTS IN A TRIP - Show "Continue Your Trip" flow
+                        const bookedItems = getBookedItemsForCity(cityContext.trip.id, selectedCity!)
+                        
+                        return (
+                          <>
+                            {/* Continue Your Trip Header */}
+                            <View style={styles.continueYourTripHeader}>
+                              <Text style={styles.continueYourTripTitle}>Continue your trip in {selectedCity}</Text>
+                              <Text style={styles.continueYourTripSubtext}>
+                                Part of {cityContext.trip.name} · {cityContext.trip.startDate} – {cityContext.trip.endDate}
+                              </Text>
+                            </View>
+                            
+                            {/* Booked Stays */}
+                            {bookedItems.stays.length > 0 && (
+                              <View style={styles.bookedSection}>
+                                <View style={styles.bookedBadge}>
+                                  <LinearGradient
+                                    colors={['rgba(212,190,132,0.3)', 'rgba(212,190,132,0.15)']}
+                                    style={styles.bookedBadgeGradient}
+                                  >
+                                    <Text style={styles.bookedBadgeText}>✦ Booked</Text>
+                                  </LinearGradient>
+                                </View>
+                                {bookedItems.stays.map((stay: any, idx: number) => (
+                                  <View key={`booked-stay-${idx}`} style={styles.bookedItemCard}>
+                                    <Text style={styles.bookedItemTitle}>{stay.stayName || 'Your Stay'}</Text>
+                                    <Text style={styles.bookedItemDetail}>
+                                      ${stay.pricePerNight}/night · {stay.bookingDates?.start} – {stay.bookingDates?.end}
+                                    </Text>
+                                  </View>
+                                ))}
+                              </View>
+                            )}
+                            
+                            {/* You Might Also Like Section */}
+                            <View style={styles.relatedSection}>
+                              <Text style={styles.relatedSectionTitle}>You Might Also Like</Text>
+                              {destinationCards
+                                .filter(card => !card.isMultiCity && card.city === selectedCity)
+                                .slice(0, 3)
+                                .map((destination, index) => (
+                                  <View key={`alternate-${destination.id}`} style={styles.resultCardWrapper}>
+                                    {renderDestinationCard(destination, index)}
+                                  </View>
+                                ))
+                              }
+                            </View>
+                            
+                            {/* Multi-City Circuits */}
+                            <View style={styles.relatedSection}>
+                              <Text style={styles.relatedSectionTitle}>Journeys including {selectedCity} ✦</Text>
+                              {destinationCards
+                                .filter(card => card.isMultiCity && card.cities?.includes(selectedCity!))
+                                .map((destination, index) => (
+                                  <View key={`multi-${destination.id}`} style={styles.resultCardWrapper}>
+                                    {renderDestinationCard(destination, index)}
+                                  </View>
+                                ))
+                              }
+                            </View>
+                          </>
+                        )
+                      } else {
+                        // CITY NOT IN ANY TRIP - Show standard discovery flow
+                        return (
+                          <>
+                            {/* Inspired By Your Interests */}
+                            <View style={styles.inspiredHeader}>
+                              <Text style={styles.inspiredText}>Inspired by your interests ✦</Text>
+                            </View>
+                            
+                            {/* Primary City Card */}
+                            {destinationCards
+                              .filter(card => !card.isMultiCity && card.city === selectedCity)
+                              .map((destination, index) => (
+                                <Animated.View 
+                                  key={`primary-${destination.id}`}
+                                  style={[
+                                    styles.resultCardWrapper,
+                                    {
+                                      transform: [{
+                                        scale: new Animated.Value(1.02).interpolate({
+                                          inputRange: [1, 1.02],
+                                          outputRange: [1, 1.02]
+                                        })
+                                      }]
+                                    }
+                                  ]}
+                                >
+                                  {renderDestinationCard(destination, index)}
+                                </Animated.View>
+                              ))
                             }
-                          ]}
-                        >
-                          {renderDestinationCard(destination, index)}
-                        </Animated.View>
-                      ))
-                    }
-                    
-                    {/* Multi-City Circuits featuring this city */}
-                    <View style={styles.relatedSection}>
-                      <Text style={styles.relatedSectionTitle}>Journeys including {selectedCity} ✦</Text>
-                      {destinationCards
-                        .filter(card => card.isMultiCity && card.cities?.includes(selectedCity))
-                        .map((destination, index) => (
-                          <View key={`multi-${destination.id}`} style={styles.resultCardWrapper}>
-                            {renderDestinationCard(destination, index)}
-                          </View>
-                        ))
+                            
+                            {/* Multi-City Circuits featuring this city */}
+                            <View style={styles.relatedSection}>
+                              <Text style={styles.relatedSectionTitle}>Journeys including {selectedCity} ✦</Text>
+                              {destinationCards
+                                .filter(card => card.isMultiCity && card.cities?.includes(selectedCity!))
+                                .map((destination, index) => (
+                                  <View key={`multi-${destination.id}`} style={styles.resultCardWrapper}>
+                                    {renderDestinationCard(destination, index)}
+                                  </View>
+                                ))
+                              }
+                            </View>
+                          </>
+                        )
                       }
-                    </View>
+                    })()}
                   </ScrollView>
                 </Animated.View>
               )}
