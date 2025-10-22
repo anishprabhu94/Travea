@@ -652,22 +652,33 @@ export default function TransportBrowsing() {
                           <View style={styles.transportIconCircle}>
                             <Ionicons name={transport.icon} size={14} color="#FFFFFF" />
                           </View>
-                          <Text style={styles.stayCardName}>
-                            {transport.origin} → {transport.destination}
-                          </Text>
+                          <View style={{flex: 1, justifyContent: 'center'}}>
+                            <Text style={styles.stayCardName}>
+                              {transport.origin} → {transport.destination}
+                            </Text>
+                          </View>
                         </View>
                         
-                        {/* Provider · Duration */}
-                        <Text style={styles.stayCardTagline}>{transport.provider} · {transport.duration}</Text>
+                        {/* Provider with Duration icon */}
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 8}}>
+                          <Text style={styles.stayCardTagline}>{transport.provider}</Text>
+                          <Text style={[styles.stayCardTagline, {marginHorizontal: 6}]}> · </Text>
+                          <Ionicons name="time-outline" size={13} color="#FFFFFF" style={{marginRight: 4}} />
+                          <Text style={styles.stayCardTagline}>{transport.duration}</Text>
+                        </View>
                         
-                        {/* Depart & Arrive with Est. Total */}
-                        <View style={styles.decisionRow}>
-                          <Text style={styles.nightsRatingText}>
-                            {transport.departTime}–{transport.arriveTime}
-                          </Text>
+                        {/* Depart & Arrive with clock icons */}
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 14}}>
+                          <Ionicons name="time-outline" size={13} color="rgba(217,203,160,0.8)" style={{marginRight: 4}} />
+                          <Text style={styles.nightsRatingText}>Depart: {transport.departTime}</Text>
                           <Text style={styles.decisionDot}> · </Text>
-                          <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
+                          <Text style={styles.nightsRatingText}>Arrive: {transport.arriveTime}</Text>
                         </View>
+                        
+                        {/* Est. Price on separate line */}
+                        <Text style={[styles.priceText, {marginBottom: 14}]}>
+                          Est. Price: €{formatPrice(totalPrice)} pp
+                        </Text>
                         
                         <View style={styles.ivorySeparator} />
                         <View style={styles.cardDatePill}>
@@ -683,22 +694,33 @@ export default function TransportBrowsing() {
                           <View style={styles.transportIconCircle}>
                             <Ionicons name={transport.icon} size={14} color="#FFFFFF" />
                           </View>
-                          <Text style={styles.stayCardName}>
-                            {transport.origin} → {transport.destination}
-                          </Text>
+                          <View style={{flex: 1, justifyContent: 'center'}}>
+                            <Text style={styles.stayCardName}>
+                              {transport.origin} → {transport.destination}
+                            </Text>
+                          </View>
                         </View>
                         
-                        {/* Provider · Duration */}
-                        <Text style={styles.stayCardTagline}>{transport.provider} · {transport.duration}</Text>
+                        {/* Provider with Duration icon */}
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 8}}>
+                          <Text style={styles.stayCardTagline}>{transport.provider}</Text>
+                          <Text style={[styles.stayCardTagline, {marginHorizontal: 6}]}> · </Text>
+                          <Ionicons name="time-outline" size={13} color="#FFFFFF" style={{marginRight: 4}} />
+                          <Text style={styles.stayCardTagline}>{transport.duration}</Text>
+                        </View>
                         
-                        {/* Depart & Arrive with Est. Total */}
-                        <View style={styles.decisionRow}>
-                          <Text style={styles.nightsRatingText}>
-                            {transport.departTime}–{transport.arriveTime}
-                          </Text>
+                        {/* Depart & Arrive with clock icons */}
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 14}}>
+                          <Ionicons name="time-outline" size={13} color="rgba(217,203,160,0.8)" style={{marginRight: 4}} />
+                          <Text style={styles.nightsRatingText}>Depart: {transport.departTime}</Text>
                           <Text style={styles.decisionDot}> · </Text>
-                          <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
+                          <Text style={styles.nightsRatingText}>Arrive: {transport.arriveTime}</Text>
                         </View>
+                        
+                        {/* Est. Price on separate line */}
+                        <Text style={[styles.priceText, {marginBottom: 14}]}>
+                          Est. Price: €{formatPrice(totalPrice)} pp
+                        </Text>
                         
                         <View style={styles.ivorySeparator} />
                         <View style={styles.cardDatePill}>
