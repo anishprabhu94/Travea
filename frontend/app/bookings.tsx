@@ -433,6 +433,10 @@ export default function TripCanvas() {
   const [tripChangeMessage, setTripChangeMessage] = useState('');
   const [hasUsedAssignAll, setHasUsedAssignAll] = useState(false);
   
+  // Flight input states
+  const [flightNumber, setFlightNumber] = useState('');
+  const [dayFlights, setDayFlights] = useState<{[key: string]: any[]}>({}); // Store flights per day
+  
   const prevTripDates = React.useRef({ startMonth: tripStartMonth, startDay: tripStartDay, endMonth: tripEndMonth, endDay: tripEndDay });
   
   // Calculate progress based on mock booking status (Phase A)
