@@ -1352,24 +1352,50 @@ export default function TripCanvas() {
             style={styles.horizontalScroll}
           >
             {allFlights.map((flight, index) => (
-              <TouchableOpacity 
+              <View 
                 key={flight.id} 
                 style={styles.flightCard}
-                activeOpacity={0.8}
               >
-                <View style={styles.flightCardTopRow}>
-                  <Text style={styles.flightCardTraveler}>{flight.traveler}</Text>
-                  <View style={styles.cardDateBadge}>
+                <ImageBackground
+                  source={{ uri: 'https://customer-assets.emergentagent.com/job_tripplanner-90/artifacts/kdqm7un3_search%202.jpg' }}
+                  style={styles.flightImageCardBg}
+                  imageStyle={styles.flightImageCardBgStyle}
+                >
+                  {/* Date Badge - Top Right */}
+                  <View style={styles.cardDateBadgeOnImage}>
                     <Text style={styles.cardDateText}>{activeCityFirstDate}</Text>
                   </View>
-                </View>
-                <View style={styles.flightCardHeader}>
-                  <Text style={styles.flightCardRoute}>{flight.route}</Text>
-                </View>
-                <Text style={styles.flightCardAirline}>{flight.airline}</Text>
-                <Text style={styles.flightCardTime}>{flight.time}</Text>
-                <Text style={styles.flightCardDetails}>{flight.details}</Text>
-              </TouchableOpacity>
+                  
+                  {/* Remove Flight Button - Top Left */}
+                  <TouchableOpacity
+                    style={styles.removeFlightButton}
+                    onPress={() => {
+                      setDayFlights(prev => ({
+                        ...prev,
+                        [activeDay.id]: (prev[activeDay.id] || []).filter(f => f.id !== flight.id)
+                      }));
+                    }}
+                    activeOpacity={0.7}
+                  >
+                    <Ionicons name="close" size={16} color="rgba(255,255,255,0.9)" />
+                  </TouchableOpacity>
+                  
+                  {/* Gradient Overlay */}
+                  <LinearGradient
+                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)']}
+                    style={styles.flightImageCardGradient}
+                  />
+                  
+                  {/* Frosted Glass Content Pane */}
+                  <View style={styles.flightImageCardFrosted}>
+                    <Text style={styles.flightCardTraveler}>{flight.traveler}</Text>
+                    <Text style={styles.flightCardRoute}>{flight.route}</Text>
+                    <Text style={styles.flightCardAirline}>{flight.airline}</Text>
+                    <Text style={styles.flightCardTime}>{flight.time}</Text>
+                    <Text style={styles.flightCardDetails}>{flight.details}</Text>
+                  </View>
+                </ImageBackground>
+              </View>
             ))}
             
             {/* Flight Input Card - Always shown as last card */}
