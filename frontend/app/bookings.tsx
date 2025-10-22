@@ -3471,6 +3471,71 @@ const styles = StyleSheet.create({
     }),
   },
 
+  // Flight Input Card
+  flightInputCard: {
+    width: 300,
+    backgroundColor: 'rgba(40,40,40,0.5)',
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.25)',
+    padding: 20,
+    marginRight: 0,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(30px)',
+        boxShadow: '0 12px 32px rgba(0,0,0,0.4), inset 2px 2px 0 rgba(255,255,255,0.08)',
+      },
+      default: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 12 },
+        shadowOpacity: 0.4,
+        shadowRadius: 16,
+        elevation: 12,
+      },
+    }),
+  },
+  flightInputLabel: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: 'rgba(181,155,115,0.85)',
+    marginBottom: 12,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  flightInput: {
+    backgroundColor: 'rgba(30,30,30,0.8)',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.2)',
+    padding: 14,
+    fontSize: 14,
+    color: '#FFFFFF',
+    marginBottom: 16,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+  addFlightButton: {
+    backgroundColor: 'rgba(181,155,115,0.3)',
+    borderRadius: 12,
+    padding: 14,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(181,155,115,0.5)',
+  },
+  addFlightButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#B59B73',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      web: 'Inter, -apple-system, sans-serif',
+    }),
+  },
+
   // External Icon Top-Left
   externalIconTopLeft: {
     position: 'absolute',
