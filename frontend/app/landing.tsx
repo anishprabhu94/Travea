@@ -864,19 +864,33 @@ export default function Landing() {
                     })
                   }
                 ]}>
-                  {/* Compact Header with City Name */}
-                  <TouchableOpacity 
-                    style={styles.resultsHeader}
-                    onPress={handleBackToSearch}
-                    activeOpacity={0.8}
-                  >
+                  {/* Functional Search Header */}
+                  <View style={styles.resultsHeader}>
                     <BlurView intensity={25} tint="dark" style={styles.resultsHeaderBlur}>
                       <View style={styles.resultsHeaderContent}>
-                        <Text style={styles.resultsHeaderText}>✦ {selectedCity}</Text>
-                        <Ionicons name="close" size={20} color="rgba(255,255,255,0.9)" />
+                        <Ionicons name="search-outline" size={16} color="rgba(255,255,255,0.75)" style={{ marginRight: 10 }} />
+                        <TextInput
+                          style={styles.resultsSearchInput}
+                          placeholder={selectedCity || "Search city..."}
+                          placeholderTextColor="rgba(255,255,255,0.5)"
+                          value={searchQuery}
+                          onChangeText={setSearchQuery}
+                          onSubmitEditing={() => {
+                            if (searchQuery.trim()) {
+                              handleCitySelection(searchQuery.trim())
+                              Keyboard.dismiss()
+                            }
+                          }}
+                          returnKeyType="search"
+                          autoCapitalize="words"
+                          autoCorrect={false}
+                        />
+                        <TouchableOpacity onPress={handleBackToSearch}>
+                          <Ionicons name="close" size={20} color="rgba(255,255,255,0.9)" />
+                        </TouchableOpacity>
                       </View>
                     </BlurView>
-                  </TouchableOpacity>
+                  </View>
                   
                   {/* Scrollable Results Feed - Context Aware */}
                   <ScrollView 
