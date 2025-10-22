@@ -128,8 +128,10 @@ const destinationCards: DestinationCard[] = [
 export default function Landing() {
   const router = useRouter()
   const { bookmarkedItems, addBookmark, removeBookmark } = useBookmarks()
-  const [activeMode, setActiveMode] = useState('vacations') // Default to Vacations
-  const [expandedCarousel, setExpandedCarousel] = useState<string | null>(null)
+  const [activeMode, setActiveMode] = useState<'vacations' | 'weekends'>('vacations')
+  const [searchActive, setSearchActive] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [searchResults, setSearchResults] = useState<any>(null)
   const [bookmarkAnimations, setBookmarkAnimations] = useState<{[key: string]: Animated.Value}>({})
   
   // Animation refs
