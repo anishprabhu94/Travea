@@ -10,13 +10,15 @@ const { width } = Dimensions.get('window')
 type TabType = 'highlights' | 'itinerary' | 'location'
 
 // Mock transport data
-const MOCK_EXPERIENCES: any = {
-  'exp1': { id: 'exp1', title: 'Uffizi Gallery Tour', tagline: 'Renaissance masterpieces unveiled', pricePerPerson: 85, rating: 4.9, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
-  'exp2': { id: 'exp2', title: 'Duomo Rooftop Access', tagline: 'Cathedral heights & city views', pricePerPerson: 65, rating: 4.8, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
-  'exp3': { id: 'exp3', title: 'Tuscan Cooking Class', tagline: 'From market to table', pricePerPerson: 145, rating: 4.9, heroImage: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
-  'exp4': { id: 'exp4', title: 'Wine Tasting in Chianti', tagline: 'Vineyards & villa terraces', pricePerPerson: 165, rating: 4.9, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
-  'exp5': { id: 'exp5', title: 'Vespa Tour', tagline: 'Hills, curves & cypress roads', pricePerPerson: 195, rating: 4.9, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
-  'exp6': { id: 'exp6', title: 'Hot Air Balloon', tagline: 'Dawn over Tuscan valleys', pricePerPerson: 285, rating: 4.9, heroImage: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
+const MOCK_TRANSPORTS: any = {
+  'trans1': { id: 'trans1', title: 'Florence to Rome', tagline: 'Trenitalia High-Speed Rail', pricePerPerson: 45, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
+  'trans2': { id: 'trans2', title: 'Florence to Venice', tagline: 'Italo Premium Service', pricePerPerson: 52, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
+  'trans3': { id: 'trans3', title: 'Florence to Siena', tagline: 'FlixBus Express', pricePerPerson: 12, heroImage: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
+  'trans4': { id: 'trans4', title: 'Florence to Pisa', tagline: 'Busitalia Regional', pricePerPerson: 10, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
+  'trans5': { id: 'trans5', title: 'Full Day Car Rental', tagline: 'Hertz Premium Fleet', pricePerPerson: 85, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
+  'trans6': { id: 'trans6', title: 'Full Day Car Rental', tagline: 'Europcar Standard', pricePerPerson: 75, heroImage: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg' },
+  'trans7': { id: 'trans7', title: 'Chianti Wine Tour', tagline: 'Private Driver Service', pricePerPerson: 120, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg' },
+  'trans8': { id: 'trans8', title: 'Airport Shuttle', tagline: 'Pisa Airport Transfer', pricePerPerson: 25, heroImage: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg' },
 };
 
 export default function TransportInfo() {
