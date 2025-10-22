@@ -2151,5 +2151,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(100,100,100,0.4)',
   },
+  
+  // Compact Frosted Content (Reduced Height)
+  frostedContentCompact: {
+    padding: 14,
+    paddingBottom: 12,
+  },
+  blurViewContentCompact: {
+    flex: 1,
+    padding: 14,
+    paddingBottom: 12,
+    borderRadius: 32,
+  },
 });
 
