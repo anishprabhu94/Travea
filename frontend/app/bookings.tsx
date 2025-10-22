@@ -3528,7 +3528,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
     color: 'rgba(255,255,255,0.85)',
-    marginBottom: 6,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
@@ -3538,7 +3537,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '400',
     color: 'rgba(255,255,255,0.7)',
-    lineHeight: 18,
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
