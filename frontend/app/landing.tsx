@@ -1881,6 +1881,104 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
+  // Context-Aware Search Styles
+  continueYourTripHeader: {
+    marginBottom: 24,
+    paddingHorizontal: 4,
+  },
+  continueYourTripTitle: {
+    fontSize: 22,
+    fontWeight: '600',
+    color: '#F8F8F8',
+    marginBottom: 6,
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  continueYourTripSubtext: {
+    fontSize: 14,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.6)',
+    letterSpacing: 0.2,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  bookedSection: {
+    marginBottom: 32,
+  },
+  bookedBadge: {
+    alignSelf: 'flex-start',
+    marginBottom: 16,
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  bookedBadgeGradient: {
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(212,190,132,0.4)',
+  },
+  bookedBadgeText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#C9A96D',
+    letterSpacing: 0.5,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  bookedItemCard: {
+    backgroundColor: 'rgba(25,25,25,0.5)',
+    borderRadius: 20,
+    padding: 16,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.08)',
+  },
+  bookedItemTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#F8F8F8',
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  bookedItemDetail: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.7)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  inspiredHeader: {
+    marginBottom: 20,
+    paddingHorizontal: 4,
+  },
+  inspiredText: {
+    fontSize: 15,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.65)',
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
   bottomDock: {
     position: 'absolute',
     bottom: 12,
