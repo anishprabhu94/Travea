@@ -692,60 +692,167 @@ export default function Landing() {
           </ScrollView>
         )}
 
-        {/* Search Pane */}
+        {/* Search Pane with Cinematic Transitions */}
         {activeMode === 'search' && (
-          <View style={styles.searchContainer}>
-            <ImageBackground
-              source={{ uri: 'https://customer-assets.emergentagent.com/job_frosted-journey-1/artifacts/kltmxjks_search%202.jpg' }}
-              style={styles.searchImageBackground}
-              imageStyle={styles.searchImageStyle}
-            >
-              <BlurView intensity={25} tint="light" style={styles.searchPane}>
-                <View style={styles.searchPaneContent}>
-                {/* Title */}
-                <View style={styles.titleContainer}>
-                  <Text style={styles.searchTitle}>Where to?</Text>
-                  <View style={styles.titleAccent} />
-                </View>
-                
-                {/* Search Bar */}
-                <BlurView intensity={25} tint="light" style={styles.searchBarContainer}>
-                  <View style={styles.searchBarContent}>
-                    <Ionicons name="search-outline" size={18} color="rgba(255,255,255,0.75)" style={styles.searchIcon} />
-                    <Text style={styles.searchPlaceholder}>By city or country</Text>
-                    <Ionicons name="arrow-forward-circle-outline" size={20} color="rgba(201,169,109,0.9)" style={styles.searchArrow} />
-                  </View>
-                </BlurView>
-                
-                {/* Trending Section */}
-                <View style={styles.trendingSection}>
-                  <Text style={styles.trendingLabel}>Trending now</Text>
-                  <ScrollView
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    style={styles.trendingScrollView}
-                    contentContainerStyle={styles.trendingContent}
+          <>
+            {/* Dimmed Background Overlay */}
+            <Animated.View 
+              style={[
+                styles.searchBackgroundOverlay,
+                { opacity: backgroundDim.interpolate({
+                  inputRange: [0.4, 0.6, 1],
+                  outputRange: [0.6, 0.4, 0]
+                })}
+              ]}
+              pointerEvents={searchTransitionState === 'idle' ? 'none' : 'auto'}
+            />
+            
+            <View style={styles.searchContainer}>
+              {searchTransitionState === 'idle' || searchTransitionState === 'activated' ? (
+                // IDLE & ACTIVATED STATE: "Where to?" Pane
+                <Animated.View style={[
+                  styles.searchPaneWrapper,
+                  {
+                    transform: [{ scale: searchPaneExpansion }]
+                  }
+                ]}>
+                  <ImageBackground
+                    source={{ uri: 'https://customer-assets.emergentagent.com/job_frosted-journey-1/artifacts/kltmxjks_search%202.jpg' }}
+                    style={styles.searchImageBackground}
+                    imageStyle={styles.searchImageStyle}
                   >
-                    {['Lisbon', 'Kyoto', 'Marrakech', 'Reykjavík', 'Venice', 'Santorini'].map((destination, index) => (
-                      <TouchableOpacity 
-                        key={index} 
-                        activeOpacity={0.7} 
-                        style={styles.trendingPillWrapper}
-                        onPress={() => router.push(`/destination?city=${destination}`)}
-                      >
-                        <BlurView intensity={20} tint="light" style={styles.trendingPill}>
-                          <View style={styles.trendingPillInner}>
-                            <Text style={styles.trendingPillText}>{destination}</Text>
+                    <BlurView intensity={25} tint="light" style={styles.searchPane}>
+                      <View style={styles.searchPaneContent}>
+                        {/* Title */}
+                        <View style={styles.titleContainer}>
+                          <Text style={styles.searchTitle}>Where to?</Text>
+                          <View style={styles.titleAccent} />
+                        </View>
+                        
+                        {/* Search Bar with Golden Glow */}
+                        <TouchableOpacity 
+                          activeOpacity={0.9}
+                          onPress={handleSearchActivation}
+                        >
+                          <Animated.View style={[
+                            styles.searchBarWrapper,
+                            {
+                              shadowColor: searchGlowAnim.interpolate({
+                                inputRange: [0, 1],
+                                outputRange: ['rgba(255,255,255,0.2)', 'rgba(212,190,132,0.35)']
+                              })
+                            }
+                          ]}>
+                            <BlurView intensity={25} tint="light" style={styles.searchBarContainer}>
+                              <View style={styles.searchBarContent}>
+                                <Ionicons name="search-outline" size={18} color="rgba(255,255,255,0.75)" style={styles.searchIcon} />
+                                <Text style={styles.searchPlaceholder}>By city or country</Text>
+                                <Ionicons name="arrow-forward-circle-outline" size={20} color="rgba(201,169,109,0.9)" style={styles.searchArrow} />
+                              </View>
+                            </BlurView>
+                          </Animated.View>
+                        </TouchableOpacity>
+                        
+                        {/* Trending Section */}
+                        <View style={styles.trendingSection}>
+                          <Text style={styles.trendingLabel}>Trending now</Text>
+                          <ScrollView
+                            horizontal
+                            showsHorizontalScrollIndicator={false}
+                            style={styles.trendingScrollView}
+                            contentContainerStyle={styles.trendingContent}
+                          >
+                            {['Lisbon', 'Kyoto', 'Marrakech', 'Reykjavík', 'Venice', 'Santorini'].map((destination, index) => (
+                              <TouchableOpacity 
+                                key={index} 
+                                activeOpacity={0.7} 
+                                style={styles.trendingPillWrapper}
+                                onPress={() => handleCitySelection(destination)}
+                              >
+                                <BlurView intensity={20} tint="light" style={styles.trendingPill}>
+                                  <View style={styles.trendingPillInner}>
+                                    <Text style={styles.trendingPillText}>{destination}</Text>
+                                  </View>
+                                </BlurView>
+                              </TouchableOpacity>
+                            ))}
+                          </ScrollView>
+                        </View>
+                      </View>
+                    </BlurView>
+                  </ImageBackground>
+                </Animated.View>
+              ) : (
+                // RESULTS STATE: City Results View
+                <Animated.View style={[
+                  styles.resultsContainer,
+                  {
+                    opacity: searchPaneExpansion.interpolate({
+                      inputRange: [1, 1.5],
+                      outputRange: [0, 1]
+                    })
+                  }
+                ]}>
+                  {/* Compact Header with City Name */}
+                  <TouchableOpacity 
+                    style={styles.resultsHeader}
+                    onPress={handleBackToSearch}
+                    activeOpacity={0.8}
+                  >
+                    <BlurView intensity={25} tint="dark" style={styles.resultsHeaderBlur}>
+                      <View style={styles.resultsHeaderContent}>
+                        <Text style={styles.resultsHeaderText}>✦ {selectedCity}</Text>
+                        <Ionicons name="close" size={20} color="rgba(255,255,255,0.9)" />
+                      </View>
+                    </BlurView>
+                  </TouchableOpacity>
+                  
+                  {/* Scrollable Results Feed */}
+                  <ScrollView 
+                    style={styles.resultsFeed}
+                    contentContainerStyle={styles.resultsFeedContent}
+                    showsVerticalScrollIndicator={false}
+                  >
+                    {/* Primary City Card */}
+                    {destinationCards
+                      .filter(card => !card.isMultiCity && card.city === selectedCity)
+                      .map((destination, index) => (
+                        <Animated.View 
+                          key={`primary-${destination.id}`}
+                          style={[
+                            styles.resultCardWrapper,
+                            {
+                              transform: [{
+                                scale: new Animated.Value(1.02).interpolate({
+                                  inputRange: [1, 1.02],
+                                  outputRange: [1, 1.02]
+                                })
+                              }]
+                            }
+                          ]}
+                        >
+                          {renderDestinationCard(destination, index)}
+                        </Animated.View>
+                      ))
+                    }
+                    
+                    {/* Multi-City Circuits featuring this city */}
+                    <View style={styles.relatedSection}>
+                      <Text style={styles.relatedSectionTitle}>Journeys including {selectedCity} ✦</Text>
+                      {destinationCards
+                        .filter(card => card.isMultiCity && card.cities?.includes(selectedCity))
+                        .map((destination, index) => (
+                          <View key={`multi-${destination.id}`} style={styles.resultCardWrapper}>
+                            {renderDestinationCard(destination, index)}
                           </View>
-                        </BlurView>
-                      </TouchableOpacity>
-                    ))}
+                        ))
+                      }
+                    </View>
                   </ScrollView>
-                </View>
-              </View>
-            </BlurView>
-          </ImageBackground>
-        </View>
+                </Animated.View>
+              )}
+            </View>
+          </>
         )}
       </Animated.View>
 
