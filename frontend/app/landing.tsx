@@ -1033,7 +1033,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
     ...Platform.select({
       web: {
-        background: 'radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.12) 100%)',
+        backgroundColor: 'rgba(0,0,0,0.08)', // Subtle overlay (gradient removed for RN Web compatibility)
       },
       default: {
         backgroundColor: 'rgba(0,0,0,0.08)',
