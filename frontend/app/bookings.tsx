@@ -1351,38 +1351,46 @@ export default function TripCanvas() {
             showsHorizontalScrollIndicator={false}
             style={styles.horizontalScroll}
           >
-            {allFlights.map((flight, index) => (
-              <View 
-                key={flight.id} 
-                style={styles.flightCard}
-              >
-                <ImageBackground
-                  source={{ uri: 'https://customer-assets.emergentagent.com/job_tripplanner-90/artifacts/kdqm7un3_search%202.jpg' }}
-                  style={styles.flightImageCardBg}
-                  imageStyle={styles.flightImageCardBgStyle}
+            {allFlights.map((flight, index) => {
+              // Check if this is a user-added flight (not a mock flight)
+              const isUserAdded = currentDayFlights.some(f => f.id === flight.id);
+              
+              return (
+                <View 
+                  key={flight.id} 
+                  style={styles.flightCard}
                 >
-                  {/* Date Badge - Top Left */}
-                  <View style={styles.cardDateBadgeOnImageLeft}>
-                    <Text style={styles.cardDateText}>{activeCityFirstDate}</Text>
-                  </View>
-                  
-                  {/* Remove Flight Button - Top Right */}
-                  <TouchableOpacity
-                    style={styles.removeFlightButton}
-                    onPress={() => {
-                      setDayFlights(prev => {
-                        const currentFlights = prev[activeDay.id] || [];
-                        const filteredFlights = currentFlights.filter(f => f.id !== flight.id);
-                        return {
-                          ...prev,
-                          [activeDay.id]: filteredFlights
-                        };
-                      });
-                    }}
-                    activeOpacity={0.7}
+                  <ImageBackground
+                    source={{ uri: 'https://customer-assets.emergentagent.com/job_tripplanner-90/artifacts/kdqm7un3_search%202.jpg' }}
+                    style={styles.flightImageCardBg}
+                    imageStyle={styles.flightImageCardBgStyle}
                   >
-                    <Ionicons name="close" size={16} color="rgba(255,255,255,0.9)" />
-                  </TouchableOpacity>
+                    {/* Date Badge - Top Left */}
+                    <View style={styles.cardDateBadgeOnImageLeft}>
+                      <Text style={styles.cardDateText}>{activeCityFirstDate}</Text>
+                    </View>
+                    
+                    {/* Remove Flight Button - Top Right (Only for user-added flights) */}
+                    {isUserAdded && (
+                      <TouchableOpacity
+                        style={styles.removeFlightButton}
+                        onPress={() => {
+                          console.log('Deleting flight:', flight.id);
+                          setDayFlights(prev => {
+                            const currentFlights = prev[activeDay.id] || [];
+                            const filteredFlights = currentFlights.filter(f => f.id !== flight.id);
+                            console.log('Before:', currentFlights.length, 'After:', filteredFlights.length);
+                            return {
+                              ...prev,
+                              [activeDay.id]: filteredFlights
+                            };
+                          });
+                        }}
+                        activeOpacity={0.7}
+                      >
+                        <Ionicons name="close" size={16} color="rgba(255,255,255,0.9)" />
+                      </TouchableOpacity>
+                    )}
                   
                   {/* Gradient Overlay */}
                   <LinearGradient
