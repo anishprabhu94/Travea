@@ -3417,28 +3417,57 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Flight Card - Enhanced Frosted Glass (No Image)
+  // Flight Card - Image-Based with Frosted Glass
   flightCard: {
     width: 300,
-    backgroundColor: 'rgba(255,255,255,0.1)',
+    height: 360,
+    marginRight: 16,
     borderRadius: 24,
+    overflow: 'hidden',
+  },
+  flightImageCardBg: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'flex-end',
+  },
+  flightImageCardBgStyle: {
+    borderRadius: 24,
+  },
+  flightImageCardGradient: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: '70%',
+  },
+  flightImageCardFrosted: {
+    padding: 20,
+    paddingTop: 16,
+    paddingBottom: 18,
+    backgroundColor: 'rgba(255,255,255,0.12)',
+    borderBottomLeftRadius: 24,
+    borderBottomRightRadius: 24,
     borderWidth: 1,
     borderColor: 'rgba(181,155,115,0.25)',
-    padding: 20,
-    marginRight: 16,
     ...Platform.select({
       web: {
         backdropFilter: 'blur(30px)',
-        boxShadow: '0 12px 32px rgba(0,0,0,0.4), inset 2px 2px 0 rgba(255,255,255,0.08)',
-      },
-      default: {
-        shadowColor: '#000000',
-        shadowOffset: { width: 0, height: 12 },
-        shadowOpacity: 0.4,
-        shadowRadius: 16,
-        elevation: 12,
       },
     }),
+  },
+  removeFlightButton: {
+    position: 'absolute',
+    top: 12,
+    left: 12,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: 'rgba(25,25,25,0.8)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.15)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10,
   },
   flightCardTraveler: {
     fontSize: 11,
