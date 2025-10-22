@@ -2162,13 +2162,13 @@ const styles = StyleSheet.create({
   
   // Compact Frosted Content (Reduced Height)
   frostedContentCompact: {
-    padding: 14,
-    paddingBottom: 12,
+    padding: 12,
+    paddingBottom: 10,
   },
   blurViewContentCompact: {
     flex: 1,
-    padding: 14,
-    paddingBottom: 12,
+    padding: 12,
+    paddingBottom: 10,
     borderRadius: 32,
   },
 });
