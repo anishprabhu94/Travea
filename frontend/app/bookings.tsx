@@ -3427,10 +3427,10 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // Flight Card - Image-Based with Frosted Glass
+  // Flight Card - Image-Based with Frosted Glass (Reduced Height)
   flightCard: {
     width: 300,
-    height: 360,
+    height: 300,
     marginRight: 16,
     borderRadius: 24,
     overflow: 'hidden',
@@ -3448,12 +3448,12 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    height: '70%',
+    height: '65%',
   },
   flightImageCardFrosted: {
-    padding: 20,
-    paddingTop: 16,
-    paddingBottom: 18,
+    padding: 18,
+    paddingTop: 14,
+    paddingBottom: 16,
     backgroundColor: 'rgba(255,255,255,0.12)',
     borderBottomLeftRadius: 24,
     borderBottomRightRadius: 24,
@@ -3468,7 +3468,7 @@ const styles = StyleSheet.create({
   removeFlightButton: {
     position: 'absolute',
     top: 12,
-    left: 12,
+    right: 12,
     width: 32,
     height: 32,
     borderRadius: 16,
@@ -3477,6 +3477,18 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.15)',
     alignItems: 'center',
     justifyContent: 'center',
+    zIndex: 10,
+  },
+  cardDateBadgeOnImageLeft: {
+    position: 'absolute',
+    top: 12,
+    left: 12,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 14,
+    backgroundColor: 'rgba(25,25,25,0.8)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.15)',
     zIndex: 10,
   },
   flightCardTraveler: {
