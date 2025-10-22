@@ -1553,46 +1553,6 @@ export default function TripCanvas() {
       </View>
     );
   };
-                    <View style={styles.transportTypeIcon}>
-                      <Ionicons 
-                        name={
-                          item.type === 'train' ? 'train-outline' :
-                          item.type === 'bus' ? 'bus-outline' :
-                          item.type === 'rental-car' ? 'car-sport-outline' :
-                          item.type === 'ferry' ? 'boat-outline' :
-                          'navigate-outline'
-                        } 
-                        size={20} 
-                        color="rgba(181,155,115,0.95)" 
-                      />
-                    </View>
-                    <Text style={styles.transportCardTitle}>{item.title}</Text>
-                    <Text style={styles.transportCardRoute}>{item.route}</Text>
-                    {item.type === 'rental-car' ? (
-                      <>
-                        <View style={styles.transportCardTimeRow}>
-                          <Text style={styles.transportCardTime}>Pick-up: {item.time}</Text>
-                        </View>
-                        <View style={styles.transportCardDurationRow}>
-                          <Ionicons name="calendar-outline" size={14} color="rgba(181,155,115,0.9)" />
-                          <Text style={styles.transportCardDuration}>{item.duration.split('·')[0].trim()}</Text>
-                        </View>
-                      </>
-                    ) : (
-                      <>
-                        <Text style={styles.transportCardTime}>Pick-up: {item.time}</Text>
-                        <Text style={styles.transportCardDuration}>{item.duration.split('·')[0].trim()}</Text>
-                      </>
-                    )}
-                  </View>
-                </ImageBackground>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        </View>
-      </View>
-    );
-  };
 
   // Experiences Section - With Real Bookings
   const renderExperiences = () => {
