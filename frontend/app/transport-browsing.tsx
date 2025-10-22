@@ -552,7 +552,8 @@ export default function TransportBrowsing() {
           ) : (
             // Other filters: Show regular vertical cards
             filteredTransports.map((transport, idx) => {
-            const totalPrice = transport.pricePerPerson * travelers;
+            const rentalDays = transport.category === 'car_rental' ? selectedDays.length || 1 : 1;
+            const totalPrice = transport.pricePerPerson * travelers * rentalDays;
             const bookingStatus = getBookingStatus(transport.id, tripId);
             
             return (
