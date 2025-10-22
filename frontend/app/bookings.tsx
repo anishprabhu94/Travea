@@ -1283,7 +1283,7 @@ export default function TripCanvas() {
   const [dayFlights, setDayFlights] = useState<{[key: string]: any[]}>({}); // Store flights per day
   
   // Get number of travelers from trip data
-  const numberOfTravelers = selectedTrip?.travelers || 2;
+  const numberOfTravelers = currentTrip?.travelers || 2;
   
   // Calculate flight status based on number of travelers
   const calculateFlightStatus = (flights: any[]) => {
