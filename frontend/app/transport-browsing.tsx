@@ -298,7 +298,9 @@ export default function TransportBrowsing() {
                 style={styles.dayCirclesScroll}
               >
                 {cityDates.map(date => {
-                  const isSelected = selectedDay === date;
+                  const isSelected = activeFilter === 'car_rental' 
+                    ? selectedDays.includes(date)
+                    : selectedDay === date;
                   return (
                     <TouchableOpacity
                       key={date}
