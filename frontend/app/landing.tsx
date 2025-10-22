@@ -1962,12 +1962,24 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#F8F8F8',
     marginBottom: 20,
+    paddingHorizontal: 20,
     letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
+  },
+  resultsCarousel: {
+    flex: 1,
+  },
+  resultsCarouselContent: {
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+  resultsCarouselCard: {
+    width: width - 80,
+    marginRight: 16,
   },
   // Context-Aware Search Styles
   continueYourTripHeader: {
