@@ -467,7 +467,7 @@ export default function TransportBrowsing() {
                           onPressIn={() => handleSaveTransport(transport.id)}
                           activeOpacity={0.7}
                         >
-                          <BlurView intensity={20} tint="light" style={styles.saveHeartBlur}>
+                          <BlurView intensity={15} tint="dark" style={styles.saveHeartBlur}>
                             <Ionicons
                               name={savedTransports.has(transport.id) ? 'heart' : 'heart-outline'}
                               size={20}
