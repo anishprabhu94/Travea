@@ -508,7 +508,7 @@ export default function TripCanvas() {
       date: activeCityFirstDate,
       route: 'JFK → FCO', // Mock data
       airline: flightNumber.toUpperCase(),
-      time: '10:00 – 22:30 · 8h 30m Nonstop', // Mock data
+      time: '22:00 – 06:30 · 8h 30m Nonstop', // Mock data - military time
       details: 'T1 Gate B12', // Mock data
     };
     
