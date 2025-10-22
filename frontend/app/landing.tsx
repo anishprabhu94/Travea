@@ -749,7 +749,7 @@ export default function Landing() {
                   outputRange: [0.6, 0.4, 0]
                 })}
               ]}
-              pointerEvents={searchTransitionState === 'idle' ? 'none' : 'auto'}
+              pointerEvents="none"
             />
             
             <View style={styles.searchContainer}>
