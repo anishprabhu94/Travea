@@ -2076,12 +2076,12 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 14,
-    backgroundColor: 'rgba(203,184,140,0.2)',
+    backgroundColor: 'rgba(80,80,80,0.5)',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 10,
     borderWidth: 1,
-    borderColor: 'rgba(203,184,140,0.3)',
+    borderColor: 'rgba(100,100,100,0.4)',
   },
 });
 
