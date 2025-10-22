@@ -1699,18 +1699,45 @@ const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: 'rgba(10,10,10,0.55)', // Dark neutral veil
   },
+  // Dark Frosted Top Bar
   expansionTopBar: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    height: 100,
+    height: 64,
     zIndex: 1001,
+  },
+  // Edge Highlight - Air Gap Effect
+  edgeHighlightTop: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 1,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 2px rgba(255,255,255,0.08)',
+      },
+    }),
+  },
+  edgeHighlightBottom: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 1,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 2px rgba(255,255,255,0.08)',
+      },
+    }),
   },
   expansionTopBarBlur: {
     flex: 1,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(181,155,115,0.2)',
+    backgroundColor: 'rgba(15,15,15,0.55)', // Dark frosted glass base
   },
   expansionTopBarContent: {
     flex: 1,
@@ -1718,38 +1745,58 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 24,
-    paddingTop: 50,
-    paddingBottom: 16,
+    paddingTop: 12,
+  },
+  // Gold Divider Line
+  topBarDivider: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 1,
+    backgroundColor: 'rgba(212,190,132,0.1)', // Gold at 10% opacity
   },
   expansionTopBarTitle: {
-    fontSize: 24,
-    fontWeight: '700',
-    color: '#FFFFFF',
+    fontSize: 22,
+    fontWeight: '600',
+    color: '#EAE7DF', // Warm ivory
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
       web: 'Playfair Display, Georgia, serif',
     }),
   },
+  // Close Pill - Frosted Glass Capsule
   expansionCloseButton: {
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  closePillBlur: {
+    backgroundColor: 'rgba(255,255,255,0.06)', // Frosted glass fill
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.04)', // Border highlight
+  },
+  closePillContent: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 8,
-    paddingHorizontal: 16,
-    backgroundColor: 'rgba(181,155,115,0.25)',
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: 'rgba(181,155,115,0.4)',
+    paddingHorizontal: 14,
+    ...Platform.select({
+      web: {
+        boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.15)', // Engraved feel
+      },
+    }),
   },
   expansionCloseIcon: {
-    fontSize: 16,
-    color: 'rgba(201,169,109,0.9)',
+    fontSize: 14,
+    color: '#E9E4D0', // Gold-white
     marginRight: 6,
   },
   expansionCloseText: {
     fontSize: 14,
     fontWeight: '600',
-    color: 'rgba(201,169,109,0.9)',
+    color: '#E9E4D0', // Gold-white
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
