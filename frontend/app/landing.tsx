@@ -937,33 +937,47 @@ export default function Landing() {
                               </View>
                             )}
                             
-                            {/* You Might Also Like Section */}
+                            {/* You Might Also Like Carousel */}
                             <View style={styles.relatedSection}>
                               <Text style={styles.relatedSectionTitle}>You Might Also Like</Text>
-                              {destinationCards
-                                .filter(card => !card.isMultiCity && 
-                                  card.city.toLowerCase().includes(selectedCity!.toLowerCase()))
-                                .slice(0, 3)
-                                .map((destination, index) => (
-                                  <View key={`alternate-${destination.id}`} style={styles.resultCardWrapper}>
-                                    {renderDestinationCard(destination, index)}
-                                  </View>
-                                ))
-                              }
+                              <ScrollView
+                                horizontal
+                                showsHorizontalScrollIndicator={false}
+                                style={styles.resultsCarousel}
+                                contentContainerStyle={styles.resultsCarouselContent}
+                              >
+                                {destinationCards
+                                  .filter(card => !card.isMultiCity && 
+                                    card.city.toLowerCase().includes(selectedCity!.toLowerCase()))
+                                  .slice(0, 3)
+                                  .map((destination, index) => (
+                                    <View key={`alternate-${destination.id}`} style={styles.resultsCarouselCard}>
+                                      {renderDestinationCard(destination, index)}
+                                    </View>
+                                  ))
+                                }
+                              </ScrollView>
                             </View>
                             
-                            {/* Multi-City Circuits */}
+                            {/* Multi-City Circuits Carousel */}
                             <View style={styles.relatedSection}>
                               <Text style={styles.relatedSectionTitle}>Journeys including {selectedCity} ✦</Text>
-                              {destinationCards
-                                .filter(card => card.isMultiCity && 
-                                  card.cities?.some(city => city.toLowerCase().includes(selectedCity!.toLowerCase())))
-                                .map((destination, index) => (
-                                  <View key={`multi-${destination.id}`} style={styles.resultCardWrapper}>
-                                    {renderDestinationCard(destination, index)}
-                                  </View>
-                                ))
-                              }
+                              <ScrollView
+                                horizontal
+                                showsHorizontalScrollIndicator={false}
+                                style={styles.resultsCarousel}
+                                contentContainerStyle={styles.resultsCarouselContent}
+                              >
+                                {destinationCards
+                                  .filter(card => card.isMultiCity && 
+                                    card.cities?.some(city => city.toLowerCase().includes(selectedCity!.toLowerCase())))
+                                  .map((destination, index) => (
+                                    <View key={`multi-${destination.id}`} style={styles.resultsCarouselCard}>
+                                      {renderDestinationCard(destination, index)}
+                                    </View>
+                                  ))
+                                }
+                              </ScrollView>
                             </View>
                           </>
                         )
