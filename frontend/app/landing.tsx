@@ -1655,7 +1655,7 @@ const styles = StyleSheet.create({
     }),
   },
   
-  // Expansion View Styles
+  // Expansion View Styles - Refined Atmospheric System
   expansionOverlay: {
     position: 'absolute',
     top: 0,
@@ -1674,9 +1674,30 @@ const styles = StyleSheet.create({
   expansionBlur: {
     flex: 1,
   },
+  // Warm-Neutral Frost Tone Overlay
+  expansionFrostTone: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(212,190,132,0.08)', // Gold hue lift
+  },
+  // Vertical Gradient Depth Overlay
+  expansionGradientDepth: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '70%',
+  },
   expansionDim: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.6)',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(10,10,10,0.55)', // Dark neutral veil
   },
   expansionTopBar: {
     position: 'absolute',
