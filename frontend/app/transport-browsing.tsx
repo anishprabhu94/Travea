@@ -408,7 +408,8 @@ export default function TransportBrowsing() {
                   style={styles.savedCarousel}
                 >
                 {transports.map((transport) => {
-                  const totalPrice = transport.pricePerPerson * travelers;
+                  const rentalDays = transport.category === 'car_rental' ? selectedDays.length || 1 : 1;
+                  const totalPrice = transport.pricePerPerson * travelers * rentalDays;
                   const bookingStatus = getBookingStatus(transport.id, tripId);
                   
                   return (
