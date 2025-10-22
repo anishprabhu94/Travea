@@ -1668,6 +1668,96 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
+  // Search Transition Styles
+  searchBackgroundOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    zIndex: 5,
+  },
+  searchPaneWrapper: {
+    width: '100%',
+  },
+  searchBarWrapper: {
+    width: '100%',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(212,190,132,0.35)',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 1,
+        shadowRadius: 12,
+      },
+      android: {
+        elevation: 6,
+      },
+      web: {
+        boxShadow: '0 0 12px rgba(212,190,132,0.35)',
+      },
+    }),
+  },
+  // Results View Styles
+  resultsContainer: {
+    flex: 1,
+    width: '100%',
+  },
+  resultsHeader: {
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    paddingBottom: 16,
+  },
+  resultsHeaderBlur: {
+    borderRadius: 24,
+    overflow: 'hidden',
+  },
+  resultsHeaderContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'rgba(25,25,25,0.6)',
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
+  },
+  resultsHeaderText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#F8F8F8',
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  resultsFeed: {
+    flex: 1,
+  },
+  resultsFeedContent: {
+    paddingHorizontal: 20,
+    paddingBottom: 140,
+  },
+  resultCardWrapper: {
+    marginBottom: 24,
+  },
+  relatedSection: {
+    marginTop: 32,
+  },
+  relatedSectionTitle: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#F8F8F8',
+    marginBottom: 20,
+    letterSpacing: 0.2,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
   bottomDock: {
     position: 'absolute',
     bottom: 12,
