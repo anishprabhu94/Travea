@@ -270,6 +270,28 @@ export default function Landing() {
     return result.slice(0, 4)
   }
 
+  // Get all cards for expanded view (not limited to 4)
+  const getAllCardsForCarousel = (carouselTitle: string) => {
+    const baseCards = getCurrentCards()
+    
+    if (activeMode === 'vacations') {
+      if (carouselTitle === 'Curated for You') {
+        return baseCards.slice(2) // All cards from index 2 onwards (15+ cards)
+      } else if (carouselTitle === 'Multi-City Circuits') {
+        return baseCards.slice(0, 2) // Multi-city cards
+      }
+    } else if (activeMode === 'weekends') {
+      if (carouselTitle === 'Trending Now') {
+        return baseCards.slice(0, 6)
+      } else if (carouselTitle === 'Hidden Gems') {
+        return baseCards.slice(6, 12)
+      } else if (carouselTitle === 'Luxury Escapes') {
+        return baseCards.slice(12)
+      }
+    }
+    return baseCards
+  }
+  
   // Carousel configurations
   const getCarouselConfig = () => {
     const baseCards = getCurrentCards()
