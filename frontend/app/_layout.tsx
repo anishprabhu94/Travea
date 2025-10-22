@@ -31,6 +31,7 @@ export default function RootLayout() {
               <Stack.Screen name="stay-browsing" />
               <Stack.Screen name="experience-browsing" />
               <Stack.Screen name="restaurant-browsing" />
+              <Stack.Screen name="transport-browsing" />
               <Stack.Screen name="stay-info-compact" />
               <Stack.Screen name="train-info" />
               <Stack.Screen name="bus-info" />
