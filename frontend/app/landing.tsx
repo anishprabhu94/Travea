@@ -718,7 +718,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     ...Platform.select({
       web: {
-        background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.4) 100%)', // Subtle vignette edge fade
+        backgroundColor: 'rgba(0, 0, 0, 0.2)', // Subtle vignette (gradient removed for RN Web compatibility)
       },
       default: {
         backgroundColor: 'rgba(0, 0, 0, 0.1)', // Subtle vignette for native
