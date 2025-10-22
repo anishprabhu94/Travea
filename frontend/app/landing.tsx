@@ -775,15 +775,18 @@ export default function Landing() {
                         </View>
                         
                         {/* Search Bar with Golden Glow */}
-                        <Animated.View style={[
-                          styles.searchBarWrapper,
-                          {
-                            shadowColor: searchGlowAnim.interpolate({
-                              inputRange: [0, 1],
-                              outputRange: ['rgba(255,255,255,0.2)', 'rgba(212,190,132,0.35)']
-                            })
-                          }
-                        ]}>
+                        <Animated.View 
+                          style={[
+                            styles.searchBarWrapper,
+                            {
+                              shadowColor: searchGlowAnim.interpolate({
+                                inputRange: [0, 1],
+                                outputRange: ['rgba(255,255,255,0.2)', 'rgba(212,190,132,0.35)']
+                              })
+                            }
+                          ]}
+                          pointerEvents="box-none"
+                        >
                           <BlurView intensity={25} tint="light" style={styles.searchBarContainer}>
                             <View style={styles.searchBarContent}>
                               <Ionicons name="search-outline" size={18} color="rgba(255,255,255,0.75)" style={styles.searchIcon} />
