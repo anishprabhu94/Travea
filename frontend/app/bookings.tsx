@@ -3489,7 +3489,7 @@ const styles = StyleSheet.create({
   },
   cardDateBadgeOnImageLeft: {
     position: 'absolute',
-    top: 12,
+    top: 16,
     left: 12,
     paddingVertical: 6,
     paddingHorizontal: 12,
