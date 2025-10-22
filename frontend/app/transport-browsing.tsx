@@ -65,6 +65,7 @@ export default function TransportBrowsing() {
   // State
   const [savedTransports, setSavedTransports] = useState<Set<string>>(new Set());
   const [selectedDay, setSelectedDay] = useState<number>(parseInt(cityStartDay)); // Only ONE day at a time
+  const [selectedDays, setSelectedDays] = useState<number[]>([parseInt(cityStartDay)]); // Multiple days for car rental
   const [filterClusterOpen, setFilterClusterOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState<'train' | 'bus' | 'car_rental' | 'other'>('train');
   const contentOpacity = useState(new Animated.Value(0))[0];
