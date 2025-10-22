@@ -8,7 +8,9 @@ import {
   Platform, 
   Animated,
   Dimensions,
-  ScrollView
+  ScrollView,
+  TextInput,
+  Keyboard
 } from 'react-native'
 import { useRouter } from 'expo-router'
 import { BlurView } from 'expo-blur'
