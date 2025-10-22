@@ -38,7 +38,7 @@ export default function TransportInfo() {
   const [toastMessage, setToastMessage] = useState('')
 
   // Get transport data
-  const expData = MOCK_EXPERIENCES[transportId] || MOCK_EXPERIENCES['exp1'];
+  const expData = MOCK_TRANSPORTS[transportId] || MOCK_TRANSPORTS['trans1'];
 
   const handleMarkBooked = () => {
     markAsBooked(
