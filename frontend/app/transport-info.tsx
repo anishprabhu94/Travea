@@ -24,7 +24,7 @@ const MOCK_TRANSPORTS: any = {
 export default function TransportInfo() {
   const params = useLocalSearchParams()
   const people = parseInt(params.people as string || '2')
-  const transportId = params.transportId as string || 'exp1'
+  const transportId = params.transportId as string || 'trans1'
   const tripId = params.tripId as string || undefined
   const cityCode = params.cityCode as string || undefined
   const city = params.city as string || undefined
