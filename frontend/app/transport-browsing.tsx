@@ -648,86 +648,88 @@ export default function TransportBrowsing() {
                   
                   <View style={styles.stayCardFrosted}>
                     {Platform.OS === 'web' ? (
-                      <View style={styles.frostedContent}>
+                      <View style={styles.frostedContentCompact}>
                         {/* Transport icon + Origin -> Destination */}
-                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 8}}>
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 6}}>
                           <View style={styles.transportIconCircle}>
                             <Ionicons name={transport.icon} size={14} color="#FFFFFF" />
                           </View>
-                          <View style={{flex: 1, justifyContent: 'center'}}>
-                            <Text style={styles.stayCardName}>
-                              {transport.origin} → {transport.destination}
-                            </Text>
-                          </View>
+                          <Text style={[styles.stayCardName, {lineHeight: 28}]}>
+                            {transport.origin} → {transport.destination}
+                          </Text>
                         </View>
                         
                         {/* Provider with Duration icon */}
-                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 8}}>
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 6}}>
                           <Text style={styles.stayCardTagline}>{transport.provider}</Text>
                           <Text style={[styles.stayCardTagline, {marginHorizontal: 6}]}> · </Text>
-                          <Ionicons name="time-outline" size={13} color="#FFFFFF" style={{marginRight: 4}} />
+                          <Ionicons name="time-outline" size={13} color="#FFFFFF" style={{marginRight: 4, marginTop: -2}} />
                           <Text style={styles.stayCardTagline}>{transport.duration}</Text>
                         </View>
                         
                         {/* Depart & Arrive with clock icons */}
-                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 14}}>
-                          <Ionicons name="time-outline" size={13} color="rgba(217,203,160,0.8)" style={{marginRight: 4}} />
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10}}>
+                          <Ionicons name="time-outline" size={13} color="rgba(217,203,160,0.8)" style={{marginRight: 4, marginTop: -2}} />
                           <Text style={styles.nightsRatingText}>Depart: {transport.departTime}</Text>
                           <Text style={styles.decisionDot}> · </Text>
                           <Text style={styles.nightsRatingText}>Arrive: {transport.arriveTime}</Text>
                         </View>
                         
                         {/* Est. Price on separate line */}
-                        <Text style={[styles.priceText, {marginBottom: 14}]}>
-                          Est. Price: €{formatPrice(totalPrice)} pp
+                        <Text style={[styles.priceText, {marginBottom: 10}]}>
+                          Est. Price: €{formatPrice(totalPrice)}
                         </Text>
                         
                         <View style={styles.ivorySeparator} />
                         <View style={styles.cardDatePill}>
                           <Text style={styles.cardDatePillText}>
-                            {displayDates.startMonth.slice(0, 3)} {displayDates.startDay}
+                            {transport.category === 'car_rental' && selectedDays.length > 1
+                              ? `${displayDates.startMonth.slice(0, 3)} ${Math.min(...selectedDays)}-${Math.max(...selectedDays)}`
+                              : `${displayDates.startMonth.slice(0, 3)} ${displayDates.startDay}`
+                            }
                           </Text>
                         </View>
                       </View>
                     ) : (
-                      <BlurView intensity={30} tint="light" style={styles.blurViewContent}>
+                      <BlurView intensity={30} tint="light" style={styles.blurViewContentCompact}>
                         {/* Transport icon + Origin -> Destination */}
-                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 8}}>
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 6}}>
                           <View style={styles.transportIconCircle}>
                             <Ionicons name={transport.icon} size={14} color="#FFFFFF" />
                           </View>
-                          <View style={{flex: 1, justifyContent: 'center'}}>
-                            <Text style={styles.stayCardName}>
-                              {transport.origin} → {transport.destination}
-                            </Text>
-                          </View>
+                          <Text style={[styles.stayCardName, {lineHeight: 28}]}>
+                            {transport.origin} → {transport.destination}
+                          </Text>
                         </View>
                         
                         {/* Provider with Duration icon */}
-                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 8}}>
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 6}}>
                           <Text style={styles.stayCardTagline}>{transport.provider}</Text>
                           <Text style={[styles.stayCardTagline, {marginHorizontal: 6}]}> · </Text>
-                          <Ionicons name="time-outline" size={13} color="#FFFFFF" style={{marginRight: 4}} />
+                          <Ionicons name="time-outline" size={13} color="#FFFFFF" style={{marginRight: 4, marginTop: -2}} />
                           <Text style={styles.stayCardTagline}>{transport.duration}</Text>
                         </View>
                         
                         {/* Depart & Arrive with clock icons */}
-                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 14}}>
-                          <Ionicons name="time-outline" size={13} color="rgba(217,203,160,0.8)" style={{marginRight: 4}} />
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10}}>
+                          <Ionicons name="time-outline" size={13} color="rgba(217,203,160,0.8)" style={{marginRight: 4, marginTop: -2}} />
                           <Text style={styles.nightsRatingText}>Depart: {transport.departTime}</Text>
                           <Text style={styles.decisionDot}> · </Text>
                           <Text style={styles.nightsRatingText}>Arrive: {transport.arriveTime}</Text>
                         </View>
                         
                         {/* Est. Price on separate line */}
-                        <Text style={[styles.priceText, {marginBottom: 14}]}>
-                          Est. Price: €{formatPrice(totalPrice)} pp
+                        <Text style={[styles.priceText, {marginBottom: 10}]}>
+                          Est. Price: €{formatPrice(totalPrice)}
                         </Text>
                         
                         <View style={styles.ivorySeparator} />
                         <View style={styles.cardDatePill}>
                           <Text style={styles.cardDatePillText}>
-                            {displayDates.startMonth.slice(0, 3)} {displayDates.startDay}
+                            {transport.category === 'car_rental' && selectedDays.length > 1
+                              ? `${displayDates.startMonth.slice(0, 3)} ${Math.min(...selectedDays)}-${Math.max(...selectedDays)}`
+                              : `${displayDates.startMonth.slice(0, 3)} ${displayDates.startDay}`
+                            }
                           </Text>
                         </View>
                       </BlurView>
