@@ -1278,12 +1278,49 @@ export default function TripCanvas() {
     </View>
   );
 
-  // Flights Section - Frosted Glass Cards (No Images)
-  const renderFlights = () => {
-    if (activeDay.flights.length === 0) return null;
+  // Flights Section - Frosted Glass Cards with Input Card
+  const [flightNumber, setFlightNumber] = useState('');
+  const [dayFlights, setDayFlights] = useState<{[key: string]: any[]}>({}); // Store flights per day
+  
+  // Get number of travelers from trip data
+  const numberOfTravelers = selectedTrip?.travelers || 2;
+  
+  // Calculate flight status based on number of travelers
+  const calculateFlightStatus = (flights: any[]) => {
+    if (flights.length === 0) return 'Pending';
+    if (flights.length >= numberOfTravelers) return 'Booked';
+    return 'Pending';
+  };
+  
+  // Add flight function
+  const handleAddFlight = () => {
+    if (!flightNumber.trim()) return;
     
-    // Get mock status from activeDay
-    const sectionStatus = activeDay.mockBookingStatus?.flights || 'Pending';
+    // Mock flight data - in real app, this would call an API
+    const newFlight = {
+      id: Date.now().toString(),
+      traveler: `Traveler ${(dayFlights[activeDay.id]?.length || 0) + 1}`,
+      date: activeCityFirstDate,
+      route: 'JFK → FCO', // Mock data
+      airline: flightNumber.toUpperCase(),
+      time: '10:00 – 22:30 · 8h 30m Nonstop', // Mock data
+      details: 'T1 Gate B12', // Mock data
+    };
+    
+    setDayFlights(prev => ({
+      ...prev,
+      [activeDay.id]: [...(prev[activeDay.id] || []), newFlight]
+    }));
+    
+    setFlightNumber('');
+  };
+  
+  const renderFlights = () => {
+    const currentDayFlights = dayFlights[activeDay.id] || [];
+    const allFlights = [...activeDay.flights, ...currentDayFlights];
+    
+    // Calculate status
+    const sectionStatus = calculateFlightStatus(allFlights);
     
     return (
       <View style={styles.categorySection}>
@@ -1307,13 +1344,6 @@ export default function TripCanvas() {
                 </Text>
               </View>
             </View>
-            <TouchableOpacity 
-              style={styles.browseIconButton}
-              onPress={() => router.push('/book-journey')}
-              activeOpacity={0.7}
-            >
-              <Ionicons name="compass-outline" size={18} color="rgba(203,184,140,0.8)" />
-            </TouchableOpacity>
           </View>
           <View style={styles.categoryDivider} />
           <ScrollView 
@@ -1321,10 +1351,10 @@ export default function TripCanvas() {
             showsHorizontalScrollIndicator={false}
             style={styles.horizontalScroll}
           >
-            {activeDay.flights.map((flight, index) => (
+            {allFlights.map((flight, index) => (
               <TouchableOpacity 
                 key={flight.id} 
-                style={[styles.flightCard, index === activeDay.flights.length - 1 && {marginRight: 0}]}
+                style={styles.flightCard}
                 activeOpacity={0.8}
               >
                 <View style={styles.flightCardTopRow}>
@@ -1341,6 +1371,26 @@ export default function TripCanvas() {
                 <Text style={styles.flightCardDetails}>{flight.details}</Text>
               </TouchableOpacity>
             ))}
+            
+            {/* Flight Input Card - Always shown as last card */}
+            <View style={styles.flightInputCard}>
+              <Text style={styles.flightInputLabel}>Add Flight</Text>
+              <TextInput
+                style={styles.flightInput}
+                placeholder="Enter flight number (e.g., ITAAZ1234)"
+                placeholderTextColor="rgba(255,255,255,0.4)"
+                value={flightNumber}
+                onChangeText={setFlightNumber}
+                autoCapitalize="characters"
+              />
+              <TouchableOpacity 
+                style={styles.addFlightButton}
+                onPress={handleAddFlight}
+                activeOpacity={0.7}
+              >
+                <Text style={styles.addFlightButtonText}>Add Flight</Text>
+              </TouchableOpacity>
+            </View>
           </ScrollView>
         </View>
       </View>
