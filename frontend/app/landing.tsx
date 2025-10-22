@@ -1837,74 +1837,18 @@ const styles = StyleSheet.create({
     right: 0,
     height: 60,
   },
-  // Edge Highlight - Air Gap Effect
-  edgeHighlightTop: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 1,
-    backgroundColor: 'rgba(255,255,255,0.08)',
-    ...Platform.select({
-      web: {
-        boxShadow: '0 0 2px rgba(255,255,255,0.08)',
-      },
-    }),
-  },
-  edgeHighlightBottom: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 1,
-    backgroundColor: 'rgba(255,255,255,0.08)',
-    ...Platform.select({
-      web: {
-        boxShadow: '0 0 2px rgba(255,255,255,0.08)',
-      },
-    }),
-  },
-  expansionTopBarBlur: {
-    flex: 1,
-    backgroundColor: 'rgba(15,15,15,0.55)', // Dark frosted glass base
-  },
-  expansionTopBarContent: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 24,
-    paddingTop: 12,
-  },
-  // Gold Divider Line
-  topBarDivider: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 1,
-    backgroundColor: 'rgba(212,190,132,0.1)', // Gold at 10% opacity
-  },
-  expansionTopBarTitle: {
-    fontSize: 22,
-    fontWeight: '600',
-    color: '#EAE7DF', // Warm ivory
-    fontFamily: Platform.select({
-      ios: 'Playfair Display',
-      android: 'serif',
-      web: 'Playfair Display, Georgia, serif',
-    }),
-  },
-  // Close Pill - Frosted Glass Capsule
-  expansionCloseButton: {
+  // Close Pill with Gradient - Tactile Frosted Glass Capsule
+  headerCloseButton: {
     borderRadius: 20,
     overflow: 'hidden',
   },
-  closePillBlur: {
-    backgroundColor: 'rgba(255,255,255,0.06)', // Frosted glass fill
+  closePillGradient: {
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.04)', // Border highlight
+    borderColor: 'rgba(212,190,132,0.25)', // Gold border highlight
+  },
+  closePillBlur: {
+    borderRadius: 20,
   },
   closePillContent: {
     flexDirection: 'row',
@@ -1917,12 +1861,12 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  expansionCloseIcon: {
+  headerCloseIcon: {
     fontSize: 14,
     color: '#E9E4D0', // Gold-white
     marginRight: 6,
   },
-  expansionCloseText: {
+  headerCloseText: {
     fontSize: 14,
     fontWeight: '600',
     color: '#E9E4D0', // Gold-white
