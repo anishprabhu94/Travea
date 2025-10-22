@@ -392,14 +392,14 @@ export default function RestaurantBrowsing() {
                   
                   return (
                     <TouchableOpacity 
-                      key={stay.id}
+                      key={restaurant.id}
                       style={styles.stayCardHorizontal} 
                       activeOpacity={0.8}
                       onPress={() => router.push({
                         pathname: '/stay-info-compact',
                         params: { 
                           nights: totalNights.toString(), 
-                          stayId: stay.id,
+                          stayId: restaurant.id,
                           tripId: tripId,
                           cityCode: cityCode,
                           city: cityName,
@@ -408,7 +408,7 @@ export default function RestaurantBrowsing() {
                       })}
                     >
                       <ImageBackground
-                        source={{ uri: stay.image }}
+                        source={{ uri: restaurant.image }}
                         style={styles.stayCardBg}
                         imageStyle={styles.stayCardBgStyle}
                       >
@@ -441,7 +441,7 @@ export default function RestaurantBrowsing() {
                         
                         <TouchableOpacity
                           style={styles.saveHeartFrostedCircle}
-                          onPressIn={() => handleSaveRestaurant(stay.id)}
+                          onPressIn={() => handleSaveRestaurant(restaurant.id)}
                           activeOpacity={0.7}
                         >
                           <BlurView intensity={20} tint="light" style={styles.saveHeartBlur}>
@@ -457,15 +457,15 @@ export default function RestaurantBrowsing() {
                         <View style={styles.stayCardFrosted}>
                           {Platform.OS === 'web' ? (
                             <View style={styles.frostedContent}>
-                              <Text style={styles.stayCardName}>{stay.name}</Text>
-                              <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
+                              <Text style={styles.stayCardName}>{restaurant.name}</Text>
+                              <Text style={styles.stayCardTagline}>{restaurant.tagline}</Text>
                               <View style={styles.decisionRow}>
                                 <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
                                 <Text style={styles.decisionDot}> · </Text>
                                 <Text style={styles.nightsRatingText}>{totalNights} nights</Text>
                                 <Text style={styles.decisionDot}> · </Text>
                                 <Ionicons name="star" size={12} color="#FFFFFF" style={{marginRight: 3}} />
-                                <Text style={styles.nightsRatingText}>{stay.rating}</Text>
+                                <Text style={styles.nightsRatingText}>{restaurant.rating}</Text>
                               </View>
                               <View style={styles.ivorySeparator} />
                               <View style={styles.cardDatePill}>
@@ -476,8 +476,8 @@ export default function RestaurantBrowsing() {
                             </View>
                           ) : (
                             <BlurView intensity={30} tint="light" style={styles.blurViewContent}>
-                              <Text style={styles.stayCardName}>{stay.name}</Text>
-                              <Text style={styles.stayCardTagline}>{stay.tagline}</Text>
+                              <Text style={styles.stayCardName}>{restaurant.name}</Text>
+                              <Text style={styles.stayCardTagline}>{restaurant.tagline}</Text>
                               <View style={styles.decisionRow}>
                                 <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
                                 <Text style={styles.decisionDot}> · </Text>
