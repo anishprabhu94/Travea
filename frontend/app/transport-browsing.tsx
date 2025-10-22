@@ -104,15 +104,22 @@ export default function TransportBrowsing() {
   
   // Mock transport data - 2 per category
   const mockTransports = [
-    // ATTRACTIONS (2)
-    { id: 'exp1', name: 'Uffizi Gallery Tour', tagline: 'Renaissance masterpieces unveiled', pricePerPerson: 85, rating: 4.9, image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', category: 'attractions' },
-    { id: 'exp2', name: 'Duomo Rooftop Access', tagline: 'Cathedral heights & city views', pricePerPerson: 65, rating: 4.8, image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', category: 'attractions' },
+    // TRAIN (2)
+    { id: 'trans1', origin: 'Florence', destination: 'Rome', provider: 'Trenitalia', duration: '1h 30m', departTime: '09:15', arriveTime: '10:45', pricePerPerson: 45, icon: 'train', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', category: 'train' },
+    { id: 'trans2', origin: 'Florence', destination: 'Venice', provider: 'Italo', duration: '2h 15m', departTime: '14:30', arriveTime: '16:45', pricePerPerson: 52, icon: 'train', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', category: 'train' },
     
-    // IMMERSIONS (2)
-    { id: 'exp3', name: 'Tuscan Cooking Class', tagline: 'From market to table', pricePerPerson: 145, rating: 4.9, image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg', category: 'immersions' },
-    { id: 'exp4', name: 'Wine Tasting in Chianti', tagline: 'Vineyards & villa terraces', pricePerPerson: 165, rating: 4.9, image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', category: 'immersions' },
+    // BUS (2)
+    { id: 'trans3', origin: 'Florence', destination: 'Siena', provider: 'FlixBus', duration: '1h 15m', departTime: '10:00', arriveTime: '11:15', pricePerPerson: 12, icon: 'bus', image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg', category: 'bus' },
+    { id: 'trans4', origin: 'Florence', destination: 'Pisa', provider: 'Busitalia', duration: '1h 30m', departTime: '08:45', arriveTime: '10:15', pricePerPerson: 10, icon: 'bus', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', category: 'bus' },
     
-    // ADVENTURES (2)
+    // CAR_RENTAL (2)
+    { id: 'trans5', origin: 'Florence', destination: 'Self-drive', provider: 'Hertz', duration: 'Full day', departTime: '08:00', arriveTime: '20:00', pricePerPerson: 85, icon: 'car', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', category: 'car_rental' },
+    { id: 'trans6', origin: 'Florence', destination: 'Self-drive', provider: 'Europcar', duration: 'Full day', departTime: '09:00', arriveTime: '18:00', pricePerPerson: 75, icon: 'car', image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg', category: 'car_rental' },
+    
+    // OTHER (2)
+    { id: 'trans7', origin: 'Florence', destination: 'Chianti', provider: 'Private Driver', duration: '4h', departTime: '10:00', arriveTime: '14:00', pricePerPerson: 120, icon: 'car-sport', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg', category: 'other' },
+    { id: 'trans8', origin: 'Florence', destination: 'Pisa Airport', provider: 'Shuttle Service', duration: '1h', departTime: '06:30', arriveTime: '07:30', pricePerPerson: 25, icon: 'airplane', image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', category: 'other' },
+  ];
     { id: 'exp5', name: 'Vespa Tour', tagline: 'Hills, curves & cypress roads', pricePerPerson: 195, rating: 4.9, image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', category: 'adventures' },
     { id: 'exp6', name: 'Hot Air Balloon', tagline: 'Dawn over Tuscan valleys', pricePerPerson: 285, rating: 4.9, image: 'https://customer-assets.emergentagent.com/job_b5ab561f-228e-4e39-a6f5-4ce831be1eb0/artifacts/a995lk61_amalfi.jpg', category: 'adventures' },
   ];
