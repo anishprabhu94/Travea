@@ -97,9 +97,24 @@ export default function TransportBrowsing() {
       : 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/t67s0a4d_kyoto.jpg'
   };
   
-  // Handle day selection for transports (single day only)
+  // Handle day selection for transports (single day for train/bus/other, multi-day for car rental)
   const handleDaySelection = (date: number) => {
-    setSelectedDay(date);
+    if (activeFilter === 'car_rental') {
+      // Multi-day selection for car rental
+      setSelectedDays((prev) => {
+        const newDays = [...prev];
+        const index = newDays.indexOf(date);
+        if (index > -1) {
+          newDays.splice(index, 1); // Remove if already selected
+        } else {
+          newDays.push(date); // Add if not selected
+        }
+        return newDays.sort((a, b) => a - b);
+      });
+    } else {
+      // Single day selection for other transport types
+      setSelectedDay(date);
+    }
   };
   
   // Mock transport data - 2 per category
