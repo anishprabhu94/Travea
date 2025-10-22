@@ -725,15 +725,17 @@ export default function TransportBrowsing() {
                         </View>
                         
                         {/* Depart & Arrive with clock icons */}
-                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10}}>
-                          <Ionicons name="time-outline" size={13} color="rgba(217,203,160,0.8)" style={{marginRight: 4, marginTop: -2}} />
-                          <Text style={styles.nightsRatingText}>Depart: {transport.departTime}</Text>
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 8}}>
+                          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Ionicons name="time-outline" size={13} color="rgba(217,203,160,0.8)" style={{marginRight: 3}} />
+                            <Text style={{...styles.nightsRatingText, paddingTop: 2}}>Depart: {transport.departTime}</Text>
+                          </View>
                           <Text style={styles.decisionDot}> · </Text>
-                          <Text style={styles.nightsRatingText}>Arrive: {transport.arriveTime}</Text>
+                          <Text style={{...styles.nightsRatingText, paddingTop: 2}}>Arrive: {transport.arriveTime}</Text>
                         </View>
                         
                         {/* Est. Price on separate line */}
-                        <Text style={[styles.priceText, {marginBottom: 10}]}>
+                        <Text style={[styles.priceText, {marginBottom: 8}]}>
                           Est. Price: €{formatPrice(totalPrice)}
                         </Text>
                         
