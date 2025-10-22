@@ -775,28 +775,48 @@ export default function Landing() {
                         </View>
                         
                         {/* Search Bar with Golden Glow */}
-                        <TouchableOpacity 
-                          activeOpacity={0.9}
-                          onPress={handleSearchActivation}
-                        >
-                          <Animated.View style={[
-                            styles.searchBarWrapper,
-                            {
-                              shadowColor: searchGlowAnim.interpolate({
-                                inputRange: [0, 1],
-                                outputRange: ['rgba(255,255,255,0.2)', 'rgba(212,190,132,0.35)']
-                              })
-                            }
-                          ]}>
-                            <BlurView intensity={25} tint="light" style={styles.searchBarContainer}>
-                              <View style={styles.searchBarContent}>
-                                <Ionicons name="search-outline" size={18} color="rgba(255,255,255,0.75)" style={styles.searchIcon} />
-                                <Text style={styles.searchPlaceholder}>By city or country</Text>
+                        <Animated.View style={[
+                          styles.searchBarWrapper,
+                          {
+                            shadowColor: searchGlowAnim.interpolate({
+                              inputRange: [0, 1],
+                              outputRange: ['rgba(255,255,255,0.2)', 'rgba(212,190,132,0.35)']
+                            })
+                          }
+                        ]}>
+                          <BlurView intensity={25} tint="light" style={styles.searchBarContainer}>
+                            <View style={styles.searchBarContent}>
+                              <Ionicons name="search-outline" size={18} color="rgba(255,255,255,0.75)" style={styles.searchIcon} />
+                              <TextInput
+                                style={styles.searchInput}
+                                placeholder="By city or country"
+                                placeholderTextColor="rgba(255,255,255,0.65)"
+                                value={searchQuery}
+                                onChangeText={setSearchQuery}
+                                onFocus={handleSearchActivation}
+                                onSubmitEditing={() => {
+                                  if (searchQuery.trim()) {
+                                    handleCitySelection(searchQuery.trim())
+                                    Keyboard.dismiss()
+                                  }
+                                }}
+                                returnKeyType="search"
+                                autoCapitalize="words"
+                                autoCorrect={false}
+                              />
+                              <TouchableOpacity
+                                onPress={() => {
+                                  if (searchQuery.trim()) {
+                                    handleCitySelection(searchQuery.trim())
+                                    Keyboard.dismiss()
+                                  }
+                                }}
+                              >
                                 <Ionicons name="arrow-forward-circle-outline" size={20} color="rgba(201,169,109,0.9)" style={styles.searchArrow} />
-                              </View>
-                            </BlurView>
-                          </Animated.View>
-                        </TouchableOpacity>
+                              </TouchableOpacity>
+                            </View>
+                          </BlurView>
+                        </Animated.View>
                         
                         {/* Trending Section */}
                         <View style={styles.trendingSection}>
