@@ -755,12 +755,15 @@ export default function Landing() {
             <View style={styles.searchContainer}>
               {searchTransitionState === 'idle' || searchTransitionState === 'activated' ? (
                 // IDLE & ACTIVATED STATE: "Where to?" Pane
-                <Animated.View style={[
-                  styles.searchPaneWrapper,
-                  {
-                    transform: [{ scale: searchPaneExpansion }]
-                  }
-                ]}>
+                <Animated.View 
+                  style={[
+                    styles.searchPaneWrapper,
+                    {
+                      transform: [{ scale: searchPaneExpansion }]
+                    }
+                  ]}
+                  pointerEvents="box-none"
+                >
                   <ImageBackground
                     source={{ uri: 'https://customer-assets.emergentagent.com/job_frosted-journey-1/artifacts/kltmxjks_search%202.jpg' }}
                     style={styles.searchImageBackground}
