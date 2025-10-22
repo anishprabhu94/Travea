@@ -651,24 +651,52 @@ export default function TransportBrowsing() {
                   <View style={styles.stayCardFrosted}>
                     {Platform.OS === 'web' ? (
                       <View style={styles.frostedContent}>
-                        {/* Hero Layer - Title & Tagline */}
-                        <Text style={styles.stayCardName}>{transport.name}</Text>
-                        <Text style={styles.stayCardTagline}>{transport.tagline}</Text>
-                        
-                        {/* Decision Layer - Combined Price, People, Rating with Star */}
-                        <View style={styles.decisionRow}>
-                          <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
-                          <Text style={styles.decisionDot}> · </Text>
-                          <Text style={styles.nightsRatingText}>{travelers} {travelers === 1 ? 'person' : 'people'}</Text>
-                          <Text style={styles.decisionDot}> · </Text>
-                          <Ionicons name="star" size={12} color="#FFFFFF" style={{marginRight: 3}} />
-                          <Text style={styles.nightsRatingText}>{transport.rating}</Text>
+                        {/* Transport icon + Origin -> Destination */}
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10}}>
+                          <View style={{
+                            width: 36, 
+                            height: 36, 
+                            borderRadius: 18, 
+                            backgroundColor: 'rgba(203,184,140,0.2)', 
+                            alignItems: 'center', 
+                            justifyContent: 'center', 
+                            marginRight: 10, 
+                            borderWidth: 1, 
+                            borderColor: 'rgba(203,184,140,0.3)'
+                          }}>
+                            <Ionicons name={transport.icon} size={18} color="#CBB88C" />
+                          </View>
+                          <Text style={{fontSize: 18, fontFamily: 'DMSans-Bold', color: '#FFFFFF', flex: 1, letterSpacing: 0.3}}>
+                            {transport.origin} → {transport.destination}
+                          </Text>
                         </View>
                         
-                        {/* Ivory Separator */}
-                        <View style={styles.ivorySeparator} />
+                        {/* Provider · Duration */}
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 8}}>
+                          <Text style={{fontSize: 14, color: 'rgba(217,203,160,0.8)', fontFamily: 'DMSans-Regular'}}>{transport.provider}</Text>
+                          <Text style={{fontSize: 14, color: 'rgba(255,255,255,0.4)', marginHorizontal: 6}}> · </Text>
+                          <Ionicons name="time-outline" size={14} color="rgba(217,203,160,0.8)" style={{marginRight: 4}} />
+                          <Text style={{fontSize: 14, color: 'rgba(217,203,160,0.8)', fontFamily: 'DMSans-Regular'}}>{transport.duration}</Text>
+                        </View>
                         
-                        {/* Date Pill - Replacing View Details */}
+                        {/* Depart & Arrive */}
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 12}}>
+                          <Ionicons name="calendar-outline" size={14} color="rgba(217,203,160,0.8)" style={{marginRight: 4}} />
+                          <Text style={{fontSize: 13, color: 'rgba(217,203,160,0.8)', fontFamily: 'DMSans-Regular'}}>
+                            Depart: {transport.departTime}
+                          </Text>
+                          <Text style={{fontSize: 14, color: 'rgba(255,255,255,0.4)', marginHorizontal: 6}}> · </Text>
+                          <Text style={{fontSize: 13, color: 'rgba(217,203,160,0.8)', fontFamily: 'DMSans-Regular'}}>
+                            Arrive: {transport.arriveTime}
+                          </Text>
+                        </View>
+                        
+                        {/* Est. Total */}
+                        <Text style={{fontSize: 16, color: '#FFFFFF', fontFamily: 'DMSans-Medium', marginBottom: 14}}>
+                          Est. Total: €{formatPrice(totalPrice)} pp
+                        </Text>
+                        
+                        <View style={styles.ivorySeparator} />
                         <View style={styles.cardDatePill}>
                           <Text style={styles.cardDatePillText}>
                             {displayDates.startMonth.slice(0, 3)} {displayDates.startDay}
@@ -677,24 +705,52 @@ export default function TransportBrowsing() {
                       </View>
                     ) : (
                       <BlurView intensity={30} tint="light" style={styles.blurViewContent}>
-                        {/* Hero Layer - Title & Tagline */}
-                        <Text style={styles.stayCardName}>{transport.name}</Text>
-                        <Text style={styles.stayCardTagline}>{transport.tagline}</Text>
-                        
-                        {/* Decision Layer - Combined Price, People, Rating with Star */}
-                        <View style={styles.decisionRow}>
-                          <Text style={styles.priceText}>€{formatPrice(totalPrice)}</Text>
-                          <Text style={styles.decisionDot}> · </Text>
-                          <Text style={styles.nightsRatingText}>{travelers} {travelers === 1 ? 'person' : 'people'}</Text>
-                          <Text style={styles.decisionDot}> · </Text>
-                          <Ionicons name="star" size={12} color="#FFFFFF" style={{marginRight: 3}} />
-                          <Text style={styles.nightsRatingText}>{transport.rating}</Text>
+                        {/* Transport icon + Origin -> Destination */}
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10}}>
+                          <View style={{
+                            width: 36, 
+                            height: 36, 
+                            borderRadius: 18, 
+                            backgroundColor: 'rgba(203,184,140,0.2)', 
+                            alignItems: 'center', 
+                            justifyContent: 'center', 
+                            marginRight: 10, 
+                            borderWidth: 1, 
+                            borderColor: 'rgba(203,184,140,0.3)'
+                          }}>
+                            <Ionicons name={transport.icon} size={18} color="#CBB88C" />
+                          </View>
+                          <Text style={{fontSize: 18, fontFamily: 'DMSans-Bold', color: '#FFFFFF', flex: 1, letterSpacing: 0.3}}>
+                            {transport.origin} → {transport.destination}
+                          </Text>
                         </View>
                         
-                        {/* Ivory Separator */}
-                        <View style={styles.ivorySeparator} />
+                        {/* Provider · Duration */}
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 8}}>
+                          <Text style={{fontSize: 14, color: 'rgba(217,203,160,0.8)', fontFamily: 'DMSans-Regular'}}>{transport.provider}</Text>
+                          <Text style={{fontSize: 14, color: 'rgba(255,255,255,0.4)', marginHorizontal: 6}}> · </Text>
+                          <Ionicons name="time-outline" size={14} color="rgba(217,203,160,0.8)" style={{marginRight: 4}} />
+                          <Text style={{fontSize: 14, color: 'rgba(217,203,160,0.8)', fontFamily: 'DMSans-Regular'}}>{transport.duration}</Text>
+                        </View>
                         
-                        {/* Date Pill - Replacing View Details */}
+                        {/* Depart & Arrive */}
+                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 12}}>
+                          <Ionicons name="calendar-outline" size={14} color="rgba(217,203,160,0.8)" style={{marginRight: 4}} />
+                          <Text style={{fontSize: 13, color: 'rgba(217,203,160,0.8)', fontFamily: 'DMSans-Regular'}}>
+                            Depart: {transport.departTime}
+                          </Text>
+                          <Text style={{fontSize: 14, color: 'rgba(255,255,255,0.4)', marginHorizontal: 6}}> · </Text>
+                          <Text style={{fontSize: 13, color: 'rgba(217,203,160,0.8)', fontFamily: 'DMSans-Regular'}}>
+                            Arrive: {transport.arriveTime}
+                          </Text>
+                        </View>
+                        
+                        {/* Est. Total */}
+                        <Text style={{fontSize: 16, color: '#FFFFFF', fontFamily: 'DMSans-Medium', marginBottom: 14}}>
+                          Est. Total: €{formatPrice(totalPrice)} pp
+                        </Text>
+                        
+                        <View style={styles.ivorySeparator} />
                         <View style={styles.cardDatePill}>
                           <Text style={styles.cardDatePillText}>
                             {displayDates.startMonth.slice(0, 3)} {displayDates.startDay}
