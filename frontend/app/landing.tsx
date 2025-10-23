@@ -672,7 +672,11 @@ export default function Landing() {
               {/* Top Bar - Logo & Profile */}
               <View style={styles.editorialTopBar}>
                 <TraveaWordmark />
-                <TouchableOpacity style={styles.editorialProfileIcon} activeOpacity={0.8}>
+                <TouchableOpacity 
+                  style={styles.editorialProfileIcon} 
+                  activeOpacity={0.8}
+                  onPress={() => setShowProfileDrawer(true)}
+                >
                   <BlurView intensity={10} tint="dark" style={styles.editorialProfileBlur}>
                     <Ionicons name="person-outline" size={18} color="rgba(255,255,255,0.9)" />
                   </BlurView>
