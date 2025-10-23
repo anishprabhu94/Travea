@@ -2024,23 +2024,23 @@ const styles = StyleSheet.create({
   },
   // Halo Lens Arrow Button Styles
   haloLensButton: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: 32, // Reduced from 36
+    height: 32, // Reduced from 36
+    borderRadius: 16, // Reduced from 18
     marginLeft: 12,
     overflow: 'hidden',
   },
   haloLensBlur: {
     width: '100%',
     height: '100%',
-    borderRadius: 18,
+    borderRadius: 16,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.1)',
   },
   haloLensGradient: {
     width: '100%',
     height: '100%',
-    borderRadius: 18,
+    borderRadius: 16,
     justifyContent: 'center',
     alignItems: 'center',
   },
