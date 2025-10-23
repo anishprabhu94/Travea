@@ -2000,8 +2000,8 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.12)', // More visible but still subtle frosted border
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 18,
-    paddingVertical: 14,
+    paddingHorizontal: 16,
+    paddingVertical: 10, // Reduced from 14
     ...Platform.select({
       web: {
         boxShadow: 'inset 0 1px 6px rgba(255,255,255,0.08), 0 0 16px rgba(0,0,0,0.12)', // Lighter, more elegant shadows
