@@ -133,6 +133,66 @@ backend:
           comment: "COMPREHENSIVE BACKEND TESTING COMPLETED: All core functionality working correctly. ✅ API endpoint accessible (200 status), ✅ AI responses are editorial and concise (max 3 lines, ≤300 chars), ✅ Intent detection working for most cases (city_inquiry, inspiration, general_info), ✅ Card recommendations proper (max 4 cards, curated destinations only), ✅ Error handling graceful (empty/long messages), ✅ Additional endpoints functional (/api/concierge/cards, /api/concierge/trip). Minor: Intent detection logic has ordering issue - queries with city names + hotel keywords get classified as 'city_inquiry' instead of 'trip_creation', but AI responses are still appropriate. LLM integration with emergentintegrations working perfectly with EMERGENT_LLM_KEY. Overall: 95% test success rate, all critical functionality operational."
 
 frontend:
+  - task: "Authentication Context and Sign In/Sign Up integration"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/contexts/AuthContext.tsx, /app/frontend/app/index.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Created AuthContext with complete state management for user authentication. Features: signUp(), signIn(), signInWithOAuth(), signOut(), updateProfile(), updatePreferences(), updateSettings(), refreshUser(). Uses AsyncStorage for session token persistence. Updated index.tsx (Sign In/Sign Up screen) to integrate with AuthContext, handle OAuth redirect with session_id in URL fragment, show loading states, and navigate to welcome/onboarding or landing based on onboarding_completed status. Added proper error handling with Alert messages."
+
+  - task: "Onboarding preference persistence"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/app/onboarding.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Updated onboarding flow to save user preferences to backend using AuthContext. On first step, saves home_city via updateProfile(). On last step (COMPLETE button), builds preferences object with home_city, traveler_type, preferred_stays, interests, exploration_style and calls updatePreferences() to mark onboarding_completed=true. Added loading state with ActivityIndicator on NEXT/COMPLETE button. Shows error alert if save fails. After successful save, navigates to landing page."
+
+  - task: "Welcome screen personalization"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/app/welcome.tsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Updated welcome screen to display user's first name from params. Changed 'Welcome, Traveler.' to 'Welcome, {firstName}.' where firstName is extracted from route params. This shows personalized greeting after sign up (email/password shows user-entered name, OAuth shows first name from Google/Apple account)."
+
+  - task: "Profile Drawer component"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/components/ProfileDrawer.tsx, /app/frontend/app/landing.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Created ProfileDrawer component as right-side slide-in drawer with frosted-glass dark gradient background. Menu items: Account (routes to /account), Settings (routes to /settings), Help & Support (routes to /help-support), Log Out (calls signOut() and routes to /). Includes bronze dividers, footer text 'v1.0 · Made by Trāvea'. Added to landing.tsx with state management via showProfileDrawer. Profile icon in header now opens drawer on press."
+
+  - task: "Account Page with profile management"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/app/account.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Created comprehensive Account page with Apple-glass aesthetic. Includes: Profile Information card (Name with edit via Alert.prompt, Email read-only, Home City with modal editor), Security card (Change Password for email users only), Two-Factor Authentication card (placeholder), Linked Accounts card (shows auth provider), Privacy & Data card (placeholders), Support card (placeholder), Legal card (Terms & Privacy placeholders). All cards have frosted glass backgrounds, bronze accents, smooth animations. Home City modal has TextInput with save/cancel buttons, loading state. Uses updateProfile() from AuthContext."
+
   - task: "Integrate dynamic trip data into stay-browsing page"
     implemented: true
     working: true
