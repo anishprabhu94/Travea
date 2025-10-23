@@ -1350,6 +1350,8 @@ const styles = StyleSheet.create({
     position: 'sticky',
     top: 0,
     zIndex: 100,
+    paddingTop: 20, // 18-20px from greeting
+    paddingBottom: 30, // 28-32px to next section
     ...Platform.select({
       web: {
         position: 'sticky',
@@ -1361,8 +1363,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-    gap: 10,
-    // Removed background color to fix weird pane behind tabs
+    gap: 8, // Tighter spacing for cohesive group
   },
   chip: {
     position: 'relative',
