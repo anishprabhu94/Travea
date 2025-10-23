@@ -823,7 +823,7 @@ export default function Landing() {
                     source={{ uri: 'https://customer-assets.emergentagent.com/job_frosted-journey-1/artifacts/7s7pg3pn_image.png' }}
                     style={styles.searchImageBackground}
                     imageStyle={styles.searchImageStyle}
-                    blurRadius={20}
+                    blurRadius={8}
                   >
                     <BlurView intensity={25} tint="light" style={styles.searchPane}>
                       <View style={styles.searchPaneContent}>
