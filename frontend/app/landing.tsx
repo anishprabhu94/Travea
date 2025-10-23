@@ -1270,6 +1270,8 @@ const styles = StyleSheet.create({
   },
   editorialSunsetImageStyle: {
     resizeMode: 'cover',
+    borderBottomLeftRadius: 32,
+    borderBottomRightRadius: 32,
   },
   matteFilter: {
     position: 'absolute',
