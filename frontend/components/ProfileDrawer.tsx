@@ -15,7 +15,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { useAuth } from '../contexts/AuthContext';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 interface ProfileDrawerProps {
   visible: boolean;
@@ -25,21 +25,36 @@ interface ProfileDrawerProps {
 export default function ProfileDrawer({ visible, onClose }: ProfileDrawerProps) {
   const router = useRouter();
   const { signOut } = useAuth();
-  const slideAnim = React.useRef(new Animated.Value(width)).current;
+  const slideAnim = React.useRef(new Animated.Value(40)).current;
+  const fadeAnim = React.useRef(new Animated.Value(0)).current;
 
   React.useEffect(() => {
     if (visible) {
-      Animated.timing(slideAnim, {
-        toValue: 0,
-        duration: 250,
-        useNativeDriver: true,
-      }).start();
+      Animated.parallel([
+        Animated.timing(slideAnim, {
+          toValue: 0,
+          duration: 250,
+          useNativeDriver: true,
+        }),
+        Animated.timing(fadeAnim, {
+          toValue: 1,
+          duration: 250,
+          useNativeDriver: true,
+        }),
+      ]).start();
     } else {
-      Animated.timing(slideAnim, {
-        toValue: width,
-        duration: 250,
-        useNativeDriver: true,
-      }).start();
+      Animated.parallel([
+        Animated.timing(slideAnim, {
+          toValue: 40,
+          duration: 300,
+          useNativeDriver: true,
+        }),
+        Animated.timing(fadeAnim, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+        }),
+      ]).start();
     }
   }, [visible]);
 
@@ -82,15 +97,18 @@ export default function ProfileDrawer({ visible, onClose }: ProfileDrawerProps) 
           onPress={onClose}
         />
 
-        {/* Drawer Panel */}
+        {/* Floating Drawer Panel */}
         <Animated.View 
           style={[
             styles.drawerContainer,
-            { transform: [{ translateX: slideAnim }] }
+            { 
+              transform: [{ translateX: slideAnim }],
+              opacity: fadeAnim,
+            }
           ]}
         >
           <LinearGradient
-            colors={['rgba(15,18,20,0.95)', 'rgba(15,18,20,0.85)']}
+            colors={['rgba(194,164,110,0.06)', 'rgba(15,18,20,0.55)']}
             style={styles.drawerGradient}
           >
             <BlurView intensity={30} tint="dark" style={styles.drawerContent}>
@@ -114,10 +132,11 @@ export default function ProfileDrawer({ visible, onClose }: ProfileDrawerProps) 
                         <Ionicons 
                           name={item.icon as any} 
                           size={20} 
-                          color="rgba(255,255,255,0.9)" 
+                          color="rgba(255,255,255,0.8)" 
                         />
                         <Text style={styles.menuItemText}>{item.label}</Text>
                       </View>
+                      <View style={styles.ripple} />
                     </TouchableOpacity>
                     {index < menuItems.length - 1 && (
                       <View style={styles.divider} />
@@ -126,9 +145,12 @@ export default function ProfileDrawer({ visible, onClose }: ProfileDrawerProps) 
                 ))}
               </View>
 
-              {/* Footer */}
-              <View style={styles.footer}>
-                <Text style={styles.footerText}>v1.0 · Made by Trāvea</Text>
+              {/* Footer with divider */}
+              <View style={styles.footerContainer}>
+                <View style={styles.footerDivider} />
+                <View style={styles.footer}>
+                  <Text style={styles.footerText}>v1.0 · Made by Trāvea</Text>
+                </View>
               </View>
 
             </BlurView>
@@ -142,7 +164,7 @@ export default function ProfileDrawer({ visible, onClose }: ProfileDrawerProps) 
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     alignItems: 'flex-end',
   },
   backdrop: {
@@ -151,34 +173,47 @@ const styles = StyleSheet.create({
   },
   drawerContainer: {
     position: 'absolute',
-    right: 0,
-    top: 0,
-    bottom: 0,
-    width: 280,
-    shadowColor: '#000',
-    shadowOffset: { width: -4, height: 0 },
-    shadowOpacity: 0.3,
-    shadowRadius: 12,
-    elevation: 20,
+    right: 12,
+    top: 56,
+    bottom: 56,
+    width: width * 0.82,
+    maxWidth: 340,
+    borderRadius: 30,
+    overflow: 'hidden',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.35,
+        shadowRadius: 30,
+      },
+      android: {
+        elevation: 20,
+      },
+      web: {
+        boxShadow: '0 8px 30px rgba(0,0,0,0.35)',
+      },
+    }),
   },
   drawerGradient: {
     flex: 1,
-    borderTopLeftRadius: 24,
-    borderBottomLeftRadius: 24,
-    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.08)',
+    borderRadius: 30,
   },
   drawerContent: {
     flex: 1,
-    paddingTop: Platform.select({ ios: 60, android: 40 }),
+    paddingTop: 28,
     paddingHorizontal: 24,
-    paddingBottom: 32,
+    paddingBottom: 20,
   },
   menuList: {
     flex: 1,
-    paddingTop: 20,
+    paddingTop: 12,
   },
   menuItem: {
     paddingVertical: 18,
+    position: 'relative',
   },
   menuItemInner: {
     flexDirection: 'row',
@@ -196,14 +231,29 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     }),
   },
+  ripple: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    opacity: 0,
+  },
   divider: {
     height: 1,
     backgroundColor: 'rgba(194,164,110,0.1)',
-    marginHorizontal: -24,
     marginVertical: 4,
   },
+  footerContainer: {
+    marginTop: 'auto',
+  },
+  footerDivider: {
+    height: 1,
+    backgroundColor: 'rgba(194,164,110,0.1)',
+    marginBottom: 16,
+  },
   footer: {
-    paddingTop: 20,
+    paddingBottom: 4,
     alignItems: 'center',
   },
   footerText: {
