@@ -23,6 +23,7 @@ import { useExperienceBooking } from '../contexts/ExperienceBookingContext'
 import { useRestaurantBooking } from '../contexts/RestaurantBookingContext'
 import { useTransportBooking } from '../contexts/TransportBookingContext'
 import TraveaWordmark from '../components/TraveaWordmark'
+import ProfileDrawer from '../components/ProfileDrawer'
 
 const { width, height } = Dimensions.get('window')
 
