@@ -1920,7 +1920,7 @@ const styles = StyleSheet.create({
     marginBottom: 28,
   },
   searchTitle: {
-    fontSize: 20, // Reduced from 24
+    fontSize: 24, // Increased for prominence
     fontWeight: '500', // Poise, not bold
     color: '#F8F8F8',
     marginBottom: 6,
