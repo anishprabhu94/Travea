@@ -268,7 +268,7 @@ export default function Onboarding() {
                 />
               </BlurView>
               
-              {/* Auto-Suggest Dropdown with Fade-in */}
+              {/* Floating Selection Layer - Apple Maps Style */}
               {filteredCities.length > 0 && (
                 <Animated.View
                   style={[
@@ -278,7 +278,7 @@ export default function Onboarding() {
                       transform: [{
                         translateY: dropdownAnim.interpolate({
                           inputRange: [0, 1],
-                          outputRange: [-10, 0],
+                          outputRange: [8, 0], // Slide up from +8px
                         })
                       }]
                     }
@@ -289,7 +289,7 @@ export default function Onboarding() {
                     nestedScrollEnabled={true}
                     keyboardShouldPersistTaps="handled"
                   >
-                    <BlurView intensity={30} tint="light" style={styles.suggestionsBlur}>
+                    <BlurView intensity={18} tint="light" style={styles.suggestionsBlur}>
                       {filteredCities.map((city, index) => (
                         <TouchableOpacity
                           key={index}
@@ -302,7 +302,13 @@ export default function Onboarding() {
                           onPressOut={() => setHoveredSuggestion(null)}
                           activeOpacity={1}
                         >
-                          <Text style={styles.suggestionText}>{city}</Text>
+                          <View style={styles.suggestionTextContainer}>
+                            <Text style={styles.suggestionText}>{city}</Text>
+                            {/* Bronze underline on hover */}
+                            {hoveredSuggestion === city && (
+                              <View style={styles.bronzeUnderline} />
+                            )}
+                          </View>
                           {/* Minimalist Arrow in Circle */}
                           <View style={styles.suggestionArrowCircle}>
                             <Ionicons name="arrow-forward" size={12} color="rgba(194,164,110,1)" style={styles.suggestionArrowIcon} />
