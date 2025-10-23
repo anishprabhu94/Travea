@@ -743,30 +743,32 @@ const styles = StyleSheet.create({
     }),
     outlineStyle: 'none',
   },
-  // Sophisticated Dropdown Styles
+  // Floating Selection Layer - Apple Maps/Aman Style
   suggestionsWrapper: {
-    marginTop: 4, // Slight vertical offset for floating feel
+    marginTop: 8, // 6-8px gap for floating feel
+    marginHorizontal: 8, // Narrower than input (indented)
   },
   suggestionsContainer: {
     maxHeight: 240,
   },
   suggestionsBlur: {
-    borderRadius: 20,
+    borderRadius: 14, // Smaller radius (14px vs 22px input) - card-like
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(194,164,110,0.25)', // Semi-transparent bronze border
+    borderColor: 'rgba(194,164,110,0.2)', // Lighter bronze border
+    backgroundColor: 'rgba(255,255,255,0.06)', // Airier, lower opacity
     ...Platform.select({
       ios: {
         shadowColor: 'rgba(0,0,0,0.25)',
-        shadowOffset: { width: 0, height: 2 },
+        shadowOffset: { width: 0, height: 6 },
         shadowOpacity: 1,
-        shadowRadius: 6,
+        shadowRadius: 12, // Soft shadow for floating
       },
       android: {
-        elevation: 4,
+        elevation: 8,
       },
       web: {
-        boxShadow: '0 2px 6px rgba(0,0,0,0.25)',
+        boxShadow: '0 6px 12px rgba(0,0,0,0.25)', // Soft shadow
       },
     }),
   },
@@ -774,39 +776,34 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.04)',
-    paddingVertical: 14,
-    paddingHorizontal: 18,
+    backgroundColor: 'rgba(255,255,255,0.02)', // Very light base
+    paddingVertical: 16, // More whitespace
+    paddingHorizontal: 20, // 16-20px padding
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(255,255,255,0.06)',
+    borderBottomColor: 'rgba(255,255,255,0.04)',
   },
   suggestionItemHovered: {
-    backgroundColor: 'rgba(194,164,110,0.12)', // Muted bronze tint on hover
-    ...Platform.select({
-      ios: {
-        shadowColor: 'rgba(0,0,0,0.25)',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 1,
-        shadowRadius: 6,
-      },
-      android: {
-        elevation: 4,
-      },
-      web: {
-        boxShadow: '0 2px 6px rgba(0,0,0,0.25)',
-      },
-    }),
+    backgroundColor: 'rgba(194,164,110,0.08)', // Lighter bronze glow
+  },
+  suggestionTextContainer: {
+    flex: 1,
   },
   suggestionText: {
-    fontSize: 14, // 90% of input text (16px * 0.9 ≈ 14px)
-    color: '#F4F3EE',
-    opacity: 0.85, // Subtle contrast hierarchy
-    fontWeight: '500',
+    fontSize: 15, // Slightly larger for readability
+    color: 'rgba(248,246,243,0.85)', // Off-white at 85% opacity
+    fontWeight: '400', // Regular weight for lightness
+    letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
+  },
+  bronzeUnderline: {
+    height: 1,
+    backgroundColor: 'rgba(194,164,110,0.4)',
+    marginTop: 4,
+    width: '60%', // Subtle partial underline
   },
   // Minimalist Arrow in Circle
   suggestionArrowCircle: {
