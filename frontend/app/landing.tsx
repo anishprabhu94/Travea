@@ -1400,9 +1400,9 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   chipLabel: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '500',
-    color: 'rgba(255,255,255,0.80)', // Slightly brighter for inactive
+    color: 'rgba(255,255,255,0.85)', // 85% for inactive
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
@@ -1410,7 +1410,7 @@ const styles = StyleSheet.create({
     }),
   },
   chipLabelActive: {
-    color: '#FFFFFF', // Pure white for active
+    color: '#FFFFFF', // White for active
   },
   chipActive: {
     // Active state handled by glow
