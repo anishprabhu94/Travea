@@ -1418,8 +1418,8 @@ const styles = StyleSheet.create({
     position: 'sticky',
     top: 0,
     zIndex: 100,
-    paddingTop: 20, // Even tighter from header
-    paddingBottom: 12, // Minimal spacing to carousels
+    paddingTop: 20,
+    paddingBottom: 8, // Even closer to first carousel
     ...Platform.select({
       web: {
         position: 'sticky',
