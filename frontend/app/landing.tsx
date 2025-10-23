@@ -1312,8 +1312,8 @@ const styles = StyleSheet.create({
   },
   editorialSunsetImageStyle: {
     resizeMode: 'cover',
-    borderBottomLeftRadius: 32,
-    borderBottomRightRadius: 32,
+    borderBottomLeftRadius: 48,
+    borderBottomRightRadius: 48,
   },
   matteFilter: {
     position: 'absolute',
