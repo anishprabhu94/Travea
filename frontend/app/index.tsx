@@ -245,14 +245,19 @@ export default function Index() {
                 style={styles.primaryButton}
                 onPress={isSignUp ? handleSignUp : handleSignIn}
                 activeOpacity={0.8}
+                disabled={isSubmitting}
               >
                 <LinearGradient
                   colors={['#B8956A', '#A8855C']} 
                   style={styles.gradientButton}
                 >
-                  <Text style={styles.primaryButtonText}>
-                    {isSignUp ? 'Create Account' : 'Sign In'}
-                  </Text>
+                  {isSubmitting ? (
+                    <ActivityIndicator size="small" color="#F8F8F8" />
+                  ) : (
+                    <Text style={styles.primaryButtonText}>
+                      {isSignUp ? 'Create Account' : 'Sign In'}
+                    </Text>
+                  )}
                 </LinearGradient>
               </TouchableOpacity>
               
