@@ -1389,19 +1389,15 @@ const styles = StyleSheet.create({
   },
   chipContentActive: {
     backgroundColor: 'rgba(168,150,115,0.35)', // Muted bronze fill
-    borderWidth: 1,
-    borderColor: 'rgba(168,150,115,0.4)', // Bronze rim
   },
   chipContent: {
-    backgroundColor: 'rgba(255,255,255,0.08)', // Frosted transparent
+    backgroundColor: 'rgba(255,255,255,0.05)', // Frosted black
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 16,
     paddingVertical: 12,
     gap: 8,
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.06)', // Inner translucency glow
   },
   chipLabel: {
     fontSize: 16,
