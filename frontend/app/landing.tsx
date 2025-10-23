@@ -2033,14 +2033,14 @@ const styles = StyleSheet.create({
   haloLensBlur: {
     width: '100%',
     height: '100%',
-    borderRadius: 16,
+    borderRadius: 14,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.1)',
   },
   haloLensGradient: {
     width: '100%',
     height: '100%',
-    borderRadius: 16,
+    borderRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',
   },
