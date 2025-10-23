@@ -93,8 +93,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const signUp = async (name: string, email: string, password: string) => {
+    console.log('signUp function called with:', { name, email, hasPassword: !!password });
+    console.log('Backend URL:', EXPO_BACKEND_URL);
     try {
-      const response = await fetch(`${EXPO_BACKEND_URL}/api/auth/signup`, {
+      const url = `${EXPO_BACKEND_URL}/api/auth/signup`;
+      console.log('Fetching:', url);
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -102,15 +106,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         body: JSON.stringify({ name, email, password }),
       });
 
+      console.log('Response status:', response.status);
       if (!response.ok) {
         const error = await response.json();
+        console.error('Response error:', error);
         throw new Error(error.detail || 'Sign up failed');
       }
 
       const data = await response.json();
+      console.log('Response data received:', { user: data.user, hasToken: !!data.session_token });
       setUser(data.user);
       setSessionToken(data.session_token);
       await AsyncStorage.setItem('session_token', data.session_token);
+      console.log('User and session token saved');
     } catch (error) {
       console.error('Sign up error:', error);
       throw error;
@@ -118,8 +126,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const signIn = async (email: string, password: string) => {
+    console.log('signIn function called with:', { email, hasPassword: !!password });
+    console.log('Backend URL:', EXPO_BACKEND_URL);
     try {
-      const response = await fetch(`${EXPO_BACKEND_URL}/api/auth/signin`, {
+      const url = `${EXPO_BACKEND_URL}/api/auth/signin`;
+      console.log('Fetching:', url);
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -127,15 +139,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         body: JSON.stringify({ email, password }),
       });
 
+      console.log('Response status:', response.status);
       if (!response.ok) {
         const error = await response.json();
+        console.error('Response error:', error);
         throw new Error(error.detail || 'Sign in failed');
       }
 
       const data = await response.json();
+      console.log('Response data received:', { user: data.user, hasToken: !!data.session_token });
       setUser(data.user);
       setSessionToken(data.session_token);
       await AsyncStorage.setItem('session_token', data.session_token);
+      console.log('User and session token saved');
     } catch (error) {
       console.error('Sign in error:', error);
       throw error;
