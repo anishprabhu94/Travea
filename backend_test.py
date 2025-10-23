@@ -1,19 +1,20 @@
 #!/usr/bin/env python3
 """
-Backend Test Suite for AI Concierge API
-Tests all endpoints and functionality as specified in the review request
+Backend Test Suite for Authentication API
+Tests all authentication endpoints and functionality as specified in the review request
 """
 
 import requests
 import json
 import os
 from typing import Dict, Any
+import time
 
 # Get backend URL from environment
 BACKEND_URL = os.getenv('EXPO_PUBLIC_BACKEND_URL', 'https://glass-traveler.preview.emergentagent.com')
 API_BASE = f"{BACKEND_URL}/api"
 
-class ConciergeAPITester:
+class AuthAPITester:
     def __init__(self):
         self.base_url = API_BASE
         self.test_results = []
