@@ -1508,8 +1508,8 @@ const styles = StyleSheet.create({
     paddingBottom: 120, // Space for bottom dock
   },
   carouselSection: {
-    marginTop: 40,
-    marginBottom: 32,
+    marginTop: 24, // Reduced from 40
+    marginBottom: 20, // Reduced from 32
   },
   carouselHeader: {
     flexDirection: 'row',
