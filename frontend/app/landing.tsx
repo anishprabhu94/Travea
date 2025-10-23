@@ -1955,7 +1955,7 @@ const styles = StyleSheet.create({
     marginBottom: 28,
   },
   searchTitle: {
-    fontSize: 24,
+    fontSize: 20, // Reduced from 24
     fontWeight: '500', // Poise, not bold
     color: '#F8F8F8',
     marginBottom: 6,
