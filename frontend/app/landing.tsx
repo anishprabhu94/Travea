@@ -625,9 +625,15 @@ export default function Landing() {
             {/* Subtle Matte Filter - 90% opacity to soften */}
             <View style={styles.matteFilter} />
             
-            {/* Natural Bottom Darkening - 15% for legibility */}
+            {/* Natural Bottom Darkening - Strong blend */}
             <LinearGradient
-              colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.25)']}
+              colors={[
+                'rgba(0,0,0,0)', 
+                'rgba(0,0,0,0.25)',
+                'rgba(0,0,0,0.50)',
+                'rgba(0,0,0,0.75)',
+                'rgba(11,15,20,0.95)'
+              ]}
               style={styles.naturalBottomDarkening}
             />
             
