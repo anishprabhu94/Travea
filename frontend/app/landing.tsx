@@ -892,9 +892,13 @@ export default function Landing() {
                           </BlurView>
                         </Animated.View>
                         
-                        {/* Trending Section */}
+                        {/* Trending Section - Sophisticated Dual-Tone */}
                         <View style={styles.trendingSection}>
-                          <Text style={styles.trendingLabel}>Trending now</Text>
+                          {/* Dual-Tone Typography */}
+                          <View style={styles.trendingLabelContainer}>
+                            <Text style={styles.trendingIvory}>Trending</Text>
+                            <Text style={styles.trendingBronze}> now</Text>
+                          </View>
                           <ScrollView
                             horizontal
                             showsHorizontalScrollIndicator={false}
@@ -908,11 +912,10 @@ export default function Landing() {
                                 style={styles.trendingPillWrapper}
                                 onPress={() => handleCitySelection(destination)}
                               >
-                                <BlurView intensity={20} tint="light" style={styles.trendingPill}>
-                                  <View style={styles.trendingPillInner}>
-                                    <Text style={styles.trendingPillText}>{destination}</Text>
-                                  </View>
-                                </BlurView>
+                                {/* Frosted Glass Pills with Bronze Border */}
+                                <View style={styles.trendingPillFrosted}>
+                                  <Text style={styles.trendingPillTextNew}>{destination}</Text>
+                                </View>
                               </TouchableOpacity>
                             ))}
                           </ScrollView>
