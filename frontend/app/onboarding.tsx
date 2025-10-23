@@ -76,6 +76,7 @@ const questions: Question[] = [
 
 export default function Onboarding() {
   const router = useRouter();
+  const { updatePreferences, updateProfile } = useAuth();
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<{ [key: number]: string[] }>({});
   const [fadeAnim] = useState(new Animated.Value(1));
@@ -84,6 +85,7 @@ export default function Onboarding() {
   const [filteredCities, setFilteredCities] = useState<string[]>([]);
   const [dropdownAnim] = useState(new Animated.Value(0));
   const [hoveredSuggestion, setHoveredSuggestion] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
 
   const currentQuestion = questions[currentStep];
   const progress = ((currentStep + 1) / questions.length) * 100;
