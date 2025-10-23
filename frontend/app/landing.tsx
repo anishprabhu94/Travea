@@ -1172,6 +1172,12 @@ export default function Landing() {
           </View>
         </BlurView>
       </Animated.View>
+
+      {/* Profile Drawer */}
+      <ProfileDrawer 
+        visible={showProfileDrawer} 
+        onClose={() => setShowProfileDrawer(false)} 
+      />
     </View>
   )
 }
