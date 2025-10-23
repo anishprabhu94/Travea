@@ -1327,7 +1327,11 @@ const styles = StyleSheet.create({
   },
   editorialHeaderContent: {
     flex: 1,
-    paddingTop: 32,
+    paddingTop: Platform.select({
+      ios: 50, // Account for status bar
+      android: 40,
+      web: 24,
+    }),
     paddingHorizontal: 24,
     zIndex: 10,
   },
