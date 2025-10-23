@@ -820,7 +820,7 @@ export default function Landing() {
                   pointerEvents="box-none"
                 >
                   <ImageBackground
-                    source={{ uri: 'https://customer-assets.emergentagent.com/job_frosted-journey-1/artifacts/xx6ie73a_image.png' }}
+                    source={{ uri: 'https://customer-assets.emergentagent.com/job_frosted-journey-1/artifacts/7s7pg3pn_image.png' }}
                     style={styles.searchImageBackground}
                     imageStyle={styles.searchImageStyle}
                     blurRadius={20}
