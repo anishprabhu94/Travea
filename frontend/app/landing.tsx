@@ -443,16 +443,8 @@ export default function Landing() {
     const baseCards = getCurrentCards()
     
     if (activeMode === 'vacations') {
-      // For You Tab: Multi-City Circuits + All Curated Cards
+      // For You Tab: Curated first, then Multi-City Circuits
       return [
-        { 
-          id: 'vacations_circuits', 
-          title: 'Multi-City Circuits', 
-          cards: baseCards.filter(card => card.isMultiCity).map((card, index) => ({
-            ...card,
-            id: `vacations_circuits_${card.id}_${index}`,
-          }))
-        },
         { 
           id: 'vacations_curated', 
           title: 'Curated for You', 
@@ -461,17 +453,43 @@ export default function Landing() {
             id: `vacations_curated_${card.id}_${index}`,
             isCondeNastPick: index < 2
           }))
+        },
+        { 
+          id: 'vacations_circuits', 
+          title: 'Multi-City Circuits', 
+          cards: baseCards.filter(card => card.isMultiCity).map((card, index) => ({
+            ...card,
+            id: `vacations_circuits_${card.id}_${index}`,
+          }))
         }
       ]
     } else if (activeMode === 'discover') {
-      // Discover Tab: All cards in single carousel for now
+      // Discover Tab: Trending Now, Slow Living, Hidden Gems
       return [
         { 
-          id: 'discover_all', 
-          title: 'Discover Destinations', 
-          cards: baseCards.map((card, index) => ({
+          id: 'discover_trending', 
+          title: 'Trending Now', 
+          cards: baseCards.slice(0, 8).map((card, index) => ({
             ...card,
-            id: `discover_all_${card.id}_${index}`,
+            id: `discover_trending_${card.id}_${index}`,
+            isCondeNastPick: index < 2
+          }))
+        },
+        { 
+          id: 'discover_slow', 
+          title: 'Slow Living', 
+          cards: baseCards.slice(8, 16).map((card, index) => ({
+            ...card,
+            id: `discover_slow_${card.id}_${index}`,
+            isCondeNastPick: index < 2
+          }))
+        },
+        { 
+          id: 'discover_gems', 
+          title: 'Hidden Gems', 
+          cards: baseCards.slice(16).map((card, index) => ({
+            ...card,
+            id: `discover_gems_${card.id}_${index}`,
             isCondeNastPick: index < 2
           }))
         }
