@@ -2043,16 +2043,31 @@ const styles = StyleSheet.create({
   trendingSection: {
     width: '100%',
     alignItems: 'flex-start',
+    marginTop: 12, // Closer to search bar
   },
-  trendingLabel: {
-    fontSize: 22, // Consistent with carousel titles
-    fontWeight: '600', // Consistent with carousel titles
-    color: '#F8F8F8', // Consistent with carousel titles
-    marginBottom: 18, // More breathing space
-    textTransform: 'none', // Remove uppercase for consistency
-    letterSpacing: 0, // Reset letter spacing for consistency
-    textAlign: 'left',
+  // Dual-Tone Typography Styles
+  trendingLabelContainer: {
+    flexDirection: 'row',
+    marginBottom: 14,
     alignSelf: 'flex-start',
+  },
+  trendingIvory: {
+    fontSize: 20, // Match "Where to?" size
+    fontWeight: '500', // Match "Where to?" weight
+    color: '#E8E6E2', // Soft ivory
+    letterSpacing: 0.5,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    }),
+  },
+  trendingBronze: {
+    fontSize: 20,
+    fontWeight: '500',
+    color: '#A89673', // Warm bronze
+    opacity: 0.9, // 90% opacity
+    letterSpacing: 0.5,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
@@ -2064,26 +2079,25 @@ const styles = StyleSheet.create({
   },
   trendingContent: {
     paddingHorizontal: 0,
-    gap: 12,
+    gap: 10,
   },
   trendingPillWrapper: {
-    marginRight: 12,
+    marginRight: 10,
   },
-  trendingPill: {
-    borderRadius: 22,
-    overflow: 'hidden',
-  },
-  trendingPillInner: {
-    paddingVertical: 8,
-    paddingHorizontal: 14,
-    backgroundColor: 'rgba(15,15,15,0.85)',
+  // Frosted Glass Pill with Bronze Border
+  trendingPillFrosted: {
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    backgroundColor: 'rgba(255,255,255,0.05)',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.12)',
+    borderColor: 'rgba(168,150,115,0.25)', // Bronze border
+    borderRadius: 24,
   },
-  trendingPillText: {
+  trendingPillTextNew: {
     fontSize: 13,
-    fontWeight: '600',
-    color: '#C9A96D',
+    fontWeight: '500',
+    color: '#F4F3EE', // Warm ivory
+    opacity: 0.85,
     letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'Inter',
