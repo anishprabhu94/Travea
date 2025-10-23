@@ -1,30 +1,8 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Constants from 'expo-constants';
 
-// Get backend URL with proper fallback
-const getBackendUrl = () => {
-  // Try Constants.expoConfig first (for Expo)
-  if (Constants.expoConfig?.extra?.EXPO_PUBLIC_BACKEND_URL) {
-    return Constants.expoConfig.extra.EXPO_PUBLIC_BACKEND_URL;
-  }
-  // Try process.env (for web)
-  if (process.env.EXPO_PUBLIC_BACKEND_URL) {
-    return process.env.EXPO_PUBLIC_BACKEND_URL;
-  }
-  // Try EXPO_PACKAGER_HOSTNAME as fallback
-  if (Constants.expoConfig?.extra?.EXPO_PACKAGER_HOSTNAME) {
-    return Constants.expoConfig.extra.EXPO_PACKAGER_HOSTNAME;
-  }
-  // Last resort - use the actual hostname from window
-  if (typeof window !== 'undefined') {
-    return window.location.origin;
-  }
-  // Absolute fallback
-  return 'https://glass-traveler.preview.emergentagent.com';
-};
-
-const EXPO_BACKEND_URL = getBackendUrl();
+// Hardcoded backend URL for now - environment variables not working properly
+const EXPO_BACKEND_URL = 'https://glass-traveler.preview.emergentagent.com';
 
 console.log('AuthContext - EXPO_BACKEND_URL:', EXPO_BACKEND_URL);
 
