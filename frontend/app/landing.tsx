@@ -625,10 +625,22 @@ export default function Landing() {
             {/* Subtle Matte Filter - 90% opacity to soften */}
             <View style={styles.matteFilter} />
             
-            {/* Natural Bottom Darkening - 10% for legibility */}
+            {/* Natural Bottom Darkening - 15% for legibility */}
             <LinearGradient
               colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.25)']}
               style={styles.naturalBottomDarkening}
+            />
+            
+            {/* Diffuse Bottom Fade - Soft blend into background */}
+            <LinearGradient
+              colors={[
+                'rgba(16,20,25,0)',
+                'rgba(16,20,25,0.3)',
+                'rgba(16,20,25,0.6)',
+                'rgba(11,15,20,0.85)',
+                '#0B0F14'
+              ]}
+              style={styles.diffuseBottomFade}
             />
             
             {/* Header Content */}
