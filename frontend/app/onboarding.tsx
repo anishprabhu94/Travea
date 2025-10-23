@@ -8,6 +8,8 @@ import {
   Dimensions,
   Platform,
   ImageBackground,
+  TextInput,
+  ScrollView,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { BlurView } from 'expo-blur';
