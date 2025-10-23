@@ -872,7 +872,7 @@ export default function Landing() {
                                     style={styles.haloLensGradient}
                                   >
                                     <View style={styles.haloLensInner}>
-                                      <Ionicons name="arrow-forward" size={16} color="#FFFFFF" style={{ opacity: 0.85 }} />
+                                      <Ionicons name="arrow-forward" size={14} color="#FFFFFF" style={{ opacity: 0.85 }} />
                                     </View>
                                   </LinearGradient>
                                 </BlurView>
