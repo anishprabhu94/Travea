@@ -268,27 +268,50 @@ export default function Onboarding() {
                 />
               </BlurView>
               
-              {/* Auto-Suggest Dropdown */}
+              {/* Auto-Suggest Dropdown with Fade-in */}
               {filteredCities.length > 0 && (
-                <ScrollView 
-                  style={styles.suggestionsContainer}
-                  nestedScrollEnabled={true}
-                  keyboardShouldPersistTaps="handled"
+                <Animated.View
+                  style={[
+                    styles.suggestionsWrapper,
+                    {
+                      opacity: dropdownAnim,
+                      transform: [{
+                        translateY: dropdownAnim.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [-10, 0],
+                        })
+                      }]
+                    }
+                  ]}
                 >
-                  <BlurView intensity={25} tint="light" style={styles.suggestionsBlur}>
-                    {filteredCities.map((city, index) => (
-                      <TouchableOpacity
-                        key={index}
-                        style={styles.suggestionItem}
-                        onPress={() => handleCitySelect(city)}
-                        activeOpacity={0.7}
-                      >
-                        <Text style={styles.suggestionText}>{city}</Text>
-                        <Ionicons name="arrow-forward" size={14} color="rgba(201,169,109,0.8)" />
-                      </TouchableOpacity>
-                    ))}
-                  </BlurView>
-                </ScrollView>
+                  <ScrollView 
+                    style={styles.suggestionsContainer}
+                    nestedScrollEnabled={true}
+                    keyboardShouldPersistTaps="handled"
+                  >
+                    <BlurView intensity={30} tint="light" style={styles.suggestionsBlur}>
+                      {filteredCities.map((city, index) => (
+                        <TouchableOpacity
+                          key={index}
+                          style={[
+                            styles.suggestionItem,
+                            hoveredSuggestion === city && styles.suggestionItemHovered
+                          ]}
+                          onPress={() => handleCitySelect(city)}
+                          onPressIn={() => setHoveredSuggestion(city)}
+                          onPressOut={() => setHoveredSuggestion(null)}
+                          activeOpacity={1}
+                        >
+                          <Text style={styles.suggestionText}>{city}</Text>
+                          {/* Minimalist Arrow in Circle */}
+                          <View style={styles.suggestionArrowCircle}>
+                            <Ionicons name="arrow-forward" size={12} color="rgba(194,164,110,1)" style={styles.suggestionArrowIcon} />
+                          </View>
+                        </TouchableOpacity>
+                      ))}
+                    </BlurView>
+                  </ScrollView>
+                </Animated.View>
               )}
             </View>
           ) : (
