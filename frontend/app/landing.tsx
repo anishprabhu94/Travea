@@ -1263,6 +1263,9 @@ const styles = StyleSheet.create({
     height: height * 0.24, // 24% of screen - more compact
     marginBottom: 0,
     backgroundColor: '#101419', // Slightly lifted black for continuity
+    borderBottomLeftRadius: 32,
+    borderBottomRightRadius: 32,
+    overflow: 'hidden',
   },
   editorialSunsetBackground: {
     width: '100%',
