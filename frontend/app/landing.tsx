@@ -1290,7 +1290,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: '15%', // Extended for better legibility
+    height: '40%', // Significantly increased for strong blending
     zIndex: 2,
   },
   diffuseBottomFade: {
