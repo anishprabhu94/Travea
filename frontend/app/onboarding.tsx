@@ -242,42 +242,83 @@ export default function Onboarding() {
             <Text style={styles.questionText}>{currentQuestion.question}</Text>
           </View>
 
-          {/* BubbleGrid */}
-          <View style={styles.bubbleGrid}>
-            {currentQuestion.options.map((option, index) => {
-              const selected = isSelected(option);
-              const scaleAnim = getScaleAnim(option);
-
-              return (
-                <Animated.View
-                  key={index}
-                  style={[
-                    styles.bubbleWrapper,
-                    { transform: [{ scale: scaleAnim }] },
-                  ]}
+          {/* Conditional Rendering: City Input or BubbleGrid */}
+          {currentQuestion.isTextInput ? (
+            // City Input Field with Auto-Suggest
+            <View style={styles.cityInputContainer}>
+              <BlurView intensity={20} tint="light" style={styles.cityInputBlur}>
+                <TextInput
+                  style={styles.cityInput}
+                  placeholder="Start typing your city…"
+                  placeholderTextColor="rgba(255,255,255,0.5)"
+                  value={cityInput}
+                  onChangeText={handleCityInput}
+                  autoCapitalize="words"
+                  autoCorrect={false}
+                />
+              </BlurView>
+              
+              {/* Auto-Suggest Dropdown */}
+              {filteredCities.length > 0 && (
+                <ScrollView 
+                  style={styles.suggestionsContainer}
+                  nestedScrollEnabled={true}
+                  keyboardShouldPersistTaps="handled"
                 >
-                  <TouchableOpacity
-                    activeOpacity={1}
-                    onPress={() => handleSelectAnswer(option)}
+                  <BlurView intensity={25} tint="light" style={styles.suggestionsBlur}>
+                    {filteredCities.map((city, index) => (
+                      <TouchableOpacity
+                        key={index}
+                        style={styles.suggestionItem}
+                        onPress={() => handleCitySelect(city)}
+                        activeOpacity={0.7}
+                      >
+                        <Text style={styles.suggestionText}>{city}</Text>
+                        <Ionicons name="arrow-forward" size={14} color="rgba(201,169,109,0.8)" />
+                      </TouchableOpacity>
+                    ))}
+                  </BlurView>
+                </ScrollView>
+              )}
+            </View>
+          ) : (
+            // BubbleGrid for other questions
+            <View style={styles.bubbleGrid}>
+              {currentQuestion.options.map((option, index) => {
+                const selected = isSelected(option);
+                const scaleAnim = getScaleAnim(option);
+
+                return (
+                  <Animated.View
+                    key={index}
+                    style={[
+                      styles.bubbleWrapper,
+                      { transform: [{ scale: scaleAnim }] },
+                    ]}
                   >
-                    {selected ? (
-                      <BlurView intensity={20} tint="light" style={styles.selectedBubble}>
-                        <View style={styles.selectedBubbleInner}>
-                          <Text style={styles.bubbleTextSelected}>{option}</Text>
-                        </View>
-                      </BlurView>
-                    ) : (
-                      <BlurView intensity={20} tint="light" style={styles.bubble}>
-                        <View style={styles.bubbleInner}>
-                          <Text style={styles.bubbleText}>{option}</Text>
-                        </View>
-                      </BlurView>
-                    )}
-                  </TouchableOpacity>
-                </Animated.View>
-              );
-            })}
-          </View>
+                    <TouchableOpacity
+                      activeOpacity={1}
+                      onPress={() => handleSelectAnswer(option)}
+                    >
+                      {selected ? (
+                        <BlurView intensity={20} tint="light" style={styles.selectedBubble}>
+                          <View style={styles.selectedBubbleInner}>
+                            <Text style={styles.bubbleTextSelected}>{option}</Text>
+                          </View>
+                        </BlurView>
+                      ) : (
+                        <BlurView intensity={20} tint="light" style={styles.bubble}>
+                          <View style={styles.bubbleInner}>
+                            <Text style={styles.bubbleText}>{option}</Text>
+                          </View>
+                        </BlurView>
+                      )}
+                    </TouchableOpacity>
+                  </Animated.View>
+                );
+              })}
+            </View>
+          )}
         </View>
 
         {/* Next Button - Pinned at bottom */}
