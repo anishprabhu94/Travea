@@ -37,6 +37,10 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "EXPO_PUBLIC_BACKEND_URL": "https://glass-traveler.preview.emergentagent.com",
+      "EXPO_PACKAGER_HOSTNAME": "https://glass-traveler.preview.emergentagent.com"
     }
   }
 }
