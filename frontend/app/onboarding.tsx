@@ -79,6 +79,8 @@ export default function Onboarding() {
   const [scaleAnims, setScaleAnims] = useState<{ [key: string]: Animated.Value }>({});
   const [cityInput, setCityInput] = useState('');
   const [filteredCities, setFilteredCities] = useState<string[]>([]);
+  const [dropdownAnim] = useState(new Animated.Value(0));
+  const [hoveredSuggestion, setHoveredSuggestion] = useState<string | null>(null);
 
   const currentQuestion = questions[currentStep];
   const progress = ((currentStep + 1) / questions.length) * 100;
