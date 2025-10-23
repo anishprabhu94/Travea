@@ -1248,7 +1248,7 @@ const styles = StyleSheet.create({
   editorialHeaderContainer: {
     position: 'relative',
     width: '100%',
-    height: height * 0.30, // 30% of screen
+    height: height * 0.24, // 24% of screen - more compact
     marginBottom: 0,
     backgroundColor: '#101419', // Slightly lifted black for continuity
   },
