@@ -1912,6 +1912,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 30,
+    marginTop: 32, // Push down from pills
     marginBottom: 120, // Space from dock
   },
   searchImageBackground: {
