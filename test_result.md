@@ -246,8 +246,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "AI Concierge API endpoint with emergentintegrations"
-    - "AI Concierge page with editorial luxury design and backend integration"
+    - "Authentication API endpoints (signup, signin, OAuth)"
+    - "Authentication Context and Sign In/Sign Up integration"
+    - "Onboarding preference persistence"
+    - "Account Page with profile management"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
