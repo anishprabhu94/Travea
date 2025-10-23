@@ -1405,25 +1405,25 @@ const styles = StyleSheet.create({
     right: 0,
     height: 2,
   },
-  // Atmospheric Cosmetic Treatments
+  // Atmospheric Cosmetic Treatments - REVISED
   mistDissolveGradient: {
     position: 'absolute',
-    bottom: -120,
+    bottom: -100, // Start earlier
     left: 0,
     right: 0,
-    height: 140,
+    height: 120,
     zIndex: 4,
   },
   ambientColorSpill: {
     position: 'absolute',
-    bottom: -80,
-    left: '15%',
-    right: '15%',
-    height: 100,
-    backgroundColor: 'rgba(168,150,115,0.08)',
+    bottom: -70,
+    left: '10%',
+    right: '10%',
+    height: 90,
+    backgroundColor: 'rgba(168,150,115,0.12)', // Increased from 0.08
     ...Platform.select({
       web: {
-        filter: 'blur(40px)',
+        filter: 'blur(45px)',
       },
     }),
     borderRadius: '50%',
@@ -1435,9 +1435,31 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 40,
-    backgroundColor: 'rgba(255,255,255,0.03)',
+    backgroundColor: 'rgba(255,245,230,0.03)', // Bronze undertone
     zIndex: 1,
     pointerEvents: 'none',
+  },
+  sectionConnectionLayer: {
+    position: 'absolute',
+    top: 258,
+    left: 0,
+    right: 0,
+    height: 14,
+    zIndex: 2,
+    pointerEvents: 'none',
+  },
+  microSoftShadow: {
+    position: 'absolute',
+    bottom: -2,
+    left: 0,
+    right: 0,
+    height: 24,
+    ...Platform.select({
+      web: {
+        boxShadow: '0 2px 20px rgba(0,0,0,0.2)',
+      },
+    }),
+    zIndex: 2,
   },
   greetingSub: {
     fontSize: 18,
