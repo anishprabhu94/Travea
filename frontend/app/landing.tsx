@@ -1244,196 +1244,96 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  // NEW ATMOSPHERIC HEADER STYLES
-  atmosphericHeaderContainer: {
+  // EDITORIAL HEADER STYLES - Clean & Sophisticated
+  editorialHeaderContainer: {
     position: 'relative',
     width: '100%',
-    height: 260,
+    height: height * 0.30, // 30% of screen
     marginBottom: 0,
+    backgroundColor: '#101419', // Slightly lifted black for continuity
   },
-  sunsetBackground: {
+  editorialSunsetBackground: {
     width: '100%',
     height: '100%',
   },
-  sunsetBackgroundImage: {
+  editorialSunsetImageStyle: {
     resizeMode: 'cover',
-    opacity: 0.75,
   },
-  headerDarkOverlay: {
+  matteFilter: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    height: 180,
+    bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.10)', // 90% opacity = 10% darkening
     zIndex: 1,
   },
-  frostedTextVeil: {
+  naturalBottomDarkening: {
     position: 'absolute',
-    top: 80,
+    bottom: 0,
     left: 0,
     right: 0,
-    height: 120,
-    backgroundColor: 'rgba(255,255,255,0.06)',
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(8px)',
-      },
-    }),
+    height: '10%',
     zIndex: 2,
   },
-  headerTopBar: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
+  editorialHeaderContent: {
+    flex: 1,
+    paddingTop: 32,
+    paddingHorizontal: 24,
+    zIndex: 10,
+  },
+  editorialTopBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 32,
-    paddingHorizontal: 24,
-    paddingBottom: 16,
-    zIndex: 10,
+    marginBottom: 12, // 12px spacing
   },
-  logoWithGlow: {
-    ...Platform.select({
-      web: {
-        filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.25))',
-      },
-      default: {
-        shadowColor: '#FFFFFF',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.25,
-        shadowRadius: 10,
-        elevation: 8,
-      },
-    }),
+  editorialProfileIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
   },
-  profileIconNew: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-  },
-  profileIconBlurNew: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+  editorialProfileBlur: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     overflow: 'hidden',
-    backgroundColor: 'rgba(255,255,255,0.08)',
+    backgroundColor: 'rgba(0,0,0,0.35)',
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.1)',
   },
-  greetingSectionNew: {
-    position: 'absolute',
-    bottom: 72,
-    left: 24,
-    right: 24,
-    zIndex: 10,
+  editorialGreetingSection: {
+    marginTop: 18, // 18-20px spacing
   },
-  greetingTextContainer: {
-    alignItems: 'flex-start',
-    marginBottom: 8,
-  },
-  greetingMainNew: {
-    fontSize: 22,
-    fontWeight: '600',
-    color: '#FFFFFF',
-    marginBottom: 6,
-    letterSpacing: 0.3,
+  editorialGreetingMain: {
+    fontSize: 24,
+    fontWeight: '500', // Medium weight
+    color: '#FFFFFF', // Crisp white
+    marginBottom: 4,
+    letterSpacing: 2.5, // 2-3% tracking
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
-  bronzeUnderline: {
-    width: 60,
-    height: 1.5,
-    backgroundColor: 'rgba(168,150,115,0.4)',
-    alignSelf: 'center',
+  hairlineBronzeRule: {
+    width: 48,
+    height: 1,
+    backgroundColor: 'rgba(168,150,115,0.25)', // 25% opacity
+    marginBottom: 6,
+    marginLeft: 2, // Offset
   },
-  greetingSubNew: {
+  editorialGreetingSubtext: {
     fontSize: 15,
     fontWeight: '400',
-    color: 'rgba(255,255,255,0.65)',
+    color: 'rgba(230,227,222,0.75)', // Warm ivory #E6E3DE at 75%
     letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
-  },
-  headerBottomFade: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 90,
-    zIndex: 3,
-  },
-  microDivider: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 2,
-  },
-  // Atmospheric Cosmetic Treatments - REVISED
-  mistDissolveGradient: {
-    position: 'absolute',
-    bottom: -100, // Start earlier
-    left: 0,
-    right: 0,
-    height: 120,
-    zIndex: 4,
-  },
-  ambientColorSpill: {
-    position: 'absolute',
-    bottom: -70,
-    left: '10%',
-    right: '10%',
-    height: 90,
-    backgroundColor: 'rgba(168,150,115,0.12)', // Increased from 0.08
-    ...Platform.select({
-      web: {
-        filter: 'blur(45px)',
-      },
-    }),
-    borderRadius: '50%',
-    zIndex: 3,
-  },
-  glassContinuityOverlay: {
-    position: 'absolute',
-    top: 260,
-    left: 0,
-    right: 0,
-    height: 40,
-    backgroundColor: 'rgba(255,245,230,0.03)', // Bronze undertone
-    zIndex: 1,
-    pointerEvents: 'none',
-  },
-  sectionConnectionLayer: {
-    position: 'absolute',
-    top: 258,
-    left: 0,
-    right: 0,
-    height: 14,
-    zIndex: 2,
-    pointerEvents: 'none',
-  },
-  microSoftShadow: {
-    position: 'absolute',
-    bottom: -2,
-    left: 0,
-    right: 0,
-    height: 24,
-    ...Platform.select({
-      web: {
-        boxShadow: '0 2px 20px rgba(0,0,0,0.2)',
-      },
-    }),
-    zIndex: 2,
   },
   greetingSub: {
     fontSize: 18,
