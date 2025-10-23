@@ -82,6 +82,7 @@ export default function Index() {
   }, []);
 
   const handleSignIn = async () => {
+    console.log('handleSignIn called - email:', email, 'password:', password ? '***' : 'empty');
     if (!email || !password) {
       Alert.alert('Error', 'Please enter email and password');
       return;
@@ -89,15 +90,19 @@ export default function Index() {
 
     setIsSubmitting(true);
     try {
+      console.log('Calling signIn...');
       await signIn(email, password);
+      console.log('signIn successful');
       // Navigation will be handled by useEffect based on onboarding status
     } catch (error: any) {
+      console.error('signIn error:', error);
       Alert.alert('Sign In Failed', error.message || 'Invalid credentials');
       setIsSubmitting(false);
     }
   };
 
   const handleSignUp = async () => {
+    console.log('handleSignUp called - name:', name, 'email:', email, 'password:', password ? '***' : 'empty');
     if (!name || !email || !password) {
       Alert.alert('Error', 'Please fill in all fields');
       return;
@@ -110,13 +115,16 @@ export default function Index() {
 
     setIsSubmitting(true);
     try {
+      console.log('Calling signUp...');
       await signUp(name, email, password);
+      console.log('signUp successful');
       // Navigate to welcome screen with user's first name
       router.replace({
         pathname: '/welcome',
         params: { name: name.split(' ')[0] }
       });
     } catch (error: any) {
+      console.error('signUp error:', error);
       Alert.alert('Sign Up Failed', error.message || 'Failed to create account');
       setIsSubmitting(false);
     }
