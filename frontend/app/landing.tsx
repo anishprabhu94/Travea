@@ -820,9 +820,10 @@ export default function Landing() {
                   pointerEvents="box-none"
                 >
                   <ImageBackground
-                    source={{ uri: 'https://customer-assets.emergentagent.com/job_frosted-journey-1/artifacts/kltmxjks_search%202.jpg' }}
+                    source={{ uri: 'https://customer-assets.emergentagent.com/job_frosted-journey-1/artifacts/xx6ie73a_image.png' }}
                     style={styles.searchImageBackground}
                     imageStyle={styles.searchImageStyle}
+                    blurRadius={20}
                   >
                     <BlurView intensity={25} tint="light" style={styles.searchPane}>
                       <View style={styles.searchPaneContent}>
