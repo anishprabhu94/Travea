@@ -7,10 +7,10 @@ import {
   TouchableOpacity,
   TextInput,
   Platform,
-  Dimensions,
   Alert,
   ActivityIndicator,
   Modal,
+  ImageBackground,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -19,25 +19,38 @@ import { useRouter } from 'expo-router';
 import { BlurView } from 'expo-blur';
 import { useAuth } from '../contexts/AuthContext';
 
-const { width } = Dimensions.get('window');
-
 export default function Account() {
   const router = useRouter();
   const { user, updateProfile, signOut } = useAuth();
-  const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState(user?.name || '');
   const [homeCity, setHomeCity] = useState(user?.home_city || '');
+  const [showNameModal, setShowNameModal] = useState(false);
   const [showCityModal, setShowCityModal] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [editNameValue, setEditNameValue] = useState('');
 
-  const handleSave = async () => {
+  const handleSaveName = async () => {
     setIsSaving(true);
     try {
-      await updateProfile({ name, home_city: homeCity });
-      Alert.alert('Success', 'Profile updated successfully');
-      setIsEditing(false);
+      await updateProfile({ name: editNameValue });
+      setName(editNameValue);
+      setShowNameModal(false);
+      Alert.alert('Success', 'Name updated successfully');
     } catch (error) {
-      Alert.alert('Error', 'Failed to update profile');
+      Alert.alert('Error', 'Failed to update name');
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleSaveCity = async () => {
+    setIsSaving(true);
+    try {
+      await updateProfile({ home_city: homeCity });
+      setShowCityModal(false);
+      Alert.alert('Success', 'Home city updated');
+    } catch (error) {
+      Alert.alert('Error', 'Failed to update home city');
     } finally {
       setIsSaving(false);
     }
@@ -85,11 +98,17 @@ export default function Account() {
     <View style={styles.container}>
       <StatusBar style="light" />
       
-      {/* Background */}
-      <LinearGradient
-        colors={['#0B0F14', '#0B0F14']}
-        style={styles.background}
-      />
+      {/* Ambient Background with Image Blur */}
+      <ImageBackground
+        source={{ uri: 'https://customer-assets.emergentagent.com/job_glass-traveler/artifacts/hjbpxxqu_search%202.jpg' }}
+        style={styles.backgroundImage}
+        blurRadius={60}
+      >
+        <LinearGradient
+          colors={['#0B0F14', 'rgba(194,164,110,0.05)']}
+          style={styles.backgroundGradient}
+        />
+      </ImageBackground>
 
       {/* Header */}
       <View style={styles.header}>
@@ -111,17 +130,8 @@ export default function Account() {
             label: 'Name',
             value: user?.name,
             onPress: () => {
-              setIsEditing(true);
-              Alert.prompt(
-                'Edit Name',
-                'Enter your new name',
-                (text) => {
-                  setName(text);
-                  updateProfile({ name: text }).catch(() => Alert.alert('Error', 'Failed to update name'));
-                },
-                'plain-text',
-                user?.name
-              );
+              setEditNameValue(user?.name || '');
+              setShowNameModal(true);
             },
           },
           {
@@ -200,6 +210,59 @@ export default function Account() {
         <View style={{ height: 40 }} />
       </ScrollView>
 
+      {/* Name Edit Modal */}
+      <Modal
+        visible={showNameModal}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setShowNameModal(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <TouchableOpacity 
+            style={styles.modalBackdrop} 
+            activeOpacity={1} 
+            onPress={() => setShowNameModal(false)}
+          />
+          <View style={styles.modalContent}>
+            <BlurView intensity={30} tint="dark" style={styles.modalBlur}>
+              <Text style={styles.modalTitle}>Edit Name</Text>
+              <TextInput
+                style={styles.modalInput}
+                value={editNameValue}
+                onChangeText={setEditNameValue}
+                placeholder="Enter your name"
+                placeholderTextColor="rgba(255,255,255,0.4)"
+                autoFocus
+              />
+              <View style={styles.modalButtons}>
+                <TouchableOpacity
+                  style={styles.modalCancelButton}
+                  onPress={() => setShowNameModal(false)}
+                >
+                  <Text style={styles.modalCancelText}>Cancel</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.modalSaveButton}
+                  onPress={handleSaveName}
+                  disabled={isSaving}
+                >
+                  <LinearGradient
+                    colors={['#C2A46E', '#A8855C']}
+                    style={styles.modalSaveGradient}
+                  >
+                    {isSaving ? (
+                      <ActivityIndicator size="small" color="#F8F8F8" />
+                    ) : (
+                      <Text style={styles.modalSaveText}>Save</Text>
+                    )}
+                  </LinearGradient>
+                </TouchableOpacity>
+              </View>
+            </BlurView>
+          </View>
+        </View>
+      </Modal>
+
       {/* City Edit Modal */}
       <Modal
         visible={showCityModal}
@@ -236,22 +299,11 @@ export default function Account() {
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.modalSaveButton}
-                  onPress={async () => {
-                    setIsSaving(true);
-                    try {
-                      await updateProfile({ home_city: homeCity });
-                      setShowCityModal(false);
-                      Alert.alert('Success', 'Home city updated');
-                    } catch (error) {
-                      Alert.alert('Error', 'Failed to update home city');
-                    } finally {
-                      setIsSaving(false);
-                    }
-                  }}
+                  onPress={handleSaveCity}
                   disabled={isSaving}
                 >
                   <LinearGradient
-                    colors={['#B8956A', '#A8855C']}
+                    colors={['#C2A46E', '#A8855C']}
                     style={styles.modalSaveGradient}
                   >
                     {isSaving ? (
@@ -275,8 +327,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#0B0F14',
   },
-  background: {
+  backgroundImage: {
     ...StyleSheet.absoluteFillObject,
+  },
+  backgroundGradient: {
+    ...StyleSheet.absoluteFillObject,
+    opacity: 0.95,
   },
   header: {
     flexDirection: 'row',
@@ -327,11 +383,20 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(194,164,110,0.15)',
     padding: 20,
     marginBottom: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 12,
-    elevation: 5,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.35,
+        shadowRadius: 20,
+      },
+      android: {
+        elevation: 8,
+      },
+      web: {
+        boxShadow: '0 4px 20px rgba(0,0,0,0.35)',
+      },
+    }),
   },
   cardTitle: {
     fontSize: 14,
@@ -403,7 +468,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.7)',
   },
   modalContent: {
-    width: width - 60,
+    width: '85%',
+    maxWidth: 400,
     borderRadius: 24,
     overflow: 'hidden',
   },
@@ -429,7 +495,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#F8F8F8',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.15)',
+    borderColor: 'rgba(194,164,110,0.3)',
     marginBottom: 20,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
