@@ -1399,8 +1399,8 @@ const styles = StyleSheet.create({
     position: 'sticky',
     top: 0,
     zIndex: 100,
-    paddingTop: 28, // Better spacing from compact header
-    paddingBottom: 32, // Clear separation to carousels
+    paddingTop: 24, // Tighter from header
+    paddingBottom: 20, // Reduced spacing to carousels
     ...Platform.select({
       web: {
         position: 'sticky',
