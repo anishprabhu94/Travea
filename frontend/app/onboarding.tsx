@@ -20,19 +20,30 @@ import TraveaWordmark from '../components/TraveaWordmark';
 
 const { width, height } = Dimensions.get('window');
 
+// Popular cities for auto-suggest
+const POPULAR_CITIES = [
+  'New York', 'Los Angeles', 'London', 'Paris', 'Tokyo', 'Dubai',
+  'Singapore', 'Hong Kong', 'Sydney', 'Toronto', 'Berlin', 'Barcelona',
+  'Amsterdam', 'Rome', 'Istanbul', 'Mumbai', 'São Paulo', 'Mexico City',
+  'Seoul', 'Bangkok', 'Madrid', 'Vienna', 'Lisbon', 'Copenhagen',
+  'Stockholm', 'Oslo', 'Helsinki', 'Prague', 'Budapest', 'Athens',
+];
+
 interface Question {
   id: number;
   question: string;
   options: string[];
   multiSelect?: boolean;
+  isTextInput?: boolean;
 }
 
 const questions: Question[] = [
   {
     id: 1,
-    question: 'Where do you live?',
-    options: ['North America', 'South America', 'Europe', 'Africa', 'Middle East', 'Asia', 'Oceania'],
-    multiSelect: true,
+    question: 'Which city do you call home?',
+    options: [], // No options for text input
+    multiSelect: false,
+    isTextInput: true,
   },
   {
     id: 2,
