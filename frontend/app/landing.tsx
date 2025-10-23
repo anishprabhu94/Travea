@@ -615,42 +615,83 @@ export default function Landing() {
       <View style={styles.vignetteOverlay} />
 
       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
-        {/* Header */}
-        <View style={styles.header}>
-          <View style={styles.logoContainer}>
-            <TraveaWordmark />
-          </View>
-          
-          {/* Profile */}
-          <TouchableOpacity style={styles.profileIcon} activeOpacity={0.8}>
-            <BlurView intensity={24} tint="dark" style={styles.profileIconBlur}>
-              <Ionicons name="person-outline" size={18} color="rgba(255,255,255,0.9)" />
-            </BlurView>
-          </TouchableOpacity>
-        </View>
+        {/* World-Class Atmospheric Header */}
+        <View style={styles.atmosphericHeaderContainer}>
+          <ImageBackground
+            source={{ uri: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80' }}
+            style={styles.sunsetBackground}
+            imageStyle={styles.sunsetBackgroundImage}
+          >
+            {/* Dark Overlay Gradient for Readability */}
+            <LinearGradient
+              colors={[
+                'rgba(11,15,20,0.7)',
+                'rgba(11,15,20,0.5)',
+                'rgba(11,15,20,0.2)',
+                'rgba(11,15,20,0)'
+              ]}
+              style={styles.headerDarkOverlay}
+            />
+            
+            {/* Frosted Veil for Text Area */}
+            <View style={styles.frostedTextVeil} />
+            
+            {/* Top Bar with Logo and Profile */}
+            <View style={styles.headerTopBar}>
+              <View style={styles.logoWithGlow}>
+                <TraveaWordmark />
+              </View>
+              
+              <TouchableOpacity style={styles.profileIconNew} activeOpacity={0.8}>
+                <BlurView intensity={12} tint="dark" style={styles.profileIconBlurNew}>
+                  <Ionicons name="person-outline" size={18} color="rgba(255,255,255,0.9)" />
+                </BlurView>
+              </TouchableOpacity>
+            </View>
 
-        {/* Greeting Section */}
-        <Animated.View 
-          style={[
-            styles.greetingSection, 
-            {
-              opacity: greetingAnim,
-              transform: [{
-                translateY: greetingAnim.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [20, 0]
-                })
-              }]
-            }
-          ]}
-        >
-          <Text style={styles.greetingMain}>Hello, Anish.</Text>
-          <Text style={styles.greetingSub}>
-            {activeMode === 'vacations' && 'Curated trips, just for you.'}
-            {activeMode === 'discover' && 'Hidden gems, waiting to be found.'}
-            {activeMode === 'search' && 'Where would you like to go?'}
-          </Text>
-        </Animated.View>
+            {/* Greeting Section with Bronze Underline */}
+            <Animated.View 
+              style={[
+                styles.greetingSectionNew, 
+                {
+                  opacity: greetingAnim,
+                  transform: [{
+                    translateY: greetingAnim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [20, 0]
+                    })
+                  }]
+                }
+              ]}
+            >
+              <View style={styles.greetingTextContainer}>
+                <Text style={styles.greetingMainNew}>Hello, Anish.</Text>
+                <View style={styles.bronzeUnderline} />
+              </View>
+              <Text style={styles.greetingSubNew}>
+                {activeMode === 'vacations' && 'Curated trips, just for you.'}
+                {activeMode === 'discover' && 'Hidden gems, waiting to be found.'}
+                {activeMode === 'search' && 'Where would you like to go?'}
+              </Text>
+            </Animated.View>
+            
+            {/* Bottom Fade to Dark Interface */}
+            <LinearGradient
+              colors={[
+                'rgba(14,14,14,0)',
+                'rgba(14,14,14,0.3)',
+                'rgba(14,14,14,0.95)'
+              ]}
+              style={styles.headerBottomFade}
+            />
+          </ImageBackground>
+          
+          {/* Micro Gradient Divider */}
+          <LinearGradient
+            colors={['rgba(255,255,255,0.06)', 'rgba(255,255,255,0)']}
+            style={styles.microDivider}
+          />
+        </View>
 
         {/* Sticky Category Chips */}
         <View style={styles.stickyChipsContainer}>
