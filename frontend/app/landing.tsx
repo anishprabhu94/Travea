@@ -615,94 +615,59 @@ export default function Landing() {
       <View style={styles.vignetteOverlay} />
 
       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
-        {/* World-Class Atmospheric Header with Mist Dissolve */}
-        <View style={styles.atmosphericHeaderContainer}>
+        {/* Editorial Header - Quiet Window to the World */}
+        <View style={styles.editorialHeaderContainer}>
           <ImageBackground
             source={{ uri: 'https://customer-assets.emergentagent.com/job_frosted-journey-1/artifacts/6qridd9t_search%202.jpg' }}
-            style={styles.sunsetBackground}
-            imageStyle={styles.sunsetBackgroundImage}
+            style={styles.editorialSunsetBackground}
+            imageStyle={styles.editorialSunsetImageStyle}
           >
-            {/* Dark Overlay Gradient for Readability */}
+            {/* Subtle Matte Filter - 90% opacity to soften */}
+            <View style={styles.matteFilter} />
+            
+            {/* Natural Bottom Darkening - 10% for legibility */}
             <LinearGradient
-              colors={[
-                'rgba(11,15,20,0.7)',
-                'rgba(11,15,20,0.5)',
-                'rgba(11,15,20,0.2)',
-                'rgba(11,15,20,0)'
-              ]}
-              style={styles.headerDarkOverlay}
+              colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.25)']}
+              style={styles.naturalBottomDarkening}
             />
             
-            {/* Frosted Veil for Text Area */}
-            <View style={styles.frostedTextVeil} />
-            
-            {/* Top Bar with Logo and Profile */}
-            <View style={styles.headerTopBar}>
-              <View style={styles.logoWithGlow}>
+            {/* Header Content */}
+            <View style={styles.editorialHeaderContent}>
+              {/* Top Bar - Logo & Profile */}
+              <View style={styles.editorialTopBar}>
                 <TraveaWordmark />
+                <TouchableOpacity style={styles.editorialProfileIcon} activeOpacity={0.8}>
+                  <BlurView intensity={10} tint="dark" style={styles.editorialProfileBlur}>
+                    <Ionicons name="person-outline" size={18} color="rgba(255,255,255,0.9)" />
+                  </BlurView>
+                </TouchableOpacity>
               </View>
-              
-              <TouchableOpacity style={styles.profileIconNew} activeOpacity={0.8}>
-                <BlurView intensity={12} tint="dark" style={styles.profileIconBlurNew}>
-                  <Ionicons name="person-outline" size={18} color="rgba(255,255,255,0.9)" />
-                </BlurView>
-              </TouchableOpacity>
-            </View>
 
-            {/* Greeting Section with Bronze Underline */}
-            <Animated.View 
-              style={[
-                styles.greetingSectionNew, 
-                {
-                  opacity: greetingAnim,
-                  transform: [{
-                    translateY: greetingAnim.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [20, 0]
-                    })
-                  }]
-                }
-              ]}
-            >
-              <View style={styles.greetingTextContainer}>
-                <Text style={styles.greetingMainNew}>Hello, Anish.</Text>
-                <View style={styles.bronzeUnderline} />
-              </View>
-              <Text style={styles.greetingSubNew}>
-                {activeMode === 'vacations' && 'Curated trips, just for you.'}
-                {activeMode === 'discover' && 'Hidden gems, waiting to be found.'}
-                {activeMode === 'search' && 'Where would you like to go?'}
-              </Text>
-            </Animated.View>
-            
-            {/* Revised Feathered Mist Dissolve - Bronze Charcoal Transition */}
-            <LinearGradient
-              colors={[
-                'rgba(20,24,29,0)', // #14181D transparent - bronze charcoal
-                'rgba(20,24,29,0.25)',
-                'rgba(20,24,29,0.55)',
-                'rgba(11,15,20,0.80)', // #0B0F14 
-                'rgba(11,15,20,0.95)',
-                '#0B0F14'
-              ]}
-              style={styles.mistDissolveGradient}
-            />
-            
-            {/* Ambient Bronze Spill - Warm Light Illumination */}
-            <View style={styles.ambientColorSpill} />
-            
-            {/* Micro Soft Shadow - Grounds the Image */}
-            <View style={styles.microSoftShadow} />
+              {/* Greeting Section */}
+              <Animated.View 
+                style={[
+                  styles.editorialGreetingSection, 
+                  {
+                    opacity: greetingAnim,
+                    transform: [{
+                      translateY: greetingAnim.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [20, 0]
+                      })
+                    }]
+                  }
+                ]}
+              >
+                <Text style={styles.editorialGreetingMain}>Hello, Anish.</Text>
+                <View style={styles.hairlineBronzeRule} />
+                <Text style={styles.editorialGreetingSubtext}>
+                  {activeMode === 'vacations' && 'Curated trips, just for you.'}
+                  {activeMode === 'discover' && 'Hidden gems, waiting to be found.'}
+                  {activeMode === 'search' && 'Where would you like to go?'}
+                </Text>
+              </Animated.View>
+            </View>
           </ImageBackground>
-          
-          {/* Section Connection Layer - Thin Glass Plane */}
-          <LinearGradient
-            colors={['rgba(255,255,255,0.04)', 'rgba(255,255,255,0)']}
-            style={styles.sectionConnectionLayer}
-          />
-          
-          {/* Glass Continuity Overlay - Bronze Tinted Frost */}
-          <View style={styles.glassContinuityOverlay} />
         </View>
 
         {/* Sticky Category Chips */}
