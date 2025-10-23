@@ -675,24 +675,33 @@ export default function Landing() {
               </Text>
             </Animated.View>
             
-            {/* Feathered Mist Dissolve - Extended Gradient Transition */}
+            {/* Revised Feathered Mist Dissolve - Bronze Charcoal Transition */}
             <LinearGradient
               colors={[
-                'rgba(11,15,20,0)',
-                'rgba(11,15,20,0.15)',
-                'rgba(11,15,20,0.45)',
-                'rgba(11,15,20,0.75)',
+                'rgba(20,24,29,0)', // #14181D transparent - bronze charcoal
+                'rgba(20,24,29,0.25)',
+                'rgba(20,24,29,0.55)',
+                'rgba(11,15,20,0.80)', // #0B0F14 
                 'rgba(11,15,20,0.95)',
                 '#0B0F14'
               ]}
               style={styles.mistDissolveGradient}
             />
             
-            {/* Ambient Color Spill - Sunset Haze Bleed */}
+            {/* Ambient Bronze Spill - Warm Light Illumination */}
             <View style={styles.ambientColorSpill} />
+            
+            {/* Micro Soft Shadow - Grounds the Image */}
+            <View style={styles.microSoftShadow} />
           </ImageBackground>
           
-          {/* Subtle Depth Layer - Glass Continuity Overlay */}
+          {/* Section Connection Layer - Thin Glass Plane */}
+          <LinearGradient
+            colors={['rgba(255,255,255,0.04)', 'rgba(255,255,255,0)']}
+            style={styles.sectionConnectionLayer}
+          />
+          
+          {/* Glass Continuity Overlay - Bronze Tinted Frost */}
           <View style={styles.glassContinuityOverlay} />
         </View>
 
