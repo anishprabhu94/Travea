@@ -173,6 +173,7 @@ export default function Landing() {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState<any>(null)
   const [bookmarkAnimations, setBookmarkAnimations] = useState<{[key: string]: Animated.Value}>({})
+  const [showProfileDrawer, setShowProfileDrawer] = useState(false)
   
   // Search transition states
   const [searchTransitionState, setSearchTransitionState] = useState<'idle' | 'activated' | 'results'>('idle')
