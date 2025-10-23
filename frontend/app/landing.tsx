@@ -1431,7 +1431,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-    gap: 8, // Tighter spacing for cohesive group
+    gap: 12, // Better spacing between pills
   },
   chip: {
     position: 'relative',
