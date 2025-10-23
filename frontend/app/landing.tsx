@@ -796,7 +796,7 @@ export default function Landing() {
                               <Ionicons name="search-outline" size={18} color="rgba(255,255,255,0.75)" style={styles.searchIcon} />
                               <TextInput
                                 style={styles.searchInput}
-                                placeholder="By city or country"
+                                placeholder="Enter a city"
                                 placeholderTextColor="rgba(255,255,255,0.65)"
                                 value={searchQuery}
                                 onChangeText={setSearchQuery}
@@ -811,15 +811,27 @@ export default function Landing() {
                                 autoCapitalize="words"
                                 autoCorrect={false}
                               />
+                              {/* Halo Lens Arrow Button */}
                               <TouchableOpacity
+                                style={styles.haloLensButton}
                                 onPress={() => {
                                   if (searchQuery.trim()) {
                                     handleCitySelection(searchQuery.trim())
                                     Keyboard.dismiss()
                                   }
                                 }}
+                                activeOpacity={0.7}
                               >
-                                <Ionicons name="arrow-forward-circle-outline" size={20} color="rgba(201,169,109,0.9)" style={styles.searchArrow} />
+                                <BlurView intensity={8} tint="light" style={styles.haloLensBlur}>
+                                  <LinearGradient
+                                    colors={['rgba(255,255,255,0.25)', 'rgba(227,200,141,1)']}
+                                    style={styles.haloLensGradient}
+                                  >
+                                    <View style={styles.haloLensInner}>
+                                      <Ionicons name="arrow-forward" size={16} color="#FFFFFF" style={{ opacity: 0.85 }} />
+                                    </View>
+                                  </LinearGradient>
+                                </BlurView>
                               </TouchableOpacity>
                             </View>
                           </BlurView>
