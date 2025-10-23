@@ -770,11 +770,11 @@ const styles = StyleSheet.create({
   },
   suggestionItem: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: 'rgba(255,255,255,0.02)', // Very light base
-    paddingVertical: 16, // More whitespace
-    paddingHorizontal: 20, // 16-20px padding
+    paddingVertical: 10, // Compact, pill-like height
+    paddingHorizontal: 18, // Sleek padding
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(255,255,255,0.04)',
   },
@@ -785,7 +785,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   suggestionText: {
-    fontSize: 15, // Slightly larger for readability
+    fontSize: 14, // Compact size
     color: 'rgba(248,246,243,0.85)', // Off-white at 85% opacity
     fontWeight: '400', // Regular weight for lightness
     letterSpacing: 0.3,
@@ -798,19 +798,7 @@ const styles = StyleSheet.create({
   bronzeUnderline: {
     height: 1,
     backgroundColor: 'rgba(194,164,110,0.4)',
-    marginTop: 4,
-    width: '60%', // Subtle partial underline
-  },
-  // Minimalist Arrow in Circle
-  suggestionArrowCircle: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: 'rgba(194,164,110,0.08)', // Faint background glow
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  suggestionArrowIcon: {
-    opacity: 0.9,
+    marginTop: 3,
+    width: '50%', // Subtle partial underline
   },
 });
