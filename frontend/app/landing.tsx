@@ -1286,9 +1286,19 @@ const styles = StyleSheet.create({
     width: '100%',
     height: height * 0.24, // 24% of screen - more compact
     marginBottom: 0,
+    marginTop: Platform.select({
+      ios: -50, // Extend up to edge of iPhone screen
+      android: -40,
+      web: 0,
+    }),
+    paddingTop: Platform.select({
+      ios: 50, // Compensate with padding
+      android: 40,
+      web: 0,
+    }),
     backgroundColor: '#101419', // Slightly lifted black for continuity
-    borderBottomLeftRadius: 32,
-    borderBottomRightRadius: 32,
+    borderBottomLeftRadius: 48, // More prominent
+    borderBottomRightRadius: 48, // More prominent
     overflow: 'hidden',
   },
   editorialSunsetBackground: {
