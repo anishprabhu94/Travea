@@ -10,6 +10,7 @@ from typing import List
 import uuid
 from datetime import datetime
 from routes.concierge import router as concierge_router
+from routes.auth import router as auth_router
 
 
 ROOT_DIR = Path(__file__).parent
