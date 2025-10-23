@@ -1405,6 +1405,40 @@ const styles = StyleSheet.create({
     right: 0,
     height: 2,
   },
+  // Atmospheric Cosmetic Treatments
+  mistDissolveGradient: {
+    position: 'absolute',
+    bottom: -120,
+    left: 0,
+    right: 0,
+    height: 140,
+    zIndex: 4,
+  },
+  ambientColorSpill: {
+    position: 'absolute',
+    bottom: -80,
+    left: '15%',
+    right: '15%',
+    height: 100,
+    backgroundColor: 'rgba(168,150,115,0.08)',
+    ...Platform.select({
+      web: {
+        filter: 'blur(40px)',
+      },
+    }),
+    borderRadius: '50%',
+    zIndex: 3,
+  },
+  glassContinuityOverlay: {
+    position: 'absolute',
+    top: 260,
+    left: 0,
+    right: 0,
+    height: 40,
+    backgroundColor: 'rgba(255,255,255,0.03)',
+    zIndex: 1,
+    pointerEvents: 'none',
+  },
   greetingSub: {
     fontSize: 18,
     color: 'rgba(255,255,255,0.7)', // rgba(255,255,255,0.7) for subhead
