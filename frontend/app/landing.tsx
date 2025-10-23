@@ -2052,7 +2052,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   trendingIvory: {
-    fontSize: 20, // Match "Where to?" size
+    fontSize: 24, // Match "Where to?" size
     fontWeight: '500', // Match "Where to?" weight
     color: '#E8E6E2', // Soft ivory
     letterSpacing: 0.5,
@@ -2063,7 +2063,7 @@ const styles = StyleSheet.create({
     }),
   },
   trendingBronze: {
-    fontSize: 20,
+    fontSize: 24, // Match "Where to?" size
     fontWeight: '500',
     color: '#E8E6E2', // Same as "Trending" - soft ivory
     letterSpacing: 0.5,
