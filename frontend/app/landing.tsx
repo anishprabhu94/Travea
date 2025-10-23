@@ -2055,10 +2055,10 @@ const styles = StyleSheet.create({
   },
   // Halo Lens Arrow Button Styles
   haloLensButton: {
-    width: 28, // Further reduced
-    height: 28, // Further reduced
-    borderRadius: 14, // Further reduced
-    marginLeft: 12,
+    width: 26, // Further reduced
+    height: 26, // Further reduced
+    borderRadius: 13, // Further reduced
+    marginLeft: 10,
     overflow: 'hidden',
   },
   haloLensBlur: {
