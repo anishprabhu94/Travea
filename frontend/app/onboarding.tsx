@@ -719,13 +719,13 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
   cityInputBlur: {
-    borderRadius: 24,
+    borderRadius: 22,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.15)',
+    borderColor: 'rgba(194,164,110,0.3)', // Faint bronze edge
   },
   cityInput: {
-    backgroundColor: 'rgba(255,255,255,0.08)',
+    backgroundColor: 'rgba(255,255,255,0.12)', // Denser for input
     paddingVertical: 16,
     paddingHorizontal: 20,
     fontSize: 16,
