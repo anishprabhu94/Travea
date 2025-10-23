@@ -82,9 +82,10 @@ export default function Settings() {
       <Switch
         value={value}
         onValueChange={onValueChange}
-        trackColor={{ false: 'rgba(255,255,255,0.2)', true: 'rgba(201,169,109,0.6)' }}
-        thumbColor={value ? '#C9A96D' : '#F8F8F8'}
-        ios_backgroundColor="rgba(255,255,255,0.2)"
+        trackColor={{ false: 'rgba(255,255,255,0.1)', true: 'rgba(194,164,110,0.5)' }}
+        thumbColor={value ? '#EAE7E1' : '#EAE7E1'}
+        ios_backgroundColor="rgba(255,255,255,0.1)"
+        style={styles.switch}
       />
     </View>
   );
