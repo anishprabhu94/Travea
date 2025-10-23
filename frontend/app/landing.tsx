@@ -1945,8 +1945,8 @@ const styles = StyleSheet.create({
   },
   searchPaneContent: {
     backgroundColor: 'rgba(25,25,25,0.35)', // Slightly lighter for airiness
-    paddingTop: 28,
-    paddingBottom: 24,
+    paddingTop: 20, // Reduced height
+    paddingBottom: 20, // Reduced height
     paddingHorizontal: 24,
     alignItems: 'flex-start', // Left align everything
   },
