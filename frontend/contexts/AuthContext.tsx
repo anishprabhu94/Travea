@@ -4,6 +4,8 @@ import Constants from 'expo-constants';
 
 const EXPO_BACKEND_URL = Constants.expoConfig?.extra?.EXPO_BACKEND_URL || process.env.EXPO_BACKEND_URL;
 
+console.log('AuthContext - EXPO_BACKEND_URL:', EXPO_BACKEND_URL);
+
 interface User {
   id: string;
   email: string;
