@@ -179,14 +179,23 @@ export default function Onboarding() {
     return answers[currentQuestion.id] && answers[currentQuestion.id].length > 0;
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (!canProceed()) return;
+
+    // Save home city on first step
+    if (currentStep === 0) {
+      try {
+        await updateProfile({ home_city: cityInput });
+      } catch (error) {
+        console.error('Failed to save home city:', error);
+      }
+    }
 
     Animated.timing(fadeAnim, {
       toValue: 0,
       duration: 200,
       useNativeDriver: true,
-    }).start(() => {
+    }).start(async () => {
       if (currentStep < questions.length - 1) {
         setCurrentStep(currentStep + 1);
         Animated.timing(fadeAnim, {
@@ -195,7 +204,30 @@ export default function Onboarding() {
           useNativeDriver: true,
         }).start();
       } else {
-        router.push('/landing');
+        // Last step - save all preferences and complete onboarding
+        setIsSaving(true);
+        try {
+          // Build preferences object
+          const preferences = {
+            home_city: cityInput,
+            traveler_type: answers[2] || [],
+            preferred_stays: answers[3] || [],
+            interests: answers[4] || [],
+            exploration_style: answers[5] || [],
+          };
+          
+          await updatePreferences(preferences);
+          router.replace('/landing');
+        } catch (error: any) {
+          Alert.alert('Error', 'Failed to save preferences. Please try again.');
+          setIsSaving(false);
+          // Restore UI
+          Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 300,
+            useNativeDriver: true,
+          }).start();
+        }
       }
     });
   };
