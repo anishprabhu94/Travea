@@ -1454,16 +1454,20 @@ const styles = StyleSheet.create({
     borderRadius: 16, // Match parent radius
   },
   chipContentActive: {
-    backgroundColor: 'rgba(201,169,109,0.15)', // Elegant light bronze fill
+    backgroundColor: 'rgba(168,150,115,0.35)', // Muted bronze fill
+    borderWidth: 1,
+    borderColor: 'rgba(168,150,115,0.4)', // Bronze rim
   },
   chipContent: {
-    backgroundColor: 'rgba(25,25,25,0.45)',
+    backgroundColor: 'rgba(255,255,255,0.08)', // Frosted transparent
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 16,
     paddingVertical: 12,
     gap: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)', // Inner translucency glow
   },
   chipLabel: {
     fontSize: 16,
