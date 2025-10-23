@@ -133,7 +133,34 @@ export default function Onboarding() {
     return answers[currentQuestion.id]?.includes(option) || false;
   };
 
+  // Handle city input change with auto-suggest
+  const handleCityInput = (text: string) => {
+    setCityInput(text);
+    
+    if (text.length > 0) {
+      const filtered = POPULAR_CITIES.filter(city =>
+        city.toLowerCase().includes(text.toLowerCase())
+      ).slice(0, 6); // Show max 6 suggestions
+      setFilteredCities(filtered);
+    } else {
+      setFilteredCities([]);
+    }
+  };
+
+  // Handle city selection from dropdown
+  const handleCitySelect = (city: string) => {
+    setCityInput(city);
+    setFilteredCities([]);
+    setAnswers({
+      ...answers,
+      [currentQuestion.id]: [city],
+    });
+  };
+
   const canProceed = () => {
+    if (currentQuestion.isTextInput) {
+      return cityInput.trim().length > 0;
+    }
     return answers[currentQuestion.id] && answers[currentQuestion.id].length > 0;
   };
 
