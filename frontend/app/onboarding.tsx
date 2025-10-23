@@ -713,7 +713,7 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  // City Input Styles
+  // City Input Styles - Refined
   cityInputContainer: {
     width: '100%',
     marginTop: 24,
@@ -737,34 +737,81 @@ const styles = StyleSheet.create({
     }),
     outlineStyle: 'none',
   },
+  // Sophisticated Dropdown Styles
+  suggestionsWrapper: {
+    marginTop: 4, // Slight vertical offset for floating feel
+  },
   suggestionsContainer: {
     maxHeight: 240,
-    marginTop: 12,
   },
   suggestionsBlur: {
     borderRadius: 20,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.12)',
+    borderColor: 'rgba(194,164,110,0.25)', // Semi-transparent bronze border
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.25)',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 1,
+        shadowRadius: 6,
+      },
+      android: {
+        elevation: 4,
+      },
+      web: {
+        boxShadow: '0 2px 6px rgba(0,0,0,0.25)',
+      },
+    }),
   },
   suggestionItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.05)',
+    backgroundColor: 'rgba(255,255,255,0.04)',
     paddingVertical: 14,
     paddingHorizontal: 18,
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(255,255,255,0.08)',
+    borderBottomColor: 'rgba(255,255,255,0.06)',
+  },
+  suggestionItemHovered: {
+    backgroundColor: 'rgba(194,164,110,0.12)', // Muted bronze tint on hover
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.25)',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 1,
+        shadowRadius: 6,
+      },
+      android: {
+        elevation: 4,
+      },
+      web: {
+        boxShadow: '0 2px 6px rgba(0,0,0,0.25)',
+      },
+    }),
   },
   suggestionText: {
-    fontSize: 15,
+    fontSize: 14, // 90% of input text (16px * 0.9 ≈ 14px)
     color: '#F4F3EE',
+    opacity: 0.85, // Subtle contrast hierarchy
     fontWeight: '500',
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
       web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
+  },
+  // Minimalist Arrow in Circle
+  suggestionArrowCircle: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: 'rgba(194,164,110,0.08)', // Faint background glow
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  suggestionArrowIcon: {
+    opacity: 0.9,
   },
 });
