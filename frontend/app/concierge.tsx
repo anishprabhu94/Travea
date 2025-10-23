@@ -445,6 +445,8 @@ const styles = StyleSheet.create({
   // Header
   header: {
     borderBottomWidth: 0,
+    borderBottomLeftRadius: 48,
+    borderBottomRightRadius: 48,
     overflow: 'hidden',
   },
   headerBackground: {
@@ -452,6 +454,16 @@ const styles = StyleSheet.create({
   },
   headerBackgroundImage: {
     opacity: 0.5,
+    borderBottomLeftRadius: 48,
+    borderBottomRightRadius: 48,
+  },
+  headerBottomDiffuse: {
+    position: 'absolute',
+    bottom: -30,
+    left: 0,
+    right: 0,
+    height: 60,
+    zIndex: 10,
   },
   headerGradient: {
     paddingTop: 70,
