@@ -35,7 +35,9 @@ export default function Index() {
 
   // Check if user is already authenticated
   useEffect(() => {
+    console.log('Auth check useEffect - user:', user, 'isLoading:', isLoading);
     if (user && !isLoading) {
+      console.log('User authenticated, redirecting...');
       if (user.onboarding_completed) {
         router.replace('/landing');
       } else {
