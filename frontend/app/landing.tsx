@@ -1804,6 +1804,35 @@ const styles = StyleSheet.create({
   searchArrow: {
     marginLeft: 'auto',
   },
+  // Halo Lens Arrow Button Styles
+  haloLensButton: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    marginLeft: 12,
+    overflow: 'hidden',
+  },
+  haloLensBlur: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
+  },
+  haloLensGradient: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 18,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  haloLensInner: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(227,200,141,0.5)',
+  },
   searchPlaceholder: {
     fontSize: 16,
     color: 'rgba(255,255,255,0.65)', // Lighter for elegance
