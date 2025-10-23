@@ -2065,8 +2065,7 @@ const styles = StyleSheet.create({
   trendingBronze: {
     fontSize: 20,
     fontWeight: '500',
-    color: '#A89673', // Warm bronze
-    opacity: 0.9, // 90% opacity
+    color: '#E8E6E2', // Same as "Trending" - soft ivory
     letterSpacing: 0.5,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
