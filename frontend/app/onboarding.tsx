@@ -145,10 +145,10 @@ export default function Onboarding() {
       ).slice(0, 6); // Show max 6 suggestions
       setFilteredCities(filtered);
       
-      // Fade-in animation for dropdown
+      // Gentle fade-in and slide up animation
       Animated.timing(dropdownAnim, {
         toValue: 1,
-        duration: 180,
+        duration: 220, // Slightly longer for organic feel
         useNativeDriver: true,
       }).start();
     } else {
