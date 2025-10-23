@@ -615,10 +615,10 @@ export default function Landing() {
       <View style={styles.vignetteOverlay} />
 
       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
-        {/* World-Class Atmospheric Header */}
+        {/* World-Class Atmospheric Header with Mist Dissolve */}
         <View style={styles.atmosphericHeaderContainer}>
           <ImageBackground
-            source={{ uri: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80' }}
+            source={{ uri: 'https://customer-assets.emergentagent.com/job_frosted-journey-1/artifacts/6qridd9t_search%202.jpg' }}
             style={styles.sunsetBackground}
             imageStyle={styles.sunsetBackgroundImage}
           >
@@ -675,22 +675,25 @@ export default function Landing() {
               </Text>
             </Animated.View>
             
-            {/* Bottom Fade to Dark Interface */}
+            {/* Feathered Mist Dissolve - Extended Gradient Transition */}
             <LinearGradient
               colors={[
-                'rgba(14,14,14,0)',
-                'rgba(14,14,14,0.3)',
-                'rgba(14,14,14,0.95)'
+                'rgba(11,15,20,0)',
+                'rgba(11,15,20,0.15)',
+                'rgba(11,15,20,0.45)',
+                'rgba(11,15,20,0.75)',
+                'rgba(11,15,20,0.95)',
+                '#0B0F14'
               ]}
-              style={styles.headerBottomFade}
+              style={styles.mistDissolveGradient}
             />
+            
+            {/* Ambient Color Spill - Sunset Haze Bleed */}
+            <View style={styles.ambientColorSpill} />
           </ImageBackground>
           
-          {/* Micro Gradient Divider */}
-          <LinearGradient
-            colors={['rgba(255,255,255,0.06)', 'rgba(255,255,255,0)']}
-            style={styles.microDivider}
-          />
+          {/* Subtle Depth Layer - Glass Continuity Overlay */}
+          <View style={styles.glassContinuityOverlay} />
         </View>
 
         {/* Sticky Category Chips */}
