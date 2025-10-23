@@ -196,6 +196,18 @@ export default function ConciergeV2() {
                 </View>
               </View>
             </LinearGradient>
+            
+            {/* Bottom Diffuse Fade */}
+            <LinearGradient
+              colors={[
+                'rgba(14,14,14,0)',
+                'rgba(14,14,14,0.3)',
+                'rgba(14,14,14,0.6)',
+                'rgba(14,14,14,0.85)',
+                '#0E0E0E'
+              ]}
+              style={styles.headerBottomDiffuse}
+            />
           </ImageBackground>
         </View>
 
