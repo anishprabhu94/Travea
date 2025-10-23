@@ -10,44 +10,46 @@ import { TransportBookingProvider } from '../contexts/TransportBookingContext'
 
 export default function RootLayout() {
   return (
-    <BookmarkProvider>
-      <TripCanvasProvider>
-        <TripsProvider>
-          <StayBookingProvider>
-            <ExperienceBookingProvider>
-              <RestaurantBookingProvider>
-                <TransportBookingProvider>
-                  <Stack screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="index" />
-              <Stack.Screen name="landing" />
-              <Stack.Screen name="trips" />
-              <Stack.Screen name="onboarding" />
-              <Stack.Screen name="welcome" />
-              <Stack.Screen name="home" />
-              <Stack.Screen name="destination" />
-              <Stack.Screen name="bookings" />
-              <Stack.Screen name="gallery" />
-              <Stack.Screen name="multi-city-destination" />
-              <Stack.Screen name="book-journey" />
-              <Stack.Screen name="stay-browsing" />
-              <Stack.Screen name="experience-browsing" />
-              <Stack.Screen name="restaurant-browsing" />
-              <Stack.Screen name="transport-browsing" />
-              <Stack.Screen name="stay-info-compact" />
-              <Stack.Screen name="train-info" />
-              <Stack.Screen name="bus-info" />
-              <Stack.Screen name="car-rental-info" />
-              <Stack.Screen name="ferry-info" />
-              <Stack.Screen name="experience-info" />
-              <Stack.Screen name="restaurant-info" />
-              <Stack.Screen name="concierge" />
-                  </Stack>
-                </TransportBookingProvider>
-              </RestaurantBookingProvider>
-            </ExperienceBookingProvider>
-          </StayBookingProvider>
-        </TripsProvider>
-      </TripCanvasProvider>
-    </BookmarkProvider>
+    <AuthProvider>
+      <BookmarkProvider>
+        <TripCanvasProvider>
+          <TripsProvider>
+            <StayBookingProvider>
+              <ExperienceBookingProvider>
+                <RestaurantBookingProvider>
+                  <TransportBookingProvider>
+                    <Stack screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="index" />
+                <Stack.Screen name="landing" />
+                <Stack.Screen name="trips" />
+                <Stack.Screen name="onboarding" />
+                <Stack.Screen name="welcome" />
+                <Stack.Screen name="home" />
+                <Stack.Screen name="destination" />
+                <Stack.Screen name="bookings" />
+                <Stack.Screen name="gallery" />
+                <Stack.Screen name="multi-city-destination" />
+                <Stack.Screen name="book-journey" />
+                <Stack.Screen name="stay-browsing" />
+                <Stack.Screen name="experience-browsing" />
+                <Stack.Screen name="restaurant-browsing" />
+                <Stack.Screen name="transport-browsing" />
+                <Stack.Screen name="stay-info-compact" />
+                <Stack.Screen name="train-info" />
+                <Stack.Screen name="bus-info" />
+                <Stack.Screen name="car-rental-info" />
+                <Stack.Screen name="ferry-info" />
+                <Stack.Screen name="experience-info" />
+                <Stack.Screen name="restaurant-info" />
+                <Stack.Screen name="concierge" />
+                    </Stack>
+                  </TransportBookingProvider>
+                </RestaurantBookingProvider>
+              </ExperienceBookingProvider>
+            </StayBookingProvider>
+          </TripsProvider>
+        </TripCanvasProvider>
+      </BookmarkProvider>
+    </AuthProvider>
   )
 }
