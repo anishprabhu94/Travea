@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Fix Sign In/Sign Up blank screen issue and implement luxury frosted glass design with React Native Web compatibility. Integrate dynamic trip data from TripsContext and TripCanvasContext into stay-browsing page."
+user_problem_statement: "Implement full authentication system (email/password, Google OAuth, Apple Sign In) with profile management. Features include: Sign up/Sign in flows, OAuth integration via Emergent Auth, onboarding preference persistence, Profile Drawer (Account, Settings, Help & Support, Log Out), Account Page (Profile Info, Change Password, Two-Factor Auth, Linked Accounts, Privacy & Data, Support, Terms & Privacy), Settings sections (Notifications, App, Accessibility), and Help & Support page."
 
 backend:
   - task: "AI Concierge API endpoint with emergentintegrations"
