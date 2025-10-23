@@ -105,6 +105,18 @@
 user_problem_statement: "Implement full authentication system (email/password, Google OAuth, Apple Sign In) with profile management. Features include: Sign up/Sign in flows, OAuth integration via Emergent Auth, onboarding preference persistence, Profile Drawer (Account, Settings, Help & Support, Log Out), Account Page (Profile Info, Change Password, Two-Factor Auth, Linked Accounts, Privacy & Data, Support, Terms & Privacy), Settings sections (Notifications, App, Accessibility), and Help & Support page."
 
 backend:
+  - task: "Authentication API endpoints (signup, signin, OAuth)"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/routes/auth.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Implemented complete authentication system with email/password signup/signin, Emergent OAuth integration (Google/Apple), session management, profile update, preferences update, settings update, and password change. Uses bcrypt for password hashing, MongoDB for user and session storage, and JWT-like session tokens with 7-day expiry. Endpoints: POST /api/auth/signup, POST /api/auth/signin, GET /api/auth/session-data (OAuth), GET /api/auth/me, POST /api/auth/logout, PUT /api/auth/profile, POST /api/auth/change-password, PUT /api/auth/preferences, PUT /api/auth/settings. All endpoints registered in server.py with /api/auth prefix."
+
   - task: "AI Concierge API endpoint with emergentintegrations"
     implemented: true
     working: true
