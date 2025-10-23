@@ -249,7 +249,6 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Authentication API endpoints (signup, signin, OAuth)"
     - "Authentication Context and Sign In/Sign Up integration"
     - "Onboarding preference persistence"
     - "Account Page with profile management"
