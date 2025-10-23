@@ -398,7 +398,7 @@ export default function Onboarding() {
           <TouchableOpacity
             style={styles.nextButtonWrapper}
             onPress={handleNext}
-            disabled={!canProceed()}
+            disabled={!canProceed() || isSaving}
             activeOpacity={0.8}
           >
             <BlurView 
@@ -406,20 +406,24 @@ export default function Onboarding() {
               tint="light" 
               style={[
                 styles.nextButton,
-                !canProceed() ? styles.nextButtonDisabled : styles.nextButtonEnabled
+                !canProceed() || isSaving ? styles.nextButtonDisabled : styles.nextButtonEnabled
               ]}
             >
               <View style={[
                 styles.nextButtonInner,
-                !canProceed() ? styles.nextButtonInnerDisabled : styles.nextButtonInnerEnabled
+                !canProceed() || isSaving ? styles.nextButtonInnerDisabled : styles.nextButtonInnerEnabled
               ]}>
-                {canProceed() && <View style={styles.nextButtonGlow} />}
-                <Text style={[
-                  styles.nextButtonText,
-                  !canProceed() ? styles.nextButtonTextDisabled : styles.nextButtonTextEnabled
-                ]}>
-                  {currentStep === questions.length - 1 ? 'COMPLETE' : 'NEXT'}
-                </Text>
+                {canProceed() && !isSaving && <View style={styles.nextButtonGlow} />}
+                {isSaving ? (
+                  <ActivityIndicator size="small" color="#F8F8F8" />
+                ) : (
+                  <Text style={[
+                    styles.nextButtonText,
+                    !canProceed() ? styles.nextButtonTextDisabled : styles.nextButtonTextEnabled
+                  ]}>
+                    {currentStep === questions.length - 1 ? 'COMPLETE' : 'NEXT'}
+                  </Text>
+                )}
               </View>
             </BlurView>
           </TouchableOpacity>
