@@ -1909,7 +1909,7 @@ const styles = StyleSheet.create({
     }),
   },
   searchPaneContent: {
-    backgroundColor: 'rgba(25,25,25,0.35)', // Slightly lighter for airiness
+    backgroundColor: 'rgba(25,25,25,0.25)', // More transparent to show background
     paddingTop: 20, // Reduced height
     paddingBottom: 20, // Reduced height
     paddingHorizontal: 24,
