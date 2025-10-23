@@ -1273,8 +1273,16 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: '10%',
+    height: '15%', // Extended for better legibility
     zIndex: 2,
+  },
+  diffuseBottomFade: {
+    position: 'absolute',
+    bottom: -40,
+    left: 0,
+    right: 0,
+    height: 80,
+    zIndex: 3,
   },
   editorialHeaderContent: {
     flex: 1,
