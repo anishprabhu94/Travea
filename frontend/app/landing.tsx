@@ -365,6 +365,7 @@ export default function Landing() {
   const handleBackToSearch = () => {
     setSearchTransitionState('idle')
     setSelectedCity(null)
+    setSearchQuery('') // Reset search query to blank
     
     // Fold back animations
     Animated.parallel([
