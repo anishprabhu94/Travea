@@ -309,10 +309,6 @@ export default function Onboarding() {
                               <View style={styles.bronzeUnderline} />
                             )}
                           </View>
-                          {/* Minimalist Arrow in Circle */}
-                          <View style={styles.suggestionArrowCircle}>
-                            <Ionicons name="arrow-forward" size={12} color="rgba(194,164,110,1)" style={styles.suggestionArrowIcon} />
-                          </View>
                         </TouchableOpacity>
                       ))}
                     </BlurView>
