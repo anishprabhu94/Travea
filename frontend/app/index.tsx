@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Text,
   View,
@@ -8,6 +8,9 @@ import {
   TouchableOpacity,
   Platform,
   Dimensions,
+  Alert,
+  ActivityIndicator,
+  Linking,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { BlurView } from 'expo-blur';
@@ -15,35 +18,128 @@ import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import TraveaWordmark from '../components/TraveaWordmark';
+import { useAuth } from '../contexts/AuthContext';
+import Constants from 'expo-constants';
 
 const { width, height } = Dimensions.get('window');
+const REDIRECT_URL = Constants.expoConfig?.extra?.EXPO_PUBLIC_URL || 'http://localhost:8081';
 
 export default function Index() {
   const router = useRouter();
+  const { user, isLoading, signUp, signIn, signInWithOAuth } = useAuth();
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSignIn = () => {
-    router.push('/landing');
+  // Check if user is already authenticated
+  useEffect(() => {
+    if (user && !isLoading) {
+      if (user.onboarding_completed) {
+        router.replace('/landing');
+      } else {
+        router.replace({
+          pathname: '/welcome',
+          params: { name: user.name.split(' ')[0] }
+        });
+      }
+    }
+  }, [user, isLoading]);
+
+  // Handle OAuth redirect with session_id in URL fragment
+  useEffect(() => {
+    const handleUrl = async (event: { url: string }) => {
+      const url = event.url;
+      const sessionIdMatch = url.match(/#session_id=([^&]+)/);
+      if (sessionIdMatch) {
+        const sessionId = sessionIdMatch[1];
+        setIsSubmitting(true);
+        try {
+          await signInWithOAuth(sessionId);
+          // After successful OAuth, check onboarding status
+          // The useEffect above will handle navigation
+        } catch (error: any) {
+          Alert.alert('Authentication Error', error.message || 'Failed to sign in with OAuth');
+          setIsSubmitting(false);
+        }
+      }
+    };
+
+    // Listen for incoming links
+    const subscription = Linking.addEventListener('url', handleUrl);
+
+    // Check if app was opened with a URL
+    Linking.getInitialURL().then((url) => {
+      if (url) {
+        handleUrl({ url });
+      }
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
+
+  const handleSignIn = async () => {
+    if (!email || !password) {
+      Alert.alert('Error', 'Please enter email and password');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      await signIn(email, password);
+      // Navigation will be handled by useEffect based on onboarding status
+    } catch (error: any) {
+      Alert.alert('Sign In Failed', error.message || 'Invalid credentials');
+      setIsSubmitting(false);
+    }
   };
 
-  const handleSignUp = () => {
-    // Navigate to welcome screen with user's name
-    router.push({
-      pathname: '/welcome',
-      params: { name: name || 'Traveler' }
-    });
+  const handleSignUp = async () => {
+    if (!name || !email || !password) {
+      Alert.alert('Error', 'Please fill in all fields');
+      return;
+    }
+
+    if (password.length < 6) {
+      Alert.alert('Error', 'Password must be at least 6 characters');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      await signUp(name, email, password);
+      // Navigate to welcome screen with user's first name
+      router.replace({
+        pathname: '/welcome',
+        params: { name: name.split(' ')[0] }
+      });
+    } catch (error: any) {
+      Alert.alert('Sign Up Failed', error.message || 'Failed to create account');
+      setIsSubmitting(false);
+    }
   };
 
   const handleOAuthGoogle = () => {
-    router.push('/landing');
+    const authUrl = `https://auth.emergentagent.com/?redirect=${encodeURIComponent(REDIRECT_URL)}`;
+    Linking.openURL(authUrl);
   };
 
   const handleOAuthApple = () => {
-    router.push('/landing');
+    // For now, use the same Emergent Auth (which supports Google)
+    // In production, you'd set up Apple-specific OAuth
+    Alert.alert('Coming Soon', 'Apple Sign In will be available soon');
   };
+
+  if (isLoading) {
+    return (
+      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+        <ActivityIndicator size="large" color="#C9A96D" />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
