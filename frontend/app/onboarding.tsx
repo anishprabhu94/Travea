@@ -144,8 +144,16 @@ export default function Onboarding() {
         city.toLowerCase().includes(text.toLowerCase())
       ).slice(0, 6); // Show max 6 suggestions
       setFilteredCities(filtered);
+      
+      // Fade-in animation for dropdown
+      Animated.timing(dropdownAnim, {
+        toValue: 1,
+        duration: 180,
+        useNativeDriver: true,
+      }).start();
     } else {
       setFilteredCities([]);
+      dropdownAnim.setValue(0);
     }
   };
 
