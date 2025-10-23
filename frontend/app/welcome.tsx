@@ -117,7 +117,7 @@ export default function Welcome() {
             <BlurView intensity={30} tint="light" style={styles.glassPane}>
               <View style={styles.glassPaneInner}>
                 {/* Welcome Text */}
-                <Text style={styles.welcomeText}>Welcome, Traveler.</Text>
+                <Text style={styles.welcomeText}>Welcome, {firstName}.</Text>
                 
                 {/* Subtitle */}
                 <Text style={styles.subtitleText}>
