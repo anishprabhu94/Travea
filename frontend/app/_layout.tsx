@@ -43,6 +43,9 @@ export default function RootLayout() {
                 <Stack.Screen name="restaurant-info" />
                 <Stack.Screen name="concierge" />
                 <Stack.Screen name="account" />
+                <Stack.Screen name="settings" />
+                <Stack.Screen name="help-support" />
+                <Stack.Screen name="change-password" />
                     </Stack>
                   </TransportBookingProvider>
                 </RestaurantBookingProvider>
