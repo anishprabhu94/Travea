@@ -1,4 +1,5 @@
 import { Stack } from 'expo-router'
+import { AuthProvider } from '../contexts/AuthContext'
 import { BookmarkProvider } from '../contexts/BookmarkContext'
 import { TripCanvasProvider } from '../contexts/TripCanvasContext'
 import { TripsProvider } from '../contexts/TripsContext'
