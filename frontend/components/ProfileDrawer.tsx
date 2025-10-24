@@ -25,32 +25,44 @@ interface ProfileDrawerProps {
 export default function ProfileDrawer({ visible, onClose }: ProfileDrawerProps) {
   const router = useRouter();
   const { signOut } = useAuth();
-  const slideAnim = React.useRef(new Animated.Value(40)).current;
+  const slideAnim = React.useRef(new Animated.Value(24)).current;
   const fadeAnim = React.useRef(new Animated.Value(0)).current;
+  const scaleAnim = React.useRef(new Animated.Value(0.98)).current;
 
   React.useEffect(() => {
     if (visible) {
       Animated.parallel([
         Animated.timing(slideAnim, {
           toValue: 0,
-          duration: 250,
+          duration: 200,
           useNativeDriver: true,
         }),
         Animated.timing(fadeAnim, {
           toValue: 1,
-          duration: 250,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+        Animated.spring(scaleAnim, {
+          toValue: 1,
+          tension: 120,
+          friction: 14,
           useNativeDriver: true,
         }),
       ]).start();
     } else {
       Animated.parallel([
         Animated.timing(slideAnim, {
-          toValue: 40,
+          toValue: 24,
           duration: 300,
           useNativeDriver: true,
         }),
         Animated.timing(fadeAnim, {
           toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+        }),
+        Animated.timing(scaleAnim, {
+          toValue: 0.98,
           duration: 300,
           useNativeDriver: true,
         }),
