@@ -1299,30 +1299,14 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 48,
     borderBottomRightRadius: 48,
   },
-  matteFilter: {
+  translucentOverlay: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.10)', // 90% opacity = 10% darkening
+    backgroundColor: 'rgba(11,15,20,0.40)', // 40% dark overlay to make image translucent
     zIndex: 1,
-  },
-  naturalBottomDarkening: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: '40%', // Significantly increased for strong blending
-    zIndex: 2,
-  },
-  diffuseBottomFade: {
-    position: 'absolute',
-    bottom: 0, // Changed from -40 to fix visible pane issue
-    left: 0,
-    right: 0,
-    height: 60, // Reduced from 80
-    zIndex: 3,
   },
   editorialHeaderContent: {
     flex: 1,
