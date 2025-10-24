@@ -3517,8 +3517,8 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     }),
   },
-  // SEARCH CAPSULE STYLES - Layered Glass Design
-  searchCapsuleContainer: {
+  // FLOATING SEARCH CANVAS STYLES
+  searchCanvasContainer: {
     position: 'absolute',
     top: 0,
     left: 0,
@@ -3528,76 +3528,102 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  searchScreenBackground: {
+  radialBackdrop: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(10,10,10,0.75)', // Dimmed desaturated blur
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(28px)',
-      },
-    }),
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
-  screenGradient: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
-  searchBackdropTouchable: {
+  backdropTouchable: {
     flex: 1,
     width: '100%',
     height: '100%',
   },
-  searchCapsule: {
-    width: '80%',
-    maxWidth: 450,
-    minHeight: 320,
-    maxHeight: '65%',
-    borderRadius: 16,
+  liquidGlassPane: {
+    width: '85%',
+    maxWidth: 500,
+    maxHeight: '70%',
+    minHeight: 400,
+    borderRadius: 14,
     overflow: 'hidden',
-    backgroundColor: 'rgba(25,20,15,0.45)', // Frosted-glass base
-    borderWidth: 0.5,
+    backgroundColor: 'rgba(30,25,20,0.45)',
+    borderWidth: 0.6,
     borderColor: 'rgba(255,255,255,0.25)',
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(0,0,0,0.6)',
-        shadowOffset: { width: 0, height: 12 },
+        shadowColor: 'rgba(0,0,0,0.45)',
+        shadowOffset: { width: 0, height: 6 },
         shadowOpacity: 1,
-        shadowRadius: 35,
+        shadowRadius: 40,
       },
       android: {
         elevation: 30,
       },
       web: {
-        boxShadow: '0 12px 35px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.1), inset 0 -2px 4px rgba(0,0,0,0.3)',
+        boxShadow: '0 6px 40px rgba(0,0,0,0.45)',
       },
     }),
   },
-  paneBackgroundImage: {
+  sunsetBackground: {
     flex: 1,
     width: '100%',
     height: '100%',
   },
-  paneImageStyle: {
-    opacity: 0.6, // Subtle embedded sunset
+  sunsetImageStyle: {
+    opacity: 0.15,
   },
-  innerShadowLayer: {
+  motionBeam: {
     position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    top: -50,
+    left: -50,
+    width: 200,
+    height: 200,
     zIndex: 1,
   },
-  floatingSearchField: {
-    marginBottom: 20,
-    borderRadius: 14,
+  glassBlurLayer: {
+    flex: 1,
+    backgroundColor: 'rgba(255,255,255,0.12)',
+  },
+  paneContent: {
+    flex: 1,
+    paddingTop: 20,
+    paddingHorizontal: 20,
+    paddingBottom: 10,
+    zIndex: 2,
+  },
+  searchPill: {
+    marginBottom: 16,
+    borderRadius: 24,
     overflow: 'hidden',
+    backgroundColor: 'rgba(255,255,255,0.12)',
+    borderWidth: 0.5,
+    borderColor: 'rgba(255,255,255,0.2)',
+  },
+  searchPillInner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+  searchIconCanvas: {
+    marginRight: 10,
+  },
+  searchInputCanvas: {
+    flex: 1,
+    fontSize: 16,
+    color: 'rgba(255,255,255,0.9)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
+  resultsScroll: {
+    flex: 1,
+    marginBottom: 10,
+  },
     borderWidth: 0.5,
     borderColor: 'rgba(255,255,255,0.25)',
     ...Platform.select({
