@@ -3119,13 +3119,18 @@ const styles = StyleSheet.create({
   },
   microPostcardText: {
     fontSize: 12,
-    fontWeight: '400',
-    color: 'rgba(192,167,124,0.80)', // Bronze 80%
+    fontWeight: '500', // Increased from 400 for better visibility
+    color: '#E6C896', // Brighter bronze for visibility
     letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+    ...Platform.select({
+      web: {
+        textShadow: '0 1px 2px rgba(0,0,0,0.3)',
+      },
     }),
   },
   routeArrow: {
