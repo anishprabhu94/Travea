@@ -3400,42 +3400,44 @@ const styles = StyleSheet.create({
   moodChip: {
     borderRadius: 10,
     overflow: 'hidden',
+    borderWidth: 0.6,
+    borderColor: 'rgba(255,255,255,0.4)', // Match city pills border
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(0,0,0,0.15)',
+        shadowColor: 'rgba(0,0,0,0.25)',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 1,
-        shadowRadius: 2,
+        shadowRadius: 4,
       },
       android: {
-        elevation: 2,
+        elevation: 3,
       },
       web: {
-        boxShadow: '0 1px 2px rgba(0,0,0,0.15), inset 0 0.5px 0 rgba(255,255,255,0.25)', // Distinct style
+        boxShadow: '0 1px 4px rgba(0,0,0,0.25), inset 0 0.5px 0 rgba(255,255,255,0.25)', // Match specular
       },
     }),
   },
   moodChipBlur: {
-    paddingVertical: 4,
-    paddingHorizontal: 8,
-    backgroundColor: 'rgba(180,200,220,0.25)', // Pastel blue-gray glass
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.25)',
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    backgroundColor: 'rgba(255,255,255,0.15)', // Match single-city mood pills
+    borderTopWidth: 0.5,
+    borderTopColor: 'rgba(255,255,255,0.25)', // Top specular line
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05))',
+      },
+    }),
   },
   moodChipText: {
     fontSize: 11,
     fontWeight: '500',
-    color: '#D1B98C', // Muted bronze
-    letterSpacing: 0.1,
+    color: 'rgba(255,255,255,0.95)', // Match single-city (white @ 95%)
+    letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-    }),
-    ...Platform.select({
-      web: {
-        filter: 'brightness(0.90)',
-      },
     }),
   },
   // MULTI-CITY - Duration
