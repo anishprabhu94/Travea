@@ -1463,7 +1463,7 @@ export default function Landing() {
                       ).map((city, index) => (
                         <TouchableOpacity
                           key={city}
-                          style={[styles.cityResultCard, { opacity: 0 }]}
+                          style={styles.cityResultCard}
                           onPress={() => {
                             closeSearchCapsule()
                             // Navigate to city
