@@ -644,21 +644,10 @@ export default function Landing() {
                 'rgba(0,0,0,0.25)',
                 'rgba(0,0,0,0.50)',
                 'rgba(0,0,0,0.75)',
-                'rgba(11,15,20,0.95)'
-              ]}
-              style={styles.naturalBottomDarkening}
-            />
-            
-            {/* Diffuse Bottom Fade - Soft blend into background */}
-            <LinearGradient
-              colors={[
-                'rgba(16,20,25,0)',
-                'rgba(16,20,25,0.3)',
-                'rgba(16,20,25,0.6)',
-                'rgba(11,15,20,0.85)',
+                'rgba(11,15,20,0.95)',
                 '#0B0F14'
               ]}
-              style={styles.diffuseBottomFade}
+              style={styles.naturalBottomDarkening}
             />
             
             {/* Header Content */}
