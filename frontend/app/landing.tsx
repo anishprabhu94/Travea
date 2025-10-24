@@ -2137,16 +2137,23 @@ const styles = StyleSheet.create({
       },
       web: {
         boxShadow: '0 6px 20px rgba(0,0,0,0.25)',
-        backdropFilter: 'blur(30px)', // Higher blur for weightless feeling
+        backdropFilter: 'blur(30px)',
       },
     }),
   },
   searchPaneContent: {
-    backgroundColor: 'rgba(25,25,25,0.25)', // More transparent to show background
-    paddingTop: 20, // Reduced height
-    paddingBottom: 20, // Reduced height
+    paddingTop: 20,
+    paddingBottom: 20,
     paddingHorizontal: 24,
-    alignItems: 'flex-start', // Left align everything
+    alignItems: 'flex-start',
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(135deg, #BF8A57 0%, #815B3F 28%, #3A2C27 56%, #0B0F14 100%)',
+      },
+      default: {
+        backgroundColor: '#0B0F14', // Fallback for native
+      },
+    }),
   },
   titleContainer: {
     alignSelf: 'flex-start',
