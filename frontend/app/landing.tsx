@@ -1105,7 +1105,7 @@ export default function Landing() {
                             
                             {/* Multi-City Circuits Carousel */}
                             <View style={styles.relatedSection}>
-                              <Text style={styles.relatedSectionTitle}>Journeys including {selectedCity} ✦</Text>
+                              <Text style={styles.relatedSectionTitle}>Multi-city Trips ✦</Text>
                               <ScrollView
                                 horizontal
                                 showsHorizontalScrollIndicator={false}
@@ -1155,7 +1155,7 @@ export default function Landing() {
                             
                             {/* Multi-City Circuits Carousel */}
                             <View style={styles.relatedSection}>
-                              <Text style={styles.relatedSectionTitle}>Journeys including {selectedCity} ✦</Text>
+                              <Text style={styles.relatedSectionTitle}>Multi-city Trips ✦</Text>
                               <ScrollView
                                 horizontal
                                 showsHorizontalScrollIndicator={false}
