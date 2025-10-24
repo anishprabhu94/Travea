@@ -762,9 +762,6 @@ export default function Landing() {
             </ImageBackground>
           </View>
 
-          {/* Subtle Divider Below Header */}
-        <View style={styles.headerDivider} />
-
         {/* Sticky Category Chips */}
         <View style={styles.stickyChipsContainer}>
           <View style={styles.categoryChips}>
