@@ -3149,11 +3149,27 @@ const styles = StyleSheet.create({
   microPostcard: {
     borderRadius: 10,
     overflow: 'hidden',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.15)',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 1,
+        shadowRadius: 2,
+      },
+      android: {
+        elevation: 2,
+      },
+      web: {
+        boxShadow: '0 1px 2px rgba(0,0,0,0.15), inset 0 0.5px 0 rgba(255,255,255,0.25)',
+      },
+    }),
   },
   microPostcardBlur: {
     paddingVertical: 4,
     paddingHorizontal: 8,
-    backgroundColor: 'rgba(255,255,255,0.08)',
+    backgroundColor: 'rgba(232,232,232,0.25)', // Brushed slate gradient simulation
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.25)',
   },
   microPostcardText: {
     fontSize: 12,
