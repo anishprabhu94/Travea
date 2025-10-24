@@ -2996,27 +2996,27 @@ const styles = StyleSheet.create({
     maxWidth: 400,
     alignItems: 'center',
   },
-  // SINGLE CITY & MULTI-CITY BRONZE TITLES - Muted Bronze Ink
+  // SINGLE CITY & MULTI-CITY BRONZE TITLES - Champagne Bronze
   singleCityTitleBronze: {
     fontSize: 19,
-    fontWeight: '600',
-    color: '#E6C896', // Brighter brushed bronze for better visibility
+    fontWeight: '700', // Increased for confident presence
+    color: '#E1C48A', // Muted champagne bronze
     letterSpacing: 0.4,
     marginBottom: 4,
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(0,0,0,0.5)',
-        shadowOffset: { width: 0, height: 2 },
+        shadowColor: 'rgba(255,255,255,0.2)',
+        shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 1,
-        shadowRadius: 4,
+        shadowRadius: 2,
       },
       android: {
-        textShadowColor: 'rgba(0,0,0,0.5)',
-        textShadowOffset: { width: 0, height: 2 },
-        textShadowRadius: 4,
+        textShadowColor: 'rgba(255,255,255,0.2)',
+        textShadowOffset: { width: 0, height: 0 },
+        textShadowRadius: 2,
       },
       web: {
-        textShadow: '0 2px 4px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.3)',
+        textShadow: '0 0 2px rgba(255,255,255,0.2), 0 2px 4px rgba(0,0,0,0.5)',
         filter: 'contrast(1.15) brightness(1.1)',
       },
     }),
@@ -3028,24 +3028,24 @@ const styles = StyleSheet.create({
   },
   circuitTitleBronze: {
     fontSize: 19,
-    fontWeight: '600',
-    color: '#E6C896', // Brighter brushed bronze for better visibility
+    fontWeight: '700', // Increased for confident presence
+    color: '#CDAF76', // Warmer bronze for multi-city (burnished metal)
     letterSpacing: 0.4,
     marginBottom: 4,
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(0,0,0,0.5)',
-        shadowOffset: { width: 0, height: 2 },
+        shadowColor: 'rgba(255,255,255,0.2)',
+        shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 1,
-        shadowRadius: 4,
+        shadowRadius: 2,
       },
       android: {
-        textShadowColor: 'rgba(0,0,0,0.5)',
-        textShadowOffset: { width: 0, height: 2 },
-        textShadowRadius: 4,
+        textShadowColor: 'rgba(255,255,255,0.2)',
+        textShadowOffset: { width: 0, height: 0 },
+        textShadowRadius: 2,
       },
       web: {
-        textShadow: '0 2px 4px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.3)',
+        textShadow: '0 0 2px rgba(255,255,255,0.2), 0 2px 4px rgba(0,0,0,0.5)',
         filter: 'contrast(1.15) brightness(1.1)',
       },
     }),
