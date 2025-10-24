@@ -3575,7 +3575,6 @@ const styles = StyleSheet.create({
   },
   searchIcon: {
     marginRight: 12,
-    color: '#E4C891', // Muted golden hour tone
   },
   searchInput: {
     flex: 1,
