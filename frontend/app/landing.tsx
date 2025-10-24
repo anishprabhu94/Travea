@@ -1485,7 +1485,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.2)', // Glass reflection ring
   },
   editorialGreetingSection: {
-    marginTop: 12, // Reduced from 18 to move up
+    marginTop: 6, // Further reduced from 12 to move up
   },
   editorialGreetingMain: {
     fontSize: 24,
