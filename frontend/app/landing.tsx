@@ -3055,6 +3055,11 @@ const styles = StyleSheet.create({
   sensoryPillSingle: {
     borderRadius: 12,
     overflow: 'hidden',
+    ...Platform.select({
+      web: {
+        boxShadow: 'inset 0 0 3px rgba(255,255,255,0.15)', // Glow edge
+      },
+    }),
   },
   sensoryPillBlur: {
     paddingVertical: 4,
@@ -3064,7 +3069,7 @@ const styles = StyleSheet.create({
   sensoryPillText: {
     fontSize: 11,
     fontWeight: '400',
-    color: 'rgba(255,255,255,0.85)',
+    color: '#D1B98C', // Muted bronze
     letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Inter',
