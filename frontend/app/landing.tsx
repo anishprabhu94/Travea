@@ -733,8 +733,8 @@ export default function Landing() {
                   </>                ) : (
                   <>
                     {/* SINGLE CITY CARDS - Left Aligned */}
-                    {/* Destination Title - Muted Bronze Ink */}
-                    <Text style={styles.singleCityTitleBronze}>{destination.city}</Text>
+                    {/* Title with Country */}
+                    <Text style={styles.singleCityTitleBronze}>{destination.city}, {destination.region}</Text>
                     
                     {/* Burnt-Edge Divider */}
                     <LinearGradient
