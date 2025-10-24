@@ -123,7 +123,7 @@ export default function ProfileDrawer({ visible, onClose }: ProfileDrawerProps) 
           ]}
         >
           <LinearGradient
-            colors={['rgba(194,164,110,0.06)', 'rgba(15,18,20,0.55)']}
+            colors={['rgba(194,164,110,0.04)', 'rgba(15,18,20,0.55)']}
             style={styles.drawerGradient}
           >
             {/* Bronze vertical accent line */}
