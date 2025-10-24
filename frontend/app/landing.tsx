@@ -2270,14 +2270,14 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  // Poetic Hook / Sensory Sentence
+  // Poetic Hook / Sensory Sentence - Ethereal but Clear
   poeticHook: {
     fontSize: 14,
     fontWeight: '400',
     fontStyle: 'italic',
-    color: 'rgba(255,255,255,0.90)', // White @ 90%
+    color: 'rgba(255,255,255,0.92)', // White @ 92%
     marginBottom: 8,
-    letterSpacing: 0.1,
+    letterSpacing: 0.15, // Minimalist rhythm
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
@@ -2285,19 +2285,18 @@ const styles = StyleSheet.create({
     }),
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(255,255,255,0.08)',
+        shadowColor: 'rgba(0,0,0,0.25)',
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 1,
-        shadowRadius: 3,
+        shadowRadius: 2,
       },
       android: {
-        textShadowColor: 'rgba(255,255,255,0.08)',
+        textShadowColor: 'rgba(0,0,0,0.25)',
         textShadowOffset: { width: 0, height: 0 },
-        textShadowRadius: 3,
+        textShadowRadius: 2,
       },
       web: {
-        textShadow: '0 0 3px rgba(255,255,255,0.08)', // Micro-glow
-        filter: 'blur(0.3px)', // Slight blur for separation
+        textShadow: '0 0 2px rgba(0,0,0,0.25)', // Legibility over complex images
       },
     }),
   },
