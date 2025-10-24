@@ -181,7 +181,6 @@ export default function Landing() {
   const [searchTransitionState, setSearchTransitionState] = useState<'idle' | 'activated' | 'results'>('idle')
   const [selectedCity, setSelectedCity] = useState<string | null>(null)
   const [showSearchCapsule, setShowSearchCapsule] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
   
   // Animation refs
   const fadeAnim = useRef(new Animated.Value(0)).current
