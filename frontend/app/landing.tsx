@@ -1725,7 +1725,7 @@ const styles = StyleSheet.create({
     }),
   },
   condeNastTagBlur: {
-    backgroundColor: 'rgba(255,255,255,0.08)',
+    backgroundColor: 'rgba(30,30,30,0.85)', // Dark gray background
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.12)',
     paddingVertical: 4,
