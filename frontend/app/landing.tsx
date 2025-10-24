@@ -592,62 +592,78 @@ export default function Landing() {
           </Animated.View>
         </TouchableOpacity>
 
-        {/* Luxury Frosted Info Pane */}
+        {/* Luxury Frosted Info Pane - Redesigned as Window into Story */}
         <View style={styles.luxuryInfoContainer}>
-          <BlurView intensity={25} tint="light" style={styles.luxuryInfoPane}>
-            <View style={styles.luxuryInfoInner}>
-              {/* Refined Destination Header: "City, Country" or Multi-City Timeline */}
-              {destination.isMultiCity && destination.cities ? (
-                <View style={styles.multiCityContainer}>
-                  {/* Circuit Title */}
-                  {destination.circuitTitle && (
-                    <Text style={styles.circuitTitle}>{destination.circuitTitle}</Text>
-                  )}
-                  {/* City Pills with Full Names - Scrollable */}
+          <BlurView intensity={14} tint="light" style={styles.frostedGlassPane}>
+            <LinearGradient
+              colors={['rgba(255,255,255,0.10)', 'rgba(255,255,255,0.04)']}
+              locations={[0, 1]}
+              style={styles.glassPaneGradient}
+            >
+              <View style={styles.glassPaneInner}>
+                {/* Destination Title - White 95%, SemiBold */}
+                {destination.isMultiCity && destination.circuitTitle ? (
+                  <Text style={styles.glassDestinationTitle}>{destination.circuitTitle}</Text>
+                ) : (
+                  <Text style={styles.glassDestinationTitle}>{destination.city}</Text>
+                )}
+                
+                {/* Burnt-Edge Divider - Signature Element */}
+                <LinearGradient
+                  colors={[
+                    'rgba(255,220,180,0.4)',
+                    'rgba(255,190,130,0.2)',
+                    'rgba(255,220,180,0.05)'
+                  ]}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
+                  locations={[0, 0.6, 1]}
+                  style={styles.burntEdgeDivider}
+                />
+                
+                {/* Poetic Hook / Sensory Sentence */}
+                <Text style={styles.poeticHook} numberOfLines={1} ellipsizeMode="tail">
+                  {destination.tagline}
+                </Text>
+                
+                {/* Sensory / Mood Chips (3 max) */}
+                {destination.isMultiCity && destination.cities ? (
                   <ScrollView 
                     horizontal 
                     showsHorizontalScrollIndicator={false}
-                    style={styles.cityPillsScroll}
+                    style={styles.sensoryChipsScroll}
                   >
-                    <View style={styles.cityTimelineRow}>
-                      {destination.cities.map((city, idx) => (
-                        <React.Fragment key={idx}>
-                          <View style={styles.cityPill}>
-                            <Text style={styles.cityPillText}>{city}</Text>
-                          </View>
-                          {idx < destination.cities!.length - 1 && (
-                            <View style={styles.cityDot} />
-                          )}
-                        </React.Fragment>
+                    <View style={styles.sensoryChipsRow}>
+                      {destination.cities.slice(0, 3).map((city, idx) => (
+                        <View key={idx} style={styles.sensoryChip}>
+                          <BlurView intensity={10} tint="light" style={styles.sensoryChipBlur}>
+                            <Text style={styles.sensoryChipText}>{city}</Text>
+                          </BlurView>
+                        </View>
                       ))}
                     </View>
                   </ScrollView>
-                </View>
-              ) : (
-                <View style={styles.destinationHeader}>
-                  <Text style={styles.destinationCity}>{destination.city}, </Text>
-                  <Text style={styles.destinationRegion}>{destination.region}</Text>
-                </View>
-              )}
-              
-              {/* Editorial Tagline or Days */}
-              <Text style={styles.editorialTagline} numberOfLines={1} ellipsizeMode="tail">
-                {destination.tagline}
-              </Text>
-              
-              {/* Transport Info */}
-              <View style={styles.luxuryTransportRow}>
-                {destination.transport.map((transport, transportIndex) => (
-                  <React.Fragment key={transportIndex}>
-                    <View style={styles.luxuryTransportItem}>
+                ) : null}
+                
+                {/* Meta Whisper Line - Calm context */}
+                <View style={styles.metaWhisperRow}>
+                  {destination.transport.map((transport, transportIndex) => (
+                    <React.Fragment key={transportIndex}>
+                      {transportIndex > 0 && <Text style={styles.metaWhisperDot}> • </Text>}
                       <Ionicons 
                         name={transport.icon} 
-                        size={16} 
-                        color="rgba(255,255,255,0.7)" 
-                        style={styles.luxuryTransportIcon}
+                        size={14} 
+                        color="rgba(255,255,255,0.6)" 
+                        style={styles.metaWhisperIcon}
                       />
-                      <Text style={styles.luxuryTransportTime}>{transport.time}</Text>
-                    </View>
+                      <Text style={styles.metaWhisperText}>{transport.time}</Text>
+                    </React.Fragment>
+                  ))}
+                </View>
+              </View>
+            </LinearGradient>
+          </BlurView>
+        </View>
                     {transportIndex < destination.transport.length - 1 && (
                       <Text style={styles.luxuryTransportSeparator}> • </Text>
                     )}
