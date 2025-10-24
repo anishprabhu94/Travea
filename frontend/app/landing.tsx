@@ -3513,15 +3513,16 @@ const styles = StyleSheet.create({
   },
   capsuleGoldenLightLeak: {
     position: 'absolute',
-    top: -30,
-    right: -30,
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    backgroundColor: 'rgba(212,184,130,0.25)',
+    top: -20,
+    left: -20,
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: 'rgba(255,255,255,0.08)', // Vertical beam highlight
+    opacity: 0.4,
     ...Platform.select({
       web: {
-        filter: 'blur(30px)',
+        filter: 'blur(20px)',
       },
     }),
     zIndex: 3,
