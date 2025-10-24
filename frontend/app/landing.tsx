@@ -242,6 +242,12 @@ export default function Landing() {
 
   const handleModeSwitch = (mode: string) => {
     if (mode === activeMode) return
+    
+    // Add haptic feedback
+    if (Platform.OS === 'ios' || Platform.OS === 'android') {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    }
+    
     setActiveMode(mode)
     console.log(`Switched to mode: ${mode}`)
     
