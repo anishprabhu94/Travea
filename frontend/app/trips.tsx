@@ -361,21 +361,33 @@ export default function MyTrips() {
           activeOpacity={0.9}
         />
         
-        {/* Bookmark Icon */}
+        {/* Liquid-Glass Heart Capsule */}
         <TouchableOpacity
-          style={styles.bookmarkButton}
-          onPress={() => handleRemoveBookmark(destination.id)}
-          activeOpacity={0.8}
+          style={styles.heartButton}
+          onPress={() => {
+            // Haptic feedback
+            if (Platform.OS === 'ios' || Platform.OS === 'android') {
+              const Haptics = require('expo-haptics');
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+            }
+            handleRemoveBookmark(destination.id)
+          }}
+          activeOpacity={0.7}
         >
-          <BlurView intensity={18} tint="light" style={styles.bookmarkContainer}>
-            <View style={styles.bookmarkInner}>
+          <LinearGradient
+            colors={['rgba(194,164,110,0.06)', 'rgba(15,18,20,0.45)']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.heartCapsule}
+          >
+            <BlurView intensity={18} tint="dark" style={styles.heartContainer}>
               <Ionicons
-                name="bookmark"
-                size={16}
-                color="#C9A96D"
+                name="heart"
+                size={20}
+                color="#C2A46E"
               />
-            </View>
-          </BlurView>
+            </BlurView>
+          </LinearGradient>
         </TouchableOpacity>
 
         {/* Frosted Info Pane with integrated CTAs */}
