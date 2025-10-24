@@ -757,7 +757,6 @@ export default function Landing() {
               ]}
             >
               <Text style={styles.editorialGreetingMain}>Hello, Anish</Text>
-              <View style={styles.hairlineBronzeRule} />
               <Text style={styles.editorialGreetingSubtext}>
                 {activeMode === 'vacations' && 'Curated trips, just for you.'}
                 {activeMode === 'discover' && 'Hidden gems, waiting to be found.'}
