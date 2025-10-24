@@ -601,65 +601,111 @@ export default function Landing() {
               style={styles.glassPaneGradient}
             >
               <View style={styles.glassPaneInner}>
-                {/* Destination Title - White 95%, SemiBold */}
-                {destination.isMultiCity && destination.circuitTitle ? (
-                  <Text style={styles.glassDestinationTitle}>{destination.circuitTitle}</Text>
-                ) : (
-                  <Text style={styles.glassDestinationTitle}>{destination.city}</Text>
-                )}
-                
-                {/* Burnt-Edge Divider - Signature Element */}
-                <LinearGradient
-                  colors={[
-                    'rgba(255,220,180,0.4)',
-                    'rgba(255,190,130,0.2)',
-                    'rgba(255,220,180,0.05)'
-                  ]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 0 }}
-                  locations={[0, 0.6, 1]}
-                  style={styles.burntEdgeDivider}
-                />
-                
-                {/* Poetic Hook / Sensory Sentence */}
-                <Text style={styles.poeticHook} numberOfLines={1} ellipsizeMode="tail">
-                  {destination.tagline}
-                </Text>
-                
-                {/* Sensory / Mood Chips (3 max) */}
+                {/* MULTI-CITY CARDS */}
                 {destination.isMultiCity && destination.cities ? (
-                  <ScrollView 
-                    horizontal 
-                    showsHorizontalScrollIndicator={false}
-                    style={styles.sensoryChipsScroll}
-                  >
-                    <View style={styles.sensoryChipsRow}>
+                  <>
+                    {/* Circuit Title - Muted Bronze Ink */}
+                    <Text style={styles.circuitTitleBronze}>
+                      {destination.circuitTitle || "Journey"}
+                    </Text>
+                    
+                    {/* Burnt-Edge Divider */}
+                    <LinearGradient
+                      colors={[
+                        'rgba(255,220,180,0.4)',
+                        'rgba(255,190,130,0.2)',
+                        'rgba(255,220,180,0.05)'
+                      ]}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 0 }}
+                      locations={[0, 0.6, 1]}
+                      style={styles.burntEdgeDivider}
+                    />
+                    
+                    {/* Route Flow Row - Micro-postcards */}
+                    <View style={styles.routeFlowRow}>
                       {destination.cities.slice(0, 3).map((city, idx) => (
-                        <View key={idx} style={styles.sensoryChip}>
-                          <BlurView intensity={10} tint="light" style={styles.sensoryChipBlur}>
-                            <Text style={styles.sensoryChipText}>{city}</Text>
-                          </BlurView>
-                        </View>
+                        <React.Fragment key={idx}>
+                          <View style={styles.microPostcard}>
+                            <BlurView intensity={8} tint="light" style={styles.microPostcardBlur}>
+                              <Text style={styles.microPostcardText}>{city}</Text>
+                            </BlurView>
+                          </View>
+                          {idx < Math.min(destination.cities.length - 1, 2) && (
+                            <Text style={styles.routeArrow}> ⟶ </Text>
+                          )}
+                        </React.Fragment>
                       ))}
                     </View>
-                  </ScrollView>
-                ) : null}
-                
-                {/* Meta Whisper Line - Calm context */}
-                <View style={styles.metaWhisperRow}>
-                  {destination.transport.map((transport, transportIndex) => (
-                    <React.Fragment key={transportIndex}>
-                      {transportIndex > 0 && <Text style={styles.metaWhisperDot}> • </Text>}
-                      <Ionicons 
-                        name={transport.icon} 
-                        size={14} 
-                        color="rgba(255,255,255,0.6)" 
-                        style={styles.metaWhisperIcon}
-                      />
-                      <Text style={styles.metaWhisperText}>{transport.time}</Text>
-                    </React.Fragment>
-                  ))}
-                </View>
+                    
+                    {/* Mood Descriptor Row (Optional) */}
+                    <View style={styles.moodDescriptorRow}>
+                      <View style={styles.moodChip}>
+                        <BlurView intensity={6} tint="light" style={styles.moodChipBlur}>
+                          <Text style={styles.moodChipText}>🍋 Citrus air</Text>
+                        </BlurView>
+                      </View>
+                      <View style={styles.moodChip}>
+                        <BlurView intensity={6} tint="light" style={styles.moodChipBlur}>
+                          <Text style={styles.moodChipText}>☀ Slow mornings</Text>
+                        </BlurView>
+                      </View>
+                    </View>
+                    
+                    {/* Duration - Bronze tint */}
+                    <Text style={styles.durationText}>
+                      {destination.transport[0]?.time || "4 days"}
+                    </Text>
+                  </>
+                ) : (
+                  <>
+                    {/* SINGLE CITY CARDS - Left Aligned */}
+                    {/* Destination Title - Muted Bronze Ink */}
+                    <Text style={styles.singleCityTitleBronze}>{destination.city}</Text>
+                    
+                    {/* Burnt-Edge Divider */}
+                    <LinearGradient
+                      colors={[
+                        'rgba(255,220,180,0.4)',
+                        'rgba(255,190,130,0.2)',
+                        'rgba(255,220,180,0.05)'
+                      ]}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 0 }}
+                      locations={[0, 0.6, 1]}
+                      style={styles.burntEdgeDivider}
+                    />
+                    
+                    {/* Poetic Hook / Tagline */}
+                    <Text style={styles.poeticHook} numberOfLines={1} ellipsizeMode="tail">
+                      {destination.tagline}
+                    </Text>
+                    
+                    {/* Sensory Pills (2-3) */}
+                    <View style={styles.sensoryPillsRow}>
+                      <View style={styles.sensoryPillSingle}>
+                        <BlurView intensity={8} tint="light" style={styles.sensoryPillBlur}>
+                          <Text style={styles.sensoryPillText}>🍋 Lemon paths</Text>
+                        </BlurView>
+                      </View>
+                      <View style={styles.sensoryPillSingle}>
+                        <BlurView intensity={8} tint="light" style={styles.sensoryPillBlur}>
+                          <Text style={styles.sensoryPillText}>🌊 Sea breeze</Text>
+                        </BlurView>
+                      </View>
+                      <View style={styles.sensoryPillSingle}>
+                        <BlurView intensity={8} tint="light" style={styles.sensoryPillBlur}>
+                          <Text style={styles.sensoryPillText}>☀ Slow mornings</Text>
+                        </BlurView>
+                      </View>
+                    </View>
+                    
+                    {/* Narrative Duration */}
+                    <Text style={styles.narrativeDuration}>
+                      {destination.transport[0]?.time || "8h 30m"} away • 4 Days
+                    </Text>
+                  </>
+                )}
               </View>
             </LinearGradient>
           </BlurView>
