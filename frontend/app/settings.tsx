@@ -271,12 +271,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#0B0F14',
   },
-  backgroundImage: {
+  background: {
     ...StyleSheet.absoluteFillObject,
   },
-  backgroundGradient: {
+  radialGradient: {
     ...StyleSheet.absoluteFillObject,
-    opacity: 0.95,
+    background: 'radial-gradient(circle at 30% 20%, rgba(194,164,110,0.15) 0%, rgba(11,15,20,0.8) 50%, #0B0F14 100%)',
   },
   header: {
     flexDirection: 'row',
