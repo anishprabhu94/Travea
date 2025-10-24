@@ -3185,27 +3185,27 @@ const styles = StyleSheet.create({
     maxWidth: 400,
     alignItems: 'center',
   },
-  // SINGLE CITY & MULTI-CITY BRONZE TITLES - Champagne Bronze
+  // SINGLE CITY & MULTI-CITY BRONZE TITLES - Luminous Sand Tone
   singleCityTitleBronze: {
-    fontSize: 19,
-    fontWeight: '700', // Increased for confident presence
-    color: '#E1C48A', // Muted champagne bronze
+    fontSize: 20, // +1px bump for emphasis
+    fontWeight: '600', // Semi-bold
+    color: '#E9D4A0', // Warm luminous sand tone
     letterSpacing: 0.4,
     marginBottom: 4,
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(255,255,255,0.2)',
+        shadowColor: 'rgba(0,0,0,0.35)',
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 1,
-        shadowRadius: 2,
+        shadowRadius: 3,
       },
       android: {
-        textShadowColor: 'rgba(255,255,255,0.2)',
+        textShadowColor: 'rgba(0,0,0,0.35)',
         textShadowOffset: { width: 0, height: 0 },
-        textShadowRadius: 2,
+        textShadowRadius: 3,
       },
       web: {
-        textShadow: '0 0 2px rgba(255,255,255,0.2), 0 2px 4px rgba(0,0,0,0.5)',
+        textShadow: '0 0 3px rgba(0,0,0,0.35), 0 0 2px rgba(212,184,130,0.25)', // Outer glow + inner bronze glow
         filter: 'contrast(1.15) brightness(1.1)',
       },
     }),
@@ -3216,25 +3216,25 @@ const styles = StyleSheet.create({
     }),
   },
   circuitTitleBronze: {
-    fontSize: 19,
-    fontWeight: '700', // Increased for confident presence
-    color: '#CDAF76', // Warmer bronze for multi-city (burnished metal)
+    fontSize: 20, // +1px bump for emphasis
+    fontWeight: '600', // Semi-bold
+    color: '#E9D4A0', // Warm luminous sand tone (same as single-city for cohesion)
     letterSpacing: 0.4,
     marginBottom: 4,
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(255,255,255,0.2)',
+        shadowColor: 'rgba(0,0,0,0.35)',
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 1,
-        shadowRadius: 2,
+        shadowRadius: 3,
       },
       android: {
-        textShadowColor: 'rgba(255,255,255,0.2)',
+        textShadowColor: 'rgba(0,0,0,0.35)',
         textShadowOffset: { width: 0, height: 0 },
-        textShadowRadius: 2,
+        textShadowRadius: 3,
       },
       web: {
-        textShadow: '0 0 2px rgba(255,255,255,0.2), 0 2px 4px rgba(0,0,0,0.5)',
+        textShadow: '0 0 3px rgba(0,0,0,0.35), 0 0 2px rgba(212,184,130,0.25)', // Outer glow + inner bronze glow
         filter: 'contrast(1.15) brightness(1.1)',
       },
     }),
