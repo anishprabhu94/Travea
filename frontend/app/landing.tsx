@@ -3081,7 +3081,7 @@ const styles = StyleSheet.create({
   narrativeDuration: {
     fontSize: 11,
     fontWeight: '400',
-    color: 'rgba(192,167,124,0.60)', // Bronze 60%
+    color: 'rgba(255,255,255,0.70)', // White @ 70%
     letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Inter',
