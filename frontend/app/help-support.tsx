@@ -124,12 +124,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#0B0F14',
   },
-  backgroundImage: {
+  background: {
     ...StyleSheet.absoluteFillObject,
   },
-  backgroundGradient: {
+  radialGradient: {
     ...StyleSheet.absoluteFillObject,
-    opacity: 0.95,
   },
   header: {
     flexDirection: 'row',
