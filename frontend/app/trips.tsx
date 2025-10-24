@@ -959,35 +959,39 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  bookmarkButton: {
+  heartButton: {
     position: 'absolute',
-    top: 16,
-    right: 16,
+    top: 10,
+    right: 10,
     zIndex: 10,
   },
-  bookmarkContainer: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
+  heartCapsule: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     overflow: 'hidden',
-  },
-  bookmarkInner: {
-    flex: 1,
-    backgroundColor: 'rgba(20,20,20,0.65)',
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.08)',
     ...Platform.select({
-      web: {
-        boxShadow: '0 0 16px rgba(201,169,109,0.5), inset 0 0 12px rgba(255,255,255,0.08)',
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.35,
+        shadowRadius: 20,
       },
-      default: {
-        shadowColor: 'rgba(201,169,109,0.6)',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 1,
-        shadowRadius: 8,
-        elevation: 6,
+      android: {
+        elevation: 8,
+      },
+      web: {
+        boxShadow: '0 6px 20px rgba(0,0,0,0.35)',
       },
     }),
+  },
+  heartContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(15,18,20,0.45)',
   },
   cardClickableArea: {
     position: 'absolute',
