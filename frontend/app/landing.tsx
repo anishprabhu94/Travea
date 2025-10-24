@@ -1686,14 +1686,14 @@ const styles = StyleSheet.create({
   },
   scrollableContent: {
     flex: 1,
-    marginTop: 32, // Add elegant spacing between tabs and carousel content
+    marginTop: 16, // Reduced from 32 to move carousels closer to pills
   },
   scrollableContentContainer: {
     paddingBottom: 120, // Space for bottom dock
   },
   carouselSection: {
-    marginTop: 16, // Further reduced
-    marginBottom: 16, // Further reduced
+    marginTop: 12, // Reduced from 16 for tighter spacing
+    marginBottom: 12, // Reduced from 16
   },
   carouselHeader: {
     flexDirection: 'row',
