@@ -1380,83 +1380,89 @@ export default function Landing() {
       {/* Floating Search Capsule */}
       {showSearchCapsule && (
         <View style={styles.searchCapsuleContainer}>
-          {/* Background image with blur */}
-          <ImageBackground
-            source={require('../assets/search-bg.png')}
-            style={styles.searchBackground}
-            blurRadius={Platform.OS === 'ios' ? 20 : 10}
+          {/* Screen background with dimmed blur */}
+          <Animated.View 
+            style={[
+              styles.searchScreenBackground,
+              { opacity: searchBackdropOpacity }
+            ]}
           >
-            {/* Backdrop overlay for Expo Go compatibility */}
-            <Animated.View 
-              style={[
-                styles.searchBackdrop,
-                { opacity: searchBackdropOpacity }
-              ]}
-            >
-              <TouchableOpacity 
-                style={styles.searchBackdropTouchable}
-                activeOpacity={1}
-                onPress={closeSearchCapsule}
-              />
-            </Animated.View>
+            <LinearGradient
+              colors={['rgba(0,0,0,0)', 'rgba(10,5,0,0.85)']}
+              style={styles.screenGradient}
+            />
+            <TouchableOpacity 
+              style={styles.searchBackdropTouchable}
+              activeOpacity={1}
+              onPress={closeSearchCapsule}
+            />
+          </Animated.View>
 
-            {/* Floating Frosted Pane */}
-            <Animated.View
-              style={[
-                styles.searchCapsule,
-                {
-                  opacity: searchCapsuleOpacity,
-                  transform: [{ scale: searchCapsuleScale }]
-                }
-              ]}
+          {/* Floating Frosted Pane with embedded sunset */}
+          <Animated.View
+            style={[
+              styles.searchCapsule,
+              {
+                opacity: searchCapsuleOpacity,
+                transform: [{ scale: searchCapsuleScale }]
+              }
+            ]}
+          >
+            {/* Embedded sunset image inside pane */}
+            <ImageBackground
+              source={require('../assets/search-bg.png')}
+              style={styles.paneBackgroundImage}
+              imageStyle={styles.paneImageStyle}
             >
-              {/* Inner light gradient */}
-              <LinearGradient
-                colors={['rgba(255,255,255,0.05)', 'rgba(0,0,0,0.25)']}
-                style={styles.capsuleInnerGradient}
-              />
+              {/* Inner shadow for recessed glass depth */}
+              <View style={styles.innerShadowLayer} />
 
-              <BlurView intensity={30} tint="dark" style={styles.capsuleBlur}>
+              <BlurView intensity={25} tint="dark" style={styles.capsuleBlur}>
                 <View style={styles.capsuleContent}>
-                  {/* Search Bar */}
-                  <View style={styles.searchBarContainer}>
-                    <Ionicons 
-                      name="search-outline" 
-                      size={20} 
-                      color="#D4B882" 
-                      style={styles.searchIcon} 
-                    />
-                    <TextInput
-                      style={styles.searchInput}
-                      placeholder="Search a city..."
-                      placeholderTextColor="rgba(255,255,255,0.75)"
-                      value={searchQuery}
-                      onChangeText={setSearchQuery}
-                      autoFocus={true}
-                      returnKeyType="search"
-                      onSubmitEditing={() => {
-                        console.log('Searching for:', searchQuery)
-                      }}
-                    />
-                    {searchQuery.length > 0 && (
-                      <TouchableOpacity onPress={() => setSearchQuery('')}>
-                        <Ionicons name="close-circle" size={20} color="rgba(255,255,255,0.5)" />
-                      </TouchableOpacity>
-                    )}
+                  {/* Floating Search Field */}
+                  <View style={styles.floatingSearchField}>
+                    <BlurView intensity={12} tint="light" style={styles.searchFieldBlur}>
+                      <View style={styles.searchBarContainer}>
+                        <Ionicons 
+                          name="search-outline" 
+                          size={20} 
+                          color="#D4B882" 
+                          style={styles.searchIcon} 
+                        />
+                        <TextInput
+                          style={styles.searchInput}
+                          placeholder="Search a city..."
+                          placeholderTextColor="rgba(255,255,255,0.85)"
+                          value={searchQuery}
+                          onChangeText={setSearchQuery}
+                          autoFocus={true}
+                          returnKeyType="search"
+                          onSubmitEditing={() => {
+                            console.log('Searching for:', searchQuery)
+                          }}
+                        />
+                        {searchQuery.length > 0 && (
+                          <TouchableOpacity onPress={() => setSearchQuery('')}>
+                            <Ionicons name="close-circle" size={20} color="rgba(255,255,255,0.5)" />
+                          </TouchableOpacity>
+                        )}
+                      </View>
+                    </BlurView>
                   </View>
 
-                  {/* Animated Discovery Orb (replaces globe) */}
+                  {/* Discovery Orb (over sunset) */}
                   {searchQuery.length === 0 && (
                     <View style={styles.discoveryOrbContainer}>
-                      {/* Pulse animation orb */}
                       <View style={styles.discoveryOrb}>
                         <LinearGradient
-                          colors={['rgba(212,184,130,0.4)', 'rgba(212,184,130,0.1)']}
+                          colors={['rgba(255,255,255,0.15)', 'rgba(255,255,255,0.05)']}
                           style={styles.orbGradient}
                         />
+                        {/* Outer glow */}
+                        <View style={styles.orbGlow} />
                       </View>
-                      {/* Golden sweep line */}
-                      <View style={styles.goldenSweepLine} />
+                      {/* Slow shimmer line */}
+                      <View style={styles.shimmerLine} />
                     </View>
                   )}
 
@@ -1469,7 +1475,6 @@ export default function Landing() {
                       <View style={styles.resultsSection}>
                         <Text style={styles.resultsSectionTitle}>Destinations</Text>
                         
-                        {/* Filter and display matching destinations */}
                         {destinationCards.filter(dest => 
                           dest.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           (dest.region && dest.region.toLowerCase().includes(searchQuery.toLowerCase()))
@@ -1513,8 +1518,8 @@ export default function Landing() {
                   )}
                 </View>
               </BlurView>
-            </Animated.View>
-          </ImageBackground>
+            </ImageBackground>
+          </Animated.View>
         </View>
       )}
 
