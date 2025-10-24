@@ -1578,10 +1578,22 @@ const styles = StyleSheet.create({
   chipBlur: {
     borderRadius: 18,
     overflow: 'hidden',
-    backgroundColor: 'rgba(255,255,255,0.05)',
+    backgroundColor: 'rgba(255,255,255,0.08)', // Enhanced base material
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.15)',
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(25px)',
+        backdropFilter: 'blur(18px)',
+        boxShadow: 'inset 0 0 2px rgba(255,255,255,0.25), 0 4px 10px rgba(0,0,0,0.25)',
+      },
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.25)',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 1,
+        shadowRadius: 10,
+      },
+      android: {
+        elevation: 4,
       },
     }),
   },
@@ -1593,21 +1605,13 @@ const styles = StyleSheet.create({
     borderRadius: 16, // Match parent radius
   },
   chipContentActive: {
-    backgroundColor: 'rgba(168,150,115,0.35)', // Muted bronze fill
-  },
-  chipContent: {
-    backgroundColor: 'rgba(255,255,255,0.05)', // Frosted black
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    gap: 8,
+    backgroundColor: 'rgba(194,164,110,0.08)', // Faint bronze tint for active
   },
   chipLabel: {
     fontSize: 15,
     fontWeight: '500',
     color: 'rgba(255,255,255,0.85)', // 85% for inactive
+    letterSpacing: 0.2, // Increased for airy aesthetic
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
@@ -1615,7 +1619,7 @@ const styles = StyleSheet.create({
     }),
   },
   chipLabelActive: {
-    color: '#FFFFFF', // White for active
+    color: '#FFFFFF', // Full white for active
   },
   chipActive: {
     // Active state handled by glow
@@ -1630,14 +1634,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent', // Transparent background for glow only
     ...Platform.select({
       web: {
-        boxShadow: '0 0 12px rgba(201,169,109,0.6)', // Soft bronze glow as specified
+        boxShadow: '0 0 4px rgba(194,164,110,0.25)', // Micro-glow edge in muted bronze
       },
       default: {
-        shadowColor: '#C9A96D',
+        shadowColor: '#C2A46E',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.6,
-        shadowRadius: 6,
-        elevation: 5,
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 3,
       },
     }),
   },
