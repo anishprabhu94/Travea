@@ -1723,19 +1723,43 @@ const styles = StyleSheet.create({
     marginRight: 16,
   },
   destinationCard: {
-    height: height * 0.38, // 3:2 aspect ratio portrait mobile
-    borderRadius: 32, // Updated to luxury specs
+    height: height * 0.34, // Reduced by ~10.5% from 0.38 for sleeker feel
+    borderRadius: 24, // Tightened from 32 for refined aesthetic
     overflow: 'hidden',
     position: 'relative',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.35,
+        shadowRadius: 24,
+      },
+      android: {
+        elevation: 12,
+      },
+      web: {
+        boxShadow: '0 8px 24px rgba(0,0,0,0.35)',
+      },
+    }),
   },
   cardImage: {
-    borderRadius: 32,
+    borderRadius: 24, // Match parent radius
     ...Platform.select({
       web: {
         // Further reduced brightness and contrast for more toned down appearance
         filter: 'brightness(0.78) contrast(0.72)',
       },
     }),
+  },
+  
+  // Faint gradient film for unified photography
+  cardGradientFilm: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 1,
   },
   
   // Soft neutral grey veil overlay for subtle desaturation
@@ -1746,7 +1770,7 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     backgroundColor: 'rgba(18,18,18,0.12)', // Reduced opacity for subtlety
-    zIndex: 1,
+    zIndex: 2,
   },
   
   // Enhanced vignette with depth (no blur)
@@ -1756,7 +1780,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: 2,
+    zIndex: 3,
     ...Platform.select({
       web: {
         backgroundColor: 'rgba(0,0,0,0.08)', // Subtle overlay (gradient removed for RN Web compatibility)
