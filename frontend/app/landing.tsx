@@ -3296,12 +3296,13 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     }),
   },
-  // SINGLE CITY - Narrative Duration
+  // SINGLE CITY - Narrative Duration - Refined String Pill Style
   narrativeDuration: {
-    fontSize: 12, // Increased from 11
+    fontSize: 11,
     fontWeight: '500', // Medium weight
-    color: 'rgba(255,255,255,0.85)', // Brighter
-    letterSpacing: 0.4,
+    fontStyle: 'italic', // Adds curatorial feel
+    color: 'rgba(255,255,255,0.80)', // White @ 80%
+    letterSpacing: 0.2, // Breathing room
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
@@ -3311,15 +3312,8 @@ const styles = StyleSheet.create({
   narrativeDurationRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 6,
-    paddingVertical: 4,
-    borderRadius: 8,
-    backgroundColor: 'rgba(0,0,0,0.25)', // Contrast layer
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(6px)', // Soft translucent rectangle
-      },
-    }),
+    paddingHorizontal: 0,
+    paddingVertical: 0,
   },
   // MULTI-CITY - Route Flow Row
   routeFlowRow: {
