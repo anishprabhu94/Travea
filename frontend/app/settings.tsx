@@ -282,7 +282,6 @@ const styles = StyleSheet.create({
   },
   radialGradient: {
     ...StyleSheet.absoluteFillObject,
-    background: 'radial-gradient(circle at 30% 20%, rgba(194,164,110,0.15) 0%, rgba(11,15,20,0.8) 50%, #0B0F14 100%)',
   },
   header: {
     flexDirection: 'row',
