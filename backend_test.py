@@ -11,7 +11,7 @@ from typing import Dict, Any
 import time
 
 # Get backend URL from environment
-BACKEND_URL = os.getenv('EXPO_PUBLIC_BACKEND_URL', 'https://travea-profile.preview.emergentagent.com')
+BACKEND_URL = os.getenv('EXPO_PUBLIC_BACKEND_URL', 'https://luxe-travel-ui.preview.emergentagent.com')
 API_BASE = f"{BACKEND_URL}/api"
 
 class AuthAPITester:

@@ -39,8 +39,8 @@
       "typedRoutes": true
     },
     "extra": {
-      "EXPO_PUBLIC_BACKEND_URL": "https://travea-profile.preview.emergentagent.com",
-      "EXPO_PACKAGER_HOSTNAME": "https://travea-profile.preview.emergentagent.com"
+      "EXPO_PUBLIC_BACKEND_URL": "https://luxe-travel-ui.preview.emergentagent.com",
+      "EXPO_PACKAGER_HOSTNAME": "https://luxe-travel-ui.preview.emergentagent.com"
     }
   }
 }
