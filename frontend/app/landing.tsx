@@ -1503,16 +1503,16 @@ const styles = StyleSheet.create({
       ios: {
         shadowColor: '#FFF',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.6,
-        shadowRadius: 12,
+        shadowOpacity: 0.9,
+        shadowRadius: 16,
       },
       android: {
-        textShadowColor: 'rgba(255,255,255,0.6)',
+        textShadowColor: 'rgba(255,255,255,0.9)',
         textShadowOffset: { width: 0, height: 0 },
-        textShadowRadius: 12,
+        textShadowRadius: 16,
       },
       web: {
-        textShadow: '0 0 20px rgba(255,255,255,0.6), 0 0 40px rgba(255,255,255,0.3), 0 2px 8px rgba(0,0,0,0.5)',
+        textShadow: '0 0 30px rgba(255,255,255,0.9), 0 0 60px rgba(255,255,255,0.5), 0 2px 8px rgba(0,0,0,0.5)',
       },
     }),
     fontFamily: Platform.select({
