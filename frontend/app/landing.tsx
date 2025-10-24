@@ -3341,42 +3341,38 @@ const styles = StyleSheet.create({
   microPostcard: {
     borderRadius: 10,
     overflow: 'hidden',
+    borderWidth: 0.6,
+    borderColor: 'rgba(255,255,255,0.25)',
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(0,0,0,0.15)',
+        shadowColor: 'rgba(0,0,0,0.25)',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 1,
-        shadowRadius: 2,
+        shadowRadius: 3,
       },
       android: {
-        elevation: 2,
+        elevation: 3,
       },
       web: {
-        boxShadow: '0 1px 2px rgba(0,0,0,0.15), inset 0 0.5px 0 rgba(255,255,255,0.25)',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.25), inset 0 0 1px rgba(0,0,0,0.1)',
       },
     }),
   },
   microPostcardBlur: {
-    paddingVertical: 4,
-    paddingHorizontal: 8,
-    backgroundColor: 'rgba(232,232,232,0.25)', // Brushed slate gradient simulation
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.25)',
+    paddingVertical: 3,
+    paddingHorizontal: 7, // Reduced padding for three pills
+    backgroundColor: 'rgba(200,210,220,0.2)', // Cool glass tone
+    borderWidth: 0,
   },
   microPostcardText: {
     fontSize: 12,
     fontWeight: '500', // Increased from 400 for better visibility
-    color: '#E6C896', // Brighter bronze for visibility
+    color: 'rgba(255,255,255,0.9)', // White @ 90%
     letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-    }),
-    ...Platform.select({
-      web: {
-        textShadow: '0 1px 2px rgba(0,0,0,0.3)',
-      },
     }),
   },
   routeArrow: {
