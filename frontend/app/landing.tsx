@@ -1436,13 +1436,13 @@ export default function Landing() {
                   <Ionicons 
                     name="search-outline" 
                     size={20} 
-                    color="#D4B882" 
+                    color="#E4C891" 
                     style={styles.searchIcon} 
                   />
                   <TextInput
                     style={styles.searchInput}
-                    placeholder="Search cities or journeys…"
-                    placeholderTextColor="rgba(255,255,255,0.6)"
+                    placeholder="Search a city..."
+                    placeholderTextColor="rgba(255,255,255,0.75)"
                     value={searchQuery}
                     onChangeText={setSearchQuery}
                     autoFocus={true}
