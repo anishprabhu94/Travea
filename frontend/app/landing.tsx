@@ -3390,6 +3390,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap', // Allow wrapping if needed
     marginBottom: 8,
     gap: 6,
+    width: '100%', // Ensure full width to prevent cutoff
   },
   moodChip: {
     borderRadius: 10,
