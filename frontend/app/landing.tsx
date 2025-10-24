@@ -180,12 +180,20 @@ export default function Landing() {
   // Search transition states
   const [searchTransitionState, setSearchTransitionState] = useState<'idle' | 'activated' | 'results'>('idle')
   const [selectedCity, setSelectedCity] = useState<string | null>(null)
+  const [showSearchCapsule, setShowSearchCapsule] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
   
   // Animation refs
   const fadeAnim = useRef(new Animated.Value(0)).current
   const greetingAnim = useRef(new Animated.Value(0)).current
   const dockAnim = useRef(new Animated.Value(0)).current
   const dockGlowAnim = useRef(new Animated.Value(0)).current
+  
+  // Search capsule animation refs
+  const searchCapsuleScale = useRef(new Animated.Value(0.95)).current
+  const searchCapsuleOpacity = useRef(new Animated.Value(0)).current
+  const searchBackdropOpacity = useRef(new Animated.Value(0)).current
+  const searchGlowPulse = useRef(new Animated.Value(0)).current
   
   // Search transition animation refs
   const searchPaneExpansion = useRef(new Animated.Value(1)).current // Scale for pane expansion
