@@ -1448,7 +1448,7 @@ export default function Landing() {
                       />
                       <TextInput
                         style={styles.searchInputCanvas}
-                        placeholder="Search cities or journeys..."
+                        placeholder="Search cities"
                         placeholderTextColor="rgba(255,255,255,0.6)"
                         value={searchQuery}
                         onChangeText={setSearchQuery}
