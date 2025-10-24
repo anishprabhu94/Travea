@@ -1471,17 +1471,17 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.5,
-        shadowRadius: 8,
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.8,
+        shadowRadius: 12,
       },
       android: {
-        textShadowColor: 'rgba(0,0,0,0.5)',
-        textShadowOffset: { width: 0, height: 2 },
-        textShadowRadius: 8,
+        textShadowColor: 'rgba(0,0,0,0.8)',
+        textShadowOffset: { width: 0, height: 3 },
+        textShadowRadius: 12,
       },
       web: {
-        textShadow: '0 2px 8px rgba(0,0,0,0.5), 0 0 20px rgba(0,0,0,0.3)',
+        textShadow: '0 0 30px rgba(255,255,255,0.4), 0 3px 12px rgba(0,0,0,0.8), 0 0 15px rgba(255,255,255,0.2)',
       },
     }),
     fontFamily: Platform.select({
