@@ -2154,14 +2154,15 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     paddingHorizontal: 24,
     alignItems: 'flex-start',
-    ...Platform.select({
-      web: {
-        background: 'linear-gradient(135deg, #BF8A57 0%, #815B3F 28%, #3A2C27 56%, #0B0F14 100%)',
-      },
-      default: {
-        backgroundColor: '#0B0F14', // Fallback for native
-      },
-    }),
+    backgroundColor: 'transparent', // Let the gradient show through
+  },
+  searchPaneGradient: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: -1,
   },
   titleContainer: {
     alignSelf: 'flex-start',
