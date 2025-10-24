@@ -1424,9 +1424,25 @@ const styles = StyleSheet.create({
   editorialGreetingMain: {
     fontSize: 24,
     fontWeight: '500', // Medium weight
-    color: '#FFFFFF', // Crisp white
+    color: 'rgba(255,255,255,0.95)', // Increased from 0.9 to 0.95 for brightness
     marginBottom: 4,
     letterSpacing: 2.5, // 2-3% tracking
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.35,
+        shadowRadius: 6,
+      },
+      android: {
+        textShadowColor: 'rgba(0,0,0,0.35)',
+        textShadowOffset: { width: 0, height: 2 },
+        textShadowRadius: 6,
+      },
+      web: {
+        textShadow: '0 2px 6px rgba(0,0,0,0.35)',
+      },
+    }),
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
