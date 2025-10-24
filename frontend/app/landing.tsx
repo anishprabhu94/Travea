@@ -634,21 +634,8 @@ export default function Landing() {
             style={styles.editorialSunsetBackground}
             imageStyle={styles.editorialSunsetImageStyle}
           >
-            {/* Subtle Matte Filter - 90% opacity to soften */}
-            <View style={styles.matteFilter} />
-            
-            {/* Natural Bottom Darkening - Strong blend */}
-            <LinearGradient
-              colors={[
-                'rgba(0,0,0,0)', 
-                'rgba(0,0,0,0.25)',
-                'rgba(0,0,0,0.50)',
-                'rgba(0,0,0,0.75)',
-                'rgba(11,15,20,0.95)',
-                '#0B0F14'
-              ]}
-              style={styles.naturalBottomDarkening}
-            />
+            {/* Translucent Overlay - Makes image opaque */}
+            <View style={styles.translucent Overlay} />
             
             {/* Header Content */}
             <View style={styles.editorialHeaderContent}>
