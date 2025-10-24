@@ -651,6 +651,17 @@ export default function Landing() {
             {/* Radial Glow - Sunlight diffusion */}
             <View style={styles.radialGlow} />
             
+            {/* Contrast Veil - Lifts text from background */}
+            <LinearGradient
+              colors={[
+                'rgba(15,18,20,0.25)',
+                'rgba(15,18,20,0.35)',
+                'rgba(15,18,20,0.45)'
+              ]}
+              locations={[0, 0.4, 1]}
+              style={styles.contrastVeil}
+            />
+            
             {/* Header Content */}
             <View style={styles.editorialHeaderContent}>
                 {/* Top Bar - Logo & Profile */}
