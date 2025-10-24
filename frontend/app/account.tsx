@@ -398,7 +398,7 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: 'rgba(194,164,110,0.9)',
+    color: 'rgba(194,164,110,0.8)', // Reduced opacity from 0.9 to 0.8 for refinement
     marginBottom: 16,
     letterSpacing: 0.5,
     textTransform: 'uppercase',
