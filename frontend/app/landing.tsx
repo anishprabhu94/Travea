@@ -2630,9 +2630,11 @@ const styles = StyleSheet.create({
     }),
   },
   dockLabel: {
-    fontSize: 14,
-    color: '#F8F8F8',
+    fontSize: 12, // 11-12px
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.75)', // Default state
     marginTop: 4,
+    letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
@@ -2640,9 +2642,11 @@ const styles = StyleSheet.create({
     }),
   },
   dockLabelActive: {
-    fontSize: 14,
-    color: '#C9A96D',
+    fontSize: 12, // 11-12px
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.95)', // Active state
     marginTop: 4,
+    letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
