@@ -1190,10 +1190,10 @@ export default function Landing() {
           }
         ]}
       >
-        <BlurView intensity={20} tint="light" style={styles.dockContainer}>
+        <BlurView intensity={22} tint="light" style={styles.dockContainer}>
           <View style={styles.dockContent}>
             <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
-              <Ionicons name="home" size={22} color="#C9A96D" />
+              <Ionicons name="home" size={22} color="#C2A46E" />
               <Text style={styles.dockLabelActive}>Home</Text>
             </TouchableOpacity>
             
@@ -1202,8 +1202,8 @@ export default function Landing() {
               activeOpacity={0.8}
               onPress={() => router.push('/bookings')}
             >
-              <Ionicons name="calendar" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
+              <Ionicons name="calendar" size={22} color="rgba(255,255,255,0.82)" />
+              <Text style={styles.dockLabel}>Trip Canvas</Text>
             </TouchableOpacity>
             
             <TouchableOpacity 
@@ -1214,8 +1214,8 @@ export default function Landing() {
               <Animated.View style={[styles.dockGlowContainer, { opacity: dockGlowAnim }]}>
                 <View style={styles.dockGlow} />
               </Animated.View>
-              <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockLabelInactive}>My Trips</Text>
+              <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.82)" />
+              <Text style={styles.dockLabel}>My Trips</Text>
             </TouchableOpacity>
             
             <TouchableOpacity 
@@ -1223,8 +1223,8 @@ export default function Landing() {
               activeOpacity={0.8}
               onPress={() => router.push('/concierge')}
             >
-              <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.7)" />
-              <Text style={styles.dockLabelInactive}>Concierge</Text>
+              <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.82)" />
+              <Text style={styles.dockLabel}>Concierge</Text>
             </TouchableOpacity>
           </View>
         </BlurView>
