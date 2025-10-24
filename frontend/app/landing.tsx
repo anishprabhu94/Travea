@@ -1342,10 +1342,10 @@ const styles = StyleSheet.create({
   },
   diffuseBottomFade: {
     position: 'absolute',
-    bottom: -40,
+    bottom: 0, // Changed from -40 to fix visible pane issue
     left: 0,
     right: 0,
-    height: 80,
+    height: 60, // Reduced from 80
     zIndex: 3,
   },
   editorialHeaderContent: {
