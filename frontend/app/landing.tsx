@@ -687,17 +687,6 @@ export default function Landing() {
             {/* Radial Glow - Sunlight diffusion */}
             <View style={styles.radialGlow} />
             
-            {/* Contrast Veil - Lifts text from background (lighter) */}
-            <LinearGradient
-              colors={[
-                'rgba(15,18,20,0.15)',
-                'rgba(15,18,20,0.20)',
-                'rgba(15,18,20,0.30)'
-              ]}
-              locations={[0, 0.4, 1]}
-              style={styles.contrastVeil}
-            />
-            
             {/* Bottom Gradient Fade - Smooth transition to content */}
             <LinearGradient
               colors={[
