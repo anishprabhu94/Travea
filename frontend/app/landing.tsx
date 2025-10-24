@@ -1314,6 +1314,46 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 48,
     borderBottomRightRadius: 48,
   },
+  liquidHorizonBase: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 1,
+  },
+  liquidFlowOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    opacity: 0.25,
+    zIndex: 2,
+  },
+  liquidFlowImage: {
+    resizeMode: 'cover',
+    ...Platform.select({
+      web: {
+        filter: 'blur(10px)',
+        mixBlendMode: 'overlay',
+      },
+    }),
+  },
+  radialGlow: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'transparent',
+    zIndex: 3,
+    ...Platform.select({
+      web: {
+        background: 'radial-gradient(circle at 50% 20%, rgba(255,185,100,0.25), transparent 70%)',
+      },
+    }),
+  },
   translucentOverlay: {
     position: 'absolute',
     top: 0,
