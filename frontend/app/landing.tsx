@@ -1490,10 +1490,7 @@ export default function Landing() {
                           ).slice(0, 6).map((dest, index) => (
                             <TouchableOpacity
                               key={dest.id}
-                              style={[styles.miniCityCard, { 
-                                opacity: 0,
-                                transform: [{ translateY: 20 }]
-                              }]}
+                              style={styles.miniCityCard}
                               onPress={() => {
                                 closeSearchCapsule()
                                 router.push(`/destination?id=${dest.id}&city=${dest.city}&region=${dest.region}`)
