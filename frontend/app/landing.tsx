@@ -664,15 +664,6 @@ export default function Landing() {
             </LinearGradient>
           </BlurView>
         </View>
-                    {transportIndex < destination.transport.length - 1 && (
-                      <Text style={styles.luxuryTransportSeparator}> • </Text>
-                    )}
-                  </React.Fragment>
-                ))}
-              </View>
-            </View>
-          </BlurView>
-        </View>
       </ImageBackground>
       </TouchableOpacity>
     </View>
