@@ -1747,9 +1747,12 @@ const styles = StyleSheet.create({
     }),
   },
   carouselTitle: {
-    fontSize: 22,
-    fontWeight: '600',
-    color: '#F8F8F8',
+    fontSize: 18, // Slightly larger, more editorial
+    fontWeight: '500', // Medium instead of bold
+    color: 'rgba(255,255,255,0.9)', // Soft white instead of pure
+    letterSpacing: 0.3, // Added for airy aesthetic
+    marginTop: 14, // Breathing room above
+    marginBottom: 6, // Space below
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
