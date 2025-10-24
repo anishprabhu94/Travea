@@ -1427,8 +1427,8 @@ const styles = StyleSheet.create({
     position: 'sticky',
     top: 0,
     zIndex: 100,
-    paddingTop: 20,
-    paddingBottom: 8, // Even closer to first carousel
+    paddingTop: 28, // Increased from 20 to move pills down
+    paddingBottom: 8,
     ...Platform.select({
       web: {
         position: 'sticky',
