@@ -519,44 +519,22 @@ export default function Landing() {
     return []
   }
 
-  const renderDestinationCard = (destination: DestinationCard, index: number) => {
-    // Animation for card press
-    const cardPressAnim = useRef(new Animated.Value(1)).current
-    
-    const handlePressIn = () => {
-      Animated.spring(cardPressAnim, {
-        toValue: 0.98,
-        useNativeDriver: true,
-        friction: 8,
-      }).start()
-    }
-    
-    const handlePressOut = () => {
-      Animated.spring(cardPressAnim, {
-        toValue: 1,
-        useNativeDriver: true,
-        friction: 8,
-      }).start()
-    }
-    
-    return (
-      <View key={destination.id} style={styles.cardWrapper}>
-        <Animated.View style={{ transform: [{ scale: cardPressAnim }] }}>
-          <TouchableOpacity 
-            onPress={() => {
-              // Haptic feedback
-              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-              
-              if (destination.isMultiCity) {
-                router.push(`/multi-city-destination?id=${destination.id}`)
-              } else {
-                router.push(`/destination?id=${destination.id}&city=${destination.city}&region=${destination.region}`)
-              }
-            }}
-            onPressIn={handlePressIn}
-            onPressOut={handlePressOut}
-            activeOpacity={0.9}
-          >
+  const renderDestinationCard = (destination: DestinationCard, index: number) => (
+    <View key={destination.id} style={styles.cardWrapper}>
+      <TouchableOpacity 
+        onPress={() => {
+          // Haptic feedback
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+          
+          if (destination.isMultiCity) {
+            router.push(`/multi-city-destination?id=${destination.id}`)
+          } else {
+            router.push(`/destination?id=${destination.id}&city=${destination.city}&region=${destination.region}`)
+          }
+        }}
+        activeOpacity={0.85}
+        style={{ transform: [{ scale: 1 }] }}
+      >
         <ImageBackground
           source={{ uri: destination.image }}
           style={styles.destinationCard}
