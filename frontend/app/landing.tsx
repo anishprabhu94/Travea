@@ -725,10 +725,8 @@ export default function Landing() {
         </View>
       </ImageBackground>
       </TouchableOpacity>
-        </Animated.View>
     </View>
-    )
-  }
+  )
 
   return (
     <View style={styles.container}>
