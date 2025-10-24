@@ -3133,6 +3133,11 @@ const styles = StyleSheet.create({
   moodChip: {
     borderRadius: 10,
     overflow: 'hidden',
+    ...Platform.select({
+      web: {
+        boxShadow: 'inset 0 0 3px rgba(255,255,255,0.15)', // Glow edge
+      },
+    }),
   },
   moodChipBlur: {
     paddingVertical: 3,
@@ -3142,7 +3147,7 @@ const styles = StyleSheet.create({
   moodChipText: {
     fontSize: 11,
     fontWeight: '400',
-    color: 'rgba(255,255,255,0.80)',
+    color: '#D1B98C', // Muted bronze
     letterSpacing: 0.1,
     fontFamily: Platform.select({
       ios: 'Inter',
