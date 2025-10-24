@@ -515,6 +515,11 @@ export default function Landing() {
         <TouchableOpacity
           style={styles.heartButton}
           onPress={() => {
+            // Haptic feedback
+            if (Platform.OS === 'ios' || Platform.OS === 'android') {
+              const Haptics = require('expo-haptics');
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+            }
             handleBookmark(destination.id)
           }}
           activeOpacity={0.7}
@@ -529,7 +534,7 @@ export default function Landing() {
               <BlurView intensity={18} tint="dark" style={styles.heartContainer}>
                 <Ionicons
                   name={bookmarkedItems.includes(getBaseId(destination.id)) ? "heart" : "heart-outline"}
-                  size={16}
+                  size={20}
                   color={bookmarkedItems.includes(getBaseId(destination.id)) ? "#C2A46E" : "rgba(255,255,255,0.8)"}
                 />
               </BlurView>
