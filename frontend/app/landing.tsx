@@ -886,6 +886,19 @@ export default function Landing() {
                     blurRadius={8}
                   >
                     <BlurView intensity={25} tint="light" style={styles.searchPane}>
+                      {/* Sunset Gradient Background */}
+                      <LinearGradient
+                        colors={[
+                          'rgba(255,200,140,0.35)',
+                          'rgba(180,110,70,0.30)',
+                          'rgba(40,25,20,0.65)',
+                          '#0F1214'
+                        ]}
+                        locations={[0, 0.25, 0.65, 1]}
+                        start={{ x: 0.35, y: 0.1 }}
+                        end={{ x: 1, y: 1 }}
+                        style={styles.searchPaneGradient}
+                      />
                       <View style={styles.searchPaneContent}>
                         {/* Title */}
                         <View style={styles.titleContainer}>
