@@ -1495,18 +1495,18 @@ const styles = StyleSheet.create({
     letterSpacing: 2.5, // 2-3% tracking
     ...Platform.select({
       ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.5,
-        shadowRadius: 8,
+        shadowColor: '#FFF',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.6,
+        shadowRadius: 12,
       },
       android: {
-        textShadowColor: 'rgba(0,0,0,0.5)',
-        textShadowOffset: { width: 0, height: 2 },
-        textShadowRadius: 8,
+        textShadowColor: 'rgba(255,255,255,0.6)',
+        textShadowOffset: { width: 0, height: 0 },
+        textShadowRadius: 12,
       },
       web: {
-        textShadow: '0 2px 8px rgba(0,0,0,0.5)',
+        textShadow: '0 0 20px rgba(255,255,255,0.6), 0 0 40px rgba(255,255,255,0.3), 0 2px 8px rgba(0,0,0,0.5)',
       },
     }),
     fontFamily: Platform.select({
