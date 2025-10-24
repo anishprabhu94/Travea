@@ -692,7 +692,7 @@ export default function Landing() {
                 </Text>
               </Animated.View>
             </View>
-          </ImageBackground>
+          </View>
         </View>
 
         {/* Subtle Divider Below Header */}
