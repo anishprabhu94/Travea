@@ -257,6 +257,31 @@ export default function Landing() {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
     }
     
+    // Special handling for search - open floating capsule
+    if (mode === 'search') {
+      setShowSearchCapsule(true)
+      // Animate capsule in
+      Animated.parallel([
+        Animated.spring(searchCapsuleScale, {
+          toValue: 1.0,
+          friction: 8,
+          tension: 40,
+          useNativeDriver: true,
+        }),
+        Animated.timing(searchCapsuleOpacity, {
+          toValue: 1,
+          duration: 180,
+          useNativeDriver: true,
+        }),
+        Animated.timing(searchBackdropOpacity, {
+          toValue: 1,
+          duration: 250,
+          useNativeDriver: true,
+        }),
+      ]).start()
+      return
+    }
+    
     setActiveMode(mode)
     console.log(`Switched to mode: ${mode}`)
     
@@ -266,6 +291,30 @@ export default function Landing() {
         window.scrollTo({ top: 0, behavior: 'smooth' })
       }
     }, 100)
+  }
+  
+  // Handle closing search capsule
+  const closeSearchCapsule = () => {
+    Animated.parallel([
+      Animated.timing(searchCapsuleScale, {
+        toValue: 0.95,
+        duration: 250,
+        useNativeDriver: true,
+      }),
+      Animated.timing(searchCapsuleOpacity, {
+        toValue: 0,
+        duration: 250,
+        useNativeDriver: true,
+      }),
+      Animated.timing(searchBackdropOpacity, {
+        toValue: 0,
+        duration: 200,
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
+      setShowSearchCapsule(false)
+      setSearchQuery('')
+    })
   }
 
   // Helper function to extract base ID from complex carousel ID
