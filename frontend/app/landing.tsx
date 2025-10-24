@@ -1576,7 +1576,7 @@ const styles = StyleSheet.create({
     position: 'sticky',
     top: 0,
     zIndex: 100,
-    paddingTop: 28, // Increased from 20 to move pills down
+    paddingTop: 36, // Increased from 28 to move pills down more
     paddingBottom: 8,
     ...Platform.select({
       web: {
