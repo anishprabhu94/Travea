@@ -3552,19 +3552,24 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 14,
     borderRadius: 16,
-    backgroundColor: 'rgba(255,255,255,0.08)',
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.15)',
+    backgroundColor: 'rgba(255,255,255,0.15)', // Glass-like gradient start
+    borderWidth: 0.6,
+    borderColor: 'rgba(255,255,255,0.3)',
     marginBottom: 20,
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05))',
+      },
+    }),
   },
   searchIcon: {
     marginRight: 12,
-    opacity: 0.6,
+    color: '#E4C891', // Muted golden hour tone
   },
   searchInput: {
     flex: 1,
     fontSize: 16,
-    color: 'rgba(255,255,255,0.9)',
+    color: 'rgba(255,255,255,0.90)', // White @ 90%
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
