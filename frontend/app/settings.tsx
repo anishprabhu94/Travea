@@ -320,7 +320,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: 'rgba(194,164,110,0.9)',
+    color: 'rgba(194,164,110,0.8)', // Reduced opacity from 0.9 to 0.8
     marginBottom: 12,
     letterSpacing: 0.5,
     textTransform: 'uppercase',
