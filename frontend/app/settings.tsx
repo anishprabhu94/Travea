@@ -142,7 +142,13 @@ export default function Settings() {
       
       {/* Living Radial Gradient Background */}
       <View style={styles.background}>
-        <View style={styles.radialGradient} />
+        <LinearGradient
+          colors={['rgba(194,164,110,0.15)', 'rgba(11,15,20,0.8)', '#0B0F14']}
+          locations={[0, 0.5, 1]}
+          start={{ x: 0.3, y: 0.2 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.radialGradient}
+        />
       </View>
 
       {/* Header */}
