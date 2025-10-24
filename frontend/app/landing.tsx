@@ -1607,7 +1607,7 @@ const styles = StyleSheet.create({
     gap: 10, // Elegant spacing between icon and text
   },
   chipContentActive: {
-    backgroundColor: 'rgba(194,164,110,0.08)', // Faint bronze tint for active
+    backgroundColor: 'rgba(194,164,110,0.10)', // Enhanced bronze tint for active
   },
   chipLabel: {
     fontSize: 15,
