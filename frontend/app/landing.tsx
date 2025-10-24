@@ -2098,7 +2098,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '400',
     fontStyle: 'italic',
-    color: 'rgba(255,255,255,0.85)', // White @ 85%
+    color: 'rgba(255,255,255,0.90)', // White @ 90%
     marginBottom: 8,
     letterSpacing: 0.1,
     fontFamily: Platform.select({
@@ -2107,7 +2107,19 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     }),
     ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(255,255,255,0.08)',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 1,
+        shadowRadius: 3,
+      },
+      android: {
+        textShadowColor: 'rgba(255,255,255,0.08)',
+        textShadowOffset: { width: 0, height: 0 },
+        textShadowRadius: 3,
+      },
       web: {
+        textShadow: '0 0 3px rgba(255,255,255,0.08)', // Micro-glow
         filter: 'blur(0.3px)', // Slight blur for separation
       },
     }),
