@@ -1421,6 +1421,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     zIndex: 4,
   },
+  bottomGradientFade: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 80,
+    zIndex: 5,
+  },
   translucentOverlay: {
     position: 'absolute',
     top: 0,
