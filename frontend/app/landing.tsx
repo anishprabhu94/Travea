@@ -1459,8 +1459,24 @@ const styles = StyleSheet.create({
   editorialGreetingSubtext: {
     fontSize: 15,
     fontWeight: '400',
-    color: 'rgba(230,227,222,0.75)', // Warm ivory #E6E3DE at 75%
+    color: 'rgba(255,255,255,0.75)', // Brightened from warm ivory
     letterSpacing: 0.2,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+      },
+      android: {
+        textShadowColor: 'rgba(0,0,0,0.25)',
+        textShadowOffset: { width: 0, height: 2 },
+        textShadowRadius: 4,
+      },
+      web: {
+        textShadow: '0 2px 4px rgba(0,0,0,0.25)',
+      },
+    }),
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
