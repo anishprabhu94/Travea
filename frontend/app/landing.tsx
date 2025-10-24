@@ -551,6 +551,15 @@ export default function Landing() {
         {/* Refined vignette with depth */}
         <View style={styles.cardVignetteOverlay} />
         
+        {/* Top-Left Floating Condé Nast Tag (Outside Frosted Pane) */}
+        {destination.isCondeNastPick && (
+          <View style={styles.condeNastFloatingTag}>
+            <BlurView intensity={12} tint="light" style={styles.condeNastTagBlur}>
+              <Text style={styles.condeNastTagText}>Condé Nast</Text>
+            </BlurView>
+          </View>
+        )}
+        
         {/* Liquid-Glass Heart Capsule */}
         <TouchableOpacity
           style={styles.heartButton}
