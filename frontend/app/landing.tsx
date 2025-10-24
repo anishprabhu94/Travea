@@ -585,7 +585,7 @@ export default function Landing() {
                 <Ionicons
                   name={bookmarkedItems.includes(getBaseId(destination.id)) ? "heart" : "heart-outline"}
                   size={20}
-                  color={bookmarkedItems.includes(getBaseId(destination.id)) ? "#C2A46E" : "rgba(255,255,255,0.8)"}
+                  color={bookmarkedItems.includes(getBaseId(destination.id)) ? "#C2A46E" : "rgba(255,255,255,1)"}
                 />
               </BlurView>
             </LinearGradient>
