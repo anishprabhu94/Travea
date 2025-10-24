@@ -2651,40 +2651,52 @@ export default function TripCanvas() {
       
       {/* Bottom Dock */}
       <View style={styles.bottomDock}>
-        <BlurView intensity={30} tint="light" style={styles.dockContainer}>
+        <BlurView intensity={22} tint="light" style={styles.dockContainer}>
           <View style={styles.dockContent}>
             <TouchableOpacity 
               style={styles.dockItem} 
               activeOpacity={0.8}
-              onPress={() => router.push('/landing')}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                router.push('/landing');
+              }}
             >
-              <Ionicons name="home-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Ionicons name="home-outline" size={22} color="rgba(255,255,255,0.82)" />
               <Text style={styles.dockLabelInactive}>Home</Text>
             </TouchableOpacity>
 
             <TouchableOpacity 
               style={styles.dockItem} 
               activeOpacity={0.8}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              }}
             >
-              <Ionicons name="calendar" size={22} color="#C9A96D" />
+              <Ionicons name="calendar" size={22} color="#C2A46E" />
               <Text style={styles.dockLabelActive}>Trip Canvas</Text>
             </TouchableOpacity>
 
             <TouchableOpacity 
               style={styles.dockItem} 
               activeOpacity={0.8}
-              onPress={() => router.push('/trips')}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                router.push('/trips');
+              }}
             >
-              <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Ionicons name="bookmark-outline" size={22} color="rgba(255,255,255,0.82)" />
               <Text style={styles.dockLabelInactive}>My Trips</Text>
             </TouchableOpacity>
 
             <TouchableOpacity 
               style={styles.dockItem} 
               activeOpacity={0.8}
-              onPress={() => router.push('/concierge')}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                router.push('/concierge');
+              }}
             >
-              <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.82)" />
               <Text style={styles.dockLabelInactive}>Concierge</Text>
             </TouchableOpacity>
           </View>
