@@ -3661,4 +3661,43 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     }),
   },
+  // Discovery Orb Styles
+  discoveryOrbContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 60,
+  },
+  discoveryOrb: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    overflow: 'hidden',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  orbGradient: {
+    width: '100%',
+    height: '100%',
+  },
+  goldenSweepLine: {
+    position: 'absolute',
+    width: 100,
+    height: 2,
+    backgroundColor: 'rgba(212,184,130,0.5)',
+    borderRadius: 1,
+  },
+  noResultsContainer: {
+    paddingVertical: 30,
+    alignItems: 'center',
+  },
+  noResultsText: {
+    fontSize: 14,
+    color: 'rgba(255,255,255,0.6)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
 });
