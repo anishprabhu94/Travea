@@ -1455,9 +1455,9 @@ const styles = StyleSheet.create({
   editorialHeaderContent: {
     flex: 1,
     paddingTop: Platform.select({
-      ios: 74, // Lowered by 24px from 50 for breathing space
-      android: 64, // Lowered by 24px from 40
-      web: 48, // Lowered by 24px from 24
+      ios: 60, // Reduced from 74 to move content up
+      android: 50, // Reduced from 64
+      web: 36, // Reduced from 48
     }),
     paddingHorizontal: 24,
     zIndex: 10,
@@ -1466,8 +1466,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 12,
-    paddingVertical: 10, // Added 10px vertical padding for softness
+    marginBottom: 8, // Reduced from 12 for tighter spacing
+    paddingVertical: 6, // Reduced from 10px
   },
   editorialProfileIcon: {
     width: 40,
