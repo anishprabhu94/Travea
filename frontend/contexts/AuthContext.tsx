@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Hardcoded backend URL for now - environment variables not working properly
-const EXPO_BACKEND_URL = 'https://glass-traveler.preview.emergentagent.com';
+const EXPO_BACKEND_URL = 'https://travea-profile.preview.emergentagent.com';
 
 console.log('AuthContext - EXPO_BACKEND_URL:', EXPO_BACKEND_URL);
 
