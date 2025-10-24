@@ -529,6 +529,16 @@ export default function Landing() {
           style={styles.destinationCard}
           imageStyle={styles.cardImage}
         >
+        {/* Faint gradient film for unified photography */}
+        <LinearGradient
+          colors={[
+            'rgba(15,18,20,0.05)',
+            'rgba(15,18,20,0.25)'
+          ]}
+          locations={[0, 1]}
+          style={styles.cardGradientFilm}
+        />
+        
         {/* Soft neutral grey veil overlay */}
         <View style={styles.cardGreyVeilOverlay} />
         
