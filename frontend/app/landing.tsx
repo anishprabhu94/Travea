@@ -1281,21 +1281,21 @@ const styles = StyleSheet.create({
   editorialHeaderContainer: {
     position: 'relative',
     width: '100%',
-    height: height * 0.24, // 24% of screen - more compact
+    height: height * 0.28, // Increased from 0.24 to 0.28 for better coverage
     marginBottom: 0,
     marginTop: Platform.select({
-      ios: -50, // Extend up to edge of iPhone screen
+      ios: -50,
       android: -40,
       web: 0,
     }),
     paddingTop: Platform.select({
-      ios: 50, // Compensate with padding
+      ios: 50,
       android: 40,
       web: 0,
     }),
-    backgroundColor: '#101419', // Slightly lifted black for continuity
-    borderBottomLeftRadius: 48, // More prominent
-    borderBottomRightRadius: 48, // More prominent
+    backgroundColor: '#0B0F14', // Match main background
+    borderBottomLeftRadius: 48,
+    borderBottomRightRadius: 48,
     overflow: 'hidden',
   },
   editorialSunsetBackground: {
