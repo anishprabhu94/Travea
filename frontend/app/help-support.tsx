@@ -64,17 +64,16 @@ export default function HelpSupport() {
     <View style={styles.container}>
       <StatusBar style="light" />
       
-      {/* Ambient Background with Image Blur */}
-      <ImageBackground
-        source={{ uri: 'https://customer-assets.emergentagent.com/job_glass-traveler/artifacts/hjbpxxqu_search%202.jpg' }}
-        style={styles.backgroundImage}
-        blurRadius={60}
-      >
+      {/* Living Radial Gradient Background */}
+      <View style={styles.background}>
         <LinearGradient
-          colors={['#0B0F14', 'rgba(194,164,110,0.05)']}
-          style={styles.backgroundGradient}
+          colors={['rgba(194,164,110,0.15)', 'rgba(11,15,20,0.8)', '#0B0F14']}
+          locations={[0, 0.5, 1]}
+          start={{ x: 0.3, y: 0.2 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.radialGradient}
         />
-      </ImageBackground>
+      </View>
 
       {/* Header */}
       <View style={styles.header}>
