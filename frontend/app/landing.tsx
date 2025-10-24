@@ -3812,4 +3812,237 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     }),
   },
+  // SEARCH RESULTS STYLES - Matching City & Curated Journeys
+  matchingCitySection: {
+    paddingTop: 12,
+    paddingLeft: 18,
+    paddingRight: 18,
+    marginBottom: 20,
+  },
+  sectionLabel: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.7)',
+    letterSpacing: 0.3,
+    marginBottom: 12,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'Inter',
+      web: 'SF Pro Display, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
+  heroCityCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 10,
+    padding: 12,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(233,212,160,0.15)',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 1,
+        shadowRadius: 10,
+      },
+      android: {
+        elevation: 4,
+      },
+      web: {
+        boxShadow: '0 0 10px rgba(233,212,160,0.15)',
+        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      },
+    }),
+  },
+  heroCityBlur: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+  },
+  heroCityImage: {
+    width: 60,
+    height: 60,
+    marginRight: 12,
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  heroCityImageStyle: {
+    borderRadius: 10,
+    ...Platform.select({
+      web: {
+        filter: 'blur(2px)',
+      },
+    }),
+  },
+  heroCityContent: {
+    flex: 1,
+  },
+  heroCityTitle: {
+    fontSize: 17,
+    fontWeight: '600',
+    color: '#E9D4A0',
+    marginBottom: 2,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'Inter',
+      web: 'SF Pro Display, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
+  heroCitySubtitle: {
+    fontSize: 13,
+    color: 'rgba(255,255,255,0.75)',
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'Inter',
+      web: 'SF Pro Display, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
+  curatedJourneysSearchSection: {
+    paddingHorizontal: 18,
+    marginBottom: 20,
+  },
+  sectionDivider: {
+    height: 0.5,
+    width: '70%',
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    alignSelf: 'center',
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  curatedJourneyCard: {
+    marginBottom: 14,
+    borderRadius: 14,
+    overflow: 'hidden',
+    backgroundColor: 'rgba(255,255,255,0.04)',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.35)',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 1,
+        shadowRadius: 12,
+      },
+      android: {
+        elevation: 8,
+      },
+      web: {
+        boxShadow: '0 4px 12px rgba(0,0,0,0.35)',
+      },
+    }),
+  },
+  curatedJourneyBlur: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+    backgroundColor: 'transparent',
+    minHeight: 90,
+  },
+  curatedJourneyContent: {
+    flex: 1,
+    paddingRight: 12,
+  },
+  publisherTagSearch: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 6,
+    backgroundColor: 'rgba(212,184,130,0.15)',
+    borderWidth: 0.5,
+    borderColor: 'rgba(212,184,130,0.3)',
+    marginBottom: 8,
+  },
+  publisherTagTextSearch: {
+    fontSize: 10,
+    fontWeight: '500',
+    color: '#D4B882',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
+  curatedJourneyTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#E9D4A0',
+    marginBottom: 4,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'Inter',
+      web: 'SF Pro Display, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
+  curatedJourneySubtext: {
+    fontSize: 13,
+    color: 'rgba(255,255,255,0.80)',
+    marginBottom: 8,
+    fontFamily: Platform.select({
+      ios: 'SF Pro Display',
+      android: 'Inter',
+      web: 'SF Pro Display, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
+  moodTagsRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 6,
+  },
+  moodTagPill: {
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255,255,255,0.15)',
+    borderWidth: 0.5,
+    borderColor: 'rgba(255,255,255,0.05)',
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05))',
+      },
+    }),
+  },
+  moodTagText: {
+    fontSize: 11,
+    color: 'rgba(255,255,255,0.8)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
+  viewPill: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16,
+    backgroundColor: 'rgba(233,212,160,0.12)',
+    borderWidth: 0.5,
+    borderColor: 'rgba(233,212,160,0.25)',
+    alignSelf: 'center',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 8px rgba(233,212,160,0.15)',
+      },
+    }),
+  },
+  viewPillText: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: '#E9D4A0',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
+  noResultsContainer: {
+    paddingVertical: 40,
+    alignItems: 'center',
+  },
+  noResultsText: {
+    fontSize: 15,
+    color: 'rgba(255,255,255,0.5)',
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
 });
