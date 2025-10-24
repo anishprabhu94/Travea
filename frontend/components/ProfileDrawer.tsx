@@ -218,6 +218,16 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.08)',
     borderRadius: 30,
   },
+  bronzeAccent: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    bottom: 0,
+    width: 3,
+    backgroundColor: 'rgba(194,164,110,0.6)',
+    borderTopLeftRadius: 30,
+    borderBottomLeftRadius: 30,
+  },
   drawerContent: {
     flex: 1,
     paddingTop: 28,
