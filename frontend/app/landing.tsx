@@ -594,12 +594,20 @@ export default function Landing() {
 
         {/* Luxury Frosted Info Pane - Redesigned as Window into Story */}
         <View style={styles.luxuryInfoContainer}>
-          <BlurView intensity={14} tint="light" style={styles.frostedGlassPane}>
+          <BlurView intensity={22} tint="light" style={styles.frostedGlassPane}>
             <LinearGradient
-              colors={['rgba(255,255,255,0.10)', 'rgba(255,255,255,0.04)']}
+              colors={['rgba(255,255,255,0.18)', 'rgba(255,255,255,0.05)']}
               locations={[0, 1]}
+              start={{ x: 0.3, y: 0.1 }}
+              end={{ x: 1, y: 1 }}
               style={styles.glassPaneGradient}
             >
+              {/* Faint top-down gradient overlay for text breathing */}
+              <LinearGradient
+                colors={['rgba(0,0,0,0.1)', 'rgba(0,0,0,0)']}
+                locations={[0, 0.3]}
+                style={styles.topDownGradientOverlay}
+              />
               <View style={styles.glassPaneInner}>
                 {/* MULTI-CITY CARDS */}
                 {destination.isMultiCity && destination.cities ? (
