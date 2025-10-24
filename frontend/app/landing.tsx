@@ -1938,116 +1938,155 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'rgba(15,18,20,0.45)',
   },
+  // REDESIGNED FROSTED GLASS PANE - Window into a Story
   luxuryInfoContainer: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    height: '25%', // Smaller footprint - more refined
+    height: 'auto',
     justifyContent: 'flex-end',
     paddingHorizontal: 16,
     paddingBottom: 16,
   },
-  luxuryInfoPane: {
-    borderRadius: 28,
+  frostedGlassPane: {
+    borderRadius: 22,
     overflow: 'hidden',
     width: '100%',
-  },
-  luxuryInfoInner: {
-    backgroundColor: 'rgba(30,30,30,0.25)', // Lighter and airier - more transparent
-    borderWidth: 0, // Remove hard border
-    padding: 14, // Reduced padding for smaller footprint  
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.12)',
     ...Platform.select({
       web: {
-        boxShadow: 'inset 0 0 20px rgba(255,255,255,0.08)', // Soft inner glow instead of border
+        backdropFilter: 'blur(14px) saturate(160%)',
+        boxShadow: '0 2px 20px rgba(0,0,0,0.35), inset 0 0 1px rgba(255,255,255,0.25)',
       },
-      default: {
-        // Add soft inner glow for mobile
-        shadowColor: 'rgba(255,255,255,0.08)',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 1,
-        shadowRadius: 8,
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.35,
+        shadowRadius: 20,
+      },
+      android: {
+        elevation: 10,
       },
     }),
   },
-  destinationHeader: {
+  glassPaneGradient: {
+    width: '100%',
+    height: '100%',
+  },
+  glassPaneInner: {
+    padding: 17, // 16-18px inside pane
+  },
+  // Destination Title
+  glassDestinationTitle: {
+    fontSize: 19,
+    fontWeight: '600', // SemiBold
+    color: 'rgba(255,255,255,0.95)', // White 95%
+    letterSpacing: 0.2,
+    marginBottom: 4,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+      },
+      android: {
+        textShadowColor: 'rgba(0,0,0,0.3)',
+        textShadowOffset: { width: 0, height: 1 },
+        textShadowRadius: 3,
+      },
+      web: {
+        textShadow: '0 1px 3px rgba(0,0,0,0.3)',
+      },
+    }),
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
+  // Burnt-Edge Divider
+  burntEdgeDivider: {
+    height: 1,
+    width: '48%',
+    marginTop: 4,
+    marginBottom: 8,
+    ...Platform.select({
+      web: {
+        filter: 'blur(0.6px) contrast(1.2)',
+      },
+    }),
+  },
+  // Poetic Hook / Sensory Sentence
+  poeticHook: {
+    fontSize: 14,
+    fontWeight: '400',
+    fontStyle: 'italic',
+    color: 'rgba(255,255,255,0.70)', // White 70%
+    marginBottom: 8,
+    letterSpacing: 0.1,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
+  // Sensory Chips
+  sensoryChipsScroll: {
+    marginBottom: 8,
+  },
+  sensoryChipsRow: {
     flexDirection: 'row',
-    alignItems: 'baseline',
-    marginBottom: 4,
+    alignItems: 'center',
   },
-  
-  // Multi-City Circuit Styles (Matching Trip Canvas)
-  multiCityContainer: {
-    marginBottom: 4,
+  sensoryChip: {
+    marginRight: 8,
+    borderRadius: 14,
+    overflow: 'hidden',
   },
-  circuitTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#F8F8F8',
-    marginBottom: 10,
+  sensoryChipBlur: {
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+  },
+  sensoryChipText: {
+    fontSize: 12,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.85)', // White 85%
     letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     }),
   },
-  cityPillsScroll: {
-    marginBottom: 6,
-  },
-  cityTimelineRow: {
+  // Meta Whisper Line
+  metaWhisperRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
   },
-  cityPill: {
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 16,
-    backgroundColor: 'rgba(201,169,109,0.25)',
-    borderWidth: 1,
-    borderColor: 'rgba(201,169,109,0.5)',
+  metaWhisperIcon: {
+    marginRight: 4,
   },
-  cityPillText: {
-    fontSize: 11,
-    fontWeight: '700',
-    color: '#C9A96D',
-    letterSpacing: 0.5,
+  metaWhisperText: {
+    fontSize: 12,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.60)', // Muted
+    letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     }),
   },
-  cityDot: {
-    width: 4,
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: 'rgba(201,169,109,0.6)',
-    marginHorizontal: 8,
+  metaWhisperDot: {
+    fontSize: 12,
+    color: 'rgba(255,255,255,0.60)',
+    marginHorizontal: 4,
   },
-  
-  destinationCity: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#F8F8F8',
-    letterSpacing: 0.3,
-    lineHeight: 26,
-    fontFamily: Platform.select({
-      ios: 'Neue Montreal',
-      android: 'Neue Montreal',
-      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
-  destinationSeparator: {
-    fontSize: 20,
-    color: 'rgba(255,255,255,0.6)',
-    fontWeight: '500',
-  },
-  destinationRegion: {
-    fontSize: 18,
-    fontWeight: '500',
-    color: 'rgba(255,255,255,0.7)',
-    letterSpacing: 0.3,
-    lineHeight: 26,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
