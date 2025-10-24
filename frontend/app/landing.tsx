@@ -1655,39 +1655,39 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  bookmarkButton: {
+  heartButton: {
     position: 'absolute',
-    top: 16,
-    right: 16,
+    top: 10,
+    right: 10,
     zIndex: 10,
   },
-  bookmarkContainer: {
-    width: 42, // Further increased for even better visibility
-    height: 42,
-    borderRadius: 21,
+  heartCapsule: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     overflow: 'hidden',
-  },
-  bookmarkInner: {
-    flex: 1,
-    backgroundColor: 'rgba(10,10,10,0.85)', // Much darker background for higher contrast
-    alignItems: 'center',
-    justifyContent: 'center',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.2)', // Subtle border for definition
+    borderColor: 'rgba(255,255,255,0.08)',
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(201,169,109,0.6)',
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 1,
-        shadowRadius: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.35,
+        shadowRadius: 20,
       },
       android: {
-        elevation: 6,
+        elevation: 8,
       },
       web: {
-        boxShadow: '0 0 16px rgba(201,169,109,0.5), inset 0 0 12px rgba(255,255,255,0.08)', // Elegant bronze glow
+        boxShadow: '0 6px 20px rgba(0,0,0,0.35)',
       },
     }),
+  },
+  heartContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(15,18,20,0.45)',
   },
   luxuryInfoContainer: {
     position: 'absolute',
