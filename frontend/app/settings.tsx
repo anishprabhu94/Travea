@@ -8,6 +8,7 @@ import {
   Switch,
   Platform,
   Alert,
+  ImageBackground,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -83,7 +84,7 @@ export default function Settings() {
         value={value}
         onValueChange={onValueChange}
         trackColor={{ false: 'rgba(255,255,255,0.1)', true: 'rgba(194,164,110,0.5)' }}
-        thumbColor={value ? '#EAE7E1' : '#EAE7E1'}
+        thumbColor={'#EAE7E1'}
         ios_backgroundColor="rgba(255,255,255,0.1)"
         style={styles.switch}
       />
@@ -139,11 +140,17 @@ export default function Settings() {
     <View style={styles.container}>
       <StatusBar style="light" />
       
-      {/* Background */}
-      <LinearGradient
-        colors={['#0B0F14', '#0B0F14']}
-        style={styles.background}
-      />
+      {/* Ambient Background with Image Blur */}
+      <ImageBackground
+        source={{ uri: 'https://customer-assets.emergentagent.com/job_glass-traveler/artifacts/hjbpxxqu_search%202.jpg' }}
+        style={styles.backgroundImage}
+        blurRadius={60}
+      >
+        <LinearGradient
+          colors={['#0B0F14', 'rgba(194,164,110,0.05)']}
+          style={styles.backgroundGradient}
+        />
+      </ImageBackground>
 
       {/* Header */}
       <View style={styles.header}>
@@ -271,8 +278,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#0B0F14',
   },
-  background: {
+  backgroundImage: {
     ...StyleSheet.absoluteFillObject,
+  },
+  backgroundGradient: {
+    ...StyleSheet.absoluteFillObject,
+    opacity: 0.95,
   },
   header: {
     flexDirection: 'row',
@@ -327,11 +338,20 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(194,164,110,0.15)',
     padding: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 12,
-    elevation: 5,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.35,
+        shadowRadius: 20,
+      },
+      android: {
+        elevation: 8,
+      },
+      web: {
+        boxShadow: '0 4px 20px rgba(0,0,0,0.35)',
+      },
+    }),
   },
   toggleItem: {
     flexDirection: 'row',
@@ -350,6 +370,9 @@ const styles = StyleSheet.create({
       android: 'Neue Montreal',
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     }),
+  },
+  switch: {
+    transform: [{ scaleX: 0.9 }, { scaleY: 0.9 }],
   },
   divider: {
     height: 1,
@@ -392,7 +415,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
   },
   segmentActive: {
-    backgroundColor: 'rgba(201,169,109,0.3)',
+    backgroundColor: 'rgba(194,164,110,0.3)',
     borderRadius: 10,
   },
   segmentText: {
@@ -441,8 +464,5 @@ const styles = StyleSheet.create({
       android: 'Neue Montreal',
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     }),
-  },
-  switch: {
-    transform: [{ scaleX: 0.9 }, { scaleY: 0.9 }],
   },
 });
