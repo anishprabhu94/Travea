@@ -1406,17 +1406,15 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 20,
     overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.2)', // Glass reflection ring
   },
   editorialProfileBlur: {
     width: 40,
     height: 40,
-    borderRadius: 20,
-    overflow: 'hidden',
-    backgroundColor: 'rgba(0,0,0,0.35)',
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.08)', // Glass capsule background
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.2)', // Glass reflection ring
   },
   editorialGreetingSection: {
     marginTop: 12, // Reduced from 18 to move up
