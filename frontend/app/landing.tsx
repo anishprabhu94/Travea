@@ -1701,6 +1701,51 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     justifyContent: 'flex-start', // Align items to the start
   },
+  condeNastFloatingTag: {
+    position: 'absolute',
+    top: 16,
+    left: 16,
+    zIndex: 10,
+    borderRadius: 10,
+    overflow: 'hidden',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.25,
+        shadowRadius: 10,
+      },
+      android: {
+        elevation: 8,
+      },
+      web: {
+        boxShadow: '0 3px 10px rgba(0,0,0,0.25)',
+      },
+    }),
+  },
+  condeNastTagBlur: {
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.12)',
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(12px)',
+      },
+    }),
+  },
+  condeNastTagText: {
+    fontSize: 11,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.9)',
+    letterSpacing: 0.3,
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
   carouselTitle: {
     fontSize: 22,
     fontWeight: '600',
