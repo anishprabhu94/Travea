@@ -689,7 +689,7 @@ export default function Landing() {
                       {destination.tagline}
                     </Text>
                     
-                    {/* Sensory Pills (2-3) */}
+                    {/* Sensory Pills (Max 2) */}
                     <View style={styles.sensoryPillsRow}>
                       <View style={styles.sensoryPillSingle}>
                         <BlurView intensity={8} tint="light" style={styles.sensoryPillBlur}>
@@ -699,11 +699,6 @@ export default function Landing() {
                       <View style={styles.sensoryPillSingle}>
                         <BlurView intensity={8} tint="light" style={styles.sensoryPillBlur}>
                           <Text style={styles.sensoryPillText}>🌊 Sea breeze</Text>
-                        </BlurView>
-                      </View>
-                      <View style={styles.sensoryPillSingle}>
-                        <BlurView intensity={8} tint="light" style={styles.sensoryPillBlur}>
-                          <Text style={styles.sensoryPillText}>☀ Slow mornings</Text>
                         </BlurView>
                       </View>
                     </View>
