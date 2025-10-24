@@ -345,34 +345,108 @@ export default function Account() {
           <TouchableOpacity 
             style={styles.modalBackdrop} 
             activeOpacity={1} 
-            onPress={() => setShowCityModal(false)}
+            onPress={() => {
+              setShowCityModal(false);
+              setInputFocused(false);
+              Keyboard.dismiss();
+            }}
           />
           <View style={styles.modalContent}>
             <BlurView intensity={30} tint="dark" style={styles.modalBlur}>
               <Text style={styles.modalTitle}>Home City</Text>
-              <TextInput
-                style={styles.modalInput}
-                value={homeCity}
-                onChangeText={setHomeCity}
-                placeholder="Enter your home city"
-                placeholderTextColor="rgba(255,255,255,0.4)"
-                autoFocus
-              />
+              
+              {/* Animated Input Field */}
+              <Animated.View
+                style={[
+                  styles.animatedInputWrapper,
+                  {
+                    transform: [{ scale: inputScaleAnim }]
+                  }
+                ]}
+              >
+                <TextInput
+                  style={styles.modalInput}
+                  value={homeCity}
+                  onChangeText={setHomeCity}
+                  placeholder="Enter your home city"
+                  placeholderTextColor="rgba(255,255,255,0.4)"
+                  autoFocus
+                  onFocus={() => setInputFocused(true)}
+                  onBlur={() => setInputFocused(false)}
+                />
+              </Animated.View>
+              
+              {/* Floating Translucent Suggested Cities */}
+              {filteredSuggestions.length > 0 && (
+                <Animated.View
+                  style={[
+                    styles.suggestionsContainer,
+                    {
+                      opacity: suggestionsOpacity,
+                      transform: [{
+                        translateY: suggestionsOpacity.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [-10, 0]
+                        })
+                      }]
+                    }
+                  ]}
+                  pointerEvents={inputFocused ? 'auto' : 'none'}
+                >
+                  <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={styles.suggestionsScroll}
+                  >
+                    {filteredSuggestions.map((city, index) => (
+                      <TouchableOpacity
+                        key={index}
+                        style={styles.suggestionPill}
+                        onPress={() => {
+                          setHomeCity(city);
+                          setInputFocused(false);
+                          Keyboard.dismiss();
+                        }}
+                        activeOpacity={0.7}
+                      >
+                        <BlurView intensity={15} tint="light" style={styles.suggestionPillBlur}>
+                          <Text style={styles.suggestionText}>{city}</Text>
+                        </BlurView>
+                      </TouchableOpacity>
+                    ))}
+                  </ScrollView>
+                </Animated.View>
+              )}
+              
               <View style={styles.modalButtons}>
                 <TouchableOpacity
                   style={styles.modalCancelButton}
                   onPress={() => {
                     setHomeCity(user?.home_city || '');
                     setShowCityModal(false);
+                    setInputFocused(false);
                   }}
                 >
                   <Text style={styles.modalCancelText}>Cancel</Text>
                 </TouchableOpacity>
+                
+                {/* Save Button with Bronze Shimmer */}
                 <TouchableOpacity
                   style={styles.modalSaveButton}
                   onPress={handleSaveCity}
                   disabled={isSaving}
                 >
+                  <Animated.View
+                    style={[
+                      styles.shimmerOverlay,
+                      {
+                        opacity: shimmerAnim.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [0, 0.3]
+                        })
+                      }
+                    ]}
+                  />
                   <LinearGradient
                     colors={['#C2A46E', '#A8855C']}
                     style={styles.modalSaveGradient}
