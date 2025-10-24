@@ -3459,11 +3459,14 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   searchCapsule: {
+    position: 'relative',
     width: '85%',
     maxWidth: 500,
+    minHeight: 400,
     maxHeight: '70%',
     borderRadius: 28,
     overflow: 'hidden',
+    backgroundColor: 'rgba(25,25,25,0.45)', // Fallback for non-blur platforms
     ...Platform.select({
       ios: {
         shadowColor: 'rgba(0,0,0,0.25)',
