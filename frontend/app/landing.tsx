@@ -705,12 +705,12 @@ export default function Landing() {
             {/* Radial Glow - Sunlight diffusion */}
             <View style={styles.radialGlow} />
             
-            {/* Soft Contrast Veil - Lifts text while preserving sunset */}
+            {/* Soft Contrast Veil - Minimal for maximum brightness */}
             <LinearGradient
               colors={[
-                'rgba(12,16,20,0.22)',
-                'rgba(12,16,20,0.30)',
-                'rgba(12,16,20,0.38)'
+                'rgba(12,16,20,0.08)',
+                'rgba(12,16,20,0.12)',
+                'rgba(12,16,20,0.18)'
               ]}
               locations={[0, 0.45, 1]}
               style={styles.contrastVeil}
