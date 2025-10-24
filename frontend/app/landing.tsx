@@ -1602,7 +1602,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 10,
     paddingHorizontal: 16,
-    borderRadius: 16, // Match parent radius
+    borderRadius: 16,
+    gap: 10, // Elegant spacing between icon and text
   },
   chipContentActive: {
     backgroundColor: 'rgba(194,164,110,0.08)', // Faint bronze tint for active
