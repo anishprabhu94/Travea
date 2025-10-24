@@ -3101,13 +3101,18 @@ const styles = StyleSheet.create({
   },
   sensoryPillText: {
     fontSize: 11,
-    fontWeight: '400',
+    fontWeight: '500', // Medium weight for clarity
     color: '#D1B98C', // Muted bronze
     letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+    ...Platform.select({
+      web: {
+        filter: 'brightness(0.90)', // Reduce emoji brightness slightly
+      },
     }),
   },
   // SINGLE CITY - Narrative Duration
