@@ -2984,10 +2984,10 @@ const styles = StyleSheet.create({
   },
   // SINGLE CITY & MULTI-CITY BRONZE TITLES - Muted Bronze Ink
   singleCityTitleBronze: {
-    fontSize: 19,
+    fontSize: 18,
     fontWeight: '600',
-    color: '#C0A77C', // Muted Bronze Ink
-    letterSpacing: 0.2,
+    color: '#D4B882', // Brushed bronze
+    letterSpacing: 0.4,
     marginBottom: 4,
     ...Platform.select({
       ios: {
@@ -3002,7 +3002,8 @@ const styles = StyleSheet.create({
         textShadowRadius: 2,
       },
       web: {
-        textShadow: '0 1px 2px rgba(0,0,0,0.15)',
+        textShadow: '0 1px 2px rgba(0,0,0,0.15), inset 0 0 0.6px rgba(255,255,255,0.15)',
+        filter: 'contrast(1.1)',
       },
     }),
     fontFamily: Platform.select({
@@ -3012,10 +3013,10 @@ const styles = StyleSheet.create({
     }),
   },
   circuitTitleBronze: {
-    fontSize: 19,
+    fontSize: 18,
     fontWeight: '600',
-    color: '#C0A77C', // Muted Bronze Ink
-    letterSpacing: 0.2,
+    color: '#D4B882', // Brushed bronze
+    letterSpacing: 0.4,
     marginBottom: 4,
     ...Platform.select({
       ios: {
@@ -3030,7 +3031,8 @@ const styles = StyleSheet.create({
         textShadowRadius: 2,
       },
       web: {
-        textShadow: '0 1px 2px rgba(0,0,0,0.15)',
+        textShadow: '0 1px 2px rgba(0,0,0,0.15), inset 0 0 0.6px rgba(255,255,255,0.15)',
+        filter: 'contrast(1.1)',
       },
     }),
     fontFamily: Platform.select({
