@@ -5513,49 +5513,61 @@ const styles = StyleSheet.create({
   // Bottom Dock Styles
   bottomDock: {
     position: 'absolute',
-    bottom: 12,
+    bottom: 13, // 12-14px bottom offset for floating
     left: 0,
     right: 0,
     alignItems: 'center',
     zIndex: 100,
   },
   dockContainer: {
-    width: '92%',
-    height: 60,
-    borderRadius: 28,
+    width: '93%', // 92-94% of screen
+    height: 68, // 66-72px height
+    borderRadius: 30, // 28-34px corner radius
     overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.16)',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 20,
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.45,
+        shadowRadius: 40,
       },
       android: {
-        elevation: 8,
+        elevation: 20,
       },
       web: {
-        boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+        boxShadow: '0 10px 40px rgba(0,0,0,0.45), 0 18px 40px rgba(0,0,0,0.42), inset 0 0 2px rgba(255,255,255,0.30), inset 0 1px 0 rgba(255,255,255,0.10)',
       },
     }),
   },
   dockContent: {
     flex: 1,
-    backgroundColor: 'rgba(25,25,25,0.35)',
+    backgroundColor: 'rgba(255,255,255,0.08)', // Base layer for gradient
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 16,
+    paddingHorizontal: 12, // Safe-area padding
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(22px)',
+      },
+    }),
   },
   dockItem: {
     flex: 1,
     alignItems: 'center',
     paddingVertical: 8,
+    paddingHorizontal: 6,
     position: 'relative',
+    minWidth: 44, // Minimum 44x44 hit area
+    minHeight: 44,
   },
   dockLabelActive: {
-    fontSize: 14,
-    color: '#C9A96D',
+    fontSize: 12, // 11-12px
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.95)', // Active state
     marginTop: 4,
+    letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
@@ -5563,11 +5575,17 @@ const styles = StyleSheet.create({
     }),
   },
   dockLabelInactive: {
-    fontSize: 14,
-    color: 'rgba(255,255,255,0.7)',
+    fontSize: 12, // 11-12px
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.75)', // Default state
     marginTop: 4,
+    letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Neue Montreal, Inter, -apple-system, sans-serif',
+    }),
+  },
       android: 'Neue Montreal',
       web: 'Neue Montreal, Inter, -apple-system, sans-serif',
     }),
