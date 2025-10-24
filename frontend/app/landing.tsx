@@ -1487,23 +1487,23 @@ const styles = StyleSheet.create({
   editorialGreetingMain: {
     fontSize: 24,
     fontWeight: '500', // Medium weight
-    color: 'rgba(255,255,255,1)', // Full white for maximum brightness
+    color: 'rgba(255,255,255,0.96)', // Brightened as specified
     marginBottom: 4,
     letterSpacing: 2.5, // 2-3% tracking
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.8,
-        shadowRadius: 12,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.35,
+        shadowRadius: 6,
       },
       android: {
-        textShadowColor: 'rgba(0,0,0,0.8)',
-        textShadowOffset: { width: 0, height: 3 },
-        textShadowRadius: 12,
+        textShadowColor: 'rgba(0,0,0,0.35)',
+        textShadowOffset: { width: 0, height: 2 },
+        textShadowRadius: 6,
       },
       web: {
-        textShadow: '0 0 30px rgba(255,255,255,0.4), 0 3px 12px rgba(0,0,0,0.8), 0 0 15px rgba(255,255,255,0.2)',
+        textShadow: '0 2px 6px rgba(0,0,0,0.35)',
       },
     }),
     fontFamily: Platform.select({
