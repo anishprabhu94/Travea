@@ -653,18 +653,30 @@ export default function Landing() {
       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
         {/* Editorial Header - Quiet Window to the World */}
         <View style={styles.editorialHeaderContainer}>
-          {/* Liquid Horizon Base - Multi-stop gradient */}
-          <LinearGradient
-            colors={[
-              'rgba(210,160,90,0.45)',
-              'rgba(115,80,50,0.35)',
-              'rgba(15,18,20,0.9)'
+          {/* Liquid Horizon Base - Multi-stop gradient with breathing animation */}
+          <Animated.View
+            style={[
+              styles.liquidHorizonBase,
+              {
+                opacity: breathingAnim.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0.9, 1],
+                }),
+              }
             ]}
-            locations={[0, 0.3, 1]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={styles.liquidHorizonBase}
-          />
+          >
+            <LinearGradient
+              colors={[
+                'rgba(210,160,90,0.45)',
+                'rgba(115,80,50,0.35)',
+                'rgba(15,18,20,0.9)'
+              ]}
+              locations={[0, 0.3, 1]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={{ width: '100%', height: '100%' }}
+            />
+          </Animated.View>
 
           {/* Abstract Liquid Flow Overlay */}
           <ImageBackground
