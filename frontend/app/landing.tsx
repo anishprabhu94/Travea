@@ -653,15 +653,6 @@ export default function Landing() {
                   </React.Fragment>
                 ))}
               </View>
-              
-              {/* Editorial Badge - Condé Nast (conditional) */}
-              {destination.isCondeNastPick && (
-                <View style={styles.editorialBadge}>
-                  <View style={styles.editorialBadgeInner}>
-                    <Text style={styles.editorialBadgeText}>Condé Nast</Text>
-                  </View>
-                </View>
-              )}
             </View>
           </BlurView>
         </View>
