@@ -5599,9 +5599,5 @@ const styles = StyleSheet.create({
       web: 'Neue Montreal, Inter, -apple-system, sans-serif',
     }),
   },
-      android: 'Neue Montreal',
-      web: 'Neue Montreal, Inter, -apple-system, sans-serif',
-    }),
-  },
 });
 
