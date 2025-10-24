@@ -3078,15 +3078,26 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
     ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.15)',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 1,
+        shadowRadius: 2,
+      },
+      android: {
+        elevation: 2,
+      },
       web: {
-        boxShadow: 'inset 0 0 3px rgba(255,255,255,0.15)', // Glow edge
+        boxShadow: '0 1px 2px rgba(0,0,0,0.15), inset 0 0.5px 0 rgba(255,255,255,0.25)', // Outer shadow + specular line
       },
     }),
   },
   sensoryPillBlur: {
-    paddingVertical: 4,
-    paddingHorizontal: 9,
-    backgroundColor: 'rgba(255,255,255,0.08)',
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    backgroundColor: 'rgba(245,245,245,0.20)', // Gradient base simulation
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.25)', // Inner stroke
   },
   sensoryPillText: {
     fontSize: 11,
