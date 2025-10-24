@@ -2026,6 +2026,11 @@ const styles = StyleSheet.create({
   glassPaneGradient: {
     width: '100%',
     height: '100%',
+    ...Platform.select({
+      web: {
+        background: 'radial-gradient(circle at 30% 10%, rgba(255,255,255,0.18), rgba(255,255,255,0.05))',
+      },
+    }),
   },
   glassPaneInner: {
     padding: 17, // 16-18px inside pane
