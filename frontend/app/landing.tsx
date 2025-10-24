@@ -635,7 +635,7 @@ export default function Landing() {
             imageStyle={styles.editorialSunsetImageStyle}
           >
             {/* Translucent Overlay - Makes image opaque */}
-            <View style={styles.translucent Overlay} />
+            <View style={styles.translucentOverlay} />
             
             {/* Header Content */}
             <View style={styles.editorialHeaderContent}>
