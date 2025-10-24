@@ -3117,10 +3117,10 @@ const styles = StyleSheet.create({
   },
   // SINGLE CITY - Narrative Duration
   narrativeDuration: {
-    fontSize: 11,
-    fontWeight: '400',
-    color: 'rgba(255,255,255,0.70)', // White @ 70%
-    letterSpacing: 0.2,
+    fontSize: 12, // Increased from 11
+    fontWeight: '500', // Medium weight
+    color: 'rgba(255,255,255,0.85)', // Brighter
+    letterSpacing: 0.4,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
@@ -3130,6 +3130,15 @@ const styles = StyleSheet.create({
   narrativeDurationRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    paddingHorizontal: 6,
+    paddingVertical: 4,
+    borderRadius: 8,
+    backgroundColor: 'rgba(0,0,0,0.25)', // Contrast layer
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(6px)', // Soft translucent rectangle
+      },
+    }),
   },
   // MULTI-CITY - Route Flow Row
   routeFlowRow: {
