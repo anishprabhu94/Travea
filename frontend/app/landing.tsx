@@ -3579,7 +3579,7 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 16,
-    color: 'rgba(255,255,255,0.90)', // White @ 90%
+    color: 'rgba(255,255,255,0.90)',
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
