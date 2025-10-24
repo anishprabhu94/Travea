@@ -191,6 +191,9 @@ export default function Landing() {
   const searchBlurIntensity = useRef(new Animated.Value(25)).current // Blur intensity
   const backgroundDim = useRef(new Animated.Value(1)).current // Background opacity
   const searchGlowAnim = useRef(new Animated.Value(0)).current // Glow effect
+  
+  // Breathing animation for Liquid Horizon background
+  const breathingAnim = useRef(new Animated.Value(0)).current
 
   useEffect(() => {
     // Page load animations
