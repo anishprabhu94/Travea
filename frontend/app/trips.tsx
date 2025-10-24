@@ -686,28 +686,40 @@ export default function MyTrips() {
 
       {/* Bottom Dock */}
       <View style={styles.bottomDock}>
-        <BlurView intensity={30} tint="light" style={styles.dockContainer}>
+        <BlurView intensity={22} tint="light" style={styles.dockContainer}>
           <View style={styles.dockContent}>
             <TouchableOpacity 
               style={styles.dockItem} 
               activeOpacity={0.8}
-              onPress={() => router.push('/landing')}
+              onPress={() => {
+                if (Platform.OS === 'ios' || Platform.OS === 'android') {
+                  const Haptics = require('expo-haptics');
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                }
+                router.push('/landing')
+              }}
             >
-              <Ionicons name="home-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Ionicons name="home-outline" size={22} color="rgba(255,255,255,0.82)" />
               <Text style={styles.dockLabelInactive}>Home</Text>
             </TouchableOpacity>
 
             <TouchableOpacity 
               style={styles.dockItem} 
               activeOpacity={0.8}
-              onPress={() => router.push('/bookings')}
+              onPress={() => {
+                if (Platform.OS === 'ios' || Platform.OS === 'android') {
+                  const Haptics = require('expo-haptics');
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                }
+                router.push('/bookings')
+              }}
             >
-              <Ionicons name="calendar" size={22} color="rgba(255,255,255,0.7)" />
+              <Ionicons name="calendar" size={22} color="rgba(255,255,255,0.82)" />
               <Text style={styles.dockLabelInactive}>Trip Canvas</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
-              <Ionicons name="bookmark" size={22} color="#C9A96D" />
+              <Ionicons name="bookmark" size={22} color="#C2A46E" />
               <Text style={styles.dockLabelActive}>My Trips</Text>
             </TouchableOpacity>
 
@@ -715,7 +727,7 @@ export default function MyTrips() {
               style={styles.dockItem} 
               activeOpacity={0.8}
             >
-              <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.7)" />
+              <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.82)" />
               <Text style={styles.dockLabelInactive}>Concierge</Text>
             </TouchableOpacity>
           </View>
