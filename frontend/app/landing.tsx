@@ -2998,26 +2998,26 @@ const styles = StyleSheet.create({
   },
   // SINGLE CITY & MULTI-CITY BRONZE TITLES - Muted Bronze Ink
   singleCityTitleBronze: {
-    fontSize: 18,
+    fontSize: 19,
     fontWeight: '600',
-    color: '#D4B882', // Brushed bronze
+    color: '#E6C896', // Brighter brushed bronze for better visibility
     letterSpacing: 0.4,
     marginBottom: 4,
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(0,0,0,0.15)',
-        shadowOffset: { width: 0, height: 1 },
+        shadowColor: 'rgba(0,0,0,0.5)',
+        shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 1,
-        shadowRadius: 2,
+        shadowRadius: 4,
       },
       android: {
-        textShadowColor: 'rgba(0,0,0,0.15)',
-        textShadowOffset: { width: 0, height: 1 },
-        textShadowRadius: 2,
+        textShadowColor: 'rgba(0,0,0,0.5)',
+        textShadowOffset: { width: 0, height: 2 },
+        textShadowRadius: 4,
       },
       web: {
-        textShadow: '0 1px 2px rgba(0,0,0,0.15), inset 0 0 0.6px rgba(255,255,255,0.15)',
-        filter: 'contrast(1.1)',
+        textShadow: '0 2px 4px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.3)',
+        filter: 'contrast(1.15) brightness(1.1)',
       },
     }),
     fontFamily: Platform.select({
@@ -3027,26 +3027,26 @@ const styles = StyleSheet.create({
     }),
   },
   circuitTitleBronze: {
-    fontSize: 18,
+    fontSize: 19,
     fontWeight: '600',
-    color: '#D4B882', // Brushed bronze
+    color: '#E6C896', // Brighter brushed bronze for better visibility
     letterSpacing: 0.4,
     marginBottom: 4,
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(0,0,0,0.15)',
-        shadowOffset: { width: 0, height: 1 },
+        shadowColor: 'rgba(0,0,0,0.5)',
+        shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 1,
-        shadowRadius: 2,
+        shadowRadius: 4,
       },
       android: {
-        textShadowColor: 'rgba(0,0,0,0.15)',
-        textShadowOffset: { width: 0, height: 1 },
-        textShadowRadius: 2,
+        textShadowColor: 'rgba(0,0,0,0.5)',
+        textShadowOffset: { width: 0, height: 2 },
+        textShadowRadius: 4,
       },
       web: {
-        textShadow: '0 1px 2px rgba(0,0,0,0.15), inset 0 0 0.6px rgba(255,255,255,0.15)',
-        filter: 'contrast(1.1)',
+        textShadow: '0 2px 4px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.3)',
+        filter: 'contrast(1.15) brightness(1.1)',
       },
     }),
     fontFamily: Platform.select({
