@@ -1578,22 +1578,23 @@ const styles = StyleSheet.create({
   chipBlur: {
     borderRadius: 18,
     overflow: 'hidden',
-    backgroundColor: 'rgba(255,255,255,0.08)', // Enhanced base material
+    backgroundColor: 'rgba(255,255,255,0.05)', // Base for gradient
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.15)',
+    borderColor: 'rgba(255,255,255,0.16)', // Enhanced border
     ...Platform.select({
       web: {
         backdropFilter: 'blur(18px)',
-        boxShadow: 'inset 0 0 2px rgba(255,255,255,0.25), 0 4px 10px rgba(0,0,0,0.25)',
+        background: 'linear-gradient(145deg, rgba(255,255,255,0.14), rgba(255,255,255,0.05))',
+        boxShadow: 'inset 0 0 2px rgba(255,255,255,0.25), 0 6px 16px rgba(0,0,0,0.28)',
       },
       ios: {
-        shadowColor: 'rgba(0,0,0,0.25)',
-        shadowOffset: { width: 0, height: 4 },
+        shadowColor: 'rgba(0,0,0,0.28)',
+        shadowOffset: { width: 0, height: 6 },
         shadowOpacity: 1,
-        shadowRadius: 10,
+        shadowRadius: 16,
       },
       android: {
-        elevation: 4,
+        elevation: 6,
       },
     }),
   },
