@@ -140,17 +140,10 @@ export default function Settings() {
     <View style={styles.container}>
       <StatusBar style="light" />
       
-      {/* Ambient Background with Image Blur */}
-      <ImageBackground
-        source={{ uri: 'https://customer-assets.emergentagent.com/job_glass-traveler/artifacts/hjbpxxqu_search%202.jpg' }}
-        style={styles.backgroundImage}
-        blurRadius={60}
-      >
-        <LinearGradient
-          colors={['#0B0F14', 'rgba(194,164,110,0.05)']}
-          style={styles.backgroundGradient}
-        />
-      </ImageBackground>
+      {/* Living Radial Gradient Background */}
+      <View style={styles.background}>
+        <View style={styles.radialGradient} />
+      </View>
 
       {/* Header */}
       <View style={styles.header}>
