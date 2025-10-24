@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
   },
   drawerContent: {
     flex: 1,
-    paddingTop: 42, // Reduced by 6px from 48 to tighten spacing
+    paddingTop: 32, // Reduced from 42 to minimize empty space
     paddingHorizontal: 20,
     paddingBottom: 24,
   },
