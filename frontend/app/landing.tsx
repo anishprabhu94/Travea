@@ -218,6 +218,27 @@ export default function Landing() {
       ])
     ]).start()
   }, [])
+  
+  useEffect(() => {
+    // Breathing animation for Liquid Horizon background (15-20 seconds)
+    const breathingAnimation = Animated.loop(
+      Animated.sequence([
+        Animated.timing(breathingAnim, {
+          toValue: 1,
+          duration: 18000, // 18 seconds
+          useNativeDriver: false,
+        }),
+        Animated.timing(breathingAnim, {
+          toValue: 0,
+          duration: 18000, // 18 seconds
+          useNativeDriver: false,
+        })
+      ])
+    )
+    breathingAnimation.start()
+    
+    return () => breathingAnimation.stop()
+  }, [])
 
   const handleModeSwitch = (mode: string) => {
     if (mode === activeMode) return
