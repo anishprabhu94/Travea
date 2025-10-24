@@ -1380,7 +1380,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   editorialGreetingSection: {
-    marginTop: 18, // 18-20px spacing
+    marginTop: 12, // Reduced from 18 to move up
   },
   editorialGreetingMain: {
     fontSize: 24,
