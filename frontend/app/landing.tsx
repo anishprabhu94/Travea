@@ -2087,12 +2087,6 @@ const styles = StyleSheet.create({
     color: 'rgba(255,255,255,0.60)',
     marginHorizontal: 4,
   },
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      android: 'Inter',
-      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    }),
-  },
   editorialTagline: {
     fontSize: 15,
     fontWeight: '400',
