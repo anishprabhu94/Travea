@@ -1404,15 +1404,15 @@ export default function Landing() {
               }
             ]}
           >
-            {/* Dusk gradient (top-left to bottom-right) */}
+            {/* Golden Hour Gradient (soft dusk tones: amber → deep bronze) */}
             <LinearGradient
-              colors={['rgba(94,74,53,0.45)', 'rgba(20,15,10,0.75)']}
+              colors={['rgba(255,198,115,0.25)', 'rgba(60,45,30,0.6)']}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={styles.capsuleDuskGradient}
             />
 
-            {/* Golden light leak in top-right corner */}
+            {/* Vertical beam highlight in top-left corner */}
             <View style={styles.capsuleGoldenLightLeak} />
 
             {/* Refraction gradient inside capsule */}
@@ -1429,7 +1429,7 @@ export default function Landing() {
               style={styles.capsuleReflectionArc}
             />
 
-            <BlurView intensity={25} tint="dark" style={styles.capsuleBlur}>
+            <BlurView intensity={28} tint="dark" style={styles.capsuleBlur}>
               <View style={styles.capsuleContent}>
                 {/* Search Bar */}
                 <View style={styles.searchBarContainer}>
