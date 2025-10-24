@@ -1511,22 +1511,22 @@ const styles = StyleSheet.create({
   editorialGreetingSubtext: {
     fontSize: 15,
     fontWeight: '400',
-    color: 'rgba(255,255,255,0.75)', // Brightened from warm ivory
+    color: 'rgba(255,255,255,0.90)', // Brightened from 0.75 to 0.90
     letterSpacing: 0.2,
     ...Platform.select({
       ios: {
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
+        shadowOpacity: 0.4,
+        shadowRadius: 6,
       },
       android: {
-        textShadowColor: 'rgba(0,0,0,0.25)',
+        textShadowColor: 'rgba(0,0,0,0.4)',
         textShadowOffset: { width: 0, height: 2 },
-        textShadowRadius: 4,
+        textShadowRadius: 6,
       },
       web: {
-        textShadow: '0 2px 4px rgba(0,0,0,0.25)',
+        textShadow: '0 2px 6px rgba(0,0,0,0.4)',
       },
     }),
     fontFamily: Platform.select({
