@@ -1359,9 +1359,9 @@ const styles = StyleSheet.create({
   editorialHeaderContent: {
     flex: 1,
     paddingTop: Platform.select({
-      ios: 50, // Account for status bar
-      android: 40,
-      web: 24,
+      ios: 74, // Lowered by 24px from 50 for breathing space
+      android: 64, // Lowered by 24px from 40
+      web: 48, // Lowered by 24px from 24
     }),
     paddingHorizontal: 24,
     zIndex: 10,
@@ -1370,7 +1370,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 12, // 12px spacing
+    marginBottom: 12,
+    paddingVertical: 10, // Added 10px vertical padding for softness
   },
   editorialProfileIcon: {
     width: 40,
