@@ -2089,13 +2089,18 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '400',
     fontStyle: 'italic',
-    color: 'rgba(255,255,255,0.70)', // White 70%
+    color: 'rgba(255,255,255,0.85)', // White @ 85%
     marginBottom: 8,
     letterSpacing: 0.1,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+    ...Platform.select({
+      web: {
+        filter: 'blur(0.3px)', // Slight blur for separation
+      },
     }),
   },
   // Sensory Chips
