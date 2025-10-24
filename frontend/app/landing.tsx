@@ -3470,7 +3470,7 @@ const styles = StyleSheet.create({
     maxHeight: '70%',
     borderRadius: 28,
     overflow: 'hidden',
-    backgroundColor: 'rgba(25,25,25,0.45)', // Fallback for non-blur platforms
+    backgroundColor: 'rgba(20,15,10,0.75)', // Fallback dusk tone
     ...Platform.select({
       ios: {
         shadowColor: 'rgba(0,0,0,0.25)',
@@ -3493,6 +3493,29 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     zIndex: 1,
+  },
+  capsuleDuskGradient: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 2,
+  },
+  capsuleGoldenLightLeak: {
+    position: 'absolute',
+    top: -30,
+    right: -30,
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    backgroundColor: 'rgba(212,184,130,0.25)',
+    ...Platform.select({
+      web: {
+        filter: 'blur(30px)',
+      },
+    }),
+    zIndex: 3,
   },
   capsuleReflectionArc: {
     position: 'absolute',
