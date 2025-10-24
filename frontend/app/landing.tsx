@@ -3432,9 +3432,10 @@ const styles = StyleSheet.create({
   // MULTI-CITY - Duration
   durationText: {
     fontSize: 11,
-    fontWeight: '400',
-    color: 'rgba(255,255,255,0.70)', // White @ 70%
-    letterSpacing: 0.2,
+    fontWeight: '500', // Medium weight
+    fontStyle: 'italic', // For curatorial feel
+    color: 'rgba(255,255,255,0.85)', // White @ 85%
+    letterSpacing: 0.3, // Breathing room
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
