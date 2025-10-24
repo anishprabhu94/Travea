@@ -1482,12 +1482,12 @@ const styles = StyleSheet.create({
   editorialHeaderContent: {
     flex: 1,
     paddingTop: Platform.select({
-      ios: 50, // Reduced further to move content up
-      android: 42, // Reduced further
-      web: 30, // Reduced further
+      ios: 40, // Reduced even further from 50
+      android: 34, // Reduced even further from 42
+      web: 24, // Reduced even further from 30
     }),
     paddingHorizontal: 24,
-    paddingBottom: 12, // Add bottom padding to prevent cutoff on iPhone
+    paddingBottom: 16, // Increased from 12 to prevent cutoff
     zIndex: 10, // Above all veils and backgrounds
   },
   editorialTopBar: {
