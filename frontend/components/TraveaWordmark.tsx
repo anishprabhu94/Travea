@@ -26,7 +26,7 @@ export default function TraveaWordmark({ size = 'medium', style }: TraveaWordmar
   };
 
   return (
-    <View style={[styles.container, style, { opacity: 0.9 }]}>
+    <View style={[styles.container, style]}>
       <Text style={[styles.wordmark, sizeStyles[size]]}>
         TR
         <Text style={styles.macronA}>Ā</Text>
