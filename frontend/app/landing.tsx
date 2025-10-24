@@ -1385,7 +1385,7 @@ export default function Landing() {
       {/* Floating Search Capsule */}
       {showSearchCapsule && (
         <View style={styles.searchCapsuleContainer}>
-          {/* Screen background with dimmed blur */}
+          {/* Background Layer with blur and gradient */}
           <Animated.View 
             style={[
               styles.searchScreenBackground,
@@ -1393,7 +1393,7 @@ export default function Landing() {
             ]}
           >
             <LinearGradient
-              colors={['rgba(0,0,0,0)', 'rgba(10,5,0,0.85)']}
+              colors={['rgba(0,0,0,0.2)', 'rgba(0,0,0,0.6)']}
               style={styles.screenGradient}
             />
             <TouchableOpacity 
@@ -1403,7 +1403,7 @@ export default function Landing() {
             />
           </Animated.View>
 
-          {/* Floating Frosted Pane with embedded sunset */}
+          {/* Floating Frosted Pane with embedded muted sunset */}
           <Animated.View
             style={[
               styles.searchCapsule,
@@ -1413,16 +1413,13 @@ export default function Landing() {
               }
             ]}
           >
-            {/* Embedded sunset image inside pane */}
+            {/* Embedded muted sunset inside pane */}
             <ImageBackground
               source={require('../assets/search-bg.png')}
               style={styles.paneBackgroundImage}
               imageStyle={styles.paneImageStyle}
             >
-              {/* Inner shadow for recessed glass depth */}
-              <View style={styles.innerShadowLayer} />
-
-              <BlurView intensity={25} tint="dark" style={styles.capsuleBlur}>
+              <BlurView intensity={30} tint="dark" style={styles.capsuleBlur}>
                 <View style={styles.capsuleContent}>
                   {/* Floating Search Field */}
                   <View style={styles.floatingSearchField}>
@@ -1455,19 +1452,20 @@ export default function Landing() {
                     </BlurView>
                   </View>
 
-                  {/* Discovery Orb (over sunset) */}
+                  {/* Frosted Glass Globe + Text */}
                   {searchQuery.length === 0 && (
-                    <View style={styles.discoveryOrbContainer}>
-                      <View style={styles.discoveryOrb}>
+                    <View style={styles.globeContainer}>
+                      {/* Frosted Glass Globe */}
+                      <View style={styles.frostcdGlobe}>
                         <LinearGradient
-                          colors={['rgba(255,255,255,0.15)', 'rgba(255,255,255,0.05)']}
-                          style={styles.orbGradient}
+                          colors={['rgba(255,255,255,0.08)', 'rgba(0,0,0,0.25)']}
+                          style={styles.globeGradient}
                         />
-                        {/* Outer glow */}
-                        <View style={styles.orbGlow} />
                       </View>
-                      {/* Slow shimmer line */}
-                      <View style={styles.shimmerLine} />
+                      
+                      {/* Text Composition */}
+                      <Text style={styles.globeMainText}>Discover your next journey</Text>
+                      <Text style={styles.globeSubText}>Search for cities, circuits, or experiences</Text>
                     </View>
                   )}
 
