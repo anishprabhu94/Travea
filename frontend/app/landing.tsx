@@ -3058,6 +3058,7 @@ const styles = StyleSheet.create({
   // SINGLE CITY - Sensory Pills Row
   sensoryPillsRow: {
     flexDirection: 'row',
+    flexWrap: 'wrap', // Allow wrapping if needed
     marginBottom: 8,
     gap: 6,
   },
