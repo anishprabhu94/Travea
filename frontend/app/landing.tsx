@@ -3532,6 +3532,10 @@ const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: 'rgba(0,0,0,0.5)',
   },
+  backdropBlur: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+  },
   backdropTouchable: {
     flex: 1,
     width: '100%',
