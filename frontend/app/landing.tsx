@@ -1469,106 +1469,126 @@ export default function Landing() {
                     </View>
                   </Animated.View>
 
-                  {/* Results Container */}
+                  {/* Search Results - Redesigned */}
                   {searchQuery.length > 0 ? (
                     <ScrollView 
                       style={styles.resultsScroll}
                       showsVerticalScrollIndicator={false}
                     >
-                      {/* Section 1: Suggested Cities */}
-                      <View style={styles.suggestedCitiesSection}>
-                        <Text style={styles.sectionTitle}>Suggested Cities</Text>
-                        <ScrollView 
-                          horizontal 
-                          showsHorizontalScrollIndicator={false}
-                          style={styles.citiesScrollView}
-                        >
-                          {destinationCards.filter(dest => 
-                            !dest.isMultiCity &&
-                            (dest.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            (dest.region && dest.region.toLowerCase().includes(searchQuery.toLowerCase())))
-                          ).slice(0, 6).map((dest, index) => (
-                            <TouchableOpacity
-                              key={dest.id}
-                              style={styles.miniCityCard}
-                              onPress={() => {
-                                closeSearchCapsule()
-                                router.push(`/destination?id=${dest.id}&city=${dest.city}&region=${dest.region}`)
-                              }}
-                            >
-                              <ImageBackground
-                                source={{ uri: dest.image }}
-                                style={styles.miniCityImage}
-                                imageStyle={styles.miniCityImageStyle}
-                                blurRadius={8}
-                              >
-                                <BlurView intensity={15} tint="dark" style={styles.miniCityOverlay}>
-                                  <Text style={styles.miniCityName}>{dest.city}</Text>
-                                  <Text style={styles.miniCityRegion}>{dest.region}</Text>
-                                </BlurView>
-                              </ImageBackground>
-                            </TouchableOpacity>
-                          ))}
-                        </ScrollView>
-                      </View>
-
-                      {/* Section 2: Curated Journeys */}
-                      <View style={styles.curatedJourneysSection}>
-                        <Text style={styles.sectionTitle}>Curated Journeys</Text>
-                        {destinationCards.filter(dest => 
-                          dest.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          (dest.region && dest.region.toLowerCase().includes(searchQuery.toLowerCase()))
-                        ).slice(0, 4).map((dest, index) => (
+                      {/* Section 1: Matching City (Hero Result) */}
+                      {destinationCards.filter(dest => 
+                        !dest.isMultiCity &&
+                        dest.city.toLowerCase().includes(searchQuery.toLowerCase())
+                      ).slice(0, 1).map((dest) => (
+                        <View key={dest.id} style={styles.matchingCitySection}>
+                          <Text style={styles.sectionLabel}>Matching City</Text>
                           <TouchableOpacity
-                            key={dest.id}
-                            style={styles.miniJourneyCard}
+                            style={styles.heroCityCard}
                             onPress={() => {
                               closeSearchCapsule()
-                              if (dest.isMultiCity) {
-                                router.push(`/multi-city-destination?id=${dest.id}`)
-                              } else {
-                                router.push(`/destination?id=${dest.id}&city=${dest.city}&region=${dest.region}`)
-                              }
+                              router.push(`/destination?id=${dest.id}&city=${dest.city}&region=${dest.region}`)
                             }}
                           >
-                            <BlurView intensity={12} tint="dark" style={styles.journeyCardBlur}>
-                              <View style={styles.journeyCardContent}>
-                                {/* Publisher Tag */}
-                                {dest.isCondeNastPick && (
-                                  <View style={styles.publisherTag}>
-                                    <Text style={styles.publisherTagText}>Condé Nast</Text>
-                                  </View>
-                                )}
-                                
-                                {/* Journey Title */}
-                                <Text style={styles.journeyTitle}>
-                                  {dest.isMultiCity ? dest.circuitTitle : dest.city}
-                                </Text>
-                                
-                                {/* City Pills */}
-                                {dest.isMultiCity && dest.cities && (
-                                  <View style={styles.journeyCityPills}>
-                                    {dest.cities.slice(0, 2).map((city, idx) => (
-                                      <View key={idx} style={styles.miniCityPill}>
-                                        <Text style={styles.miniCityPillText}>{city}</Text>
-                                      </View>
-                                    ))}
-                                  </View>
-                                )}
-                                
-                                {/* Tagline */}
-                                <Text style={styles.journeyTagline}>{dest.tagline}</Text>
+                            <BlurView intensity={10} tint="light" style={styles.heroCityBlur}>
+                              <ImageBackground
+                                source={{ uri: dest.image }}
+                                style={styles.heroCityImage}
+                                imageStyle={styles.heroCityImageStyle}
+                                blurRadius={8}
+                              />
+                              <View style={styles.heroCityContent}>
+                                <Text style={styles.heroCityTitle}>{dest.city}</Text>
+                                <Text style={styles.heroCitySubtitle}>{dest.region}</Text>
                               </View>
+                              <Ionicons name="chevron-forward" size={20} color="rgba(255,255,255,0.5)" />
                             </BlurView>
                           </TouchableOpacity>
-                        ))}
-                      </View>
+                        </View>
+                      ))}
+
+                      {/* Section 2: Curated Journeys (Max 2) */}
+                      {destinationCards.filter(dest => 
+                        dest.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        (dest.region && dest.region.toLowerCase().includes(searchQuery.toLowerCase())) ||
+                        (dest.tagline && dest.tagline.toLowerCase().includes(searchQuery.toLowerCase()))
+                      ).slice(0, 2).length > 0 && (
+                        <View style={styles.curatedJourneysSearchSection}>
+                          <View style={styles.sectionDivider} />
+                          <Text style={styles.sectionLabel}>Curated Journeys</Text>
+                          {destinationCards.filter(dest => 
+                            dest.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                            (dest.region && dest.region.toLowerCase().includes(searchQuery.toLowerCase())) ||
+                            (dest.tagline && dest.tagline.toLowerCase().includes(searchQuery.toLowerCase()))
+                          ).slice(0, 2).map((dest) => (
+                            <TouchableOpacity
+                              key={dest.id}
+                              style={styles.curatedJourneyCard}
+                              onPress={() => {
+                                closeSearchCapsule()
+                                if (dest.isMultiCity) {
+                                  router.push(`/multi-city-destination?id=${dest.id}`)
+                                } else {
+                                  router.push(`/destination?id=${dest.id}&city=${dest.city}&region=${dest.region}`)
+                                }
+                              }}
+                            >
+                              <BlurView intensity={8} tint="dark" style={styles.curatedJourneyBlur}>
+                                <View style={styles.curatedJourneyContent}>
+                                  {/* Publisher Tag */}
+                                  {dest.isCondeNastPick && (
+                                    <View style={styles.publisherTagSearch}>
+                                      <Text style={styles.publisherTagTextSearch}>Condé Nast</Text>
+                                    </View>
+                                  )}
+                                  
+                                  {/* Journey Title */}
+                                  <Text style={styles.curatedJourneyTitle}>
+                                    {dest.isMultiCity ? dest.circuitTitle : dest.city}
+                                  </Text>
+                                  
+                                  {/* Subtext */}
+                                  <Text style={styles.curatedJourneySubtext}>
+                                    {dest.isMultiCity && dest.cities 
+                                      ? dest.cities.join(' – ')
+                                      : dest.region
+                                    }
+                                  </Text>
+                                  
+                                  {/* Mood Tags */}
+                                  <View style={styles.moodTagsRow}>
+                                    <View style={styles.moodTagPill}>
+                                      <Text style={styles.moodTagText}>
+                                        {dest.tagline?.split('&')[0]?.trim() || '✨ Discover'}
+                                      </Text>
+                                    </View>
+                                  </View>
+                                </View>
+                                
+                                {/* View Pill */}
+                                <View style={styles.viewPill}>
+                                  <Text style={styles.viewPillText}>View</Text>
+                                </View>
+                              </BlurView>
+                            </TouchableOpacity>
+                          ))}
+                        </View>
+                      )}
+
+                      {/* No Results */}
+                      {destinationCards.filter(dest => 
+                        dest.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        (dest.region && dest.region.toLowerCase().includes(searchQuery.toLowerCase()))
+                      ).length === 0 && (
+                        <View style={styles.noResultsContainer}>
+                          <Text style={styles.noResultsText}>No destinations found</Text>
+                        </View>
+                      )}
                     </ScrollView>
                   ) : (
                     <View style={styles.emptySearchState}>
-                      <Ionicons name="search" size={48} color="rgba(255,255,255,0.2)" />
-                      <Text style={styles.emptyStateTitle}>Start exploring</Text>
-                      <Text style={styles.emptyStateSubtitle}>Search for your next journey</Text>
+                      <Ionicons name="globe-outline" size={64} color="rgba(255,255,255,0.25)" />
+                      <Text style={styles.emptyStateTitle}>Search cities</Text>
+                      <Text style={styles.emptyStateSubtitle}>Discover your next journey</Text>
                     </View>
                   )}
                 </View>
