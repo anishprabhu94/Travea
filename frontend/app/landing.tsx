@@ -1531,22 +1531,22 @@ const styles = StyleSheet.create({
   editorialGreetingSubtext: {
     fontSize: 15,
     fontWeight: '400',
-    color: 'rgba(255,255,255,0.90)', // Brightened for better readability
+    color: 'rgba(255,255,255,0.95)', // Even brighter
     letterSpacing: 0.2,
     ...Platform.select({
       ios: {
         shadowColor: '#FFF',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.4,
-        shadowRadius: 10,
+        shadowOpacity: 0.7,
+        shadowRadius: 14,
       },
       android: {
-        textShadowColor: 'rgba(255,255,255,0.4)',
+        textShadowColor: 'rgba(255,255,255,0.7)',
         textShadowOffset: { width: 0, height: 0 },
-        textShadowRadius: 10,
+        textShadowRadius: 14,
       },
       web: {
-        textShadow: '0 0 16px rgba(255,255,255,0.4), 0 0 32px rgba(255,255,255,0.2), 0 2px 8px rgba(0,0,0,0.5)',
+        textShadow: '0 0 24px rgba(255,255,255,0.7), 0 0 48px rgba(255,255,255,0.3), 0 2px 8px rgba(0,0,0,0.5)',
       },
     }),
     fontFamily: Platform.select({
