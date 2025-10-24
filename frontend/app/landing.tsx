@@ -3459,6 +3459,9 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     zIndex: 1000,
+  },
+  searchBackground: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -3468,12 +3471,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.45)', // Dark vignette mask
-    ...Platform.select({
-      web: {
-        backdropFilter: 'blur(20px)',
-      },
-    }),
+    backgroundColor: 'rgba(0,0,0,0.3)', // Darker overlay for better contrast
   },
   searchBackdropTouchable: {
     flex: 1,
@@ -3481,60 +3479,37 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   searchCapsule: {
-    position: 'relative',
-    width: '85%',
-    maxWidth: 500,
-    minHeight: 400,
-    maxHeight: '70%',
-    borderRadius: 28,
+    width: '80%',
+    maxWidth: 450,
+    minHeight: 300,
+    maxHeight: '60%',
+    borderRadius: 16,
     overflow: 'hidden',
-    backgroundColor: 'rgba(20,15,10,0.75)', // Fallback dusk tone
+    backgroundColor: 'rgba(25,20,15,0.45)', // Let background breathe through
+    borderWidth: 0.5,
+    borderColor: 'rgba(255,255,255,0.25)', // Liquid-glass edge
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(0,0,0,0.25)',
-        shadowOffset: { width: 0, height: 8 },
+        shadowColor: 'rgba(0,0,0,0.5)',
+        shadowOffset: { width: 0, height: 10 },
         shadowOpacity: 1,
-        shadowRadius: 16,
+        shadowRadius: 30,
       },
       android: {
-        elevation: 20,
+        elevation: 25,
       },
       web: {
-        boxShadow: '0 8px 16px -4px rgba(0,0,0,0.25)',
+        boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
       },
     }),
   },
-  capsuleRefractionGradient: {
+  capsuleInnerGradient: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
     zIndex: 1,
-  },
-  capsuleDuskGradient: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 2,
-  },
-  capsuleGoldenLightLeak: {
-    position: 'absolute',
-    top: -20,
-    left: -20,
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    backgroundColor: 'rgba(255,255,255,0.08)', // Vertical beam highlight
-    opacity: 0.4,
-    ...Platform.select({
-      web: {
-        filter: 'blur(20px)',
-      },
-    }),
-    zIndex: 3,
   },
   capsuleReflectionArc: {
     position: 'absolute',
