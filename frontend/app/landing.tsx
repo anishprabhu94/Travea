@@ -663,7 +663,7 @@ export default function Landing() {
       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
         {/* Editorial Header - Quiet Window to the World */}
         <View style={styles.editorialHeaderContainer}>
-          {/* Liquid Horizon Base - Multi-stop gradient with breathing animation */}
+          {/* Richer Sunset Base Gradient */}
           <Animated.View
             style={[
               styles.liquidHorizonBase,
@@ -677,11 +677,12 @@ export default function Landing() {
           >
             <LinearGradient
               colors={[
-                'rgba(210,160,90,0.45)',
-                'rgba(115,80,50,0.35)',
-                'rgba(15,18,20,0.9)'
+                '#BF8A57', // Warm bronze
+                '#815B3F', // Mid brown
+                '#3A2C27', // Deep charcoal-brown
+                '#0B0F14'  // Near-black base
               ]}
-              locations={[0, 0.3, 1]}
+              locations={[0, 0.28, 0.56, 1]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={{ width: '100%', height: '100%' }}
@@ -696,6 +697,17 @@ export default function Landing() {
           >
             {/* Radial Glow - Sunlight diffusion */}
             <View style={styles.radialGlow} />
+            
+            {/* Soft Contrast Veil - Lifts text while preserving sunset */}
+            <LinearGradient
+              colors={[
+                'rgba(12,16,20,0.22)',
+                'rgba(12,16,20,0.30)',
+                'rgba(12,16,20,0.38)'
+              ]}
+              locations={[0, 0.45, 1]}
+              style={styles.contrastVeil}
+            />
             
             {/* Bottom Gradient Fade - Smooth transition to content */}
             <LinearGradient
