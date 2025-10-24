@@ -3089,6 +3089,10 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     }),
   },
+  narrativeDurationRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   // MULTI-CITY - Route Flow Row
   routeFlowRow: {
     flexDirection: 'row',
