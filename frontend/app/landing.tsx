@@ -263,12 +263,11 @@ export default function Landing() {
     } else {
       addBookmark(baseId)
       
-      // Get individual animation for this specific bookmark
+      // Get individual animation for this specific heart icon
       const bookmarkAnim = getBookmarkAnimation(itemId)
       
-      // Elegant bookmark animation sequence for this item only
+      // Elegant heart pulse animation
       Animated.sequence([
-        // 1. Pulse the specific bookmark icon
         Animated.timing(bookmarkAnim, {
           toValue: 1.2,
           duration: 150,
@@ -279,17 +278,6 @@ export default function Landing() {
           duration: 150,
           useNativeDriver: true,
         }),
-        // 2. Gentle glow on dock after a slight delay
-        Animated.timing(dockGlowAnim, {
-          toValue: 1,
-          duration: 400,
-          useNativeDriver: true,
-        }),
-        Animated.timing(dockGlowAnim, {
-          toValue: 0,
-          duration: 600,
-          useNativeDriver: true,
-        })
       ]).start()
     }
   }
