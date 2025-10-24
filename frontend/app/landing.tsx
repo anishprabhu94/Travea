@@ -1748,7 +1748,7 @@ const styles = StyleSheet.create({
     }),
   },
   carouselTitle: {
-    fontSize: 18, // Slightly larger, more editorial
+    fontSize: 21, // Increased from 18 for better presence
     fontWeight: '500', // Medium instead of bold
     color: 'rgba(255,255,255,0.9)', // Soft white instead of pure
     letterSpacing: 0.3, // Added for airy aesthetic
