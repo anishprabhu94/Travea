@@ -1725,7 +1725,7 @@ const styles = StyleSheet.create({
   },
   condeNastFloatingTag: {
     position: 'absolute',
-    top: 16,
+    top: 20, // Moved down from 16 to align with heart icon
     left: 16,
     zIndex: 10,
     borderRadius: 10,
