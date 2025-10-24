@@ -1521,10 +1521,7 @@ export default function Landing() {
                         ).slice(0, 4).map((dest, index) => (
                           <TouchableOpacity
                             key={dest.id}
-                            style={[styles.miniJourneyCard, {
-                              opacity: 0,
-                              transform: [{ translateY: 20 }]
-                            }]}
+                            style={styles.miniJourneyCard}
                             onPress={() => {
                               closeSearchCapsule()
                               if (dest.isMultiCity) {
