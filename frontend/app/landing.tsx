@@ -1460,7 +1460,7 @@ const styles = StyleSheet.create({
       web: 36, // Reduced from 48
     }),
     paddingHorizontal: 24,
-    zIndex: 10,
+    zIndex: 10, // Above all veils and backgrounds
   },
   editorialTopBar: {
     flexDirection: 'row',
