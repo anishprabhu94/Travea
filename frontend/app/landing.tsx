@@ -3253,42 +3253,47 @@ const styles = StyleSheet.create({
   sensoryPillSingle: {
     borderRadius: 12,
     overflow: 'hidden',
+    borderWidth: 0.6,
+    borderColor: 'rgba(255,255,255,0.4)',
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(0,0,0,0.15)',
+        shadowColor: 'rgba(0,0,0,0.25)',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 1,
-        shadowRadius: 2,
+        shadowRadius: 4,
       },
       android: {
-        elevation: 2,
+        elevation: 3,
       },
       web: {
-        boxShadow: '0 1px 2px rgba(0,0,0,0.15), inset 0 0.5px 0 rgba(255,255,255,0.25)', // Outer shadow + specular line
+        boxShadow: '0 1px 4px rgba(0,0,0,0.25), inset 0 0.5px 0 rgba(255,255,255,0.25)', // Drop shadow + specular line
       },
     }),
   },
   sensoryPillBlur: {
     paddingVertical: 5,
     paddingHorizontal: 10,
-    backgroundColor: 'rgba(245,245,245,0.20)', // Gradient base simulation
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.25)', // Inner stroke
+    backgroundColor: 'rgba(255,255,255,0.15)', // Linear gradient simulation start
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderTopWidth: 0.5,
+    borderTopColor: 'rgba(255,255,255,0.25)', // Top specular line
+    borderBottomWidth: 0,
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05))',
+      },
+    }),
   },
   sensoryPillText: {
     fontSize: 11,
-    fontWeight: '500', // Medium weight for clarity
-    color: '#D1B98C', // Muted bronze
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.95)', // Near-white for visibility
     letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-    }),
-    ...Platform.select({
-      web: {
-        filter: 'brightness(0.90)', // Reduce emoji brightness slightly
-      },
     }),
   },
   // SINGLE CITY - Narrative Duration
