@@ -1444,6 +1444,12 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
     }),
   },
+  headerDivider: {
+    height: 1,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    marginHorizontal: 24,
+    marginBottom: 8,
+  },
   stickyChipsContainer: {
     position: 'sticky',
     top: 0,
