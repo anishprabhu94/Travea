@@ -2228,6 +2228,12 @@ const styles = StyleSheet.create({
     padding: 17, // 16-18px inside pane
     position: 'relative',
     zIndex: 2,
+    // Vertical gradient overlay for visual cohesion (top: lighter, bottom: darker)
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.3))',
+      },
+    }),
   },
   // Destination Title
   glassDestinationTitle: {
