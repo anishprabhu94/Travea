@@ -647,55 +647,54 @@ export default function Landing() {
             source={{ uri: 'https://customer-assets.emergentagent.com/job_glass-traveler/artifacts/38zyzlid_image.png' }}
             style={styles.liquidFlowOverlay}
             imageStyle={styles.liquidFlowImage}
-          />
+          >
+            {/* Radial Glow - Sunlight diffusion */}
+            <View style={styles.radialGlow} />
+            
+            {/* Header Content */}
+            <View style={styles.editorialHeaderContent}>
+                {/* Top Bar - Logo & Profile */}
+                <View style={styles.editorialTopBar}>
+                  <TraveaWordmark />
+                  <TouchableOpacity 
+                    style={styles.editorialProfileIcon} 
+                    activeOpacity={0.8}
+                    onPress={() => setShowProfileDrawer(true)}
+                  >
+                    <BlurView intensity={10} tint="dark" style={styles.editorialProfileBlur}>
+                      <Ionicons name="person-outline" size={18} color="rgba(255,255,255,0.9)" />
+                    </BlurView>
+                  </TouchableOpacity>
+                </View>
 
-          {/* Radial Glow - Sunlight diffusion */}
-          <View style={styles.radialGlow} />
-          
-          {/* Header Content */}
-          <View style={styles.editorialHeaderContent}>
-              {/* Top Bar - Logo & Profile */}
-              <View style={styles.editorialTopBar}>
-                <TraveaWordmark />
-                <TouchableOpacity 
-                  style={styles.editorialProfileIcon} 
-                  activeOpacity={0.8}
-                  onPress={() => setShowProfileDrawer(true)}
+                {/* Greeting Section */}
+                <Animated.View 
+                  style={[
+                    styles.editorialGreetingSection, 
+                    {
+                      opacity: greetingAnim,
+                      transform: [{
+                        translateY: greetingAnim.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [20, 0]
+                        })
+                      }]
+                    }
+                  ]}
                 >
-                  <BlurView intensity={10} tint="dark" style={styles.editorialProfileBlur}>
-                    <Ionicons name="person-outline" size={18} color="rgba(255,255,255,0.9)" />
-                  </BlurView>
-                </TouchableOpacity>
+                  <Text style={styles.editorialGreetingMain}>Hello, Anish.</Text>
+                  <View style={styles.hairlineBronzeRule} />
+                  <Text style={styles.editorialGreetingSubtext}>
+                    {activeMode === 'vacations' && 'Curated trips, just for you.'}
+                    {activeMode === 'discover' && 'Hidden gems, waiting to be found.'}
+                    {activeMode === 'search' && 'Where would you like to go?'}
+                  </Text>
+                </Animated.View>
               </View>
-
-              {/* Greeting Section */}
-              <Animated.View 
-                style={[
-                  styles.editorialGreetingSection, 
-                  {
-                    opacity: greetingAnim,
-                    transform: [{
-                      translateY: greetingAnim.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [20, 0]
-                      })
-                    }]
-                  }
-                ]}
-              >
-                <Text style={styles.editorialGreetingMain}>Hello, Anish.</Text>
-                <View style={styles.hairlineBronzeRule} />
-                <Text style={styles.editorialGreetingSubtext}>
-                  {activeMode === 'vacations' && 'Curated trips, just for you.'}
-                  {activeMode === 'discover' && 'Hidden gems, waiting to be found.'}
-                  {activeMode === 'search' && 'Where would you like to go?'}
-                </Text>
-              </Animated.View>
-            </View>
+            </ImageBackground>
           </View>
-        </View>
 
-        {/* Subtle Divider Below Header */}
+          {/* Subtle Divider Below Header */}
         <View style={styles.headerDivider} />
 
         {/* Sticky Category Chips */}
