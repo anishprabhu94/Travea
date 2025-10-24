@@ -2963,4 +2963,168 @@ const styles = StyleSheet.create({
     maxWidth: 400,
     alignItems: 'center',
   },
+  // SINGLE CITY & MULTI-CITY BRONZE TITLES - Muted Bronze Ink
+  singleCityTitleBronze: {
+    fontSize: 19,
+    fontWeight: '600',
+    color: '#C0A77C', // Muted Bronze Ink
+    letterSpacing: 0.2,
+    marginBottom: 4,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.15)',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 1,
+        shadowRadius: 2,
+      },
+      android: {
+        textShadowColor: 'rgba(0,0,0,0.15)',
+        textShadowOffset: { width: 0, height: 1 },
+        textShadowRadius: 2,
+      },
+      web: {
+        textShadow: '0 1px 2px rgba(0,0,0,0.15)',
+      },
+    }),
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
+  circuitTitleBronze: {
+    fontSize: 19,
+    fontWeight: '600',
+    color: '#C0A77C', // Muted Bronze Ink
+    letterSpacing: 0.2,
+    marginBottom: 4,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(0,0,0,0.15)',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 1,
+        shadowRadius: 2,
+      },
+      android: {
+        textShadowColor: 'rgba(0,0,0,0.15)',
+        textShadowOffset: { width: 0, height: 1 },
+        textShadowRadius: 2,
+      },
+      web: {
+        textShadow: '0 1px 2px rgba(0,0,0,0.15)',
+      },
+    }),
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
+  // SINGLE CITY - Sensory Pills Row
+  sensoryPillsRow: {
+    flexDirection: 'row',
+    marginBottom: 8,
+    gap: 6,
+  },
+  sensoryPillSingle: {
+    borderRadius: 12,
+    overflow: 'hidden',
+  },
+  sensoryPillBlur: {
+    paddingVertical: 4,
+    paddingHorizontal: 9,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+  },
+  sensoryPillText: {
+    fontSize: 11,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.85)',
+    letterSpacing: 0.2,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
+  // SINGLE CITY - Narrative Duration
+  narrativeDuration: {
+    fontSize: 11,
+    fontWeight: '400',
+    color: 'rgba(192,167,124,0.60)', // Bronze 60%
+    letterSpacing: 0.2,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
+  // MULTI-CITY - Route Flow Row
+  routeFlowRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  microPostcard: {
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  microPostcardBlur: {
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+  },
+  microPostcardText: {
+    fontSize: 12,
+    fontWeight: '400',
+    color: 'rgba(192,167,124,0.80)', // Bronze 80%
+    letterSpacing: 0.2,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
+  routeArrow: {
+    fontSize: 12,
+    color: 'rgba(192,167,124,0.60)',
+    marginHorizontal: 4,
+  },
+  // MULTI-CITY - Mood Descriptor Row
+  moodDescriptorRow: {
+    flexDirection: 'row',
+    marginBottom: 8,
+    gap: 6,
+  },
+  moodChip: {
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  moodChipBlur: {
+    paddingVertical: 3,
+    paddingHorizontal: 7,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+  },
+  moodChipText: {
+    fontSize: 11,
+    fontWeight: '400',
+    color: 'rgba(255,255,255,0.80)',
+    letterSpacing: 0.1,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
+  // MULTI-CITY - Duration
+  durationText: {
+    fontSize: 11,
+    fontWeight: '400',
+    color: 'rgba(192,167,124,0.60)', // Bronze 60%
+    letterSpacing: 0.2,
+    fontFamily: Platform.select({
+      ios: 'Inter',
+      android: 'Inter',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
 });
