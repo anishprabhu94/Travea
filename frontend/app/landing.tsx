@@ -3567,6 +3567,49 @@ const styles = StyleSheet.create({
     padding: 24,
     zIndex: 3,
   },
+  // Discovery Orb Styles - Hovering inside glass
+  discoveryOrbContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 60,
+  },
+  discoveryOrb: {
+    width: 90,
+    height: 90,
+    borderRadius: 45,
+    overflow: 'hidden',
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 0 8px rgba(212,184,130,0.25)', // Outer glow
+      },
+    }),
+  },
+  orbGradient: {
+    width: '100%',
+    height: '100%',
+  },
+  orbGlow: {
+    position: 'absolute',
+    width: '120%',
+    height: '120%',
+    borderRadius: 60,
+    backgroundColor: 'rgba(212,184,130,0.15)',
+    ...Platform.select({
+      web: {
+        filter: 'blur(8px)',
+      },
+    }),
+  },
+  shimmerLine: {
+    position: 'absolute',
+    width: 110,
+    height: 1.5,
+    backgroundColor: 'rgba(255,255,255,0.3)',
+    borderRadius: 1,
+  },
   searchBarContainer: {
     flexDirection: 'row',
     alignItems: 'center',
