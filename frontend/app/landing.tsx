@@ -3560,9 +3560,7 @@ const styles = StyleSheet.create({
   },
   capsuleBlur: {
     flex: 1,
-    backgroundColor: 'rgba(25,25,25,0.45)',
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.12)',
+    backgroundColor: 'transparent',
   },
   capsuleContent: {
     flex: 1,
