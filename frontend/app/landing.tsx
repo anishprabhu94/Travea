@@ -1189,7 +1189,13 @@ export default function Landing() {
       >
         <BlurView intensity={22} tint="light" style={styles.dockContainer}>
           <View style={styles.dockContent}>
-            <TouchableOpacity style={styles.dockItem} activeOpacity={0.8}>
+            <TouchableOpacity 
+              style={styles.dockItem} 
+              activeOpacity={0.8}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              }}
+            >
               <Ionicons name="home" size={22} color="#C2A46E" />
               <Text style={styles.dockLabelActive}>Home</Text>
             </TouchableOpacity>
@@ -1197,7 +1203,10 @@ export default function Landing() {
             <TouchableOpacity 
               style={styles.dockItem} 
               activeOpacity={0.8}
-              onPress={() => router.push('/bookings')}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                router.push('/bookings');
+              }}
             >
               <Ionicons name="calendar" size={22} color="rgba(255,255,255,0.82)" />
               <Text style={styles.dockLabel}>Trip Canvas</Text>
@@ -1206,7 +1215,10 @@ export default function Landing() {
             <TouchableOpacity 
               style={styles.dockItem} 
               activeOpacity={0.8}
-              onPress={() => router.push('/trips')}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                router.push('/trips');
+              }}
             >
               <Animated.View style={[styles.dockGlowContainer, { opacity: dockGlowAnim }]}>
                 <View style={styles.dockGlow} />
@@ -1218,7 +1230,10 @@ export default function Landing() {
             <TouchableOpacity 
               style={styles.dockItem} 
               activeOpacity={0.8}
-              onPress={() => router.push('/concierge')}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                router.push('/concierge');
+              }}
             >
               <Ionicons name="chatbubble-ellipses-outline" size={22} color="rgba(255,255,255,0.82)" />
               <Text style={styles.dockLabel}>Concierge</Text>
