@@ -1398,7 +1398,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    opacity: 0.12, // Reduced from 0.25 to 0.12
+    opacity: 0.18, // Texture opacity as specified
     zIndex: 2,
   },
   liquidFlowImage: {
