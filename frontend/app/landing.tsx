@@ -3458,7 +3458,7 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     }),
   },
-  // SEARCH CAPSULE STYLES
+  // SEARCH CAPSULE STYLES - Layered Glass Design
   searchCapsuleContainer: {
     position: 'absolute',
     top: 0,
@@ -3466,19 +3466,28 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     zIndex: 1000,
-  },
-  searchBackground: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  searchBackdrop: {
+  searchScreenBackground: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.3)', // Darker overlay for better contrast
+    backgroundColor: 'rgba(10,10,10,0.75)', // Dimmed desaturated blur
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(28px)',
+      },
+    }),
+  },
+  screenGradient: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   searchBackdropTouchable: {
     flex: 1,
@@ -3488,35 +3497,58 @@ const styles = StyleSheet.create({
   searchCapsule: {
     width: '80%',
     maxWidth: 450,
-    minHeight: 300,
-    maxHeight: '60%',
+    minHeight: 320,
+    maxHeight: '65%',
     borderRadius: 16,
     overflow: 'hidden',
-    backgroundColor: 'rgba(25,20,15,0.45)', // Let background breathe through
+    backgroundColor: 'rgba(25,20,15,0.45)', // Frosted-glass base
     borderWidth: 0.5,
-    borderColor: 'rgba(255,255,255,0.25)', // Liquid-glass edge
+    borderColor: 'rgba(255,255,255,0.25)',
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(0,0,0,0.5)',
-        shadowOffset: { width: 0, height: 10 },
+        shadowColor: 'rgba(0,0,0,0.6)',
+        shadowOffset: { width: 0, height: 12 },
         shadowOpacity: 1,
-        shadowRadius: 30,
+        shadowRadius: 35,
       },
       android: {
-        elevation: 25,
+        elevation: 30,
       },
       web: {
-        boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
+        boxShadow: '0 12px 35px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.1), inset 0 -2px 4px rgba(0,0,0,0.3)',
       },
     }),
   },
-  capsuleInnerGradient: {
+  paneBackgroundImage: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  paneImageStyle: {
+    opacity: 0.6, // Subtle embedded sunset
+  },
+  innerShadowLayer: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
     zIndex: 1,
+  },
+  floatingSearchField: {
+    marginBottom: 20,
+    borderRadius: 14,
+    overflow: 'hidden',
+    borderWidth: 0.5,
+    borderColor: 'rgba(255,255,255,0.25)',
+    ...Platform.select({
+      web: {
+        boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+      },
+    }),
+  },
+  searchFieldBlur: {
+    backgroundColor: 'rgba(255,255,255,0.1)', // Tiny frosted layer
   },
   capsuleReflectionArc: {
     position: 'absolute',
