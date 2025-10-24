@@ -1529,18 +1529,18 @@ const styles = StyleSheet.create({
     letterSpacing: 0.2,
     ...Platform.select({
       ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.5,
-        shadowRadius: 8,
+        shadowColor: '#FFF',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.4,
+        shadowRadius: 10,
       },
       android: {
-        textShadowColor: 'rgba(0,0,0,0.5)',
-        textShadowOffset: { width: 0, height: 2 },
-        textShadowRadius: 8,
+        textShadowColor: 'rgba(255,255,255,0.4)',
+        textShadowOffset: { width: 0, height: 0 },
+        textShadowRadius: 10,
       },
       web: {
-        textShadow: '0 2px 8px rgba(0,0,0,0.5)',
+        textShadow: '0 0 16px rgba(255,255,255,0.4), 0 0 32px rgba(255,255,255,0.2), 0 2px 8px rgba(0,0,0,0.5)',
       },
     }),
     fontFamily: Platform.select({
