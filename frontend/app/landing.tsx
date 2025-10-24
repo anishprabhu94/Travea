@@ -523,30 +523,29 @@ export default function Landing() {
         {/* Refined vignette with depth */}
         <View style={styles.cardVignetteOverlay} />
         
-        {/* Bookmark Icon with Frosted Container */}
+        {/* Liquid-Glass Heart Capsule */}
         <TouchableOpacity
-          style={styles.bookmarkButton}
+          style={styles.heartButton}
           onPress={() => {
-            console.log('=== BOOKMARK BUTTON CLICKED ===')
-            console.log('City:', destination.city)
-            console.log('ID:', destination.id)
-            console.log('Base ID extracted:', getBaseId(destination.id))
-            
-            // Use the simple destination ID
             handleBookmark(destination.id)
           }}
-          activeOpacity={0.8}
+          activeOpacity={0.7}
         >
           <Animated.View style={[{ transform: [{ scale: getBookmarkAnimation(destination.id) }] }]}>
-            <BlurView intensity={18} tint="light" style={styles.bookmarkContainer}>
-              <View style={styles.bookmarkInner}>
+            <LinearGradient
+              colors={['rgba(194,164,110,0.06)', 'rgba(15,18,20,0.45)']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.heartCapsule}
+            >
+              <BlurView intensity={18} tint="dark" style={styles.heartContainer}>
                 <Ionicons
-                  name={bookmarkedItems.includes(getBaseId(destination.id)) ? "bookmark" : "bookmark-outline"}
+                  name={bookmarkedItems.includes(getBaseId(destination.id)) ? "heart" : "heart-outline"}
                   size={16}
-                  color={bookmarkedItems.includes(getBaseId(destination.id)) ? "#C9A96D" : "rgba(201,169,109,0.8)"}
+                  color={bookmarkedItems.includes(getBaseId(destination.id)) ? "#C2A46E" : "rgba(255,255,255,0.8)"}
                 />
-              </View>
-            </BlurView>
+              </BlurView>
+            </LinearGradient>
           </Animated.View>
         </TouchableOpacity>
 
