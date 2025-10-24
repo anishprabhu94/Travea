@@ -645,7 +645,38 @@ const styles = StyleSheet.create({
     color: '#F8F8F8',
     borderWidth: 1,
     borderColor: 'rgba(194,164,110,0.3)',
+    fontFamily: Platform.select({
+      ios: 'Neue Montreal',
+      android: 'Neue Montreal',
+      web: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    }),
+  },
+  animatedInputWrapper: {
+    marginBottom: 16,
+  },
+  suggestionsContainer: {
     marginBottom: 20,
+  },
+  suggestionsScroll: {
+    paddingVertical: 4,
+  },
+  suggestionPill: {
+    marginRight: 8,
+    borderRadius: 16,
+    overflow: 'hidden',
+  },
+  suggestionPillBlur: {
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    backgroundColor: 'rgba(194,164,110,0.15)',
+    borderWidth: 1,
+    borderColor: 'rgba(194,164,110,0.25)',
+  },
+  suggestionText: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: 'rgba(255,255,255,0.85)',
+    letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
