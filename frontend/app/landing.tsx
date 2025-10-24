@@ -1382,109 +1382,150 @@ export default function Landing() {
         </BlurView>
       </Animated.View>
 
-      {/* Floating Search Capsule */}
+      {/* Floating Search Canvas */}
       {showSearchCapsule && (
-        <View style={styles.searchCapsuleContainer}>
-          {/* Background Layer with blur and gradient */}
+        <View style={styles.searchCanvasContainer}>
+          {/* Radial Gradient Background Fade */}
           <Animated.View 
             style={[
-              styles.searchScreenBackground,
+              styles.radialBackdrop,
               { opacity: searchBackdropOpacity }
             ]}
           >
-            <LinearGradient
-              colors={['rgba(0,0,0,0.2)', 'rgba(0,0,0,0.6)']}
-              style={styles.screenGradient}
-            />
             <TouchableOpacity 
-              style={styles.searchBackdropTouchable}
+              style={styles.backdropTouchable}
               activeOpacity={1}
               onPress={closeSearchCapsule}
             />
           </Animated.View>
 
-          {/* Floating Frosted Pane with embedded muted sunset */}
+          {/* Floating Liquid Glass Pane */}
           <Animated.View
             style={[
-              styles.searchCapsule,
+              styles.liquidGlassPane,
               {
                 opacity: searchCapsuleOpacity,
-                transform: [{ scale: searchCapsuleScale }]
+                transform: [
+                  { scale: searchCapsuleScale },
+                  { translateY: searchCapsuleScale.interpolate({
+                    inputRange: [0.95, 1],
+                    outputRange: [10, 0]
+                  })}
+                ]
               }
             ]}
           >
-            {/* Embedded muted sunset inside pane */}
+            {/* Barely Visible Sunset Background */}
             <ImageBackground
               source={require('../assets/search-bg.png')}
-              style={styles.paneBackgroundImage}
-              imageStyle={styles.paneImageStyle}
+              style={styles.sunsetBackground}
+              imageStyle={styles.sunsetImageStyle}
+              blurRadius={30}
             >
-              <BlurView intensity={30} tint="dark" style={styles.capsuleBlur}>
-                <View style={styles.capsuleContent}>
-                  {/* Floating Search Field */}
-                  <View style={styles.floatingSearchField}>
-                    <BlurView intensity={12} tint="light" style={styles.searchFieldBlur}>
-                      <View style={styles.searchBarContainer}>
-                        <Ionicons 
-                          name="search-outline" 
-                          size={20} 
-                          color="#D4B882" 
-                          style={styles.searchIcon} 
-                        />
-                        <TextInput
-                          style={styles.searchInput}
-                          placeholder="Search a city..."
-                          placeholderTextColor="rgba(255,255,255,0.85)"
-                          value={searchQuery}
-                          onChangeText={setSearchQuery}
-                          autoFocus={true}
-                          returnKeyType="search"
-                          onSubmitEditing={() => {
-                            console.log('Searching for:', searchQuery)
-                          }}
-                        />
-                        {searchQuery.length > 0 && (
-                          <TouchableOpacity onPress={() => setSearchQuery('')}>
-                            <Ionicons name="close-circle" size={20} color="rgba(255,255,255,0.5)" />
-                          </TouchableOpacity>
-                        )}
-                      </View>
-                    </BlurView>
-                  </View>
+              {/* Signature Motion Beam */}
+              <LinearGradient
+                colors={['rgba(255,255,255,0.08)', 'transparent']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.motionBeam}
+              />
 
-                  {/* Frosted Glass Globe + Text */}
-                  {searchQuery.length === 0 && (
-                    <View style={styles.globeContainer}>
-                      {/* Frosted Glass Globe */}
-                      <View style={styles.frostcdGlobe}>
-                        <LinearGradient
-                          colors={['rgba(255,255,255,0.08)', 'rgba(0,0,0,0.25)']}
-                          style={styles.globeGradient}
-                        />
-                      </View>
-                      
-                      {/* Text Composition */}
-                      <Text style={styles.globeMainText}>Discover your next journey</Text>
-                      <Text style={styles.globeSubText}>Search for cities, circuits, or experiences</Text>
+              <BlurView intensity={25} tint="dark" style={styles.glassBlurLayer}>
+                <View style={styles.paneContent}>
+                  {/* Search Field Pill */}
+                  <Animated.View style={[
+                    styles.searchPill,
+                    { transform: [{ scale: searchCapsuleScale }] }
+                  ]}>
+                    <View style={styles.searchPillInner}>
+                      <Ionicons 
+                        name="search-outline" 
+                        size={20} 
+                        color="#D4B882" 
+                        style={styles.searchIconCanvas} 
+                      />
+                      <TextInput
+                        style={styles.searchInputCanvas}
+                        placeholder="Search cities or journeys..."
+                        placeholderTextColor="rgba(255,255,255,0.6)"
+                        value={searchQuery}
+                        onChangeText={setSearchQuery}
+                        autoFocus={true}
+                        returnKeyType="search"
+                        onFocus={() => {
+                          // Haptic feedback + 2% expansion
+                          if (Platform.OS === 'ios' || Platform.OS === 'android') {
+                            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+                          }
+                        }}
+                      />
+                      {searchQuery.length > 0 && (
+                        <TouchableOpacity onPress={() => setSearchQuery('')}>
+                          <Ionicons name="close-circle" size={20} color="rgba(255,255,255,0.5)" />
+                        </TouchableOpacity>
+                      )}
                     </View>
-                  )}
+                  </Animated.View>
 
-                  {/* Search Results */}
-                  {searchQuery.length > 0 && (
+                  {/* Results Container */}
+                  {searchQuery.length > 0 ? (
                     <ScrollView 
-                      style={styles.searchResults}
+                      style={styles.resultsScroll}
                       showsVerticalScrollIndicator={false}
                     >
-                      <View style={styles.resultsSection}>
-                        <Text style={styles.resultsSectionTitle}>Destinations</Text>
-                        
+                      {/* Section 1: Suggested Cities */}
+                      <View style={styles.suggestedCitiesSection}>
+                        <Text style={styles.sectionTitle}>Suggested Cities</Text>
+                        <ScrollView 
+                          horizontal 
+                          showsHorizontalScrollIndicator={false}
+                          style={styles.citiesScrollView}
+                        >
+                          {destinationCards.filter(dest => 
+                            !dest.isMultiCity &&
+                            (dest.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                            (dest.region && dest.region.toLowerCase().includes(searchQuery.toLowerCase())))
+                          ).slice(0, 6).map((dest, index) => (
+                            <TouchableOpacity
+                              key={dest.id}
+                              style={[styles.miniCityCard, { 
+                                opacity: 0,
+                                transform: [{ translateY: 20 }]
+                              }]}
+                              onPress={() => {
+                                closeSearchCapsule()
+                                router.push(`/destination?id=${dest.id}&city=${dest.city}&region=${dest.region}`)
+                              }}
+                            >
+                              <ImageBackground
+                                source={{ uri: dest.image }}
+                                style={styles.miniCityImage}
+                                imageStyle={styles.miniCityImageStyle}
+                                blurRadius={8}
+                              >
+                                <BlurView intensity={15} tint="dark" style={styles.miniCityOverlay}>
+                                  <Text style={styles.miniCityName}>{dest.city}</Text>
+                                  <Text style={styles.miniCityRegion}>{dest.region}</Text>
+                                </BlurView>
+                              </ImageBackground>
+                            </TouchableOpacity>
+                          ))}
+                        </ScrollView>
+                      </View>
+
+                      {/* Section 2: Curated Journeys */}
+                      <View style={styles.curatedJourneysSection}>
+                        <Text style={styles.sectionTitle}>Curated Journeys</Text>
                         {destinationCards.filter(dest => 
                           dest.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           (dest.region && dest.region.toLowerCase().includes(searchQuery.toLowerCase()))
-                        ).slice(0, 5).map((dest, index) => (
+                        ).slice(0, 4).map((dest, index) => (
                           <TouchableOpacity
                             key={dest.id}
-                            style={styles.cityResultCard}
+                            style={[styles.miniJourneyCard, {
+                              opacity: 0,
+                              transform: [{ translateY: 20 }]
+                            }]}
                             onPress={() => {
                               closeSearchCapsule()
                               if (dest.isMultiCity) {
@@ -1494,30 +1535,45 @@ export default function Landing() {
                               }
                             }}
                           >
-                            <BlurView intensity={15} tint="dark" style={styles.cityResultBlur}>
-                              <View style={styles.cityResultContent}>
-                                <Text style={styles.cityResultTitle}>{dest.city}</Text>
-                                <Text style={styles.cityResultSubtitle}>
-                                  {dest.region} • {dest.tagline || 'Discover more'}
+                            <BlurView intensity={12} tint="dark" style={styles.journeyCardBlur}>
+                              <View style={styles.journeyCardContent}>
+                                {/* Publisher Tag */}
+                                {dest.isCondeNastPick && (
+                                  <View style={styles.publisherTag}>
+                                    <Text style={styles.publisherTagText}>Condé Nast</Text>
+                                  </View>
+                                )}
+                                
+                                {/* Journey Title */}
+                                <Text style={styles.journeyTitle}>
+                                  {dest.isMultiCity ? dest.circuitTitle : dest.city}
                                 </Text>
-                              </View>
-                              <View style={styles.cityResultAction}>
-                                <Text style={styles.cityResultActionText}>View</Text>
+                                
+                                {/* City Pills */}
+                                {dest.isMultiCity && dest.cities && (
+                                  <View style={styles.journeyCityPills}>
+                                    {dest.cities.slice(0, 2).map((city, idx) => (
+                                      <View key={idx} style={styles.miniCityPill}>
+                                        <Text style={styles.miniCityPillText}>{city}</Text>
+                                      </View>
+                                    ))}
+                                  </View>
+                                )}
+                                
+                                {/* Tagline */}
+                                <Text style={styles.journeyTagline}>{dest.tagline}</Text>
                               </View>
                             </BlurView>
                           </TouchableOpacity>
                         ))}
-
-                        {destinationCards.filter(dest => 
-                          dest.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          (dest.region && dest.region.toLowerCase().includes(searchQuery.toLowerCase()))
-                        ).length === 0 && (
-                          <View style={styles.noResultsContainer}>
-                            <Text style={styles.noResultsText}>No destinations found</Text>
-                          </View>
-                        )}
                       </View>
                     </ScrollView>
+                  ) : (
+                    <View style={styles.emptySearchState}>
+                      <Ionicons name="search" size={48} color="rgba(255,255,255,0.2)" />
+                      <Text style={styles.emptyStateTitle}>Start exploring</Text>
+                      <Text style={styles.emptyStateSubtitle}>Search for your next journey</Text>
+                    </View>
                   )}
                 </View>
               </BlurView>
