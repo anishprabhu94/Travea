@@ -1758,10 +1758,10 @@ const styles = StyleSheet.create({
     }),
   },
   condeNastTagText: {
-    fontSize: 11,
+    fontSize: 12, // Increased from 11 for better presence
     fontWeight: '500',
     color: 'rgba(255,255,255,0.9)',
-    letterSpacing: 0.3,
+    letterSpacing: 0.4, // Slightly increased spacing
     fontFamily: Platform.select({
       ios: 'Neue Montreal',
       android: 'Neue Montreal',
