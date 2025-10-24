@@ -1404,6 +1404,17 @@ export default function Landing() {
               }
             ]}
           >
+            {/* Dusk gradient (top-left to bottom-right) */}
+            <LinearGradient
+              colors={['rgba(94,74,53,0.45)', 'rgba(20,15,10,0.75)']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.capsuleDuskGradient}
+            />
+
+            {/* Golden light leak in top-right corner */}
+            <View style={styles.capsuleGoldenLightLeak} />
+
             {/* Refraction gradient inside capsule */}
             <LinearGradient
               colors={['rgba(255,255,255,0.06)', 'rgba(0,0,0,0.12)']}
