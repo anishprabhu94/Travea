@@ -2040,8 +2040,18 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  topDownGradientOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '30%',
+    zIndex: 1,
+  },
   glassPaneInner: {
     padding: 17, // 16-18px inside pane
+    position: 'relative',
+    zIndex: 2,
   },
   // Destination Title
   glassDestinationTitle: {
