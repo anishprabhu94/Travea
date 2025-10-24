@@ -3572,16 +3572,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 16,
     paddingVertical: 14,
-    borderRadius: 16,
-    backgroundColor: 'rgba(255,255,255,0.15)', // Glass-like gradient start
-    borderWidth: 0.6,
-    borderColor: 'rgba(255,255,255,0.3)',
-    marginBottom: 20,
-    ...Platform.select({
-      web: {
-        background: 'linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05))',
-      },
-    }),
   },
   searchIcon: {
     marginRight: 12,
