@@ -1548,9 +1548,9 @@ const styles = StyleSheet.create({
   editorialHeaderContent: {
     flex: 1,
     paddingTop: Platform.select({
-      ios: 28, // Further reduced from 32
-      android: 24, // Further reduced from 28
-      web: 18, // Further reduced from 20
+      ios: 18, // Moved up more from 28
+      android: 16, // Moved up more from 24
+      web: 12, // Moved up more from 18
     }),
     paddingHorizontal: 24,
     paddingBottom: 22, // Increased for more space
