@@ -30,6 +30,76 @@ export default function Account() {
   const [showCityModal, setShowCityModal] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [editNameValue, setEditNameValue] = useState('');
+  const [inputFocused, setInputFocused] = useState(false);
+  
+  // Animation refs for Home City modal
+  const inputScaleAnim = useRef(new Animated.Value(1)).current;
+  const suggestionsOpacity = useRef(new Animated.Value(0)).current;
+  const shimmerAnim = useRef(new Animated.Value(0)).current;
+  
+  // Suggested cities (floating translucent pills)
+  const suggestedCities = [
+    'San Francisco', 'New York', 'London', 'Paris', 'Tokyo',
+    'Barcelona', 'Amsterdam', 'Sydney', 'Singapore', 'Dubai'
+  ];
+  
+  // Filter suggestions based on input
+  const filteredSuggestions = homeCity.trim() === ''
+    ? suggestedCities.slice(0, 6)
+    : suggestedCities.filter(city =>
+        city.toLowerCase().includes(homeCity.toLowerCase())
+      ).slice(0, 6);
+  
+  // Animate input field on focus
+  useEffect(() => {
+    if (inputFocused) {
+      Animated.parallel([
+        Animated.spring(inputScaleAnim, {
+          toValue: 1.02,
+          useNativeDriver: true,
+        }),
+        Animated.timing(suggestionsOpacity, {
+          toValue: 1,
+          duration: 300,
+          useNativeDriver: true,
+        })
+      ]).start();
+    } else {
+      Animated.parallel([
+        Animated.spring(inputScaleAnim, {
+          toValue: 1,
+          useNativeDriver: true,
+        }),
+        Animated.timing(suggestionsOpacity, {
+          toValue: 0,
+          duration: 200,
+          useNativeDriver: true,
+        })
+      ]).start();
+    }
+  }, [inputFocused]);
+  
+  // Bronze shimmer animation
+  useEffect(() => {
+    if (showCityModal) {
+      const shimmerLoop = Animated.loop(
+        Animated.sequence([
+          Animated.timing(shimmerAnim, {
+            toValue: 1,
+            duration: 2000,
+            useNativeDriver: true,
+          }),
+          Animated.timing(shimmerAnim, {
+            toValue: 0,
+            duration: 2000,
+            useNativeDriver: true,
+          })
+        ])
+      );
+      shimmerLoop.start();
+      return () => shimmerLoop.stop();
+    }
+  }, [showCityModal]);
 
   const handleSaveName = async () => {
     setIsSaving(true);
