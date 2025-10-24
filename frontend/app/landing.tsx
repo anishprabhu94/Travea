@@ -1378,6 +1378,127 @@ export default function Landing() {
         </BlurView>
       </Animated.View>
 
+      {/* Floating Search Capsule */}
+      {showSearchCapsule && (
+        <View style={styles.searchCapsuleContainer}>
+          {/* Backdrop with blur and vignette */}
+          <Animated.View 
+            style={[
+              styles.searchBackdrop,
+              { opacity: searchBackdropOpacity }
+            ]}
+          >
+            <TouchableOpacity 
+              style={styles.searchBackdropTouchable}
+              activeOpacity={1}
+              onPress={closeSearchCapsule}
+            />
+          </Animated.View>
+
+          {/* Floating Glass Capsule */}
+          <Animated.View
+            style={[
+              styles.searchCapsule,
+              {
+                opacity: searchCapsuleOpacity,
+                transform: [{ scale: searchCapsuleScale }]
+              }
+            ]}
+          >
+            {/* Refraction gradient inside capsule */}
+            <LinearGradient
+              colors={['rgba(255,255,255,0.06)', 'rgba(0,0,0,0.12)']}
+              style={styles.capsuleRefractionGradient}
+            />
+
+            {/* Light reflection arc at top */}
+            <LinearGradient
+              colors={['rgba(255,255,255,0.07)', 'rgba(255,255,255,0)']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 1 }}
+              style={styles.capsuleReflectionArc}
+            />
+
+            <BlurView intensity={25} tint="dark" style={styles.capsuleBlur}>
+              <View style={styles.capsuleContent}>
+                {/* Search Bar */}
+                <View style={styles.searchBarContainer}>
+                  <Ionicons 
+                    name="search-outline" 
+                    size={20} 
+                    color="#D4B882" 
+                    style={styles.searchIcon} 
+                  />
+                  <TextInput
+                    style={styles.searchInput}
+                    placeholder="Search cities or journeys…"
+                    placeholderTextColor="rgba(255,255,255,0.6)"
+                    value={searchQuery}
+                    onChangeText={setSearchQuery}
+                    autoFocus={true}
+                    onSubmitEditing={() => {
+                      // Handle search submit
+                      console.log('Searching for:', searchQuery)
+                    }}
+                  />
+                  {searchQuery.length > 0 && (
+                    <TouchableOpacity onPress={() => setSearchQuery('')}>
+                      <Ionicons name="close-circle" size={20} color="rgba(255,255,255,0.5)" />
+                    </TouchableOpacity>
+                  )}
+                </View>
+
+                {/* Search Results */}
+                {searchQuery.length > 0 && (
+                  <ScrollView 
+                    style={styles.searchResults}
+                    showsVerticalScrollIndicator={false}
+                  >
+                    {/* Mock search results */}
+                    <View style={styles.resultsSection}>
+                      <Text style={styles.resultsSectionTitle}>Cities</Text>
+                      
+                      {/* City result cards */}
+                      {['Amalfi', 'Kyoto', 'Santorini'].filter(city => 
+                        city.toLowerCase().includes(searchQuery.toLowerCase())
+                      ).map((city, index) => (
+                        <TouchableOpacity
+                          key={city}
+                          style={[styles.cityResultCard, { opacity: 0 }]}
+                          onPress={() => {
+                            closeSearchCapsule()
+                            // Navigate to city
+                          }}
+                        >
+                          <BlurView intensity={15} tint="dark" style={styles.cityResultBlur}>
+                            <View style={styles.cityResultContent}>
+                              <Text style={styles.cityResultTitle}>{city}</Text>
+                              <Text style={styles.cityResultSubtitle}>2 curated journeys</Text>
+                            </View>
+                            <View style={styles.cityResultAction}>
+                              <Text style={styles.cityResultActionText}>View</Text>
+                            </View>
+                          </BlurView>
+                        </TouchableOpacity>
+                      ))}
+                    </View>
+                  </ScrollView>
+                )}
+
+                {/* Empty state */}
+                {searchQuery.length === 0 && (
+                  <View style={styles.searchEmptyState}>
+                    <Ionicons name="earth-outline" size={48} color="rgba(255,255,255,0.3)" />
+                    <Text style={styles.emptyStateText}>Discover your next journey</Text>
+                    <Text style={styles.emptyStateSubtext}>Search for cities, circuits, or experiences</Text>
+                  </View>
+                )}
+              </View>
+            </BlurView>
+          </Animated.View>
+        </View>
+      )}
+
       {/* Profile Drawer */}
       <ProfileDrawer 
         visible={showProfileDrawer} 
