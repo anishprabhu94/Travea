@@ -1522,22 +1522,22 @@ const styles = StyleSheet.create({
   editorialGreetingSubtext: {
     fontSize: 15,
     fontWeight: '400',
-    color: 'rgba(255,255,255,0.90)', // Brightened from 0.75 to 0.90
+    color: 'rgba(255,255,255,0.78)', // As specified
     letterSpacing: 0.2,
     ...Platform.select({
       ios: {
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.4,
+        shadowOpacity: 0.35,
         shadowRadius: 6,
       },
       android: {
-        textShadowColor: 'rgba(0,0,0,0.4)',
+        textShadowColor: 'rgba(0,0,0,0.35)',
         textShadowOffset: { width: 0, height: 2 },
         textShadowRadius: 6,
       },
       web: {
-        textShadow: '0 2px 6px rgba(0,0,0,0.4)',
+        textShadow: '0 2px 6px rgba(0,0,0,0.35)',
       },
     }),
     fontFamily: Platform.select({
