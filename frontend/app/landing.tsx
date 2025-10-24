@@ -1387,7 +1387,8 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 48,
     borderBottomRightRadius: 48,
   },
-  liquidHorizonBase: {
+  // Layer 1: Liquid Sunset Base
+  liquidSunsetBase: {
     position: 'absolute',
     top: 0,
     left: 0,
@@ -1395,58 +1396,52 @@ const styles = StyleSheet.create({
     bottom: 0,
     zIndex: 1,
   },
-  liquidFlowOverlay: {
+  // Layer 2: Abstract Texture Overlay
+  liquidTextureOverlay: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    opacity: 0.18, // Texture opacity as specified
+    opacity: 0.2, // mix-blend-mode: overlay effect
     zIndex: 2,
   },
-  liquidFlowImage: {
+  liquidTextureImage: {
     resizeMode: 'cover',
+    opacity: 1,
     ...Platform.select({
       web: {
         filter: 'blur(10px)',
-        mixBlendMode: 'overlay',
       },
     }),
   },
-  radialGlow: {
+  // Layer 3: Contrast Veil (Between background and text)
+  contrastVeilLayer: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'transparent',
     zIndex: 3,
     ...Platform.select({
       web: {
-        background: 'radial-gradient(circle at 50% 20%, rgba(255,185,100,0.25), transparent 70%)',
+        backdropFilter: 'blur(6px)',
       },
     }),
   },
-  contrastVeil: {
+  // Layer 4: Bottom Feather (Smooth dissolve)
+  bottomFeather: {
     position: 'absolute',
-    top: 0,
+    bottom: 0,
     left: 0,
     right: 0,
-    bottom: 0,
+    height: '20%', // Cover bottom 20% of header
     zIndex: 4,
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(4px)',
+        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06)',
       },
     }),
-  },
-  bottomGradientFade: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 80,
-    zIndex: 5,
   },
   translucentOverlay: {
     position: 'absolute',
