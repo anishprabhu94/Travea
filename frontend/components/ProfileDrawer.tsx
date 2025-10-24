@@ -191,22 +191,22 @@ const styles = StyleSheet.create({
   drawerContainer: {
     position: 'absolute',
     right: 26,
-    top: 18,
-    width: 260,
+    top: 54, // Lowered by 36px from 18
+    width: 248, // Reduced from 260 for slimmer silhouette
     borderRadius: 32,
     overflow: 'hidden',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 12 },
-        shadowOpacity: 0.4,
-        shadowRadius: 35,
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.35,
+        shadowRadius: 40,
       },
       android: {
-        elevation: 24,
+        elevation: 22,
       },
       web: {
-        boxShadow: '0 12px 35px rgba(0,0,0,0.4)',
+        boxShadow: '0 10px 40px rgba(0,0,0,0.35)',
       },
     }),
   },
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
   },
   drawerContent: {
     flex: 1,
-    paddingTop: 48,
+    paddingTop: 42, // Reduced by 6px from 48 to tighten spacing
     paddingHorizontal: 20,
     paddingBottom: 24,
   },
