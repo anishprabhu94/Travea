@@ -629,16 +629,31 @@ export default function Landing() {
       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
         {/* Editorial Header - Quiet Window to the World */}
         <View style={styles.editorialHeaderContainer}>
+          {/* Liquid Horizon Base - Multi-stop gradient */}
+          <LinearGradient
+            colors={[
+              'rgba(210,160,90,0.45)',
+              'rgba(115,80,50,0.35)',
+              'rgba(15,18,20,0.9)'
+            ]}
+            locations={[0, 0.3, 1]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.liquidHorizonBase}
+          />
+
+          {/* Abstract Liquid Flow Overlay */}
           <ImageBackground
-            source={{ uri: 'https://customer-assets.emergentagent.com/job_frosted-journey-1/artifacts/6qridd9t_search%202.jpg' }}
-            style={styles.editorialSunsetBackground}
-            imageStyle={styles.editorialSunsetImageStyle}
-          >
-            {/* Translucent Overlay - Makes image opaque */}
-            <View style={styles.translucentOverlay} />
-            
-            {/* Header Content */}
-            <View style={styles.editorialHeaderContent}>
+            source={{ uri: 'https://customer-assets.emergentagent.com/job_glass-traveler/artifacts/38zyzlid_image.png' }}
+            style={styles.liquidFlowOverlay}
+            imageStyle={styles.liquidFlowImage}
+          />
+
+          {/* Radial Glow - Sunlight diffusion */}
+          <View style={styles.radialGlow} />
+          
+          {/* Header Content */}
+          <View style={styles.editorialHeaderContent}>
               {/* Top Bar - Logo & Profile */}
               <View style={styles.editorialTopBar}>
                 <TraveaWordmark />
