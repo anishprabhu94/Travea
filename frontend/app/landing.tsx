@@ -1385,18 +1385,20 @@ export default function Landing() {
       {/* Floating Search Canvas */}
       {showSearchCapsule && (
         <View style={styles.searchCanvasContainer}>
-          {/* Radial Gradient Background Fade */}
+          {/* Radial Gradient Background Fade with Blur */}
           <Animated.View 
             style={[
               styles.radialBackdrop,
               { opacity: searchBackdropOpacity }
             ]}
           >
-            <TouchableOpacity 
-              style={styles.backdropTouchable}
-              activeOpacity={1}
-              onPress={closeSearchCapsule}
-            />
+            <BlurView intensity={20} tint="dark" style={styles.backdropBlur}>
+              <TouchableOpacity 
+                style={styles.backdropTouchable}
+                activeOpacity={1}
+                onPress={closeSearchCapsule}
+              />
+            </BlurView>
           </Animated.View>
 
           {/* Floating Liquid Glass Pane */}
