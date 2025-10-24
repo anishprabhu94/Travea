@@ -109,12 +109,15 @@ export default function ProfileDrawer({ visible, onClose }: ProfileDrawerProps) 
           onPress={onClose}
         />
 
-        {/* Floating Drawer Panel */}
+        {/* Compact Floating Drawer */}
         <Animated.View 
           style={[
             styles.drawerContainer,
             { 
-              transform: [{ translateX: slideAnim }],
+              transform: [
+                { translateX: slideAnim },
+                { scale: scaleAnim }
+              ],
               opacity: fadeAnim,
             }
           ]}
@@ -123,7 +126,10 @@ export default function ProfileDrawer({ visible, onClose }: ProfileDrawerProps) 
             colors={['rgba(194,164,110,0.06)', 'rgba(15,18,20,0.55)']}
             style={styles.drawerGradient}
           >
-            <BlurView intensity={30} tint="dark" style={styles.drawerContent}>
+            {/* Bronze vertical accent line */}
+            <View style={styles.bronzeAccent} />
+            
+            <BlurView intensity={32} tint="dark" style={styles.drawerContent}>
               
               {/* Menu Items */}
               <View style={styles.menuList}>
@@ -143,12 +149,11 @@ export default function ProfileDrawer({ visible, onClose }: ProfileDrawerProps) 
                       <View style={styles.menuItemInner}>
                         <Ionicons 
                           name={item.icon as any} 
-                          size={20} 
+                          size={18} 
                           color="rgba(255,255,255,0.8)" 
                         />
                         <Text style={styles.menuItemText}>{item.label}</Text>
                       </View>
-                      <View style={styles.ripple} />
                     </TouchableOpacity>
                     {index < menuItems.length - 1 && (
                       <View style={styles.divider} />
@@ -157,7 +162,7 @@ export default function ProfileDrawer({ visible, onClose }: ProfileDrawerProps) 
                 ))}
               </View>
 
-              {/* Footer with divider */}
+              {/* Footer */}
               <View style={styles.footerContainer}>
                 <View style={styles.footerDivider} />
                 <View style={styles.footer}>
