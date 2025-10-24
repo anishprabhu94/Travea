@@ -1350,8 +1350,8 @@ const styles = StyleSheet.create({
   editorialHeaderContainer: {
     position: 'relative',
     width: '100%',
-    height: height * 0.24, // Reduced from 0.28 to 0.24 for tighter layout
-    marginBottom: 0,
+    height: height * 0.22, // Further reduced from 0.24 to 0.22
+    marginBottom: -8, // Negative margin to pull carousels up
     marginTop: Platform.select({
       ios: -50,
       android: -40,
@@ -1362,7 +1362,7 @@ const styles = StyleSheet.create({
       android: 40,
       web: 0,
     }),
-    paddingBottom: 8, // Reduced bottom padding to push content up
+    paddingBottom: 0, // Removed bottom padding for tighter fit
     backgroundColor: '#0B0F14', // Match main background
     borderBottomLeftRadius: 48,
     borderBottomRightRadius: 48,
