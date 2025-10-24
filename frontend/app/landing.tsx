@@ -1431,6 +1431,11 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     zIndex: 4,
+    ...Platform.select({
+      web: {
+        backdropFilter: 'blur(4px)',
+      },
+    }),
   },
   bottomGradientFade: {
     position: 'absolute',
