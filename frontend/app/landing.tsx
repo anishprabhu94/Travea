@@ -720,12 +720,17 @@ export default function Landing() {
                       </View>
                     </View>
                     
-                    {/* Duration - Bronze tint */}
-                    <Text style={styles.durationText}>
-                      {destination.transport[0]?.time || "4 days"}
-                    </Text>
-                  </>
-                ) : (
+                    {/* Duration with Icons - Match Single City Format */}
+                    <View style={styles.narrativeDurationRow}>
+                      <Ionicons name="airplane-outline" size={13} color="rgba(255,255,255,0.7)" />
+                      <Text style={styles.durationText}>
+                        {destination.transport[0]?.time || "8h 30m"} away
+                      </Text>
+                      <Text style={styles.durationText}> • </Text>
+                      <Ionicons name="calendar-outline" size={13} color="rgba(255,255,255,0.7)" />
+                      <Text style={styles.durationText}> 4 days</Text>
+                    </View>
+                  </>                ) : (
                   <>
                     {/* SINGLE CITY CARDS - Left Aligned */}
                     {/* Destination Title - Muted Bronze Ink */}
