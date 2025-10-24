@@ -698,6 +698,16 @@ export default function Landing() {
               style={styles.contrastVeil}
             />
             
+            {/* Bottom Gradient Fade - Smooth transition to content */}
+            <LinearGradient
+              colors={[
+                'rgba(15,18,20,0)',
+                'rgba(15,18,20,0.8)'
+              ]}
+              locations={[0, 1]}
+              style={styles.bottomGradientFade}
+            />
+            
             {/* Header Content */}
             <View style={styles.editorialHeaderContent}>
                 {/* Top Bar - Logo & Profile */}
