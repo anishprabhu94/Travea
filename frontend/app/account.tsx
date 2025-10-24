@@ -431,7 +431,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   cardItemValueText: {
-    fontSize: 15,
+    fontSize: 16, // Increased from 15 for better hierarchy
     color: 'rgba(255,255,255,0.6)',
     letterSpacing: 0.2,
     fontFamily: Platform.select({
