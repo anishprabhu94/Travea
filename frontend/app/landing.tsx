@@ -668,12 +668,12 @@ export default function Landing() {
       <View style={styles.vignetteOverlay} />
 
       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
-        {/* Editorial Header - Quiet Window to the World */}
+        {/* Editorial Header - Liquid Glass Catching Sunset */}
         <View style={styles.editorialHeaderContainer}>
-          {/* Richer Sunset Base Gradient */}
+          {/* Layer 1: Liquid Sunset (Radial Gradient) */}
           <Animated.View
             style={[
-              styles.liquidHorizonBase,
+              styles.liquidSunsetBase,
               {
                 opacity: breathingAnim.interpolate({
                   inputRange: [0, 1],
@@ -682,49 +682,48 @@ export default function Landing() {
               }
             ]}
           >
+            {/* Using LinearGradient to simulate radial with careful color stops */}
             <LinearGradient
               colors={[
-                '#BF8A57', // Warm bronze
-                '#815B3F', // Mid brown
-                '#3A2C27', // Deep charcoal-brown
-                '#0B0F14'  // Near-black base
+                'rgba(255,200,140,0.35)', // Warm light center
+                'rgba(180,110,70,0.30)',  // Mid bronze
+                'rgba(40,25,20,0.65)',    // Deep warm brown
+                '#0F1214'                  // Near-black base
               ]}
-              locations={[0, 0.28, 0.56, 1]}
-              start={{ x: 0, y: 0 }}
+              locations={[0, 0.25, 0.65, 1]}
+              start={{ x: 0.35, y: 0.1 }}
               end={{ x: 1, y: 1 }}
               style={{ width: '100%', height: '100%' }}
             />
           </Animated.View>
 
-          {/* Abstract Liquid Flow Overlay */}
+          {/* Layer 2: Abstract Texture Overlay */}
           <ImageBackground
             source={{ uri: 'https://customer-assets.emergentagent.com/job_glass-traveler/artifacts/38zyzlid_image.png' }}
-            style={styles.liquidFlowOverlay}
-            imageStyle={styles.liquidFlowImage}
-          >
-            {/* Radial Glow - Sunlight diffusion */}
-            <View style={styles.radialGlow} />
-            
-            {/* Soft Contrast Veil - Minimal for maximum brightness */}
-            <LinearGradient
-              colors={[
-                'rgba(12,16,20,0.08)',
-                'rgba(12,16,20,0.12)',
-                'rgba(12,16,20,0.18)'
-              ]}
-              locations={[0, 0.45, 1]}
-              style={styles.contrastVeil}
-            />
-            
-            {/* Bottom Gradient Fade - Smooth transition to content */}
-            <LinearGradient
-              colors={[
-                'rgba(15,18,20,0)',
-                'rgba(15,18,20,0.8)'
-              ]}
-              locations={[0, 1]}
-              style={styles.bottomGradientFade}
-            />
+            style={styles.liquidTextureOverlay}
+            imageStyle={styles.liquidTextureImage}
+          />
+          
+          {/* Layer 3: Contrast Veil (Between background and text) */}
+          <LinearGradient
+            colors={[
+              'rgba(15,18,20,0.25)',
+              'rgba(15,18,20,0.35)',
+              'rgba(15,18,20,0.55)'
+            ]}
+            locations={[0, 0.45, 1]}
+            style={styles.contrastVeilLayer}
+          />
+          
+          {/* Layer 4: Bottom Feather (Smooth dissolve) */}
+          <LinearGradient
+            colors={[
+              'rgba(15,18,20,0)',
+              'rgba(15,18,20,0.85)'
+            ]}
+            locations={[0.8, 1]}
+            style={styles.bottomFeather}
+          />
             
             {/* Header Content */}
             <View style={styles.editorialHeaderContent}>
