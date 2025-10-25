@@ -1077,7 +1077,10 @@ export default function TripCanvas() {
             <Text style={styles.heroSubtitle}>
               <Text style={{fontWeight: '700'}}>{currentTrip.startMonth.substring(0,3)} {currentTrip.startDay}–{currentTrip.endMonth.substring(0,3)} {currentTrip.endDay}</Text>
               {' · '}
-              <Text style={{fontWeight: '700'}}>{currentTrip.travelers} Travelers</Text>
+            </Text>
+            <Ionicons name="people" size={14} color="rgba(255,255,255,0.85)" style={{marginRight: 4}} />
+            <Text style={styles.heroSubtitle}>
+              <Text style={{fontWeight: '700'}}>{currentTrip.travelers}</Text>
             </Text>
             <TouchableOpacity 
               style={styles.editIconButton} 
