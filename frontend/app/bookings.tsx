@@ -4481,6 +4481,7 @@ const styles = StyleSheet.create({
     ...Platform.select({
       web: {
         boxShadow: '0 4px 16px rgba(0,0,0,0.4), inset 0 0.5px 0 rgba(214,193,152,0.15)',
+        background: 'linear-gradient(165deg, rgba(255,180,120,0.12) 0%, rgba(212,140,90,0.18) 25%, rgba(80,50,40,0.35) 60%, rgba(60,45,50,0.5) 85%, rgba(30,25,28,0.75) 100%)',
       },
       default: {
         shadowColor: '#000000',
