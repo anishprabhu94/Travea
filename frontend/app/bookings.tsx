@@ -1407,7 +1407,7 @@ export default function TripCanvas() {
                   
                   {/* Frosted Glass Content Pane */}
                   <View style={styles.flightImageCardFrosted}>
-                    <Text style={styles.flightCardTraveler}>{flight.traveler}</Text>
+                    <Text style={styles.flightCardTraveler}>{flight.traveler === 'Traveler 1' ? (user?.name || 'Traveler 1') : flight.traveler}</Text>
                     <Text style={styles.flightCardRoute}>{flight.route}</Text>
                     <Text style={styles.flightCardAirline}>{flight.airline}</Text>
                     <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 6}}>
