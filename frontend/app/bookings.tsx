@@ -4306,7 +4306,7 @@ const styles = StyleSheet.create({
     }),
   },
   stayCardAddress: {
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: '400',
     color: 'rgba(255,255,255,0.8)',
     marginBottom: 6,
@@ -4315,24 +4315,21 @@ const styles = StyleSheet.create({
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  stayCardTimes: {
+  stayCardPriceNights: {
     fontSize: 13,
-    fontWeight: '400',
-    color: 'rgba(181,155,115,0.9)',
-    marginBottom: 4,
+    color: 'rgba(255,255,255,0.8)',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
-  stayCardPlatform: {
-    fontSize: 13,
+  stayCardPrice: {
+    fontWeight: '700',
+    color: 'rgba(255,255,255,0.95)',
+  },
+  stayCardNights: {
     fontWeight: '400',
-    color: 'rgba(181,155,115,0.75)',
-    fontFamily: Platform.select({
-      ios: 'Inter',
-      web: 'Inter, -apple-system, sans-serif',
-    }),
+    color: 'rgba(181,155,115,0.9)',
   },
 
   // Transport Image Card
