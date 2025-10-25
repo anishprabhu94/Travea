@@ -1490,20 +1490,24 @@ export default function Landing() {
                         </View>
                       ))}
 
-                      {/* Section 2: Curated Journeys (Max 2) */}
-                      {destinationCards.filter(dest => 
-                        dest.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                        (dest.region && dest.region.toLowerCase().includes(searchQuery.toLowerCase())) ||
-                        (dest.tagline && dest.tagline.toLowerCase().includes(searchQuery.toLowerCase()))
-                      ).slice(0, 2).length > 0 && (
-                        <View style={styles.curatedJourneysSearchSection}>
-                          <View style={styles.sectionDivider} />
-                          <Text style={styles.sectionLabel}>Curated Journeys</Text>
-                          {destinationCards.filter(dest => 
-                            dest.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            (dest.region && dest.region.toLowerCase().includes(searchQuery.toLowerCase())) ||
-                            (dest.tagline && dest.tagline.toLowerCase().includes(searchQuery.toLowerCase()))
-                          ).slice(0, 2).map((dest) => (
+                      {/* Section 2: Curated Journeys (Max 2) - Exclude Matching City */}
+                      {(() => {
+                        const matchingCity = destinationCards.find(dest => 
+                          !dest.isMultiCity &&
+                          dest.city.toLowerCase().includes(searchQuery.toLowerCase())
+                        );
+                        const filteredJourneys = destinationCards.filter(dest => 
+                          (dest.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          (dest.region && dest.region.toLowerCase().includes(searchQuery.toLowerCase())) ||
+                          (dest.tagline && dest.tagline.toLowerCase().includes(searchQuery.toLowerCase()))) &&
+                          dest.id !== matchingCity?.id
+                        ).slice(0, 2);
+                        
+                        return filteredJourneys.length > 0 && (
+                          <View style={styles.curatedJourneysSearchSection}>
+                            <View style={styles.sectionDivider} />
+                            <Text style={styles.sectionLabel}>Curated Journeys</Text>
+                            {filteredJourneys.map((dest) => (
                             <TouchableOpacity
                               key={dest.id}
                               style={styles.curatedJourneyCard}
