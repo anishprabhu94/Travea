@@ -1773,7 +1773,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    opacity: 0.2, // mix-blend-mode: overlay effect
+    opacity: 0.08, // Reduced from 0.2 for lighter sunset/dusk feel
     zIndex: 2,
   },
   liquidTextureImage: {
