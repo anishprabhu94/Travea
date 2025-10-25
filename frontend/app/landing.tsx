@@ -1478,7 +1478,7 @@ export default function Landing() {
                                 source={{ uri: dest.image }}
                                 style={styles.heroCityImage}
                                 imageStyle={styles.heroCityImageStyle}
-                                blurRadius={8}
+                                blurRadius={0}
                               />
                               <View style={styles.heroCityContent}>
                                 <Text style={styles.heroCityTitle}>{dest.city}</Text>
