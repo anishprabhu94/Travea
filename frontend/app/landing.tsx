@@ -3435,19 +3435,19 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
     borderWidth: 0.6,
-    borderColor: 'rgba(255,255,255,0.25)',
+    borderColor: 'rgba(212,184,130,0.4)',
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(0,0,0,0.25)',
-        shadowOffset: { width: 0, height: 1 },
+        shadowColor: 'rgba(0,0,0,0.4)',
+        shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 1,
-        shadowRadius: 3,
+        shadowRadius: 4,
       },
       android: {
-        elevation: 3,
+        elevation: 5,
       },
       web: {
-        boxShadow: '0 1px 3px rgba(0,0,0,0.25), inset 0 0 1px rgba(0,0,0,0.1)',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.3), 0 0 8px rgba(212,184,130,0.15), inset 0 1px 0 rgba(255,255,255,0.2)',
       },
     }),
   },
