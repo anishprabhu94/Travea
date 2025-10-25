@@ -3828,7 +3828,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   sectionLabel: {
-    fontSize: 13,
+    fontSize: 16,
     fontWeight: '600',
     color: 'rgba(255,255,255,0.7)',
     letterSpacing: 0.3,
