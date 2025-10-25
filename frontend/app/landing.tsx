@@ -1552,10 +1552,8 @@ export default function Landing() {
                                   </View>
                                 </View>
                                 
-                                {/* View Pill */}
-                                <View style={styles.viewPill}>
-                                  <Text style={styles.viewPillText}>View</Text>
-                                </View>
+                                {/* Chevron Arrow */}
+                                <Ionicons name="chevron-forward" size={20} color="rgba(233,212,160,0.7)" />
                               </BlurView>
                             </TouchableOpacity>
                             ))}
