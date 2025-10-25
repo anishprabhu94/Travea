@@ -3490,7 +3490,7 @@ const styles = StyleSheet.create({
   },
   moodChip: {
     borderRadius: 100,
-    overflow: 'visible',
+    overflow: 'hidden',
     marginRight: 8,
     marginBottom: 6,
     borderWidth: 0,
