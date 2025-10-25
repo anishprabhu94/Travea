@@ -2656,6 +2656,12 @@ const styles = StyleSheet.create({
     marginRight: 12,
     opacity: 0.85, // Reduced opacity for elegance
   },
+  searchGlobeIcon: {
+    width: 20,
+    height: 20,
+    marginRight: 8,
+    opacity: 0.85,
+  },
   searchArrow: {
     marginLeft: 'auto',
   },
