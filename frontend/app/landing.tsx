@@ -798,21 +798,21 @@ export default function Landing() {
       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
         {/* Editorial Header - Liquid Glass Catching Sunset */}
         <View style={styles.editorialHeaderContainer}>
-          {/* Antique Parchment Background with Lighter Liquid Frosted Glass */}
+          {/* Custom Header Background with Breathable Liquid Frosted Glass */}
           <ImageBackground
-            source={{ uri: 'https://customer-assets.emergentagent.com/job_voyageglass/artifacts/8go0y0w3_faded-antique-parchment-background.jpg' }}
+            source={{ uri: 'https://customer-assets.emergentagent.com/job_voyageglass/artifacts/wr40ybrk_image.png' }}
             style={styles.liquidSunsetBase}
             imageStyle={styles.headerImageStyle}
-            blurRadius={Platform.OS === 'ios' ? 8 : 6}
+            blurRadius={Platform.OS === 'ios' ? 6 : 4}
           >
-            {/* Lighter Frosted Glass Overlay */}
-            <BlurView intensity={22} tint="light" style={styles.frostedGlassOverlay}>
+            {/* Ultra-Light Frosted Glass Overlay - Breathable */}
+            <BlurView intensity={18} tint="light" style={styles.frostedGlassOverlay}>
               <LinearGradient
                 colors={[
-                  'rgba(50,48,45,0.25)',
-                  'rgba(45,43,40,0.30)',
-                  'rgba(40,38,35,0.35)',
-                  'rgba(35,33,30,0.42)'
+                  'rgba(55,53,50,0.18)',
+                  'rgba(50,48,45,0.22)',
+                  'rgba(45,43,40,0.26)',
+                  'rgba(40,38,35,0.32)'
                 ]}
                 locations={[0, 0.3, 0.7, 1]}
                 start={{ x: 0, y: 0 }}
