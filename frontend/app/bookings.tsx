@@ -5417,9 +5417,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.08)',
   },
   progressCapsuleText: {
-    fontSize: 10,
-    fontWeight: '600',
-    color: '#E3C47B', // Gold-tinted
+    fontSize: 11,
+    fontWeight: '800',
+    color: '#F5E6C8',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
