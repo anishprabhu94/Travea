@@ -3798,6 +3798,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 60,
   },
+  centerGlobeIcon: {
+    width: 80,
+    height: 80,
+    marginBottom: 20,
+    opacity: 0.9,
+  },
   emptyStateTitle: {
     fontSize: 18,
     fontWeight: '500',
