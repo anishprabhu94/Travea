@@ -797,21 +797,29 @@ export default function Landing() {
       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
         {/* Editorial Header - Liquid Glass Catching Sunset */}
         <View style={styles.editorialHeaderContainer}>
-          {/* Replicated Search Pane Background - Light Sunset/Dusk */}
-          <BlurView intensity={25} tint="light" style={styles.liquidSunsetBase}>
-            <LinearGradient
-              colors={[
-                'rgba(255,200,140,0.35)',
-                'rgba(180,110,70,0.30)',
-                'rgba(40,25,20,0.65)',
-                '#0F1214'
-              ]}
-              locations={[0, 0.25, 0.65, 1]}
-              start={{ x: 0.35, y: 0.1 }}
-              end={{ x: 1, y: 1 }}
-              style={{ width: '100%', height: '100%' }}
-            />
-          </BlurView>
+          {/* Custom Image Background with Liquid Frosted Glass */}
+          <ImageBackground
+            source={{ uri: 'https://customer-assets.emergentagent.com/job_voyageglass/artifacts/0er32l3x_image.png' }}
+            style={styles.liquidSunsetBase}
+            imageStyle={styles.headerImageStyle}
+            blurRadius={Platform.OS === 'ios' ? 15 : 10}
+          >
+            {/* Frosted Glass Overlay for Liquid Effect */}
+            <BlurView intensity={30} tint="light" style={styles.frostedGlassOverlay}>
+              <LinearGradient
+                colors={[
+                  'rgba(255,255,255,0.25)',
+                  'rgba(255,255,255,0.15)',
+                  'rgba(255,255,255,0.08)',
+                  'rgba(0,0,0,0.1)'
+                ]}
+                locations={[0, 0.3, 0.7, 1]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={{ width: '100%', height: '100%' }}
+              />
+            </BlurView>
+          </ImageBackground>
           
           {/* Layer 4: Bottom Feather (Smooth dissolve) */}
           <LinearGradient
