@@ -3432,36 +3432,42 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   microPostcard: {
-    borderRadius: 10,
+    borderRadius: 12,
     overflow: 'hidden',
-    borderWidth: 0.6,
-    borderColor: 'rgba(212,184,130,0.4)',
+    borderWidth: 0.5,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(255,255,255,0.25)',
+    borderColor: 'rgba(20,18,16,0.6)',
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(0,0,0,0.4)',
-        shadowOffset: { width: 0, height: 2 },
+        shadowColor: 'rgba(0,0,0,0.5)',
+        shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 1,
-        shadowRadius: 4,
+        shadowRadius: 8,
       },
       android: {
-        elevation: 5,
+        elevation: 8,
       },
       web: {
-        boxShadow: '0 2px 4px rgba(0,0,0,0.3), 0 0 8px rgba(212,184,130,0.15), inset 0 1px 0 rgba(255,255,255,0.2)',
+        boxShadow: '0 3px 8px rgba(0,0,0,0.4), 0 1px 3px rgba(0,0,0,0.3), 0 0 12px rgba(212,184,130,0.08), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -1px 0 rgba(0,0,0,0.2)',
+        backdropFilter: 'blur(12px) saturate(1.2)',
       },
     }),
   },
   microPostcardBlur: {
-    paddingVertical: 3,
-    paddingHorizontal: 7, // Reduced padding for three pills
-    backgroundColor: 'rgba(212,184,130,0.15)', // Frosted muted bronze
+    paddingVertical: 4,
+    paddingHorizontal: 9,
+    backgroundColor: 'rgba(35,32,28,0.75)',
     borderWidth: 0,
   },
   microPostcardText: {
     fontSize: 12,
-    fontWeight: '500', // Increased from 400 for better visibility
-    color: 'rgba(212,184,130,0.9)', // Muted bronze text
-    letterSpacing: 0.2,
+    fontWeight: '500',
+    color: 'rgba(212,184,130,0.95)',
+    letterSpacing: 0.3,
+    textShadowColor: 'rgba(0,0,0,0.3)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
