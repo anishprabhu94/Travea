@@ -18,6 +18,7 @@ import { useStayBooking } from '../contexts/StayBookingContext';
 import { useExperienceBooking } from '../contexts/ExperienceBookingContext';
 import { useRestaurantBooking } from '../contexts/RestaurantBookingContext';
 import { useTransportBooking } from '../contexts/TransportBookingContext';
+import { useAuth } from '../contexts/AuthContext';
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
