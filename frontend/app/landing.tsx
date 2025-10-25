@@ -798,17 +798,28 @@ export default function Landing() {
       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
         {/* Editorial Header - Liquid Glass Catching Sunset */}
         <View style={styles.editorialHeaderContainer}>
-          {/* Same Header Background as Concierge */}
+          {/* Concierge Image with Liquid Frosted Glass - Muted */}
           <ImageBackground
             source={{ uri: 'https://customer-assets.emergentagent.com/job_glass-voyage/artifacts/vmebbjwa_image.png' }}
             style={styles.liquidSunsetBase}
             imageStyle={styles.headerImageStyle}
-            blurRadius={4}
+            blurRadius={Platform.OS === 'ios' ? 8 : 6}
           >
-            <LinearGradient
-              colors={['rgba(13,13,13,0.75)', 'rgba(26,26,26,0.85)']}
-              style={{ width: '100%', height: '100%' }}
-            />
+            {/* Muted Liquid Frosted Glass Overlay */}
+            <BlurView intensity={26} tint="dark" style={styles.frostedGlassOverlay}>
+              <LinearGradient
+                colors={[
+                  'rgba(20,20,22,0.55)',
+                  'rgba(18,18,20,0.62)',
+                  'rgba(16,16,18,0.70)',
+                  'rgba(14,14,16,0.78)'
+                ]}
+                locations={[0, 0.3, 0.7, 1]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={{ width: '100%', height: '100%' }}
+              />
+            </BlurView>
           </ImageBackground>
           
           {/* Layer 4: Bottom Feather (Smooth dissolve) */}
