@@ -2741,16 +2741,16 @@ const styles = StyleSheet.create({
   },
   heroFrostedPane: {
     position: 'absolute',
-    bottom: 30, // Moved down from 40 to clear iPhone notch better
+    bottom: 20,
     left: '5%',
     right: '5%',
     backgroundColor: 'rgba(255,255,255,0.06)',
     borderRadius: 24,
     borderWidth: 0.5,
     borderColor: 'rgba(181,155,115,0.15)',
-    paddingTop: 20,
-    paddingBottom: 24,
-    paddingHorizontal: 24,
+    paddingTop: 16,
+    paddingBottom: 18,
+    paddingHorizontal: 20,
     ...Platform.select({
       web: {
         backdropFilter: 'blur(25px)',
