@@ -2720,7 +2720,7 @@ const styles = StyleSheet.create({
 
   // Hero Panel - Rounded bottom, more blur, better spacing
   heroContainer: {
-    height: 360,
+    height: 320,
     marginBottom: 0,
     overflow: 'hidden',
     borderBottomLeftRadius: 32,
