@@ -1859,7 +1859,7 @@ const styles = StyleSheet.create({
   editorialGreetingMain: {
     fontSize: 24,
     fontWeight: '500',
-    color: 'rgba(255,255,255,0.96)', // Bright white as specified
+    color: 'rgba(255,255,255,0.65)', // Muted for quiet luxury
     marginBottom: 4,
     letterSpacing: 2.5,
     ...Platform.select({
