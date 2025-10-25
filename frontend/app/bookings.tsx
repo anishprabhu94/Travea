@@ -4500,8 +4500,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     borderBottomWidth: 0.5,
     borderBottomColor: 'rgba(214,193,152,0.15)',
-    backgroundColor: '#0C0C0C',
     zIndex: 100,
+    ...Platform.select({
+      web: {
+        background: 'linear-gradient(165deg, rgba(255,180,120,0.12) 0%, rgba(212,140,90,0.18) 25%, rgba(80,50,40,0.35) 60%, rgba(60,45,50,0.5) 85%, rgba(30,25,28,0.75) 100%)',
+      },
+      default: {
+        backgroundColor: '#0C0C0C',
+      },
+    }),
   },
   luxuryCloseButton: {
     position: 'absolute',
