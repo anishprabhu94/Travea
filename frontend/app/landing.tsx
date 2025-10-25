@@ -2110,7 +2110,7 @@ const styles = StyleSheet.create({
     }),
   },
   carouselTitle: {
-    fontSize: 23, // Increased for better presence
+    fontSize: 21, // Original size
     fontWeight: '500', // Medium instead of bold
     color: 'rgba(255,255,255,0.9)', // Soft white instead of pure
     letterSpacing: 0.3, // Added for airy aesthetic
