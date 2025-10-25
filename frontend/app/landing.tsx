@@ -824,19 +824,19 @@ export default function Landing() {
             />
           </Animated.View>
 
-          {/* Layer 2: Abstract Texture Overlay */}
+          {/* Layer 2: Abstract Texture Overlay - Reduced opacity for lighter dusk feel */}
           <ImageBackground
             source={{ uri: 'https://customer-assets.emergentagent.com/job_glass-traveler/artifacts/38zyzlid_image.png' }}
             style={styles.liquidTextureOverlay}
             imageStyle={styles.liquidTextureImage}
           />
           
-          {/* Layer 3: Contrast Veil (Between background and text) */}
+          {/* Layer 3: Contrast Veil - Significantly lightened for sunset/dusk hue */}
           <LinearGradient
             colors={[
-              'rgba(15,18,20,0.25)',
-              'rgba(15,18,20,0.35)',
-              'rgba(15,18,20,0.55)'
+              'rgba(15,18,20,0.08)',
+              'rgba(15,18,20,0.12)',
+              'rgba(15,18,20,0.25)'
             ]}
             locations={[0, 0.45, 1]}
             style={styles.contrastVeilLayer}
