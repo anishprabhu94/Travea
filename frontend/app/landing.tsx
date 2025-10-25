@@ -1027,7 +1027,11 @@ export default function Landing() {
                         >
                           <BlurView intensity={25} tint="light" style={styles.searchBarContainer} pointerEvents="box-none">
                             <View style={styles.searchBarContent} pointerEvents="box-none">
-                              <Ionicons name="globe-outline" size={20} color="rgba(233,212,160,0.85)" style={styles.searchIcon} />
+                              <Image 
+                                source={{ uri: 'https://images.unsplash.com/photo-1580578505986-43cc9dadd4c7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHw0fHxmcm9zdGVkJTIwZ2xhc3MlMjBnbG9iZXxlbnwwfHx8d2hpdGV8MTc2MTQyMTg0MXww&ixlib=rb-4.1.0&q=85' }}
+                                style={styles.searchGlobeIcon}
+                                resizeMode="contain"
+                              />
                               <TextInput
                                 style={styles.searchInput}
                                 placeholder="Search cities"
