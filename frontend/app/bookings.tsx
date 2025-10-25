@@ -3454,7 +3454,7 @@ const styles = StyleSheet.create({
   // Flight Card - Image-Based with Frosted Glass (Reduced Height)
   flightCard: {
     width: 300,
-    height: 300,
+    height: 260,
     marginRight: 16,
     borderRadius: 24,
     overflow: 'hidden',
