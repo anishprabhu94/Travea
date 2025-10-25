@@ -372,6 +372,7 @@ const AVAILABLE_CITIES = [
 
 export default function TripCanvas() {
   const params = useLocalSearchParams();
+  const { user } = useAuth();
   const { trips, getTripById, getFilteredTrips, deleteTrip, updateTrip } = useTrips();
   const { getBookingsByTrip: getStayBookingsByTrip } = useStayBooking();
   const { getBookingsByTrip: getExperienceBookingsByTrip } = useExperienceBooking();
