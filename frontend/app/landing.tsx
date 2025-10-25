@@ -797,50 +797,21 @@ export default function Landing() {
       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
         {/* Editorial Header - Liquid Glass Catching Sunset */}
         <View style={styles.editorialHeaderContainer}>
-          {/* Layer 1: Liquid Sunset (Radial Gradient) */}
-          <Animated.View
-            style={[
-              styles.liquidSunsetBase,
-              {
-                opacity: breathingAnim.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [0.9, 1],
-                }),
-              }
-            ]}
-          >
-            {/* Using LinearGradient to simulate radial with careful color stops */}
+          {/* Replicated Search Pane Background - Light Sunset/Dusk */}
+          <BlurView intensity={25} tint="light" style={styles.liquidSunsetBase}>
             <LinearGradient
               colors={[
-                'rgba(255,200,140,0.35)', // Warm light center
-                'rgba(180,110,70,0.30)',  // Mid bronze
-                'rgba(40,25,20,0.65)',    // Deep warm brown
-                '#0F1214'                  // Near-black base
+                'rgba(255,200,140,0.35)',
+                'rgba(180,110,70,0.30)',
+                'rgba(40,25,20,0.65)',
+                '#0F1214'
               ]}
               locations={[0, 0.25, 0.65, 1]}
               start={{ x: 0.35, y: 0.1 }}
               end={{ x: 1, y: 1 }}
               style={{ width: '100%', height: '100%' }}
             />
-          </Animated.View>
-
-          {/* Layer 2: Abstract Texture Overlay - Minimal for maximum sunset brightness */}
-          <ImageBackground
-            source={{ uri: 'https://customer-assets.emergentagent.com/job_glass-traveler/artifacts/38zyzlid_image.png' }}
-            style={styles.liquidTextureOverlay}
-            imageStyle={styles.liquidTextureImage}
-          />
-          
-          {/* Layer 3: Contrast Veil - Ultra-light for bright sunset/dusk hue */}
-          <LinearGradient
-            colors={[
-              'rgba(15,18,20,0.02)',
-              'rgba(15,18,20,0.05)',
-              'rgba(15,18,20,0.12)'
-            ]}
-            locations={[0, 0.45, 1]}
-            style={styles.contrastVeilLayer}
-          />
+          </BlurView>
           
           {/* Layer 4: Bottom Feather (Smooth dissolve) */}
           <LinearGradient
