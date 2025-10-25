@@ -3457,13 +3457,13 @@ const styles = StyleSheet.create({
   microPostcardBlur: {
     paddingVertical: 3,
     paddingHorizontal: 7, // Reduced padding for three pills
-    backgroundColor: 'rgba(200,210,220,0.2)', // Cool glass tone
+    backgroundColor: 'rgba(212,184,130,0.15)', // Frosted muted bronze
     borderWidth: 0,
   },
   microPostcardText: {
     fontSize: 12,
     fontWeight: '500', // Increased from 400 for better visibility
-    color: 'rgba(255,255,255,0.9)', // White @ 90%
+    color: 'rgba(212,184,130,0.9)', // Muted bronze text
     letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Inter',
