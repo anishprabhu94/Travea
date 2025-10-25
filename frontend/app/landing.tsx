@@ -1558,9 +1558,10 @@ export default function Landing() {
                                 </View>
                               </BlurView>
                             </TouchableOpacity>
-                          ))}
-                        </View>
-                      )}
+                            ))}
+                          </View>
+                        );
+                      })()}
 
                       {/* No Results */}
                       {destinationCards.filter(dest => 
