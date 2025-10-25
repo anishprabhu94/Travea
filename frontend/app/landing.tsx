@@ -1745,7 +1745,21 @@ const styles = StyleSheet.create({
     bottom: 0,
     zIndex: 1,
   },
-  // Layer 2: Abstract Texture Overlay
+  // Header Image Style
+  headerImageStyle: {
+    resizeMode: 'cover',
+  },
+  // Frosted Glass Overlay for Liquid Effect
+  frostedGlassOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+  },
+  // Layer 2: Abstract Texture Overlay (Legacy - keeping for reference)
   liquidTextureOverlay: {
     position: 'absolute',
     top: 0,
