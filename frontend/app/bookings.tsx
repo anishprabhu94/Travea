@@ -2006,7 +2006,7 @@ export default function TripCanvas() {
                 <View style={styles.luxuryDivider} />
                 
                 <View style={styles.luxurySection}>
-                  <Text style={styles.luxurySectionLabel}>START AND END</Text>
+                  <Text style={styles.luxurySectionLabel}>TRIP DATES</Text>
                   <View style={styles.dateRow}>
                     <View style={styles.dateSelect}>
                       <Text style={styles.dateLabel}>Start Month</Text>
