@@ -1533,8 +1533,11 @@ export default function TripCanvas() {
                     <View style={styles.stayImageCardFrosted}>
                       <Text style={styles.stayCardName}>{booking.stayName || 'Stay'}</Text>
                       <Text style={styles.stayCardAddress}>{booking.city || activeCityCode}</Text>
-                      <Text style={styles.stayCardTimes}>{booking.nights} {booking.nights === 1 ? 'night' : 'nights'}</Text>
-                      <Text style={styles.stayCardPlatform}>€{booking.pricePerNight ? booking.pricePerNight * booking.nights : '---'}</Text>
+                      <Text style={styles.stayCardPriceNights}>
+                        <Text style={styles.stayCardPrice}>€{booking.pricePerNight ? booking.pricePerNight * booking.nights : '---'}</Text>
+                        {' · '}
+                        <Text style={styles.stayCardNights}>{booking.nights} {booking.nights === 1 ? 'night' : 'nights'}</Text>
+                      </Text>
                     </View>
                   </ImageBackground>
                 </TouchableOpacity>
