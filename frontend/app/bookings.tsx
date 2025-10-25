@@ -1971,7 +1971,13 @@ export default function TripCanvas() {
             keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
           >
             {/* Sticky Header with Title and Close Button */}
-            <View style={styles.luxuryEditHeader}>
+            <LinearGradient
+              colors={['rgba(255,180,120,0.12)', 'rgba(212,140,90,0.18)', 'rgba(80,50,40,0.35)', 'rgba(60,45,50,0.5)', 'rgba(30,25,28,0.75)']}
+              locations={[0, 0.25, 0.6, 0.85, 1]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.luxuryEditHeader}
+            >
               <View style={styles.luxuryEditTitleContainer}>
                 <Text style={styles.luxuryEditTitle}>Edit Trip</Text>
               </View>
@@ -1982,7 +1988,7 @@ export default function TripCanvas() {
               >
                 <Ionicons name="close" size={18} color="rgba(214,193,152,0.9)" />
               </TouchableOpacity>
-            </View>
+            </LinearGradient>
 
             <ScrollView 
               style={styles.luxuryEditScroll}
