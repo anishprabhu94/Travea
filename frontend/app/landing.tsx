@@ -3508,8 +3508,6 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 10,
     backgroundColor: 'rgba(255,255,255,0.15)', // Match single-city mood pills
-    borderTopWidth: 0.5,
-    borderTopColor: 'rgba(255,255,255,0.25)', // Top specular line
     ...Platform.select({
       web: {
         background: 'linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05))',
