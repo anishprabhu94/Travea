@@ -5387,25 +5387,29 @@ const styles = StyleSheet.create({
   },
   progressCapsule: {
     position: 'absolute',
-    height: 20,
-    minWidth: 40,
-    paddingHorizontal: 8,
-    borderRadius: 10,
-    backgroundColor: 'rgba(227,196,123,0.2)', // Planning default
+    height: 24,
+    minWidth: 45,
+    paddingHorizontal: 10,
+    borderRadius: 12,
+    backgroundColor: 'rgba(40,35,30,0.85)',
+    borderWidth: 1,
+    borderColor: 'rgba(227,196,123,0.4)',
     alignItems: 'center',
     justifyContent: 'center',
-    top: -6, // Center vertically relative to bar
+    top: -8,
     zIndex: 2,
-    // Inner glow
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(255,255,255,0.15)',
-        shadowOffset: { width: 0, height: 0 },
+        shadowColor: 'rgba(0,0,0,0.5)',
+        shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 1,
-        shadowRadius: 3,
+        shadowRadius: 6,
       },
       android: {
-        elevation: 2,
+        elevation: 8,
+      },
+      web: {
+        boxShadow: '0 3px 6px rgba(0,0,0,0.5), 0 0 8px rgba(227,196,123,0.3), inset 0 1px 0 rgba(255,255,255,0.15)',
       },
     }),
   },
