@@ -3522,8 +3522,8 @@ const styles = StyleSheet.create({
   moodChipText: {
     fontSize: 11,
     fontWeight: '500',
-    color: 'rgba(255,255,255,0.95)', // Match single-city (white @ 95%)
-    letterSpacing: 0.2,
+    color: '#E8E3D3',
+    letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
