@@ -3489,34 +3489,35 @@ const styles = StyleSheet.create({
     width: '100%', // Ensure full width to prevent cutoff
   },
   moodChip: {
-    borderRadius: 10,
-    overflow: 'hidden',
-    borderWidth: 0.6,
-    borderColor: 'rgba(255,255,255,0.4)', // Match city pills border
+    borderRadius: 100,
+    overflow: 'visible',
+    marginRight: 8,
+    marginBottom: 6,
+    borderWidth: 0,
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(0,0,0,0.25)',
-        shadowOffset: { width: 0, height: 1 },
+        shadowColor: 'rgba(0,0,0,0.3)',
+        shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 1,
-        shadowRadius: 4,
+        shadowRadius: 10,
       },
       android: {
-        elevation: 3,
+        elevation: 5,
       },
       web: {
-        boxShadow: '0 1px 4px rgba(0,0,0,0.25), inset 0 0.5px 0 rgba(255,255,255,0.25)', // Match specular
+        boxShadow: '0 4px 10px rgba(0,0,0,0.3), inset 0 -3px 8px rgba(0,0,0,0.22)',
+        backdropFilter: 'blur(12px) saturate(120%)',
+        background: 'linear-gradient(145deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06))',
+        backgroundClip: 'padding-box',
       },
     }),
   },
   moodChipBlur: {
     paddingVertical: 5,
     paddingHorizontal: 10,
-    backgroundColor: 'rgba(255,255,255,0.15)', // Match single-city mood pills
-    ...Platform.select({
-      web: {
-        background: 'linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05))',
-      },
-    }),
+    backgroundColor: 'rgba(220,220,230,0.1)',
+    borderWidth: 0,
+    borderRadius: 100,
   },
   moodChipText: {
     fontSize: 11,
