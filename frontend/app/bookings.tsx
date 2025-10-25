@@ -3100,9 +3100,9 @@ const styles = StyleSheet.create({
     }),
   },
 
-  // City Header - 220px
+  // City Header - 180px (reduced)
   cityHeaderContainer: {
-    height: 220,
+    height: 180,
     marginHorizontal: 24,
     marginTop: 24,
     marginBottom: 24,
