@@ -1570,11 +1570,7 @@ export default function Landing() {
                     </ScrollView>
                   ) : (
                     <View style={styles.emptySearchState}>
-                      <Image 
-                        source={{ uri: 'https://customer-assets.emergentagent.com/job_voyageglass/artifacts/8e0fo8ti_image.png' }}
-                        style={styles.centerGlobeIcon}
-                        resizeMode="contain"
-                      />
+                      <Ionicons name="earth-outline" size={64} color="rgba(255,255,255,0.25)" />
                       <Text style={styles.emptyStateTitle}>Search cities</Text>
                       <Text style={styles.emptyStateSubtitle}>Discover your next journey</Text>
                     </View>
