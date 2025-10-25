@@ -657,7 +657,7 @@ export default function Landing() {
         <View style={styles.luxuryInfoContainer}>
           <BlurView intensity={22} tint="light" style={styles.frostedGlassPane}>
             <LinearGradient
-              colors={['rgba(255,255,255,0.18)', 'rgba(255,255,255,0.05)']}
+              colors={['rgba(30,30,32,0.35)', 'rgba(20,20,22,0.45)']}
               locations={[0, 1]}
               start={{ x: 0.3, y: 0.1 }}
               end={{ x: 1, y: 1 }}
