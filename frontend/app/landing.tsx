@@ -3433,7 +3433,7 @@ const styles = StyleSheet.create({
   },
   microPostcard: {
     borderRadius: 12,
-    overflow: 'visible',
+    overflow: 'hidden',
     borderWidth: 0,
     ...Platform.select({
       ios: {
