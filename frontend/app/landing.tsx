@@ -2486,7 +2486,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   luxuryTransportIcon: {
-    marginRight: 8,
+    marginRight: 10,
   },
   luxuryTransportTime: {
     fontSize: 14,
