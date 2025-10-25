@@ -3844,7 +3844,7 @@ const styles = StyleSheet.create({
   heroCityCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.06)',
+    backgroundColor: 'transparent',
     borderRadius: 10,
     padding: 12,
     ...Platform.select({
