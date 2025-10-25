@@ -3155,7 +3155,7 @@ const styles = StyleSheet.create({
   cityName: {
     fontSize: 22,
     fontWeight: '600',
-    color: 'rgba(255,255,255,0.9)',
+    color: '#E9D4A0',
     fontFamily: Platform.select({
       ios: 'Playfair Display',
       android: 'serif',
@@ -3163,9 +3163,8 @@ const styles = StyleSheet.create({
     }),
   },
   cityDescription: {
-    fontSize: 13,
-    fontStyle: 'italic',
-    color: 'rgba(181,155,115,0.9)',
+    fontSize: 14,
+    color: 'rgba(255,255,255,0.85)',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
