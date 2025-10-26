@@ -1950,7 +1950,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.12)',
-    backgroundColor: 'rgba(120, 115, 105, 0.22)',
+    backgroundColor: 'rgba(160, 155, 145, 0.18)',
     ...Platform.select({
       ios: {
         shadowColor: '#000000',
