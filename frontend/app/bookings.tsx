@@ -2969,7 +2969,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    marginTop: 20,
+    marginTop: 12,
     marginBottom: 4,
     marginLeft: '5%',
     marginRight: '5%',
