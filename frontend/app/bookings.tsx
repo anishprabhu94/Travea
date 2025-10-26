@@ -1194,6 +1194,16 @@ export default function TripCanvas() {
         
         {/* Frosted pane container for hero content */}
         <View style={styles.heroFrostedPane}>
+          {/* Halo Arc - Dynamic Ambient Progress */}
+          <HaloArc 
+            progress={calculateMockProgress()} 
+            width={Platform.select({ ios: 340, android: 340, web: 350 })}
+            height={200}
+            onPress={() => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+            }}
+          />
+          
           <BlurView intensity={25} tint="light" style={styles.heroBlurWrapper}>
           <View style={styles.heroTitleContainer}>
             <Text style={styles.heroTitle}>{currentTrip.circuitTitle || currentTrip.title}</Text>
