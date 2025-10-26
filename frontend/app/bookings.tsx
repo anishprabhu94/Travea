@@ -4928,13 +4928,27 @@ const styles = StyleSheet.create({
   },
   // City Card Styles
   cityCard: {
-    backgroundColor: 'rgba(255,255,255,0.05)',
-    borderRadius: 12,
-    borderWidth: 0.5,
-    borderColor: 'rgba(214,193,152,0.15)',
+    backgroundColor: 'rgba(90, 85, 80, 0.28)',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.12)',
     padding: 14,
     marginBottom: 12,
     overflow: 'visible',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.28,
+        shadowRadius: 10,
+      },
+      android: {
+        elevation: 8,
+      },
+      web: {
+        boxShadow: '0 4px 10px rgba(0,0,0,0.28), inset 0 1px 1px rgba(255,255,255,0.08)',
+      },
+    }),
   },
   cityCardActive: {
     backgroundColor: 'rgba(201,180,124,0.12)',
