@@ -11,6 +11,7 @@ import {
   TextInput,
   Animated,
   KeyboardAvoidingView,
+  Alert,
 } from 'react-native';
 import { useTripCanvas } from '../contexts/TripCanvasContext';
 import { useTrips } from '../contexts/TripsContext';
