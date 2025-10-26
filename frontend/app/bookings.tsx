@@ -1161,19 +1161,46 @@ export default function TripCanvas() {
             </TouchableOpacity>
           </View>
           
-          {/* Status Pill - Read-only with Gradient */}
-          <LinearGradient
-            colors={getStatusGradientColors(currentTrip.status)}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={styles.statusPill}
-          >
-            <Text style={[styles.statusPillText, { color: getStatusTextColor(currentTrip.status) }]}>
-              {currentTrip.status}
-            </Text>
-          </LinearGradient>
+          {/* Status Pill with Quick Icons Row */}
+          <View style={styles.statusWithIconsRow}>
+            <LinearGradient
+              colors={getStatusGradientColors(currentTrip.status)}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.statusPill}
+            >
+              <Text style={[styles.statusPillText, { color: getStatusTextColor(currentTrip.status) }]}>
+                {currentTrip.status}
+              </Text>
+            </LinearGradient>
+            
+            {/* Quick Icons - Inline with Status */}
+            <View style={styles.quickStatusIconsInline}>
+              <View style={styles.quickIconCompact}>
+                <Ionicons 
+                  name="airplane-outline" 
+                  size={16} 
+                  color={getBookingIconColor(activeDay.mockBookingStatus?.flights || 'Pending')} 
+                />
+              </View>
+              <View style={styles.quickIconCompact}>
+                <Ionicons 
+                  name="bed-outline" 
+                  size={16} 
+                  color={getBookingIconColor(activeDay.mockBookingStatus?.stays || 'Pending')} 
+                />
+              </View>
+              <View style={styles.quickIconCompact}>
+                <Ionicons 
+                  name="car-outline" 
+                  size={16} 
+                  color={getBookingIconColor(activeDay.mockBookingStatus?.transport || 'Pending')} 
+                />
+              </View>
+            </View>
+          </View>
           
-          {/* City Strip - Horizontal Scrollable Pills */}
+          {/* City Strip - Moved Down with More Spacing */}
           <ScrollView 
             horizontal 
             showsHorizontalScrollIndicator={false}
