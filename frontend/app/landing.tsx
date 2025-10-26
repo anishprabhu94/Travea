@@ -725,7 +725,8 @@ export default function Landing() {
                         </>
                       )}
                     </View>
-                  </>                ) : (
+                  </>
+                ) : (
                   <>
                     {/* SINGLE CITY CARDS - Left Aligned */}
                     {/* Title with Country */}
