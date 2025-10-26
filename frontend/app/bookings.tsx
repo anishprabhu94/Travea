@@ -4506,6 +4506,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     borderBottomWidth: 0.5,
     borderBottomColor: 'rgba(214,193,152,0.15)',
+    borderBottomLeftRadius: 24,
+    borderBottomRightRadius: 24,
     zIndex: 100,
   },
   luxuryCloseButton: {
