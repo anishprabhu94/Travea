@@ -3552,7 +3552,7 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   flightCardTraveler: {
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: '700',
     color: 'rgba(181,155,115,0.9)',
     textTransform: 'uppercase',
