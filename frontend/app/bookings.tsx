@@ -1410,18 +1410,18 @@ export default function TripCanvas() {
                   
                   {/* Frosted Glass Content Pane */}
                   <View style={styles.flightImageCardFrosted}>
-                    <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 0}}>
+                    <View style={{flexDirection: 'row', alignItems: 'baseline', marginBottom: 0}}>
                       <Text style={styles.flightCardTraveler}>{flight.traveler === 'Traveler 1' ? (user?.name || 'Traveler 1') : flight.traveler}</Text>
                       {flight.traveler !== 'Traveler 1' && (
                         <TouchableOpacity 
-                          style={{marginLeft: 6, marginTop: -2}}
+                          style={{marginLeft: 6}}
                           onPress={() => {
                             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                             Alert.alert('Edit Traveler', 'Traveler name editing coming soon!');
                           }}
                           activeOpacity={0.7}
                         >
-                          <Ionicons name="pencil-outline" size={14} color="rgba(181,155,115,0.9)" />
+                          <Ionicons name="pencil-outline" size={13} color="rgba(181,155,115,0.9)" />
                         </TouchableOpacity>
                       )}
                     </View>
