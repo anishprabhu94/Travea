@@ -1826,18 +1826,21 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 16,
     overflow: 'hidden',
-    borderWidth: 0.5,
-    borderColor: 'rgba(181,155,115,0.2)',
-    backgroundColor: 'rgba(255,255,255,0.05)',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.12)',
+    backgroundColor: 'rgba(90, 85, 80, 0.28)',
     ...Platform.select({
       ios: {
         shadowColor: '#000000',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.3,
-        shadowRadius: 12,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.28,
+        shadowRadius: 10,
       },
       android: {
         elevation: 8,
+      },
+      web: {
+        boxShadow: '0 4px 10px rgba(0,0,0,0.28), inset 0 1px 1px rgba(255,255,255,0.08)',
       },
     }),
   },
