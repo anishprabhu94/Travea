@@ -3432,9 +3432,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
     borderWidth: 0,
-    borderBottomWidth: 2,
-    borderBottomColor: 'rgba(0,0,0,0.25)',
-    backgroundColor: 'rgba(100,88,70,0.35)',
+    backgroundColor: 'rgba(100,88,70,0.25)',
     ...Platform.select({
       ios: {
         shadowColor: '#000000',
