@@ -779,6 +779,13 @@ export default function Landing() {
                       <Text style={styles.narrativeDuration}>
                         {destination.transport[0]?.time || "8h 30m"} away by flight
                       </Text>
+                      {destination.duration && (
+                        <>
+                          <Text style={styles.narrativeDuration}> • </Text>
+                          <Ionicons name="calendar-outline" size={13} color="rgba(255,255,255,0.7)" />
+                          <Text style={styles.narrativeDuration}> {destination.duration} recommended</Text>
+                        </>
+                      )}
                     </View>
                   </>
                 )}
