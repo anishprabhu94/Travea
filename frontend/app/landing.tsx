@@ -3432,19 +3432,21 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
     borderWidth: 0,
-    backgroundColor: 'rgba(200,175,120,0.08)',
+    borderBottomWidth: 2,
+    borderBottomColor: 'rgba(0,0,0,0.25)',
+    backgroundColor: 'rgba(100,88,70,0.35)',
     ...Platform.select({
       ios: {
         shadowColor: '#000000',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.45,
-        shadowRadius: 12,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.5,
+        shadowRadius: 8,
       },
       android: {
-        elevation: 10,
+        elevation: 12,
       },
       web: {
-        boxShadow: '0 6px 16px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.35)',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.3)',
         backdropFilter: 'blur(18px) saturate(140%)',
         background: 'linear-gradient(145deg, rgba(255,255,255,0.22), rgba(255,255,255,0.08))',
         backgroundClip: 'padding-box',
