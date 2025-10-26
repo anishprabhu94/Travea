@@ -372,53 +372,13 @@ const AVAILABLE_CITIES = [
   { code: 'REY', name: 'Reykjavík', region: 'Iceland' },
 ];
 
-// Halo Arc Component - Dynamic Ambient Progress
-const HaloArc = ({ progress = 25, width = 350, height = 200, onPress }) => {
-  const shimmerAnim = useRef(new Animated.Value(0)).current;
-  const breatheAnim = useRef(new Animated.Value(0.8)).current;
-  const [showProgress, setShowProgress] = useState(false);
-
-  useEffect(() => {
-    // Shimmer animation - subtle moving highlight
-    Animated.loop(
-      Animated.timing(shimmerAnim, {
-        toValue: 1,
-        duration: 4000,
-        useNativeDriver: true,
-      })
-    ).start();
-
-    // Breathing animation - gentle pulse
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(breatheAnim, {
-          toValue: 1,
-          duration: 3000,
-          useNativeDriver: true,
-        }),
-        Animated.timing(breatheAnim, {
-          toValue: 0.8,
-          duration: 3000,
-          useNativeDriver: true,
-        }),
-      ])
-    ).start();
-  }, []);
-
-  const handlePress = () => {
-    if (onPress) {
-      onPress();
-      setShowProgress(true);
-      setTimeout(() => setShowProgress(false), 2000);
-    }
-  };
-
-  // Calculate arc path (rounded rectangle border)
+// Static Progress Rim - Quiet glowing perimeter
+const StaticProgressRim = ({ progress = 25, width = 350, height = 200 }) => {
   const borderRadius = 20;
-  const strokeWidth = 1.5;
+  const strokeWidth = 2;
   const inset = 3;
 
-  // Total perimeter of rounded rectangle
+  // Calculate arc path (rounded rectangle border)
   const rectWidth = width - (inset * 2);
   const rectHeight = height - (inset * 2);
   const perimeter = (rectWidth * 2 + rectHeight * 2) - (borderRadius * 8) + (Math.PI * borderRadius * 2);
@@ -440,55 +400,33 @@ const HaloArc = ({ progress = 25, width = 350, height = 200, onPress }) => {
   `;
 
   return (
-    <TouchableOpacity 
-      onPress={handlePress}
-      activeOpacity={0.9}
+    <View 
       style={{
         position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
+        pointerEvents: 'none',
       }}
     >
       <Svg width={width} height={height} style={{ position: 'absolute' }}>
         <Defs>
-          <SvgLinearGradient id="haloGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <Stop offset="0%" stopColor="rgba(212, 184, 130, 0.3)" stopOpacity="1" />
-            <Stop offset="50%" stopColor="rgba(255, 235, 200, 0.55)" stopOpacity="1" />
-            <Stop offset="100%" stopColor="rgba(212, 184, 130, 0.05)" stopOpacity="1" />
+          <SvgLinearGradient id="staticGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+            <Stop offset="0%" stopColor="rgba(212,184,130,0.45)" stopOpacity="1" />
+            <Stop offset="100%" stopColor="rgba(255,255,255,0.15)" stopOpacity="1" />
           </SvgLinearGradient>
         </Defs>
-        <Animated.View style={{ opacity: breatheAnim }}>
-          <Path
-            d={path}
-            stroke="url(#haloGradient)"
-            strokeWidth={strokeWidth}
-            fill="none"
-            strokeDasharray={`${progressLength} ${perimeter}`}
-            strokeLinecap="round"
-          />
-        </Animated.View>
+        <Path
+          d={path}
+          stroke="url(#staticGlow)"
+          strokeWidth={strokeWidth}
+          fill="none"
+          strokeDasharray={`${progressLength} ${perimeter}`}
+          strokeLinecap="round"
+        />
       </Svg>
-      
-      {showProgress && (
-        <Animated.View
-          style={{
-            position: 'absolute',
-            top: 8,
-            right: 8,
-            backgroundColor: 'rgba(0,0,0,0.6)',
-            paddingHorizontal: 10,
-            paddingVertical: 4,
-            borderRadius: 8,
-          }}
-        >
-          <Text style={{ color: 'rgba(255,255,255,0.7)', fontSize: 11, fontWeight: '500' }}>
-            {progress}% complete
-          </Text>
-        </Animated.View>
-      )}
-    </TouchableOpacity>
+    </View>
   );
 };
 
