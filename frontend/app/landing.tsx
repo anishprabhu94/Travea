@@ -2372,7 +2372,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '400',
     fontStyle: 'italic',
-    color: 'rgba(255,255,255,0.85)',
+    color: 'rgba(255,255,255,0.9)',
     marginBottom: 8,
     letterSpacing: 0.15,
     fontFamily: Platform.select({
