@@ -655,7 +655,7 @@ export default function Landing() {
 
         {/* Luxury Frosted Info Pane - Redesigned as Window into Story */}
         <View style={styles.luxuryInfoContainer}>
-          <BlurView intensity={22} tint="light" style={styles.frostedGlassPane}>
+          <BlurView intensity={80} tint="light" style={styles.frostedGlassPane}>
             <LinearGradient
               colors={['rgba(255,255,255,0.20)', 'transparent']}
               locations={[0, 1]}
