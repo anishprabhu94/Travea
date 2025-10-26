@@ -3446,21 +3446,21 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
     borderWidth: 0,
-    backgroundColor: 'rgba(70,60,48,0.55)',
+    backgroundColor: 'rgba(90,80,65,0.60)',
     ...Platform.select({
       ios: {
         shadowColor: '#000000',
-        shadowOffset: { width: 0, height: 6 },
-        shadowOpacity: 0.6,
-        shadowRadius: 10,
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.7,
+        shadowRadius: 12,
       },
       android: {
-        elevation: 14,
+        elevation: 16,
       },
       web: {
-        boxShadow: '0 6px 16px rgba(0,0,0,0.5), 0 3px 6px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.15)',
+        boxShadow: '0 8px 20px rgba(0,0,0,0.6), 0 4px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.18)',
         backdropFilter: 'blur(18px) saturate(140%)',
-        background: 'linear-gradient(145deg, rgba(255,255,255,0.22), rgba(255,255,255,0.08))',
+        background: 'linear-gradient(145deg, rgba(220,200,160,0.24), rgba(180,160,120,0.12))',
         backgroundClip: 'padding-box',
       },
     }),
@@ -3468,18 +3468,18 @@ const styles = StyleSheet.create({
   microPostcardBlur: {
     paddingVertical: 5,
     paddingHorizontal: 10,
-    backgroundColor: 'rgba(200,175,120,0.08)',
+    backgroundColor: 'rgba(150,135,100,0.12)',
     borderWidth: 0,
     borderRadius: 12,
   },
   microPostcardText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#F5E6C4',
+    color: '#E8DCC0',
     letterSpacing: 0.3,
-    textShadowColor: 'rgba(0,0,0,0.35)',
+    textShadowColor: 'rgba(0,0,0,0.45)',
     textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 2,
+    textShadowRadius: 3,
     fontFamily: Platform.select({
       ios: 'Inter',
       android: 'Inter',
@@ -3490,7 +3490,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '900',
     color: 'rgba(192,167,124,0.95)',
-    marginHorizontal: 6,
+    marginHorizontal: 8,
   },
   // MULTI-CITY - Mood Descriptor Row
   moodDescriptorRow: {
