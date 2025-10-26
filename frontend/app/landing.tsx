@@ -653,22 +653,12 @@ export default function Landing() {
           </Animated.View>
         </TouchableOpacity>
 
-        {/* Luxury Frosted Info Pane - Redesigned as Window into Story */}
+        {/* Luxury Frosted Info Pane - Dusk-Toned Glass */}
         <View style={styles.luxuryInfoContainer}>
-          <BlurView intensity={80} tint="light" style={styles.frostedGlassPane}>
-            <LinearGradient
-              colors={['rgba(255,255,255,0.20)', 'transparent']}
-              locations={[0, 1]}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 0, y: 1 }}
-              style={styles.glassPaneGradient}
-            >
-              {/* Faint top-down gradient overlay for subtle luminosity */}
-              <LinearGradient
-                colors={['rgba(255,255,255,0.08)', 'transparent']}
-                locations={[0, 0.4]}
-                style={styles.topDownGradientOverlay}
-              />
+          <BlurView intensity={60} tint="dark" style={styles.frostedGlassPane}>
+            <View style={styles.glassPaneGradient}>
+              {/* Bronze warmth overlay */}
+              <View style={styles.topDownGradientOverlay} />
               <View style={styles.glassPaneInner}>
                 {/* MULTI-CITY CARDS */}
                 {destination.isMultiCity && destination.cities ? (
