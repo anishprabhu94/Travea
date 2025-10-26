@@ -2776,16 +2776,17 @@ const styles = StyleSheet.create({
   },
   heroFrostedPane: {
     position: 'absolute',
-    bottom: 32,
+    bottom: 40,
     left: '5%',
     right: '5%',
     backgroundColor: 'rgba(255,255,255,0.06)',
     borderRadius: 24,
     borderWidth: 0.5,
     borderColor: 'rgba(181,155,115,0.15)',
-    paddingTop: 14,
-    paddingBottom: 16,
+    paddingTop: 12,
+    paddingBottom: 14,
     paddingHorizontal: 18,
+    marginBottom: 8,
     ...Platform.select({
       web: {
         backdropFilter: 'blur(25px)',
