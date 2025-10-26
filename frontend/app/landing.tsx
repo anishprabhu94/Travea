@@ -2295,35 +2295,30 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
   },
   frostedGlassPane: {
-    borderRadius: 22,
+    borderRadius: 18,
     overflow: 'hidden',
     width: '100%',
-    borderWidth: 0.5,
-    borderColor: 'rgba(255,255,255,0.22)',
+    borderWidth: 0,
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(22px) saturate(180%)',
-        boxShadow: '0 4px 25px rgba(0,0,0,0.45), inset 0 0 0.5px rgba(255,255,255,0.4)',
+        backdropFilter: 'blur(24px)',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.25)',
       },
       ios: {
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.45,
-        shadowRadius: 25,
+        shadowOpacity: 0.25,
+        shadowRadius: 12,
       },
       android: {
-        elevation: 15,
+        elevation: 8,
       },
     }),
   },
   glassPaneGradient: {
     width: '100%',
     height: '100%',
-    ...Platform.select({
-      web: {
-        background: 'radial-gradient(circle at 30% 10%, rgba(255,255,255,0.18), rgba(255,255,255,0.05))',
-      },
-    }),
+    backgroundColor: 'rgba(255, 255, 255, 0.14)',
   },
   topDownGradientOverlay: {
     position: 'absolute',
@@ -2332,17 +2327,12 @@ const styles = StyleSheet.create({
     right: 0,
     height: '30%',
     zIndex: 1,
+    opacity: 0.8,
   },
   glassPaneInner: {
-    padding: 17, // 16-18px inside pane
+    padding: 17,
     position: 'relative',
     zIndex: 2,
-    // Vertical gradient overlay for visual cohesion (top: lighter, bottom: darker)
-    ...Platform.select({
-      web: {
-        background: 'linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.3))',
-      },
-    }),
   },
   // Destination Title
   glassDestinationTitle: {
