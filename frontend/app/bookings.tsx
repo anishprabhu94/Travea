@@ -2755,9 +2755,9 @@ const styles = StyleSheet.create({
     paddingBottom: 100,
   },
 
-  // Hero Panel - Compact and elegant
+  // Hero Panel - Expanded for full pane visibility
   heroContainer: {
-    height: 240,
+    height: 280,
     marginBottom: 0,
     overflow: 'visible',
     borderBottomLeftRadius: 32,
