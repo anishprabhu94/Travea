@@ -2868,14 +2868,15 @@ const styles = StyleSheet.create({
 
   // City Strip - Horizontal Scroll
   cityStripScroll: {
-    marginBottom: 24,
-    marginLeft: '3%', // Moved left from 5% for better alignment
+    marginBottom: 0,
+    marginTop: 10,
+    marginLeft: '3%',
   },
   cityStripContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 0, // Changed from 20 to left-align
-    paddingLeft: 24, // Add left padding only
+    paddingHorizontal: 0,
+    paddingLeft: 24,
     gap: 8,
   },
   cityStrip: {
@@ -2900,25 +2901,54 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 14,
-    backgroundColor: 'rgba(255,255,255,0.08)',
+    backgroundColor: 'rgba(0,0,0,0.25)',
     borderWidth: 1,
-    borderColor: 'rgba(181,155,115,0.2)',
+    borderColor: 'rgba(255,255,255,0.08)',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 2,
+      },
+      web: {
+        boxShadow: '0 1px 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08)',
+      },
+    }),
   },
   cityCapsuleActive: {
-    backgroundColor: '#B59B73',
-    borderColor: '#B59B73',
+    backgroundColor: 'rgba(0,0,0,0.35)',
+    borderColor: 'rgba(181,155,115,0.3)',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.35,
+        shadowRadius: 8,
+      },
+      android: {
+        elevation: 6,
+      },
+      web: {
+        boxShadow: '0 3px 8px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08)',
+      },
+    }),
   },
   cityCapsuleText: {
-    fontSize: 14, // Increased from 12 for better visibility
+    fontSize: 14,
     fontWeight: '600',
-    color: 'rgba(181,155,115,0.8)',
+    color: 'rgba(181,155,115,0.75)',
     fontFamily: Platform.select({
       ios: 'Inter',
       web: 'Inter, -apple-system, sans-serif',
     }),
   },
   cityCapsuleTextActive: {
-    color: 'rgba(10,10,10,0.9)',
+    color: 'rgba(212,184,130,0.95)',
+    fontWeight: '700',
   },
 
   // Quick Status Row - Refined Outlined Icons (Whisper of Light Through Fog)
