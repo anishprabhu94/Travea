@@ -2948,11 +2948,11 @@ const styles = StyleSheet.create({
   quickStatusContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    gap: 40,
+    justifyContent: 'space-evenly',
     marginTop: 18,
     marginLeft: '5%',
     marginRight: '5%',
+    paddingHorizontal: 20,
   },
   quickStatusItem: {
     alignItems: 'center',
