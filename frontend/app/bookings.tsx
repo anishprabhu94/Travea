@@ -1073,6 +1073,7 @@ export default function TripCanvas() {
         
         {/* Frosted pane container for hero content */}
         <View style={styles.heroFrostedPane}>
+          <BlurView intensity={25} tint="light" style={styles.heroBlurWrapper}>
           <View style={styles.heroTitleContainer}>
             <Text style={styles.heroTitle}>{currentTrip.circuitTitle || currentTrip.title}</Text>
           </View>
