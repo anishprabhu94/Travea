@@ -4749,7 +4749,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: 'rgba(214,193,152,0.25)',
     maxHeight: 200,
-    zIndex: 1000,
+    zIndex: 9999,
     ...Platform.select({
       web: {
         boxShadow: '0 6px 20px rgba(0,0,0,0.5)',
@@ -4759,7 +4759,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 6 },
         shadowOpacity: 0.5,
         shadowRadius: 10,
-        elevation: 10,
+        elevation: 999,
       },
     }),
   },
