@@ -27,6 +27,7 @@ import { BlurView } from 'expo-blur';
 import * as Haptics from 'expo-haptics';
 import DraggableFlatList, { ScaleDecorator, RenderItemParams } from 'react-native-draggable-flatlist';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Svg, { Path, Defs, LinearGradient as SvgLinearGradient, Stop } from 'react-native-svg';
 
 // "Frosted Editorial System v3" - Luxury Travel Chronicle
 const tripData = {
