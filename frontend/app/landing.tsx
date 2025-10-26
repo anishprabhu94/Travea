@@ -721,17 +721,17 @@ export default function Landing() {
                       </View>
                     </View>
                     
-                    {/* Duration with Icons - Match Single City Format */}
+                    {/* Duration with Icons - Simplified */}
                     <View style={styles.narrativeDurationRow}>
                       <Ionicons name="airplane-outline" size={13} color="rgba(255,255,255,0.7)" />
                       <Text style={styles.narrativeDuration}>
-                        {destination.transport[0]?.time || "8h 30m"} away by flight
+                        {' '}{destination.transport[0]?.time || "8h 30m"}
                       </Text>
                       {destination.duration && (
                         <>
                           <Text style={styles.narrativeDuration}> • </Text>
                           <Ionicons name="calendar-outline" size={13} color="rgba(255,255,255,0.7)" />
-                          <Text style={styles.narrativeDuration}> {destination.duration} recommended</Text>
+                          <Text style={styles.narrativeDuration}> {destination.duration}</Text>
                         </>
                       )}
                     </View>
