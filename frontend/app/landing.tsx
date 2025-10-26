@@ -2310,7 +2310,7 @@ const styles = StyleSheet.create({
   glassPaneGradient: {
     width: '100%',
     height: '100%',
-    backgroundColor: 'rgba(120, 115, 105, 0.22)',
+    backgroundColor: 'rgba(160, 155, 145, 0.18)',
   },
   topDownGradientOverlay: {
     position: 'absolute',
@@ -2318,7 +2318,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '100%',
-    backgroundColor: 'rgba(250, 235, 200, 0.08)',
+    backgroundColor: 'rgba(255, 245, 220, 0.10)',
     zIndex: 1,
   },
   glassPaneInner: {
