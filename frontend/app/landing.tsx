@@ -3473,10 +3473,10 @@ const styles = StyleSheet.create({
     }),
   },
   routeArrow: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: 'rgba(192,167,124,0.85)',
-    marginHorizontal: 5,
+    fontSize: 16,
+    fontWeight: '900',
+    color: 'rgba(192,167,124,0.95)',
+    marginHorizontal: 6,
   },
   // MULTI-CITY - Mood Descriptor Row
   moodDescriptorRow: {
