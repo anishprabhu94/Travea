@@ -3495,15 +3495,16 @@ const styles = StyleSheet.create({
     marginRight: 8,
     marginBottom: 6,
     borderWidth: 0,
+    backgroundColor: 'rgba(220,220,230,0.1)',
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(0,0,0,0.3)',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 1,
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.4,
         shadowRadius: 10,
       },
       android: {
-        elevation: 5,
+        elevation: 8,
       },
       web: {
         boxShadow: '0 4px 10px rgba(0,0,0,0.3), inset 0 -3px 8px rgba(0,0,0,0.22)',
