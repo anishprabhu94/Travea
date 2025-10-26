@@ -770,11 +770,8 @@ export default function Landing() {
                     <View style={styles.narrativeDurationRow}>
                       <Ionicons name="airplane-outline" size={13} color="rgba(255,255,255,0.7)" />
                       <Text style={styles.narrativeDuration}>
-                        {destination.transport[0]?.time || "8h 30m"} away
+                        {destination.transport[0]?.time || "8h 30m"} away by flight
                       </Text>
-                      <Text style={styles.narrativeDuration}> • </Text>
-                      <Ionicons name="calendar-outline" size={13} color="rgba(255,255,255,0.7)" />
-                      <Text style={styles.narrativeDuration}> 4 Days</Text>
                     </View>
                   </>
                 )}
