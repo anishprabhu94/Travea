@@ -1370,7 +1370,7 @@ export default function TripCanvas() {
                     source={{ uri: 'https://customer-assets.emergentagent.com/job_tripplanner-90/artifacts/kdqm7un3_search%202.jpg' }}
                     style={styles.flightImageCardBg}
                     imageStyle={styles.flightImageCardBgStyle}
-                    blurRadius={4}
+                    blurRadius={8}
                   >
                     {/* Date Badge - Top Left */}
                     <View style={styles.cardDateBadgeOnImageLeft}>
