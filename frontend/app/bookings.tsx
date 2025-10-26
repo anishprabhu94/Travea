@@ -2237,6 +2237,7 @@ export default function TripCanvas() {
                   <GestureHandlerRootView style={styles.luxuryCityList}>
                     <DraggableFlatList
                       data={editableCities}
+                      scrollEnabled={false}
                       renderItem={({ item: cityCode, drag, isActive, getIndex }) => {
                         const index = getIndex() ?? 0;
                         // Get full city name - prioritize currentTrip.cities, fallback to AVAILABLE_CITIES
