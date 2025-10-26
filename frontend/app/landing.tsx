@@ -3506,7 +3506,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
     marginBottom: 6,
     borderWidth: 0,
-    backgroundColor: 'rgba(220,220,230,0.1)',
+    backgroundColor: 'rgba(180,180,190,0.25)',
     ...Platform.select({
       ios: {
         shadowColor: '#000000',
@@ -3528,7 +3528,7 @@ const styles = StyleSheet.create({
   moodChipBlur: {
     paddingVertical: 5,
     paddingHorizontal: 10,
-    backgroundColor: 'rgba(220,220,230,0.1)',
+    backgroundColor: 'rgba(180,180,190,0.25)',
     borderWidth: 0,
     borderRadius: 100,
   },
