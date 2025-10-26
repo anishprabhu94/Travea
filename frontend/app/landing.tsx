@@ -3488,36 +3488,28 @@ const styles = StyleSheet.create({
     marginRight: 8,
     marginBottom: 6,
     borderWidth: 0.6,
-    borderColor: 'rgba(255,255,255,0.4)',
+    borderColor: 'rgba(255,255,255,0.18)',
     ...Platform.select({
       ios: {
         shadowColor: 'rgba(0,0,0,0.25)',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 1,
-        shadowRadius: 4,
+        shadowRadius: 3,
       },
       android: {
-        elevation: 3,
+        elevation: 2,
       },
       web: {
-        boxShadow: '0 1px 4px rgba(0,0,0,0.25), inset 0 0.5px 0 rgba(255,255,255,0.25)',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.25)',
       },
     }),
   },
   moodChipBlur: {
     paddingVertical: 5,
     paddingHorizontal: 10,
-    backgroundColor: 'rgba(255,255,255,0.15)',
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    borderTopWidth: 0.5,
-    borderTopColor: 'rgba(255,255,255,0.25)',
-    borderBottomWidth: 0,
-    ...Platform.select({
-      web: {
-        background: 'linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05))',
-      },
-    }),
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderWidth: 0,
+    borderRadius: 12,
   },
   moodChipText: {
     fontSize: 11,
