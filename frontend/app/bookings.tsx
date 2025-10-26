@@ -2597,7 +2597,11 @@ export default function TripCanvas() {
                 {currentTrip.status === 'Planning' && (
                   <TouchableOpacity
                     style={styles.deleteButton}
-                    onPress={() => setShowDeleteModal(true)}
+                    onPress={() => {
+                      console.log('Delete button pressed');
+                      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                      setShowDeleteModal(true);
+                    }}
                     activeOpacity={0.7}
                   >
                     <Text style={styles.deleteButtonText}>Delete Trip</Text>
