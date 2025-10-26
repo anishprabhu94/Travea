@@ -3506,21 +3506,21 @@ const styles = StyleSheet.create({
     marginRight: 8,
     marginBottom: 6,
     borderWidth: 0,
-    backgroundColor: 'rgba(180,180,190,0.25)',
+    backgroundColor: 'rgba(110,110,120,0.40)',
     ...Platform.select({
       ios: {
         shadowColor: '#000000',
         shadowOffset: { width: 0, height: 6 },
-        shadowOpacity: 0.4,
+        shadowOpacity: 0.5,
         shadowRadius: 10,
       },
       android: {
-        elevation: 8,
+        elevation: 10,
       },
       web: {
-        boxShadow: '0 4px 10px rgba(0,0,0,0.3), inset 0 -3px 8px rgba(0,0,0,0.22)',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.4), inset 0 -3px 8px rgba(0,0,0,0.28)',
         backdropFilter: 'blur(12px) saturate(120%)',
-        background: 'linear-gradient(145deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06))',
+        background: 'linear-gradient(145deg, rgba(150,150,160,0.2), rgba(90,90,100,0.15))',
         backgroundClip: 'padding-box',
       },
     }),
@@ -3528,14 +3528,14 @@ const styles = StyleSheet.create({
   moodChipBlur: {
     paddingVertical: 5,
     paddingHorizontal: 10,
-    backgroundColor: 'rgba(180,180,190,0.25)',
+    backgroundColor: 'rgba(110,110,120,0.35)',
     borderWidth: 0,
     borderRadius: 100,
   },
   moodChipText: {
     fontSize: 11,
     fontWeight: '500',
-    color: '#E8E3D3',
+    color: '#D8D3C8',
     letterSpacing: 0.3,
     fontFamily: Platform.select({
       ios: 'Inter',
