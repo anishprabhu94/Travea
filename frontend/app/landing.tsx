@@ -58,7 +58,7 @@ const destinationCards: DestinationCard[] = [
     region: 'Italy', 
     tagline: 'Lemon groves & stone paths', 
     image: 'https://customer-assets.emergentagent.com/job_luxury-travel-3/artifacts/sy3verjz_amalfi.jpg', 
-    transport: [{ icon: 'calendar-outline', time: '4 days' }], 
+    transport: [{ icon: 'airplane-outline', time: '9h 15m' }], 
     category: 'inspire',
     isMultiCity: true,
     cities: ['Amalfi', 'Ravello', 'Sorrento'],
