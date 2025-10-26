@@ -2778,11 +2778,11 @@ const styles = StyleSheet.create({
   },
   heroFrostedPane: {
     position: 'absolute',
-    bottom: -20,
+    bottom: 16,
     left: '5%',
     right: '5%',
     backgroundColor: 'rgba(255,255,255,0.06)',
-    borderRadius: 24,
+    borderRadius: 20,
     borderWidth: 0.5,
     borderColor: 'rgba(181,155,115,0.15)',
     overflow: 'hidden',
@@ -2801,8 +2801,8 @@ const styles = StyleSheet.create({
   },
   heroBlurWrapper: {
     width: '100%',
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingTop: 16,
+    paddingBottom: 12,
     paddingHorizontal: 18,
   },
   heroTitleContainer: {
