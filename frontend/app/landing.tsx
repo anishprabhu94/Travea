@@ -2290,27 +2290,27 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     width: '100%',
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.15)',
+    borderColor: 'rgba(255, 255, 255, 0.12)',
     ...Platform.select({
       web: {
         backdropFilter: 'blur(14px)',
-        boxShadow: '0 6px 18px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.1)',
+        boxShadow: '0 4px 10px rgba(0,0,0,0.28), inset 0 1px 1px rgba(255,255,255,0.08)',
       },
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 6 },
-        shadowOpacity: 0.35,
-        shadowRadius: 18,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.28,
+        shadowRadius: 10,
       },
       android: {
-        elevation: 10,
+        elevation: 8,
       },
     }),
   },
   glassPaneGradient: {
     width: '100%',
     height: '100%',
-    backgroundColor: 'rgba(30, 30, 30, 0.35)',
+    backgroundColor: 'rgba(70, 65, 60, 0.35)',
   },
   topDownGradientOverlay: {
     position: 'absolute',
@@ -2318,7 +2318,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '100%',
-    backgroundColor: 'rgba(200, 175, 120, 0.08)',
+    backgroundColor: 'rgba(220, 200, 160, 0.05)',
     zIndex: 1,
   },
   glassPaneInner: {
