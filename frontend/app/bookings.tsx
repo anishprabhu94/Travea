@@ -4928,7 +4928,7 @@ const styles = StyleSheet.create({
   },
   // City Card Styles
   cityCard: {
-    backgroundColor: 'rgba(90, 85, 80, 0.28)',
+    backgroundColor: 'rgba(120, 115, 105, 0.22)',
     borderRadius: 20,
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.12)',
