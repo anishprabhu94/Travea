@@ -729,7 +729,7 @@ export default function Landing() {
                       </Text>
                       {destination.duration && (
                         <>
-                          <Text style={styles.narrativeDuration}> • </Text>
+                          <Text style={styles.narrativeDuration}>  •  </Text>
                           <Ionicons name="calendar-outline" size={13} color="rgba(255,255,255,0.7)" />
                           <Text style={styles.narrativeDuration}> {destination.duration}</Text>
                         </>
