@@ -2778,20 +2778,16 @@ const styles = StyleSheet.create({
   },
   heroFrostedPane: {
     position: 'absolute',
-    bottom: 32,
+    bottom: 16,
     left: '5%',
     right: '5%',
     backgroundColor: 'rgba(255,255,255,0.06)',
     borderRadius: 24,
     borderWidth: 0.5,
     borderColor: 'rgba(181,155,115,0.15)',
-    paddingTop: 12,
-    paddingBottom: 14,
-    paddingHorizontal: 18,
-    marginBottom: 8,
+    overflow: 'hidden',
     ...Platform.select({
       web: {
-        backdropFilter: 'blur(25px)',
         boxShadow: '0 8px 24px rgba(0,0,0,0.3), inset 1px 1px 0 rgba(255,255,255,0.05)',
       },
       default: {
@@ -2802,6 +2798,12 @@ const styles = StyleSheet.create({
         elevation: 8,
       },
     }),
+  },
+  heroBlurWrapper: {
+    width: '100%',
+    paddingTop: 12,
+    paddingBottom: 14,
+    paddingHorizontal: 18,
   },
   heroTitleContainer: {
     flexDirection: 'row',
