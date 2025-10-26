@@ -5311,8 +5311,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 16,
-    alignSelf: 'flex-start',
-    marginBottom: 16,
+    marginBottom: 0,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.15)',
     ...Platform.select({
@@ -5323,6 +5322,25 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
       },
     }),
+  },
+  statusWithIconsRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 14,
+    justifyContent: 'space-between',
+  },
+  quickStatusIconsInline: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  quickIconCompact: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   statusPillText: {
     fontSize: 11,
