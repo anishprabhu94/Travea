@@ -1412,7 +1412,7 @@ export default function TripCanvas() {
                       <Text style={styles.flightCardTraveler}>{flight.traveler === 'Traveler 1' ? (user?.name || 'Traveler 1') : flight.traveler}</Text>
                       {flight.traveler !== 'Traveler 1' && (
                         <TouchableOpacity 
-                          style={{marginLeft: 8, padding: 4}}
+                          style={{marginLeft: 6, padding: 2}}
                           onPress={() => {
                             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                             Alert.alert('Edit Traveler', 'Traveler name editing coming soon!');
