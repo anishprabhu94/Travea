@@ -3436,7 +3436,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
     borderWidth: 0,
-    backgroundColor: 'rgba(90,80,65,0.60)',
+    backgroundColor: 'rgba(90,80,65,0.85)',
     ...Platform.select({
       ios: {
         shadowColor: '#000000',
@@ -3458,7 +3458,7 @@ const styles = StyleSheet.create({
   microPostcardBlur: {
     paddingVertical: 5,
     paddingHorizontal: 10,
-    backgroundColor: 'rgba(150,135,100,0.12)',
+    backgroundColor: 'rgba(150,135,100,0.22)',
     borderWidth: 0,
     borderRadius: 12,
   },
