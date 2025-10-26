@@ -2330,7 +2330,7 @@ const styles = StyleSheet.create({
   glassDestinationTitle: {
     fontSize: 19,
     fontWeight: '600',
-    color: '#D4B882',
+    color: '#D6B980',
     letterSpacing: 0.2,
     marginBottom: 4,
     ...Platform.select({
