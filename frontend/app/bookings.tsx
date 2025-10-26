@@ -2778,7 +2778,7 @@ const styles = StyleSheet.create({
   },
   heroFrostedPane: {
     position: 'absolute',
-    bottom: 16,
+    bottom: -8,
     left: '5%',
     right: '5%',
     backgroundColor: 'rgba(255,255,255,0.06)',
