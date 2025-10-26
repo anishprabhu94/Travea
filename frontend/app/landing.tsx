@@ -3488,7 +3488,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
     marginBottom: 6,
     borderWidth: 0.6,
-    borderColor: 'rgba(255,255,255,0.18)',
+    borderColor: 'rgba(255,255,255,0.15)',
     ...Platform.select({
       ios: {
         shadowColor: 'rgba(0,0,0,0.25)',
@@ -3507,14 +3507,14 @@ const styles = StyleSheet.create({
   moodChipBlur: {
     paddingVertical: 5,
     paddingHorizontal: 10,
-    backgroundColor: 'rgba(255,255,255,0.06)',
+    backgroundColor: 'rgba(255,255,255,0.08)',
     borderWidth: 0,
     borderRadius: 12,
   },
   moodChipText: {
     fontSize: 11,
     fontWeight: '500',
-    color: 'rgba(255,255,255,0.95)',
+    color: 'rgba(255,255,255,0.85)',
     letterSpacing: 0.2,
     fontFamily: Platform.select({
       ios: 'Inter',
