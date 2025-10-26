@@ -781,7 +781,7 @@ export default function Landing() {
                   </>
                 )}
               </View>
-            </LinearGradient>
+            </View>
           </BlurView>
         </View>
       </ImageBackground>
