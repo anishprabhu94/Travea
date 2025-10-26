@@ -3402,9 +3402,9 @@ const styles = StyleSheet.create({
   // SINGLE CITY - Narrative Duration - Refined String Pill Style
   narrativeDuration: {
     fontSize: 11,
-    fontWeight: '500', // Medium weight
-    fontStyle: 'italic', // Adds curatorial feel
-    color: 'rgba(255,255,255,0.80)', // White @ 80%
+    fontWeight: '500',
+    fontStyle: 'italic',
+    color: 'rgba(255,255,255,0.75)',
     letterSpacing: 0.2, // Breathing room
     fontFamily: Platform.select({
       ios: 'Inter',
