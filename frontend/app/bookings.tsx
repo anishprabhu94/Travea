@@ -1238,53 +1238,6 @@ export default function TripCanvas() {
             </Text>
           </LinearGradient>
           
-          {/* Progress Bar */}
-          <View style={styles.heroProgressContainer}>
-            <View style={styles.heroProgressBar}>
-              {/* Track Background with Gradient */}
-              <LinearGradient
-                colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.02)']}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={styles.progressTrack}
-              />
-              
-              {/* Progress Fill with Gradient */}
-              <LinearGradient
-                colors={['#E3C47B', '#FFF5CC']}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={[styles.heroProgressFill, { width: `${calculateMockProgress()}%` }]}
-              >
-                {/* Leading Edge Highlight */}
-                <View style={styles.progressLeadingEdge} />
-              </LinearGradient>
-              
-              {/* Progress Capsule */}
-              {calculateMockProgress() > 0 && (
-                <View style={[
-                  styles.progressCapsule,
-                  { 
-                    left: `${Math.max(0, Math.min(calculateMockProgress() - 8, 92))}%`,
-                    backgroundColor: 
-                      currentTrip.status === 'Planning' ? 'rgba(227,196,123,0.2)' :
-                      currentTrip.status === 'Upcoming' ? 'rgba(255,250,235,0.15)' :
-                      currentTrip.status === 'Ongoing' ? 'rgba(180,230,215,0.2)' :
-                      currentTrip.status === 'Completed' ? 'rgba(255,255,255,0.08)' :
-                      'rgba(227,196,123,0.2)' // default to Planning
-                  }
-                ]}>
-                  <Text style={[
-                    styles.progressCapsuleText,
-                    currentTrip.status === 'Completed' && styles.progressCapsuleTextCompleted
-                  ]}>
-                    {calculateMockProgress()}%
-                  </Text>
-                </View>
-              )}
-            </View>
-          </View>
-          
           {/* City Strip - Horizontal Scrollable Pills */}
           <ScrollView 
             horizontal 
