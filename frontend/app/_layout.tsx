@@ -1,0 +1,59 @@
+import { Stack } from 'expo-router'
+import { AuthProvider } from '../contexts/AuthContext'
+import { BookmarkProvider } from '../contexts/BookmarkContext'
+import { TripCanvasProvider } from '../contexts/TripCanvasContext'
+import { TripsProvider } from '../contexts/TripsContext'
+import { StayBookingProvider } from '../contexts/StayBookingContext'
+import { ExperienceBookingProvider } from '../contexts/ExperienceBookingContext'
+import { RestaurantBookingProvider } from '../contexts/RestaurantBookingContext'
+import { TransportBookingProvider } from '../contexts/TransportBookingContext'
+
+export default function RootLayout() {
+  return (
+    <AuthProvider>
+      <BookmarkProvider>
+        <TripCanvasProvider>
+          <TripsProvider>
+            <StayBookingProvider>
+              <ExperienceBookingProvider>
+                <RestaurantBookingProvider>
+                  <TransportBookingProvider>
+                    <Stack screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="index" />
+                <Stack.Screen name="landing" />
+                <Stack.Screen name="trips" />
+                <Stack.Screen name="onboarding" />
+                <Stack.Screen name="welcome" />
+                <Stack.Screen name="home" />
+                <Stack.Screen name="destination" />
+                <Stack.Screen name="bookings" />
+                <Stack.Screen name="gallery" />
+                <Stack.Screen name="multi-city-destination" />
+                <Stack.Screen name="book-journey" />
+                <Stack.Screen name="stay-browsing" />
+                <Stack.Screen name="experience-browsing" />
+                <Stack.Screen name="restaurant-browsing" />
+                <Stack.Screen name="transport-browsing" />
+                <Stack.Screen name="stay-info-compact" />
+                <Stack.Screen name="train-info" />
+                <Stack.Screen name="bus-info" />
+                <Stack.Screen name="car-rental-info" />
+                <Stack.Screen name="ferry-info" />
+                <Stack.Screen name="experience-info" />
+                <Stack.Screen name="restaurant-info" />
+                <Stack.Screen name="concierge" />
+                <Stack.Screen name="account" />
+                <Stack.Screen name="settings" />
+                <Stack.Screen name="help-support" />
+                <Stack.Screen name="change-password" />
+                    </Stack>
+                  </TransportBookingProvider>
+                </RestaurantBookingProvider>
+              </ExperienceBookingProvider>
+            </StayBookingProvider>
+          </TripsProvider>
+        </TripCanvasProvider>
+      </BookmarkProvider>
+    </AuthProvider>
+  )
+}
