@@ -2329,8 +2329,8 @@ const styles = StyleSheet.create({
   // Destination Title
   glassDestinationTitle: {
     fontSize: 19,
-    fontWeight: '600', // SemiBold
-    color: 'rgba(255,255,255,0.95)', // White 95%
+    fontWeight: '600',
+    color: '#D4B882',
     letterSpacing: 0.2,
     marginBottom: 4,
     ...Platform.select({
